@@ -1,0 +1,97 @@
+<template name="chartloading">
+    <style>
+        .loadingContainer {
+            width: 80px;
+            height: 100px;
+            margin: 0 auto;
+            margin-bottom: 16px;
+            margin-top: 8px;
+        }
+
+        .loadingBlock {
+            position: relative;
+            box-sizing: border-box;
+            float: left;
+            margin: 0 10px 10px 0;
+            width: 12px;
+            height: 12px;
+            border-radius: 3px;
+            background: #00a3d3;
+        }
+
+        .loadingText {
+            width: 80px;
+            margin: 0 auto;
+            margin-top: 16px;
+            font-weight: 600;
+            color: #00a3d3;
+            font-size: 18px;
+            animation: loadFlashing 3s infinite linear alternate;
+            animation-delay: .5s;
+        }
+
+        @keyframes loadFlashing {
+            0% {
+                color: #fff;
+            }
+
+            50%,
+            100% {
+                color: #00a3d3;
+            }
+        }
+
+        .loadingBlock:nth-child(4n+1) {
+            animation: wave 2s ease .0s infinite;
+        }
+
+        .loadingBlock:nth-child(4n+2) {
+            animation: wave 2s ease .2s infinite;
+        }
+
+        .loadingBlock:nth-child(4n+3) {
+            animation: wave 2s ease .4s infinite;
+        }
+
+        .loadingBlock:nth-child(4n+4) {
+            animation: wave 2s ease .6s infinite;
+            margin-right: 0;
+        }
+
+        @keyframes wave {
+            0% {
+                top: 0;
+                opacity: 1;
+            }
+
+            50% {
+                top: 30px;
+                opacity: .2;
+            }
+
+            100% {
+                top: 0;
+                opacity: 1;
+            }
+        }
+    </style>
+    <div class="loadingContainer">
+        <div class="loadingBlock"></div>
+        <div class="loadingBlock"></div>
+        <div class="loadingBlock"></div>
+        <div class="loadingBlock"></div>
+        <div class="loadingBlock"></div>
+        <div class="loadingBlock"></div>
+        <div class="loadingBlock"></div>
+        <div class="loadingBlock"></div>
+        <div class="loadingBlock"></div>
+        <div class="loadingBlock"></div>
+        <div class="loadingBlock"></div>
+        <div class="loadingBlock"></div>
+        <div class="loadingBlock"></div>
+        <div class="loadingBlock"></div>
+        <div class="loadingBlock"></div>
+        <div class="loadingBlock"></div>
+    </div>
+    <div class="loadingText">Loading...</div>
+</template>

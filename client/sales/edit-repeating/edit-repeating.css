@@ -1,0 +1,392 @@
+.repeat_invoice_bg {
+    background: linear-gradient(#fff,#f8f8f8);
+    background-color: #f8f8f8;
+    background-repeat: no-repeat;
+    float: left;
+    width: 100%;
+    padding-bottom: 20px;
+}
+.editRepeating .active_page_content h1 {
+    margin-bottom: 0;
+    border-bottom: 0;
+}
+.editRepeating .repeat_invoice{
+    background: #fafafa;
+    border-radius: 0;
+    border: 1px solid #ddd;
+    border-bottom-width: 0!important;
+    width: 100%;
+    margin-top: 20px;
+    float: left;
+}
+.editRepeating .repeat_invoice strong{
+    color: #999;
+    -webkit-font-smoothing: antialiased;
+    font-size: 12px;
+    float: left;
+}
+.editRepeating .repeat_invoice .invoicing_status{
+    border-radius: 3px 3px 0 0;
+    padding: 2px 12px;
+    width: 100%;
+    height: 40px;
+    background-color: #fff;
+    border-bottom: 1px solid #eaeaea;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.editRepeating .repeating_panel {
+    background: #fafafa;
+    padding-top: 0;
+    float: left;
+    width: 100%;
+    border-bottom: solid 1px #ddd;
+}
+.editRepeating .options-schedule {
+    background: #f5f5f5!important;
+    border: 1px solid #ddd!important;
+    float: left;
+    width: 98%;
+    padding: 8px;
+    clear: both;
+    margin: 11px;
+}
+
+.editRepeating .repeat_invoice .invoicing_status a.new_create_btn {
+    float: right;
+}
+
+.editRepeating .totals_container1{
+    margin-top: 40px;
+}
+
+.editRepeating .buttons_footer {
+    background: #fff;
+    padding: 8px 0;
+    border-top: 1px solid #ddd;
+    width: 100%;
+    float: left;
+}
+.editRepeating .buttons_footer .button_right {
+    float: right;
+    padding-right: 10px;
+}
+.editRepeating .button_left{
+    float: left;
+    padding-left: 10px;
+}
+.editRepeating .button_left .button_delete {
+    background: linear-gradient(#ffffff 0%,#efefef 98%,#ffffff 99%);
+    color: #bbb;
+    cursor: default;
+    text-shadow: 0 1px 1px #fff;
+    border-color: #d7dadd #d7d9dd #d6d9dd #d7dade;
+    margin-left: 0;
+    font-size: 12px;
+    font-weight: bold;
+}
+.editRepeating .button_left .button_delete span{
+    color: #eb0000;
+    width: 74px;
+    float: left;
+}
+
+.editRepeating .repeating_top{
+    width: 100%;
+    float: left;
+}
+.editRepeating .repeating_div{
+     width: 206px;
+    float: left;
+}
+.editRepeating .repeating_div label{
+    width: 100%;
+    float: left;
+    font-size: 12px;
+    font-weight: 700;
+    color: #4a4247;
+}
+.editRepeating .repeating_div input{
+    border: 1px solid #7f9db9;
+    width: 77%;
+    font-size: 12px;
+    height: 25px;
+    padding-left: 5px;
+
+}
+.editRepeating .repeating_div input.textdiv{
+    width: 25px;
+    margin-right: 5px;
+    float: left;
+}
+.editRepeating .repeating_div.invoice_date {
+    width: 107px;
+    margin-right: 20px;
+    position: relative;
+}
+.editRepeating .repeating_div.invoice_date input{
+    width: 100%;
+
+}
+.editRepeating .repeating_div.due_date {
+    width: 350px;
+    margin-left: 20px;
+}
+.editRepeating .repeating_div.due_date .due-value{
+width: 35px;
+margin-right: 15px;
+}
+.editRepeating .repeating_div.due_date span{
+    font-size: 12px;
+    font-weight: normal;
+    float: left;
+    margin-right: 5px;
+    padding-top: 3px;
+}
+
+.editRepeating .repeating_div.end_date {
+    width: 128px;
+}
+.editRepeating .repeating_div.end_date span {
+    color: #666;
+    font-weight: 400;
+}
+.editRepeating .repeating_footer{
+    width: 100%;
+    float: left;
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
+.editRepeating .repeating_footer .repeating_left_radio {
+    float: left;
+    font-size: 12px;
+}
+.editRepeating .repeating_footer .auto-filled-fields-message {
+    float: right;
+    color: #777;
+    font-size: 12px;
+}
+.editRepeating .repeating_footer .repeating_left_radio label{
+    margin-right: 7px;
+}
+
+.editRepeating .repeating_footer .repeating_left_radio input {
+    margin-right: 3px;
+    float: left;
+    margin-top: 2px;
+}
+
+.editRepeating .invoicing-details{
+    float: left;
+    width: 98%;
+    margin: 10px 0 0 10px;
+    border-bottom: 1px solid #e1e1e1;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+}
+.editRepeating .invoicing-details .repeating_div{
+    margin-right: 10px;
+}
+.editRepeating .invoicing-details .repeating_div input{
+    border-color: #b5b8bb #e2e4e7 #e8eaec #bdbfc3;
+    width: 100% !important;
+}
+.editRepeating .invoicing-details .repeating_div.Branding_right {
+    margin-left: 15%;
+}
+
+.editRepeating .gst_div{
+    width: 100%;
+    float: left;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.editRepeating .gst_div .repeating_div {
+    width: auto;
+    float: right;
+    display: flex;
+    align-items: center;
+}
+.editRepeating .gst_div .repeating_div label{
+    margin-right: 10px;
+}
+.editRepeating .gst_div .repeating_div input {
+    margin-right: 14px;
+    width: 150px !important;
+}
+
+
+
+.editRepeating .new_create_footer_container table#Notes {
+    width: 924px;
+    border-collapse: separate;
+    border: none;
+    margin-top: 15px;
+}
+
+.editRepeating .new_create_footer_container table#Notes td:first-of-type {
+    border-left: 1px solid #ddd;
+}
+
+.editRepeating .new_create_footer_container table#Notes td:first-of-type {
+    border-left: 1px solid #ddd;
+}
+
+.editRepeating .new_create_footer_container table#Notes tr td {
+    color: #444;
+    font-size: 12px;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    background: #fff;
+}
+
+.editRepeating .new_create_footer_container table#Notes td:last-of-type {
+    border-right: 1px solid #ddd;
+}
+.editRepeating .new_create_footer_container table#Notes thead tr td {
+    background: linear-gradient(#fff, #f6f7f8);
+    border-bottom: 1px solid #e8e8e8;
+    border-right: 1px solid #e8e8e8;
+    font-weight: 700;
+    border-top: 1px solid #ddd;
+    color: #444;
+    font-size: 12px;
+    padding: 10px;
+}
+.editRepeating div#latestNote {
+    border-width: 1px 0;
+    border-color: #eaeaea;
+    background-color: transparent;
+    padding-left: 0!important;
+    padding-top: 10px!important;
+    line-height: 16px;
+    margin-bottom: 15px;
+    margin-top: 5px;
+    float: left;
+    width: 100%;
+    font-size: 12px;
+    color: #999;
+    font-weight: normal !important;
+}
+.editRepeating .new_create_footer {
+    width: 100%;
+    padding: 0;
+    background-color: transparent;
+}
+
+.editRepeating .new_create_footer h3 {
+    font: 700 14px Arial,sans-serif;
+    border: none;
+    color: #858585;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    margin-top: 20px;
+}
+
+.editRepeating .new_create_footer_container {
+    background-color: transparent;
+    margin-top: 10px;
+}
+
+.AllPageContent {
+    background: linear-gradient(#fff, #f8f8f8);
+    background-color: #f8f8f8;
+    background-repeat: no-repeat;
+    float: left;
+    width: 100%;
+}
+
+.editRepeating a#notesbtn {
+    margin-left: 0 !important;
+}
+.editRepeating img.addImage{
+    position: absolute;
+    height: 27px;
+    top: 22px;
+    border: 1px solid #ccc;
+    border-left: 0;
+}
+.editRepeating .dropdown-add-rec {
+    margin-right: 10px;
+}
+.editRepeating .dropdown-add-rec input{
+    margin-right: 0 !important;
+    width: 150px ;
+}
+.editRepeating .dropdown-add-rec input#select{
+    width: 250px !;
+}
+.editRepeating .dropdown-add-rec img{
+right: 0 !important;
+    padding: 0 !important;
+    z-index: 9 !important;
+}
+.editRepeating .dropdown-add-rec2{
+    background:none;
+}
+.editRepeating .dropdown-add-rec2 img{
+    height:25px;
+    border-left: 0;
+}
+.editRepeating .repeating_div.invoice_date img,.editRepeating .repeating_div.end_date img {
+    position: absolute;
+    height: 25px;
+    border: 1px solid #ccc;
+    border-left: 0;
+    width: 19px;
+}
+.editRepeating .hasDatepicker{
+    border-right: 0 !important;
+}
+.editRepeating #component_tbUpdate thead th:nth-child(4){
+    width:320px;
+}
+.editRepeating #component_tbUpdate thead th:nth-child(6){
+    width:100px;
+}
+.editRepeating #component_tbUpdate tbody td{
+border-top: 1px solid #ddd;
+}
+.editRepeating ul.dropdown-menu li{
+    border-bottom: 1px solid #e9edf2;
+    padding:10px;
+    font-size: 12px;
+
+}
+.editRepeating ul.dropdown-menu li:hover{
+background-color: #e6f5fa;
+}
+.editRepeating .Branding_right ul.dropdown-menu li{
+    width: 100%;
+}
+.editRepeating .Branding_right ul.dropdown-menu{
+    background-color: #fff;
+}
+.editRepeating #new-attachment2-tooltip{
+    width: 45%;
+    right: -37px !important;
+    top: 67px !important;
+
+}
+.editRepeating #editRepeatingDropdown ul.selectDropdown{
+    background-color: #fff;
+}
+.editRepeating #repeatTransaction ul.repeatDropdown{
+    background-color: #fff;
+    overflow-y: hidden;
+    height: 140px;
+}
+.editRepeating #amountsAreDropdown ul.amountsAreList{
+    overflow-y: hidden;
+    height: 116px
+}
+.editRepeating #amountsAreDropdown ul.amountsAreList li{
+    padding: 10px 10px 10px!important;
+}
+
+.editRepeating #amountsAreDropdown ul.amountsAreList li:hover{
+    background: #e6f5fa !important;
+    border: none !important;
+}

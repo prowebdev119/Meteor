@@ -1,0 +1,179 @@
+<template name="subscriptionSettings">
+    <div class="container-fluid">
+        <div class="fullScreenSpin" style="display:none;">
+            <div class="spinner"></div>
+        </div>
+        <h3 class="text-dark mb-4">
+            Subscription Settings
+            <a role="button" data-toggle="modal" href="#helpViewModal" style="font-size: 20px;">Help <i class="fa fa-question-circle-o" style="font-size: 20px;"></i></a>
+            <!-- Start Help View Modal -->
+            <div class="modal fade" role="dialog" tabindex="-1" id="helpViewModal">
+                <div class="modal-dialog modal-sm" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header" style="padding-bottom: 8px;">
+                            <h4>Help</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                        </div>
+                        <div class="modal-body">
+                            <p class="text-center text-muted"><a role="button" data-toggle="modal" href="#helpModal" class="btn btn-primary helpModal">View Help Video</a></p>
+                            <p class="text-center text-muted"><a href="https://vs1forum.com/viewtopic.php?f=6&t=15" target="_blank" class="btn btn-primary">Download Help File</a></p>
+                            <p class="text-center text-muted"><button class="btn btn-primary" type="button">Employ Advisor</button></p>
+                            <p class="text-center text-muted" style="margin: 0px;"><a href="https://vs1forum.com/ucp.php?mode=register&cloudusername={{loggedCompany}}" target="_blank" class="btn btn-primary">Go To Forum</a></p>
+                        </div>
+                        <div class="modal-footer" style="padding: 6px;"><button class="btn btn-light" data-dismiss="modal" type="button">Close</button></div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Help View Modal -->
+        </h3>
+
+        <script>
+            setTimeout(function() {
+                var x = window.matchMedia("(max-width: 1024px)");
+
+                function mediaQuery(x) {
+                    if (x.matches) {
+                        $("#colSubSettings").removeClass("col-5");
+                        $("#colSubSettings").addClass("col-10");
+                    }
+                }
+                mediaQuery(x)
+                x.addListener(mediaQuery)
+            }, 10);
+            setTimeout(function() {
+                var x = window.matchMedia("(max-width: 420px)");
+
+                function mediaQuery(x) {
+                    if (x.matches) {
+                        $("#colSubSettings").removeClass("col-5");
+                        $("#colSubSettings").addClass("col-12");
+                        $("#colCardNum").removeClass("col-6");
+                        $("#colCardNum").addClass("col-12");
+                        $("#colExpDate").removeClass("col-3");
+                        $("#colExpDate").addClass("col-12");
+                        $("#colCVC").removeClass("col-3");
+                        $("#colCVC").addClass("col-12");
+                    }
+                }
+                mediaQuery(x)
+                x.addListener(mediaQuery)
+            }, 10);
+        </script>
+
+        <div class="row mb-3 justify-content-center">
+            <div class="col-5 colSubSettings" id="colSubSettings" spellcheck="max-width: 680px !important;">
+                <div class="card shadow mb-3">
+                    <div class="card-header py-3">
+                        <p class="text-primary m-0 font-weight-bold">Subscription Settings</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-body p-3 rounded">
+                            <div class="row no-gutters">
+                                <div class="col">
+                                    <div class="row no-gutters" style="margin: 0px -8px; margin-bottom: 8px;">
+                                        <div class="col-6 colCardNum" id="colCardNum">
+                                            <input type="hidden" class="form-control " id="txtCardID" name="txtCardID" value="" style="display:none;">
+                                            <div class="form-group d-xl-flex flex-column justify-content-xl-start" style="margin: 0px 8px 8px 8px;">
+                                                <label>Card Number</label>
+                                                <input type="text" class="form-control txtCardNo" id="txtCardNo" name="txtCardNo" value="" maxlength="16" pattern="[0-9]*" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" >
+                                            </div>
+                                        </div>
+                                        <div class="col-3 colExpDate" id="colExpDate">
+                                            <div class="form-group d-xl-flex flex-column justify-content-xl-start" style="margin: 0px 8px 8px 8px;">
+                                                <label>Expiry Date</label>
+                                                <input type="text" class="form-control " id="txtExpireDate" name="txtExpireDate" value="">
+                                            </div>
+                                        </div>
+                                        <div class="col-3 colCVC" id="colCVC">
+                                            <div class="form-group d-xl-flex flex-column justify-content-xl-start" style="margin: 0px 8px 8px 8px;">
+                                                <label>CVC</label>
+                                                <input type="text" class="form-control " id="txtCVC" name="txtCVC" value="" maxlength="4" pattern="[0-9]*" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <hr>
+                                </div>
+                                <div class="col-12 d-xl-flex justify-content-xl-end align-items-end" style="margin-top: 16px;">
+                                    <button class="btn btn-primary btnSaveCreditCard" type="button" style="margin: 8px;"><i class="fas fa-save" style="padding-right: 5px;"></i>Update</button>
+                                    <button class="btn btn-success btnAddVS1User" type="button" style="margin: 8px;"><i class="fa fa-plus" style="padding-right: 5px;"></i>Add VS1 User</button>
+                                    <button class="btn btn-danger btnCancelSub" type="button" style="margin: 8px;"><i class="fa fa-times" style="padding-right: 5px;"></i>Cancel Subscription</button>
+                                    <button class="btn btn-secondary btnBack" type="button" style="margin: 8px;"><i class="fa fa-close" style="margin-right: 5px;"></i>Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Start Help Video Modal -->
+    <div class="modal fade" role="dialog" tabindex="-1" id="helpModal">
+        <div class="modal-dialog" role="document" style="max-width: 670px!important;">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <h4 class="title-header">Department</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+                    <!-- <iframe width="640" height="360" src="https://player.vimeo.com/video/99892791" frameborder="0" allowfullscreen=""></iframe> -->
+                    <!-- <iframe width="640" height="360" src="https://erphelpes.com/vs1videos/departmentlist.mp4" frameborder="0" allowfullscreen=""></iframe> -->
+                    <video id="myVideo" width="640" height="360" controls="" name="media" style="border: solid 5px #999999f0; height: auto; outline: none;">
+                        <source src="https://erphelpes.com/vs1videos/departmentsettings.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- End Help Video Modal -->
+
+    <!-- Start Help Video Modal -->
+    <div class="modal fade" role="dialog" tabindex="-1" id="helpModalAdd">
+        <div class="modal-dialog" role="document" style="max-width: 670px!important;">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <h4 class="title-header">New Department</h4>
+                    <button type="button" class="close closeAdd" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+                    <!-- <iframe width="640" height="360" src="https://player.vimeo.com/video/99892791" frameborder="0" allowfullscreen=""></iframe> -->
+                    <!-- <iframe width="640" height="360" src="https://erphelpes.com/vs1videos/departments.mp4" frameborder="0" allowfullscreen=""></iframe> -->
+                    <video id="myVideoAdd" width="640" height="360" controls="" name="media" style="border: solid 5px #999999f0; height: auto; outline: none;">
+                        <source src="https://erphelpes.com/vs1videos/subscriptionsettings.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- End Help Video Modal -->
+
+    <!-- Start Modal Product -->
+    <div class="modal fade" role="dialog" tabindex="-1" id="employeeListModal">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Employee List</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+                    <!-- {{> refreshbutton}} -->
+                    {{> popemployeelist}}
+
+                </div>
+                <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Close</button>
+                    <button class="btn btn-primary btnProdSelect" type="button" style="background-color: #00A3D3; border-color: #00A3D3;">Select</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- End Modal Product -->
+    <script>
+        modalDraggable();
+    </script>
+</template>

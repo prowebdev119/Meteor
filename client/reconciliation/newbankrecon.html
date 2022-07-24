@@ -1,0 +1,475 @@
+<template name="newbankrecon">
+    <div class="container-fluid">
+        <div class="fullScreenSpin" style="display:none;">
+            <div class="spinner"></div>
+        </div>
+        <div class="row mb-4" style="padding: 16px;">
+            <h2 class="text-dark mb-0">New Bank Reconciliation
+                <a role="button" data-toggle="modal" href="#helpViewModal" style="font-size: 20px;">Help <i class="fa fa-question-circle-o" style="font-size: 20px;"></i></a>
+            </h2>
+            <!-- Start Help View Modal -->
+            <div class="modal fade" role="dialog" tabindex="-1" id="helpViewModal">
+                <div class="modal-dialog modal-sm" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header" style="padding-bottom: 8px;">
+                            <h4>Help</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                        </div>
+                        <div class="modal-body">
+                            <p class="text-center text-muted"><a role="button" data-toggle="modal" href="#helpModal" class="btn btn-primary helpModal">View Help Video</a></p>
+                            <p class="text-center text-muted"><a href="https://vs1forum.com/" target="_blank" class="btn btn-primary">Download Help File</a></p>
+                            <p class="text-center text-muted"><button class="btn btn-primary" type="button">Employ Advisor</button></p>
+                            <p class="text-center text-muted" style="margin: 0;">
+                                <a href="https://vs1forum.com/ucp.php?mode=register&cloudusername={{loggedCompany}}" target="_blank" class="btn btn-primary">
+                                Go To Forum
+                                </a>
+                            </p>
+                        </div>
+                        <div class="modal-footer" style="padding: 6px;"><button class="btn btn-light" data-dismiss="modal" type="button">Close</button></div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" role="dialog" tabindex="-1" id="helpModal">
+                <div class="modal-dialog" role="document" style="max-width: 670px !important;">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="title-header">Reconciliation List</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                        </div>
+                        <div class="modal-body">
+                            <video id="myVideo" width="640" height="360" controls="" name="media" style="border: solid 5px #999999f0; height: auto; outline: none;">
+                                <source src="https://erphelpes.com/vs1videos/newreconciliationvideo.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Help View Modal -->
+        </div>
+
+        <style>
+            .rightsideheader {
+                padding: 0 !important;
+            }
+
+            .mb-6 {
+                margin-bottom: 3rem;
+            }
+
+            .nav-tabs {
+                border-bottom: 0 solid #dddfeb;
+            }
+
+            .matchedtab {
+                border-color: #8BD2B9 !important;
+                background-color: rgba(23, 166, 115, 0.5) !important;
+            }
+
+            .matched {
+                position: relative;
+                color: #000;
+            }
+
+            .matched:after {
+                content: " ";
+                z-index: 10;
+                display: block;
+                position: absolute;
+                height: 100%;
+                top: 0;
+                left: 0;
+                right: 0;
+                background: rgba(23, 166, 115, 0.5);
+            }
+            .sortBtn {
+                cursor: pointer;
+            }
+            .sortBtn .fa-sort {
+                color: #858796 !important;
+            }
+
+            /* If there's a reconciliation match, add class "matched" to the Tab-Pane and "matchedtab" to the Match Nav-Item anchor tag */
+        </style>
+
+        <div class="row justify-content-center mb-6">
+            <div class="col-12 col-md-11">
+                <div class="card shadow" style="padding: 16px;">
+                    <div class="row">
+                        <div class="col-12 col-md-6" style="display: flex;">
+                            <div style="border-right: 1px solid #e3e6f0; padding-right: 16px; margin-right: 16px;">
+                                <p class="openingbalance" style="margin-bottom: 0; font-weight: 700; font-size: 26px;">$ 0.00</p>
+                                <p style="margin-bottom: 0; font-weight: 300; font-size: 14px;">Statement Balance</p>
+                            </div>
+                            <div style="border-right: 1px solid #e3e6f0; padding-right: 16px; margin-right: 16px;">
+                                <p class="vs1cloudBalance" style="margin-bottom: 0; font-weight: 700; font-size: 26px;">$ 0.00</p>
+                                <p style="margin-bottom: 0; font-weight: 300; font-size: 14px;">Balance in VS1</p>
+                            </div>
+                            <div class="col mr-2">
+                                <div class="text-uppercase text-warning font-weight-bold text-xs mb-1"><span style="font-size: 14px;">Select Bank Account</span></div>
+                                <div class="form-group">
+                                    <select type="search" class="form-control" id="bankAccountName" name="bankAccountName" style="background-color:rgb(255, 255, 255); cursor: pointer;">
+                                    </select>
+                                    <input type="hidden" style="width: 100%; display:none;" id="bankAccountID" name="bankAccountID" readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6" style="display: flex; justify-content: end;">
+                            <div style="padding-right: 16px; margin-right: 16px; text-align: right;">
+                                <p style="margin-bottom: 0; font-weight: 300; font-size: 14px; margin-top: 12px;">12 Feb 2022</p>
+                                <p style="margin-bottom: 0; font-weight: 300; font-size: 14px;"><a href="">Reconciliation Report</a></p>
+                            </div>
+                            <div>
+                                <div class="dropdown" style="margin-top: 14px;">
+                                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Manage Account
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" href="#">Action</a>
+                                        <a class="dropdown-item" href="#">Another action</a>
+                                        <a class="dropdown-item" href="#">Something else here</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center mb-4">
+            <div class="col-5">
+                <p style="margin-bottom: 0; border-bottom: 1px solid #e3e6f0;">
+                    Review your bank statement lines...
+                </p>
+            </div>
+            <div class="col-1">
+            </div>
+            <div class="col-5">
+                <p style="margin-bottom: 0; border-bottom: 1px solid #e3e6f0;">
+                    ... then match with your transaction in VS1 Cloud
+                </p>
+            </div>
+            <div class="col-5">
+                <div class="row">
+                    <div class="col-6">
+
+                    </div>
+                    <div class="col-3" style="text-align: center; color: #00a3d3 !important;">
+                        <span class="sortBtn sortDepositSpent">Spent <i class="fas {{ fa_sortDepositSpent }}" style="margin-left: 5px;"></i></span>
+                    </div>
+                    <div class="col-3" style="text-align: center; color: #00a3d3 !important;">
+                        <span class="sortBtn sortDepositReceived">Received <i class="fas {{ fa_sortDepositReceived }}" style="margin-left: 5px;"></i></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-1">
+
+            </div>
+            <div class="col-5">
+                <div class="row">
+                    <div class="col-6">
+
+                    </div>
+                    <div class="col-3" style="text-align: center; color: #00a3d3 !important;">
+                        <span class="sortBtn sortWithdrawSpent">Spent <i class="fas {{ fa_sortWithdrawSpent }}" style="margin-left: 5px;"></i></span>
+                    </div>
+                    <div class="col-3" style="text-align: center; color: #00a3d3 !important;">
+                        <span class="sortBtn sortWithdrawReceived">Received <i class="fas {{ fa_sortWithdrawReceived }}" style="margin-left: 5px;"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{#if bankTransactionData}}
+        {{#each itemTransaction in bankTransactionData}}
+        <div class="row justify-content-center mb-6">
+            <div class="col-12 col-md-5">
+                <div class="card shadow">
+                    <div class="card-header">
+                        {{ itemTransaction.StatementTransactionDate }}
+                        <div class="dropdown float-right">
+                            <button class="btn btn-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                style="color: #00a3d3 !important; background-color: rgba(0,0,0,0) !important;"></button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="">
+                                <a class="dropdown-item" href="" data-toggle="modal" data-target="#newBankRuleModal">Create Bank Rule</a>
+                                <a class="dropdown-item" href="#" style="color: red;">Delete Line</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body" style="padding: 0;">
+                        <div class="row" style="margin-left: 0; margin-right: 0;">
+                            <div class="col-6" style="padding: 16px; border: 1px solid #e3e6f0; border-top: 0 solid #e3e6f0; border-left: 0 solid #e3e6f0;">
+                                <p style="margin-bottom: 0; font-weight: 700;">{{ itemTransaction.CompanyName }}</p>
+                                <p style="margin-bottom: 0;"><span>{{ itemTransaction.StatementDescription }}</span></p>
+                                <a href="">More Details</a>
+                            </div>
+                            <div class="col-3" style="padding: 16px; border: 1px solid #e3e6f0; border-top: 0 solid #e3e6f0; border-left: 0 solid #e3e6f0; border-right: 0 solid #e3e6f0;">
+                                <span style="float: right; font-weight: 700;">{{ itemTransaction.spentDepositAmount }}</span>
+                            </div>
+                            <div class="col-3" style="padding: 16px; border: 1px solid #e3e6f0; border-top: 0 solid #e3e6f0; border-right: 0 solid #e3e6f0;">
+                                <span style="float: right; font-weight: 700;">{{ itemTransaction.receivedDepositAmount }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="card-footer">
+                    </div> -->
+                </div>
+            </div>
+            <div class="col-12 col-md-1" style="text-align: center;">
+                <button type="button" class="btn btn-primary" style="margin: 0 auto; margin-top: 50%;">Ok</button>
+            </div>
+            <div class="col-12 col-md-5">
+                <div class="card shadow">
+                    <div class="card-header rightsideheader">
+                        <ul class="nav nav-tabs nav-fill" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active {{#if itemTransaction.matched }}matchedtab{{/if}}" id="home-tab" data-toggle="tab" href="#match_{{ itemTransaction.DepositLineID }}" role="tab" aria-controls="home" aria-selected="true">Match</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#create_{{ itemTransaction.DepositLineID }}" role="tab" aria-controls="profile" aria-selected="false">Create</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="contact-tab" data-toggle="tab" href="#transfer_{{ itemTransaction.DepositLineID }}" role="tab" aria-controls="contact" aria-selected="false">Transfer</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="contact-tab" data-toggle="tab" href="#discuss_{{ itemTransaction.DepositLineID }}" role="tab" aria-controls="contact" aria-selected="false">Discuss</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact_{{ itemTransaction.DepositLineID }}" role="tab" aria-controls="contact" aria-selected="false">Find & Match</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-body" style="padding: 0;">
+                        <div class="tab-content">
+                            <div class="tab-pane fade show active {{#if itemTransaction.matched }}matched{{/if}}" id="match_{{ itemTransaction.DepositLineID }}" role="tabpanel" aria-labelledby="match-tab">
+                                <div class="row" style="margin-left: 0; margin-right: 0;">
+                                    <div class="col-12" style="padding: 16px; border: 1px solid #e3e6f0; border-bottom: 0 solid #e3e6f0; border-top: 0 solid #e3e6f0;">
+                                        <p style="margin-bottom: 0;">{{ itemTransaction.ReconDate }}</p>
+                                    </div>
+                                    <div class="col-6" style="padding: 16px; border: 1px solid #e3e6f0;">
+                                        <p style="margin-bottom: 0; font-weight: 700;">{{ itemTransaction.CompanyName }}</p>
+                                        <p style="margin-bottom: 0;">Ref: <span>{{ itemTransaction.ReferenceNo }}</span></p>
+                                    </div>
+                                    <div class="col-3" style="padding: 16px; border: 1px solid #e3e6f0; border-left: 0 solid #e3e6f0; border-right: 0 solid #e3e6f0;">
+                                        <span style="float: right; font-weight: 700;">{{ itemTransaction.spentWithdrawAmount }}</span>
+                                    </div>
+                                    <div class="col-3" style="padding: 16px; border: 1px solid #e3e6f0;">
+                                        <span style="float: right; font-weight: 700;">{{ itemTransaction.receivedWithdrawAmount }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="create_{{ itemTransaction.DepositLineID }}" role="tabpanel" aria-labelledby="create-tab">
+                                <div class="row" style="margin-left: 0; margin-right: 0;">
+                                    <div class="col-6" style="padding: 16px; padding-bottom: 0;">
+                                        <div class="form-group mb-0">
+                                            <label>Who</label>
+                                            <input type="text" class="form-control" id="who_{{ itemTransaction.DepositLineID }}" placeholder="Name of the contact..." value="">
+                                        </div>
+                                    </div>
+                                    <div class="col-6" style="padding: 16px; padding-bottom: 0;">
+                                        <div class="form-group mb-0">
+                                            <label>What</label>
+                                            <select type="search" class="form-control" id="what_{{ itemTransaction.DepositLineID }}" placeholder="Choose the customer..." style="background-color:rgb(255, 255, 255); cursor: pointer;"></select>
+                                            <input type="hidden" id="whatID_{{ itemTransaction.DepositLineID }}" value="">
+                                        </div>
+                                    </div>
+                                    <div class="col-12" style="padding: 16px;">
+                                        <div class="form-group mb-0">
+                                            <label>Why</label>
+                                            <input type="text" class="form-control" id="why_{{ itemTransaction.DepositLineID }}" placeholder="Enter a description..." value="">
+                                        </div>
+                                    </div>
+                                    <div class="col-4" style="padding: 0 !important; border: 0;">
+                                        <select type="search" class="form-control" id="ctaxRate_{{ itemTransaction.DepositLineID }}" placehoder="Choose the tax code..." style="background-color:rgb(255, 255, 255); cursor: pointer; border-radius: 0; border-color:#e3e6f0;"></select>
+                                        <input type="hidden" id="ctaxRateID_{{ itemTransaction.DepositLineID }}" value="">
+                                    </div>
+                                    <div class="col-8" style="padding: 6px 16px 4px 4px; border: 1px solid #e3e6f0; border-right: 0;">
+                                        <a href="" style="float: right;" id="btnAddDetail_{{ itemTransaction.DepositLineID }}">Add Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="transfer_{{ itemTransaction.DepositLineID }}" role="tabpanel" aria-labelledby="transfer-tab">
+                                <div class="row" style="margin-left: 0; margin-right: 0;">
+                                    <div class="col-6" style="padding: 16px;">
+                                        <div class="form-group mb-0">
+                                            <label>Select a Bank Account</label>
+                                            <select type="search" class="form-control" id="transferAccount_{{ itemTransaction.DepositLineID }}" value=""
+                                                style="background-color:rgb(255, 255, 255); cursor: pointer; border-radius: 0; border-color:#e3e6f0;"></select>
+                                        </div>
+                                    </div>
+                                    <div class="col-6" style="padding: 16px;">
+                                        <div class="form-group mb-0">
+                                            <label>Reference</label>
+                                            <input type="text" class="form-control" id="reference_{{ itemTransaction.DepositLineID }}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="discuss_{{ itemTransaction.DepositLineID }}" role="tabpanel" aria-labelledby="discuss-tab">
+                                <div class="row" style="margin-left: 0; margin-right: 0;">
+                                    <div class="col-12" style="padding: 16px;">
+                                        <div class="form-group mb-0">
+                                            <textarea class="form-control" id="discussText_{{ itemTransaction.DepositLineID }}" rows="6"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="card-footer">
+                    </div> -->
+                </div>
+            </div>
+        </div>
+        {{/each}}
+        {{/if}}
+
+        <div class="row justify-content-center mb-6">
+            <div class="col-12 col-md-11">
+                <div class="card shadow" style="padding: 16px;">
+                    <div class="row">
+                        <div class="col-12 col-md-3">
+                            <div class="float-left">
+                                Page <strong>{{ page_number }}</strong> of <strong>{{ page_count }}</strong>
+                                <span style="font-weight: 200;">({{ page_total }} items to be reconciled)</span>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-3">
+                            <div class="dropdown">
+                                <span class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: #00a3d3 !important; background-color: rgba(0,0,0,0) !important;">
+                                    Jump to Page :
+                                </span>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="">
+                                    {{#each i in page_list}}
+                                    <a class="dropdown-item" href="" onclick="window.open('/newbankrecon?page={{ i }}{{ sort_param }}', '_self');"> {{ i }} </a>
+                                    {{/each }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-2">
+                            <span class="float-left">
+                                <div class="custom-control custom-switch">
+                                    <input class="custom-control-input" type="checkbox" value="" id="swtSuggestPreviousEntries" name="swtSuggestPreviousEntries" style="cursor: pointer;" checked>
+                                    <label class="custom-control-label" for="swtSuggestPreviousEntries" style="width: 200px; cursor: pointer;">Suggest Previous Entries</label>
+                                </div>
+                            </span>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <span class="float-right">
+                                <div class="custom-control custom-switch">
+                                    <button class="btn btn-primary btnPageStart" type="button" style="width: 80px; margin: 3px;"><span><i class="fa fa-angle-double-left" style="margin-right: 5px;"></i>Start</span></button>
+                                    <button class="btn btn-primary btnPagePrev" type="button" style="width: 80px; margin: 3px;" ><span><i class="fa fa-angle-left" style="margin-right: 5px;"></i>Prev</span></button>
+                                    <button class="btn btn-primary btnPageNext" type="button" style="width: 80px; margin: 3px;"><span>Next <i class="fa fa-angle-right" style="padding-right: 8px;"></i></span></button>
+                                    <button class="btn btn-primary btnPageEnd" type="button" style="width: 80px; margin: 3px;">End <i class="fa fa-angle-double-right" style="margin-right: 5px;"></i></button>
+                                </div>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center mb-6">
+            <div class="col-12 col-md-11">
+                <div class="card shadow" style="padding: 16px;">
+                    <div class="row justify-content-center">
+                        <button class="btn btn-success btnSave" type="button" style="margin: 0 16px;">
+                            <i class="fa fa-save" style="padding-right: 8px;"></i>Save
+                        </button>
+
+                        <button class="btn btn-primary printConfirm" type="button" style="margin: 0 16px;">
+                            <i class="fa fa-print" style="padding-right: 8px;"></i>Print
+                        </button>
+
+                        <button class="btn btn-secondary btnBack" type="button" style="margin: 0 16px;">
+                            <i class="fa fa-remove" style="padding-right: 8px;"></i>Cancel
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="newBankRuleModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+            <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="">Bank Rules</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-12 mb-4">
+                                <button type="button" class="btn btn-primary" style="margin-right: 8px;"><i class="fas fa-plus" style="margin-right: 5px;"></i> Create Rule</button>
+                                <button type="button" class="btn btn-primary" style="margin-left: 8px;"><i class="fas fa-check" style="margin-right: 5px;"></i> Reconcile</button>
+                            </div>
+                            <div class="col-12">
+                                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-spendmoneyrules" role="tab" aria-controls="pills-home" aria-selected="true">Spend Money Rules</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-receivemoneyrules" role="tab" aria-controls="pills-profile" aria-selected="false">Receive Money Rules</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-transferrules" role="tab" aria-controls="pills-contact" aria-selected="false">Transfer Rules</a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content" id="pills-bankrules">
+                                    <div class="tab-pane fade show active" id="pills-spendmoneyrules" role="tabpanel" aria-labelledby="">...</div>
+                                    <div class="tab-pane fade" id="pills-receivemoneyrules" role="tabpanel" aria-labelledby="">...</div>
+                                    <div class="tab-pane fade" id="pills-transferrules" role="tabpanel" aria-labelledby="">...</div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-success" type="button" style="margin: 0 16px;">
+                            <i class="fa fa-save" style="padding-right: 8px;"></i>Save
+                        </button>
+                        <button class="btn btn-secondary" type="button" style="margin: 0 16px;">
+                            <i class="fa fa-remove" style="padding-right: 8px;"></i>Cancel
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal fade" role="dialog" tabindex="-1" id="taxRateListModal">
+        {{> taxratelistpop}}
+    </div>
+
+    <div class="modal fade" role="dialog" tabindex="-1" id="newTaxRateModal">
+        {{> newtaxratepop}}
+    </div>
+
+    <div class="modal fade newbankrecon" role="dialog" tabindex="-1" id="bankAccountListModal">
+        {{> accountlistpop}}
+    </div>
+
+    <div class="modal fade" role="dialog" tabindex="-1" id="addAccountModal">
+        {{> addaccountpop}}
+    </div>
+
+    <div class="modal fade customerListModal" role="dialog" tabindex="-1" id="customerListModal">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable customerListModalInner" role="document" style="max-width: 90vw;">
+            <div class="modal-content customerListContent">
+                <div class="modal-header">
+                    <h4>Customer List</h4><button type="button" class="close checkclose" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body mainCustomerModalBody" style="padding: 0px; overflow-x: hidden;">
+                    <input type="hidden" style="width: 100%; display:none;" id="customerSelectLineID" name="customerSelectLineID" readonly>
+                    {{> customerlistpop}}
+
+                </div>
+                <div class="modal-footer"><button class="btn btn-light checkclose" data-dismiss="modal" type="button">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        modalDraggable();
+    </script>
+</template>

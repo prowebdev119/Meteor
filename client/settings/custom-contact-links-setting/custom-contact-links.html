@@ -1,0 +1,41 @@
+<template name="customContactLinksSettings">
+    <div class="customContactLinksSettings">
+    <div class="active_page">
+        <div class="active_page_content">
+            <p><a href="/settings">General Settings</a> &nbsp;›&nbsp;
+            </p><br>
+            <h1>Custom Contact Links</h1>
+        </div>
+    </div>
+    <div id="wrapper_main">
+        <main id="page-content-wrapper_main" role="main">
+            <div class="FullWidthSetupBorder customContact">
+                <div class="pad">
+                    <div class="largeHeadingAddresses">
+                        <h2>Custom Contact Links</h2>
+                    </div>
+                    <p>Create custom links to allow you to click from VS1Cloud contacts to other systems such as Customer Relationship Management (CRM).</p>
+                    <div class="bubbleToolbar">
+                        <button type="button" class="btn btn-default customLink">Add A Custom Link</button>
+                        <div class="float-left">Contact Fields Chooser:</div>
+                        <select class=" form-control">
+                            <option>Cash Basis</option>
+                            <option>Accruals Basis</option>
+                            <option>None</option>
+                        </select>
+                    </div>
+                    <div class="customLinksGrid">
+                        <div class="col-md-3"> <span>Name</span></div>
+                        <div class="col-md-9"> <span>Link Definition</span></div>
+                    </div>
+
+                    </div>
+                <div class="financalFooter">
+                    <button type="button" class="btn btn-success">Save</button>
+                    <button type="button" class="btn cancel_new">Cancel</button>
+                </div>
+                </div>
+        </main>
+    </div>
+    </div>
+</template>

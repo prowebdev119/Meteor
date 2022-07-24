@@ -1,0 +1,613 @@
+<template name="taskdatatable">
+
+    <div class="row no-gutters" style="padding: 0px 32px;">
+        <div class="col-12">
+
+            <div class="card shadow mb-3">
+                <div class="card-header" style="padding: 0px !important;background-color: rgba(0,0,0,0); border-top: 0px; border-left: 0px; border-right: 0px;">
+                    <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist" style="border-bottom: 0px;">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="allTasks-tab" data-toggle="tab" href="#allTasks" role="tab" aria-selected="true">All Tasks</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="todayTab-tab" data-toggle="tab" href="#todayTab" role="tab" aria-selected="false">Today</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="upcomingTab-tab" data-toggle="tab" href="#upcomingTab" role="tab" aria-selected="false">Upcoming</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="projectsTab-tab" data-toggle="tab" href="#projectsTab" role="tab" aria-selected="false">Projects</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="filterLabelsTab-tab" data-toggle="tab" href="#filterLabelsTab" role="tab" aria-selected="false">Filters & Labels</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-body">
+                    <div class="card-body p-3 rounded">
+                        <div class="tab-content" id="myTabContent">
+
+                            <div class="tab-pane fade show active" id="allTasks" role="tabpanel" aria-labelledby="allTasks-tab">
+                                <div class="table-responsive">
+                                    <style>
+                                        th {
+                                            background-color: #ededed;
+                                        }
+
+                                        .table-striped tbody tr:nth-of-type(odd) {
+                                            background-color: white !important;
+                                        }
+
+                                        .table-striped tbody tr:nth-of-type(even) {
+                                            background-color: #0000000d !important;
+                                        }
+
+                                        .JColResizer>tbody>tr>td,
+                                        .JColResizer>tbody>tr>th {
+                                            padding: .75rem !important;
+                                        }
+
+                                        .hiddenColumn {
+                                            display: none;
+                                        }
+
+                                        .showColumn {
+                                            display: table-cell;
+                                            padding: .75rem;
+                                            vertical-align: top;
+                                        }
+
+                                        input[type=number]::-webkit-inner-spin-button,
+                                        input[type=number]::-webkit-outer-spin-button {
+                                            opacity: 1;
+                                        }
+
+                                        .colDate {
+                                            width: 5%;
+                                        }
+
+                                        .colTaskName {
+                                            width: 20%;
+                                        }
+
+                                        .colTaskDesc {
+                                            width: 25%;
+                                            max-width: 250px;
+                                            overflow: hidden;
+                                            text-overflow: ellipsis;
+                                            white-space: nowrap;
+                                        }
+
+                                        .colTaskActions {
+                                            width: 14%;
+                                        }
+
+                                        .btnTaskTableAction {
+                                            height: 38px !important;
+                                            width: 44px !important;
+                                            margin-right: 2px;
+                                        }
+
+                                        td .btnTaskTableAction {
+                                            display: inline-flex;
+                                        }
+                                    </style>
+                                    <table id="tblTaskListDatatable" name="tblTaskListDatatable" style="width:100%" class="dataTable table table-hover table-striped table-bordered tblTaskListDatatable">
+                                        <thead>
+                                            <tr class="dnd-moved">
+                                                <th class="th colCompleteTask" style="width: 2%;">
+                                                    <div class="custom-control custom-checkbox chkBox" style="width:15px;margin-right: -6px;">
+                                                        <input class="custom-control-input chkBoxAll" type="checkbox" id="formCheck-All">
+                                                        <label class="custom-control-label chkBoxAll" for="formCheck-All"></label>
+                                                    </div>
+                                                </th>
+                                                <th class="th colDate">Date</th>
+                                                <th class="th colTaskName">Task</th>
+                                                <th class="th colTaskDesc">Description</th>
+                                                <th class="th colTaskLabels">Labels</th>
+                                                <th class="th colTaskActions">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="dnd-moved" id="" style="cursor: pointer;">
+                                                <td contenteditable="false" class="colCompleteTask" style="width: 2%;">
+                                                    <div class="custom-control custom-checkbox chkBox pointer" style="width:15px;margin-right: -6px;">
+                                                        <input class="custom-control-input chkBox pointer" type="checkbox" id="formCheck-{{item.ID}}">
+                                                        <label class="custom-control-label chkBox pointer" for="formCheck-{{item.ID}}"></label>
+                                                    </div>
+                                                </td>
+                                                <td contenteditable="false" class="colOpenTask colDate">05/11/2022</td>
+                                                <td contenteditable="false" class="colOpenTask colTaskName">[Task Name]</td>
+                                                <td contenteditable="false" class="colOpenTask colTaskDesc">[Task description will go here and maybe we limit the length of this column, so that you click on the taks to view the whole thing? Could be a good idea.]
+                                                </td>
+                                                <td contenteditable="false" class="colOpenTask colTaskLabels">
+                                                    <span class="taskTag"><a class="taganchor" href=""><i class="fas fa-tag" style="margin-right: 5px;"></i>[label]</a></span>
+                                                    <span class="taskTag"><a class="taganchor" href=""><i class="fas fa-tag" style="margin-right: 5px;"></i>[label]</a></span>
+                                                </td>
+                                                <td contenteditable="false" class="colTaskActions">
+                                                    <div class="dropdown btnTaskTableAction">
+                                                        <button type="button" class="btn btn-primary btnEditTask"><i class="far fa-edit" style="width: 16px;"></i></button>
+                                                    </div>
+
+                                                    <div class="dropdown btnTaskTableAction">
+                                                        <button type="button" class="btn btn-success" data-toggle="dropdown"><i class="far fa-calendar"></i></button>
+                                                        <div class="dropdown-menu dropdown-menu-right reschedule-dropdown-menu  no-modal" aria-labelledby="dropdownMenuButton" style="width: 275px;">
+                                                            <a class="dropdown-item no-modal setScheduleToday" href="#" data-id="{{item.fields.ID}}">
+                                                                <i class="fas fa-calendar-day text-success no-modal" style="margin-right: 8px;"></i>Today
+                                                                <div class="float-right no-modal" style="width: 40%; text-align: end; color: #858796;">12/05/2022</div>
+                                                            </a>
+                                                            <a class="dropdown-item no-modal setScheduleTomorrow" href="#" data-id="">
+                                                                <i class="fas fa-sun text-warning no-modal" style="margin-right: 8px;"></i>Tomorrow
+                                                                <div class="float-right no-modal" style="width: 40%; text-align: end; color: #858796;">13/05/2022</div>
+                                                            </a>
+                                                            <a class="dropdown-item no-modal setScheduleWeekend" href="#" data-id="">
+                                                                <i class="fas fa-couch text-primary no-modal" style="margin-right: 8px;"></i>This Weekend
+                                                                <div class="float-right no-modal" style="width: 40%; text-align: end; color: #858796;">Sat</div>
+                                                            </a>
+                                                            <a class="dropdown-item no-modal setScheduleNexweek" href="#" data-id="">
+                                                                <i class="fas fa-calendar-alt text-danger no-modal" style="margin-right: 8px;"></i>Next Week
+                                                                <div class="float-right no-modal" style="width: 40%; text-align: end; color: #858796;">16/05/2022</div>
+                                                            </a>
+                                                            <a class="dropdown-item no-modal setScheduleNodate" href="#" data-id="">
+                                                                <i class="fas fa-ban text-secondary no-modal" style="margin-right: 8px;"></i>
+                                                                No Date
+                                                            </a>
+                                                            <div class="dropdown-divider no-modal"></div>
+                                                            <div class="form-group no-modal" data-toggle="tooltip" data-placement="bottom" title="Date format: DD/MM/YYYY" style="margin: 6px 20px; margin-top: 14px;">
+                                                                <div class="input-group date no-modal" style="cursor: pointer;">
+                                                                    <input type="text" id="" class="form-control crmDatepicker no-modal" autocomplete="off">
+                                                                    <div class="input-group-addon no-modal">
+                                                                        <span class="glyphicon glyphicon-th no-modal" style="cursor: pointer;"></span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="dropdown btnTaskTableAction">
+                                                        <button type="button" class="btn btn-warning btnCommentTask"><i class="far fa-comment-alt"></i></button>
+                                                    </div>
+
+                                                    <div class="dropdown btnTaskTableAction">
+                                                        <button type="button" class="btn btn-secondary" data-toggle="dropdown" data-placement="bottom" title="More task actions..."><i class="fas fa-ellipsis-h"></i></button>
+                                                        <div class="dropdown-menu dropdown-menu-right crmtaskdrop" id="">
+                                                            <a class="dropdown-item no-modal ttodo-edit" data-id="{{item.fields.ID}}">
+                                                                <i class="far fa-edit" style="margin-right: 8px;"></i>Edit Task</a>
+
+                                                            <div class="dropdown-divider"></div>
+
+                                                            <div class="dropdown-item-wrap no-modal">
+                                                                <div class="no-modal">
+                                                                    <div class="no-modal">
+                                                                        <span class="no-modal">Due Date</span>
+                                                                    </div>
+                                                                    <div class="no-modal" style="display: inline-flex;">
+                                                                        <i class="fa fa-calendar-check-o no-modal taskDropSecondMenu taskDropMenuToday setScheduleToday" data-toggle="tooltip" data-placement="bottom" title="Today"
+                                                                            data-id="{{item.fields.ID}}"></i>
+                                                                        <i class="fa fa-sun-o no-modal taskDropSecondMenu taskDropMenuTomorrow setScheduleTomorrow" data-toggle="tooltip" data-placement="bottom" title="Tomorrow"
+                                                                            data-id="{{item.fields.ID}}"></i>
+                                                                        <i class="fa fa-print no-modal taskDropSecondMenu taskDropMenuWeekend setScheduleWeekend" data-toggle="tooltip" data-placement="bottom" title="This weekend"
+                                                                            data-id="{{item.fields.ID}}"></i>
+                                                                        <i class="fa fa-calendar-minus-o no-modal taskDropSecondMenu taskDropMenuNextweek setScheduleNexweek" data-toggle="tooltip" data-placement="bottom" title="Next week"
+                                                                            data-id="{{item.fields.ID}}"></i>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="no-modal">
+                                                                    <div class="no-modal">
+                                                                        <span class="no-modal">Priority</span>
+                                                                    </div>
+                                                                    <div class="no-modal" style="display: inline-flex;">
+                                                                        <i class="fas fa-flag no-modal taskDropSecondFlag taskOverdue" data-toggle="tooltip" data-placement="bottom" title="Priority 1" data-priority="3" data-id=""></i>
+                                                                        <i class="fas fa-flag no-modal taskDropSecondFlag taskDropMenuTomorrow" data-toggle="tooltip" data-placement="bottom" title="Priority 2" data-priority="2" data-id=""></i>
+                                                                        <i class="fas fa-flag no-modal taskDropSecondFlag taskDropMenuWeekend" data-toggle="tooltip" data-placement="bottom" title="Priority 3" data-priority="1" data-id=""></i>
+                                                                        <i class="far fa-flag no-modal taskDropSecondFlag" data-toggle="tooltip" data-placement="bottom" title="Priority 4" data-priority="0" data-id=""></i>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="dropdown-divider"></div>
+
+                                                            <a class="dropdown-item no-modal" data-id="">
+                                                                <i class="fa fa-clock-o" style="margin-right: 8px;"></i>Reminders</a>
+
+                                                            <div class="dropdown-divider"></div>
+
+                                                            <a class="dropdown-item no-modal" data-id="">
+                                                                <i class="fa fa-arrow-circle-right" style="margin-right: 8px;"></i>Move to Project</a>
+                                                            <a class="dropdown-item duplicate-task no-modal" data-id="">
+                                                                <i class="fa fa-plus-square-o" style="margin-right: 8px;"></i>Duplicate</a>
+
+                                                            <div class="dropdown-divider"></div>
+
+                                                            <a class="dropdown-item delete-task no-modal" data-id="">
+                                                                <i class="fas fa-trash-alt" style="margin-right: 8px;"></i>Delete Task</a>
+                                                        </div>
+                                                    </div>
+
+                                                </td>
+                                            </tr>
+                                            <tr class="dnd-moved" id="" style="cursor: pointer;">
+                                                <td contenteditable="false" class="colCompleteTask" style="width: 2%;">
+                                                    <div class="custom-control custom-checkbox chkBox pointer" style="width:15px;margin-right: -6px;">
+                                                        <input class="custom-control-input chkBox pointer" type="checkbox" id="formCheck-{{item.ID}}">
+                                                        <label class="custom-control-label chkBox pointer" for="formCheck-{{item.ID}}"></label>
+                                                    </div>
+                                                </td>
+                                                <td contenteditable="false" class="colOpenTask colDate">05/12/2022</td>
+                                                <td contenteditable="false" class="colOpenTask colTaskName">[Task Name]</td>
+                                                <td contenteditable="false" class="colOpenTask colTaskDesc">[Task description will go here and maybe we limit the length of this column, so that you click on the taks to view the whole thing? Could be a good idea.]
+                                                </td>
+                                                <td contenteditable="false" class="colOpenTask colTaskLabels">
+                                                    <span class="taskTag"><a class="taganchor" href=""><i class="fas fa-tag" style="margin-right: 5px;"></i>[label]</a></span>
+                                                </td>
+                                                <td contenteditable="false" class="colTaskActions">
+                                                    <div class="dropdown btnTaskTableAction">
+                                                        <button type="button" class="btn btn-primary btnEditTask"><i class="far fa-edit" style="width: 16px;"></i></button>
+                                                    </div>
+
+                                                    <div class="dropdown btnTaskTableAction">
+                                                        <button type="button" class="btn btn-success" data-toggle="dropdown"><i class="far fa-calendar"></i></button>
+                                                        <div class="dropdown-menu dropdown-menu-right reschedule-dropdown-menu  no-modal" aria-labelledby="dropdownMenuButton" style="width: 275px;">
+                                                            <a class="dropdown-item no-modal setScheduleToday" href="#" data-id="{{item.fields.ID}}">
+                                                                <i class="fas fa-calendar-day text-success no-modal" style="margin-right: 8px;"></i>Today
+                                                                <div class="float-right no-modal" style="width: 40%; text-align: end; color: #858796;">12/05/2022</div>
+                                                            </a>
+                                                            <a class="dropdown-item no-modal setScheduleTomorrow" href="#" data-id="">
+                                                                <i class="fas fa-sun text-warning no-modal" style="margin-right: 8px;"></i>Tomorrow
+                                                                <div class="float-right no-modal" style="width: 40%; text-align: end; color: #858796;">13/05/2022</div>
+                                                            </a>
+                                                            <a class="dropdown-item no-modal setScheduleWeekend" href="#" data-id="">
+                                                                <i class="fas fa-couch text-primary no-modal" style="margin-right: 8px;"></i>This Weekend
+                                                                <div class="float-right no-modal" style="width: 40%; text-align: end; color: #858796;">Sat</div>
+                                                            </a>
+                                                            <a class="dropdown-item no-modal setScheduleNexweek" href="#" data-id="">
+                                                                <i class="fas fa-calendar-alt text-danger no-modal" style="margin-right: 8px;"></i>Next Week
+                                                                <div class="float-right no-modal" style="width: 40%; text-align: end; color: #858796;">16/05/2022</div>
+                                                            </a>
+                                                            <a class="dropdown-item no-modal setScheduleNodate" href="#" data-id="">
+                                                                <i class="fas fa-ban text-secondary no-modal" style="margin-right: 8px;"></i>
+                                                                No Date
+                                                            </a>
+                                                            <div class="dropdown-divider no-modal"></div>
+                                                            <div class="form-group no-modal" data-toggle="tooltip" data-placement="bottom" title="Date format: DD/MM/YYYY" style="margin: 6px 20px; margin-top: 14px;">
+                                                                <div class="input-group date no-modal" style="cursor: pointer;">
+                                                                    <input type="text" id="" class="form-control crmDatepicker no-modal" autocomplete="off">
+                                                                    <div class="input-group-addon no-modal">
+                                                                        <span class="glyphicon glyphicon-th no-modal" style="cursor: pointer;"></span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="dropdown btnTaskTableAction">
+                                                        <button type="button" class="btn btn-warning btnCommentTask"><i class="far fa-comment-alt"></i></button>
+                                                    </div>
+
+                                                    <div class="dropdown btnTaskTableAction">
+                                                        <button type="button" class="btn btn-secondary" data-toggle="dropdown" data-placement="bottom" title="More task actions..."><i class="fas fa-ellipsis-h"></i></button>
+                                                        <div class="dropdown-menu dropdown-menu-right crmtaskdrop" id="">
+                                                            <a class="dropdown-item no-modal ttodo-edit" data-id="{{item.fields.ID}}">
+                                                                <i class="far fa-edit" style="margin-right: 8px;"></i>Edit Task</a>
+
+                                                            <div class="dropdown-divider"></div>
+
+                                                            <div class="dropdown-item-wrap no-modal">
+                                                                <div class="no-modal">
+                                                                    <div class="no-modal">
+                                                                        <span class="no-modal">Due Date</span>
+                                                                    </div>
+                                                                    <div class="no-modal" style="display: inline-flex;">
+                                                                        <i class="fa fa-calendar-check-o no-modal taskDropSecondMenu taskDropMenuToday setScheduleToday" data-toggle="tooltip" data-placement="bottom" title="Today"
+                                                                            data-id="{{item.fields.ID}}"></i>
+                                                                        <i class="fa fa-sun-o no-modal taskDropSecondMenu taskDropMenuTomorrow setScheduleTomorrow" data-toggle="tooltip" data-placement="bottom" title="Tomorrow"
+                                                                            data-id="{{item.fields.ID}}"></i>
+                                                                        <i class="fa fa-print no-modal taskDropSecondMenu taskDropMenuWeekend setScheduleWeekend" data-toggle="tooltip" data-placement="bottom" title="This weekend"
+                                                                            data-id="{{item.fields.ID}}"></i>
+                                                                        <i class="fa fa-calendar-minus-o no-modal taskDropSecondMenu taskDropMenuNextweek setScheduleNexweek" data-toggle="tooltip" data-placement="bottom" title="Next week"
+                                                                            data-id="{{item.fields.ID}}"></i>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="no-modal">
+                                                                    <div class="no-modal">
+                                                                        <span class="no-modal">Priority</span>
+                                                                    </div>
+                                                                    <div class="no-modal" style="display: inline-flex;">
+                                                                        <i class="fas fa-flag no-modal taskDropSecondFlag taskOverdue" data-toggle="tooltip" data-placement="bottom" title="Priority 1" data-priority="3" data-id=""></i>
+                                                                        <i class="fas fa-flag no-modal taskDropSecondFlag taskDropMenuTomorrow" data-toggle="tooltip" data-placement="bottom" title="Priority 2" data-priority="2" data-id=""></i>
+                                                                        <i class="fas fa-flag no-modal taskDropSecondFlag taskDropMenuWeekend" data-toggle="tooltip" data-placement="bottom" title="Priority 3" data-priority="1" data-id=""></i>
+                                                                        <i class="far fa-flag no-modal taskDropSecondFlag" data-toggle="tooltip" data-placement="bottom" title="Priority 4" data-priority="0" data-id=""></i>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="dropdown-divider"></div>
+
+                                                            <a class="dropdown-item no-modal" data-id="">
+                                                                <i class="fa fa-clock-o" style="margin-right: 8px;"></i>Reminders</a>
+
+                                                            <div class="dropdown-divider"></div>
+
+                                                            <a class="dropdown-item no-modal" data-id="">
+                                                                <i class="fa fa-arrow-circle-right" style="margin-right: 8px;"></i>Move to Project</a>
+                                                            <a class="dropdown-item duplicate-task no-modal" data-id="">
+                                                                <i class="fa fa-plus-square-o" style="margin-right: 8px;"></i>Duplicate</a>
+
+                                                            <div class="dropdown-divider"></div>
+
+                                                            <a class="dropdown-item delete-task no-modal" data-id="">
+                                                                <i class="fas fa-trash-alt" style="margin-right: 8px;"></i>Delete Task</a>
+                                                        </div>
+                                                    </div>
+
+                                                </td>
+                                            </tr>
+                                            <tr class="dnd-moved" id="" style="cursor: pointer;">
+                                                <td contenteditable="false" class="colCompleteTask" style="width: 2%;">
+                                                    <div class="custom-control custom-checkbox chkBox pointer" style="width:15px;margin-right: -6px;">
+                                                        <input class="custom-control-input chkBox pointer" type="checkbox" id="formCheck-{{item.ID}}">
+                                                        <label class="custom-control-label chkBox pointer" for="formCheck-{{item.ID}}"></label>
+                                                    </div>
+                                                </td>
+                                                <td contenteditable="false" class="colOpenTask colDate">05/13/2022</td>
+                                                <td contenteditable="false" class="colOpenTask colTaskName">[Task Name]</td>
+                                                <td contenteditable="false" class="colOpenTask colTaskDesc">[Task description will go here and maybe we limit the length of this column, so that you click on the taks to view the whole thing? Could be a good idea.]
+                                                </td>
+                                                <td contenteditable="false" class="colOpenTask colTaskLabels">
+                                                    <span class="taskTag"><a class="taganchor" href=""><i class="fas fa-tag" style="margin-right: 5px;"></i>[label]</a></span>
+                                                    <span class="taskTag"><a class="taganchor" href=""><i class="fas fa-tag" style="margin-right: 5px;"></i>[label]</a></span>
+                                                </td>
+                                                <td contenteditable="false" class="colTaskActions">
+                                                    <div class="dropdown btnTaskTableAction">
+                                                        <button type="button" class="btn btn-primary btnEditTask"><i class="far fa-edit" style="width: 16px;"></i></button>
+                                                    </div>
+
+                                                    <div class="dropdown btnTaskTableAction">
+                                                        <button type="button" class="btn btn-success" data-toggle="dropdown"><i class="far fa-calendar"></i></button>
+                                                        <div class="dropdown-menu dropdown-menu-right reschedule-dropdown-menu  no-modal" aria-labelledby="dropdownMenuButton" style="width: 275px;">
+                                                            <a class="dropdown-item no-modal setScheduleToday" href="#" data-id="{{item.fields.ID}}">
+                                                                <i class="fas fa-calendar-day text-success no-modal" style="margin-right: 8px;"></i>Today
+                                                                <div class="float-right no-modal" style="width: 40%; text-align: end; color: #858796;">12/05/2022</div>
+                                                            </a>
+                                                            <a class="dropdown-item no-modal setScheduleTomorrow" href="#" data-id="">
+                                                                <i class="fas fa-sun text-warning no-modal" style="margin-right: 8px;"></i>Tomorrow
+                                                                <div class="float-right no-modal" style="width: 40%; text-align: end; color: #858796;">13/05/2022</div>
+                                                            </a>
+                                                            <a class="dropdown-item no-modal setScheduleWeekend" href="#" data-id="">
+                                                                <i class="fas fa-couch text-primary no-modal" style="margin-right: 8px;"></i>This Weekend
+                                                                <div class="float-right no-modal" style="width: 40%; text-align: end; color: #858796;">Sat</div>
+                                                            </a>
+                                                            <a class="dropdown-item no-modal setScheduleNexweek" href="#" data-id="">
+                                                                <i class="fas fa-calendar-alt text-danger no-modal" style="margin-right: 8px;"></i>Next Week
+                                                                <div class="float-right no-modal" style="width: 40%; text-align: end; color: #858796;">16/05/2022</div>
+                                                            </a>
+                                                            <a class="dropdown-item no-modal setScheduleNodate" href="#" data-id="">
+                                                                <i class="fas fa-ban text-secondary no-modal" style="margin-right: 8px;"></i>
+                                                                No Date
+                                                            </a>
+                                                            <div class="dropdown-divider no-modal"></div>
+                                                            <div class="form-group no-modal" data-toggle="tooltip" data-placement="bottom" title="Date format: DD/MM/YYYY" style="margin: 6px 20px; margin-top: 14px;">
+                                                                <div class="input-group date no-modal" style="cursor: pointer;">
+                                                                    <input type="text" id="" class="form-control crmDatepicker no-modal" autocomplete="off">
+                                                                    <div class="input-group-addon no-modal">
+                                                                        <span class="glyphicon glyphicon-th no-modal" style="cursor: pointer;"></span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="dropdown btnTaskTableAction">
+                                                        <button type="button" class="btn btn-warning btnCommentTask"><i class="far fa-comment-alt"></i></button>
+                                                    </div>
+
+                                                    <div class="dropdown btnTaskTableAction">
+                                                        <button type="button" class="btn btn-secondary" data-toggle="dropdown" data-placement="bottom" title="More task actions..."><i class="fas fa-ellipsis-h"></i></button>
+                                                        <div class="dropdown-menu dropdown-menu-right crmtaskdrop" id="">
+                                                            <a class="dropdown-item no-modal ttodo-edit" data-id="{{item.fields.ID}}">
+                                                                <i class="far fa-edit" style="margin-right: 8px;"></i>Edit Task</a>
+
+                                                            <div class="dropdown-divider"></div>
+
+                                                            <div class="dropdown-item-wrap no-modal">
+                                                                <div class="no-modal">
+                                                                    <div class="no-modal">
+                                                                        <span class="no-modal">Due Date</span>
+                                                                    </div>
+                                                                    <div class="no-modal" style="display: inline-flex;">
+                                                                        <i class="fa fa-calendar-check-o no-modal taskDropSecondMenu taskDropMenuToday setScheduleToday" data-toggle="tooltip" data-placement="bottom" title="Today"
+                                                                            data-id="{{item.fields.ID}}"></i>
+                                                                        <i class="fa fa-sun-o no-modal taskDropSecondMenu taskDropMenuTomorrow setScheduleTomorrow" data-toggle="tooltip" data-placement="bottom" title="Tomorrow"
+                                                                            data-id="{{item.fields.ID}}"></i>
+                                                                        <i class="fa fa-print no-modal taskDropSecondMenu taskDropMenuWeekend setScheduleWeekend" data-toggle="tooltip" data-placement="bottom" title="This weekend"
+                                                                            data-id="{{item.fields.ID}}"></i>
+                                                                        <i class="fa fa-calendar-minus-o no-modal taskDropSecondMenu taskDropMenuNextweek setScheduleNexweek" data-toggle="tooltip" data-placement="bottom" title="Next week"
+                                                                            data-id="{{item.fields.ID}}"></i>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="no-modal">
+                                                                    <div class="no-modal">
+                                                                        <span class="no-modal">Priority</span>
+                                                                    </div>
+                                                                    <div class="no-modal" style="display: inline-flex;">
+                                                                        <i class="fas fa-flag no-modal taskDropSecondFlag taskOverdue" data-toggle="tooltip" data-placement="bottom" title="Priority 1" data-priority="3" data-id=""></i>
+                                                                        <i class="fas fa-flag no-modal taskDropSecondFlag taskDropMenuTomorrow" data-toggle="tooltip" data-placement="bottom" title="Priority 2" data-priority="2" data-id=""></i>
+                                                                        <i class="fas fa-flag no-modal taskDropSecondFlag taskDropMenuWeekend" data-toggle="tooltip" data-placement="bottom" title="Priority 3" data-priority="1" data-id=""></i>
+                                                                        <i class="far fa-flag no-modal taskDropSecondFlag" data-toggle="tooltip" data-placement="bottom" title="Priority 4" data-priority="0" data-id=""></i>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="dropdown-divider"></div>
+
+                                                            <a class="dropdown-item no-modal" data-id="">
+                                                                <i class="fa fa-clock-o" style="margin-right: 8px;"></i>Reminders</a>
+
+                                                            <div class="dropdown-divider"></div>
+
+                                                            <a class="dropdown-item no-modal" data-id="">
+                                                                <i class="fa fa-arrow-circle-right" style="margin-right: 8px;"></i>Move to Project</a>
+                                                            <a class="dropdown-item duplicate-task no-modal" data-id="">
+                                                                <i class="fa fa-plus-square-o" style="margin-right: 8px;"></i>Duplicate</a>
+
+                                                            <div class="dropdown-divider"></div>
+
+                                                            <a class="dropdown-item delete-task no-modal" data-id="">
+                                                                <i class="fas fa-trash-alt" style="margin-right: 8px;"></i>Delete Task</a>
+                                                        </div>
+                                                    </div>
+
+                                                </td>
+                                            </tr>
+                                            <tr class="dnd-moved" id="" style="cursor: pointer;">
+                                                <td contenteditable="false" class="colCompleteTask" style="width: 2%;">
+                                                    <div class="custom-control custom-checkbox chkBox pointer" style="width:15px;margin-right: -6px;">
+                                                        <input class="custom-control-input chkBox pointer" type="checkbox" id="formCheck-{{item.ID}}">
+                                                        <label class="custom-control-label chkBox pointer" for="formCheck-{{item.ID}}"></label>
+                                                    </div>
+                                                </td>
+                                                <td contenteditable="false" class="colOpenTask colDate">05/14/2022</td>
+                                                <td contenteditable="false" class="colOpenTask colTaskName">[Task Name]</td>
+                                                <td contenteditable="false" class="colOpenTask colTaskDesc">[Task description will go here and maybe we limit the length of this column, so that you click on the taks to view the whole thing? Could be a good idea.]
+                                                </td>
+                                                <td contenteditable="false" class="colOpenTask colTaskLabels">
+                                                    <span class="taskTag"><a class="taganchor" href=""><i class="fas fa-tag" style="margin-right: 5px;"></i>[label]</a></span>
+                                                    <span class="taskTag"><a class="taganchor" href=""><i class="fas fa-tag" style="margin-right: 5px;"></i>[label]</a></span>
+                                                    <span class="taskTag"><a class="taganchor" href=""><i class="fas fa-tag" style="margin-right: 5px;"></i>[label]</a></span>
+                                                </td>
+                                                <td contenteditable="false" class="colTaskActions">
+                                                    <div class="dropdown btnTaskTableAction">
+                                                        <button type="button" class="btn btn-primary btnEditTask"><i class="far fa-edit" style="width: 16px;"></i></button>
+                                                    </div>
+
+                                                    <div class="dropdown btnTaskTableAction">
+                                                        <button type="button" class="btn btn-success" data-toggle="dropdown"><i class="far fa-calendar"></i></button>
+                                                        <div class="dropdown-menu dropdown-menu-right reschedule-dropdown-menu  no-modal" aria-labelledby="dropdownMenuButton" style="width: 275px;">
+                                                            <a class="dropdown-item no-modal setScheduleToday" href="#" data-id="{{item.fields.ID}}">
+                                                                <i class="fas fa-calendar-day text-success no-modal" style="margin-right: 8px;"></i>Today
+                                                                <div class="float-right no-modal" style="width: 40%; text-align: end; color: #858796;">12/05/2022</div>
+                                                            </a>
+                                                            <a class="dropdown-item no-modal setScheduleTomorrow" href="#" data-id="">
+                                                                <i class="fas fa-sun text-warning no-modal" style="margin-right: 8px;"></i>Tomorrow
+                                                                <div class="float-right no-modal" style="width: 40%; text-align: end; color: #858796;">13/05/2022</div>
+                                                            </a>
+                                                            <a class="dropdown-item no-modal setScheduleWeekend" href="#" data-id="">
+                                                                <i class="fas fa-couch text-primary no-modal" style="margin-right: 8px;"></i>This Weekend
+                                                                <div class="float-right no-modal" style="width: 40%; text-align: end; color: #858796;">Sat</div>
+                                                            </a>
+                                                            <a class="dropdown-item no-modal setScheduleNexweek" href="#" data-id="">
+                                                                <i class="fas fa-calendar-alt text-danger no-modal" style="margin-right: 8px;"></i>Next Week
+                                                                <div class="float-right no-modal" style="width: 40%; text-align: end; color: #858796;">16/05/2022</div>
+                                                            </a>
+                                                            <a class="dropdown-item no-modal setScheduleNodate" href="#" data-id="">
+                                                                <i class="fas fa-ban text-secondary no-modal" style="margin-right: 8px;"></i>
+                                                                No Date
+                                                            </a>
+                                                            <div class="dropdown-divider no-modal"></div>
+                                                            <div class="form-group no-modal" data-toggle="tooltip" data-placement="bottom" title="Date format: DD/MM/YYYY" style="margin: 6px 20px; margin-top: 14px;">
+                                                                <div class="input-group date no-modal" style="cursor: pointer;">
+                                                                    <input type="text" id="" class="form-control crmDatepicker no-modal" autocomplete="off">
+                                                                    <div class="input-group-addon no-modal">
+                                                                        <span class="glyphicon glyphicon-th no-modal" style="cursor: pointer;"></span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="dropdown btnTaskTableAction">
+                                                        <button type="button" class="btn btn-warning btnCommentTask"><i class="far fa-comment-alt"></i></button>
+                                                    </div>
+
+                                                    <div class="dropdown btnTaskTableAction">
+                                                        <button type="button" class="btn btn-secondary" data-toggle="dropdown" data-placement="bottom" title="More task actions..."><i class="fas fa-ellipsis-h"></i></button>
+                                                        <div class="dropdown-menu dropdown-menu-right crmtaskdrop" id="">
+                                                            <a class="dropdown-item no-modal ttodo-edit" data-id="{{item.fields.ID}}">
+                                                                <i class="far fa-edit" style="margin-right: 8px;"></i>Edit Task</a>
+
+                                                            <div class="dropdown-divider"></div>
+
+                                                            <div class="dropdown-item-wrap no-modal">
+                                                                <div class="no-modal">
+                                                                    <div class="no-modal">
+                                                                        <span class="no-modal">Due Date</span>
+                                                                    </div>
+                                                                    <div class="no-modal" style="display: inline-flex;">
+                                                                        <i class="fa fa-calendar-check-o no-modal taskDropSecondMenu taskDropMenuToday setScheduleToday" data-toggle="tooltip" data-placement="bottom" title="Today"
+                                                                            data-id="{{item.fields.ID}}"></i>
+                                                                        <i class="fa fa-sun-o no-modal taskDropSecondMenu taskDropMenuTomorrow setScheduleTomorrow" data-toggle="tooltip" data-placement="bottom" title="Tomorrow"
+                                                                            data-id="{{item.fields.ID}}"></i>
+                                                                        <i class="fa fa-print no-modal taskDropSecondMenu taskDropMenuWeekend setScheduleWeekend" data-toggle="tooltip" data-placement="bottom" title="This weekend"
+                                                                            data-id="{{item.fields.ID}}"></i>
+                                                                        <i class="fa fa-calendar-minus-o no-modal taskDropSecondMenu taskDropMenuNextweek setScheduleNexweek" data-toggle="tooltip" data-placement="bottom" title="Next week"
+                                                                            data-id="{{item.fields.ID}}"></i>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="no-modal">
+                                                                    <div class="no-modal">
+                                                                        <span class="no-modal">Priority</span>
+                                                                    </div>
+                                                                    <div class="no-modal" style="display: inline-flex;">
+                                                                        <i class="fas fa-flag no-modal taskDropSecondFlag taskOverdue" data-toggle="tooltip" data-placement="bottom" title="Priority 1" data-priority="3" data-id=""></i>
+                                                                        <i class="fas fa-flag no-modal taskDropSecondFlag taskDropMenuTomorrow" data-toggle="tooltip" data-placement="bottom" title="Priority 2" data-priority="2" data-id=""></i>
+                                                                        <i class="fas fa-flag no-modal taskDropSecondFlag taskDropMenuWeekend" data-toggle="tooltip" data-placement="bottom" title="Priority 3" data-priority="1" data-id=""></i>
+                                                                        <i class="far fa-flag no-modal taskDropSecondFlag" data-toggle="tooltip" data-placement="bottom" title="Priority 4" data-priority="0" data-id=""></i>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="dropdown-divider"></div>
+
+                                                            <a class="dropdown-item no-modal" data-id="">
+                                                                <i class="fa fa-clock-o" style="margin-right: 8px;"></i>Reminders</a>
+
+                                                            <div class="dropdown-divider"></div>
+
+                                                            <a class="dropdown-item no-modal" data-id="">
+                                                                <i class="fa fa-arrow-circle-right" style="margin-right: 8px;"></i>Move to Project</a>
+                                                            <a class="dropdown-item duplicate-task no-modal" data-id="">
+                                                                <i class="fa fa-plus-square-o" style="margin-right: 8px;"></i>Duplicate</a>
+
+                                                            <div class="dropdown-divider"></div>
+
+                                                            <a class="dropdown-item delete-task no-modal" data-id="">
+                                                                <i class="fas fa-trash-alt" style="margin-right: 8px;"></i>Delete Task</a>
+                                                        </div>
+                                                    </div>
+
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div class="tab-pane fade" id="todayTab" role="tabpanel" aria-labelledby="todayTab-tab">
+                            </div>
+
+                            <div class="tab-pane fade" id="upcomingTab" role="tabpanel" aria-labelledby="upcomingTab-tab">
+                            </div>
+
+                            <div class="tab-pane fade" id="projectsTab" role="tabpanel" aria-labelledby="projectsTab-tab">
+                            </div>
+
+                            <div class="tab-pane fade" id="filterLabelsTab" role="tabpanel" aria-labelledby="filterLabelsTab-tab">
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+        {{> taskmodal}}
+
+    </div>
+
+</template>

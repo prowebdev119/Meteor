@@ -1,0 +1,209 @@
+<template name="refreshbutton">
+    <div class="row dataTables_wrapper btnRefreshGlobal" style="padding:4px">
+        <div class="col-sm-6">
+            <div  class="left-icons dataTables_length" style="display:block!important;">
+                <!-- <a href="#" class="new_create_btn product_edit refreshpagelist" id="refreshpagelist" style="margin-left:0px!important;">Refresh</a> -->
+                <button class="btn btn-primary refreshpagelist" type="button" id="refreshpagelist" style="margin: 16px; background-color: #00A3D3; border-color: #00A3D3;"><i class="icon ion-android-bulb" style="margin-right: 5px;"></i>Refresh</button>
+            </div>
+        </div>
+    </div>
+</template>
+
+<template name="optionNav">
+    <div class="d-xl-flex justify-content-xl-end">
+        <div><a class="btn" role="button" data-toggle="modal" href="#myModal2"><i class="icon ion-android-more-horizontal"></i></a>
+            <div class="modal fade" role="dialog" tabindex="-1" id="myModal2">
+                <div class="modal-dialog modal-sm modal-dialog-centered" role="document" style="float: right;">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4>Display Settings</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                        <div class="modal-body">
+                            <div>
+                                <form class="d-xl-flex align-items-xl-center">
+                                    <div class="flex-grow-1">
+                                        <style>
+                                            .groove {
+                                                border-style: solid;
+                                                border-width: 1px;
+                                                width: 200px;
+                                                padding: 2px;
+                                                border-radius: .35rem;
+                                            }
+                                            .custom-control-label{
+                                                position: absolute;
+                                            }
+                                        </style>
+                                        <div class="custom-control custom-switch" style="margin: 8px;">
+                                            <input class="custom-control-input" type="checkbox" id="formCheck-01" checked="">
+                                            <label class="custom-control-label" for="formCheck-01"></label><div contenteditable="true" class="groove">Product Name</div>
+                                        </div>
+                                        <div class="custom-control custom-switch" style="margin: 8px;">
+                                            <input class="custom-control-input" type="checkbox" id="formCheck-02" checked="">
+                                            <label class="custom-control-label" for="formCheck-02"></label><div contenteditable="true" class="groove">Description</div>
+                                        </div>
+                                        <div class="custom-control custom-switch" style="margin: 8px;">
+                                            <input class="custom-control-input" type="checkbox" id="formCheck-03" checked="">
+                                            <label class="custom-control-label" for="formCheck-03"></label><div contenteditable="true" class="groove">Quantity</div>
+                                        </div>
+                                        <div class="custom-control custom-switch" style="margin: 8px;">
+                                            <input class="custom-control-input" type="checkbox" id="formCheck-04" checked="">
+                                            <label class="custom-control-label" for="formCheck-04"></label><div contenteditable="true" class="groove">Unit Price</div>
+                                        </div>
+                                        <div class="custom-control custom-switch" style="margin: 8px;">
+                                            <input class="custom-control-input" type="checkbox" id="formCheck-05" checked="">
+                                            <label class="custom-control-label" for="formCheck-05"></label><div contenteditable="true" class="groove">Tax Rate</div>
+                                        </div>
+                                        <div class="custom-control custom-switch" style="margin: 8px;">
+                                            <input class="custom-control-input" type="checkbox" id="formCheck-06" checked="">
+                                            <label class="custom-control-label" for="formCheck-06"></label><div contenteditable="true" class="groove">Amount</div>
+                                        </div>
+                                        <div class="custom-control custom-switch" style="margin: 8px;">
+                                            <input class="custom-control-input" type="checkbox" id="formCheck-07">
+                                            <label class="custom-control-label" for="formCheck-07"></label><div contenteditable="true" class="groove">Extra Field 1</div>
+                                        </div>
+                                        <div class="custom-control custom-switch" style="margin: 8px;">
+                                            <input class="custom-control-input" type="checkbox" id="formCheck-08">
+                                            <label class="custom-control-label" for="formCheck-08"></label><div contenteditable="true" class="groove">Extra Field 2</div>
+                                        </div>
+                                        <div class="custom-control custom-switch" style="margin: 8px;">
+                                            <input class="custom-control-input" type="checkbox" id="formCheck-09">
+                                            <label class="custom-control-label" for="formCheck-09"></label><div contenteditable="true" class="groove">Extra Field 3</div>
+                                        </div>
+                                        <div class="custom-control custom-switch" style="margin: 8px;">
+                                            <input class="custom-control-input" type="checkbox" id="formCheck-10">
+                                            <label class="custom-control-label" for="formCheck-10"></label><div contenteditable="true" class="groove">Extra Field 4</div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-primary" type="button"><i class="fa fa-save" style="margin-right: 5px;"></i>Save</button>
+                            <button class="btn btn-warning" data-dismiss="modal" type="reset"><i class="fa fa-repeat" style="margin-right: 5px;"></i>Reset</button>
+                            <button class="btn btn-secondary" data-dismiss="modal" type="button"><i class="fa fa-remove" style="margin-right: 5px;"></i>Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<template name="optionNavSalesOverview">
+    <div class="d-xl-flex justify-content-xl-end">
+        <div><a class="btn" role="button" data-toggle="modal" href="#myModal2"><i class="icon ion-android-more-horizontal"></i></a>
+            <div class="modal fade" role="dialog" tabindex="-1" id="myModal2">
+                <div class="modal-dialog modal-sm modal-dialog-centered" role="document" style="float: right;">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4>Display Settings</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                        <div class="modal-body">
+                            <div>
+                                {{#if datatablerecords}}
+                                <form class="d-xl-flex align-items-xl-center">
+                                    <div class="flex-grow-1">
+                                        <style>
+                                            .groove {
+                                                border-style: solid;
+                                                border-width: 1px;
+                                                width: 200px;
+                                                padding: 2px;
+                                                border-radius: .35rem;
+                                            }
+                                            .custom-control-label{
+                                                position: absolute;
+                                            }
+                                        </style>
+                                        <div class="custom-control custom-switch" style="margin: 8px;">
+                                            <input class="custom-control-input" type="checkbox" id="chkSalesNo" name="chkSalesNo" checked=" ">
+                                            <label class="custom-control-label" for="chkSalesNo"></label>
+                                            <div contenteditable="true" class="groove">Sales No.</div>
+                                        </div>
+                                        <div class="custom-control custom-switch" style="margin: 8px;">
+                                            <input class="custom-control-input" type="checkbox" id="formCheck-02" checked="">
+                                            <label class="custom-control-label" for="formCheck-02"></label><div contenteditable="true" class="groove">Employee</div>
+                                        </div>
+                                        <div class="custom-control custom-switch" style="margin: 8px;">
+                                            <input class="custom-control-input" type="checkbox" id="formCheck-03" checked="">
+                                            <label class="custom-control-label" for="formCheck-03"></label><div contenteditable="true" class="groove">Sale Date</div>
+                                        </div>
+                                        <div class="custom-control custom-switch" style="margin: 8px;">
+                                            <input class="custom-control-input" type="checkbox" id="formCheck-04" checked="">
+                                            <label class="custom-control-label" for="formCheck-04"></label><div contenteditable="true" class="groove">Customer</div>
+                                        </div>
+                                        <div class="custom-control custom-switch" style="margin: 8px;">
+                                            <input class="custom-control-input" type="checkbox" id="formCheck-05" checked="">
+                                            <label class="custom-control-label" for="formCheck-05"></label><div contenteditable="true" class="groove">Amount</div>
+                                        </div>
+                                        <div class="custom-control custom-switch" style="margin: 8px;">
+                                            <input class="custom-control-input" type="checkbox" id="formCheck-06" checked="">
+                                            <label class="custom-control-label" for="formCheck-06"></label><div contenteditable="true" class="groove">Status</div>
+                                        </div>
+                                        <div class="custom-control custom-switch" style="margin: 8px;">
+                                            <input class="custom-control-input" type="checkbox" id="formCheck-07">
+                                            <label class="custom-control-label" for="formCheck-07"></label><div contenteditable="true" class="groove">Extra Field 1</div>
+                                        </div>
+                                        <div class="custom-control custom-switch" style="margin: 8px;">
+                                            <input class="custom-control-input" type="checkbox" id="formCheck-08">
+                                            <label class="custom-control-label" for="formCheck-08"></label><div contenteditable="true" class="groove">Extra Field 2</div>
+                                        </div>
+                                        <div class="custom-control custom-switch" style="margin: 8px;">
+                                            <input class="custom-control-input" type="checkbox" id="formCheck-09">
+                                            <label class="custom-control-label" for="formCheck-09"></label><div contenteditable="true" class="groove">Extra Field 3</div>
+                                        </div>
+                                        <div class="custom-control custom-switch" style="margin: 8px;">
+                                            <input class="custom-control-input" type="checkbox" id="formCheck-10">
+                                            <label class="custom-control-label" for="formCheck-10"></label><div contenteditable="true" class="groove">Extra Field 4</div>
+                                        </div>
+                                    </div>
+                                </form>
+                                {{/if}}
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-primary" type="button"><i class="fa fa-save" style="margin-right: 5px;"></i>Save</button>
+                            <button class="btn btn-warning" data-dismiss="modal" type="reset"><i class="fa fa-repeat" style="margin-right: 5px;"></i>Reset</button>
+                            <button class="btn btn-secondary" data-dismiss="modal" type="button"><i class="fa fa-remove" style="margin-right: 5px;"></i>Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<template name="optionCustomFiled">
+    <!--Modal for custom fields START-->
+    <div class="modal fade" role="dialog" tabindex="-1" id="myModal4">
+        <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Field Settings</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <form class="d-xl-flex align-items-xl-center">
+                            <div class="flex-grow-1">
+                                <div class="custom-control custom-switch" style="margin: 8px;">
+                                    <input class="custom-control-input" type="checkbox" id="formCheck-one" value="one">
+                                    <label class="custom-control-label" style="position: absolute;" for="formCheck-one"></label>
+                                    <div contenteditable="true" class="groove customField1Text">Custom Field 1</div>
+                                </div>
+                                <div class="custom-control custom-switch" style="margin: 8px;">
+                                    <input class="custom-control-input" type="checkbox" id="formCheck-two" value="two">
+                                    <label class="custom-control-label" style="position: absolute;" for="formCheck-two"></label>
+                                    <div contenteditable="true" class="groove customField2Text">Custom Field 2</div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" type="button"><i class="fa fa-save" style="margin-right: 5px;"></i>Save</button>
+                    <button class="btn btn-warning" data-dismiss="modal" type="reset"><i class="fa fa-repeat" style="margin-right: 5px;"></i>Reset</button>
+                    <button class="btn btn-secondary" data-dismiss="modal" type="button"><i class="fa fa-remove" style="margin-right: 5px;"></i>Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

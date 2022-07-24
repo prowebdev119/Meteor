@@ -1,0 +1,443 @@
+<template name="termsettings">
+    <div class="container-fluid">
+        <div class="fullScreenSpin" style="display:none;">
+            <div class="spinner"></div>
+        </div>
+        <h3 class="text-dark mb-4">Terms Settings
+            <!-- <a role="button" data-toggle="modal" href="#helpModal" class="helpModal"><label class="lblplay">PLAY</label><i class="far fa-play-circle"  style="font-size: 20px;"></i></a> -->
+            <a role="button" data-toggle="modal" href="#helpViewModal"  style="font-size: 20px;">Help <i class="fa fa-question-circle-o" style="font-size: 20px;"></i></a>
+
+            <!-- Start Help View Modal -->
+            <div class="modal fade" role="dialog" tabindex="-1" id="helpViewModal">
+                <div class="modal-dialog modal-sm" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header" style="padding-bottom: 8px;">
+                            <h4>Help</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                        <div class="modal-body">
+                            <p class="text-center text-muted"><a role="button" data-toggle="modal" href="#helpModal" class="btn btn-primary helpModal">View Help Video</a></p>
+                            <p class="text-center text-muted"><a href="https://vs1forum.com/viewtopic.php?f=6&t=23" target="_blank" class="btn btn-primary">Download Help File</a></p>
+                            <p class="text-center text-muted"><button class="btn btn-primary" type="button">Employ Advisor</button></p>
+                            <p class="text-center text-muted" style="margin: 0px;"><a href="https://vs1forum.com/ucp.php?mode=register&cloudusername={{loggedCompany}}" target="_blank" class="btn btn-primary">Go To Forum</a></p>
+                        </div>
+                        <div class="modal-footer" style="padding: 6px;"><button class="btn btn-light" data-dismiss="modal" type="button">Close</button></div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Help View Modal -->
+        </h3>
+        <div class="row mb-3">
+            <div class="col">
+                <div class="row">
+                    <div class="col">
+                        <div class="card shadow mb-3">
+                            <div class="card-header py-3">
+                                <p class="text-primary m-0 font-weight-bold">Terms Settings</p>
+                            </div>
+
+                            <style>
+                                @media screen and (max-width: 420px) {
+                                    .btnOpenSettings {
+                                        float: right;
+                                    }
+                                    .card-body {
+                                        padding: 0.75rem !important;
+                                    }
+                                    .btnAddTerms {
+                                        float: right;
+                                        margin-bottom: 16px;
+                                    }
+                                    .btnRefresh {
+                                        margin-bottom: 16px;
+                                    }
+                                }
+
+                            </style>
+
+                            <div class="card-body">
+                                <div class="card-body p-3 rounded">
+                                    <div class="row no-gutters">
+                                        <div class="col">
+                                            <button class="btn btn-primary btnRefresh float-left" type="button" style="margin: 16px 0px; margin-right: 32px;"><i class="la la-lightbulb-o" style="padding-right: 5px;"></i>Refresh</button>
+                                            <div><a class="btn btn-primary btnAddTerms" role="button" data-toggle="modal" href="#myModal" style="margin-top: 16px;"><i class="fa fa-plus" style="margin-right: 8px;"></i>Add New Term<br></a>
+                                                <div class="modal fade" role="dialog"
+                                                     tabindex="-1" id="myModal">
+                                                    <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 700px;">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h4 >
+                                                                    <div id="add-terms-title" name="add-terms-title" style="float: left;">Add New Term </div>
+                                                                    <a role="button" data-toggle="modal" href="#helpViewModalAdd"  style="font-size: 20px; padding-left:5px;"> Help <i class="fa fa-question-circle-o" style="font-size: 20px;"></i></a>
+
+                                                                    <!-- Start Help View Modal -->
+                                                                    <div class="modal fade" role="dialog" tabindex="-1" id="helpViewModalAdd">
+                                                                        <div class="modal-dialog modal-sm" role="document">
+                                                                            <div class="modal-content">
+                                                                                <div class="modal-header" style="padding-bottom: 8px;">
+                                                                                    <h4>Help</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                                                                                <div class="modal-body">
+                                                                                    <p class="text-center text-muted"><a role="button" data-toggle="modal" href="#helpModalAdd" class="btn btn-primary helpModal">View Help Video</a></p>
+                                                                                    <p class="text-center text-muted"><a href="https://vs1forum.com/viewtopic.php?f=6&t=19" target="_blank" class="btn btn-primary">Download Help File</a></p>
+                                                                                    <p class="text-center text-muted"><button class="btn btn-primary" type="button">Employ Advisor</button></p>
+                                                                                    <p class="text-center text-muted" style="margin: 0px;"><a href="https://vs1forum.com/ucp.php?mode=register&cloudusername={{loggedCompany}}" target="_blank" class="btn btn-primary">Go To Forum</a></p>
+                                                                                </div>
+                                                                                <div class="modal-footer" style="padding: 6px;"><button class="btn btn-light" data-dismiss="modal" type="button">Close</button></div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!-- End Help View Modal -->
+                                                                </h4>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                                            </div>
+                                                            <div class="modal-body" style="background-color: #ededed;">
+                                                                <input type="hidden" class="form-control" id="edtTermsID" name="edtTermsID" style="display:none;">
+                                                                <div class="row no-gutters">
+                                                                    <div class="col d-xl-flex align-items-xl-end">
+                                                                        <div class="form-group flex-grow-0" style="margin: 8px;"><label data-toggle="tooltip" data-bs-tooltip="" data-placement="bottom" >Days</label>
+                                                                            <input type="number" class="form-control" style="width: 100px;" id="edtDays" name="edtDays" min="0"></div>
+                                                                        <div class="form-group flex-grow-0" style="margin: 8px;"><label data-toggle="tooltip" data-bs-tooltip="" data-placement="bottom" title="The name for the Tax Rate to appear in VS1 Cloud">Term Name</label>
+                                                                            <input type="text" class="form-control" style="width: 100px;" id="edtName" name="edtName"></div>
+                                                                        <div class="form-group flex-grow-1" style="margin: 8px;"><label data-toggle="tooltip" data-bs-tooltip="" data-placement="bottom">Description</label>
+                                                                            <input type="text" class="form-control" id="edtDesc" name="edtDesc"></div>
+                                                                        <div class="form-group flex-grow-0" style="margin: 8px;"><label data-toggle="tooltip" data-bs-tooltip="" data-placement="bottom" >EOM</label>
+                                                                            {{#if equals includeEOM true}}
+                                                                            <div class="custom-control custom-checkbox chkBox" style="height: 38px; text-align: center; padding-top: 7px;"><input class="custom-control-input chkBox chkTerms" type="checkbox" id="isEOM" name="group1[]" checked><label class="custom-control-label chkBox" for="isEOM"></label></div>
+                                                                            {{else}}
+                                                                            <div class="custom-control custom-checkbox chkBox" style="height: 38px; text-align: center; padding-top: 7px;"><input class="custom-control-input chkBox chkTerms" type="checkbox" id="isEOM" name="group1[]"><label class="custom-control-label chkBox" for="isEOM"></label></div>
+                                                                            {{/if}}
+                                                                        </div>
+                                                                        <div class="form-group flex-grow-0" style="margin: 8px;"><label data-toggle="tooltip" data-bs-tooltip="" data-placement="bottom" >EOM+</label>
+                                                                            {{#if equals includeEOMPlus true}}
+                                                                            <div class="custom-control custom-checkbox chkBox" style="height: 38px; text-align: center; padding-top: 7px;"><input class="custom-control-input chkBox chkTerms" type="checkbox" id="isEOMPlus" name="group1[]" checked><label class="custom-control-label chkBox" for="isEOMPlus"></label></div>
+                                                                            {{else}}
+                                                                            <div class="custom-control custom-checkbox chkBox" style="height: 38px; text-align: center; padding-top: 7px;"><input class="custom-control-input chkBox chkTerms" type="checkbox" id="isEOMPlus" name="group1[]"><label class="custom-control-label chkBox" for="isEOMPlus"></label></div>
+                                                                            {{/if}}
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row no-gutters">
+                                                                    <div class="col-12">
+                                                                        <div class="form-group" style="margin: 4px 8px;">
+                                                                            <div class="custom-control custom-checkbox chkBox" style="height: 38px; padding-top: 7px;">
+                                                                                {{#if equals includeSalesDefault true}}
+                                                                                <input class="custom-control-input chkBox chkCustomerDef" type="checkbox" id="chkCustomerDef" name="group1[]" checked>
+                                                                                {{else}}
+                                                                                <input class="custom-control-input chkBox chkCustomerDef" type="checkbox" id="chkCustomerDef" name="group1[]">
+                                                                                {{/if}}
+                                                                                <label class="custom-control-label chkBox" for="chkCustomerDef">Customer Default</label>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-12">
+                                                                        <div class="form-group" style="margin: 4px 8px;">
+                                                                            <div class="custom-control custom-checkbox chkBox" style="height: 38px; padding-top: 7px;">
+                                                                                {{#if equals includePurchaseDefault true}}
+                                                                                <input class="custom-control-input chkBox chkSupplierDef" type="checkbox" id="chkSupplierDef" name="group1[]" checked>
+                                                                                {{else}}
+                                                                                <input class="custom-control-input chkBox chkSupplierDef" type="checkbox" id="chkSupplierDef" name="group1[]">
+                                                                                {{/if}}
+                                                                                <label class="custom-control-label chkBox" for="chkSupplierDef">Supplier Default</label>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <!--
+<div class="row no-gutters">
+<div class="col d-xl-flex align-items-xl-end">
+
+<div class="form-group flex-grow-1" style="margin: 8px;"><label data-toggle="tooltip" data-bs-tooltip="" data-placement="bottom">Department Name</label>
+<input type="text" class="form-control" id="edtDeptName" name="edtDeptName"></div> -->
+                                                                <!-- <div class="form-group flex-grow-1" style="margin: 8px;">
+{{#if equals include7Days true}}
+<div class="custom-control custom-checkbox chkBox"><input class="custom-control-input chkBox chkTerms" type="checkbox" id="is7Days" name="group1[]" checked><label class="custom-control-label chkBox" for="is7Days">7 Days</label></div>
+{{else}}
+<div class="custom-control custom-checkbox chkBox"><input class="custom-control-input chkBox chkTerms" type="checkbox" id="is7Days" name="group1[]"><label class="custom-control-label chkBox" for="is7Days">7 Days</label></div>
+{{/if}}
+</div>
+<div class="form-group flex-grow-1" style="margin: 8px;">
+{{#if equals include30Days true}}
+<div class="custom-control custom-checkbox chkBox"><input class="custom-control-input chkBox chkTerms" type="checkbox" id="is30Days" name="group1[]" checked><label class="custom-control-label chkBox" for="is30Days">30 Days</label></div>
+{{else}}
+<div class="custom-control custom-checkbox chkBox"><input class="custom-control-input chkBox chkTerms" type="checkbox" id="is30Days" name="group1[]"><label class="custom-control-label chkBox" for="is30Days">30 Days</label></div>
+{{/if}}
+</div>
+<div class="form-group flex-grow-1" style="margin: 8px;">
+{{#if equals includeCOD true}}
+<div class="custom-control custom-checkbox chkBox"><input class="custom-control-input chkBox chkTerms" type="checkbox" id="isCOD" name="group1[]" checked><label class="custom-control-label chkBox" for="isCOD">COD</label></div>
+{{else}}
+<div class="custom-control custom-checkbox chkBox"><input class="custom-control-input chkBox chkTerms" type="checkbox" id="isCOD" name="group1[]"><label class="custom-control-label chkBox" for="isCOD">COD</label></div>
+{{/if}}
+</div>
+
+<div class="form-group flex-grow-1" style="margin: 8px;">
+{{#if equals includeEOM true}}
+<div class="custom-control custom-checkbox chkBox"><input class="custom-control-input chkBox chkTerms" type="checkbox" id="isEOM" name="group1[]" checked><label class="custom-control-label chkBox" for="isEOM">EOM</label></div>
+{{else}}
+<div class="custom-control custom-checkbox chkBox"><input class="custom-control-input chkBox chkTerms" type="checkbox" id="isEOM" name="group1[]"><label class="custom-control-label chkBox" for="isEOM">EOM</label></div>
+{{/if}}
+</div>
+
+<div class="form-group flex-grow-1" style="margin: 8px;">
+{{#if equals includeEOMPlus true}}
+<div class="custom-control custom-checkbox chkBox"><input class="custom-control-input chkBox chkTerms" type="checkbox" id="isEOMPlus" name="group1[]" checked><label class="custom-control-label chkBox" for="isEOMPlus">EOM Plus</label></div>
+{{else}}
+<div class="custom-control custom-checkbox chkBox"><input class="custom-control-input chkBox chkTerms" type="checkbox" id="isEOMPlus" name="group1[]"><label class="custom-control-label chkBox" for="isEOMPlus">EOM Plus</label></div>
+{{/if}}
+</div>
+
+</div>
+</div>
+-->
+                                                            </div>
+                                                            <div class="modal-footer" style="background-color: #ededed;">
+                                                                <button class="btn btn-success btnSaveTerms" type="button"><i class="fa fa-save" style="padding-right: 8px;"></i>Save</button>
+                                                                <button class="btn btn-secondary" data-dismiss="modal" type="button"><i class="fa fa-close" style="margin-right: 8px;"></i>Close</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row no-gutters" style="display: none;">
+                                        <div class="col text-left">
+                                            <button class="btn btn-primary btnAddNewTerms" type="button" style="margin: 8px 0px;"><i class="fa fa-plus" style="margin-right: 5px;"></i>Add New Term</button>
+                                        </div>
+                                    </div>
+                                    <style>
+                                        .newTaxRate {
+                                            display: none;
+                                            padding: 16px;
+                                            margin: 16px 0px;
+                                        }
+                                        @media only screen and (max-width: 480px) {
+                                            #myModal .custom-checkbox{
+                                                text-align: left!important;
+                                            }
+                                        }
+                                    </style>
+
+                                    <!-- Start {{> optionNavSalesOverview}} -->
+                                    <div class="d-xl-flex justify-content-xl-end">
+                                        <div><a class="btn btnOpenSettings" role="button" data-toggle="modal" href="#myModal2"><i class="icon ion-android-more-horizontal"></i></a>
+                                            <div class="modal fade" role="dialog" tabindex="-1" id="myModal2">
+                                                <div class="modal-dialog modal-dialog-centered" role="document" style="float: right;">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h4>Display Settings</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                                                        <div class="modal-body">
+                                                            <div>
+                                                                {{#if tableheaderrecords}}
+                                                                <form class="d-xl-flex align-items-xl-center">
+                                                                    <div class="flex-grow-1">
+                                                                        <style>
+                                                                            .groove {
+                                                                                border-style: solid;
+                                                                                border-width: 1px;
+                                                                                width: 200px;
+                                                                                padding: 2px;
+                                                                                border-radius: .35rem;
+                                                                            }
+                                                                            .custom-control-label{
+                                                                                position: absolute;
+                                                                            }
+                                                                            .rngRange {
+                                                                                position: relative;
+                                                                                display: flex;
+                                                                                flex-direction: column;
+                                                                                width: 100%;
+                                                                                pointer-events: auto;
+                                                                                background-color: rgb(255, 255, 255);
+                                                                                background-clip: padding-box;
+                                                                                border: 1px solid rgb(133, 135, 150);
+                                                                                border-radius: .3rem;
+                                                                                border-style: solid;
+                                                                                border-width: 1px;
+                                                                                padding: 2px;
+                                                                                border-radius: .35rem;
+                                                                                color: rgb(128, 128, 128);
+                                                                                height:inherit!important;
+                                                                            }
+                                                                            @media only screen and (max-width: 480px) {
+                                                                                .modal.show .modal-dialog{
+                                                                                    float: inherit!important;
+                                                                                    left: inherit!important;
+                                                                                    top: auto!important;
+
+                                                                                }
+                                                                            }
+                                                                        </style>
+                                                                        {{#each item in tableheaderrecords}}
+                                                                        {{#if equals item.sTitle ""}}
+                                                                        {{else}}
+
+                                                                        <div id="{{item.sIndex}}" class="columnSettings">
+                                                                            <div class="custom-control custom-switch" style="margin: 8px; float:left;">
+                                                                                <input class="custom-control-input chkDatatable" type="checkbox" id="chkSalesNo-{{item.sIndex}}" name="chkSalesNo-{{item.sIndex}}" checked="{{#if item.sVisible}}checked{{else}}{{/if}}" value="{{item.sTitle}}">
+                                                                                <label class="custom-control-label" for="chkSalesNo-{{item.sIndex}}"></label>
+                                                                                <div contenteditable="true" class="groove divcolumn" type="text" value="{{item.sTitle}}" valueupdate="{{item.sClass}}">{{item.sTitle}}</div>
+                                                                            </div>
+                                                                            <div class="d-xl-flex align-items-xl-center divColWidth" style="margin: 8px;">
+                                                                                <label class="text-nowrap" style="padding-left: 0px;margin-top: 8px;">Width: <!--<span class="spWidth" value="{{item.sTitle}}">{{item.sWidth}}px</span>--></label>
+                                                                                <input class="custom-range rngRange" type="number" style="margin: 8px;" value="{{item.sWidth}}" min="0" max="1000">
+                                                                                <!-- <input class="custom-range rngRange" type="range" style="margin: 8px;" value="{{item.sWidth}}" min="0" max="1000"> -->
+                                                                            </div>
+                                                                        </div>
+
+                                                                        {{#if equals item.sVisible true}}
+                                                                        <script>
+                                                                            $("#"+ {{item.sIndex}} +".chkDatatable").attr("checked","checked");
+                                                                        </script>
+                                                                        {{else}}
+                                                                        <script>
+                                                                            $("#"+ {{item.sIndex}} +".chkDatatable").removeAttr("checked");
+                                                                        </script>
+                                                                        {{/if}}
+
+                                                                        {{/if}}
+                                                                        {{/each}}
+                                                                    </div>
+                                                                </form>
+                                                                {{/if}}
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button class="btn btn-success saveTable" type="button"><i class="fa fa-save" style="margin-right: 5px;"></i>Save</button>
+                                                            <button class="btn btn-warning resetTable" data-dismiss="modal" type="reset"><i class="fa fa-repeat" style="margin-right: 5px;"></i>Reset</button>
+                                                            <button class="btn btn-secondary" data-dismiss="modal" type="button"><i class="fa fa-remove" style="margin-right: 5px;"></i>Close</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- End -->
+                                    <div class="table-responsive">
+                                        <style>
+                                            .hiddenColumn{
+                                                display:none;
+                                            }
+                                            .showColumn {
+                                                display:table-cell;
+                                                padding:.75rem;
+                                                vertical-align:top;
+                                            }
+                                        </style>
+
+                                        <div class="modal fade" role="dialog" tabindex="-1" id="deleteLineModal">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <input type="hidden" style="width: 100%; display:none;" id="selectDeleteLineID" name="selectDeleteLineID"  readonly>
+                                                    <div class="modal-header">
+                                                        <h4>Delete</h4>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">×</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p>Please click "Delete" to delete terms.</p>
+
+                                                        <button class="btn btn-danger float-right btnDeleteTerms" type="button">
+                                                            <i class="fa fa-close" style="margin-right: 5px;"></i>Delete
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <table id="termsList" style="width:100%" class="dataTable table table-hover table-striped table-bordered termsList">
+                                            <thead>
+                                                <tr class="dnd-moved">
+                                                    <th class="th colName" style="width:150px">Term Name</th>
+                                                    <th class="th colIsDays" style="width:100px">Days</th>
+                                                    <!-- <th class="th colIsCOD" style="width:100px">COD</th> -->
+                                                    <th class="th colIsEOM" style="width:100px">EOM</th>
+                                                    <th class="th colIsEOMPlus" style="width:100px">EOM Plus</th>
+                                                    <th class="th colDescription">Description</th>
+                                                    <th class="th colCustomerDef" style="width: 150px;">Customer Default</th>
+                                                    <th class="th colSupplierDef" style="width: 150px;">Supplier Default</th>
+                                                    <th class="th colDelete" style="width:20px;"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {{#if datatablerecords}}
+                                                {{#each item in datatablerecords}}
+                                                <tr class="dnd-moved" id="{{item.id}}"  style="cursor: default;">
+                                                    <td contenteditable="false" class="colName">{{item.termname}}</td>
+                                                    <td contenteditable="false" class="colIsDays">{{item.termdays}}</td>
+                                                    <td contenteditable="false" class="colIsEOM text-center" >
+                                                        {{#if equals item.iseom true}}
+                                                        <div class="custom-control custom-checkbox chkBox"><input class="custom-control-input chkBox" type="checkbox" id="iseom-{{item.id}}" checked><label class="custom-control-label chkBox" for="iseom-{{item.id}}"></label></div>
+                                                        {{else}}
+                                                        <div class="custom-control custom-checkbox chkBox"><input class="custom-control-input chkBox" type="checkbox" id="iseom-{{item.id}}"><label class="custom-control-label chkBox" for="iseom-{{item.id}}"></label></div>
+                                                        {{/if}}
+                                                    </td>
+                                                    <td contenteditable="false" class="colIsEOMPlus text-center" >
+                                                        {{#if equals item.iseomplus true}}
+                                                        <div class="custom-control custom-checkbox chkBox"><input class="custom-control-input chkBox" type="checkbox" id="iseomplus-{{item.id}}" checked><label class="custom-control-label chkBox" for="iseomplus-{{item.id}}"></label></div>
+                                                        {{else}}
+                                                        <div class="custom-control custom-checkbox chkBox"><input class="custom-control-input chkBox" type="checkbox" id="iseomplus-{{item.id}}"><label class="custom-control-label chkBox" for="iseomplus-{{item.id}}"></label></div>
+                                                        {{/if}}
+                                                    </td>
+                                                    <td contenteditable="false" class="colDescription">{{item.description}}</td>
+                                                    <td contenteditable="false" class="colCustomerDef text-center" >
+                                                        {{#if equals item.isSalesdefault true}}
+                                                        <div class="custom-control custom-checkbox chkBox"><input class="custom-control-input chkBox" type="checkbox" id="isSalesdefault-{{item.id}}" checked><label class="custom-control-label chkBox" for="isSalesdefault-{{item.id}}"></label></div>
+                                                        {{else}}
+                                                        <div class="custom-control custom-checkbox chkBox"><input class="custom-control-input chkBox" type="checkbox" id="isSalesdefault-{{item.id}}"><label class="custom-control-label chkBox" for="isSalesdefault-{{item.id}}"></label></div>
+                                                        {{/if}}
+                                                        <!-- <div class="custom-control custom-checkbox chkBox"><input class="custom-control-input chkBox" type="checkbox" id="colCustomerDef-{{item.id}}"><label class="custom-control-label chkBox" for="colCustomerDef-{{item.id}}"></label></div> -->
+                                                    </td>
+                                                    <td contenteditable="false" class="colSupplierDef text-center" >
+                                                        {{#if equals item.isPurchasedefault true}}
+                                                        <div class="custom-control custom-checkbox chkBox"><input class="custom-control-input chkBox" type="checkbox" id="isPurchasedefault-{{item.id}}" checked><label class="custom-control-label chkBox" for="isPurchasedefault-{{item.id}}"></label></div>
+                                                        {{else}}
+                                                        <div class="custom-control custom-checkbox chkBox"><input class="custom-control-input chkBox" type="checkbox" id="isPurchasedefault-{{item.id}}"><label class="custom-control-label chkBox" for="isPurchasedefault-{{item.id}}"></label></div>
+                                                        {{/if}}
+                                                        <!-- <div class="custom-control custom-checkbox chkBox"><input class="custom-control-input chkBox" type="checkbox" id="colSupplierDef-{{item.id}}"><label class="custom-control-label chkBox" for="colSupplierDef-{{item.id}}"></label></div> -->
+                                                    </td>
+                                                    <td contenteditable="false" class="colDelete"><span class="table-remove"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0"><i class="fa fa-remove"></i></button></span></td>
+                                                </tr>
+                                                {{/each}}
+                                                {{/if}}
+                                            </tbody>
+
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="row no-gutters">
+                                    <div class="col">
+                                        <button class="btn btn-secondary float-right btnBack" type="button" style="margin: 16px;"><i class="fa fa-close" style="margin-right: 5px;"></i>Cancel</button>
+                                        <!-- <button class="btn btn-primary float-right" type="button" style="margin: 16px;"><i class="fa fa-save" style="margin-right: 5px;"></i>Save</button> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Start Help Video Modal -->
+    <div class="modal fade" role="dialog" tabindex="-1" id="helpModal">
+        <div class="modal-dialog" role="document" style="max-width: 670px!important;">
+            <div class="modal-content" >
+                <div class="modal-header" >
+                    <h4 class="title-header" >Term Settings</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+                    <!-- <iframe width="640" height="360" src="https://player.vimeo.com/video/99892791" frameborder="0" allowfullscreen=""></iframe> -->
+                    <!-- <iframe width="640" height="360" src="https://www.youtube.com/embed/BzxoYOp42fg" frameborder="0" allowfullscreen=""></iframe> -->
+                    <video id="myVideo" width="640" height="360" controls="" name="media" style="border: solid 5px #999999f0; height: auto; outline: none;">
+                        <source src="https://erphelpes.com/vs1videos/termssettings.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- End Help Video Modal -->
+    <script>
+        modalDraggable();
+    </script>
+</template>

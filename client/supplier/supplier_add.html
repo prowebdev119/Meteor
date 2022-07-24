@@ -1,0 +1,93 @@
+<template name="newsupplier">
+  <style>
+
+  </style>
+<div class="active_page">
+<div class="active_page_content">
+<p><a href="/allcontacts">Contacts</a> &nbsp;›&nbsp;</p><br>
+<h1>Add Contact</h1>
+</div>
+</div>
+<div id="wrapper_main">
+<main id="page-content-wrapper_main" role="main">
+<div class="contacts_container_main">
+<form action="" id="suppliercreate" method="POST">
+<div class="add_contact_top">
+<h3>Contact Information</h3>
+<label>Contact Name:</label><input type="text" id="NSCustomer" name="NSCustomer" placeholder="Company Name" autofocus required>
+
+<div class="moreOption" id="hideAcountNumb" ><label></label><p><a href="#"  class= "addAccountNumber" id="addAccountNumber">Add account number</a></p></div>
+<div class="" id="showAcountNumb" style="display:none;"> <br><label>Account Number:</label><input type="text" id="NSCustomer" name="NSAccountNumb" placeholder=""  required></div>
+
+
+<br>
+
+<label>Primary Person:</label>
+<input type="text" id="NSFName" name="NSFName" placeholder="First" required><input type="text" id="NSLName" name="NSLName" placeholder="Last" required><br>
+<label>Email:</label><input type="email" id="NSEmail" name="NSEmail" placeholder="name@email.com" required><br><br>
+<label>Phone:</label><input type="text" id="NSPhone" name="NSPhone"><span class="qtooltip trigger_popup_friccsupphone"><i class="fa fa-question-circle" aria-hidden="true"></i></span><br>
+<!-- phone tool tip pop up -->
+<div class="hover_bkgr_supphonetip">
+    <span class="helper"></span>
+    <div>
+        <div class="qtooltip_header"><h2>Telephone - TrueERP for mobile <a href="#" class="tooltippopupCloseSupPhoneButton"><i class="fa fa-times" aria-hidden="true"></i></a></h2></div>
+        <div class="qtooltip_text">Enter the country code followed by the number for both phone and mobile input fields so you can dial from TrueERP for iOS or TrueERP for Android.</div>
+    </div>
+</div>
+<label>Mobile:</label><input type="text" id="NSMobile" name="NSMobile"><br>
+<!--<label>Skype:</label><input type="text" id="NSSkype" name="NSSkype" placeholder="Skype Name / Number"><br>-->
+<!--<label>Contact Method:</label>
+<select id="NSContactMethod" name="NSContactMethod">
+<option value="Email">Email</option>
+<option value="Fax">Fax</option>
+<option value="Mobile">Mobile</option>
+<option value="Phone" selected>Phone</option>
+<option value="Print">Print</option>
+<option value="Visit">Visit</option>
+</select><br>-->
+<br>
+<label>Postal Address:</label><input type="text" id="POAddress1" name="POAddress1" placeholder="Attention"><br>
+<label></label><input type="text" id="POAddress2" name="POAddress2" placeholder=""><br>
+<label></label><input type="text" id="POSuburb" name="POSuburb" placeholder="City / Town"><br>
+<label></label>
+<input type="text" id="POState" name="POState" placeholder="State / Region" required><input type="text" id="POPostCode" name="POPostCode" placeholder="Postal/Zip Code" required><br>
+<label></label><input type="text" id="POCountry" name="POCountry" placeholder="Country"><br>
+<br>
+<label>Street Address:<br><a href="#" class="inline" id="getAddress">Same as postal address</a></label><input type="text" id="NSAddress1" name="NSAddress1" placeholder="Attention"><br>
+<label></label><input type="text" id="NSAddress2" name="NSAddress2" placeholder=""><br>
+<label></label><input type="text" id="NSSuburb" name="NSSuburb" placeholder="City / Town"><br>
+<label></label>
+<input type="text" id="NSState" name="NSState" placeholder="State / Region"><input type="text" id="NSPostCode" name="NSPostCode" placeholder="Postal/Zip Code"><br>
+<label></label><input type="text" id="NSCountry" name="NSCountry" placeholder="Country">
+</div>
+<div class="add_contact_bottom">
+<h3>Financial Details <span id="cs_findet">All defaults can be overridden on individual transactions</span></h3>
+<label>Company Registration Number:</label><input type="text" id="NSCompReg" name="NSCompReg" placeholder="Company Registration Number"><br>
+<label>Currency:</label>
+<select id="NSCurrency" name="NSCurrency">
+  <option value="AUD">AUD</option>
+  <option value="NZD">NZD</option>
+  <option value="ZAR">ZAR</option>
+  <option value="AED">AED</option>
+  <option value="GBP">GBP</option>
+  <option value="USD">USD</option>
+</select><br>
+<label><b>Banking Details:</b></label><br><hr>
+<label>Bank Account Name:</label><input type="text" id="NSBankName" name="NSBankName" placeholder="Bank Account Name"><br>
+<label>Bank Account Number:</label><input type="text" id="NSBankNumber" name="NSBankNumber" placeholder="Bank Account Number"><br>
+<label>Bank Code:</label><input type="text" id="NSBankCode" name="NSBankCode" placeholder="Bank Code"><br>
+</div>
+
+  <div class="new_create_buttons">
+  <div class="new_create_buttons_g1">
+        <a href="#" onclick="javascript:history.back()" class="cancel_new">Cancel</a>
+  </div>
+  <div class="new_create_buttons_g2">
+  <input type="submit" class="save_new" id="suppliercreatebtn" name="suppliercreatebtn" value="Save">
+  </div>
+  </div>
+</form>
+</div>
+</main>
+</div>
+</template>

@@ -1,0 +1,417 @@
+.viewStatement .active_page_content h1{
+    margin-bottom: 0;
+    border-bottom: 0;
+}
+
+.viewStatement .summaryHeader h2 {
+    padding: 0;
+    margin: 0;
+    font-weight: bold;
+    font-size: 12px;
+    margin-left: 15px;
+    margin-bottom: 5px;
+}
+
+.viewStatement .summaryHeader span{
+    float: left;
+    color: grey;
+    font-size: 12px;
+    padding-top: 3px;
+}
+
+.viewStatement div#balance_sheet_search {
+    margin-bottom: 10px;
+}
+
+.viewStatement .status {
+    width: 100%;
+    background-color: #f8f8f8;
+    border: 1px solid #c1c1c1;
+    border-bottom-style: dotted;
+    padding: 2px 10px;
+    float: left;
+    text-align: right;
+    padding-bottom: 8px;
+    padding-top: 6px
+}
+
+
+.viewStatement .read-only{
+    border: 1px solid #c1c1c1;
+    clear: both;
+    margin-bottom: 0;
+    padding: 10px;
+    float: left;
+    width: 100%;
+    background: #fff;
+}
+.viewStatement .tax {
+    width:100%;
+    border-top: 1px solid #e1e1e1;
+    margin-top: 15px;
+    padding: 10px 0;
+    float: left;
+}
+
+.viewStatement .to {
+    width: 100%;
+    float: left;
+    font-size: 11px;
+    font-style: inherit;
+}
+.viewStatement .to label {
+    width: 100%;
+    float: left;
+}
+.viewStatement .to a{
+    width: 100%;
+    float: left;
+}
+
+.viewStatement .to em#contactAddress {
+    font-style: inherit;
+}
+.viewStatement .to div em#contactAddress {
+    font-style: inherit;
+}
+
+.to div {
+    float: left;
+    width: 203px;
+}
+
+.viewStatement table.standard {
+    width: 100% !important;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.viewStatement table.standard thead tr td {
+    border-bottom: 1px solid #b7c0c7;
+    padding: 5px;
+    vertical-align: middle;
+    font-size: 12px;
+    font-weight: bold;
+    color: #000;
+}
+
+.viewStatement table.standard tbody tr td {
+    color: #333;
+    padding: 3px 5px;
+    white-space: normal;
+    border-bottom: 1px solid #b7c0c7;
+}
+.viewStatement .to div em {
+    font-style: initial;
+}
+
+
+
+.viewStatement .bottom-line {
+
+    border-bottom: 3px double #000;
+    padding-top: 7px;
+    margin-bottom: 0;
+}
+.viewStatement .total div label {
+    width: 225px;
+}
+
+.viewStatement .total {
+    float: right;
+    width: auto;
+    border-top: 0;
+    font-size: 12px;
+    margin-bottom: 20px;
+}
+.viewStatement .dropdown-add-rec .input-group-addon img, .dropdown-add-rec #select-type-img{
+    z-index: 7;
+}
+.viewStatement .dropdown-menu{
+    background-color:#fff;
+    font-size: 12px;
+}
+.viewStatement ul.dropdown-menu li.select-menu:hover{
+    background: #e6f5fa;
+    cursor: pointer;
+    border: 1px dotted #a3bae9!important;
+}
+.viewStatement .select-type-menu li{
+    padding: 4px 0 4px 2px;
+    border: 1px dotted #fff!important;
+}
+.viewStatement .select-type-menu{
+    height: 170px;
+    overflow: auto;
+}
+.viewStatement .msgBlue{
+    width: 100%;
+    float: left;
+    border: 2px solid #e70101;
+    background-color: #fff;
+    border-radius: 4px;
+    padding: 10px;
+    margin: 15px 0 0;
+}
+
+.viewStatement .msgBlue .fa-exclamation-triangle{
+    color: #f00;
+    font-size: 32px;
+    position: absolute;
+}
+.viewStatement .activity-date{
+    display: flex;
+}
+
+.viewStatement .activity-date p {
+    float: left;
+    width: 34%;
+}
+.viewStatement #viewStandardTable .right{
+    text-align: right;
+
+}
+.viewStatement #viewStandardTable tbody tr td:nth-child(5),
+.viewStatement #viewStandardTable tbody tr td:nth-child(6),
+.viewStatement #viewStandardTable tbody tr td:nth-child(7){
+    text-align: right;
+
+}
+.viewStatement #viewStandardTable tbody tr td:nth-child(2){
+   color: #048abb;
+    cursor: pointer;
+
+}
+
+.viewStatement #viewStandardTable tbody tr td:nth-child(2):hover {
+    color: #005e7b;
+    text-decoration: underline;
+}
+.viewStatement .search_button{
+    padding-left: 0px;
+}
+.viewStatement .updateBtn{
+    width: 105px;
+    height: 28px;
+}
+.viewStatement .dataTables_empty{
+    cursor: default;
+}
+.ui-datepicker-trigger{
+    z-index: 7 !important;
+}
+
+
+.viewStatement #address-modal .modal-dialog{
+    max-width: 400px;
+}
+.viewStatement #address-modal .modal-header h4{
+    font-weight: bold;
+}
+.viewStatement #address-modal .modal-body #email{
+    width: 100%;
+    margin-right: 0;
+    text-align: center;
+}
+.viewStatement #address-modal .modal-body{
+    width:100%;
+    float: left;
+    background: #fbfbfb !important;
+}
+.viewStatement #address-modal .modal-body #email h3{
+    text-align: left;
+    font-weight: 700;
+    color: #333;
+    padding-bottom: 5px;
+    font-size: 12px;
+    margin: 0 0;
+}
+.viewStatement #address-modal .modal-body #email label{
+    width: 100px;
+    display: inline-block;
+    font-size:11px;
+    font-weight: normal;
+    margin: 0 0;
+}
+.viewStatement #address-modal .modal-body #email input,#address-modal .modal-body #email textarea{
+    width: 182px;
+    display: inline-block;
+    height: 21px;
+    min-height: 21px;
+    border: 1px solid #eee;
+    padding: 4px;
+}
+
+.viewStatement #address-modal .modal-body .field-placeholder .form-group{
+    width:100%;
+    float:left;
+    text-align: center;
+}
+
+.viewStatement #address-modal .modal-body .field-placeholder .form-group label{
+    width: 100px;
+    display: inline-block;
+    font-size:11px;
+    font-weight: normal;
+}
+.viewStatement #address-modal .modal-body .field-placeholder .form-group input,#address-modal .modal-body .field-placeholder .form-group textarea{
+    width: 182px !important;
+    display: inline-block;
+    min-height: 21px;
+    border: 1px solid #eee;
+    padding: 4px;
+    font-size:11px;
+    height: auto;
+    overflow: inherit;
+}
+.viewStatement #address-modal .modal-body .field-placeholder{
+    width: 100%;
+    float: left;
+    border: 1px solid #dddddd;
+    border-radius: 3px;
+    box-shadow: inset 1px 1px 0 0 #fff, 1px 1px 0 0 #fff;
+    padding: 10px;
+    margin-top:20px;
+}
+.viewStatement #address-modal .modal-body .field-placeholder h3{
+    font-weight: bold;
+    font-size: 16px;
+    margin: 0.20em 0 !important;
+}
+.viewStatement #viewStandardTable tbody tr:hover{
+    background-color: #e8f1ff;
+}
+
+.viewStatement .pdf-modal .modal-header{
+    padding:0;
+}
+.viewStatement .pdf-modal .modal-header button{
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin-top: 0 !important;
+    outline: none;
+}
+.viewStatement .pdf-modal .modal-dialog{
+    width: 300px !important;
+    margin: 21px auto !important;
+}
+.viewStatement .pdf-modal .modal-dialog .modal-content{
+    width: 100%;
+    float: left;
+}
+.viewStatement .pdf-modal .modal-dialog .modal-body{
+    width: 100%;
+    float: left;
+    background: #fbfbfb;
+}
+.viewStatement .pdf-modal .modal-dialog .modal-body p {
+    font-size: 11px;
+}
+.viewStatement .pdf-modal .modal-dialog .modal-footer{
+    width: 100%;
+    float: left;
+    border-top: none;
+    background: #fbfbfb;
+}
+
+.viewStatement .pdf-modal .modal-dialog .modal-body .dropdown-add-rec2 {
+    height: 24px !important;
+    width: auto;
+    margin-bottom: 0;
+}
+.viewStatement .pdf-modal .modal-dialog .modal-body .dropdown-add-rec2 img{
+    height: 24px !important;
+}
+.viewStatement .pdf-modal .modal-dialog .modal-body .dropdown-add-rec2 input{
+    height: 100%;
+    font-size: 11px;
+}
+.viewStatement .email-modal .email-template .right-bar p{
+    width:100%;
+    float: left;
+    font-size: 11px;
+    margin-top:5px;
+}
+.viewStatement .email-modal .email-template.checkboxdiv form label input{
+    margin-top:-3px !important;
+}
+.viewStatement .email-modal .email-template input,#email-modal .email-template textarea {
+    padding-left: 5px !important;
+}
+.viewStatement .email-modal .modal-dialog{
+    width:500px !important;
+}
+
+.viewStatement .pdf-email-btn a:first-child{
+    background: url(../img/pdf.png) repeat-x 0 0,url(../img/pdf.png) no-repeat 6px -308px;
+    padding-left: 27px;
+    padding-right: 7px;
+    text-decoration: none;
+}
+.viewStatement .pdf-email-btn a:last-child{
+    background: url(../img/pdf.png) repeat-x 0 0,url(../img/pdf.png) no-repeat 6px -251px;
+    padding-left: 30px;
+    padding-right: 7px;
+    text-decoration: none;
+}
+.viewStatement{
+    background: #fff;
+}
+.viewStatement table.standard thead tr td{
+    background: #fff;
+}
+.viewStatement table#viewStandardTable thead tr{
+    cursor:auto;
+}
+.viewStatement #address-modal .form-group {
+    margin-bottom: 4px;
+}
+
+.viewStatement #address-modal .heading.footer button.address-modal-hide{
+    background: linear-gradient(#bbbec2,#949a9e);
+    border-color: #949a9e;
+    color: #fff;
+    width: 100px;
+    height: 28px;
+    line-height: 1px;
+    font-weight: bold;
+    font-size: 12px;
+}
+.viewStatement #address-modal .heading.footer{
+    float: right;
+    margin-top: 19px;
+}
+
+.viewStatement .pdf-modal .modal-dialog .modal-footer .address-modal-hide{
+    background: linear-gradient(#bbbec2,#949a9e);
+    border-color: #949a9e;
+    color: #fff;
+    width: 80px;
+    height: 28px;
+    line-height: 1px;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.viewStatement .status.pdf-email-btn a{
+    font: 11px Helvetica, sans-serif;
+    font-weight:bold;
+}
+.viewStatement #address-modal .modal-header .close,
+.viewStatement .pdf-modal .modal-header .close{
+    margin-top: 0;
+    border-left: 1px solid #ddd;
+    height: 46px;
+    width: 46px;
+    opacity: 1;
+    color: #9a9a9a;
+}
+.viewStatement #address-modal .modal-header .close:hover,
+.viewStatement .pdf-modal .modal-header .close:hover{
+    background-color:#fbfbfb;
+    border-radius: 0px 5px 0px 0px;
+}
+.viewStatement #address-modal .modal-header{
+    padding: 0;
+}

@@ -1,0 +1,256 @@
+<template name="productsaleslist">
+    <div style="margin-top: -24px;">
+        <div class="fullScreenSpin" style="display:none;">
+            <div class="spinner"></div>
+        </div>
+        <header style="padding: 16px; padding-bottom: 0px; background-color: #ededed;">
+            <h1 style="margin: 16px; margin-bottom: 0px;">Product Sales Details</h1>
+        </header>
+        <div class="d-xl-flex justify-content-xl-end align-items-xl-center" style="background-color: #ededed; padding: 0px 16px 16px 16px;">
+            <div class="d-xl-flex flex-grow-1 justify-content-xl-start">
+                <button class="btn btn-primary float-right btnRefresh" type="button" style="margin: 16px;"><i class="la la-lightbulb-o" style="padding-right: 5px;"></i>Refresh</button>
+                <button class="btn btn-primary printConfirm" type="button" style="margin: 16px;"><i class="fa fa-print" style="margin-right: 5px;"></i>Print</button>
+                <button class="btn btn-primary export" type="button" style="margin: 16px;" id="exportbtn" name="exportbtn"><i class="fas fa-file-export" style="margin-right: 5px;"></i>Export</button>
+            </div>
+            <div class="col float-right d-sm-flex d-xl-flex justify-content-sm-end align-items-sm-center justify-content-xl-end align-items-xl-end">
+                <div class="dropdown" style="margin: 16px;">
+                    <style>
+                        .dropdown-toggle::after {
+                            display: none;
+                        }
+                    </style>
+                    <button class="btn dropdown-toggle" data-toggle="dropdown" aria-expanded="true" type="button"><i class="fas fa-ellipsis-v"></i></button>
+                    <div class="dropdown-menu" role="menu">
+                        <h6 class="dropdown-header" role="presentation">Date ranges</h6>
+                        <a class="dropdown-item lastMonth" id="lastMonth" role="presentation" href="#">Last Month</a>
+                        <a class="dropdown-item lastQuarter" id="lastQuarter" role="presentation" href="#">Last Quarter</a>
+                        <a class="dropdown-item last12Months" id="last12Months" role="presentation" href="#">Last 12 Months</a>
+                        <a class="dropdown-item ignoreDate" id="ignoreDate" role="presentation" href="#">Ignore Date</a>
+                    </div>
+                </div>
+                <!-- <div class="flex-grow-1">
+       <div class="custom-control custom-checkbox" style="margin: 16px; margin-bottom: 30px;"><input class="custom-control-input" type="checkbox" id="formCheck-1"><label class="custom-control-label" for="formCheck-1">Ignore Dates</label></div>
+     </div> -->
+                <div class="form-group" style="margin: 16px;">
+                    <label>From</label>
+                    <div class="input-group date" style="width: 160px;">
+                        <input type="text" class="form-control" id="dateFrom" name="dateFrom">
+                        <div class="input-group-addon">
+                            <span class="glyphicon glyphicon-th"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" style="margin: 16px;"><label>To</label>
+                    <div class="input-group date" style="width: 160px;">
+                        <input type="text" class="form-control" id="dateTo" name="dateTo">
+                        <div class="input-group-addon">
+                            <span class="glyphicon glyphicon-th"></span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div>
+            <div class="card-body p-3 rounded" style="margin: 0px 16px;">
+                <!-- Start {{> optionNavSalesOverview}} -->
+                <div class="d-xl-flex justify-content-xl-end">
+                    <div><a class="btn btnOpenSettings" role="button" data-toggle="modal" href="#myModal2"><i class="icon ion-android-more-horizontal"></i></a>
+                        <div class="modal fade" role="dialog" tabindex="-1" id="myModal2">
+                            <div class="modal-dialog modal-dialog-centered" role="document" style="float: right;">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4>Display Settings</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div>
+                                            {{#if tableheaderrecords}}
+                                                <form class="d-xl-flex align-items-xl-center">
+                                                    <div class="flex-grow-1">
+                                                        <style>
+                                                            .groove {
+                                                                border-style: solid;
+                                                                border-width: 1px;
+                                                                width: 200px;
+                                                                padding: 2px;
+                                                                border-radius: .35rem;
+                                                            }
+
+                                                            .custom-control-label {
+                                                                position: absolute;
+                                                            }
+
+                                                            .rngRange {
+                                                                position: relative;
+                                                                display: flex;
+                                                                flex-direction: column;
+                                                                width: 100%;
+                                                                pointer-events: auto;
+                                                                background-color: rgb(255, 255, 255);
+                                                                background-clip: padding-box;
+                                                                border: 1px solid rgb(133, 135, 150);
+                                                                border-radius: .3rem;
+                                                                border-style: solid;
+                                                                border-width: 1px;
+                                                                padding: 2px;
+                                                                border-radius: .35rem;
+                                                                color: rgb(128, 128, 128);
+                                                                height: inherit !important;
+                                                            }
+
+                                                            @media only screen and (max-width: 480px) {
+                                                                .modal.show .modal-dialog {
+                                                                    float: inherit !important;
+                                                                    left: inherit !important;
+                                                                    top: auto !important;
+
+                                                                }
+                                                            }
+                                                        </style>
+                                                        {{#each item in tableheaderrecords}}
+                                                            {{#if equals item.sTitle "id"}}
+                                                            {{else}}
+
+                                                                <div id="{{item.sIndex}}" class="columnSettings">
+                                                                    <div class="custom-control custom-switch" style="margin: 8px; float:left;">
+                                                                        <input class="custom-control-input chkDatatable" type="checkbox" id="chkSalesNo-{{item.sIndex}}" name="chkSalesNo-{{item.sIndex}}"
+                                                                            checked="{{#if item.sVisible}}checked{{else}}{{/if}}" value="{{item.sTitle}}">
+                                                                        <label class="custom-control-label" for="chkSalesNo-{{item.sIndex}}"></label>
+                                                                        <div contenteditable="true" class="groove divcolumn" type="text" value="{{item.sTitle}}" valueupdate="{{item.sClass}}">{{item.sTitle}}</div>
+                                                                    </div>
+                                                                    <div class="d-xl-flex align-items-xl-center divColWidth" style="margin: 8px;">
+                                                                        <label class="text-nowrap" style="padding-left: 0px;margin-top: 8px;">Width:
+                                                                            <!--<span class="spWidth" value="{{item.sTitle}}">{{item.sWidth}}px</span>-->
+                                                                        </label>
+                                                                        <input class="custom-range rngRange" type="number" style="margin: 8px;" value="{{item.sWidth}}" min="0" max="1000">
+                                                                        <!-- <input class="custom-range rngRange" type="range" style="margin: 8px;" value="{{item.sWidth}}" min="0" max="1000"> -->
+                                                                    </div>
+                                                                </div>
+
+                                                                {{#if equals item.sVisible true}}
+                                                                    <script>
+                                                                        $("#" + {
+                                                                            {
+                                                                                item.sIndex
+                                                                            }
+                                                                        } + ".chkDatatable").attr("checked", "checked");
+                                                                    </script>
+                                                                {{else}}
+                                                                    <script>
+                                                                        $("#" + {
+                                                                            {
+                                                                                item.sIndex
+                                                                            }
+                                                                        } + ".chkDatatable").removeAttr("checked");
+                                                                    </script>
+                                                                {{/if}}
+
+                                                            {{/if}}
+                                                        {{/each}}
+                                                    </div>
+                                                </form>
+                                            {{/if}}
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn btn-primary saveTable" type="button"><i class="fa fa-save" style="margin-right: 5px;"></i>Save</button>
+                                        <button class="btn btn-warning resetTable" data-dismiss="modal" type="reset"><i class="fa fa-repeat" style="margin-right: 5px;"></i>Reset</button>
+                                        <button class="btn btn-secondary" data-dismiss="modal" type="button"><i class="fa fa-remove" style="margin-right: 5px;"></i>Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End -->
+                <div class="table-responsive">
+                    <style>
+                        th {
+                            background-color: #ededed;
+                        }
+
+                        .table-striped tbody tr:nth-of-type(odd) {
+                            background-color: white !important;
+                        }
+
+                        .table-striped tbody tr:nth-of-type(even) {
+                            background-color: #0000000d !important;
+                        }
+
+                        .JColResizer>tbody>tr>td,
+                        .JColResizer>tbody>tr>th {
+                            padding: .75rem !important;
+                        }
+
+                        .hiddenColumn {
+                            display: none;
+                        }
+
+                        .showColumn {
+                            display: table-cell;
+                            padding: .75rem;
+                            vertical-align: top;
+                        }
+
+                        input[type=number]::-webkit-inner-spin-button,
+                        input[type=number]::-webkit-outer-spin-button {
+                            opacity: 1;
+                        }
+                    </style>
+                    <table id="tblProductalesReport" style="width:100%" class="dataTable table table-hover table-striped table-bordered tblProductalesReport">
+                        <thead>
+                            <tr class="dnd-moved">
+                                <th class="th colSortDate hiddenColumn">id</th>
+                                <th class="th colSaleDate" style="width:80px;">Sale Date</th>
+                                <th class="th colProductName" style="width:200px;">Product Name</th>
+                                <th class="th colDescription">Description</th>
+                                <th class="th colType" style="width:80px;">Trans Type</th>
+                                <th class="th colReference" style="width:80px;">Trans No</th>
+                                <th class="th colQty" style="width:80px;">Qty</th>
+                                <th class="th colLineCostEx" style="width:80px;">Line Cost</th>
+                                <th class="th colTotalAmount" style="width:80px;">Total Amount</th>
+                                <th class="th colTotalProfit" style="width:80px;">Total Profit</th>
+                                <th class="th colName" style="width:200px;">Customer Name</th>
+                                <th class="th colEmail" style="width:200px;">Email</th>
+                                <th class="th colUnitOfMeasure hiddenColumn">Unit Of Measure</th>
+                                <th class="th colEmployeeName hiddenColumn">Employee Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#if datatablerecords}}
+                                {{#each item in datatablerecords}}
+                                    <tr class="dnd-moved" id="{{item.id}}" style="cursor: pointer;">
+                                        <td contenteditable="false" class="colSortDate hiddenColumn">{{item.sortdate}}</td>
+                                        <td contenteditable="false" class="colSaleDate"><span style="display:none;">{{item.sortdate}}</span>{{item.saledate}}</td>
+                                        <td contenteditable="false" class="colProductName">{{item.productname}}</td>
+                                        <td contente ditable="false" class="colDescription">{{item.description}}</td>
+                                        <td contenteditable="false" class="colType">{{item.type}}</td>
+                                        <td contenteditable="false" class="colReference">{{item.reference}}</td>
+                                        <td contenteditable="false" class="colQty" style="text-align: right!important;">{{item.qty}}</td>
+                                        <td contenteditable="false" class="colLineCostEx" style="text-align: right!important;">{{item.linecostex}}</td>
+                                        <td contenteditable="false" class="colTotalAmount" style="text-align: right!important;">{{item.totalamount}}</td>
+                                        <td contenteditable="false" class="colTotalProfit" style="text-align: right!important;">{{item.totalprofit}}</td>
+                                        <td contenteditable="false" class="colName">{{item.name}}</td>
+                                        <td contenteditable="false" class="colEmail">{{item.email}}</td>
+                                        <td contenteditable="false" class="colUnitOfMeasure hiddenColumn">{{item.unitofmeasure}}</td>
+                                        <td contenteditable="false" class="colEmployeeName hiddenColumn">{{item.employeename}}</td>
+                                    </tr>
+                                {{/each}}
+                            {{/if}}
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th colspan="3" style="text-align: center; background-color: #fff; padding-top: 32px;">
+                                    Powered by <a href="https://www.vs1cloud.com" target="_blank">VS1Cloud</a>
+                                </th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+        <div class="d-xl-flex justify-content-xl-center"></div>
+    </div>
+</template>

@@ -1,0 +1,199 @@
+<template name="fixedAssetEditAssetType">
+    <div class=" organisationSettings addNewAsset fixedAssetEditAssetType ">
+        {{#if showTitle}}<div class="loader" id="fixedAssetEditAssetType"><i class="fa fa-spinner fa-spin"></i></div>{{/if}}
+        <div class="active_page">
+            <div class="active_page_content">
+                <p> <a href="/settings">General Settings</a> <i class="fa fa-caret-right" aria-hidden="true"></i>
+                    <a href="/settings/fixedAssets/asset-type">Fixed Asset Settings</a> <i class="fa fa-caret-right" aria-hidden="true"></i>
+                    <a href="/settings/fixedAssets/asset-type">Asset Types</a> <i class="fa fa-caret-right" aria-hidden="true"></i>
+                </p>
+                <br>
+                {{#if showTitle}}
+                <h1>Edit Asset Type</h1>
+                {{else}}
+                <h1>Add Asset Type</h1>
+                {{/if}}
+            </div>
+        </div>
+        <div id="wrapper_main">
+            <div class="addNewAssetDiv">
+                <div class="basicInformation">
+                    <div class="heading">
+                        <b>Type & Accounts</b>
+                    </div>
+                    <div class="panelfield">
+                        <div class="row">
+                            <div class="col-lg-12 paddingMargin">
+                                <div class="col-md-4">
+                                    <label>Asset Type</label>
+                                    <input type="text" class="form-control" id="sub-asset-type" value="{{record.AssetType}}">
+                                </div>
+                                <div class="col-md-4">
+                                    <label>Asset Type Code</label>
+                                    <input name="assettypecode" type="text" class="form-control" id="asset-type-code" value="{{record.AssetCode}}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row marginTop">
+                            <div class="col-lg-12 paddingMargin">
+                                <div class="col-md-4 assetNumber paddingRight">
+                                    <label>Asset Account</label>
+                                    <div class="input-group dropdown-add-rec">
+                                        <input type="text" class="form-control" id="asset-account" value="{{record.AssetAccount}}">
+                                        <div class="input-group-addon" data-toggle="dropdown">
+                                            <img src="/img/dropdown_icon.png" id="asset-account-dropdown-img" class="depreciation-method-img">
+                                        </div>
+                                        <ul class="dropdown-menu">
+                                            <li class="assetAccount">Assets</li>
+                                            <li class="assetAccount">710 - Office Equipment</li>
+                                            <li class="assetAccount">711 - Less Accumulated Depreciation on Office Equipment</li>
+                                            <li class="assetAccount">720 - Computer Equipment</li>
+                                            <li class="assetAccount">721 - Less Accumulated Depreciation on Computer Equipment</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 assetNumber paddingRight">
+                                    <label>Accumulated Depreciation Account</label>
+                                    <div class="input-group dropdown-add-rec">
+                                        <input type="text" class="form-control" id="accumulated-depreciation">
+                                        <div class="input-group-addon" data-toggle="dropdown">
+                                            <img src="/img/dropdown_icon.png" id="accumulated-depreciation-dropdown-img" class="depreciation-method-img">
+                                        </div>
+                                        <ul class="dropdown-menu">
+                                            <li class="accumulatedDepreciation">Assets</li>
+                                            <li class="accumulatedDepreciation">710 - Office Equipment</li>
+                                            <li class="accumulatedDepreciation">711 - Less Accumulated Depreciation on Office Equipment</li>
+                                            <li class="accumulatedDepreciation">720 - Computer Equipment</li>
+                                            <li class="accumulatedDepreciation">721 - Less Accumulated Depreciation on Computer Equipment</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 assetNumber paddingRight">
+                                    <label>Depreciation Expense Account</label>
+                                    <div class="input-group dropdown-add-rec">
+                                        <input type="text" class="form-control" id="depreciation-expense">
+                                        <div class="input-group-addon" data-toggle="dropdown">
+                                            <img src="/img/dropdown_icon.png" id="depreciation-expense-dropdown-img" class="depreciation-method-img">
+                                        </div>
+                                        <ul class="dropdown-menu">
+                                            <li class="depreciationExpense">300 - Purchases</li>
+                                            <li class="depreciationExpense">310 - Cost of Goods Sold</li>
+                                            <li class="depreciationExpense">400 - Advertising</li>
+                                            <li class="depreciationExpense">404 - Bank Fees</li>
+                                            <li class="depreciationExpense">408 - Cleaning</li>
+                                            <li class="depreciationExpense">412 - Consulting & Accounting</li>
+                                            <li class="depreciationExpense">416 - Depreciation</li>
+                                            <li class="depreciationExpense">420 - Entertainment</li>
+                                            <li class="depreciationExpense">425 - Freight & Courier</li>
+                                            <li class="depreciationExpense">429 - General Expenses</li>
+                                            <li class="depreciationExpense">433 - Insurance</li>
+                                            <li class="depreciationExpense">437 - Interest Expense</li>
+                                            <li class="depreciationExpense">441 - Legal expenses</li>
+                                            <li class="depreciationExpense">445 - Light, Power, Heating</li>
+                                            <li class="depreciationExpense">449 - Motor Vehicle Expenses</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="basicInformation">
+                    <div class="heading">
+                        <b>Book Depreciation Default</b>
+                    </div>
+                    <div class="panelfield">
+                        <div class="row marginTop">
+                            <div class="col-lg-12 paddingMargin">
+                                <div class="col-md-4 assetNumber paddingRight">
+                                    <label>Depreciation Method</label>
+                                    <div class="input-group dropdown-add-rec" id="book-depreciation-method-dropdown">
+                                        <input type="text" class="form-control" id="depreciation-method-input" value="{{record.DepreciationMethod}}">
+                                        <div class="input-group-addon" data-toggle="dropdown">
+                                            <img src="/img/dropdown_icon.png" id="book-depreciation-dropdown-img" class="depreciation-method-img">
+                                        </div>
+                                        <ul class="dropdown-menu">
+                                            <li class="bookDepreciation">No Depreciation</li>
+                                            <li class="bookDepreciation">Straight Line Depreciation</li>
+                                            <li class="bookDepreciation">Declining Balance</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 assetNumber paddingRight">
+                                    <label>Averaging Method</label>
+                                    <span>Actual Days</span>
+                                </div>
+                                <div class="col-md-2 radioButton rateLeft">
+                                    <label>Rate</label>
+                                    <input type="radio" name="optradio" class="paddingTop" id="rate-radio">
+                                    <div class="rateDiv">
+                                        <input type="text" class="form-control" id="rate" value="{{record.BusinessUsePercent}}" disabled="disabled">
+                                        <img src="/img/percent-bg.png" class="depreciation-method-img">
+                                    </div>
+
+
+                                </div>
+                                <div class="col-md-2 radioButton rateLeft">
+                                    <label>Effective Life (Yrs)</label>
+                                    <input type="radio" name="optradio" class="paddingTop" id="effective-life-radio" checked="checked">
+                                    <input type="text" class="form-control" id="effective-life" value="{{record.EffectiveLife}}" >
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+              <!--  <div class="basicInformation">
+                    <div class="heading">
+                        <b>Tax Depreciation Default</b>
+                    </div>
+                    <div class="panelfield">
+                        <div class="row marginTop">
+                            <div class="col-lg-12 paddingMargin">
+                                <div class="col-md-4 assetNumber paddingRight">
+                                    <label>Depreciation Method</label>
+                                    <div class="input-group dropdown-add-rec" id="depreciation-method-dropdown">
+                                        <input type="text" class="form-control" id="usr">
+                                        <div class="input-group-addon" data-toggle="dropdown">
+                                            <img src="/img/dropdown_icon.png" id="depreciation-method-dropdown-img" class="depreciation-method-img">
+                                        </div>
+                                        <ul class="dropdown-menu">
+                                            <li>No Depreciation</li>
+                                            <li>Straight Line Depreciation</li>
+                                            <li>Declining Balance</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 assetNumber paddingRight">
+                                    <label>Averaging Method</label>
+                                    <span>Actual Days</span>
+                                </div>
+                                <div class="col-md-2 radioButton rateLeft">
+                                    <label>Rate</label>
+                                    <input type="radio" name="optradio" class="paddingTop" id="rate-radio"
+                                           checked="checked">
+                                    <div class="rateDiv">
+                                        <input type="text" class="form-control" id="rate" value="{{record.BusinessUsePercent}}">
+                                        <img src="/img/percent-bg.png" class="depreciation-method-img">
+                                    </div>
+
+
+                                </div>
+                                <div class="col-md-2 radioButton rateLeft">
+                                    <label>Effective Life (Yrs)</label>
+                                    <input type="radio" name="optradio" class="paddingTop" id="effective-life-radio"> <input type="text" class="form-control" id="effective-life" value="" disabled="disabled" >
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>-->
+            </div>
+            <div class="heading footer">
+                <button type="button" class="btn btn-success" id="add-asset-type">Save</button>
+                <a href="/settings/fixedAssets/asset-type" type="button" class="btn btn-default co-btn-cancel">Cancel</a>
+            </div>
+        </div>
+    </div>
+</template>
+

@@ -1,0 +1,66 @@
+<template name="currencypop">
+
+    <div class="modal-dialog modal-xl modal-dialog-scrollable" role="document" style="max-width: 90vw;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4>Currency List</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" style="width: 100%; display:none;" id="selectCurrencyLineID" name="selectCurrencyLineID" readonly>
+                <div class="card-body p-1 rounded">
+                    <div class="table-responsive">
+                        <style>
+                            .colSymbol {
+                                width: 5%;
+                            }
+                            .colCode {
+                                width: 5%;
+                            }
+                            .colCurrency {
+                                width: 5%;
+                            }
+                            .colBuyRate {
+                                width: 8%;
+                            }
+                            .colSellRate {
+                                width: 8%;
+                            }
+                        </style>
+                        <table id="tblCurrencyPopList" name="tblCurrencyPopList" style="width:100%" class="dataTable table table-hover table-striped table-bordered tblCurrencyPopList">
+                            <thead>
+                                <tr class="dnd-moved">
+                                    <th class="th colCode" style="">Code</th>
+                                    <th class="th colCurrency" style="">Currency</th>
+                                    <th class="th colSymbol" style="">Symbol</th>
+                                    <th class="th colBuyRate" style="">Buy Rate</th>
+                                    <th class="th colSellRate" style="">Sell Rate</th>
+                                    <th class="th colCountry" style="">Country</th>
+                                    <th class="th colDescription" >Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#if datatablerecordscurrencypop}}
+                                {{#each item in datatablerecordscurrencypop}}
+                                <tr class="dnd-moved" id="{{item.id}}" style="cursor: pointer;">
+                                    <td contenteditable="false" class="colCode">{{item.code}}</td>
+                                    <td contenteditable="false" class="colCurrency">{{item.currency}}</td>
+                                    <td contenteditable="false" class="colSymbol">{{item.symbol}}</td>
+                                    <td contenteditable="false" class="colBuyRate text-right">{{item.buyrate}}</td>
+                                    <td contenteditable="false" class="colSellRate text-right">{{item.sellrate}}</td>
+                                    <td contenteditable="false" class="colCountry">{{item.country}}</td>
+                                    <!-- <td contenteditable="false" class="colRateLastModified hiddenColumn">{{item.ratelastmodified}}</td> -->
+                                    <td contenteditable="false" class="colDescription">{{item.description}}</td>
+                                </tr>
+                                {{/each}}
+                                {{/if}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-light" data-dismiss="modal" type="button">Close</button>
+            </div>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,947 @@
+.payItemsSettings {
+    float: left;
+    width: 100%;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+.payItemsSettings .gettingStarted {
+    float: left;
+    width: 100%;
+    background-color: #fff;
+    border-bottom: 1px solid #dee0e2;
+    padding: 10px 0 40px;
+    margin-top: 21px;
+}
+
+.payItemsSettings .paySettings {
+    float: left;
+    width: 100%;
+}
+
+.payItemsSettings .gettingStarted .paySettings h1 {
+    font-size: 24px;
+    color: #333;
+    border-bottom: 1px solid #e2e2e2;
+    padding: 0 0 10px;
+    margin: 9px 0 25px;
+    font-weight: bold;
+}
+
+.payItemsSettings .gettingStarted .paySettings p {
+    font-size: 17px;
+    margin-left: 205px;
+    margin-bottom: 0;
+    margin-top: 10px;
+    color: #333;
+    border-bottom: 1px solid #e2e2e2;
+    padding-bottom: 10px;
+}
+
+.payItemsSettings .gettingStarted .paySettings .settingsvideolinkimage {
+    background-image: url(img/payrollSettings.png);
+    float: left;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    position: absolute;
+    top: 64px;
+    left: 0;
+    width: 179px;
+    height: 114px;
+}
+
+.payItemsSettings .gettingStarted .paySettings .close {
+    position: absolute;
+    top: 10px;
+    right: 3px;
+    font-size: 11px;
+    color: #c4cbd1;
+    font-weight: bold;
+    padding: 5px 22px 5px 0;
+    background: none;
+    opacity: 1;
+}
+
+.payItemsSettings .payrollSettings {
+    float: left;
+    width: 100%;
+    background: #fbfbfb;
+}
+
+.payItemsSettings .payrollSettings .tabFull {
+    background: #f5f6f7;
+    float: left;
+    width: 100%;
+    border-bottom: 1px solid #dadddf;
+}
+
+.payItemsSettings .payrollSettings .tabFull div#wrapper_main {
+    padding-bottom: 0;
+    padding-top: 20px;
+}
+
+.payItemsSettings .payrollSettings .tabFull ul {
+    border: 0;
+}
+
+.payItemsSettings .payrollSettings .tabFull ul li a {
+    background: #f8f8f8;
+    border-color: #dadddf;
+    border-style: solid;
+    border-width: 1px 1px 1px 1px;
+    display: block;
+    min-height: 41px;
+    padding: 12px 16px 0;
+    margin-right: 0;
+    font-size: 16px;
+    font-weight: normal;
+}
+
+.payItemsSettings .payrollSettings .tabFull ul li.active a {
+    font-weight: bold;
+    color: #000;
+    border-width: 1px 0 0 1px;
+}
+
+.payItemsSettings .payrollSettings .tab-content {
+    float: left;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.payItemsSettings .panelConnected {
+    width: 100%;
+    float: left;
+    border: 1px solid #ddd;
+    background: #FAFBFB;
+    border-radius: 5px;
+    margin-bottom: 44px;
+}
+
+.payItemsSettings .panelHeading {
+    background: #FFFFFF;
+    width: 100%;
+    float: left;
+    border-bottom: 1px solid #EBEEEF;
+    padding: 15px 10px 14px;
+}
+
+.payItemsSettings .tab-content .panel-body {
+    float: left;
+    width: 100%;
+}
+
+.payItemsSettings .tab-content .panel-body label {
+    font-size: 12px;;
+}
+
+.payItemsSettings .tab-content .panel-body hr {
+    margin-top: 18px;
+    margin-bottom: 14px;
+    border: 0;
+    border-top: 1px solid #eee;
+    float: left;
+    width: 100%;
+}
+
+.payItemsSettings .tab-content .panel-body h3.payrollTracking {
+    float: left;
+    width: 96%;
+    margin-left: 17px;
+    border-bottom: solid 1px #ccc;
+    line-height: 29px;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 14px;
+}
+
+.payItemsSettings .tab-content .panel-body .optional:after {
+    content: " (optional)";
+    color: #ACACAC;
+    font-weight: normal;
+}
+
+.payItemsSettings .tab-content .panel-body .checkboxDiv input {
+    float: left;
+    margin-right: 9px;
+    margin-top: 2px;
+}
+
+.payItemsSettings .footerFiexd {
+    float: left;
+    width: 100%;
+    background: #fff;
+    position: fixed;
+    bottom: 0;
+    box-shadow: 0 0 5px #bbb;
+    padding: 8px 0 10px;
+    left: 0;
+}
+
+.payItemsSettings .footerFiexd .payFooter {
+
+    float: left;
+    width: 100%;
+    text-align: right;
+}
+
+.payItemsSettings .calendars {
+    box-shadow: 0 0 0 1px rgba(50, 70, 90, .2);
+    background-color: #fff;
+    border-radius: 3px;
+    float: left;
+    width: 100%;
+    padding: 15px;
+}
+
+.payItemsSettings .calendars h3 {
+    float: left;
+    width: auto;
+    padding: 0;
+    margin: 0;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 40px;
+}
+
+.payItemsSettings .calendars button {
+    float: right;
+    background: transparent;
+    box-shadow: initial;
+    border: 1px solid #b7bec5;
+    border-radius: 3px;
+    color: #2baaed;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: inherit;
+    min-height: 25px;
+    padding: 11px 15px;
+}
+
+.payItemsSettings table.table tr {
+    border: solid 1px #ccc;
+}
+
+.payItemsSettings table.table tr th {
+    background: #fff;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 13px;
+
+}
+
+.payItemsSettings table.table tr td {
+    background: #fff;
+    padding: 15px;
+    font-size: 12px;
+
+}
+
+
+.payItemsSettings .modal-content {
+    font-size: 12px;
+    width: 420px;
+}
+
+.payItemsSettings .modal-content .modal-title {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.payItemsSettings .dropdown button {
+    background: transparent;
+    border: 0;
+    padding: 0;
+}
+
+.payItemsSettings .dropdown-menu > li > a {
+    color: #000;
+    border-bottom: 1px solid #ccc;
+    border-top: 0;
+    white-space: inherit;
+
+}
+
+.payItemsSettings .dropdown-menu {
+    background-color: #fff;
+}
+
+.payItemsSettings .dropdown-menu > li > a:hover {
+    color: #000;
+    background-color: rgb(239, 241, 243);
+    background-image: inherit;
+}
+
+.payItemsSettings .settingsHolidays {
+    float: left;
+    width: 100%;
+}
+
+.payItemsSettings .settingsHolidays h2 {
+    font-size: 16px;
+    color: #333;
+    font-weight: bold;
+}
+
+.payItemsSettings .settingsHolidays p {
+    font-size: 16px;
+}
+
+.payItemsSettings .holidays {
+    float: left;
+    width: 100%;
+
+}
+
+.payItemsSettings .holidays ul {
+    float: left;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.payItemsSettings .holidays ul li {
+    float: left;
+    width: 100%;
+    list-style: none;
+    background: #fff;
+    border-color: #ddd;
+    color: #555;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+    padding: 10px 15px;
+    margin-bottom: -1px;
+    border: 1px solid #ddd;
+    font-size: 12px;
+}
+
+.payItemsSettings .holidays ul li:first-child {
+
+    background: #e6f5fa;
+}
+
+.payItemsSettings .holidays ul li:nth-child(2) {
+    background: #F8FAFA;
+}
+
+.payItemsSettings .allHolidays {
+    float: left;
+    width: 100%;
+    list-style: none;
+    border-color: #ddd;
+    color: #555;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+    padding: 10px 15px;
+    margin-bottom: -1px;
+    border: 1px solid #ddd;
+    font-size: 12px;
+}
+
+.payItemsSettings .holidays ul {
+    float: left;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.payItemsSettings .holidays ul li {
+    float: left;
+    width: 100%;
+    list-style: none;
+    background: #fff;
+    border-color: #ddd;
+    color: #555;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+    padding: 10px 15px;
+    margin-bottom: -1px;
+    border: 1px solid #ddd;
+    font-size: 12px;
+}
+
+.payItemsSettings .holidays ul li:first-child {
+
+    background: #e6f5fa;
+}
+
+.payItemsSettings .holidays ul li:nth-child(2) {
+    background: #F8FAFA;
+}
+
+.payItemsSettings .allHolidays {
+    float: left;
+    width: 100%;
+    list-style: none;
+    border-color: #ddd;
+    color: #555;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+    margin-bottom: -1px;
+    border: 1px solid #ddd;
+    font-size: 12px;
+    margin-bottom: 20px;
+}
+
+.payItemsSettings .allHolidays .panel-table {
+    background-color: #f8fafa;
+    float: left;
+    height: 40px;
+    padding: 4px;
+    width: 100%;
+    padding-left: 10px;
+    box-shadow: 0px 1px 0px 0px #fff;
+}
+
+.payItemsSettings .allHolidays .panel-table h2 {
+    padding: 0;
+    margin: 0;
+    font-size: 18px;
+    color: #333;
+    font-weight: bold;
+}
+
+.payItemsSettings .eventsheaderClick {
+    width: 100%;
+    float: left;
+}
+
+.payItemsSettings .eventsheaderClick ul {
+    float: left;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.payItemsSettings .eventsheaderClick ul li {
+    list-style: none;
+    height: 28px;
+    padding: 4px 10px 7px;
+    background-color: #F8FAFA;
+    background: -ms-linear-gradient(top, #fcfdfd 0%, #f5f7f8 100%);
+    background-image: linear-gradient(to bottom, #fcfdfd 0%, #f5f7f8 100%);
+    float: left;
+    width: 45%;
+    box-shadow: 0px 1px 0px 0px #fff;
+    border-bottom: 1px solid #EBEEEF;
+    border-right: 1px solid #EBEEEF;
+    border-top: 1px solid #EBEEEF;
+}
+
+.payItemsSettings .eventsheaderClick ul li:last-child {
+    width: 10%;
+}
+
+.payItemsSettings .holidaysDiv {
+    width: 100%;
+    float: left;
+    text-align: center;
+    padding: 60px 0;
+}
+
+.payItemsSettings .holidaysDiv h2 {
+    padding: 0;
+    margin: 15px 0;
+    font-size: 15px;
+    color: #999;
+}
+
+.payItemsSettings .PayItemstabs {
+    box-shadow: 0 0 0 1px rgba(50, 70, 90, .2);
+    background-color: #fff;
+    border-radius: 3px;
+    margin: 4px;
+    display: flex;
+}
+
+.payItemsSettings .PayItemstabs .panelSidebar {
+    border-right: 1px solid #d6dade;
+    margin: 0;
+    padding: 0;
+}
+
+.payItemsSettings .PayItemstabs .panelSidebar ul {
+    float: left;
+    width: 100%;
+    border: 0;
+
+}
+
+.payItemsSettings .PayItemstabs .panelSidebar ul li {
+    width: 100%;
+    float: left;
+}
+
+.payItemsSettings .PayItemstabs .panelSidebar ul li a {
+    border: 0;
+    font-size: 16px;
+}
+
+.payItemsSettings .PayItemstabs .panelSidebar ul li a:hover {
+    background-color: rgba(50, 70, 90, .1);
+    border-left: 4px solid rgba(50, 70, 90, .1);
+}
+
+.payItemsSettings .PayItemstabs .panelSidebar ul li.active a {
+    border-left: 4px solid #2baaed;
+}
+
+.payItemsSettings .PayItemstabs .flexGrow {
+    border-right: 1px solid #d6dade;
+    padding: 0;
+    margin: 0;
+}
+
+.payItemsSettings .PayItemstabs .flexGrow .tab-content {
+    margin-top: 0;
+}
+
+.payItemsSettings table.table.borderRemove tr {
+    border: solid 1px #ccc;
+    border-left: 0;
+    border-top: 0;
+    border-right: 0;
+}
+
+.payItemsSettings .Deductions {
+    float: left;
+    width: 100%;
+    padding: 15px;
+    border-bottom: 1px solid rgb(221, 221, 221);
+}
+
+.payItemsSettings .Deductions h2 {
+    float: left;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 0;
+    margin: 0;
+}
+
+.payItemsSettings .dropdown.addButton {
+    float: right;
+    width: auto;
+}
+
+.payItemsSettings table.table tr th {
+    font-weight: normal;
+}
+
+.payItemsSettings .dropdown.addButton button {
+    background-clip: padding-box;
+    background-image: linear-gradient(#fff, #fff);
+    background-repeat: no-repeat;
+    border: 1px solid #b7bec5;
+    border-radius: 3px;
+    color: #2baaed;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: inherit;
+    min-height: 25px;
+    padding: 6px 15px;
+    text-align: center;
+    text-decoration: none;
+    transition-duration: .1s;
+    transition-property: color, background, box-shadow;
+    transition-timing-function: ease;
+}
+
+.payItemsSettings .btn.btn-white {
+    font: bold 12px Helvetica, sans-serif;
+    color: #048abb;
+    background-color: #fafafa;
+    border-color: #ccc;
+    border-radius: 3px;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: rgba(255, 255, 255, 0.3) 0 0 0 1px inset;
+    box-sizing: border-box;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 6px 12px;
+    position: relative;
+    text-align: center;
+    -webkit-transition: opacity .2s ease-out;
+    transition: opacity .2s ease-out;
+    white-space: nowrap;
+    -moz-user-select: -moz-none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiP…dpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==);
+    background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #e6eaec));
+    background: -webkit-linear-gradient(#ffffff, #e6eaec);
+    background: -webkit-linear-gradient(#ffffff, #e6eaec);
+    background: linear-gradient(#ffffff, #e6eaec);
+    margin-left: 0;
+}
+
+/*.switchButton{
+    float: left;
+    width: 100%;
+}
+
+.switchButton p{
+    float: right;
+    font-size: 13px;
+
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 30px;
+    height: 34px;
+}
+
+.switch input {display:none;}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+!* Rounded sliders *!
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}*/
+
+.payItemsSettings .uploadLogo {
+    float: left;
+    width: 100%;
+    margin-top: 11px;
+    margin-bottom: 6px;
+}
+.payItemsSettings #myModal5 .modal-body p {
+    padding: 20px 0px;
+    line-height: 20px;
+    width: auto !important;
+    color: #333;
+    font-weight: 500;
+}
+
+.payItemsSettings #myModal5 .modal-dialog {
+    width: 460px !important;
+}
+
+.payItemsSettings .modal-content {
+    width: auto !important;
+}
+
+
+.payItemsSettings #addPayCalendar .modal-footer button.btn.btn-default {
+    background: transparent;
+    color: #2baaed;
+    font-weight: bold;
+    border: 1px solid #b7bec5;
+}
+
+.payItemsSettings #addPayCalendar .modal-body {
+    background: #fff;
+    min-height: 300px;
+}
+.payItemsSettings #addPayCalendar .modal-body select.form-control {
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.payItemsSettings #editPayCalendar .modal-dialog {
+    width: 460px;
+}
+
+.payItemsSettings #editPayCalendar .modal-body {
+    background: #fff;
+    min-height: 300px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+.payItemsSettings #editPayCalendar .modal-body .inputDiv {
+    float: left;
+    width: 100%;
+    margin-bottom: 30px;
+}
+.payItemsSettings #editPayCalendar .modal-footer button.btn.btn-default {
+    background: transparent;
+    color: #2baaed;
+    font-weight: bold;
+    border: 1px solid #b7bec5;
+}
+
+.payItemsSettings #editPayCalendar .modal-footer  button.btn.btn-primary{
+    background: #2baaed;
+    border-color: #2baaed;
+}
+
+
+.payItemsSettings #holidayGroup .modal-dialog {
+    width: 372px;
+}
+
+.payItemsSettings #holidayGroup .modal-body {
+    background-color: #fafbfb;
+}
+
+.payItemsSettings #holidayGroup .modal-footer button.btn.btn-gray {
+    background-color: #f5f7f8;
+    background: -ms-linear-gradient(top, #fff 0%, #ECEFF1 100%);
+    background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiP…dpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==);
+    background-size: 100%;
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff),color-stop(100%, #eceff1));
+    background-image: -moz-linear-gradient(top, #ffffff 0%,#eceff1 100%);
+    background-image: -webkit-linear-gradient(top, #ffffff 0%,#eceff1 100%);
+    background-image: linear-gradient(to bottom, #ffffff 0%,#eceff1 100%);
+    text-shadow: #fff 0 1px 0px;
+    border-color: #D0D6D9;
+    color: #CCCCCC;
+}
+
+
+
+
+.payItemsSettings #addHoliday .modal-dialog {
+    width: 372px;
+}
+
+.payItemsSettings #addHoliday .modal-footer button.btn.btn-gray {
+    background-color: #f5f7f8;
+    background: -ms-linear-gradient(top, #fff 0%, #ECEFF1 100%);
+    background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiP…dpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==);
+    background-size: 100%;
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff),color-stop(100%, #eceff1));
+    background-image: -moz-linear-gradient(top, #ffffff 0%,#eceff1 100%);
+    background-image: -webkit-linear-gradient(top, #ffffff 0%,#eceff1 100%);
+    background-image: linear-gradient(to bottom, #ffffff 0%,#eceff1 100%);
+    text-shadow: #fff 0 1px 0px;
+    border-color: #D0D6D9;
+    color: #CCCCCC;
+}
+.payItemsSettings #addHoliday .modal-body p {
+    margin-bottom: 4px;
+    margin-top: 20px;
+}
+
+
+.payItemsSettings #myModal10 .modal-dialog {
+    width: 360px;
+}
+.payItemsSettings #myModal10 .modal-body {
+    background-color: #fff;
+}
+
+.payItemsSettings #myModal10 .modal-body img {
+    margin: auto;
+    text-align: center;
+    display: inherit;
+}
+
+.payItemsSettings #myModal10 .modal-body  h3 {
+    text-align: center;
+    font-size: 13px;
+    margin-bottom: 12px;
+    font-weight: bold;
+}
+
+
+.payItemsSettings #myModal10 .modal-footer button.btn.btn-primary {
+    background-color: #2baaed;
+    background-image: inherit;
+    border-color: #2baaed;
+}
+
+.payItemsSettings #myModal10 .modal-header{
+    border: 0;
+}
+
+
+#Holidays .paddingLeft{
+    position: 0;
+}
+
+.payItemsSettings .footerFiexd .payFooter button{
+    line-height: 1.42857143;
+    width: 100px;
+}
+.payItemsSettings .footerFiexd .payFooter button:hover{
+    color: #fff;
+}
+
+
+#myModal5 .modal-footer .btn-green {
+    background-color: #f5f7f8;
+    background: -ms-linear-gradient(top, #fff 0%, #ECEFF1 100%);
+    background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiP…dpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==);
+    background-size: 100%;
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff),color-stop(100%, #eceff1));
+    background-image: -moz-linear-gradient(top, #ffffff 0%,#eceff1 100%);
+    background-image: -webkit-linear-gradient(top, #ffffff 0%,#eceff1 100%);
+    background-image: linear-gradient(to bottom, #ffffff 0%,#eceff1 100%);
+    text-shadow: #fff 0 1px 0px;
+    border-color: #D0D6D9;
+    color: #CCCCCC;
+    width: 100px;
+    line-height: inherit;
+}
+
+#myModal5 .modal-footer button.btn {
+    width: 80px;
+    line-height: inherit;
+}
+#myModal5 .modal-footer button.btn:hover{
+    color: #fff;
+}
+#myModal5 .modal-header{
+    padding: 0;
+}
+#myModal5 .modal-header .modal-title {
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 1.2;
+    padding: 14px 15px;
+}
+
+#myModal5 .modal-header .close {
+    margin-top: 0;
+    border-left: 1px solid #E8E8E8;
+    opacity: 1;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+}
+
+#myModal1 .modal-header h4 {
+    float: left;
+    margin: 0;
+    padding: 0;
+}
+#myModal1 .modal-dialog {
+    width: 450px;
+    margin: 30px auto;
+}
+
+#myModal1 .account-Div {
+    float: left;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+
+#addPayCalendar .modal-dialog {
+    width: 450px;
+    margin: 30px auto;
+}
+
+#addPayCalendar .modal-footer button.btn {
+    color: #fff;
+}
+#addPayCalendar .modal-footer button {
+    width: 80px;
+    padding: 11px 15px;
+}
+
+
+#editPayCalendar .modal-footer button {
+    width: 80px;
+    padding: 11px 15px;
+}
+
+#myModal1 .modal-footer button {
+    padding: 11px 15px;
+}
+
+#Calendars .dropdown-menu > li > a:hover {
+    background-image: initial !important;
+    background: rgba(50,70,90,.05);
+    color: #32465a !important;
+    border: solid 1px #0590c3;
+}
+
+#PayItems .dropdown-menu > li > a:hover {
+    background-image: initial !important;
+    background: rgba(50,70,90,.05);
+    color: #32465a !important;
+}
+.payItemsSettings #PayItems .dropdown-menu {
+    width: 200px;
+    background-color: #fff;
+}
+
+.payItemsSettings #addHoliday .modal-footer button{
+    width: 100px;
+}
+
+.payItemsSettings  #holidayGroup .modal-footer button{
+    width: 100px;
+}
+.payItemsSettings  #holidayGroup .Add-existing{
+    margin-top: 12px;
+    margin-bottom: 0;
+}
+
+.payItemsSettings #addEditSuperannuation .modal-dialog {
+    width: 450px;
+    margin: 30px auto;
+}
+.payItemsSettings #addEditSuperannuation .field-layout{
+    width:100%;
+    display: inline-block;
+    margin-bottom: 30px;
+}
+.payItemsSettings #addEditSuperannuation .field-layout span{
+    margin-top: 10px;
+}
+.payItemsSettings #addEditSuperannuation .modal-footer button{
+    padding: 11px 15px;
+}
+.payItemsSettings #addEditSuperannuation .modal-footer button.btn.btn-default {
+    background: transparent;
+    color: #2baaed;
+    font-weight: bold;
+    border: 1px solid #b7bec5;
+}
+
+.payItemsSettings #addEditSuperannuation .dropdown-menu > li > a:hover {
+    background-image: initial !important;
+    background: rgba(50,70,90,.05);
+    color: #32465a !important;
+}
+
+.payItemsSettings #Superannuation .dropdown-menu > li > a:hover {
+    background-image: initial !important;
+    background: rgba(50,70,90,.05);
+    color: #32465a !important;
+}

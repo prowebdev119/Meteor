@@ -1,0 +1,561 @@
+<template name="bankingoverview">
+    <div class="container-fluid" style="padding: 0px;">
+        <div class="fullScreenSpin" style="display:none;">
+            <div class="spinner"></div>
+        </div>
+        <!-- <style>
+            .dataTables_filter {
+                display: none;
+            }
+        </style> -->
+        <header class="p-4 d-flex align-items-center" style="padding-top: 0px !important; padding-bottom: 0px !important;">
+            <h2 class="mr-1">Banking Overview</h2>
+                <!-- <a role="button" data-toggle="modal" href="#helpModal" class="helpModal"><label class="lblplay">PLAY</label><i class="far fa-play-circle"  style="font-size: 20px;"></i></a> -->
+                <a class="m-1" role="button" data-toggle="modal" href="#helpViewModal"  style="font-size: 20px;">Help
+                    <i class="fa fa-question-circle-o" style="font-size: 20px;"></i>
+                </a>
+
+                <!-- Start Help View Modal -->
+                <div class="modal fade" role="dialog" tabindex="-1" id="helpViewModal">
+                    <div class="modal-dialog modal-sm" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header" style="padding-bottom: 8px;">
+                                <h4>Help</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                            <div class="modal-body">
+                                <p class="text-center text-muted"><a role="button" data-toggle="modal" href="#helpModal" class="btn btn-primary helpModal">View Help Video</a></p>
+                                <p class="text-center text-muted"><a href="https://vs1forum.com/viewforum.php?f=6" target="_blank" class="btn btn-primary">Download Help File</a></p>
+                                <p class="text-center text-muted"><button class="btn btn-primary" type="button">Employ Advisor</button></p>
+                                <p class="text-center text-muted" style="margin: 0px;"><a href="https://vs1forum.com/ucp.php?mode=register&cloudusername={{loggedCompany}}" target="_blank" class="btn btn-primary">Go To Forum</a></p>
+                            </div>
+                            <div class="modal-footer" style="padding: 6px;"><button class="btn btn-light" data-dismiss="modal" type="button">Close</button></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Help View Modal -->
+
+        </header>
+        <div class="row connectedCardSortable" style="padding: 26px; padding-bottom: 0px;">
+            <!-- CARDS -->
+
+            <style>
+                .banklink:hover {
+                    color: #00a3d3 !important;
+                    text-decoration: underline;
+                }
+            </style>
+            <style>
+                .dimmedChart>div {
+                    background-color: #dddfeb !important;
+                }
+
+                .card.hovered {
+                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.50) !important;
+                    cursor: move;
+                    transition-duration: 300ms;
+                }
+
+                .hideelement {
+                    display: none !important;
+                }
+
+                .showelement {
+                    display: block;
+                }
+
+                .customCardMainDiv {
+                    position: relative;
+                    padding-top: 15px !important;
+                }
+
+                .hideShowDiv {
+                    display: inline-block;
+                    width: 100%;
+                    text-align: right;
+                    padding: 0 8px;
+                    margin: 0;
+                    position: absolute;
+                    top: 5px;
+                    left: 0;
+                }
+
+                a.cardSettingBtn {
+                    display: inline-flex;
+                    width: 22px;
+                    height: 22px;
+                    justify-content: center;
+                    align-items: center;
+                    font-size: 10px;
+                    border-radius: 4px;
+                    /*background: #dddfeb;*/
+                    color: #dddfeb;
+                    text-decoration: none;
+                    margin-left: 3px;
+                }
+
+                a.editCardBtn :hover{
+                    background: #dddfeb;
+                    color: #6e6e6e;
+                    padding: 4px;
+                    border-radius: 3px;
+                }
+
+                a.cardHideBtn,
+                a.cardShowBtn {
+                    display: inline-flex;
+                    width: 22px;
+                    height: 22px;
+                    font-size: 10px;
+                    justify-content: center;
+                    align-items: center;
+                    /*background: #dddfeb;*/
+                    border-radius: 4px;
+                    margin-left: 2px;
+                    text-decoration: none;
+                    color: #dddfeb;
+                }
+
+                a.cardHideBtn:hover,
+                a.cardShowBtn:hover,
+                a.cardHideBtn.active,
+                a.cardShowBtn.active {
+                    background: #00a3d3;
+                    color: #fff;
+                }
+
+                a.cardHideBtn i,
+                a.cardShowBtn i {
+                    pointer-events: none;
+                }
+
+                .dimmedChart a.cardHideBtn,
+                .dimmedChart a.cardShowBtn,
+                .dimmedChart a.cardSettingBtn  {
+                    background: #f1f1f1 !important;
+                    color: #6e6e6e;
+                }
+
+                .dimmedChart a.editCardBtn :hover {
+                    background: rgba(0,0,0,0) !important;
+                }
+
+                .dimmedChart .cardSettingBtn {
+                    background: #fff;
+                }
+            </style>
+            {{#if bankaccountdatarecord}}
+            {{#each itembank in bankaccountdatarecord}}
+            <div class="col-md-6 col-xl-3 mb-4 openaccountreceivable card-visibility" position="{{ @index }}" card-active="true" card-key={{itembank.cardAccountID}} id={{itembank.name}}>
+                <div class="card shadow customCardMainDiv {{#if equals @index 0 }} border-left-success{{/if}} {{#if equals @index 1 }} border-left-primary{{/if}} {{#if equals @index 2 }} shadow border-left-danger{{/if}}  {{#if equals @index 3 }} border-left-warning{{/if}} {{#if equals @index 4 }} border-left-info{{/if}} {{#if equals @index 5 }} border-left-secondary {{/if}} py-2">
+                    <div class="hideShowDiv">
+                        <a href="javascript:void(0);" class="cardShowBtn hideelement"><i class="far fa-eye"></i></a>
+                        <a href="javascript:void(0);" class="cardSettingBtn editCardBtn"><i class="fas fa-cog"></i></a>
+                    </div>
+                    <div class="card-body" style="cursor: pointer;">
+                        <div class="row align-items-center no-gutters">
+                            <div class="col mr-2">
+                                <div class="opentrans text-uppercase {{#if equals @index 0 }} text-success{{/if}} {{#if equals @index 1 }} text-primary{{/if}} {{#if equals @index 2 }} text-danger{{/if}}  {{#if equals @index 3 }} text-warning{{/if}} {{#if equals @index 4 }} text-info{{/if}} {{#if equals @index 5 }} text-secondary {{/if}}font-weight-bold text-xs mb-1"><span style="font-size: 14px;">{{itembank.name}}</span></div>
+                                <div class="opentrans text-dark font-weight-bold h5 mb-0 mr-3 "><span class="text-nowrap banklink" style="font-size: 28px;color: rgb(221,223,235);margin-left: 8px;"><span class="custAwaitingAmt" id="custAwaitingAmt" name="custAwaitingAmt">  {{itembank.totalbalance}}</span></span></div>
+                                <div class="opentrans text-dark font-weight-bold h5 mb-0"><span style="font-size: 16px;color: rgb(221,223,235);">Bank Balance</span></div>
+                            </div>
+                            <div class="col-auto openbank"><i class="{{itembank.card}} fa-2x text-gray-300"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+            {{/if}}
+
+        </div>
+
+        <div class="row d-xl-flex flex-row justify-content-xl-center" style="padding: 0px 16px;">
+            <div class="col-8 d-xl-flex flex-grow-1 align-items-xl-start">
+                <button id="btnRefresh" class="btn btn-primary btnRefresh" type="button" style="margin: 12px;"><i class="la la-lightbulb-o" style="margin-right: 5px;"></i>Refresh</button>
+<!--                <button id="btnNewDepositEnrty" name="btnNewDepositEnrty" class="btn btn-primary btnNewDepositEnrty" type="button" style="margin: 16px;" autocomplete="off"><i class="fa fa-book" style="padding-right: 5px;"></i>New Deposit</button>-->
+                <button id="btnDepositList" name="btnDepositList" class="btn btn-primary btnDepositList" type="button" style="margin: 12px;" autocomplete="off"><i class="fas fa-list-ul" style="padding-right: 5px;"></i>Deposited List</button>
+                <button class="btn btn-primary btnStockAdjustment" id="btnStockAdjustment" type="button" style="margin: 12px;" autocomplete="off"><i class="fas fa-money-check-alt" style="padding-right: 5px;"></i>{{formname}} List</button>
+                <div class="btn-group" style="margin: 12px;">
+                    <button type="button" class="btn btn-primary" id="btnReconcile">Bank Reconcilation</button>
+                    <!-- <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button> -->
+                    <button class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-expanded="false" type="button"><i class="fas fa-caret-down"></i></button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item btnReconcile" id="btnReconcile">Bank Reconcilation</a>
+                        <a class="dropdown-item btnBankRecon" id="btnBankRecon">New Bank Recon</a>
+                    </div>
+                </div>
+                <!-- <button class="btn btn-primary btnReconcile" id="btnReconcile" type="button" style="margin: 16px;" autocomplete="off"><i class="fa fa-thumbs-up" style="padding-right: 5px;"></i>Reconcile(new)</button>
+                <button class="btn btn-primary btnBankRecon" id="btnBankRecon" type="button" style="margin: 16px;" autocomplete="off"><i class="fa fa-thumbs-up" style="padding-right: 5px;"></i>Bank Reconcilation</button> -->
+                <button class="btn btn-primary btnReconList" id="btnReconList" type="button" style="margin: 12px;" autocomplete="off"><i class="fas fa-list-ol" style="padding-right: 5px;"></i>Reconcilation List</button>
+            </div>
+            <div class="col-4 d-xl-flex justify-content-xl-end align-items-end">
+                <button id="exportbtn" class="btn btn-primary float-right" type="button" style="margin: 12px;"><i class="fas fa-file-export" style="margin-right: 5px;"></i>Export</button>
+                <button class="btn btn-primary printConfirm float-right" type="button" style="margin: 12px;"><i class="fa fa-print" style="margin-right: 5px;"></i>Print</button>
+                <a class="btn btnOpenSettings float-right" role="button" data-toggle="modal" href="#myModal2" style="margin: 12px;"><i class="icon ion-android-more-horizontal"></i></a>
+            </div>
+        </div>
+        <div style="padding: 0px 12px;">
+            <div class="card-body p-3 rounded" style="padding-top: 0px !important;">
+                <!-- Start {{> optionNavSalesOverview}} -->
+                <div class="d-xl-flex justify-content-xl-end">
+                    <div>
+                        <div class="modal fade" role="dialog" tabindex="-1" id="myModal2">
+                            <div class="modal-dialog modal-dialog-centered" role="document" style="float: right;">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4>Display Settings</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div>
+                                            {{#if tableheaderrecords}}
+                                            <form class="d-xl-flex align-items-xl-center">
+                                                <div class="flex-grow-1">
+                                                    <style>
+                                                        .groove {
+                                                            border-style: solid;
+                                                            border-width: 1px;
+                                                            width: 200px;
+                                                            padding: 2px;
+                                                            border-radius: .35rem;
+                                                        }
+
+                                                        .custom-control-label {
+                                                            position: absolute;
+                                                        }
+
+                                                        .rngRange {
+                                                            position: relative;
+                                                            display: flex;
+                                                            flex-direction: column;
+                                                            width: 100%;
+                                                            pointer-events: auto;
+                                                            background-color: rgb(255, 255, 255);
+                                                            background-clip: padding-box;
+                                                            border: 1px solid rgb(133, 135, 150);
+                                                            border-radius: .3rem;
+                                                            border-style: solid;
+                                                            border-width: 1px;
+                                                            padding: 2px;
+                                                            border-radius: .35rem;
+                                                            color: rgb(128, 128, 128);
+                                                            height: inherit !important;
+                                                        }
+
+                                                        @media only screen and (max-width: 480px) {
+                                                            .modal.show .modal-dialog {
+                                                                float: inherit !important;
+                                                                left: inherit !important;
+                                                                top: auto !important;
+
+                                                            }
+                                                        }
+
+                                                        #page-top.active {
+                                                            padding-right: 0px !important;
+                                                        }
+                                                    </style>
+                                                    {{#each item in tableheaderrecords}}
+                                                    {{#if equals item.sTitle "id"}}
+                                                    {{else}}
+
+                                                    <div id="{{item.sIndex}}" class="columnSettings">
+                                                        <div class="custom-control custom-switch" style="margin: 8px; float:left;">
+                                                            <input class="custom-control-input chkDatatable" type="checkbox" id="chkSalesNo-{{item.sIndex}}" name="chkSalesNo-{{item.sIndex}}" checked="{{#if item.sVisible}}checked{{else}}{{/if}}" value="{{item.sTitle}}">
+                                                            <label class="custom-control-label" for="chkSalesNo-{{item.sIndex}}"></label>
+                                                            <div contenteditable="true" class="groove divcolumn" type="text" value="{{item.sTitle}}" valueupdate="{{item.sClass}}">{{item.sTitle}}</div>
+                                                        </div>
+                                                        <div class="d-xl-flex align-items-xl-center divColWidth" style="margin: 8px;">
+                                                            <label class="text-nowrap" style="padding-left: 0px;margin-top: 8px;">Width:
+                                                                <!--<span class="spWidth" value="{{item.sTitle}}">{{item.sWidth}}px</span>--></label>
+                                                            <input class="custom-range rngRange" type="number" style="margin: 8px;" value="{{item.sWidth}}" min="0" max="1000">
+                                                            <!-- <div contenteditable="true" class="groove rngRange" type="text" value="{{item.sWidth}}" min="0" max="1000">{{item.sWidth}}px</div> -->
+                                                        </div>
+                                                    </div>
+
+                                                    {{#if equals item.sVisible true}}
+                                                    <script>
+                                                        $("#" + {{item.sIndex}} + ".chkDatatable").attr("checked", "checked");
+                                                    </script>
+                                                    {{else}}
+                                                    <script>
+                                                        $("#" + {{item.sIndex}} + ".chkDatatable").removeAttr("checked");
+                                                    </script>
+                                                    {{/if}}
+
+                                                    {{/if}}
+                                                    {{/each}}
+                                                </div>
+                                            </form>
+                                            {{/if}}
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn btn-primary saveTable" type="button"><i class="fa fa-save" style="margin-right: 5px;"></i>Save</button>
+                                        <button class="btn btn-warning resetTable" data-dismiss="modal" type="reset"><i class="fa fa-repeat" style="margin-right: 5px;"></i>Reset</button>
+                                        <button class="btn btn-secondary" data-dismiss="modal" type="button"><i class="fa fa-remove" style="margin-right: 5px;"></i>Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End -->
+                <div class="table-responsive">
+                    <style>
+                        th {
+                            background-color: #ededed;
+                        }
+
+                        .table-striped tbody tr:nth-of-type(odd) {
+                            background-color: white !important;
+                        }
+
+                        .table-striped tbody tr:nth-of-type(even) {
+                            background-color: #0000000d !important;
+                        }
+
+                        .JColResizer>tbody>tr>td,
+                        .JColResizer>tbody>tr>th {
+                            padding: .75rem !important;
+                        }
+
+                        .hiddenColumn {
+                            display: none;
+                        }
+
+                        .showColumn {
+                            display: table-cell;
+                            padding: .75rem;
+                            vertical-align: top;
+                        }
+
+                        input[type=number]::-webkit-inner-spin-button,
+                        input[type=number]::-webkit-outer-spin-button {
+                            opacity: 1;
+                        }
+                    </style>
+                    <div class="row no-gutters d-xl-flex align-items-xl-end">
+                        <div class="col d-sm-flex justify-content-sm-start align-items-sm-center">
+
+                        </div>
+                        <div class="col float-right d-sm-flex d-xl-flex justify-content-sm-end align-items-sm-center justify-content-xl-end align-items-xl-end myvarFilterForm">
+                            <div class="dropdown" style="margin: 8px; margin-top: 0px;">
+                                <style>
+                                    .dropdown-toggle::after {
+                                        display: none;
+                                    }
+                                </style>
+                                <button class="btn dropdown-toggle" data-toggle="dropdown" aria-expanded="true" type="button"><i class="fas fa-ellipsis-v"></i></button>
+                                <div class="dropdown-menu" role="menu">
+                                    <h6 class="dropdown-header" role="presentation">Date ranges</h6>
+                                    <a class="dropdown-item today"  id="today" role="presentation" href="#">Today</a>
+                                    <a class="dropdown-item lastweek"  id="lastweek" role="presentation" href="#">Last Week</a>
+                                    <a class="dropdown-item lastMonth"  id="lastMonth" role="presentation" href="#">Last Month</a>
+                                    <a class="dropdown-item lastQuarter"  id="lastQuarter" role="presentation" href="#">Last Quarter</a>
+                                    <a class="dropdown-item last12Months"  id="last12Months" role="presentation" href="#">Last 12 Months</a>
+                                    <a class="dropdown-item ignoreDate"  id="ignoreDate" role="presentation" href="#">Ignore Date</a>
+                                </div>
+                            </div>
+                            <div class="form-group" style="margin: 8px; margin-top: 0px; display: inline-flex;">
+                                <label style="margin-top: 8px; margin-right: 16px;">From</label>
+                                <div class="input-group date" style="width: 160px;">
+                                    <input type="text" class="form-control" id="dateFrom" name="dateFrom" >
+                                    <div class="input-group-addon">
+                                        <span class="glyphicon glyphicon-th"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" style="margin: 8px; margin-right: 0px; margin-top: 0px; display: inline-flex;">
+                                <label style="margin-top: 8px; margin-right: 16px;">To</label>
+                                <div class="input-group date" style="width: 160px;">
+                                    <input type="text" class="form-control" id="dateTo" name="dateTo" >
+                                    <div class="input-group-addon">
+                                        <span class="glyphicon glyphicon-th"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <table id="tblBankingOverview" style="width:100%" class="dataTable table table-striped table-bordered tblBankingOverview">
+                        <thead>
+                            <tr class="dnd-moved">
+                                <th class="th colSortDate hiddenColumn">id</th>
+                                <th class="th colPaymentDate" style="width:80px;">Date</th>
+                                <th class="th colAccountId hiddenColumn" style="width:80px;">Transaction ID</th>
+                                <th class="th colBankAccount" style="width:100px;">Account</th>
+                                <th class="th colType" style="width:120px;">Type</th>
+                                <!-- <th class="th colRefNo" style="width:80px;">Ref No.</th> -->
+
+                                <th class="th colPaymentAmount" style="width:80px;">Amount</th>
+                                <th class="th colDebitEx" style="width:100px;">Amount (Inc) </th>
+                                <th class="th colDepartment" style="width:80px;">Department</th>
+
+                                <!-- <th class="th colCustomerName" style="width:200px;">Customer Name</th> -->
+
+                                <!--  -->
+                                <th class="th colchqrefno hiddenColumn">Chq Ref No</th>
+                                <!--
+<th class="th colAccountType hiddenColumn">Account Type</th>
+
+<th class="th colPaymentMethod hiddenColumn">Payment Method</th> -->
+                                <th class="th colNotes">Comments</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#if datatablerecords}}
+                            {{#each item in datatablerecords}}
+                            <tr class="dnd-moved" id="{{item.id}}" style="cursor: pointer;">
+                                <td contenteditable="false" class="colSortDate hiddenColumn">{{item.sortdate}}</td>
+                                <td contenteditable="false" class="colPaymentDate"><span style="display:none;">{{item.sortdate}}</span>{{item.paymentdate}}</td>
+                                <td contenteditable="false" class="colAccountId hiddenColumn">{{item.id}}</td>
+                                <td contenteditable="false" class="colBankAccount">{{item.bankaccount}}</td>
+                                <td contenteditable="false" class="colType" >{{item.type}}</td>
+
+                                <!-- <td contenteditable="false" class="colRefNo">{{item.refno}}</td> -->
+
+                                <td contenteditable="false" class="colPaymentAmount" style="text-align: right!important;">{{item.paymentamount}}</td>
+                                <td contenteditable="false" class="colDebitEx" style="text-align: right!important;">{{item.amountinc}}</td>
+                                <!-- <td contenteditable="false" class="colCreditEx" style="text-align: right!important;">{{item.creditex}}</td> -->
+
+                                <!-- <td contenteditable="false" class="colBalance" style="text-align: right!important;">{{item.balance}}</td> -->
+                                <!-- <td contenteditable="false" class="colCustomerName">{{item.customername}}</td> -->
+
+                                <td contenteditable="false" class="colDepartment">{{item.department}}</td>
+                                <td contenteditable="false" class="colchqrefno hiddenColumn" style="text-align: right!important;">{{item.chqrefno}}</td>
+
+                                <!-- <td contenteditable="false" class="colJobName hiddenColumn">{{item.jobname}}</td> -->
+                                <!-- <td contenteditable="false" class="colPaymentMethod hiddenColumn">{{item.paymentmethod}}</td> -->
+                                <td contenteditable="false" class="colNotes">{{item.notes}}</td>
+                            </tr>
+                            {{/each}}
+                            {{/if}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        modalDraggable();
+    </script>
+
+    <!-- Start PDF -->
+    <div style="width: 210mm;background-color: #ffffff;padding: 8px;height: 297mm; display:none; " id="html-2-pdfwrapper" name="html-2-pdfwrapper">
+        <div class="d-xl-flex align-items-xl-start" style="height: 100%;">
+            <div class="d-flex d-xl-flex flex-column flex-nowrap align-items-xl-center" style="min-height: 100%;height: 100%;max-height: 100%;">
+                <div class="d-lg-flex d-xl-flex flex-row align-items-lg-start align-items-xl-start">
+                    <div class="card flex-grow-1 specialcard" style="margin: 0px; border: none !important;">
+                        <div class="card-body">
+                            <div class="d-lg-flex justify-content-lg-start" style="margin-bottom: 12x;">
+                                <div class="d-lg-flex flex-column justify-content-lg-start"><img src="assets/img/VS1.png" style="width: 200px;margin-bottom: 8px;"><a href="#">www.vs1cloud.com</a></div>
+                                <div class="d-lg-flex d-xl-flex justify-content-lg-center align-items-xl-start card-text">
+                                    <div style="padding-left: 16px;font-weight: bold;">
+                                        <p style="margin-bottom: 0px;">Cloud Customer PTY Ltd</p>
+                                        <p style="margin-bottom: 0px;">Unit 123, 109 Main Street</p>
+                                        <p style="margin-bottom: 8px;">Costa Mesa, CA 90210</p>
+                                        <p style="margin-bottom: 0px;">ABN: 95684365812</p>
+                                        <p style="margin-bottom: 0px;">Phone: 084 568 9842</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="font-size: 14px;">
+                                <h5 style="margin-bottom: 0px;font-weight: bold;">Customer</h5>
+                                <p style="margin-bottom: 0px;">Big Burtha</p>
+                                <p style="margin-bottom: 0px;">12 Golf Drive</p>
+                                <p style="margin-bottom: 0px;">Caulifield South Vic 9820</p>
+                                <p style="margin-bottom: 0px;">Australia</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card flex-grow-1 specialcard" style="margin: 0px; border: none !important;">
+                        <div class="card-body">
+                            <h4 class="card-title" style="font-weight: bold;">Invoice</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-grow-1">
+                    <div class="card flex-grow-1 specialcard" style="margin: 8px; border: none !important;">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-sm">
+                                    <thead class="text-secondary" style="color: rgb(251,251,251);">
+                                        <tr>
+                                            <th class="text-nowrap" style="width: 116px;">Sales No.</th>
+                                            <th class="text-nowrap" style="width: 116px;">Employee</th>
+                                            <th class="text-nowrap" style="width: 116px;">Sale Date</th>
+                                            <th class="text-nowrap" style="width: 100px;">Customer</th>
+                                            <th class="text-nowrap text-left" style="width: 100px;">Amount</th>
+                                            <th class="text-nowrap" style="width: 100px;">Status</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {{#if datatablerecords}}
+                                        {{#each item in datatablerecords}}
+                                        <tr class="dnd-moved" id="{{item.id}}">
+
+                                            <td>{{item.id}}</td>
+                                            <td>{{item.employee}}</td>
+                                            <td>{{item.saledate}}</td>
+                                            <td>{{item.customername}}</td>
+                                            <td class="text-nowrap text-right">{{item.totalamount}}</td>
+                                            <td>{{item.salestatus}}</td>
+                                        </tr>
+                                        {{/each}}
+                                        {{/if}}
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-grow-0" style="width: 100%;">
+                    <hr style="margin: 0px;">
+                    <div class="d-lg-flex d-xl-flex flex-grow-1 align-items-lg-start align-items-xl-start" style="width: 100%;">
+
+                        <div class="card flex-grow-1 specialcard" style="margin: 8px; border: none !important;">
+                            <div class="card-body float-right">
+                                <div class="d-lg-flex d-xl-flex flex-row justify-content-lg-center align-items-xl-start card-text">
+                                    <div class="d-lg-flex d-xl-flex flex-column align-items-lg-start align-items-xl-start" style="padding-right: 16px;">
+                                        <label class="text-nowrap" style="font-weight: 600;">Total</label>
+
+                                    </div>
+                                    <div class="d-lg-flex flex-column flex-grow-1 justify-content-lg-end" style="padding-left: 16px;">
+                                        <p class="text-right" style="margin-bottom: 8px;font-weight: 600;">R 1111</p>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <span class="d-lg-flex d-xl-flex justify-content-lg-end justify-content-xl-end" style="font-size: 10px;margin-right: 8px;">Page 1 of 1</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END PDF -->
+    <!-- Start Help Video Modal -->
+    <div class="modal fade" role="dialog" tabindex="-1" id="helpModal">
+        <div class="modal-dialog" role="document" style="max-width: 670px!important;">
+            <div class="modal-content" >
+                <div class="modal-header" >
+
+                    <h4 class="title-header" >Banking Overview</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+                    <!-- <iframe width="640" height="360" src="https://player.vimeo.com/video/99892791" frameborder="0" allowfullscreen=""></iframe> -->
+                    <!-- <iframe width="640" height="360" src="https://erphelpes.com/vs1videos/bankingoverview.mp4" frameborder="0" allowfullscreen=""></iframe> -->
+                    <video id="myVideo" width="640" height="360" controls="" name="media" style="border: solid 5px #999999f0; height: auto; outline: none;">
+                        <source src="https://erphelpes.com/vs1videos/bankingoverview.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- End Help Video Modal -->
+    <script>
+        modalDraggable();
+    </script>
+</template>

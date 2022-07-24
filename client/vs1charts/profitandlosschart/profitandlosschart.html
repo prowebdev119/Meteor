@@ -1,0 +1,161 @@
+<template name="profitandlosschart">
+
+    <div  class="minHeight100" id="profitandlosschartparent">
+        <div class="card overflow-hidden shadow mb-4 portlet" id="profitandlossmove">
+            <div class="card-header profitlossheader d-flex justify-content-between align-items-center">
+                <h6 class="text-primary font-weight-bold m-0">Profit and Loss&nbsp;</h6>
+                <div class="dropdown no-arrow" style="display: inline-flex;">
+                    <a id="profitloss1hide" class="on-editor-change-mode btn btn-link profitlossedit hideelement" role="presentation" href="">Hide</a>
+                    <button class="btn btn-link btn-sm dropdown-toggle btnchartdropdown" id="" data-toggle="dropdown" aria-expanded="false" type="button"><i class="fas fa-ellipsis-v text-gray-400"></i></button>
+                    <div class="dropdown-menu shadow dropdown-menu-right animated--fade-in" role="menu">
+                        <a id="profitloss1" class="dropdown-item" role="presentation" href="/profitlossreport">&nbsp;More Details</a>
+                        <div class="dropdown-divider"></div>
+                        <a id="editchartprofitloss" class="dropdown-item editchartsbtn pointer" role="presentation" data-toggle="modal" data-target="#editDashboardModal">&nbsp;Edit Chart</a>
+                        <a id="" class="dropdown-item pointer" role="presentation">&nbsp;Reset Chart</a>
+                    </div>
+                </div>
+            </div>
+            <!--
+    <script>
+    setTimeout(function () {
+    var x = window.matchMedia(" (max-width: 420px)"); function mediaQuery(x) { if (x.matches) { $("#colSalesLabel").removeClass("col-4"); $("#colSalesLabel").removeClass("col-5"); $("#colSalesLabel").addClass("col-6");
+                            $("#colSales").removeClass("col-8"); $("#colSales").addClass("col-6"); $("#colExpensesLabel").removeClass("col-4"); $("#colExpensesLabel").addClass("col-6"); $("#colExpenses").removeClass("col-8");
+                            $("#colExpenses").addClass("col-6"); $("#colIncomeLabel").removeClass("col-4"); $("#colIncomeLabel").addClass("col-6"); $("#colIncome").removeClass("col-8"); $("#colIncome").addClass("col-6"); } } mediaQuery(x);
+                            x.addListener(mediaQuery); }, 10); setTimeout(function () { var x=window.matchMedia("(max-width: 1550px)"); function mediaQuery(x) { if (x.matches) { $("#colSalesLabel").removeClass("col-4");
+                            $("#colSalesLabel").addClass("col-5"); $("#colSales").removeClass("col-8"); $("#colSales").addClass("col-7"); $("#colExpensesLabel").removeClass("col-4"); $("#colExpensesLabel").addClass("col-5");
+                            $("#colExpenses").removeClass("col-8"); $("#colExpenses").addClass("col-7"); $("#colIncomeLabel").removeClass("col-4"); $("#colIncomeLabel").addClass("col-5"); $("#colIncome").removeClass("col-8");
+                            $("#colIncome").addClass("col-7"); } } mediaQuery(x); x.addListener(mediaQuery); }, 10); </script>
+                            -->
+            <style>
+                @media (min-width: 1200px) {
+                    .col-B {
+                        flex: 0 0 33.33333%;
+                        max-width: 33.33333%;
+                    }
+
+
+                    .hideprofitchat {
+                        display: none;
+                    }
+
+                    .showprofitchat {
+                        display: block;
+                    }
+
+                    .hideelement {
+                        display: none !important;
+                    }
+
+                    .showelement {
+                        display: block;
+                    }
+                }
+                .no-gutters.newHeightForLine {
+                    position: relative;
+                    height: calc(100% / 3 - 10px);
+                    margin: 5px 0;
+                    overflow: hidden;
+                }
+                .newHeightForLine {
+                    max-height: 100% !important;
+                    position: relative;
+                }
+
+            </style>
+
+            <div class="card-body showprofitchat" id="profitlosschat" style="display: flex;flex-direction: column;justify-content: space-evenly;">
+                <div class="canvasParentDiv canvasHeight100">
+
+                    <!-- <div class="row" style="height: 100%;">
+                        <div class="col-4">
+                            <div class="row" style="display: block; height: 33%; padding-left: 8px;">
+                                <div class="text-dark d-xl-flex flex-column justify-content-xl-center font-weight-bold h5 mb-0 mr-3">
+                                    <span class="spnTotalSales">0.00</span>
+                                </div>
+                                <span style="color: rgb(133,135,150);font-weight: 400;font-size: 16px;">Sales</span>
+                            </div>
+                            <div class="row" style="display: block; height: 33%; padding-left: 8px;">
+                                <div class="text-dark font-weight-bold h5 mb-0 mr-3">
+                                    <span class="spnTotalExpense">0.00</span>
+                                </div>
+                                <span style="color: rgb(133,135,150);font-weight: 400;font-size: 16px;">Expenses</span>
+                            </div>
+                            <div class="row" style="display: block; height: 33%; padding-left: 8px;">
+                                <div class="text-dark d-xl-flex flex-column justify-content-xl-center font-weight-bold h5 mb-0 mr-3">
+                                    <span class="spnTotalnetincome">0.00</span>
+                                </div>
+                                <span style="color: rgb(133,135,150);font-weight: 400;font-size: 16px;">Net Income</span>
+                            </div>
+                        </div>
+                        <div class="col-8">
+                            <div class="row" style="height: 33%;">
+                                <div class="col-12 colSales" id="colSales">
+                                    <div class="progress progress-sm" data-toggle="tooltip" data-bs-tooltip="" data-placement="bottom" style="height: 65%;" title="Total Sales">
+                                        <div class="progress-bar bg-primary progress-bar-striped progress-bar-animated" aria-valuenow="{{salesperc}}" aria-valuemin="0" aria-valuemax="100" style="width: {{salesperc}}%;"><span class="sr-only">{{salesperc}}%</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row" style="height: 33%;">
+                                <div class="col-12 colExpenses" id="colExpenses">
+                                    <div class="progress progress-sm" data-toggle="tooltip" data-bs-tooltip="" data-placement="bottom" style="height: 65%;" title="Total Expenses">
+                                        <div class="cssExpense progress-bar bg-danger progress-bar-striped progress-bar-animated" aria-valuenow="{{expenseperc}}" aria-valuemin="0" aria-valuemax="100" style="width: {{expenseperc}}%;"><span
+                                                class="sr-only">{{expenseperc}}%</span></div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row" style="height: 33%;">
+                                <div class="col-12 colIncome" id="colIncome">
+                                    <div class="progress progress-sm" data-toggle="tooltip" data-bs-tooltip="" data-placement="bottom" style="height: 65%;" title="Net Income">
+                                        <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" aria-valuenow="{{netincomeperc}}" aria-valuemin="0" aria-valuemax="100" style="width: {{netincomeperc}}%;"><span
+                                                class="sr-only">{{netincomeperc}}%</span></div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div> -->
+
+                    <div class="row no-gutters align-items-center newHeightForLine">
+                        <div class="col-4 colSalesLabel" id="colSalesLabel">
+                            <div class="text-dark d-xl-flex flex-column justify-content-xl-center font-weight-bold h5 mb-0 mr-3"><span class="spnTotalSales">0.00</span></div><span
+                                style="color: rgb(133,135,150);font-weight: 400;font-size: 16px;">Sales</span>
+                        </div>
+                        <div class="col-8 colSales" id="colSales">
+                            <div class="progress progress-sm" data-toggle="tooltip" data-bs-tooltip="" data-placement="bottom" style="height: 85px;" title="Total Sales">
+                                <div class="progress-bar bg-primary progress-bar-striped progress-bar-animated" aria-valuenow="{{salesperc}}" aria-valuemin="0" aria-valuemax="100" style="width: {{salesperc}}%;"><span class="sr-only">{{salesperc}}%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row no-gutters align-items-center newHeightForLine" >
+                        <div class="col-4 colExpensesLabel" id="colExpensesLabel">
+                            <div class="text-dark font-weight-bold h5 mb-0 mr-3"><span class="spnTotalExpense">0.00</span></div><span style="color: rgb(133,135,150);font-weight: 400;font-size: 16px;">Expenses</span>
+                        </div>
+                        <div class="col-8 colExpenses" id="colExpenses">
+                            <div class="progress progress-sm" data-toggle="tooltip" data-bs-tooltip="" data-placement="bottom" style="height: 85px;" title="Total Expenses">
+                                <div class="cssExpense progress-bar bg-danger progress-bar-striped progress-bar-animated" aria-valuenow="{{expenseperc}}" aria-valuemin="0" aria-valuemax="100" style="width: {{expenseperc}}%;"><span
+                                        class="sr-only">{{expenseperc}}%</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row no-gutters align-items-center newHeightForLine" >
+                        <div class="col-4 colIncomeLabel" id="colIncomeLabel">
+                            <div class="text-dark d-xl-flex flex-column justify-content-xl-center font-weight-bold h5 mb-0 mr-3"><span class="spnTotalnetincome">0.00</span></div><span style="color: rgb(133,135,150);font-weight: 400;font-size: 16px;">Net
+                                Income</span>
+                        </div>
+                        <div class="col-8 colIncome" id="colIncome">
+                            <div class="progress progress-sm" data-toggle="tooltip" data-bs-tooltip="" data-placement="bottom" style="height: 85px;" title="Net Income">
+                                <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" aria-valuenow="{{netincomeperc}}" aria-valuemin="0" aria-valuemax="100" style="width: {{netincomeperc}}%;"><span
+                                        class="sr-only">{{netincomeperc}}%</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</template>

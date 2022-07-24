@@ -1,0 +1,130 @@
+<template name="newBatchDeposit">
+    <div class="newBatchDeposit">
+        <div class="active_page">
+            <div class="active_page_content">
+                <p><a href="/allsales">Sales</a> &nbsp;›&nbsp; <a href="/invoicelist/AwaitingPayment">Awaiting Payment</a> &nbsp;›&nbsp;</p><br>
+                <h1>New Batch Deposit</h1>
+            </div>
+        </div>
+        <div class="fullSize">
+            <div id="wrapper_main">
+                <div class="batch-deposit-panel">
+                    <div class="fieldset">
+                        <div class="batch-payment-to">
+                            <div class="field batch-date">
+                                <label>Customer Name</label>
+                                <input type="text" value="{{customerName}}" id="customerName" readonly>
+                            </div>
+                            <div class="field batch-date">
+                                <label>Payment Date</label>
+                                <div class="input-group date dropdown-add-rec date-input-abcd" id="pick-date">
+                                    <input type="text" class="form-control" id="date-input">
+                                </div>
+                            </div>
+                            <div class="field batch-date">
+                                <label>Reference</label>
+                                <input type="text" class="mandatoryField" value="" placeholder="You must add a reference" id="reference">
+                            </div>
+                            <div class="field batch-date">
+                                <label>Bank Account</label>
+                                <div class="input-group dropdown-add-rec mandatory-item" id="account-dropdown">
+                                    <input type="text" id="account-input"
+                                           class="form-control select-account no-border mandatoryField " name="receiptLineAccount"
+                                           value="" placeholder="You must choose a bank account">
+                                    <input type="hidden" id="line-tax-rate" class="hidden-tax-rate" value="0"
+                                           name="line-tax-rate">
+
+                                    <div class="input-group-addon">
+                                        <img src="/img/dropdown_icon.png" id="acc-dropdown-img"
+                                             class="account-img">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <table class="batch-statement-table">
+                        <thead>
+                        <tr>
+                            <td> Invoice Number</td>
+                            <td> Due Date</td>
+                            <td>Invoice Reference</td>
+                            <td> Amount Due {{CurrencyCode}}</td>
+                            <td>Payment {{CurrencyCode}} </td>
+                            <td></td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {{#each item in recordId}}
+                        <tr id="pq_entry_{{@index}}">
+                            <td>{{item.id}}</td>
+                            <td>{{date}}</td>
+                            <td id="chequeNo" class="inputFields"><input class="mandatoryField" id="invoiceRef" type="text"  value={{item.CustPONumber}}></td>
+                            <td>{{item.TotalAmount}}</td>
+                            <td class="inputFields"><input id="payment" class="mandatoryField" type="text"  value={{item.TotalAmount}}></td>
+                            <td><a href="#" name="removebutton-{{@index}}" id="removebutton-{{@index}}" class="removebutton">x</a></td>
+                        </tr>
+                        {{/each}}
+                        </tbody>
+                    </table>
+                    <div class="totals_container1">
+                        <div class="totals_line"></div>
+                        <span class="subtotal_label2">Total</span>
+                        <span class="subtotal_total2" id="subtotal_total2">{{TotalAmount}}</span>
+                        <input type="hidden" id="subtotal_total_2" name="subtotal_total_2">
+                    </div>
+                    <div class="heading footer">
+                        <button type="button" id="invoiveDeposit" class="btn btn-success disableBtn">Deposit</button>
+                        <button type="button" class="btn btn-default cancel_new" id="cancel_new">Cancel</button>
+
+                    </div>
+                </div>
+                <div class="new_create_footer_container">
+                    <div class="new_create_footer">
+                        <h3>History & Notes</h3>
+                        <a href="#" class="list_search" id="notesbtn">Add a note</a>
+                        <div style="display: none" id="search_box">
+                            <div class="search_box_inner">
+                                <!--<a href="#" class="list_search"><i class="fa fa-times" aria-hidden="true"></i></a>-->
+                                <table>
+                                    <tbody>
+                                    <tr>
+                                        <td>
+                                            <label style="width: 80%">Notes <span
+                                                    id="productnoteschars">300</span></label>
+                                            <script>
+                                                var maxLength = 300;
+                                                $('textarea').keyup(function () {
+                                                    var length = $(this).val().length;
+                                                    var length = maxLength - length;
+                                                    $('#productnoteschars').text(length);
+                                                });
+                                            </script>
+                                            <form action="" id="productcommentupdform" method="POST">
+                                                <div style="display: none"><label>ID</label><br>
+                                                    <input type="text" name="notesid" id="notesid" readonly>
+                                                </div>
+                                                <textarea name="allnotes" id="productcomment"
+                                                          maxlength="300">{{addNote}}</textarea>
+                                                <div class="new_create_buttons"
+                                                     style="padding: 0px; background: none; border-top: 0px;">
+                                                    <div class="new_create_buttons_g1"
+                                                         style="padding: 0px; background: none; border-top: 0px; width: 30%;">
+                                                        <button id="productcommentupd"
+                                                                name="productcommentupd" type="button"
+                                                                class="disableBtn"> Save</button>
+                                                        <a href="#" class="cancel_new" style="" id="cancel-po-note">Cancel</a>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

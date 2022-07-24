@@ -1,0 +1,70 @@
+<template name="stocktake">
+  <div class="active_page">
+  <div class="active_page_content">
+    <p></p><br>
+  <h1>Stock Take</h1>
+  </div>
+</div>
+      <!-- <div class="tabs_line_break" style="padding-bottom: 65px;"></div> -->
+  <div id="wrapper_main" class="new-wrapper manufacturingform">
+   <main id="page-content-wrapper_main" role="main">
+
+   <!-- <h4>Content Here!</h4> -->
+   <br>
+
+   <div class="container reports_container1">
+     <div class="row">
+      <!-- <div class="reports_container1" style="float: none; margin-top: 0px;"> -->
+      <div class="search_box_inner" style="padding-bottom: 13px;">
+       <div class="col-md-6 col-lg-4 scanBtnDiv" style="width:100%;">
+         <a href="" id="scanBarcode" name="scanBarcode" class="scan_new_btnBig"><i class="fa fa-camera" aria-hidden="true"></i> Scan</a>
+       </div>
+       <div class="col-md-6 col-lg-4 scanInputDiv" style="width:100%;">
+         <input type="text" style="height: 45px; margin-left: 7px;" id="SalesBC" name="salesbarcode" placeholder="Enter the barcode">
+       </div>
+       <div class="col-md-6 col-lg-4 viewDocketDiv" style="width:100%;">
+         <a href="/stockadjlist" id="viewdocketlist" name="viewdocketlist" class="btnViewdocketList">View Docket</a>
+         <a href="#" id="viewdocket" name="viewdocket" class="send_new" style="display:none">View Docket</a>
+       </div>
+       </div>
+     </div>
+   </div>
+   <script>
+   if(/Android/i.test(navigator.userAgent) )
+    {
+      $('#barcodeNoticeAndroid').show();
+   };
+   if(/iPhone|iPad|iPod/i.test(navigator.userAgent) )
+    {
+      $('#barcodeNoticeApple').show();
+   };
+   </script>
+   <style>
+   .barcodeNotice {
+    font-size: 12px;
+    font-family: Helvetica, Arial, sans-serif;
+    text-align: center;
+    color: #bbb;
+   }
+   </style>
+   <div class="barcodeNotice" id="barcodeNoticeAndroid" style="display: none;">
+     <strong>Please Note:</strong> Before using the <i class="fa fa-camera" aria-hidden="true"></i> Scan functionality via the devices camera on this module,
+     please ensure you have the "Barcode Scanner" app installed on your device, alternatively, you can download it by following the below link
+     and allow the app to be installed by following the on screen instructions...<br>
+     <a href="/APK/com.google.zxing.client.android-4.7.3-103-minAPI15.apk">Click here to Install Barcode Scanner app</a>
+   </div>
+   <div class="barcodeNotice" id="barcodeNoticeApple" style="display: none;">
+     <strong>Please Note:</strong> The camera <i class="fa fa-camera" aria-hidden="true"></i> Scan functionality via the devices camera is currently not available for iOS.<br>
+   </div>
+
+ </main>
+ <!--<a href="" id="scanBarcode" class="scan_new"><i class="fa fa-camera" aria-hidden="true"></i> Scan</a>-->
+ </div>
+</template>
+
+
+<!-- <template name="fittingsbarcode_scanner">
+  <div id="deviceready">
+                <button id="scan">scan barcode</button>
+            </div>
+</template> -->

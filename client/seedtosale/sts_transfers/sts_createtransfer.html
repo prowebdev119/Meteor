@@ -1,0 +1,95 @@
+<template name="stscreatetransfer">
+    <div class="container-fluid">
+        <div class="fullScreenSpin" style="display:none;">
+            <div class="spinner"></div>
+        </div>
+        <div class="d-sm-flex justify-content-between align-items-center mb-4">
+            <h3 class="text-dark mb-0">Seed To Sale - Transfer</h3>
+        </div>
+        <div class="row d-xl-flex justify-content-center align-items-center justify-content-xl-start" style="max-width: 568px;margin: auto;padding: 20px;">
+            <div class="col">
+                <div class="form-group" style="margin: 4px;"><label>Transfer Name</label><input type="text" class="form-control"></div>
+                <hr style="width: 100%;margin: 0px;margin-top: 16px;">
+            </div>
+        </div>
+        <div class="row no-gutters d-xl-flex justify-content-center align-items-center justify-content-xl-start" style="max-width: 568px;margin: auto;padding: 20px;padding-bottom: 10px;padding-top: 0px;padding-left: 35px;">
+            <h5 style="margin: 0px;">First Destination</h5>
+        </div>
+        <div class="row d-xl-flex justify-content-center align-items-center justify-content-xl-start" style="max-width: 568px;margin: auto;padding: 20px;padding-top: 0px;padding-bottom: 0px;">
+            <div class="col">
+                <div class="form-group" style="margin: 4px;"><label>Receiving Facility License No.</label><input type="text" class="form-control"></div>
+            </div>
+        </div>
+        <div class="row d-xl-flex justify-content-center align-items-center justify-content-xl-start" style="max-width: 568px;margin: auto;padding: 20px;padding-top: 0px;padding-bottom: 0px;">
+            <div class="col">
+                <div class="row no-gutters">
+                    <div class="col">
+                        <div class="form-group" style="margin: 4px;"><label>Transfer Type</label><select class="form-control"><option value="0" selected="">Fluid Ounces</option><option value="1">Gallons</option><option value="2" selected="">Grams</option><option value="3">Kilograms</option><option value="4">Liters</option><option value="5">Milligrams</option><option value="6">Milliliters</option><option value="7">Ounces</option><option value="8">Pints</option><option value="9">Pounds</option><option value="10">Quarts</option></select></div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group" style="margin: 4px;"><label>Transporting Facility License No.</label><input type="text" class="form-control"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row d-xl-flex justify-content-center align-items-center justify-content-xl-start" style="max-width: 568px;margin: auto;padding: 20px;padding-top: 0px;padding-bottom: 0px;">
+            <div class="col" style="padding: 0px;">
+                <div class="row">
+                    <div class="col" style="padding: 0px;padding-left: 24px;">
+                        <div class="form-group" style="margin: 4px;"><label>Driver</label><select class="form-control"></select></div>
+                    </div>
+                    <div class="col d-xl-flex justify-content-xl-start align-items-xl-end" style="max-width: 50px;padding: 0px;">
+                        <div class="d-xl-flex justify-content-xl-center"><a class="btn btn-success" role="button" data-toggle="modal" href="#myModal" style="font-size: 18px;width: 40px;margin: 4px;padding: 6px;height: 40px;"><i class="fa fa-user-plus"></i></a>
+                            <div class="modal fade" role="dialog"
+                                 tabindex="-1" id="myModal">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4>Create Driver</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                                        <div class="modal-body">
+                                            <div class="row no-gutters">
+                                                <div class="col">
+                                                    <div class="form-group" style="margin: 4px;"><label>Driver Name</label><input type="text" class="form-control"></div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="form-group" style="margin: 4px;"><label>Employee ID</label><input type="text" class="form-control"></div>
+                                                </div>
+                                            </div>
+                                            <div class="row no-gutters">
+                                                <div class="col">
+                                                    <div class="form-group" style="margin: 4px;"><label>Driver's License No.</label><input type="text" class="form-control"></div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="form-group" style="margin: 4px;"><label>Phone No.</label><input type="text" class="form-control"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Cancel</button><button class="btn btn-success" type="button">Create Driver</button></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group" style="margin: 4px;"><label>Driver's Phone No.</label><input type="text" class="form-control"></div>
+            </div>
+        </div>
+        <div class="row d-xl-flex justify-content-center align-items-center justify-content-xl-start" style="max-width: 568px;margin: auto;padding: 20px;padding-top: 0px;padding-bottom: 0px;">
+            <div class="col">
+                <div class="row no-gutters">
+                    <div class="col">
+                        <div class="form-group" style="margin: 4px;"><label>Est. Departure Time</label><input class="form-control" type="datetime-local"></div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group" style="margin: 4px;"><label>Est. Arrival Time</label><input class="form-control" type="datetime-local"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row d-xl-flex justify-content-center align-items-center justify-content-xl-start" style="max-width: 568px;margin: auto;padding: 20px;">
+            <div class="col d-xl-flex justify-content-xl-center"><a class="btn btn-success" role="button" href="/stsaddtransfercontent">Add Transfer Contents</a></div>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,40 @@
+<template name="newdepartmentpop">
+
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document" style="max-width: 90vw;">
+        <div class="modal-content" style="width: auto !important;">
+            <div class="modal-header">
+                <h4 style="">
+                    <div id="add-dept-title" name="add-dept-title" style="float: left;"><div id="newDeptHeader" name="newDeptHeader">Add New Department</div></div>
+                </h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" class="form-control" id="edtDepartmentID" name="edtDepartmentID" style="display:none;">
+                <div class="row no-gutters">
+                    <div class="col d-xl-flex align-items-xl-end">
+                        <div class="form-group flex-grow-1" style="margin: 8px;"><label data-toggle="tooltip" data-bs-tooltip="" data-placement="bottom">Department Name</label>
+                            <input type="text" class="form-control edtNewDeptName" id="edtNewDeptName" name="edtNewDeptName">
+                        </div>
+                        <div class="form-group flex-grow-0" style="margin: 8px;">
+                            <label data-toggle="tooltip" data-bs-tooltip="" data-placement="bottom" title="3-Digit Alpha Code">
+                                Site Code <a href=""><i class="fa fa-question-circle-o" data-toggle="tooltip" data-bs-tooltip="" title="3-Digit Alpha Code" style="margin: 16px;"></i></a>
+                            </label>
+
+                            <input type="text" class="form-control" style="width: 110px;" id="edtSiteCode" name="edtSiteCode" maxlength="3" data-toggle="tooltip" data-placement="bottom" data-bs-tooltip="3-digit Alpha Code" title="3-Digit Alpha Code">
+                        </div>
+                    </div>
+                </div>
+                <div class="row no-gutters">
+                    <div class="col d-xl-flex align-items-xl-end">
+                        <div class="form-group flex-grow-1" style="margin: 8px;"><label>Department Description</label>
+                            <input type="text" class="form-control" id="edtDeptDesc" name="edtDeptDesc">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-success btnSaveDept" type="button"><i class="fa fa-save" style="padding-right: 8px;"></i>Save</button>
+                <button class="btn btn-secondary" data-dismiss="modal" type="button"><i class="fa fa-close" style="margin-right: 8px;"></i>Close</button>
+            </div>
+        </div>
+    </div>
+</template>

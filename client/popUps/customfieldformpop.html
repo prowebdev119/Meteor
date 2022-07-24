@@ -1,0 +1,46 @@
+<template name="customfieldformpop">
+
+    <div class="modal-dialog modal-md modal-dialog-centered" role="document" style="max-width: 400px;">
+        <div class="modal-content">
+            <form id="newstatus" name="newstatus">
+                <div class="modal-header">
+                    <h4><div name="newStatusHeader1" id="newStatusHeader1">Add New Custom Field</div></h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body" style="padding: 8px 24px;">
+                    <input type="hidden" id="statusId1" name="statusId1" class="form-control">
+                    <input type="hidden" id="clickedControl" name="clickedControl" class="form-control">
+                    <input type="hidden" id="isdropDown" name="isdropDown" class="form-control">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group flex-grow-1" style="margin: 8px 0px; display:none!important">
+                                <label>Custom Field Label</label>
+                                <input type="text" id="newStatus1" name="newStatus1" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group flex-grow-1 dropDownSection" style="margin: 8px 0px;">
+                                <label>Dropdown Options</label>
+                                <button class="btn btn-primary btnAddNewTextBox" type="button" style="padding: 3px 6px; font-size: 12px; margin-left: 8px !important; border-radius: 25px;" autocomplete="off"><i class="fas fa-plus"></i></button>
+                                <div class="row textBoxSection" id="textBoxSection" style="padding:5px">
+                                    <div class="col-10">
+                                        <input type="text" style="" name="customText" class="form-control customText">
+                                    </div>
+                                    <div class="col-2">
+                                        <button type="button" class="btn btn-danger btn-rounded btnRemoveDropOptions" autocomplete="off"><i class="fa fa-remove"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-success btnSaveCustomField" type="button"><i class="fa fa-save" style="margin-right: 5px;"></i>Save</button>
+                    <button class="btn btn-secondary" data-dismiss="modal" type="button"><i class="fa fa-remove" style="margin-right: 5px;"></i>Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</template>

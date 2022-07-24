@@ -1,0 +1,183 @@
+.customContactLinksSettings {
+    width: 100%;
+    float: left;
+}
+
+.customContactLinksSettings .active_page_content h1 {
+    border-bottom: 0;
+    margin-bottom: 0;
+}
+
+.customContactLinksSettings .customContact {
+    margin-top: 10px;
+}
+
+.customContactLinksSettings .FullWidthSetupBorder.customContact p {
+    font-size: 11px;
+    float: left;
+    width: 100%;
+    border-top: 1px solid #fff;
+    padding-top: 5px;
+    color: #666;
+    margin: 0;
+}
+
+.customContactLinksSettings .bubbleToolbar {
+    padding: 3px 0 0 0px;
+    margin: 0;
+    height: 40px;
+    background-image: url("img/custom-contact-links.png");
+    border-radius: 5px;
+    float: left;
+    width: 100% !important;
+}
+
+.customContactLinksSettings .bubbleToolbar button {
+    loat: left;
+    font-size: 11px;
+    margin: 0 10px 0 0;
+    padding: 4px 9px;
+    color: #009acf;
+    font-weight: bold;
+}
+
+.customContactLinksSettings button.customLink {
+    float: left;
+    font: bold 12px Helvetica, sans-serif;
+    color: #048abb;
+    background-color: #fafafa;
+    border-color: #ccc;
+    border-radius: 3px;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: rgba(255, 255, 255, 0.3) 0 0 0 1px inset;
+    box-sizing: border-box;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+    margin: 0px 0px 0px 7px;
+    padding: 6px 12px;
+    position: relative;
+    text-align: center;
+    -webkit-transition: opacity .2s ease-out;
+    transition: opacity .2s ease-out;
+    white-space: nowrap;
+    -moz-user-select: -moz-none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiP…dpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==);
+    background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #e6eaec));
+    background: -webkit-linear-gradient(#ffffff, #e6eaec);
+    background: -webkit-linear-gradient(#ffffff, #e6eaec);
+    background: linear-gradient(#ffffff, #e6eaec);
+    font-weight: normal;
+}
+
+.customContactLinksSettings .float-left {
+    float: left;
+    width: auto;
+    font-size: 11px;
+    padding-top: 6px;
+    padding-right: 9px;
+    padding-left: 12px;
+    color: #868686;
+}
+
+.customContactLinksSettings select.form-control {
+    float: left;
+    width: auto;
+    padding: 2px 7px;
+    font-size: 11px;
+    height: initial;
+    margin-top: 5px;
+}
+
+.customContactLinksSettings .FullWidthSetupBorder {
+    background-color: #e8f1ff;
+    border: 1px solid #c1c1c1;
+    float: left;
+    padding: 10px 0;
+    width: 100%;
+    margin-bottom: 30px;
+    padding-bottom: 0;
+    margin-top: 20px;
+}
+
+.customContactLinksSettings .largeHeadingAddresses h2 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #000;
+    border-bottom: 1px solid #bfd3f2;
+    padding: 0;
+    margin: 0;
+    padding-bottom: 8px;
+}
+
+.customContactLinksSettings .pad {
+    width: 100%;
+    padding-left: 10px;
+    float: left;
+    box-shadow: 0 0 black;
+    padding-right: 10px;
+    padding-bottom: 25px;
+}
+
+.customContactLinksSettings .fields {
+    padding-top: 5px;
+    border-top: 1px solid #fff;
+    width: 100%;
+    float: left;
+    font-size: 11px;
+    padding-bottom: 25px;
+}
+
+.customContactLinksSettings .customLinksGrid {
+    float: left;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 4px 0px 4px 0px;
+    border-bottom: 1px solid #b4b4b4;
+    font: normal 11px Tahoma,sans-serif!important;
+    background: #d3e5fe url(/img/Link-Definition-bg.png) repeat-x 0 0;
+    height: 28px;
+}
+
+.customContactLinksSettings .customLinksGrid .col-md-3 {
+    padding-left: 6px;
+}
+
+.customContactLinksSettings .customLinksGrid input {
+    float: left;
+    padding: 2px 7px;
+    font-size: 11px;
+    height: initial;
+    width: 100%;
+    background: transparent;
+    border: 0;
+    box-shadow: inherit;
+    color: #000;
+    opacity: 1;
+    font-weight: bold;
+}
+
+.customContactLinksSettings .financalFooter {
+    background-color: #d7e7ff;
+    padding: 8px 0 10px;
+    float: left;
+    width: 100%;
+    text-align: right;
+    padding-right: 10px;
+    margin-top: 17px;
+}
+.customContactLinksSettings .financalFooter button{
+    line-height: initial;
+}
+.customContactLinksSettings .financalFooter button:last-child {
+    color: #fff;
+    width: 100px;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: initial;
+}

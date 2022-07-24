@@ -1,0 +1,156 @@
+<template name="newappointments">
+  <div class="fullScreenSpin" style="display:none;">
+    <div class="spinner"></div>
+  </div>
+
+  <div class="d-sm-flex justify-content-between align-items-center mb-4" style="margin-left: 8px;">
+    <h3 class="text-dark mb-0">New Appointments<a role="button" data-toggle="modal" href="#helpModal" class="helpModal"><label class="lblplay">PLAY</label><i class="far fa-play-circle" style="font-size: 20px;"></i></a></h3>
+  </div>
+
+  <div class="row">
+    <div class="col-auto">
+      <div class="card shadow mb-4" style="margin: 8px;">
+        <div class="card-header d-flex justify-content-between align-items-center">
+          <h6 class="text-primary font-weight-bold m-0">Employees</h6>
+          <div class="dropdown no-arrow">
+            <button class="btn btn-link btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button"><i class="fas fa-ellipsis-v text-gray-400"></i></button>
+            <div class="dropdown-menu shadow dropdown-menu-right animated--fade-in" role="menu">
+              <p class="text-center dropdown-header">Employee List</p>
+              <a class="dropdown-item btnNewEmployee" role="presentation" href="#">&nbsp;+ New Employee</a>
+            </div>
+          </div>
+        </div>
+        <div class="card-body text-nowrap cardB">
+          <div class="sideSearch">
+            <div class="form-group pull-right" style="width: 100%;">
+              <input type="text" class="search form-control" placeholder="Search...">
+            </div>
+            <span class="counter pull-right"></span>
+            <table id="tblEmployeeSideList" name="tblEmployeeSideList" class="table table-hover table-bordered results tblEmployeeSideList">
+              <thead>
+                <tr>
+                  <th>Employee</th>
+                </tr>
+                <tr class="warning no-result">
+                  <td colspan="4"><i class="fa fa-warning"></i> No result</td>
+                </tr>
+              </thead>
+              <tbody>
+                {{#if employeerecords}}
+                  {{#each item in employeerecords}}
+                    <tr id="{{item.id}}" style="cursor: pointer;">
+                      <td data-toggle="tooltip" data-bs-tooltip="" data-placement="bottom" title="{{item.company}}" id="{{item.id}}">{{item.company}}</td>
+                    </tr>
+                  {{/each}}
+                {{/if}}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="row justify-content-center align-items-end">
+        <div class="col-12 mb-4" style="margin: 0px;margin-bottom: 0px;">
+          <div class="card shadow" style="width: 100%;margin: 8px;margin-left: 0px;">
+            <div class="card-body">
+              <div class="row no-gutters">
+                <h3 style="margin: 0px;">New Appointment</h3>
+                <hr style="width: 100%;margin: 8px 0px;color: rgb(133,135,150);">
+              </div>
+              <div class="row d-xl-flex flex-column justify-content-xl-center" style="margin: 12px;">
+                <div class="col" style="padding: 0px;">
+                  <div class="row">
+                    <div class="col-6">
+                      <div class="form-group flex-grow-1" style="margin: 8px;"><label>Appointment No.</label><input type="text" class="form-control" placeholder="Auto" readonly=""></div>
+                    </div>
+                    <div class="col-6">
+                      <div class="form-group flex-grow-1" style="margin: 8px;"><label>Select Job Number / Name</label><input type="text" class="form-control"></div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-6">
+                      <div class="form-group flex-grow-1" style="margin: 8px;"><label>Job Number</label><input type="text" class="form-control" readonly=""></div>
+                    </div>
+                    <div class="col-6">
+                      <div class="form-group flex-grow-1" style="margin: 8px;"><label>Job Name</label><input type="text" class="form-control" readonly=""></div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-6">
+                      <div class="form-group flex-grow-1" style="margin: 8px;"><label>Department</label><select class="form-control">
+                          <optgroup label="This is a group">
+                            <option value="12">This is item 1</option>
+                            <option value="13">This is item 2</option>
+                            <option value="14">This is item 3</option>
+                          </optgroup>
+                        </select></div>
+                    </div>
+                    <div class="col-6">
+                      <div class="form-group flex-grow-1" style="margin: 8px;"><label>Company</label><select class="form-control">
+                          <optgroup label="Choose Company">
+                            <option value="12">This is item 1</option>
+                            <option value="13">This is item 2</option>
+                            <option value="14">This is item 3</option>
+                          </optgroup>
+                        </select></div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-4">
+                      <div class="form-group flex-grow-1" style="margin: 8px;"><label>Phone Number</label><input type="text" class="form-control" readonly=""></div>
+                    </div>
+                    <div class="col-4">
+                      <div class="form-group flex-grow-1" style="margin: 8px;"><label>Mobile</label><input type="text" class="form-control" readonly=""></div>
+                    </div>
+                    <div class="col-4">
+                      <div class="form-group flex-grow-1" style="margin: 8px;"><label>Fax</label><input type="text" class="form-control" readonly=""></div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-4">
+                      <div class="form-group flex-grow-1" style="margin: 8px;"><label>Representatitve</label><select class="form-control">
+                          <optgroup label="This is a group">
+                            <option value="12">This is item 1</option>
+                            <option value="13">This is item 2</option>
+                            <option value="14">This is item 3</option>
+                          </optgroup>
+                        </select></div>
+                      <div class="form-group flex-grow-1" style="margin: 8px;"><label>Entered By</label><input type="text" class="form-control" readonly=""></div>
+                    </div>
+                    <div class="col-8">
+                      <div class="form-group flex-grow-1" style="margin: 8px;"><label>Notes</label><textarea class="form-control" rows="5"></textarea></div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-4">
+                      <div class="form-group flex-grow-1" style="margin: 8px;"><label>Start Date</label><input class="form-control" type="date"></div>
+                      <div class="form-group flex-grow-1" style="margin: 8px;"><label>State Time</label><input class="form-control" type="time"></div>
+                    </div>
+                    <div class="col-4">
+                      <div class="form-group flex-grow-1" style="margin: 8px;"><label>End Date</label><input class="form-control" type="date"></div>
+                      <div class="form-group flex-grow-1" style="margin: 8px;"><label>End Time</label><input class="form-control" type="time"></div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-4">
+                      <div class="form-group flex-grow-1" style="margin: 8px;"><label>Street Address</label><textarea class="form-control" rows="5"></textarea></div>
+                    </div>
+                    <div class="col-4">
+                      <div class="form-group flex-grow-1" style="margin: 8px;"><label>City / Town</label><input type="text" class="form-control"></div>
+                      <div class="form-group flex-grow-1" style="margin: 8px;"><label>ZIP Code</label><input type="text" class="form-control"></div>
+                    </div>
+                    <div class="col-4">
+                      <div class="form-group flex-grow-1" style="margin: 8px;"><label>State / Region</label><input type="text" class="form-control"></div>
+                      <div class="form-group flex-grow-1" style="margin: 8px;"><label>Country</label><input type="text" class="form-control"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

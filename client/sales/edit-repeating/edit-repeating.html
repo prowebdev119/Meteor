@@ -1,0 +1,374 @@
+<template name="editRepeating">
+    <div class="editRepeating invoicecard billAwaitingApproval">
+        <div class="active_page">
+            <div class="active_page_content">
+                <p><a href="/allsales">Sales</a> &nbsp;›&nbsp; <a href="/invoicelist/All">Invoices</a> &nbsp;›&nbsp;</p><br>
+                <h1>New Repeating Invoice</h1>
+            </div>
+        </div>
+        <div class="repeat_invoice_bg">
+            <div id="wrapper_main">
+                <div class="repeat_invoice">
+                    <div class="invoicing_status">
+                        <strong>Create</strong>
+                       <a href="#" class="new_create_btn" id="btn_Attachment" name="btn_Attachment"><i class="far fa-file" aria-hidden="true"></i>{{#if attachmentCount}}<span id="attachment-count">{{attachmentCount}}</span>{{/if}}</a>
+                    </div>
+                    <div id="new-attachment2-tooltip" class="attchment-tooltip tooltip_edit_invoice">
+                        <div class="V2attachment-help">
+                            <!-- <div class="x-grid-group-title">TO INCLUDE WITH INVOICE</div>
+                             <div class="x-grid-group-hd"><div class="x-grid-group-title">TO INCLUDE WITH INVOICE</div></div>-->
+
+                            <div class="files_inbox2" id="finbox_1" style="display: block;">
+                                <div class="file_header1">TO INCLUDE WITH INVOICE</div>
+                                <div class="file_header2"> No files attached to invoice</div>
+                                <div class="file_header3">RELATED FILES</div>
+                                <div class="row inboxcol" id="file-display">
+                                    <div class="file-display_img">
+                                        <div class="col inboxcol1"><img src="/icons/nofiles_icon.jpg" class=""></div>
+                                        <div class="col inboxcol2">
+                                            <div>Upload your files to store them alongside all of your financial documents</div>
+                                            <p style="color: #ababab;">Added files will only be visible to users with access to your company</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="divTable">
+
+                        </div>
+                        <div class="attachment_footer2 divTable">
+                            <div class="divTableBody">
+                                <div class="divTableRow">
+                                    <div class="divTableCell">
+                                        <a href="#" class="new_attachment_btn x-btn-text">+ Add from file library...</a>
+                                        <input type="file" id="attachment-upload" style="display:none" multiple
+                                               accept=".jpg,.gif,.png,.bmp,.tiff,.pdf,.doc,.docx,.xls,.xlsx,.ppt,
+               .pptx,.odf,.csv,.txt,.rtf,.eml,.msg,.ods,.odt,.keynote,.key,.pages-tef,
+               .pages,.numbers-tef,.numbers,.zip,.rar,.zipx,.xzip,.7z,image/jpeg,
+               image/gif,image/png,image/bmp,image/tiff,application/pdf,
+               application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,
+               application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,
+               application/vnd.ms-powerpoint,application/vnd.openxmlformats-officedocument.presentationml.presentation,
+               application/vnd.oasis.opendocument.formula,text/csv,text/plain,text/rtf,message/rfc822,
+               application/vnd.ms-outlook,application/vnd.oasis.opendocument.spreadsheet,
+               application/vnd.oasis.opendocument.text,application/x-iwork-keynote-sffkey,
+               application/vnd.apple.keynote,application/x-iwork-pages-sffpages,
+               application/vnd.apple.pages,application/x-iwork-numbers-sffnumbers,
+               application/vnd.apple.numbers,application/zip,application/rar,
+               application/x-zip-compressed,application/x-zip,application/x-7z-compressed">
+                                    </div>
+                                    <div class="divTableCell"><a href="#" id="upload-content" class="new_attachment_btn x-btn-text">+ Upload files...</a></div>
+                                </div>
+                            </div>
+                            <!--
+                              <div class="button_left">
+                                <a href="#" class="new_create_btn">+ Add from file library...</a>
+                              </div>
+                              <div class="button_right">
+                                <a href="#" class="new_create_btn">+ Upload files...</a>
+                              </div>
+                            -->
+                        </div>
+                    </div>
+                    <div class="repeating_panel">
+                        <div class="options-schedule">
+                            <div class="repeating_top">
+                                <div class="repeating_div">
+                                    <label>Repeat this transaction every</label>
+                                    <input class="textdiv" type="text" value="1">
+                                    <div class="currency_option1">
+                                        <div class="input-group dropdown-add-rec" id="repeatTransaction">
+                                            <input type="text" id='repeat'
+                                                   class="form-control" value="Month(s)">
+                                            <div class="input-group-addon " data-toggle="dropdown">
+                                                <img src="/img/dropdown_icon.png" id="repeat-dropdown-img"
+                                                     class="repeat-img addImage">
+                                            </div>
+                                            <ul class="dropdown-menu repeatDropdown " id='uItem' name="uItem">
+                                                <li class="monthDropDown" value="Do not filter">Week(s)</li>
+                                                <li class="monthDropDown" value="unassigned">Month(s)</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="repeating_div invoice_date">
+                                    <label>Next Invoice Date</label>
+                                    <input type="text" value="" id="invoiceDate">
+                                </div>
+                                <div class="repeating_div due_date">
+                                    <label>Due Date</label>
+                                    <span>Due</span>
+                                    <input class="textdiv due-value" type="text" value="">
+                                    <div class="currency_option1 ">
+                                        <div class="input-group dropdown-add-rec" id="editRepeatingDropdown">
+                                            <input type="text" id='select'
+                                                   class="form-control" value="of the following month">
+                                            <div class="input-group-addon " data-toggle="dropdown">
+                                                <img src="/img/dropdown_icon.png" id="select-dropdown-img"
+                                                     class="select-img addImage">
+                                            </div>
+                                            <ul class="dropdown-menu selectDropdown " id='uItem' name="uItem">
+                                                <li class="selectItem" value="of the following month">of the following month</li>
+                                                <li class="selectItem" value="unassigned">day(s) after the invoice date</li>
+                                                <li class="selectItem" value="of the following month">day(s) after the end of the invoice month</li>
+                                                <li class="selectItem" value="unassigned">of the current month</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="repeating_div end_date">
+                                    <label>End Date<span> (Optional)</span></label>
+                                    <input type="text" value="" id="endDate" >
+                                </div>
+                            </div>
+                            <div class="repeating_footer">
+                                <div class="repeating_left_radio">
+                                    <label><input type="radio" name="Save as Draft" value="Save as Draft">Save as Draft</label>
+                                    <label><input type="radio" name="Approve" value="Approve"> Approve</label>
+                                    <label><input type="radio" name="Approve for Sending " value="Approve for Sending">
+                                        Approve for Sending
+                                    </label>
+                                </div>
+                                <div class="auto-filled-fields-message">
+                                    Invoice no.
+
+                                    and currency rate (when applicable)
+
+                                    will be set on invoice creation date.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="invoicing-details">
+                            <div class="repeating_div">
+                                <label>Invoice to</label>
+                                <input type="text" value="{{invrecord.customername}}">
+
+                            </div>
+                            <div class="repeating_div">
+                                <label>Reference</label>
+                                <input type="text" value="{{invrecord.reference}}">
+
+                            </div>
+                            <div class="repeating_div Branding_right">
+                                <label>Branding</label>
+                                <div class="dropdown-add-rec2">
+                                    <input type="text" class="select-branding" id="brandingtype" name="brandingtype" value="{{invrecord.branding}}">
+                                    <div class="" data-toggle="dropdown">
+                                        <img src="/img/dropdown_icon.png">
+                                    </div>
+                                    <ul class="dropdown-menu">
+                                        <li class="branding-option">Special Projects</li>
+                                        <li class="branding-option">Standard</li>
+                                        <li class="branding-option">Very orange invoice!</li>
+                                    </ul>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="new_create_lines">
+                            <div class="gst_div">
+                                <div class="repeating_div">
+                                    <label>Amounts are:</label>
+                                    <div class="input-group dropdown-add-rec" id="">
+                                        <input type="text" class="form-control select-currency-option" placeholder="Select Currency Code" id="InCurrency" name="InCurrency" value="{{inputSelectedCurrency}}">
+                                        <div class="input-group-addon " data-toggle="dropdown">
+                                            <img src="/img/dropdown_icon.png" id="region-dropdown-img" class="region-img addImage" >
+                                        </div>
+                                        <ul class="dropdown-menu" id='uItem' name="uItem">
+
+                                            {{#each item in records}}
+                                                <li class="curreny-option">{{item.Code}} {{item.Country}} {{item.Currency}}</li>
+                                            {{/each}}
+
+                                            <li data-toggle="modal"  data-target="#addCurrency">+ Add Currency...</li>
+                                        </ul>
+                                    </div>
+                                    <div class="input-group dropdown-add-rec" id="amountsAreDropdown">
+                                        <input type="text" id="myTaxDropdown" name="myTaxDropdown" class="form-control select-tax-type-input" value="Tax Exclusive" >
+                                        <div class="input-group-addon " data-toggle="dropdown">
+                                            <img src="/img/dropdown_icon.png" id="region-dropdown-img" class="region-img addImage" >
+                                        </div>
+                                        <ul class="dropdown-menu amountsAreList" id='uItem' name="uItem">
+                                            <li class="select-tax-type">Tax Exclusive</li>
+                                            <li class="select-tax-type">Tax Inclusive</li>
+                                            <li class="select-tax-type">No Tax</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <table id="component_tbUpdate" style="width: 100%"
+                                   class="newBillform table table-hover table-bordered">
+                                <thead>
+                                <tr>
+                                    <th style="display:none "></th>
+                                    <th></th>
+                                    <th>Item</th>
+                                    <th>Description</th>
+                                    <th>Qty</th>
+                                    <th>Unit Price</th>
+                                    <!--<th>Disc %</th>-->
+                                    <!--<th>Account</th>-->
+                                    <th id="taxRateHeader">Tax Rate</th>
+                                    <th>Amount {{selectedCurrency}}</th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {{#each itemupdate in invrecord.LineItems}}
+                                    <tr id="pq_entry_{{@index}}" class="clonedSection" data-saved="1">
+                                        <td style="display:none "><input type="text" name="prod_id" id="prod_id" value='1' readonly /></td>
+                                        <td style="padding: 1px; width: 5px;  text-align: center;"><img src="icons/tableRow_Icon.png" width="22px"></td>
+                                        <td>
+                                            <div class="input-group dropdown-add-rec" id="product-dropdown">
+                                                <div contenteditable="true" type="text" id="product-input-{{@index}}"
+                                                     class="select-product no-border" value="{{itemupdate.item}}">{{itemupdate.item}}</div>
+                                                <div class="input-group-addon" >
+                                                    <img style="display:none " src="/img/dropdown_icon.png" id="prod-dropdown-img-{{@index}}"
+                                                         class="product-img">
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td><div contenteditable="true" class="select-products" type="text" name="productdesc-{{@index}}" id="productdesc-{{@index}}" value="{{itemupdate.description}}">{{itemupdate.description}}</div></td>
+                                        <td><div contenteditable="true"  type="number" name="Ordered-{{@index}}" id="Ordered-{{@index}}" class="qty select-products" value="{{itemupdate.quantity}}">{{itemupdate.quantity}}</div></td>
+                                        <td><div contenteditable="true"  type="text" name="UnitPrice-{{@index}}" id="UnitPrice-{{@index}}" class="unitPrice select-products" value="{{itemupdate.unitPrice}}">{{itemupdate.unitPrice}}</div></td>
+                                        <!--<td><input type="text" name="" id=""></td>-->
+                                        <!--<td><input type="text" name="" id=""></td>-->
+                                        <td>
+                                            <div class="input-group dropdown-add-rec" id="pick-tax-rate">
+                                                <div contenteditable="true" type="text" id="tax-rate-input-{{@index}}"
+                                                     class="select-products select-tax-rate no-border" value="{{itemupdate.taxRate}}">{{itemupdate.taxRate}} </div>
+                                                <div class="input-group-addon" style="display:none ">
+                                                    <img src="/img/dropdown_icon.png" id="tax-dropdown-img-{{@index}}"
+                                                         class="tax-img">
+                                                </div>
+
+                                            </div>
+                                        </td>
+                                        <td><div contenteditable="true" type="text" name="displayTotalAmt-{{@index}}" id="displayTotalAmt-{{@index}}" class="displaySubtot select-products" value="{{itemupdate.curTotalAmt}}" readonly>{{itemupdate.curTotalAmt}}</div></td>
+                                        <td style="display:none"><input type="text" name="TotalAmt-{{@index}}" id="TotalAmt-{{@index}}" class="subtot select-products" value="{{itemupdate.TotalAmt}}"  readonly></td>
+                                        <td style="display:none"><input type="hidden" name="TaxTotal-{{@index}}" id="TaxTotal-{{@index}}" class="taxtot select-products" value="{{itemupdate.TaxTotal}}" readonly></td>
+                                        <td style="display:none"><input type="hidden" name="TaxRate-{{@index}}" id="TaxRate-{{@index}}" class="taxrate select-products" value="{{itemupdate.TaxRate}}" readonly></td>
+                                        <td><a href="#" name="removebutton-{{@index}}" id="removebutton-{{@index}}" class="removebutton">x</a></td>
+                                    </tr>
+                                {{/each}}
+                                </tbody>
+                            </table>
+
+                            <div style="float: left; width: 12.9%;">
+                                <div id="add_lines_menu" style="width: auto;">
+                                    <ul class="levelone">
+                                        <li class=""><a href="#" class="" id="new_create_btn">+ Add a new line<span
+                                                class="plus_vertical_line"></span></a>
+                                            <a href="#" class="fly"><span class="caret"></span></a>
+                                            <ul class="add_lines_dropdown d1">
+                                                <li class="add_firstline"><a href="#" id="new_5Line_btn">Add 5</a></li>
+                                                <li><a href="#" id="new_10Line_btn">Add 10</a></li>
+                                                <li><a href="#" id="new_20Line_btn">Add 20</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="new_create_totals" id="billnew_create_totals">
+                                <div class="totals_container1">
+                                    <span class="subtotal_label">Subtotal</span>
+                                    <span class="subtotal_total" id="subtotal_total">{{invrecord.SubTotal}}</span>
+                                    <div class="taxcodetotal">
+                                        <span class="subtotal_label">GST</span>
+                                        <span class="subtotal_total"
+                                              id="subtotal_total3">{{invrecord.TotalTax}} </span>
+                                    </div>
+                                    <div class="totals_line"></div>
+                                    <span class="subtotal_label2">Total</span>
+                                    <span class="subtotal_total2" id="subtotal_total2">{{invrecord.Total}}</span>
+                                    <input type="hidden" id="subtotal_total_2" name="subtotal_total_2"
+                                           value="15">
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="buttons_footer">
+                            <div class="button_left">
+                                <button type="button" class="btn button_delete"><span>Delete</span></button>
+                            </div>
+                            <div class="button_right">
+                                <button type="button" class="btn btn-success">Save</button>
+                                <a href="#" class="cancel_new">Cancel</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="AllPageContent">
+            <div id="wrapper_main">
+                <div class="new_create_footer_container">
+                    <div class="new_create_footer">
+                        <h3>History & Notes</h3>
+                        <!--<div id="latestNote">On 15 Aug 2018 at 14:37p.m., gold craige wrote:<br><b>This invoice has been sent to yogesh.mishra@habilelabs.io</b></div>
+                        <a href="#" id="notesbtn">Show History & Notes (2 entries)</a>-->
+                        <a href="#" class="list_search add-note-btn" id="notesbtn">Add Note</a>
+                        <div id="AddNote" style="">
+                            <div class="search_box_inner">
+                                <div class="notes">
+                                    <label>Note:</label>
+                                </div>
+                                <textarea id="allnotes" name="allnotes" style="width:350px;height:125px;" rows="8" cols="80"></textarea>
+                            </div>
+                            <div class="" style="width:352px;">
+                                <span class=""><button type="button" class="send_new add-new-note"><span>Save</span></button></span>
+                                <span class=""><button type="button" class="list_search cancel_new"><span>Cancel</span></button></span>
+                            </div>
+                        </div>
+                        <!--<table id="Notes">
+                            <thead>
+                            <tr class="faux-thead">
+                                <td>Changes</td>
+                                <td>Date</td>
+                                <td>User</td>
+                                <td class="details" style="width:500px;">Details</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr class="xoHistoryNote default" id="ext-gen107">
+                                <td class="changes">Approved&nbsp;</td>
+                                <td class="date">7 Aug 2018 8:02 p.m.&nbsp;</td>
+                                <td class="user">gold craige&nbsp;</td>
+                                <td>aaaa from aaa for 0.00.&nbsp;
+                                </td>
+                            </tr>
+                            <tr class="xoHistoryNote default" id="ext-gen108">
+                                <td class="changes">Created&nbsp;</td>
+                                <td class="date">7 Aug 2018 8:02 p.m.&nbsp;</td>
+                                <td class="user">gold craige&nbsp;</td>
+                                <td>aaaa from aaa for 0.00.&nbsp;
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>-->
+                        <script>
+                            $('.Show').click(function() {
+                                $('#AddNote').show(500);
+                                $('.Show').hide(0);
+                                $('.Hide').show(0);
+                            });
+                            $('.Hide').click(function() {
+                                $('#AddNote').hide(500);
+                                $('.Show').show(0);
+                                $('.Hide').hide(0);
+                            });
+                            $('.list_search').click(function() {
+                                $('#AddNote').toggle('slow');
+                                $( "#allnotes" ).focus();
+                            });
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,474 @@
+.userSettings .active_page_content h1 {
+    border: 0 !important;
+    font-family: Helvetica,sans-serif;
+}
+
+
+
+.userSettings .radioButton {
+    float: left;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.userSettings .radioButton h5 {
+    padding: 0;
+    margin: 0;
+    float: left;
+    margin-right: 29px;
+    width: auto;
+    margin-top: 6px;
+    font-size: 12px;
+    color: #333;
+}
+.userSettings .radioButton .radio {
+    float: left;
+}
+.userSettings .radioButton .radio {
+    float: left;
+    width: 9%;
+}
+
+.userSettings .radioButton .radio input{
+    float: left;
+    margin-top: 3px;
+}
+.userSettings .radio, .checkbox {
+    position: relative;
+    display: block;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.userSettings {
+    float: left;
+    width: 100%;
+    margin-top: 0;
+}
+
+.userSettings .barLayout {
+    position: relative;
+    background-color: #fff;
+    width: 100%;
+    margin: 0 auto 20px;
+    padding: 10px 0 0 10px;
+    box-sizing: border-box;
+    background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #f6f7f8));
+    background: -webkit-linear-gradient(#ffffff, #f6f7f8);
+    background: -webkit-linear-gradient(#ffffff, #f6f7f8);
+    background: linear-gradient(#ffffff, #f6f7f8);
+    border-radius: 6px;
+    box-shadow: 0 1px 3px #aaa;
+    float: left;
+    min-height: 154px;
+    line-height: 70px;
+    margin-top: 30px;
+}
+
+.userSettings .containerDefault {
+    border-bottom: 1px solid #dadddf;
+    width: 100%;
+    float: left;
+}
+
+.userSettings .barLayoutRow p {
+    padding: 0;
+    margin: 0;
+    line-height: initial;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.userSettings .barLayoutRow span {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    float: left;
+    font-size: 12px;
+    margin-top: 10px;
+    line-height: 1.5;
+}
+
+.userSettings .barLayoutRow a {
+    width: auto;
+    float: none;
+    padding: 0;
+    margin: 0;
+    line-height: initial;
+    margin-top: 5px;
+    color: #048abb;
+    font-size: 12px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.userSettings .barLayoutRow label {
+    line-height: inherit;
+    margin-right: 10px;
+    font-weight: normal;
+    font-size: 12px;
+}
+
+.userSettings .basicInformation {
+    width: 100%;
+    float: left;
+    border-radius: 4px 4px 0 0;
+    background-size: 100%;
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 50, color-stop(0%, #ffffff), color-stop(100%, #fafbfb));
+    background-image: -webkit-linear-gradient(#ffffff, #fafbfb 50px);
+    background-image: -webkit-linear-gradient(#ffffff, #fafbfb 50px);
+    background-image: linear-gradient(#ffffff, #fafbfb 50px);
+    box-sizing: border-box;
+    border: 1px solid #dfe1e2;
+    margin-top: 20px;
+    border-radius: 4px 4px 0 0;
+    box-shadow: 0 0 3px #ccc;
+    margin-bottom: 25px;
+}
+
+.userSettings .heading {
+    font-size: 18px;
+    margin: 0;
+    float: left;
+    width: 100%;
+    border-radius: 4px 4px 0 0;
+    background-size: 100%;
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 50, color-stop(0%, #ffffff), color-stop(100%, #fafbfb));
+    background-image: -webkit-linear-gradient(#ffffff, #fafbfb 50px);
+    background-image: -webkit-linear-gradient(#ffffff, #fafbfb 50px);
+    background-image: linear-gradient(#ffffff, #fafbfb 50px);
+    padding: 15px;
+}
+
+.userSettings .heading h3 {
+    float: left;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.userSettings .panelfield {
+    border-bottom: 1px solid #ebeeef;
+    border-top: 1px solid #fff;
+    padding: 15px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    float: left;
+    width: 100%;
+
+}
+
+.userSettings .panelfield:first-child{
+    border: 0;
+}
+
+.userSettings .panelfield.lastchild {
+    border: 0;
+}
+
+.userSettings .paddingMargin {
+    padding: 0;
+    margin: 0;
+}
+
+.userSettings .paddingMargin label {
+    font-weight: bold;
+    color: #000;
+    font-size: 12px;
+}
+
+
+.userSettings .fieldOption label::after {
+    content: " *";
+    color: #c00;
+    font-weight: bold;
+}
+.userSettings .inputRow {
+    float: left;
+    width: 100%;
+    margin-top: 10px;
+
+}
+
+.userSettings .inputRow input {
+    float: left;
+    width: 65%;
+}
+
+.userSettings .inputRow input:last-child {
+    float: right;
+    width: 30%;
+}
+
+.userSettings .rowInput input, .userSettings .rowInput textarea, .userSettings .rowInput select {
+    margin-top: 10px;
+    float: left;
+    font-size: 12px;
+}
+
+.userSettings .rowInput select {
+    margin-top: 0;
+}
+
+.userSettings .telephoneRow {
+    float: left;
+    width: 100%;
+}
+
+.userSettings .telephoneRow select.form-control {
+    float: left;
+    width: 18%;
+}
+
+.userSettings .telephoneRow input {
+    float: left;
+    width: 50%;
+    margin-left: 10px;
+}
+
+.userSettings a.addContact {
+    cursor: pointer;
+    color: #048abb;
+    font-size: 12px;
+    margin-top: 20px;
+}
+
+.userSettings a.addContact:before {
+    content: '+ ';
+    font-size: 16px;
+}
+
+.userSettings .footer {
+    float: left;
+    width: 100%;
+    margin-bottom: 30px;
+    border: 0;
+    background-size: 100%;
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 50, color-stop(0%, #ffffff), color-stop(100%, #fafbfb));
+    background-image: -webkit-linear-gradient(#ffffff, #fafbfb 50px);
+    background-image: -webkit-linear-gradient(#ffffff, #fafbfb 50px);
+    background-image: linear-gradient(#ffffff, #fafbfb 50px);
+    border-radius: 0 0 4px 4px;
+    border-top: 1px solid #dfe1e2;
+    border-bottom: 1px solid #dfe1e2;
+    height: 48px;
+    text-align: right;
+    padding-top: 6px;
+
+}
+
+.userSettings .footer .btn-default {
+    float: right;
+}
+
+#myModal .modal-footer .btn-default {
+    float: right;
+}
+
+.userSettings .rowInput span {
+    float: left;
+    margin-top: 8px;
+    margin-left: 6px;
+    font-size: 12px;
+}
+
+.userSettings .rowInput label {
+    float: left;
+}
+
+.userSettings .dropdown-menu {
+    background-color: #fff;
+}
+
+.userSettings .dropdown-menu li a {
+    color: #0084b5;
+    border-bottom: 1px solid #e9edf2;
+    border-top: 0;
+    font-size: 12px;
+}
+
+.userSettings .dropdown-menu > li > a:hover {
+    background-color: #e6f5fa;
+    color: #048abb !important;
+    background-image: inherit !important;
+}
+
+.userSettings .addContact {
+    float: left;
+}
+
+.userSettings input {
+    margin-right: 10px;
+    font-size: 12px;
+}
+
+.userSettings input:last-child {
+    margin-right: 0;
+}
+
+.userSettings .barLayoutRow input:last-child {
+    margin-right: 10px;
+}
+
+.userSettings .modal-body {
+    background-color: #FBFBFB;
+    font-size: 13px;
+}
+
+.userSettings .check input.form-check-input {
+    float: left;
+}
+
+.userSettings .panelfield .imageUpload {
+    float: left;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.userSettings .modal-dialog {
+    width: 420px;
+}
+
+.userSettings .active_page_content h1 {
+    padding-bottom: 0;
+    margin-bottom: 9px;
+    margin-top: 30px;
+}
+
+.userSettings .barLayout {
+    margin-top: 20px;
+    padding-top: 25px;
+}
+
+.userSettings .btn-default {
+    color: #048abb;
+    font-weight: bold;
+    background-color: #fafafa;
+    border-color: #ccc;
+    border-radius: 3px;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: rgba(255, 255, 255, 0.3) 0 0 0 1px inset;
+    box-sizing: border-box;
+    cursor: pointer;
+    float: left;
+    font-size: 12px;
+    font-weight: bold;
+    margin: 0 10px 15px 0;
+    padding: 6px 12px;
+    position: relative;
+    text-align: center;
+    -webkit-transition: opacity .2s ease-out;
+    transition: opacity .2s ease-out;
+    white-space: nowrap;
+    -moz-user-select: -moz-none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiP…dpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==);
+    background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #e6eaec));
+    background: -webkit-linear-gradient(#ffffff, #e6eaec);
+    background: -webkit-linear-gradient(#ffffff, #e6eaec);
+    background: linear-gradient(#ffffff, #e6eaec);
+    margin-left: 10px;
+    float: none;
+}
+
+.userSettings .panelfield:last-child {
+
+    border-bottom: 0;
+}
+
+.userSettings .heading.footer {
+    margin-bottom: 0;
+}
+
+.userSettings h4.modal-title {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.userSettings .modal-footer button {
+    color: #333;
+    font-weight: normal;
+}
+
+.userSettings .modal-footer button:last-child {
+    color: #fff;
+}
+
+.userSettings .userProfileEdit input {
+    float: left;
+    width: 48%
+}
+
+.userSettings .userProfileEdit input:last-child {
+    float: right
+}
+
+.userSettings .textareaEdit textarea#comment {
+    float: left;
+    width: 100%;
+    margin-right: 10px;
+}
+
+.addPhoneNo input {
+    float: left;
+    width: 32%;
+    margin-right: 10px;
+}
+
+.userSettings .addPhoneNo .close {
+    color: #bbb;
+    padding: 27px 22px 5px 0;
+    background: transparent url(img/close.png) no-repeat 100%;
+    font-size: 12px;
+    font-weight: 800;
+    opacity: 1;
+    cursor: pointer;
+    float: left;
+}
+
+.userSettings .fontSize {
+    font-size: 11px;
+}
+
+.modal-footer .popup_imagebtns {
+  font-size: 12px !important;
+  font-weight: bold !important;
+  padding: 5px 19px !important;
+}
+
+.popupuser_imagefooter {
+  border-radius: 5px;
+}
+.userSettings #myModal button.on-upload-logo {
+    color: #fff !important;
+    border-color: #0078a5 !important;
+    background-color: #00b1e6 !important;
+    text-shadow: 0 1px rgba(0,0,0,0.1);
+    background: linear-gradient(#00b1e6,#0382b3) !important;
+    width: 100px;
+}
+.userSettings .add-remove_logo {
+    float: left;
+    width: 127px;
+    margin-left: 10px;
+}
+.userSettings .add-remove_logo button {
+    width: 110px;
+}
+.userSettings #changeLogo,#removeLogo{
+    display: none;
+}
+.userSettings img#uploadedImage {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 140px;
+    height: 140px;
+    background: #fff;
+    float: left;
+}

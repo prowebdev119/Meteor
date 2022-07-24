@@ -1,0 +1,3 @@
+com.phonegap.plugins.facebookconnect@https://github.com/Wizcorp/phonegap-facebook-plugin.git#5dbb1583168558b4447a13235283803151cb04ec
+me.dispatch.crosswalk-permissions@file://./packages
+phonegap-plugin-barcodescanner@2.0.1

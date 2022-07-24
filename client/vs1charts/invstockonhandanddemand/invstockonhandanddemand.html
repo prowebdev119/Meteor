@@ -1,0 +1,45 @@
+<template name="invstockonhandanddemand">
+    <style type="text/css">
+           .dimmedChart>div {
+            background-color: #dddfeb !important;
+        }
+        .card.hovered {
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.50) !important;
+            cursor: move;
+            transition-duration: 300ms;
+
+        }
+
+        .hideelement {
+            display: none !important;
+        }
+
+        .showelement {
+            display: block;
+        }
+    </style>
+    <div id="invstockonhandanddemand" class="minHeight100">
+        <div class="card overflow-hidden shadow mb-4 portlet ui-widget ui-widget-content ui-helper-clearfix ui-corner-all ui-resizable">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h6 class="text-primary font-weight-bold m-0">Stock On Hand and Demand</h6>
+                <div class="dropdown no-arrow">
+                    <a class="on-editor-change-mode btn btn-link hideelement" role="presentation" href="">Show</a>
+                    <button class="btn btn-link btn-sm dropdown-toggle btnchartdropdown" data-toggle="dropdown" aria-expanded="false" type="button"><i class="fas fa-ellipsis-v text-gray-400"></i></button>
+                    <div class="dropdown-menu shadow dropdown-menu-right animated--fade-in" role="menu">
+                        <a id="expenses1" class="dropdown-item" role="presentation" href="">&nbsp;More Details</a>
+                        <div class="dropdown-divider"></div>
+                        <a id="" class="dropdown-item pointer editchartsbtn" role="presentation" data-toggle="modal" data-target="#">&nbsp;Edit Chart</a>
+                        <a id="" class="dropdown-item pointer resetchartsbtn" role="presentation">&nbsp;Reset Chart</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <!-- <div class="chart-area"> -->
+                    <div class="canvasParentDiv canvasHeight100">
+                        <canvas id="chart"></canvas>
+                    </div>
+                <!-- </div> -->
+            </div>
+        </div>
+    </div>
+</template>

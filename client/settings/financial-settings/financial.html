@@ -1,0 +1,279 @@
+<template name="financialSettings">
+    <div class="financialSettings">
+        <div class="active_page">
+            <div class="active_page_content">
+                <p><a href="/settings">General Settings</a> &nbsp;›&nbsp;</p>
+                <br>
+                <h1>Financial Settings</h1>
+            </div>
+        </div>
+        <div id="wrapper_main">
+            <main id="page-content-wrapper_main" role="main">
+                <!-- <div class="simplerbasMessage">
+                     <em class="message-icon" style="margin-top:8px;"></em>
+                     <div class="message">
+                         <p style="color:black;" id="ext-gen28"><span
+                                 style="float:right; margin-top:8px; padding-right:10px;"><a
+                                 href="#"
+                                 style="font-weight:bold !important;">Go to Simpler BAS</a></span>
+                             There’s a new activity statement that supports the ATO’s Simpler BAS reporting. Most
+                             businesses
+                             earning less than
+                             <br>$10 million will be eligible for Simpler BAS. You can change to Simpler BAS and manage
+                             your
+                             Simpler BAS settings
+                             <br>from the new activity statement.</p>
+                     </div>
+                 </div>-->
+                <div class="FullWidthSetupBorder">
+                    <div class="pad">
+                        <div class="largeHeadingAddresses">
+                            <h2>Financial Year End </h2>
+                        </div>
+                        <div class="fields">
+                            30 June <a href="#" data-toggle="modal" data-target="#myModal">Change</a>
+
+                        </div>
+                    </div>
+                    <div class=" pad activityStatement">
+                        <h2>VAT</h2>
+                        <div class="fields">
+                            <div class="col-lg-12 paddingMargin">
+                                <div class="col-lg-4 paddingLeft">
+                                    <label>VAT Scheme</label>
+                                    <select class=" form-control">
+                                        <option>Cash Basis</option>
+                                        <option>Accruals Basis</option>
+                                        <option>None</option>
+                                    </select>
+                                </div>
+                                <div class="col-lg-4 paddingLeft">
+                                    <label>VAT Number </label>
+                                    <select class=" form-control">
+                                        <option>Cash Basis</option>
+                                        <option>Accruals Basis</option>
+                                        <option>None</option>
+                                    </select>
+                                </div>
+                                <div class="col-lg-4 paddingLeft">
+                                    <label>VAT Scheme</label>
+                                    <input type="text" class="form-control" id="usr" placeholder="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pad largeHeadingAddresses DefaultTax taxDefaults">
+                        <h2>Tax Defaults</h2>
+                        <div class="fields">
+                            <div class="">
+                                <label for="SalesDefaultTax">For Sales</label>
+                                <select class=" form-control">
+                                    <option>Based on last sale</option>
+                                    <option>Tax inclusive</option>
+                                    <option>Tax exclusive</option>
+                                    <option>No tax</option>
+                                </select>
+                                <p>Includes invoices, quotes, credit notes and receive money items</p>
+                            </div>
+                            <div class="">
+                                <label for="SalesDefaultTax">For Purchases</label>
+                                <select class=" form-control">
+                                    <option>Based on last sale</option>
+                                    <option>Tax inclusive</option>
+                                    <option>Tax exclusive</option>
+                                    <option>No tax</option>
+                                </select>
+                                <p>Includes bills, purchase orders, credit notes, and spend money items</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pad largeHeadingAddresses DefaultTax ">
+                        <h2>Construction Industry Scheme
+                            <a href="#"><i class="fa fa-question questionCircle" id="btn2" aria-hidden="true"></i> </a>
+                            <div class="lockDate" id="lock_date">
+                                <div class="headTitle">
+                                    <span id="close_model"> <img src="/img/closeButton.png"></span>
+                                    <span>Construction Industry Scheme (CIS) in VS1Cloud</span>
+                                </div>
+                                <div class="bodyTitle">
+                                    <p>Setup the CIS functionality in VS1Cloud to manage contractor invoices, subcontractor
+                                        bills, CIS reporting and HMRC deduction payments.</p>
+                                    <p>Select whether you're a Contractor and/or Subcontractor as registered with <a
+                                            target="_self" href="#">Construction Industry Scheme at HMRC</a> (gov.uk
+                                        website).</p>
+                                    <p>Once CIS is enabled, the relevant chart of account codes will appear in your
+                                        organisation for you to calculate and file your CIS monthly returns.</p>
+                                    <p><a target="_self" href="#">Construction
+                                        Industry Scheme (CIS) in VS1Cloud</a></p>
+                                </div>
+                            </div>
+                        </h2>
+                        <div class="fields">
+                            <p>Enables CIS in your chart of accounts, so you can file CIS Monthly Returns.
+                                <a target="_self" href="#">
+                                    Learn more
+                                </a></p>
+                            <form class="checkboxButton">
+                                <label><input type="checkbox" name="vehicle" value=""> I am a registered
+                                    contractor</label>
+                                <label><input type="checkbox" name="vehicle" value=""> I am a registered
+                                    subcontractor</label>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="pad largeHeadingAddresses DefaultTax ">
+                        <h2>BACS
+                            <a href="#"> <i class="fa fa-question questionCircle" aria-hidden="true" id="btn3"></i> </a>
+                            <div class="lockDate" id="lock_date_bacs">
+                                <div class="headTitle">
+                                    <span id="close_model_bacs"> <img src="/img/closeButton.png"></span>
+                                    <span>BACS</span>
+                                </div>
+                                <div class="bodyTitle">
+                                    <p>BACS is a system that electronically processes your financial transactions.</p>
+                                    <p>If you create batch payments in VS1Cloud, enter your service user or owner ID number,
+                                        then export the batch files to your bank to make BACS transfers.</p>
+                                    <ul>
+                                        <li><a target="_self" href="#">Batch
+                                            payments</a></li>
+                                        <li><a target="_self" href="#">Export batch
+                                            payment</a></li>
+                                        <li><a target="_self"
+                                               href="#">BACS
+                                            (Bankers' Automated Clearing Services)</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </h2>
+                        <div class="fields">
+                            <label>Your Service User Number / Owner ID number which allows you to pay via the BACS</label>
+                            <p>
+                            <div class="col-lg-4 paddingLeft">
+                                <input type="text" class="form-control" placeholder="">
+                            </div>
+                            </p>
+
+                        </div>
+                    </div>
+                    <div class="pad largeHeadingAddresses DefaultTax ">
+                        <h2>Lock Dates
+                            <a href="#"> <i class="fa fa-question questionCircle" aria-hidden="true" id="btn4"></i></a>
+                            <div class="lockDate" id="lock_date_dates">
+                                <div class="headTitle">
+                                    <span id="close_model_dates"> <img src="/img/closeButton.png"></span>
+                                    <span>Lock Dates</span>
+                                </div>
+                                <div class="bodyTitle">
+                                    <p>If you have the Adviser user role, you can set, update or remove a lock date.</p>
+                                    <p>A lock date stops users changing data before (and including) a specific date.</p>
+                                    <p>The two types of lock date are based on user role. One lock date stops users who
+                                        are not Advisers changing data. The other lock date stops all users, including
+                                        Advisers.</p>
+                                    <p>Lock dates are typically used to prevent data editing when your accountant or
+                                        bookkeeper is preparing your financial records for the year, or at the end of a
+                                        sales tax period.</p>
+                                    <p>When a user has been locked from changing data, they can still do the
+                                        following:</p>
+                                    <ul>
+                                        <li>Create draft invoices, bills and expense claims<br></li>
+                                        <li>Submit invoices, bills and expense claims for approval.</li>
+                                        <li>Save a draft manual journal</li>
+                                    </ul>
+                                    <p><a target="_self" href="#">Set and work with lock dates</a></p>
+                                    <p><a target="_self" href="#">User roles in VS1Cloud</a></p>
+                                </div>
+                            </div>
+                        </h2>
+                        <div class="fields">
+                            <p>Lock dates stop data from being changed for a specific period. You can change these at any time.</p>
+                            <label>Stop all users (except advisers) making changes on and before</label>
+                            <div class="top-spacer">
+                                <select class=" form-control">
+                                    <option>Based on last sale</option>
+                                    <option>Tax inclusive</option>
+                                    <option>Tax exclusive</option>
+                                    <option>No tax</option>
+                                </select>
+                            </div>
+                            <div class="top-spacer">
+                                <label>
+                                    Stop all users making changes on and before
+                                </label>
+                                <select class=" form-control">
+                                    <option>Based on last sale</option>
+                                    <option>Tax inclusive</option>
+                                    <option>Tax exclusive</option>
+                                    <option>No tax</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pad largeHeadingAddresses timeZone">
+                        <h2>Time zone</h2>
+                        <div class="fields">
+                            <div class="">
+                                <select class=" form-control">
+                                    <option>(UTC) Coordinated Universal Time</option>
+                                    <option>(UTC+00:00) Casablanca</option>
+                                    <option>(UTC+00:00) Dublin, Edinburgh, Lisbon, London</option>
+                                    <option>(UTC+00:00) Monrovia, Reykjavik</option>
+                                </select>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <div class="financalFooter">
+                        <button type="button" class="btn btn-success">Save</button>
+                        <button type="button" class="btn cancel_new">Cancel</button>
+                    </div>
+                </div>
+            </main>
+        </div>
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h3 class="modal-title">Change financial year end</h3>
+                    </div>
+                    <div class="modal-body">
+                        <p>This will have considerable impact on fixed assets.</p>
+                        <p>All depreciation will be reversed, assets will need to be manually updated, and manual
+                            journals may need to be created for adjustments.</p>
+                        <p>Make sure you <a href="#">follow these steps
+                            in the help guide</a> before making changes.</p>
+                        <p>Financial year end (advanced)</p>
+                        <div class="advanced">
+                            <select>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                            </select>
+                            <select>
+                                <option>January</option>
+                                <option>February</option>
+                                <option>March</option>
+                                <option>April</option>
+                            </select>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Done</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <script>
+      modalDraggable();
+   </script>
+</template>

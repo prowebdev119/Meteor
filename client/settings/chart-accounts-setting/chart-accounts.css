@@ -1,0 +1,782 @@
+.chartAccountSettings {
+    width: 100%;
+    float: left;
+}
+
+.chartAccountSettingsBg{
+    width: 100%;
+    float: left;
+    background: #fff;
+}
+
+.chartAccountSettings .active_page {
+    border-bottom: 0;
+}
+
+.chartAccountSettings #close_helpbutton {
+    margin-top: -9px;
+    margin-bottom: -33px !important;
+}
+
+.chartAccountSettings .accountsDiv {
+    width: 100%;
+    float: left;
+    background: #f3f3f3
+}
+
+.chartAccountSettings .secondaryButtons {
+    float: left;
+    width: 100%;
+    /* New */
+    /* white-space: nowrap;
+overflow-x: auto; */
+/* height: 35px; */
+}
+
+.chartAccountSettings .secondaryButtons button.btn.btn-default {
+    font: bold 12px Helvetica, sans-serif;
+    color: #048abb;
+    background-color: #fafafa;
+    border-color: #ccc;
+    border-radius: 3px;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: rgba(255, 255, 255, 0.3) 0 0 0 1px inset;
+    box-sizing: border-box;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+    margin:0px;
+    padding: 6px 12px;
+    position: relative;
+    text-align: center;
+    -webkit-transition: opacity .2s ease-out;
+    transition: opacity .2s ease-out;
+    white-space: nowrap;
+    -moz-user-select: -moz-none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiP…dpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==);
+    background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #e6eaec));
+    background: -webkit-linear-gradient(#ffffff, #e6eaec);
+    background: -webkit-linear-gradient(#ffffff, #e6eaec);
+    background: linear-gradient(#ffffff, #e6eaec);
+}
+
+.chartAccountSettings .secondaryButtons button.pdfIcons i {
+    color: #cc0001;
+}
+
+.chartAccountSettings .contacts_container {
+    border: 0;
+}
+
+.chartAccountSettings .DashboardMore {
+    float: left;
+    width: 100%;
+    position: relative;
+}
+
+.chartAccountSettings .DashboardMore a {
+    color: #d26001;
+    width: 86px;
+    border: none;
+    background: transparent url(img/this.gif) no-repeat 100% 0;
+    text-decoration: none;
+    font-size: 11px;
+    position: absolute;
+    top: 11px;
+}
+
+.chartAccountSettings .PageContents .nav > li > a {
+    position: relative;
+    display: block;
+    padding: 5px 15px;
+    font-size: 12px;
+    font-weight: normal;
+    border: 1px solid #e8e8e8;
+    border-bottom: 0;
+}
+
+.chartAccountSettings .bubbleToolbar {
+    width: 100%;
+    float: left;
+    background-image: url("img/custom-contact-links.png");
+    height: 40px;
+    padding: 4px 10px 9px;
+    margin: 10px 0 0;
+}
+
+.chartAccountSettings .bubbleToolbar button.btn.btn-default {
+
+    color: #999;
+    background-color: #fafafa;
+    border-color: #ccc;
+    border-radius: 3px;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: rgba(255, 255, 255, 0.3) 0 0 0 1px inset;
+    box-sizing: border-box;
+    cursor: pointer;
+    margin: 0;
+    padding: 3px 12px;
+    position: relative;
+    text-align: center;
+    -webkit-transition: opacity .2s ease-out;
+    transition: opacity .2s ease-out;
+    white-space: nowrap;
+    -moz-user-select: -moz-none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiP…dpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==);
+    background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #e6eaec));
+    background: -webkit-linear-gradient(#ffffff, #e6eaec);
+    background: -webkit-linear-gradient(#ffffff, #e6eaec);
+    background: linear-gradient(#ffffff, #e6eaec);
+    text-shadow: inherit;
+    margin-right: 10px;
+    font: 700 11px/15px Tahoma,sans-serif;
+
+}
+
+.chartAccountSettings .bubbleToolbar span {
+    float: none;
+    font-size: 11px;
+    color: #868686;
+}
+
+.chartAccountSettings .bubbleToolbar .serachBar {
+    float: right;
+    padding-top: 2px;
+}
+
+.chartAccountSettings .bubbleToolbar .serachBar input {
+    height: 22px;
+    color: #868686;
+    border: 1px solid #7f9db9;
+    width: 252px;
+    padding-left: 4px;
+}
+
+.chartAccountSettings .bubbleToolbar .serachBar button.btn.btn-default {
+    margin-left: 4px;
+    margin-right: 12px;
+    float: right;
+    height: 22px;
+    padding: 0 15px;
+    color: #009acf;
+}
+
+.chartAccountSettings table.standard thead tr td {
+    background-color: #f2f6ff;
+    border-bottom: 1px solid #b7c0c7;
+    font-weight: 700;
+    color: #048fc2;
+
+}
+
+.chartAccountSettings table.standard tr td {
+    padding: 5px;
+    float: none;
+    border-bottom: 1px solid #ddd;
+    vertical-align: middle;
+    font-size: 11px;
+    font-weight: 400;
+}
+
+.chartAccountSettings table.standard tbody tr td {
+    white-space: normal;
+    overflow: hidden;
+    max-width: 200px;
+}
+
+.chartAccountSettings table.standard {
+    width: 100% !important;
+    margin-bottom: 20px;
+    float: left;
+}
+
+
+
+.chartAccountSettings table.helpvideos p:last-child {
+    border: 0;
+}
+
+#addNewAccount .accountType select{
+    width: 70%;
+    float: left;
+    font-size: 11px;
+}
+#addNewAccount .accountType input{
+    font-size: 11px;
+}
+#addNewAccount .accountType label{
+    float: left;
+    width: 100%;
+    font-weight: 700;
+    font-size: 11px;
+    margin-top:5px;
+    margin-bottom: 0;
+}
+#addNewAccount .accountType p{
+    color: #707070;
+    font-size: 11px;
+    font-weight: 400;
+    font-family: Tahoma,Sans-Serif;
+    float:left;
+    width: 100%;
+    margin-bottom: 0;
+}
+
+
+
+#addNewAccount .modal-dialog {
+    width: 739px;
+    margin: 30px auto;
+}
+
+#addNewAccount .modal-footer {
+    padding: 15px;
+    text-align: right;
+    border-top: 0;
+    float: right;
+    width: 100%;
+}
+
+/* Update Account */
+#editAccountDetails .accountType select{
+    width: 70%;
+    float: left;
+    font-size: 11px;
+}
+#editAccountDetails .accountType  input{
+    font-size: 11px;
+    /*width: 70%;*/
+}
+
+
+#editAccountDetails .accountType label{
+    float: left;
+    width: 100%;
+    font-weight: 700;
+    font-size: 12px;
+    margin-top:5px;
+    margin-bottom: 0;
+}
+#editAccountDetails .accountType p{
+    color: #707070;
+    font-size: 11px;
+    font-weight: 400;
+    font-family: Tahoma,Sans-Serif;
+    float:left;
+    width: 100%;
+    margin-bottom: 0;
+}
+
+
+
+#editAccountDetails .modal-dialog {
+    width: 739px;
+    margin: 30px auto;
+}
+
+#editAccountDetails .modal-footer {
+    padding: 15px;
+    text-align: right;
+    border-top: 0;
+    float: right;
+    width: 100%;
+}
+
+.modifyAccounts p{
+    float: left;
+    width: 300px;
+    margin-left: 0;
+    color: #666;
+    font-size: 11px;
+}
+
+#editBankAccountDetails .modal-dialog{
+    width: 398px;
+    overflow-y: scroll;
+    height: 570px;
+}
+
+
+#editBankAccountDetails label{
+    float: left;
+    width: 100%;
+    font-weight: 700;
+    font-size: 11px;
+    margin-top:5px;
+    margin-bottom: 0;
+}
+#editBankAccountDetails p{
+    color: #707070;
+    font-size: 11px;
+    font-weight: 400;
+    font-family: Tahoma,Sans-Serif;
+    float:left;
+    width: 100%;
+    margin-bottom: 0;
+}
+#editBankAccountDetails input , #editBankAccountDetails select {
+    font-size: 11px;
+    height: 25px;
+    margin-top: 6px;
+    float: left;
+    width: 100%;
+}
+
+
+#editBankAccountDetails h4.modal-title {
+    font: 700 18px Helvetica,sans-serif;
+
+}
+
+
+#editBankAccountDetails .BSB {
+    float: left;
+    width: 40%;
+}
+#editBankAccountDetails .accountNumber {
+    float: right;
+    width: 40%;
+}
+
+#editBankAccountDetails .modal-content{
+    float: left;
+    width: 100%;
+}
+
+#editBankAccountDetails .deUser {
+    float: left;
+    width: 100%;
+    margin-top: 10px;
+}
+
+#editBankAccountDetails .form-group {
+    margin-bottom: 15px;
+    border-bottom: 1px solid #ddd;
+    border-top: 1px solid #fff;
+    margin-right: 0;
+    margin-left: 0;
+    padding: 0;
+    padding-bottom: 21px;
+    float: left;
+    width: 100%;
+    margin-bottom: 0;
+}
+
+
+#editBankAccountDetails .modal-footer {
+    padding: 15px;
+    text-align: right;
+    border-top: 1px solid #e5e5e5;
+    float: right;
+    width: 100%;
+    margin-top: 10px;
+}
+
+#editBankAccountDetails .form-group.checkboxDiv{ padding: 0;border: 0}
+
+
+
+
+#editBankAccountDetails .form-group.checkboxDiv input{
+    font-size: 11px;
+    height: initial;
+    width: initial;
+    margin-top: 2px;
+    float: left;
+    margin-right: 3px;
+}
+
+#editBankAccountDetails .userOption {
+    float: left;
+    width: 100%;
+    margin-top: 5px;
+}
+
+.chartAccountSettings .addActivityStatement {
+    position: absolute;
+    left:0px;
+    width: 450px;
+    background: #fff;
+    min-height: 207px;
+    z-index: 9;
+    top: 30px;
+    display: none;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+    border-radius: 0 0 5px 5px;
+    border-top: 0;
+}
+
+a#showModal2{
+    color: #d26001;
+    font: normal 11px Tahoma,sans-serif!important;
+}
+a#showModal2:hover{
+    text-decoration: none;
+}
+
+.addActivityStatement .headTitle {
+    background: #f7850e;
+    padding: 10px;
+    color: #fff;
+}
+
+.addActivityStatement button.close {
+    opacity: 1;
+    color: #fff;
+}
+
+.addActivityStatement .headTitle span {
+    font: 700 18px Helvetica,sans-serif;
+    padding: 12px 15px;
+}
+
+.addActivityStatement .bodyTitle {
+    padding: 15px;
+    background-color: #fbfbfb;
+    font-size: 11px;
+    height: 350px;
+    float: left;
+}
+
+.addActivityStatement .bodyTitle p {
+    color: #000000 !important;
+    float: left;
+    width: 100%;
+    padding-top: 10px;
+    padding-top: 0;
+    margin-top: 0;
+}
+.addActivityStatement .bodyTitle ul {
+    float: left;
+    margin: 0;
+    padding-left: 19px;
+}
+
+.addActivityStatement .bodyTitle ul li {
+    line-height: 140%;
+    padding-bottom: 10px;
+    float: left;
+    width: 100%;
+    color: #000;
+    font-size: 11px;
+    font-weight: normal;
+}
+.addActivityStatement .bodyTitle ul li a{
+    color: #048fc2 !important;
+}
+
+
+.addActivityStatement .bubbleToolbar span {
+    color: #666;
+    font-size: 11px;
+}
+
+.chartAccountSettings .tab-pane.fade {
+    position: relative;
+    margin-top: 8px;
+
+}
+
+.chartAccountSettings span#closeCurrModel2 {
+    float: right;
+    height: 44px;
+    width: 45px;
+    margin-left: 0;
+    border-left: 1px solid #ddd;
+}
+
+.chartAccountSettings span#closeCurrModel2:hover {
+    background: #ec7003;
+}
+
+.chartAccountSettings .bubbleToolbar button.btn-delete {
+    color: #c91d1d !important;
+}
+
+.chartAccountSettings .bubbleToolbar button.btn-selected {
+    color: #337ab7 !important;
+}
+
+.accountType .dropdown-add-rec input {
+    background: transparent;
+    border: 0;
+    border-radius: initial;
+    box-shadow: inherit;
+}
+
+.accountType .dropdown-add-rec {
+    border: 1px solid #ccc;
+    width: 70%;
+    float: left;
+    font-size: 11px;
+    float: left;
+    position: relative;
+}
+
+.accountType ul.dropdown-menu li {
+    cursor: pointer;
+    border: 0;
+    border-bottom: 1px solid #e9edf2;
+    font-size: 12px;
+    margin: 0;
+    float: left;
+    width: 100%;
+    background-color: #fff;
+    border: 1px solid #888!important;
+    text-align: left;
+    padding: 10px 10px 10px!important;
+    position: relative;
+    text-overflow: ellipsis;
+    border-bottom: 1px solid #e9edf2!important;
+    border-width: 0 0 1px!important;
+    border: 1px solid #fff;
+    font-weight: normal;
+}
+
+#editAccountDetails .accountType input[type="text"] {
+    width: 283px;
+}
+
+.chartAccountSettings div#tableTopDiv {
+    margin-top: -6px;
+    position: relative;
+    /* width: 940px !important; */
+    /* Rasheed New */
+    width: 100% !important;
+}
+.chartAccountSettings .dataTables_length {
+    position: absolute;
+    z-index: 9;
+    bottom: 0;
+    font-size: 12px;
+}
+
+.chartAccountSettings div.dataTables_wrapper div.dataTables_length select {
+    width: 55px;
+    display: inline-block;
+    padding: 0;
+}
+.chartAccountSettings #wrapper_main .dataTables_paginate {
+    padding-top: 3px;
+    padding-right: 9px;
+}
+
+#delete-modal .MessageLine {
+    margin-bottom: 10px;
+}
+#delete-modal .BlueBox {
+    background-color: #009acf;
+    padding: 2px 6px;
+    color: #fff;
+    font-weight: 700;
+    margin-right: 4px;
+}
+#delete-modal .BoldBlueText {
+    color: #009acf;
+    font-weight: 700;
+}
+#delete-modal p ,
+#archive-accounts-modal p ,
+#change-tax-rate-modal p {
+    padding-bottom: 10px;
+    line-height: 140%;
+    margin: 0;
+
+}
+#delete-modal .modal-footer ,
+#delete-modal .modal-body  ,
+#archive-accounts-modal .modal-footer ,
+#archive-accounts-modal .modal-body,
+#change-tax-rate-modal .modal-body{
+    background-color: #fbfbfb;
+    font-size: 12px;
+    border: 0;
+    color: #444;
+    border-radius: 3px;
+
+}
+#delete-modal .modal-footer{
+    padding-top: 0;
+}
+#delete-modal .modal-body{
+    padding-bottom: 0;
+}
+#change-tax-rate-modal .modal-body {
+    display: inline-block;
+    width: 100%;
+}
+
+
+#delete-modal .footer-div{
+    border-top: solid 1px #CCCCCC;
+    margin-top: 10px;
+    padding-top: 10px;
+    text-align: left;
+}
+#delete-modal .footer_button{
+    margin-top: 20px;
+}
+
+#archive-accounts-modal .modal-dialog {
+    width: 370px;
+    margin: 30px auto;
+}
+#archive-accounts-modal .modal-title,
+#change-tax-rate-modal .modal-title{
+    margin: 0;
+    line-height: 1.42857143;
+    font: 700 18px Helvetica,sans-serif;
+    padding: 12px 15px;
+    display: block;
+}
+
+#archive-accounts-modal .modal-header .close,
+#change-tax-rate-modal .modal-header .close{
+    margin-top: 0;
+    height: 46px;
+    width: 46px;
+    margin-left: 0;
+    border-left: 1px solid #ddd;
+    opacity: 1;
+}
+
+#archive-accounts-modal .modal-header,
+#change-tax-rate-modal .modal-header{
+    padding: 0;
+
+}
+
+#change-tax-rate-modal .modal-dialog {
+    width:240px;
+    margin: 30px auto;
+}
+
+#change-tax-rate-modal .footer_button button {
+    width: 49%;
+}
+
+#change-tax-rate-modal .footer_button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    float: left;
+    width: 100%;
+    margin-top: 10px;
+}
+#change-tax-rate-modal .modal-body select {
+    width: 100%;
+}
+.chartAccountSettings .dropdown-menu{
+    background: #fff !important;
+    border: 1px solid #888;
+}
+.chartAccountSettings .dropdown-add-rec {
+    background: #fff;
+    height: 17px;
+    border: solid 1px #ccc;
+    width:100%;
+}
+
+.chartAccountSettings .dropdown-add-rec input {
+    background: transparent;
+    border: 0 !important;
+    border-radius: initial;
+    box-shadow: inherit;
+    height: 22px !important;
+    padding-left: 3px;
+    width: 100% !important;
+    font-weight: normal;
+}
+.chartAccountSettings .modal-body p{
+  font-size: 12px!important;
+}
+.chartAccountSettings .dropdown-add-rec .input-group-addon img {
+    width: 15px;
+    height: 17px;
+}
+.chartAccountSettings ul.dropdown-menu li:hover {
+    background: #dfe8f6;
+    cursor: pointer;
+    border: 1px dotted #a3bae9;
+}
+
+.chartAccountSettings ul.dropdown-menu li {
+    cursor: pointer;
+    font-size: 12px;
+    margin: 0;
+    float: left;
+    width: 100%;
+    background-color: #fff;
+    text-align: left;
+    padding: 4px 0 4px 2px;
+    position: relative;
+    text-overflow: ellipsis;
+    border: 1px dotted #fff;
+    font-weight: normal;
+}
+
+
+.chartAccountSettings #soselect_cur {
+    display: block !important;
+    width: 100% !important;
+}
+.chartAccountSettings .table-search-input{
+    font-size:12px;
+}
+
+.chartAccountSettings table#chart-accounts-table tr.default.current-account-row.selected {
+    background-color: #e6f5fa !important;
+}
+#addNewAccount .modal-title {
+    margin: 0;
+    line-height: 1.42857143;
+    font: 700 18px Helvetica,sans-serif;
+    padding: 12px 15px;
+    display: block;
+}
+#addNewAccount .modal-header {
+    padding: 0;
+}
+#addNewAccount .modal-header .close {
+    margin-top: 0;
+    height: 46px;
+    width: 46px;
+    margin-left: 0;
+    border-left: 1px solid #ddd;
+    opacity: 1;
+    color: #d0cdcd;
+}
+#addNewAccount .modal-body {
+    background: #fbfbfb;
+}
+
+#addNewAccount .form-group {
+   margin-bottom:5px;
+}
+
+#addNewAccount .form-group.label-div label {
+    font-weight: normal !important;
+    float: left;
+    margin-top: 7px;
+}
+#addNewAccount .form-group.label-div input {
+    float: left;
+    margin-right: 5px;
+    margin-top: 0;
+}
+
+#addNewAccount .modal-footer button.btn.btn-cancel {
+    color: #fff;
+}
+
+#addNewAccount div#account-dropdown .input-group-addon img{
+    height: 17px;
+}

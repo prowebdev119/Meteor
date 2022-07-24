@@ -1,0 +1,73 @@
+<template name="addnewdepartment">
+  <div class="modal fade" id="myDeptModal" role="dialog">
+      <div class="modal-dialog">
+
+          <!-- Modal content-->
+          <div class="modal-content dept-content" >
+              <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">x</button>
+                  <h4 class="modal-title">Add New Department</h4>
+              </div>
+              <div class="modal-body">
+                  <label><b>Department Name</b></label>
+                  <p>The name as you would like it to appear in VS1Cloud </p>
+                  <input type="text" class="form-control" id="deptName" name="deptName">
+                  <label><b>Department Description</b></label>
+                    <input type="text" class="form-control" id="deptDescription" name="deptDescription">
+
+                    <label><b>Site Code</b></label>
+                      <input type="text" class="form-control" id="siteCode" name="siteCode">
+                      <!--
+                  <label><b>Header Department</b></label>
+
+                  <div class="dropdown-add-rec">
+                      <input type="text" class="select-deptheader" id="deptheader" name="deptheader" value="Standard">
+                      <div class="" data-toggle="dropdown">
+                          <img src="/img/dropdown_icon.png">
+                      </div>
+
+                  </div>
+                -->
+                  <!--
+                  <select class="form-control">
+                      <option>Sales</option>
+                      <option>Purchases</option>
+                      <option>Exempt Sales</option>
+                      <option>Exempt Purchases</option>
+                      <option>EC Sales Goods</option>
+                      <option>EC Sales Services</option>
+                      <option>EC Purchases</option>
+                      <option>EC Acquisitions</option>
+                      <option>Reverse Charges</option>
+                      <option>MOSS Sales</option>
+                  </select>
+                -->
+                <!--
+                  <label><b>Tax Components</b></label>
+                  <div class="taxComponents">
+                      <input type="text" id="taxDescription" name="taxDescription" placeholder="GST">
+
+                      <input type="text" placeholder="0" id="taxRate" name="taxRate" class="taxRate">
+                      <span>%</span>
+                  </div>
+                  <div class="taxRate">
+                      <a href="#"> <i class="fa fa-level-up"></i> Add a Component</a>
+                      <p id="taxtotalPerc" name="taxtotalPerc">0.00 %</p>
+                      <p>Total tax rate</p>
+                  </div>
+                -->
+              </div>
+
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-success" data-dismiss="modal" id="create-NewDepartment">Save</button>
+                  <button type="button" class="btn" data-dismiss="modal">Cancel</button>
+
+              </div>
+          </div>
+
+      </div>
+  </div>
+  <script>
+    modalDraggable();
+ </script>
+</template>

@@ -1,0 +1,152 @@
+<template name="addTask">
+  <div class="no-modal">
+    <div id="newTaskRowWrapper" class="col-12 newTaskRow no-modal" style="display: none;">
+      <div id="addTaskModal" class="row addTaskModal no-modal">
+        <div class="col-12 no-modal">
+          <div class="form-group no-modal">
+            <label class="no-modal">Task Name</label>
+            <input class="form-control no-modal" type="text" id="add_task_name" name="" autocomplete="off">
+          </div>
+        </div>
+        <div class="col-12 no-modal">
+          <div class="form-group no-modal">
+            <label class="no-modal">Task Description</label>
+            <textarea class="form-control no-modal" rows="4" id="add_task_description" name=""
+              autocomplete="off"></textarea>
+          </div>
+        </div>
+        <div class="col-6 no-modal" style="display: inline-flex;">
+          <div class="dropdown taskDropdownSchedule no-modal">
+            <button class="btn btn-primary dropdown-toggle btnSchedule no-modal" type="button" id=""
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="far fa-calendar-minus no-modal" style="margin-right: 8px;"></i>Schedule
+            </button>
+            <div class="dropdown-menu no-modal" aria-labelledby="dropdownMenuButton" style="width: 275px;">
+              <a class="dropdown-item no-modal setScheduleTodayAdd">
+                <i class="fas fa-calendar-day text-success no-modal" style="margin-right: 8px;"></i>Today
+                <div class="float-right no-modal" style="width: 40%; text-align: end; color: #858796;">
+                  {{getTodayDate 'ddd'}}</div>
+              </a>
+              <a class="dropdown-item no-modal setScheduleTomorrowAdd">
+                <i class="fas fa-sun text-warning no-modal" style="margin-right: 8px;"></i>Tomorrow
+                <div class="float-right no-modal" style="width: 40%; text-align: end; color: #858796;">
+                  {{getTomorrowDay}}</div>
+              </a>
+              <a class="dropdown-item no-modal setScheduleWeekendAdd">
+                <i class="fas fa-couch text-primary no-modal" style="margin-right: 8px;"></i>This Weekend
+                <div class="float-right no-modal" style="width: 40%; text-align: end; color: #858796;">Sat</div>
+              </a>
+              <a class="dropdown-item no-modal setScheduleNexweekAdd">
+                <i class="fas fa-calendar-alt text-danger no-modal" style="margin-right: 8px;"></i>Next Week
+                <div class="float-right no-modal" style="width: 40%; text-align: end; color: #858796;">
+                  {{getNextMonday}}
+                </div>
+              </a>
+              <a class="dropdown-item no-modal setScheduleNodateAdd">
+                <i class="fas fa-ban text-secondary no-modal" style="margin-right: 8px;"></i>
+                No Date</a>
+              <div class="dropdown-divider no-modal"></div>
+
+              <div class="form-group no-modal" data-toggle="tooltip" data-placement="bottom"
+                title="Date format: YYYY-MM-DD" style="margin: 6px 20px; margin-top: 14px;">
+                <div class="input-group date no-modal" style="cursor: pointer;">
+                  <input type="text" class="form-control crmEditDatepicker no-modal" autocomplete="off">
+                  <div class="input-group-addon no-modal">
+                    <span class="glyphicon glyphicon-th no-modal" style="cursor: pointer;"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dropdown taskDropdownFilter no-modal">
+            <button class="btn btn-primary dropdown-toggle btnSchedule no-modal"
+              style="background-color: rgba(0,0,0,0);" type="button" id="" data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="false">
+              <span class="dropdownFilter no-modal"><i class="fas fa-inbox text-primary"
+                  style="margin-right: 5px;"></i>All
+                Tasks</span>
+            </button>
+            <div class="dropdown-menu no-modal" id="goProjectWrapper" aria-labelledby="dropdownMenuButton"
+              style="width: 275px;">
+            </div>
+          </div>
+        </div>
+        <div class="col-6 no-modal" style="display: inline-flex; justify-content: end;">
+          <div class="dropdown no-modal">
+            <i class="fas fa-tag taskModalAction taskModalActionDropdown dropdown-toggle no-modal"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Add label(s)..."></i>
+            <div class="dropdown-menu dropdown-menu-right no-modal" id="addTaskLabelWrapper"
+              aria-labelledby="dropdownMenuButton" style="width: 200px;">
+            </div>
+          </div>
+          <div class="dropdown no-modal">
+            <i class="far fa-flag taskModalAction taskModalActionDropdown dropdown-toggle no-modal"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Set the priority..."></i>
+            <div class="dropdown-menu dropdown-menu-right no-modal" aria-labelledby="dropdownMenuButton"
+              style="width: 200px;">
+              <a class="dropdown-item text-danger no-modal" href="#"><i class="fas fa-tag no-modal"
+                  style="margin-right: 8px;"></i>Priority 1
+                <div style="width: 20%; float: right;" class="no-modal">
+                  <div class="custom-control custom-checkbox chkBox pointer no-modal"
+                    style="width: 15px; float: right;">
+                    <input class="custom-control-input chkBox chkPriorityAdd pointer no-modal" type="checkbox"
+                      id="chkPriority3" value="3">
+                    <label class="custom-control-label chkBox pointer no-modal" for="chkPriority3"></label>
+                  </div>
+                </div>
+              </a>
+              <a class="dropdown-item text-warning no-modal" href="#"><i class="fas fa-tag no-modal"
+                  style="margin-right: 8px;"></i>Priority 2
+                <div style="width: 20%; float: right;" class="no-modal">
+                  <div class="custom-control custom-checkbox chkBox pointer no-modal"
+                    style="width: 15px; float: right;">
+                    <input class="custom-control-input chkBox chkPriorityAdd pointer no-modal" type="checkbox"
+                      id="chkPriority2" value="2">
+                    <label class="custom-control-label chkBox pointer no-modal" for="chkPriority2"></label>
+                  </div>
+                </div>
+              </a>
+              <a class="dropdown-item text-primary no-modal" href="#"><i class="fas fa-tag no-modal"
+                  style="margin-right: 8px;"></i>Priority 3
+                <div style="width: 20%; float: right;" class="no-modal">
+                  <div class="custom-control custom-checkbox chkBox pointer no-modal"
+                    style="width: 15px; float: right;">
+                    <input class="custom-control-input chkBox chkPriorityAdd pointer no-modal" type="checkbox"
+                      id="chkPriority1" value="1">
+                    <label class="custom-control-label chkBox pointer no-modal" for="chkPriority1"></label>
+                  </div>
+                </div>
+              </a>
+              <a class="dropdown-item text-secondary no-modal" href="#"><i class="fas fa-tag no-modal"
+                  style="margin-right: 8px;"></i>Priority 4
+                <div style="width: 20%; float: right;" class="no-modal">
+                  <div class="custom-control custom-checkbox chkBox pointer no-modal"
+                    style="width: 15px; float: right;">
+                    <input class="custom-control-input chkBox chkPriorityAdd pointer no-modal" type="checkbox"
+                      id="chkPriority0" value="0">
+                    <label class="custom-control-label chkBox pointer no-modal" for="chkPriority0"></label>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+          <i class="far fa-bell taskModalAction no-modal" data-toggle="tooltip" data-placement="bottom"
+            title="Add reminder(s)..."></i>
+        </div>
+        <div class="col-12 no-modal" style="margin-top: 12px;">
+          <button class="btn btn-success btnSaveAddTask no-modal" type="button" style=""><i class="fa fa-save no-modal"
+              style="margin-right: 5px;"></i>Add Task</button>
+          <button class="btn btn-secondary btnCancelAddTask no-modal" type="button" style="margin-left: 8px;"><i
+              class="fa fa-close no-modal" style="margin-right: 5px;"></i>Cancel</button>
+          <input type="hidden" id="addProjectID" value="11" />
+        </div>
+      </div>
+    </div>
+    <div class="col-12">
+      <button type="button" class="btn btn-link btnAddSubTask" style="margin: 16px;"><i class="fas fa-plus"
+          style="margin-right: 8px;"></i> Add Task</button>
+    </div>
+  </div>
+
+</template>

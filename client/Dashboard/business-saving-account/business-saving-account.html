@@ -1,0 +1,72 @@
+<template name="businessSavingAccount">
+  <script>
+var months    = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+var now       = new Date();
+var thisMonth = months[now.getMonth()]; // getMonth method returns the month of the date (0-January :: 11-December)
+var outputbsa = document.getElementById('outputbsa');
+
+
+ if(outputbsa.textContent !== undefined) {
+    outputbsa.textContent = thisMonth;
+  }
+  else {
+    outputbsa.innerText = thisMonth;
+  }
+</script>
+
+<script>
+jQuery(document).ready(function() {
+    jQuery('.bbshiddendiv').hide();
+    jQuery("#bbs_linkcontent a").css('cursor', 'pointer').click(function() {
+        var $this = $(this);
+        $this.next("div").fadeToggle(200);
+        $('.bbshiddendiv').not($this.next("div")).fadeOut(800);
+    });
+});
+</script>
+
+    <div class="dash2" id="dash2">
+
+      <div id="bbs_linkcontent">
+      <a href="#" class="toggle"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></a>
+      <div class="bbshiddendiv">
+        <div class="bankwidetop"><a href="#" class="toggle"><i class="fa fa-times" aria-hidden="true"></i></a></div>
+          <div class="bankcol1">
+            <span class="simpleHeading">Find</span>
+            <a href="/bank/bank-transactions" id="bankhiddenlinks">Account Transactions</a>
+            <a href="/bank/StatementLines">Bank Statements</a>
+          </div>
+          <div class="bankcol2">
+            <span class="simpleHeading">New</span>
+            <a href="/Banking/Account/select/spend">Spend Money</a>
+            <a href="/Banking/Account/select/receive">Receive Money</a>
+            <a href="/Banking/Account/select/transfer">Transfer Money</a>
+          </div>
+          <div class="bankcol3">
+            <span class="simpleHeading" >Reconcile</span>
+            <span class="noredirectLink dashDropdown" >Reconcile Account</span>
+            <a href="/bank/bankRules">Bank Rules</a>
+            <!-- <span class="noredirectLink dashDropdown" >Reconciliation Report</span> -->
+            <span class="noredirectLink dashDropdown" >Import a Statement</span>
+          </div>
+          <div class="bankwide">Business Savings Account</div>
+        </div>
+      </div>
+
+        <h3><a href="/bank/bank-transactions">Business Savings Account</a></h3>
+        <!-- <h4>000-000-000000</h4> -->
+        <hr>
+        <table class="dash_account_watchlist">
+            <tbody>
+            <tr>
+                <!-- <td><span><a class="noredirectLink" href="javascript:void(0)" id="dash_Advert">
+                                        <img src="/icons/checkSign.png" width="18px" class=""> Reconciled
+                                    </a></span></td> -->
+                <!-- <td><span><a class="noredirectLink" href="javascript:void(0)">Statement balance (<span id="outputbsa"></span>)</a></span></td> -->
+                <td><span id="dash_bsa_statement"></span></td>
+            </tr>
+            </tbody>
+        </table>
+        <div id="savingAccount"></div>
+    </div>
+</template>

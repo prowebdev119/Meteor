@@ -1,0 +1,116 @@
+<template name="smssettings">
+    <div class="container-fluid">
+        <div class="fullScreenSpin" style="display:none;">
+            <div class="spinner"></div>
+        </div>
+        <h3 class="text-dark mb-4">SMS Settings</h3>
+        <div class="row d-xl-flex justify-content-center justify-content-xl-center mb-3">
+            <div class="col">
+                <div align="center">
+                    <div class="card shadow mb-3" style="max-width: 800px;">
+                        <div class="card-header py-3" style="background-color: rgb(248,249,252);">
+                            <div align="left">
+                                <p class="text-primary m-0 font-weight-bold">Twilio Information
+
+                                    <a role="button" data-toggle="modal" href="#helpViewModal" style="font-size: 16px; float: right;">Help <i class="fa fa-question-circle-o" style="font-size: 16px;"></i></a>
+                                </p>
+
+                                <!-- Start Help View Modal -->
+                                <div class="modal fade" role="dialog" tabindex="-1" id="helpViewModal">
+                                    <div class="modal-dialog modal-sm" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header" style="padding-bottom: 8px;">
+                                                <h4>Help</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p class="text-center text-muted"><a role="button" data-toggle="modal" href="#helpModal" class="btn btn-primary helpModal">View Help Video</a></p>
+                                                <p class="text-center text-muted"><a href="https://vs1forum.com/" target="_blank" class="btn btn-primary">Download Help File</a></p>
+                                                <p class="text-center text-muted"><button class="btn btn-primary" type="button">Employ Advisor</button></p>
+                                                <p class="text-center text-muted" style="margin: 0px;"><a href="https://vs1forum.com/ucp.php?mode=register&cloudusername={{loggedCompany}}" target="_blank" class="btn btn-primary">Go To Forum</a></p>
+                                            </div>
+                                            <div class="modal-footer" style="padding: 6px;"><button class="btn btn-light" data-dismiss="modal" type="button">Close</button></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End Help View Modal -->
+                            </div>
+                        </div>
+                        <div class="card-body text-center">
+                            <form>
+                                <div class="d-xl-flex flex-column justify-content-xl-center" style="margin-bottom: 10px;">
+                                    <div class="d-sm-flex d-xl-flex flex-column justify-content-sm-center align-items-sm-center justify-content-xl-center align-items-xl-center" style="padding: 10px;">
+                                        <div align="center" style="width: 100%;">
+                                            <button class="btn btn-primary" type="button" id="twilioSignUp"><i class="fa fa-phone" style="margin-right: 8px;"></i>Twilio Sign Up</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="margin-top: 10px;">
+                                    <div class="form-row">
+                                        <div class="col">
+                                            <div align="left">
+                                                <div class="form-group d-xl-flex flex-column justify-content-xl-start align-items-xl-start"><label>Account ID</label>
+                                                    <input class="form-control" type="text" id="twilioAccountId" name="twilioAccountId">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div align="left">
+                                                <div class="form-group d-xl-flex flex-column justify-content-xl-start align-items-xl-start"><label>Account Token</label>
+                                                    <input class="form-control" type="text" id="twilioAccountToken" name="twilioAccountToken">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col">
+                                            <div align="left">
+                                                <div class="form-group d-xl-flex flex-column align-items-xl-start"><label>Telephone Number</label>
+                                                    <input class="form-control" type="text" id="twilioTelephoneNumber" name="twilioTelephoneNumber">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col"></div>
+                                    </div>
+                                </div>
+                                <div style="margin-top: 10px;">
+                                    <div class="form-row">
+                                        <div class="col">
+                                            <div align="left">
+                                                <div class="form-group d-xl-flex flex-column justify-content-xl-start align-items-xl-start"><label>Save Appointment SMS Message</label>
+                                                    <textarea class="border rounded form-control" rows="5" id="saveAppointmentSMS" name="saveAppointmentSMS"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col">
+                                            <div align="left">
+                                                <div class="form-group d-xl-flex flex-column align-items-xl-start"><label>Start Appointment SMS Message</label>
+                                                    <textarea class="border rounded form-control" rows="5" id="startAppointmentSMS" name="startAppointmentSMS"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col">
+                                            <div align="left">
+                                                <div class="form-group d-xl-flex flex-column align-items-xl-start"><label>Stop Appointment SMS Message</label>
+                                                    <textarea class="border rounded form-control" rows="5" id="stopAppointmentSMS" name="stopAppointmentSMS"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <button class="btn btn-success float-left" type="button" id="saveTwilioSettings" name="saveTwilioSettings" style="margin-right: 8px;"><i class="fa fa-save" style="margin-right: 8px;"></i>Save</button>
+                                    <button class="btn btn-secondary float-right btnBack" type="button"><i class="fa fa-close" style="margin-right: 8px;"></i>Cancel</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

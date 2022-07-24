@@ -1,0 +1,75 @@
+<template name="bankAccountsWidget">
+  <script>
+  var months    = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+var now       = new Date();
+var thisMonth = months[now.getMonth()]; // getMonth method returns the month of the date (0-January :: 11-December)
+var output = document.getElementById('output');
+
+ if(output.textContent !== undefined) {
+    output.textContent = thisMonth;
+  }
+  else {
+    output.innerText = thisMonth;
+  }
+</script>
+
+<script>
+jQuery(document).ready(function() {
+    jQuery('.bbahiddendiv').hide();
+    jQuery("#bb_linkcontent a").css('cursor', 'pointer').click(function() {
+        var $this = $(this);
+        $this.next("div").fadeToggle(200);
+        $('.bbahiddendiv').not($this.next("div")).fadeOut(800);
+    });
+});
+</script>
+
+<div class="dash1" id="dash1">
+
+<div id="bb_linkcontent">
+<a href="#" class="toggle"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></a>
+<div class="bbahiddendiv">
+  <div class="bankwidetop"><a href="#" class="toggle"><i class="fa fa-times" aria-hidden="true"></i></a></div>
+    <div class="bankcol1">
+      <span class="simpleHeading">Find</span>
+      <a href="/bank/bank-transactions" id="bankhiddenlinks">Account Transactions</a>
+      <a href="/bank/StatementLines">Bank Statements</a>
+    </div>
+    <div class="bankcol2">
+      <span class="simpleHeading">New</span>
+      <a href="/Banking/Account/select/spend">Spend Money</a>
+      <a href="/Banking/Account/select/receive">Receive Money</a>
+      <a href="/Banking/Account/select/transfer">Transfer Money</a>
+    </div>
+    <div class="bankcol3">
+      <span class="simpleHeading">Reconcile</span>
+      <span class="noredirectLink dashDropdown">Reconcile Account</span>
+      <a href="/bank/bankRules">Bank Rules</a>
+      <span class="noredirectLink dashDropdown" >Reconciliation Report</span>
+      <span class="noredirectLink dashDropdown" >Import a Statement</span>
+    </div>
+    <div class="bankwide">Business Bank Account</div>
+  </div>
+</div>
+
+      <h3><a href="/bank/bank-transactions">Business Bank Account</a></h3>
+      <!-- <h4>000-000-000000</h4> -->
+      <hr>
+        <!-- <a href="" class="dash_links tohide">Reconcile (0) items</a> -->
+        <!-- <div class="dash_invtotals">
+            <table class="dash_account_watchlist">
+                <tbody>
+                <tr>
+                    <td><span><a class="noredirectLink" href="javascript:void(0)" id="dash_Sales">Balance in VS1Cloud</a></span></td>
+                    <td><span id="dashbalance"></span></td>
+                </tr>
+                <tr>
+                    <td><span><a class="noredirectLink" href="javascript:void(0)" id="dash_Sales">Statement balance (<span id="output"></span>)</a></span></td>
+                    <td><span id="dashstatement_balance"></span></td>
+                </tr>
+                </tbody>
+            </table>
+        </div> -->
+        <div id="bankAccount"></div>
+    </div>
+</template>

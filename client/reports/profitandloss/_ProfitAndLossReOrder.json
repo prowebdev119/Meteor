@@ -1,0 +1,90 @@
+[ 
+    {
+        "position": "0",
+        "accountType": "Cost of Goods Sold",
+        "sub-accounts": [
+            {
+                "account-id": "4",
+                "account-type": "Cost of Goods Sold",
+                "position": "0"
+            },
+            {
+                "account-id": "181",
+                "account-type": "Cost of Goods Sold",
+                "position": "1"
+            },
+            {
+                "account-id": "",
+                "account-type": "Cost of Goods Sold",
+                "position": "2"
+            }
+        ]
+    },
+    {
+        "position": "1",
+        "accountType": "Expense",
+        "sub-accounts": [
+            {
+                "account-id": "49",
+                "account-type": "Expense",
+                "position": "0"
+            },
+            {
+                "account-id": "207",
+                "account-type": "Expense",
+                "position": "1"
+            },
+            {
+                "account-id": "152",
+                "account-type": "Expense",
+                "position": "2"
+            },
+            {
+                "account-id": "200",
+                "account-type": "Expense",
+                "position": "3"
+            },
+            {
+                "account-id": "",
+                "account-type": "Expense",
+                "position": "4"
+            }
+        ]
+    },
+    {
+        "position": "2",
+        "accountType": "Gross Profit",
+        "sub-accounts": []
+    },
+    {
+        "position": "3",
+        "accountType": "Income",
+        "sub-accounts": [
+            {
+                "account-id": "179",
+                "account-type": "Income",
+                "position": "0"
+            },
+            {
+                "account-id": "7",
+                "account-type": "Income",
+                "position": "1"
+            },
+            {
+                "account-id": "33",
+                "account-type": "Income",
+                "position": "2"
+            },
+            {
+                "account-id": "",
+                "account-type": "Income",
+                "position": "3"
+            }
+        ]
+    },
+    {
+        "position": "4",
+        "accountType": "Net Income",
+        "sub-accounts": []
+    }
+]

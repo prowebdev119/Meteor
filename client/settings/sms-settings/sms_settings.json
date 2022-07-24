@@ -1,0 +1,8 @@
+{
+    "twilioAccountId": "Your twilio account ID",
+    "twilioAccountToken": "Your twilio account token",
+    "twilioTelephoneNumber": "Your phone number",
+    "startAppointmentSMSMessage": "Hi [Customer Name], This is [Employee Name] from [Company Name] just letting you know that we are on site and doing the following service [Product/Service].",
+    "saveAppointmentSMSMessage": "Hi [Customer Name], This is [Employee Name] from [Company Name] confirming that we are booked in to be at [Full Address] at [Booked Time] to do the following service [Product/Service]. Please reply with Yes to confirm this booking or No if you wish to cancel it.",
+    "stopAppointmentSMSMessage": "Hi [Customer Name], This is [Employee Name] from [Company Name] just letting you know that we have finished doing the following service [Product/Service]."
+}

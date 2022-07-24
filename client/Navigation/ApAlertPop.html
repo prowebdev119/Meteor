@@ -1,0 +1,77 @@
+<template name="appAlertPage">
+    <div id="apptimer" style="display:none;">
+
+
+        <div class="modal show" id="sessionTimeout" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="sessionTimeoutLabel" aria-hidden="true" style="display:block; background: rgba(0,0,0,0.9)!important;">
+            <!-- <style>
+              .modal-backdrop {
+                  opacity: 0.95 !important;
+              }
+          </style> -->
+            <div class="modal-dialog modal-dialog-centered sessiontimeoutmodal" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="sessionTimeoutLabel">Session Timeout</h5>
+                    </div>
+                    <div class="modal-body">
+                        <div style="text-align: center;">
+                            <p style="font-size: 16px; margin-top: 16px;">You have been logged out due to inactivity.</p>
+                            <p style="font-size: 16px;">Please choose whether to log out or log back in.</p>
+                        </div>
+                        <div class="collapse" id="login-field" style="margin: 0 auto; width: 75%; margin-top: 8px;">
+                            <style>
+                                .field-icon {
+                                    float: right;
+                                    font-size: 18px;
+                                    margin-right: 8px;
+                                    margin-left: 0px;
+                                    margin-top: -28px;
+                                    position: relative;
+                                    z-index: 2;
+                                    color: #00a3d3;
+                                }
+                            </style>
+                            <script>
+                                $(".toggle-password").click(function() {
+                                    $(this).toggleClass("fa-eye fa-eye-slash");
+                                    var passwordSecret = $("#erppassword");
+
+                                    if (passwordSecret.attr("type") == "password") {
+                                        passwordSecret.attr("type", "text");
+                                    } else {
+                                        passwordSecret.attr("type", "password");
+                                    }
+                                });
+                            </script>
+                            <div class="form-group">
+                                <input class="form-control" type="text" name="erppassword" id="erppassword" placeholder="Password" style="color: #404040;">
+                                <!-- <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password" style="color: #00a3d3;"></span> -->
+                            </div>
+                            <button id="resubmitLogin" name="resubmitLogin" class="btn btn-primary btn-block erplogin_btn" type="submit" style="background-color: #00a3d3;">
+                                <i class="fa fa-spinner fa-spin loginSpinner" style="display:none; margin-right: 8px;"></i>Log In
+                            </button>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary btnLogOut">Log Out</button>
+                        <button type="button" class="btn btn-primary" data-toggle="collapse" aria-expanded="false" aria-controls="login-field" href="#login-field" role="button">Log In</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="apptimer_login">
+       <script>
+       var TimeoutLoggedUser = localStorage.getItem('mySession');
+       document.getElementById("timerlogged_user").innerHTML = TimeoutLoggedUser;
+       </script>
+       <p>Hey <b id="timerlogged_user"></b>,<br>are you still there?</p>
+       <form action="" id="relogin" method="">
+         <input type="" id="re_login" name="re_login" class="apptimer_password" placeholder="Password"><br>
+         <input type="submit" class="login_btn" id="resubmitLogin" value="Log in">
+         <br>
+          <a href="/"  class="btn closelogin_btn" style="font-family: FontAwesome, 'Trebuchet MS'; font-size: 16px;">Close</a>
+       </form><br><br>
+       <a class="switchaccount" onclick="logOutFunc()">Switch accounts</a>
+     </div> -->
+    </div>
+</template>

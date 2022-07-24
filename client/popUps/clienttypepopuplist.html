@@ -1,0 +1,81 @@
+<template name="clienttypepopup">
+
+    <div class="modal-dialog modal-xl modal-dialog-scrollable" role="document" style="max-width: 90vw;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4>Customer Type Settings</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" style="width: 100%; display:none;" id="selectLineID" name="selectLineID" readonly>
+                <div class="card-body p-1 rounded">
+                    <div class="table-responsive">
+                        <style>
+                            .colClientTypeName {
+                                width: 20%!important;
+                            }
+
+                            .colDeleteCustomerType{
+                              width:2%!important;
+                            }
+                        </style>
+
+                        <div class="modal fade" role="dialog" tabindex="-1" id="deleteClientTypeLineModal">
+                          <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                  <input type="hidden" style="width: 100%; display:none;" id="selectDeleteLineID" name="selectDeleteLineID"  readonly>
+                                  <div class="modal-header">
+                                      <h4>Delete</h4>
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                          <span aria-hidden="true">×</span>
+                                      </button>
+                                  </div>
+                                  <div class="modal-body">
+                                      <p>Please click "Delete" to deactivate Client Type</p>
+
+                                      <button class="btn btn-danger float-right btnDeleteDClientType" type="button">
+                                          <i class="fa fa-close" style="margin-right: 5px;"></i>Delete
+                                      </button>
+                                  </div>
+                              </div>
+                          </div>
+                        </div>
+                        <table id="clienttypeList" style="width:100%" class="dataTable table table-hover table-striped table-bordered clienttypeList">
+                          <thead>
+                              <tr class="dnd-moved">
+                                  <th class="th colClientTypeID hiddenColumn" style="width:50px">Dept #</th>
+                                  <!-- <th class="th colHeadDept" style="width:100px;">Header Department</th> -->
+                                  <th class="th colClientTypeName">Type Name</th>
+                                  <!-- <th class="th colStatus" style="width:50px">Active</th> -->
+                                  <th class="th colDescription" >Description</th>
+                                  <!-- <th class="th colSiteCode hiddenColumn" >Site Code</th> -->
+                                  <th class="th colDeleteCustomerType" style="width:20px;"></th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <!-- {{#if datatablerecords}}
+                              {{#each item in datatablerecords}}
+                              <tr class="dnd-moved" id="{{item.id}}"  style="cursor: default;">
+
+                                  <td contenteditable="false" class="colClientTypeName">{{item.typeName}}</td>
+
+                                  <td contenteditable="false" class="colDescription">{{item.description}}</td>
+
+                                  <td contenteditable="false" class="colDelete"><span class="table-remove"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0"><i class="fa fa-remove"></i></button></span></td>
+                              </tr>
+                              {{/each}}
+                              {{/if}} -->
+                          </tbody>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-light" data-dismiss="modal" type="button">Close</button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- {{> clienttypemodal}} -->
+</template>

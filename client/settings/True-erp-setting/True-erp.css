@@ -1,0 +1,176 @@
+.trueERPSettings .active_page_content h1 {
+    border-bottom: 0;
+   margin-bottom: 0;
+}
+
+.trueERPSettings .gettingStarted {
+    width: 100%;
+    float: left;
+    background: white;
+}
+
+.trueERPSettings .documentHeader {
+    padding: 20px 0 30px;
+    width: 100%;
+    float: left;
+    margin-top: 0;
+}
+
+.trueERPSettings .documentHeader p {
+    padding-bottom: 10px;
+    margin-bottom: 0;
+    margin-top: 10px;
+    border-bottom: 1px solid #e2e2e2;
+    color: #333;
+    font-size: 18px;
+    margin-left: 0;
+}
+
+.trueERPSettings .documentHeader p:last-child {
+    border: 0;
+}
+
+.trueERPSettings .documentHeader .close {
+    position: absolute;
+    top: 0px;
+    right: 3px;
+    color: #c4cbd1;
+    padding: 5px 22px 5px 0;
+    background: transparent url(./img/close.png) no-repeat 100%;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.trueERPSettings {
+    width: 100%;
+    float: left;
+}
+
+.trueERPSettings .active_page {
+    float: left;
+    width: 100%;
+}
+
+.trueERPSettings .network {
+    background-color: #fbfbfb;
+    float: left;
+    width: 100%;
+}
+
+.trueERPSettings .secondaryButtons {
+    float: left;
+    width: 100%;
+    background-color: #fbfbfb;
+    border: 1px solid #e5e5e5;
+    padding: 15px 10px 15px;
+    margin-top: 25px;
+}
+
+.trueERPSettings .secondaryButtons button.btn.btn-default {
+    font: bold 12px Helvetica, sans-serif;
+    color: #048abb;
+    background-color: #fafafa;
+    border-color: #ccc;
+    border-radius: 3px;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: rgba(255, 255, 255, 0.3) 0 0 0 1px inset;
+    box-sizing: border-box;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+    margin: 0px 0px 0px 7px;
+    padding: 6px 12px;
+    position: relative;
+    text-align: center;
+    -webkit-transition: opacity .2s ease-out;
+    transition: opacity .2s ease-out;
+    white-space: nowrap;
+    -moz-user-select: -moz-none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiP…dpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==);
+    background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #e6eaec));
+    background: -webkit-linear-gradient(#ffffff, #e6eaec);
+    background: -webkit-linear-gradient(#ffffff, #e6eaec);
+    background: linear-gradient(#ffffff, #e6eaec);
+}
+
+.trueERPSettings .secondaryButtons p {
+    text-align: right;
+    color: #333;
+    float: right;
+    font-size: 12px;
+}
+
+.trueERPSettings .modal-body {
+    font-size: 12px;
+    background: #FBFBFB;
+
+}
+
+.trueERPSettings .modal-body p, .modal-header p {
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.trueERPSettings .modal-body input {
+    width: 100%;
+    height: 27px;
+    margin-bottom: 15px;
+}
+
+.trueERPSettings .modal-body textarea {
+    width: 100%;
+    min-height: 200px;
+}
+
+.trueERPSettings h4.modal-title {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+#myModal .modal-dialog {
+    width: 500px;
+    margin: 30px auto;
+}
+
+#myModal .co-btn-cancel {
+    border-color: #949a9e !important;
+    text-shadow: 0 1px rgba(0,0,0,0.1) !important;
+    background: linear-gradient(#bbbec2, #949a9e) !important;
+    color: #fff !important;
+    padding: 6px 12px !important;
+    margin: 0;
+    font-size: 12px;
+    line-height: 18px !important;
+    width: 90px;
+}
+
+#myModal  .modal-header{
+    padding: 0;
+}
+#myModal  .modal-header .close {
+    margin-top: 0;
+    border-left: 1px solid #e5e5e5;
+    height: 46px;
+    top: 0 !important;
+    left: auto !important;
+    width: 46px !important;
+    right: 0 !important;
+    line-height: 46px;
+    opacity: 1;
+}
+#myModal h4.modal-title {
+    font-weight: bold;
+    font-size: 18px;
+    color: #333;
+    padding-top: 12px;
+    padding-left: 14px;
+}
+#myModal .modal-footer button.btn.btn-success {
+    line-height: 1.42857143;
+}
+
+

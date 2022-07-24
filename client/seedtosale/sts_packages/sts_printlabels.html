@@ -1,0 +1,63 @@
+<template name="stsprintlabels">
+    <div class="container-fluid">
+        <div class="fullScreenSpin" style="display:none;">
+            <div class="spinner"></div>
+        </div>
+        <div class="d-sm-flex justify-content-between align-items-center mb-4">
+            <h3 class="text-dark mb-0">Seed to Sale - Print Labels</h3>
+        </div>
+        <div class="row d-xl-flex justify-content-xl-center">
+            <div class="col-auto">
+                <div class="card shadow mb-4">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h6 class="text-primary font-weight-bold m-0">Print Labels</h6>
+                        <div class="dropdown no-arrow"><button class="btn btn-link btn-sm dropdown-toggle invisible" data-toggle="dropdown" aria-expanded="false" type="button"><i class="fas fa-ellipsis-v text-gray-400"></i></button>
+                            <div class="dropdown-menu shadow dropdown-menu-right animated--fade-in"
+                                 role="menu">
+                                <p class="text-center dropdown-header">dropdown header:</p><a class="dropdown-item" role="presentation" href="#">&nbsp;Action</a><a class="dropdown-item" role="presentation" href="#">&nbsp;Another action</a>
+                                <div class="dropdown-divider"></div><a class="dropdown-item" role="presentation" href="#">&nbsp;Something else here</a></div>
+                        </div>
+                    </div>
+                    <div class="card-body" style="padding: 16pxs;">
+                        <div class="row no-gutters d-xl-flex justify-content-xl-end align-items-xl-center"><button class="btn btn-primary" type="button" style="margin-bottom: 10px;">Save PDF<i class="fa fa-download" style="margin-left: 5px;"></i></button><button class="btn btn-primary" type="button" style="margin-left: 10px;margin-bottom: 10px;">Save CSV<i class="fa fa-download" style="margin-left: 5px;"></i></button></div>
+                        <div
+                             class="row no-gutters">
+                            <div class="col">
+                                <div class="row no-gutters d-xl-flex justify-content-center align-items-center justify-content-xl-start" style="max-width: 568px;padding: 0px;">
+                                    <div class="col">
+                                        <div class="form-group" style="margin: 4px;"><label>Max Printed Label</label><input type="text" class="form-control" readonly=""></div>
+                                    </div>
+                                </div>
+                                <div class="row no-gutters d-xl-flex justify-content-center align-items-center justify-content-xl-start" style="max-width: 568px;padding: 0px;">
+                                    <div class="col">
+                                        <div class="form-group" style="margin: 4px;"><label>Starting Tag</label><input type="text" class="form-control"></div>
+                                    </div>
+                                </div>
+                                <div class="row no-gutters d-xl-flex justify-content-center align-items-center justify-content-xl-start" style="max-width: 568px;padding: 0px;">
+                                    <div class="col">
+                                        <div class="form-group" style="margin: 4px;"><label>Ending Tag</label><input type="text" class="form-control"></div>
+                                    </div>
+                                </div>
+                                <div class="row no-gutters d-xl-flex justify-content-center align-items-center justify-content-xl-start" style="max-width: 568px;padding: 0px;">
+                                    <div class="col">
+                                        <div class="form-group" style="margin: 4px;"><label>Number of Barcodes</label><input type="text" class="form-control"></div>
+                                    </div>
+                                    <div class="col"></div>
+                                </div>
+                                <div class="row no-gutters d-xl-flex justify-content-center align-items-center justify-content-xl-start" style="max-width: 568px;padding: 0px;">
+                                    <div class="col">
+                                        <div class="form-group" style="margin: 4px;"><label>Height (inches)</label><input type="text" class="form-control"></div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group" style="margin: 4px;"><label>Width (inches)</label><input type="text" class="form-control"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col d-xl-flex justify-content-xl-center align-items-xl-center"><img src="sts_images/barcode.png" style="width: 100%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

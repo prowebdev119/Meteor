@@ -1,0 +1,225 @@
+<template name="stsharvests">
+    <div class="container-fluid">
+        <div class="fullScreenSpin" style="display:none;">
+            <div class="spinner"></div>
+        </div>
+        <div class="d-sm-flex justify-content-between align-items-center mb-4">
+            <h3 class="text-dark mb-0">Seed To Sale - Harvest</h3>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-xl-3 mb-4">
+                <div class="card shadow border-left-warning py-2">
+                    <div class="card-body">
+                        <div class="row align-items-center no-gutters">
+                            <div class="col mr-2">
+                                <div class="text-uppercase text-warning font-weight-bold text-xs mb-1"><span class="text-warning">Harvests</span></div>
+                                <div class="text-dark font-weight-bold h5 mb-0"><span>124</span></div>
+                            </div>
+                            <div class="col-auto"><i class="fas fa-boxes fa-2x text-gray-300"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row d-xl-flex flex-row justify-content-xl-center">
+            <div class="col-12 float-left flex-grow-1">
+                <button class="btn btn-primary btnCreateHarvest" id="btnCreateHarvest" type="button" style="margin: 16px;"><i class="fas fa-tractor" style="padding-right: 5px;"></i>Create Harvest</button>
+            </div>
+        </div>
+        <div>
+            <div class="card-body rounded" style="margin: 0px; padding: 0px !important;">
+                <!-- Start {{> optionNavSalesOverview}} -->
+                <div class="d-xl-flex justify-content-xl-end">
+                    <div><a class="btn btnOpenSettings" role="button" data-toggle="modal" href="#myModal2"><i class="icon ion-android-more-horizontal"></i></a>
+                        <div class="modal fade" role="dialog" tabindex="-1" id="myModal2">
+                            <div class="modal-dialog modal-dialog-centered" role="document" style="float: right;">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4>Display Settings</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                                    <div class="modal-body">
+                                        <div>
+                                            {{#if tableheaderrecords}}
+                                            <form class="d-xl-flex align-items-xl-center">
+                                                <div class="flex-grow-1">
+                                                    <style>
+                                                        .groove {
+                                                            border-style: solid;
+                                                            border-width: 1px;
+                                                            width: 200px;
+                                                            padding: 2px;
+                                                            border-radius: .35rem;
+                                                        }
+                                                        .custom-control-label{
+                                                            position: absolute;
+                                                        }
+                                                        .rngRange {
+                                                            position: relative;
+                                                            display: flex;
+                                                            flex-direction: column;
+                                                            width: 100%;
+                                                            pointer-events: auto;
+                                                            background-color: rgb(255, 255, 255);
+                                                            background-clip: padding-box;
+                                                            border: 1px solid rgb(133, 135, 150);
+                                                            border-radius: .3rem;
+                                                            border-style: solid;
+                                                            border-width: 1px;
+                                                            padding: 2px;
+                                                            border-radius: .35rem;
+                                                            color: rgb(128, 128, 128);
+                                                            height:inherit!important;
+                                                        }
+                                                        @media only screen and (max-width: 480px) {
+                                                            .modal.show .modal-dialog{
+                                                                float: inherit!important;
+                                                                left: inherit!important;
+                                                                top: auto!important;
+
+                                                            }
+                                                        }
+                                                    </style>
+                                                    {{#each item in tableheaderrecords}}
+                                                    {{#if equals item.sTitle "id"}}
+                                                    {{else}}
+
+                                                    <div id="{{item.sIndex}}" class="columnSettings">
+                                                        <div class="custom-control custom-switch" style="margin: 8px; float:left;">
+                                                            <input class="custom-control-input chkDatatable" type="checkbox" id="chkSalesNo-{{item.sIndex}}" name="chkSalesNo-{{item.sIndex}}" checked="{{#if item.sVisible}}checked{{else}}{{/if}}" value="{{item.sTitle}}">
+                                                            <label class="custom-control-label" for="chkSalesNo-{{item.sIndex}}"></label>
+                                                            <div contenteditable="true" class="groove divcolumn" type="text" value="{{item.sTitle}}" valueupdate="{{item.sClass}}">{{item.sTitle}}</div>
+                                                        </div>
+                                                        <div class="d-xl-flex align-items-xl-center divColWidth" style="margin: 8px;">
+                                                            <label class="text-nowrap" style="padding-left: 0px;margin-top: 8px;">Width: <!--<span class="spWidth" value="{{item.sTitle}}">{{item.sWidth}}px</span>--></label>
+                                                            <input class="custom-range rngRange" type="number" style="margin: 8px;" value="{{item.sWidth}}" min="0" max="1000">
+                                                            <!-- <input class="custom-range rngRange" type="range" style="margin: 8px;" value="{{item.sWidth}}" min="0" max="1000"> -->
+                                                        </div>
+                                                    </div>
+
+                                                    {{#if equals item.sVisible true}}
+                                                    <script>
+                                                        $("#"+ {{item.sIndex}} +".chkDatatable").attr("checked","checked");
+                                                    </script>
+                                                    {{else}}
+                                                    <script>
+                                                        $("#"+ {{item.sIndex}} +".chkDatatable").removeAttr("checked");
+                                                    </script>
+                                                    {{/if}}
+
+                                                    {{/if}}
+                                                    {{/each}}
+                                                </div>
+                                            </form>
+                                            {{/if}}
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn btn-primary saveTable" type="button"><i class="fa fa-save" style="margin-right: 5px;"></i>Save</button>
+                                        <button class="btn btn-warning resetTable" data-dismiss="modal" type="reset"><i class="fa fa-repeat" style="margin-right: 5px;"></i>Reset</button>
+                                        <button class="btn btn-secondary" data-dismiss="modal" type="button"><i class="fa fa-remove" style="margin-right: 5px;"></i>Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End -->
+                <div class="table-responsive">
+                    <style>
+                        th {
+                            background-color: #ededed;
+                        }
+                        .table-striped tbody tr:nth-of-type(odd) {
+                            background-color: white !important;
+                        }
+
+                        .table-striped tbody tr:nth-of-type(even) {
+                            background-color: #0000000d !important;
+                        }
+
+                        .JColResizer > tbody > tr > td, .JColResizer > tbody > tr > th {
+                            padding: .75rem!important;
+                        }
+                        .hiddenColumn{
+                            display:none;
+                        }
+                        .showColumn {
+                            display:table-cell;
+                            padding:.75rem;
+                            vertical-align:top;
+                        }
+                        input[type=number]::-webkit-inner-spin-button,
+                        input[type=number]::-webkit-outer-spin-button {
+                            opacity: 1;
+                        }
+                    </style>
+                    <table id="tblHarvests" style="width:100%;" class="table table-striped table-bordered tblHarvests">
+                        <thead>
+                            <tr class="dnd-moved">
+                                <th>Harvest ID</th>
+                                <th>Harvest Name</th>
+                                <th>Harvest Date</th>
+                                <th>Class</th>
+                                <th>Room</th>
+                                <th>Strain</th>
+                                <th>Weight</th>
+                                <th>Weight Packed</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="dnd-moved">
+                                <td>Harvest001</td>
+                                <td>Emergency Harvest</td>
+                                <td>2020/09/27</td>
+                                <td>1</td>
+                                <td>Room 4B</td>
+                                <td>Purple Haze</td>
+                                <td>21.41 kgs</td>
+                                <td>17.65 kgs</td>
+                            </tr>
+                            <tr class="dnd-moved">
+                                <td>Harvest002</td>
+                                <td>Blue Dream Harvest</td>
+                                <td>2020/09/28</td>
+                                <td>2</td>
+                                <td>Room 1C</td>
+                                <td>Blue Dream</td>
+                                <td>6.87 kgs</td>
+                                <td>6.52 kgs</td>
+                            </tr>
+                            <tr class="dnd-moved">
+                                <td>Harvest003</td>
+                                <td>Purple Haze Harvest</td>
+                                <td>2020/09/30</td>
+                                <td>2</td>
+                                <td>Room 2C</td>
+                                <td>Purple Haze</td>
+                                <td>18.58 kgs</td>
+                                <td>18.21 kgs</td>
+                            </tr>
+                            <tr class="dnd-moved">
+                                <td>Harvest004</td>
+                                <td>4th Harvest</td>
+                                <td>2020/10/04</td>
+                                <td>1</td>
+                                <td>Room 3C</td>
+                                <td>Misc Strains</td>
+                                <td>7.36 kgs</td>
+                                <td>7.36 kgs</td>
+                            </tr>
+                            <tr class="dnd-moved">
+                                <td>Harvest005</td>
+                                <td>Purple Haze Harvest</td>
+                                <td>2020/10/05</td>
+                                <td>1</td>
+                                <td>Room 4C</td>
+                                <td>Purple Haze</td>
+                                <td>12.74 kgs</td>
+                                <td>11.86 kgs</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

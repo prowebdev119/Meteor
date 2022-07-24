@@ -1,0 +1,206 @@
+.InvoiceReminders .active_page_content h1 {
+    margin-bottom: 0;
+    border-bottom: 0;
+}
+
+.InvoiceReminders .invoice_reminders_bg {
+    background: #fafbfb;
+    width: 100%;
+    float: left;
+}
+
+.InvoiceReminders .invoice_reminders_panel {
+    width: 100%;
+    background-image: linear-gradient(#ffffff, #fafbfb 50px);
+    box-sizing: border-box;
+    border: 1px solid #dfe1e2;
+    float: left;
+    margin-top: 25px;
+
+}
+
+.container_innerCt{
+    width: 100%;
+    float: left;
+    padding: 15px;
+    padding-top: 0;
+}
+
+.InvoiceReminders .invoicereminder-container {
+    display: inline-block;
+    width: 161px;
+    margin: 0 10px 10px;
+    height: 90px;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    border-bottom-color: #d1d1d1;
+    border-radius: 3px;
+    text-align: center;
+    background-color: #fff;
+    vertical-align: top;
+    position: relative;
+    transition: all .25s;
+    cursor: pointer;
+    float: left;
+}
+
+.InvoiceReminders .invoicereminder-box {
+    top: 50%;
+    position: relative;
+    transform: translateY(-50%);
+}
+
+.InvoiceReminders .invoicereminder-container:after {
+    content: "";
+    height: 0;
+    top: 45px;
+    width: 20px;
+    right: -21px;
+    position: absolute;
+    border-bottom: 1px solid #ddd;
+}
+
+.InvoiceReminders .invoicereminder-add {
+    font-size: 12px;
+    color: #048abb;
+    border: 1px dashed #ccc;
+    background-color: transparent;
+}
+
+.InvoiceReminders .invoicereminder-add:after{
+    display: none;
+}
+.InvoiceReminders .invoicereminder-container:hover {
+    border-color: #048abb;
+}
+.InvoiceReminders .invoicereminder-item-offset {
+    margin: 5px 0;
+    font-size: 12px;
+}
+.InvoiceReminders .invoicereminder-edit {
+    color: #048abb;
+    margin: 5px 0;
+    font-size: 12px;
+}
+
+.InvoiceReminders .invoicereminder-add:hover {
+    background-color: #fff;
+    border-style: solid;
+}
+.InvoiceReminders .invoicereminder-box p {
+    margin: 0;
+    color: #ddd;
+    font-size: 17px;
+}
+
+.InvoiceReminders .invoice_reminders_label{
+    width: 100%;
+    float: left;
+    padding: 15px;
+    border-top: solid 1px #ddd;
+    padding-top: 20px;
+    margin-top: 20px;
+}
+.InvoiceReminders .invoice_reminders_label label{
+    width: 100%;
+    float: left;
+    font-size: 12px;
+    font-weight: normal;
+    padding-top: 10px;
+}
+.InvoiceReminders .invoice_reminders_label label input{
+    float: left;
+    margin-right:5px;
+}
+
+.InvoiceReminders input#minimumValueField-inputEl {
+    float: none;
+    width: 80px;
+}
+.InvoiceReminders span.email_id {
+    float: left;
+    width: 100%;
+    padding-top: 15px;
+    font-size: 12px;
+}
+
+.InvoiceReminders .invoic_footer {
+    background-image: linear-gradient(#ffffff,#fafbfb 50px);
+    border-top: 1px solid #ededed;
+    width: 100%;
+    float: left;
+    border-radius: 0 0 4px 4px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 0;
+    height: 48px;
+    z-index: 2;
+    text-align: right;
+    padding-right: 15px;
+}
+
+
+.InvoiceReminders .new_create_footer_container table#Notes{
+    width: 924px;
+    border-collapse: separate;
+    border: none;
+    margin-top: 15px;
+}
+
+.InvoiceReminders .new_create_footer_container table#Notes thead tr td {
+    background: linear-gradient(#fff,#f6f7f8);
+    border-bottom: 1px solid #e8e8e8;
+    border-right: 1px solid #e8e8e8;
+    font-weight: 700;
+    border-top: 1px solid #ddd;
+    color: #444;
+    font-size: 12px;
+    padding: 10px;
+}
+
+.InvoiceReminders .new_create_footer_container table#Notes td:first-of-type {
+    border-left: 1px solid #ddd;
+}
+.InvoiceReminders .new_create_footer_container table#Notes td:last-of-type{
+    border-right: 1px solid #ddd;
+}
+
+.InvoiceReminders .new_create_footer_container table#Notes tr td {
+    color: #444;
+    font-size: 12px;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+.InvoiceReminders .new_create_footer_container table#Notes tbody tr{
+    background: #fff;
+}
+
+.InvoiceReminders .new_create_footer {
+    background: transparent;
+    padding: 0;
+    margin-top:20px;
+    float: left;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.InvoiceReminders .last {
+    font-size: 12px;
+}
+
+.InvoiceReminders .new_create_footer a {
+    font-size: 12px;
+    font-weight: normal;
+}
+
+.top_checkbox {
+    padding-left: 25px;
+    float: left;
+    width: 100%;
+    padding-top: 15px;
+}
+
+.top_checkbox label input {
+    margin-right: 5px;
+    float: left;
+}

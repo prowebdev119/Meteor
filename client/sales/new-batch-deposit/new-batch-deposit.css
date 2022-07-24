@@ -1,0 +1,256 @@
+.newBatchDeposit .active_page_content h1{
+    margin-bottom: 0;
+    border-bottom: 0;
+}
+.newBatchDeposit .batch-deposit-panel {
+    border: 1px solid #e8e8e8;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    float: left;
+    width: 100%;
+    margin-top: 20px;
+}
+.newBatchDeposit .batch-deposit-panel .fieldset {
+    margin-top: 10px;
+    margin-left: 15px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #e8e8e8;
+    float: left;
+    width: 97.6%;
+}
+.newBatchDeposit .batch-payment-to {
+    float: left;
+    width: 100%;
+    padding-bottom: 10px;
+}
+.newBatchDeposit .field.batch-date {
+    float: left;
+    margin-right: 10px;
+}
+.newBatchDeposit .field.batch-date label {
+    font-size: 11px;
+    float: left;
+    width: 100%;
+    font-weight: 700;
+    margin-bottom: 3px;
+}
+.newBatchDeposit .field.batch-date input {
+    height: 27px;
+    padding-left: 2px;
+    padding-right: 2px;
+    border: 1px solid;
+    float: left;
+    width: 100%;
+    font-size: 11px;
+    border-color: #b5b8bb #e2e4e7 #e8eaec #bdbfc3;
+}
+
+.newBatchDeposit table.batch-statement-table{
+    width: 98%;
+    margin-left: 10px;
+}
+.newBatchDeposit table.batch-statement-table thead tr td {
+    background: linear-gradient(#ffffff,#f6f7f8);
+    border-collapse: separate;
+    color: #048fc2;
+    border-top-left-radius: 4px;
+    padding: 8px;
+    border: solid #e8e8e8;
+    border-width: 0px 1px 0px 1px;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.newBatchDeposit table.batch-statement-table tbody td{
+    border: solid 1px #ddd;
+    background: #f5f7f8;
+    padding: 8px;
+    border-radius: 0 0 0 3px;
+    font-size: 12px;
+    color: #333;
+}
+.newBatchDeposit table.batch-statement-table tbody td:last-child{
+    border-right: 0;
+    width: 6px;
+    text-align: center;
+    padding-right: 5px;
+}
+.newBatchDeposit table.batch-statement-table tbody td:last-child span{
+    background: #bfbfbf;
+    width: 13px;
+    height: 13px;
+    display: inline-block;
+    line-height: initial;
+    text-align: center;
+}
+.newBatchDeposit table.batch-statement-table tbody td:nth-child(3) ,.newBatchDeposit table.batch-statement-table tbody td:nth-child(5){
+    background: #fff;
+}
+
+.newBatchDeposit .totals_container1 .subtotal_label {
+    text-align: right;
+    margin-right: 70px;
+}
+
+.newBatchDeposit .totals_container1 span {
+    display: inline-block;
+    width: 25%;
+    text-align: right;
+    right: auto;
+    font-size: 12px;
+    font-family: Helvetica, Arial, sans-serif;
+    padding-bottom: 5px;
+}
+.newBatchDeposit .totals_container1 {
+    border-bottom: 3px double #000000;
+    width: 25%;
+    display: inline-block;
+    margin-bottom: 30px;
+    float: right;
+    text-align: right;
+    color: #000;
+    font-weight: bold;
+    margin-right: 10px;
+    margin-top: 17px;
+}
+
+.newBatchDeposit table.batch-statement-table tbody td:last-child span {
+    background: transparent;
+    width: 13px;
+    height: 13px;
+    display: inline-block;
+    line-height: initial;
+    text-align: center;
+    font-size: 16px;
+    color: #9c9a9a;
+}
+
+.newBatchDeposit span.subtotal_label2 {
+    margin-right: 0;
+    font-size: 24px;
+    width: auto;
+    text-align: left;
+    float: left;
+}
+
+.newBatchDeposit span#subtotal_total2{
+    font-size: 24px;
+    margin-right: 0px;
+    width: auto;
+}
+.newBatchDeposit .new_create_footer {
+    width: 100%;
+    padding: 0;
+    background-color: transparent;
+}
+.newBatchDeposit .new_create_footer #notesbtn{
+    margin: 0;
+}
+
+.newBatchDeposit .heading.footer {
+    float: left;
+    width: 100%;
+    text-align: right;
+    background: #fff;
+    padding: 10px;
+}
+
+.newBatchDeposit .heading.footer button.btn.btn-success.disableBtn {
+    width: auto;
+    background: linear-gradient(#ffffff 0%,#efefef 98%,#ffffff 99%);
+    color: #bbb;
+    cursor: default;
+
+    text-shadow: 0 1px 1px #fff;
+    border-color: #d7dadd #d7d9dd #d6d9dd #d7dade;
+    margin-left: 0;
+    font-size: 12px;
+}
+.newBatchDeposit .heading.footer button.btn.btn-success.saveBtn {
+    width: auto;
+    background: #5cac00;
+    color: #fff;
+    cursor: pointer;
+
+    border-color: #5cac00 #58a800 #529e00 #519d00;
+    margin-left: 0;
+    font-size: 12px;
+}
+.newBatchDeposit div#pick-date img {
+    height: 100%;
+    right: 0;
+    top: 0px;
+    cursor: pointer;
+    z-index: 5;
+    position: absolute;
+}
+.field.batch-date #account-dropdown img#acc-dropdown-img{
+height: 100%;
+right: 0;
+top: 0px;
+cursor: pointer;
+z-index: 5;
+position: absolute;
+border: 1px solid #ccc;
+border-left: none;
+}
+.field.batch-date #account-dropdown{
+    position: relative;
+    width: 100%;
+    float: left;
+    padding: 0px;
+    background: none;
+    border: none;
+}
+
+.field.batch-date #account-dropdown ul.ui-menu {
+    position: absolute;
+    list-style: none;
+    padding: 0;
+    top: 27px;
+    right: 0;
+    background: #fff;
+    border: 1px solid #ccc;
+    left: 0px;
+    text-align: left;
+    display: none;
+}
+.field.batch-date #account-dropdown ul.ui-menu li{
+    padding: 8px 5px;
+    border-bottom: 1px solid #ccc;
+    font-size: 13px;
+}
+.field.batch-date #account-dropdown ul.ui-menu li:hover{
+    background:#e6f5fa;
+}
+.field.batch-date #account-dropdown ul.ui-menu li.active{
+background-color: #048abb;
+color: #fff;
+border-bottom-color: #0378a2;
+}
+.field.batch-date #account-dropdown ul.ui-menu li:last-child{
+    border-bottom:none;
+}
+.batch-statement-table .inputFields{
+    background: #fff;
+}
+.batch-statement-table .inputFields input{
+    border: none;
+}
+.newBatchDeposit .search_box_inner button.disableBtn:hover {
+    background: linear-gradient(#ffffff 0%,#efefef 98%,#ffffff 99%);
+    border-color: #d7dadd #d7d9dd #d6d9dd #d7dade;
+}
+.newBatchDeposit .search_box_inner button.disableBtn:focus{
+    outline: inherit;
+}
+.newBatchDeposit button.disableBtn {
+    background: linear-gradient(#ffffff 0%,#efefef 98%,#ffffff 99%);
+    color: #bbb;
+    text-shadow: 0 1px 1px #fff;
+    border-color: #d7dadd #d7d9dd #d6d9dd #d7dade;
+    margin-left: 0;
+    font-size: 12px;
+    cursor: pointer;
+    width: 100px;
+}

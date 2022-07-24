@@ -1,0 +1,235 @@
+<template name="balancesheetreport">
+    <div style="margin-top: -24px;">
+        <div class="fullScreenSpin" style="display:none;">
+            <div class="spinner"></div>
+        </div>
+        <header style="padding: 16px;">
+            <h2 style="margin: 16px;">Balance Sheet <a role="button" data-toggle="modal" href="#helpViewModal" style="font-size: 20px;">Help <i class="fa fa-question-circle-o"  style="font-size: 20px;"></i></a></h2>
+        </header>
+
+        <div class="modal fade" role="dialog" tabindex="-1" id="helpViewModal">
+                <div class="modal-dialog modal-sm" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header" style="padding-bottom: 8px;">
+                            <h4>Help</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                        <div class="modal-body">
+                            <p class="text-center text-muted"><a role="button" data-toggle="modal" href="#helpModal" class="btn btn-primary helpModal">View Help Video</a></p>
+                            <p class="text-center text-muted"><a href="https://vs1forum.com/viewtopic.php?f=6&t=34" target="_blank" class="btn btn-primary">Download Help File</a></p>
+                            <p class="text-center text-muted"><button class="btn btn-primary" type="button">Employ Advisor</button></p>
+                            <p class="text-center text-muted" style="margin: 0px;"><a href="https://vs1forum.com/ucp.php?mode=register&cloudusername={{loggedCompany}}" target="_blank" class="btn btn-primary">Go To Forum</a></p>
+                        </div>
+                        <div class="modal-footer" style="padding: 6px;"><button class="btn btn-light" data-dismiss="modal" type="button">Close</button></div>
+                    </div>
+                </div>
+            </div>
+
+        <style>
+            @media only screen and (min-width: 1200px) {
+
+                .cardB {
+                    width: 1000px;
+                }
+            }
+
+            /* Remove Hyperlinks */
+            @media print {
+                a:link {text-decoration: none !important;}
+                a[href]:after {content: none !important;}
+            }
+        </style>
+
+        <div class="row no-gutters d-xl-flex justify-content-center justify-content-xl-center mb-3" style="width: 100%;">
+            <div class="col-auto">
+                <div class="card shadow flex-grow-1 mb-3 cardB" style="margin-top: 16px;margin-right: 16px;margin-left: 16px;">
+                    <div class="card-header py-3" style="background-color: rgb(248,249,252);">
+                        <p class="text-primary m-0 font-weight-bold">Balance Sheet</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="row no-gutters justify-content-between">
+                            <div class="col-5">
+                                <div class="form-group" style="margin: 16px;margin-left: 8px; width: 215.5px;">
+                                    <label>Search:</label>
+                                    <input type="search" class="form-control form-control-sm" placeholder="" aria-controls="Search" autocomplete="off" id="myInputSearch" name="myInputSearch">
+                                </div>
+                                <div>
+                                    <div class="modal fade" role="dialog" tabindex="-1" id="myModal">
+                                        <div class="modal-dialog modal-sm" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4>Deparment</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                                                <div class="modal-body">
+                                                    {{#each item in deptrecords}}
+                                                    <div class="custom-control custom-switch" style="margin: 8px;">
+                                                        <input class="custom-control-input chkDepartment" type="checkbox" id="formCheck-{{item.id}}" name="chkDepartment" value="{{item.department}}">
+                                                        <label class="custom-control-label" for="formCheck-{{item.id}}">{{item.department}}</label>
+                                                    </div>
+                                                    {{/each}}
+                                                </div>
+                                                <div class="modal-footer"><button class="btn btn-primary" type="button" data-dismiss="modal"><i class="fa fa-save" style="margin-right: 5px;"></i>Save</button><button class="btn btn-light" data-dismiss="modal" type="button"><i class="fa fa-close" style="margin-right: 5px;"></i>Close</button></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <style>
+                                    #uploadedImage {
+                                        margin: 0 auto !important;
+                                    }
+                                </style>
+                                <img class="imageUpload img-fluid mb-3 mt-4" id="uploadedImage" src="assets/img/VS1.png">
+                            </div>
+                            <div class="col-5 justify-content-end" style="display: inline-flex;">
+                                <div class="dropdown" style="margin: 16px;">
+                                    <style>
+                                        .dropdown-toggle::after {
+                                            display: none;
+                                        }
+                                    </style>
+                                    <button class="btn dropdown-toggle" data-toggle="dropdown" aria-expanded="true" type="button" style="margin-top: 32px;"><i class="fas fa-ellipsis-v"></i></button>
+                                    <div class="dropdown-menu" role="menu">
+                                        <h6 class="dropdown-header" role="presentation">Date ranges</h6>
+                                        <a class="dropdown-item lastMonth"  id="lastMonth" role="presentation" href="#">Last Month</a>
+                                        <a class="dropdown-item lastQuarter"  id="lastQuarter" role="presentation" href="#">Last Quarter</a>
+                                        <a class="dropdown-item last12Months"  id="last12Months" role="presentation" href="#">Last 12 Months</a>
+                                        <a class="dropdown-item ignoreDate"  id="ignoreDate" role="presentation" href="#">Ignore Date</a>
+                                    </div>
+                                </div>
+                                <div class="form-group" style="margin: 16px;">
+                                    <label>Balance Date</label>
+                                    <div class="input-group date" style="width: 160px;">
+                                        <input type="text" class="form-control balancedate" id="balancedate" name="balancedate" value="">
+                                        <div class="input-group-addon">
+                                            <span class="glyphicon glyphicon-th"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div class="form-group" style="margin: 16px;"><label>To</label>
+<div class="input-group date" style="width: 160px;">
+<input type="text" class="form-control" id="dateTo" name="dateTo" >
+<div class="input-group-addon">
+<span class="glyphicon glyphicon-th"></span>
+</div>
+</div>
+</div> -->
+                            </div>
+                        </div>
+                        <div class="row no-gutters d-xl-flex align-items-xl-end">
+                            <div class="col d-sm-flex justify-content-sm-start align-items-sm-center">
+                                <button class="btn btn-primary text-nowrap float-left btnRefresh" type="button" style="margin: 8px;"><i class="la la-lightbulb-o" style="padding-right: 5px;"></i>Refresh</button>
+                            </div>
+                            <div class="col d-sm-flex justify-content-sm-end align-items-sm-center">
+                                <div class="col d-xl-flex justify-content-xl-end">
+                                    <button class="btn btn-primary float-left btnExportReport" type="button" style="margin: 16px;width: 97px;"><i class="fas fa-file-export" style="margin-right: 5px;"></i>Export</button>
+                                    <button class="btn btn-primary btnPrintReport" type="button" style="margin: 16px;width: 97px; margin-right:0px;"><i class="fa fa-print" style="margin-right: 5px;"></i>Print</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="printReport">
+                            <div class="row">
+                                <div class="col">
+                                    <p class="text-center" style="margin-bottom: 0px;font-weight: bold;">Balance Sheet</p>
+                                    <p class="text-center" style="margin-bottom: 0px;">{{companyname}}</p>
+                                    <p class="text-center dateAdOf" style="margin-bottom: 8px;">As of {{dateAsAt}}</p>
+                                </div>
+                            </div>
+                            <div class="table-responsive">
+                                <style>
+                                    .balacesheettable :first-child {
+                                        padding-left: 0px!important;
+                                    }
+                                    .last-balance :first-child {
+                                        text-align: left !important;
+                                    }
+                                    .linkvalue :first-child {
+                                        text-align: left !important;
+                                        padding-left: 30px;
+                                    }
+                                    .balacesheettable :last-child {
+                                        text-align: right !important;
+                                    }
+                                </style>
+                                <table class="table table-sm" id="tableExport" name="tableExport">
+                                    <thead>
+                                        <tr class="table-secondary">
+                                            <th></th>
+                                            <th class="text-nowrap text-right" style="font-weight: 800;">Sub Totals</th>
+                                            <th class="text-nowrap text-right" style="font-weight: 800;">Totals</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {{#each records}}
+                                        <tr>
+                                            {{#each value in dataArrHeader}}
+                                            <div style="display:none;">{{item.Company}}</div>
+                                            <td class="text-nowrap" style="font-weight: 800;">
+                                                {{value}}
+                                            </td>
+                                            <td></td>
+                                            <td></td>
+                                            {{/each}}
+                                        </tr>
+                                        <tr>
+                                            {{#each value in dataArrAsset}}
+                                            <td class="text-nowrap" style="font-weight: 800;">
+                                                {{value}}
+                                            </td>
+                                            <td></td>
+                                            <td></td>
+                                            {{/each}}
+                                        </tr>
+                                        <tr class="linkvalue">
+                                            {{#each value2 in dataArr2}}
+                                            <td class="text-nowrap Indent1" style="text-align: right;" >
+                                                <a href="#" class="item-value-{{name}} {{class}}" style="text-decoration:none!important;">{{value2}}</a>
+                                            </td>
+                                            {{/each}}
+                                        </tr>
+                                        <tr class="balacesheettable">
+                                            {{#each value3 in dataArrTotal}}
+                                            <td class="text-nowrap" style="font-weight: 800;">{{value3}}</td>
+                                            {{/each}}
+                                        </tr>
+                                        {{/each}}
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th colspan="3" style="text-align: center; background-color: #fff; padding-top: 32px;">
+                                                Powered by <a href="https://www.vs1cloud.com" target="_blank">VS1Cloud</a>
+                                            </th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- <div class="d-xl-flex justify-content-xl-center">
+<button class="btn btn-primary btnPrintReport" type="button" style="margin: 16px;width: 97px;"><i class="fa fa-print" style="margin-right: 5px;"></i>Print</button><button class="btn btn-primary btnExportReport" type="button" style="margin: 16px;width: 97px;"><i class="fas fa-file-export" style="margin-right: 5px;"></i>Export</button>
+</div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Start Help Video Modal -->
+    <div class="modal fade" role="dialog" tabindex="-1" id="helpModal">
+        <div class="modal-dialog" role="document" style="max-width: 670px!important;">
+            <div class="modal-content" >
+                <div class="modal-header" >
+                    <h4 class="title-header" >Balance Sheet</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+                    <!-- <iframe width="640" height="360" src="https://player.vimeo.com/video/99892791" frameborder="0" allowfullscreen=""></iframe> -->
+                    <!-- <iframe width="640" height="360" src="https://www.youtube.com/embed/BzxoYOp42fg" frameborder="0" allowfullscreen=""></iframe> -->
+                    <video id="myVideo" width="640" height="360" controls="" name="media" style="border: solid 5px #999999f0; height: auto; outline: none;">
+                        <source src="https://erphelpes.com/vs1videos/balancesheetreport.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- End Help Video Modal -->
+
+</template>

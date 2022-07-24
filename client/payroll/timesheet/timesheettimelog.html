@@ -1,0 +1,680 @@
+<template name="timesheettimelog">
+    <div class="container-fluid" style="padding-left: 0px; padding-right: 0px; margin-top: -24px;">
+        <div class="fullScreenSpin" style="display:none;">
+            <div class="spinner"></div>
+        </div>
+        <header style="padding: 16px; background-color: #ededed;">
+            <h1 style="margin: 16px;">Timesheet Time Log
+                <!-- <a role="button" data-toggle="modal" href="#helpModal" class="helpModal"><label class="lblplay">PLAY</label><i class="far fa-play-circle"  style="font-size: 20px;"></i></a> -->
+                <a role="button" data-toggle="modal" href="#helpViewModal" style="font-size: 20px;">Help <i class="fa fa-question-circle-o" style="font-size: 20px;"></i></a>
+
+                <!-- Start Help View Modal -->
+                <div class="modal fade" role="dialog" tabindex="-1" id="helpViewModal">
+                    <div class="modal-dialog modal-sm" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header" style="padding-bottom: 8px;">
+                                <h4>Help</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                            </div>
+                            <div class="modal-body">
+                                <p class="text-center text-muted"><a role="button" data-toggle="modal" href="#helpModal" class="btn btn-primary helpModal">View Help Video</a></p>
+                                <p class="text-center text-muted"><a href="https://vs1forum.com/viewforum.php?f=6" target="_blank" class="btn btn-primary">Download Help File</a></p>
+                                <p class="text-center text-muted"><button class="btn btn-primary" type="button">Employ Advisor</button></p>
+                                <p class="text-center text-muted" style="margin: 0px;"><a href="https://vs1forum.com/ucp.php?mode=register&cloudusername={{loggedCompany}}" target="_blank" class="btn btn-primary">Go To Forum</a></p>
+                            </div>
+                            <div class="modal-footer" style="padding: 6px;"><button class="btn btn-light" data-dismiss="modal" type="button">Close</button></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Help View Modal -->
+
+            </h1>
+        </header>
+
+        <style>
+            @media screen and (max-width: 450px) {
+                .btnNav {
+                    width: 90%;
+                }
+
+                .btnOpenSettings {
+                    display: none;
+                }
+
+                .btnOpenSettingsMobile {
+                    display: block !important;
+                    margin: 16px 8px !important;
+                }
+            }
+        </style>
+
+        <div class="row" style="background-color: #ededed; padding: 0px 24px 24px 24px;">
+            <div class="col-6">
+                <button class="btn btn-primary btnNav btnRefreshTimeLog" id="btnRefreshTimeLog" type="button" style="margin: 16px;"><i class="la la-lightbulb-o" style="padding-right: 5px;"></i>Refresh</button>
+                <button class="btn btn-primary btnNav btnNewTimeSheetOne" id="btnNewTimeSheetOne" name="btnNewTimeSheetOne" type="button" style="margin: 16px;"><i class="fas fa-clock" style="padding-right: 5px;"></i>Timesheets</button>
+            </div>
+            <div class="col-6">
+                <a class="btn btnOpenSettings float-right" style="margin: 16px;" role="button" data-toggle="modal" href="#myModal2"><i class="icon ion-android-more-horizontal"></i></a>
+                <button class="btn btn-primary btnNav printConfirm float-right" type="button" style="margin: 16px;"><i class="fa fa-print" style="padding-right: 5px;"></i>Print</button>
+                <button class="btn btn-primary btnNav export exportbtn float-right" type="button" style="margin: 16px;" id="exportbtn" name="exportbtn"><i class="fas fa-file-export" style="padding-right: 5px;"></i>Export</button>
+                <a class="btn btnOpenSettings float-right btnOpenSettingsMobile float-right" style="margin: 16px 8px; display: none;" role="button" data-toggle="modal" href="#myModal2"><i class="icon ion-android-more-horizontal"></i></a>
+            </div>
+        </div>
+
+        <div class="modal fade" role="dialog" tabindex="-1" id="addNewTimeSheet">
+            <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document" style="max-width: 500px;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 style="">
+                            <div id="add-timesheet-title" name="add-account-title" style="float: left;">New Timesheet</div> <a role="button" data-toggle="modal" href="#helpModalAdd" class="helpModalAdd" style="float: right;"><label
+                                    class="lblplay">PLAY</label><i class="far fa-play-circle" style="font-size: 20px;"></i></a>
+                        </h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    </div>
+                    <div class="modal-body" style="background-color: #ededed85;">
+                        <input type="hidden" class="form-control" id="edtTimesheetID" name="edtTimesheetID" style="display:none">
+                        <div>
+                            <div class="d-xl-flex align-items-xl-start">
+                                <div class="flex-grow-1 checkMobile" style="width:50%">
+                                    <div class="form-group" style="margin: 4px;">
+                                        <label>Employee</label>
+                                        <select class="form-control sltEmployee" id="sltEmployee" name="sltEmployee">
+                                            {{#if employeerecords}}
+                                                <option value=""></option>
+                                                {{#each itememp in employeerecords}}
+                                                    <option value="{{itememp.employeename}}">{{itememp.employeename}}</option>
+                                                {{/each}}
+                                            {{/if}}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="flex-grow-1 checkMobile" style="width:50%">
+                                    <div class="form-group" style="margin: 4px;">
+                                        <label>Job</label>
+                                        <select class="form-control sltJob" id="sltJob" name="sltJob">
+                                            {{#if jobsrecords}}
+                                                <option value=""></option>
+                                                {{#each itemjob in jobsrecords}}
+                                                    <option value="{{itemjob.jobname}}">{{itemjob.jobname}}</option>
+                                                {{/each}}
+                                            {{/if}}
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="d-xl-flex align-items-xl-start">
+                                <div class="flex-grow-1 checkMobile" style="width:50%">
+                                    <div class="form-group" style="margin: 4px;">
+                                        <label>Hourly Rate</label>
+                                        <input type="number" min="0" class="form-control lineEditHourlyRate colEditHourlyRate" id="lineEditHourlyRate" name="lineEditHourlyRate">
+                                    </div>
+                                </div>
+                                <div class="flex-grow-1 checkMobile" style="width:50%">
+                                    <div class="form-group" style="margin: 4px;">
+                                        <label>Reg Hours</label>
+                                        <input type="number" min="0" class="form-control lineEditHour colEditHour" id="lineEditHour" name="lineEditHour">
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="d-xl-flex align-items-xl-start">
+                                <div class="flex-grow-1">
+                                    <div class="form-group" style="margin: 4px;">
+                                        <label>Technical Notes</label>
+                                        <textarea class="form-control lineEditTechNotes colEditTechNotes" rows="4" id="lineEditTechNotes" name="lineEditTechNotes"></textarea>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <style>
+                                .table-striped tbody tr:nth-of-type(odd) {
+                                    background-color: white !important;
+                                }
+
+                                .table-striped tbody tr:nth-of-type(even) {
+                                    background-color: rgba(0, 163, 211, 0.07) !important;
+                                }
+
+                                #productListModal .dataTables_scrollHeadInner,
+                                #productListModal .dataTables_scrollHeadInner .table {
+                                    width: 100% !important;
+                                }
+
+                                #taxRateListModal .dataTables_scrollHeadInner,
+                                #taxRateListModal .dataTables_scrollHeadInner .table {
+                                    width: 100% !important;
+                                }
+
+                                @media only screen and (max-width: 480px) {
+                                    .d-xl-flex .checkMobile {
+                                        width: 100% !important;
+                                    }
+
+                                    #ponumber,
+                                    #edtRef,
+                                    .form-group,
+                                    .input-group,
+                                    .formgoup {
+                                        max-width: 100% !important;
+                                        width: 100% !important;
+                                    }
+
+                                    .formgoup {
+                                        margin: 0px !important;
+                                    }
+
+                                    .flex-row {
+                                        margin: 16px !important;
+                                    }
+                                }
+
+                                .resizer {
+                                    position: absolute;
+                                    top: 0;
+                                    right: -8px;
+                                    bottom: 0;
+                                    left: auto;
+                                    width: 16px;
+                                    cursor: col-resize;
+                                }
+
+                                .box {}
+
+                                .outerBox {
+                                    display: none;
+                                }
+
+                                .hiddenColumn {
+                                    display: none;
+                                }
+
+                                .showColumn {
+                                    display: table-cell;
+                                    padding: .75rem;
+                                    vertical-align: top;
+                                }
+                            </style>
+                        </div>
+                    </div>
+                    <form></form>
+                    <div class="modal-footer" style="background-color: #ededed;">
+                        <button class="btn btn-primary btnSaveTimeSheet" type="button" style="margin: 8px;" id="btnSaveTimeSheet" name="btnSaveTimeSheet"><i class="fa fa-save" style="margin-right: 5px;"></i>Save</button>
+                        <button class="btn btn-danger btnDeleteTimeSheet" type="button" style="margin: 16px; width: 95px;"><i class="fa fa-trash" style="padding-right: 8px;"></i>Delete</button>
+                        <button class="btn btn-secondary" data-dismiss="modal" type="button" style="margin: 8px;"><i class="fa fa-close" style="margin-right: 5px;"></i>Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row d-xl-flex justify-content-xl-end" style="padding: 24px; padding-right: 32px; padding-bottom: 0px;">
+            <div>
+                <div class="modal fade" role="dialog" tabindex="-1" id="myModal2">
+                    <div class="modal-dialog modal-dialog-centered" role="document" style="float: right;">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4>Display Settings</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                            </div>
+                            <div class="modal-body">
+                                <div>
+                                    {{#if tableheaderrecords}}
+                                        <form class="d-xl-flex align-items-xl-center">
+                                            <div class="flex-grow-1">
+                                                <style>
+                                                    .groove {
+                                                        border-style: solid;
+                                                        border-width: 1px;
+                                                        width: 200px;
+                                                        padding: 2px;
+                                                        border-radius: .35rem;
+                                                    }
+
+                                                    .custom-control-label {
+                                                        position: absolute;
+                                                    }
+
+                                                    .rngRange {
+                                                        position: relative;
+                                                        display: flex;
+                                                        flex-direction: column;
+                                                        width: 100%;
+                                                        pointer-events: auto;
+                                                        background-color: rgb(255, 255, 255);
+                                                        background-clip: padding-box;
+                                                        border: 1px solid rgb(133, 135, 150);
+                                                        border-radius: .3rem;
+                                                        border-style: solid;
+                                                        border-width: 1px;
+                                                        padding: 2px;
+                                                        border-radius: .35rem;
+                                                        color: rgb(128, 128, 128);
+                                                        height: inherit !important;
+                                                    }
+
+                                                    @media only screen and (max-width: 480px) {
+                                                        .modal.show .modal-dialog {
+                                                            float: inherit !important;
+                                                            left: inherit !important;
+                                                            top: auto !important;
+
+                                                        }
+                                                    }
+                                                </style>
+                                                {{#each item in tableheaderrecords}}
+                                                    {{#if equals item.sTitle "Edit"}}
+                                                    {{else}}
+                                                        {{#if equals item.sTitle ""}}
+                                                        {{else}}
+                                                            <div id="{{item.sIndex}}" class="columnSettings">
+                                                                <div class="custom-control custom-switch" style="margin: 8px; float:left;">
+                                                                    <input class="custom-control-input chkDatatable" type="checkbox" id="chkSalesNo-{{item.sIndex}}" name="chkSalesNo-{{item.sIndex}}"
+                                                                        checked="{{#if item.sVisible}}checked{{else}}{{/if}}" value="{{item.sTitle}}">
+                                                                    <label class="custom-control-label" for="chkSalesNo-{{item.sIndex}}"></label>
+                                                                    <div contenteditable="true" class="groove divcolumn" type="text" value="{{item.sTitle}}" valueupdate="{{item.sClass}}">{{item.sTitle}}</div>
+                                                                </div>
+                                                                <div class="d-xl-flex align-items-xl-center divColWidth" style="margin: 8px;">
+                                                                    <label class="text-nowrap" style="padding-left: 0px;margin-top: 8px;">Width:
+                                                                        <!--<span class="spWidth" value="{{item.sTitle}}">{{item.sWidth}}px</span>-->
+                                                                    </label>
+                                                                    <input class="custom-range rngRange" type="number" style="margin: 8px;" value="{{item.sWidth}}" min="0" max="1000">
+                                                                    <!-- <div contenteditable="true" class="groove rngRange" type="text" value="{{item.sWidth}}" min="0" max="1000">{{item.sWidth}}px</div> -->
+                                                                </div>
+                                                            </div>
+
+                                                            {{#if equals item.sVisible true}}
+                                                                <script>
+                                                                    $("#" + {{item.sIndex}} + ".chkDatatable").attr("checked", "checked");
+                                                                </script>
+                                                            {{else}}
+                                                                <script>
+                                                                    $("#" + {{item.sIndex}} + ".chkDatatable").removeAttr("checked");
+                                                                </script>
+                                                            {{/if}}
+                                                        {{/if}}
+                                                    {{/if}}
+                                                {{/each}}
+                                            </div>
+                                        </form>
+                                    {{/if}}
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary saveTable" type="button"><i class="fa fa-save" style="margin-right: 5px;"></i>Save</button>
+                                <button class="btn btn-warning resetTable" data-dismiss="modal" type="reset"><i class="fa fa-repeat" style="margin-right: 5px;"></i>Reset</button>
+                                <button class="btn btn-secondary" data-dismiss="modal" type="button"><i class="fa fa-remove" style="margin-right: 5px;"></i>Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col" style="margin-bottom: 16px;">
+                <div class="card-body p-5 rounded" style="padding: 0rem 2rem !important;">
+                    <style>
+                        .cashamount {
+                            text-align: right;
+                        }
+
+                        th {
+                            background-color: #ededed;
+                        }
+
+                        .table-striped tbody tr:nth-of-type(odd) {
+                            background-color: white !important;
+                        }
+
+                        .table-striped tbody tr:nth-of-type(even) {
+                            background-color: #0000000d !important;
+                        }
+
+                        .JColResizer>tbody>tr>td,
+                        .JColResizer>tbody>tr>th {
+                            padding: .75rem !important;
+                        }
+
+                        .hiddenColumn {
+                            display: none;
+                        }
+
+                        .showColumn {
+                            display: table-cell;
+                            padding: .75rem;
+                            vertical-align: top;
+                        }
+
+                        input[type=number]::-webkit-inner-spin-button,
+                        input[type=number]::-webkit-outer-spin-button {
+                            opacity: 1;
+                        }
+
+                        .highlightInput {
+                            border: 0px solid transparent !important;
+                            background-color: rgba(0, 0, 0, 0) !important;
+                            padding: 0px !important;
+                            width: 100% !important;
+                            text-align: right !important;
+                            color: #858796 !important;
+                        }
+
+                        .highlightInput::-webkit-outer-spin-button,
+                        .highlightInput::-webkit-inner-spin-button {
+                            -webkit-appearance: none !important;
+                            margin: 0 !important;
+                        }
+
+                        /* Firefox */
+                        .highlightInput[type=number] {
+                            -moz-appearance: textfield !important;
+                        }
+
+                        .colFlag {
+                            width: 1% !important;
+                        }
+
+                        .tdEmpty {
+                            width: 3% !important;
+                        }
+
+                        @media screen and (max-width: 450px) {
+
+                            #tblTimeSheet_filter {
+                                width: 70%;
+                            }
+
+                            .form-control-sm {
+                                width: 70% !important;
+                            }
+
+                            .input-group.date {
+                                width: 130px !important;
+                            }
+
+                            .dateFromGroup {
+                                float: right !important;
+                                width: 183px !important;
+                            }
+
+                            .dateToGroup {
+                                float: right !important;
+                                width: 172px !important;
+                            }
+
+                            .myvarFilterForm {
+                                /* display: inline-flex !important; */
+                                padding: 0px !important;
+                            }
+
+                            .colDateFilter {
+                                padding-left: 0px !important;
+                            }
+
+                            .dropdownDateRange {
+                                float: right !important;
+                                width: 100% !important;
+                            }
+
+                            .btn-daterange {
+                                float: right !important;
+                            }
+                        }
+                    </style>
+                    <div class="row no-gutters d-xl-flex align-items-xl-end">
+                        <div class="col d-sm-flex justify-content-sm-start align-items-sm-center">
+
+                        </div>
+                        <div class="col float-right d-sm-flex d-xl-flex justify-content-sm-end align-items-sm-center justify-content-xl-end align-items-xl-end myvarFilterForm">
+                            <div class="dropdown dropdownDateRange" style="margin: 8px; margin-top: 0px;">
+                                <style>
+                                    .btn-daterange::after {
+                                        display: none;
+                                    }
+                                </style>
+                                <button class="btn dropdown-toggle btn-daterange" data-toggle="dropdown" aria-expanded="true" type="button"><i class="fas fa-ellipsis-v"></i></button>
+                                <div class="dropdown-menu" role="menu">
+                                    <h6 class="dropdown-header" role="presentation">Date ranges</h6>
+                                    <a class="dropdown-item today"  id="today" role="presentation" href="#">Today</a>
+                                    <a class="dropdown-item lastweek"  id="lastweek" role="presentation" href="#">Last Week</a>
+                                    <a class="dropdown-item lastMonth" id="lastMonth" role="presentation" href="#">Last Month</a>
+                                    <a class="dropdown-item lastQuarter" id="lastQuarter" role="presentation" href="#">Last Quarter</a>
+                                    <a class="dropdown-item last12Months" id="last12Months" role="presentation" href="#">Last 12 Months</a>
+                                    <a class="dropdown-item ignoreDate" id="ignoreDate" role="presentation" href="#">Ignore Date</a>
+                                </div>
+                            </div>
+                            <div class="form-group dateFromGroup" style="margin: 8px; margin-top: 0px; display: inline-flex;">
+                                <label style="margin-top: 8px; margin-right: 16px;">From</label>
+                                <div class="input-group date" style="width: 160px;">
+                                    <input type="text" class="form-control" id="dateFrom" name="dateFrom">
+                                    <div class="input-group-addon">
+                                        <span class="glyphicon glyphicon-th"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group dateToGroup" style="margin: 8px; margin-right: 0px; margin-top: 0px; display: inline-flex;">
+                                <label style="margin-top: 8px; margin-right: 16px;">To</label>
+                                <div class="input-group date" style="width: 160px;">
+                                    <input type="text" class="form-control" id="dateTo" name="dateTo">
+                                    <div class="input-group-addon">
+                                        <span class="glyphicon glyphicon-th"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <style>
+                        .colTimesheetID {
+                            width: 3% !important;
+                        }
+                        .colDate {
+                            width: 5% !important;
+                        }
+                        .colFromTime {
+                            width: 9% !important;
+                        }
+                        .colToTime {
+                            width: 7% !important;
+                        }
+                        .colHours {
+                            width: 5% !important;
+                        }
+                    </style>
+                    <div class="table-responsive">
+                        <table id="tblTimeSheet" style="width:100%" class="dataTable table table-hover table-striped table-bordered tblTimeSheet">
+                            <thead>
+                                <tr class="dnd-moved">
+                                    <!--  <th class="colFlag sorting_disabled" style="width: 1% !important;">
+                                        <div class="custom-control custom-checkbox" style="width:15px;">
+                                            <input class="custom-control-input n" type="checkbox" id="check-all">
+                                            <label class="custom-control-label" for="check-all"></label>
+                                        </div>
+                                    </th> -->
+                                    <th class="th colSortID hiddenColumn" style="width:10px;">Sort ID</th>
+                                    <th class="th colTimesheetID" style="width: 3% !important;">ID</th>
+                                    <th class="th colName" style="width:80px;">Employee</th>
+                                    <th class="th colDate" style="width: 5% !important;">Date</th>
+                                    <th class="th colJob" style="width:120px;">Job</th>
+                                    <th class="th colJob" style="width:120px;">Product</th>
+                                    <th class="th colFromTime " style="width: 9% !important;">From Time</th>
+                                    <th class="th colToTime " style="width: 7% !important;">To Time</th>
+                                    <th class="th colHours " style="width: 5% !important;">Hours</th>
+                                    <th class="th colBreak " style="width:100px;">Break</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#if datatablerecords}}
+                                    {{#each item in datatablerecords}}
+                                        <tr class="dnd-moved" id="{{item.id}}" name="{{item.id}}">
+                                            <!--  <td class="colFlag" style="width: 1% !important;">
+                                                <div class="custom-control custom-checkbox pointer">
+                                                    <input class="custom-control-input chkBox notevent pointer" type="checkbox" id="f-{{item.id}}" name="{{item.id}}">
+                                                    <label class="custom-control-label" for="f-{{item.id}}"></label>
+                                                </div>
+                                            </td> -->
+                                            <td class="colSortID hiddenColumn" style="width: 1% !important;">
+                                                {{item.sortid}}
+                                            </td>
+                                            <td class="colTimesheetID" contenteditable="false" empname="{{item.id}}"><a href="#">{{item.id}}</a></td>
+                                            <td class="colName" contenteditable="false" empname="{{item.employee}}"><a href="#">{{item.employee}}</a></td>
+                                            <td class="colDate" contenteditable="false">{{item.timesheetdate}}</td>
+                                            <td class="colJob" contenteditable="false">{{item.job}}</td>
+                                            <td class="colProduct" contenteditable="false">{{item.product}}</td>
+                                            <td class="colFromTime" style="">{{item.startTime}}
+                                            </td>
+                                            <td class="tdOvertime" style="">{{item.endTime}}</td>
+                                            <td class="tdHours" style="">{{item.hours}}
+                                            </td>
+
+                                            <td class="colNotes">{{item.notes}}</td>
+                                        </tr>
+                                    {{/each}}
+                                {{/if}}
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="d-xl-flex justify-content-xl-center" style="padding-top: 2rem;">
+<button class="btn btn-primary btnSave" type="button" style="margin: 16px;margin-top: 0px;width: 95px;">
+<i class="fa fa-save" style="padding-right: 8px;"></i>Save
+</button>
+
+<button class="btn btn-secondary btnBack" type="button" style="margin: 16px;margin-top: 0px;width: 95px;">
+<i class="fa fa-remove" style="padding-right: 8px;"></i>Cancel
+</button>
+</div> -->
+    </div>
+    <!-- Start Help Video Modal -->
+    <div class="modal fade" role="dialog" tabindex="-1" id="helpModal">
+        <div class="modal-dialog" role="document" style="max-width: 670px!important;">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <h4 class="title-header">Time Sheet</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+                    <!-- <iframe width="640" height="360" src="https://player.vimeo.com/video/99892791" frameborder="0" allowfullscreen=""></iframe> -->
+                    <!-- <iframe width="640" height="360" src="https://erphelpes.com/vs1videos/invoicelist.mp4" frameborder="0" allowfullscreen=""></iframe> -->
+                    <video id="myVideo" width="640" height="360" controls="" name="media" style="border: solid 5px #999999f0; height: auto; outline: none;">
+                        <source src="https://erphelpes.com/vs1videos/comingsoon.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Help Video Modal -->
+
+    <!-- Add Shift Modal -->
+    <div class="modal fade" role="dialog" tabindex="-1" id="addNewShift">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document" style="max-width: 400px;">
+            <div class="modal-content">
+                <form action='' method='post'>
+                    <div class="modal-header">
+                        <h4 style="">
+                            <div id="add-account-title" name="add-account-title" style="float: left;">New Shift</div>
+                        </h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    </div>
+                    <div class="modal-body" style="background-color: #ededed;">
+
+                        <input type="text" class="form-control" id="edtShiftEmpID" name="edtShiftEmpID" style="display:none!important;">
+                        <div>
+                            <!-- <div class="d-xl-flex align-items-xl-start">
+<span style="width:100%;"><a href="#" role="button" class="float-right btnAddBreak">Add Break</a></span>
+</div> -->
+                            <div class="d-xl-flex align-items-xl-start">
+                                <div class="flex-grow-1 checkMobile" style="width:50%;">
+                                    <div class="form-group" style="margin: 4px;">
+                                        <label>Clock In</label>
+                                        <input type="time" class="form-control" id="edtClockIn" name="edtClockIn">
+                                    </div>
+                                </div>
+                                <div class="flex-grow-1 checkMobile" style="width:50%;">
+                                    <div class="form-group" style="margin: 4px;">
+                                        <label style="visibility:hidden;">Clock In</label>
+                                        <button type="button" class="btn btn-success" style="width: 100%;"><i class="fa fa-clock"></i> Clock In</button>
+                                    </div>
+                                </div>
+                                <!-- <div class="flex-grow-1">
+<div class="form-group" style="margin: 4px;">
+<label>Clock Out</label>
+<input type="time" class="form-control" id="edtClockOut" name="edtClockOut" >
+</div>
+</div> -->
+                                <!-- <div class="flex-grow-1">
+<div class="form-group" style="margin: 4px;">
+<label style="visibility:hidden;">Clock Out</label>
+<button type="button" class="btn btn-warning" style="width: 100%;"><i class="fa fa-clock"></i> Clock Out</button>
+</div>
+</div> -->
+                            </div>
+
+
+                            <div class="d-xl-flex align-items-xl-start">
+                                <!-- <div class="flex-grow-1">
+<div class="form-group" style="margin: 4px;">
+<label>Clock In</label>
+<input type="time" class="form-control" id="edtClockIn" name="edtClockIn" >
+</div>
+</div> -->
+                                <!-- <div class="flex-grow-1">
+<div class="form-group" style="margin: 4px;">
+<label style="visibility:hidden;">Clock In</label>
+<button type="button" class="btn btn-success" style="width: 100%;"><i class="fa fa-clock"></i> Clock In</button>
+</div>
+</div> -->
+                                <div class="flex-grow-1 checkMobile" style="width:50%;">
+                                    <div class="form-group" style="margin: 4px;">
+                                        <label>Clock Out</label>
+                                        <input type="time" class="form-control" id="edtClockOut" name="edtClockOut">
+                                    </div>
+                                </div>
+                                <div class="flex-grow-1 checkMobile" style="width:50%;">
+                                    <div class="form-group" style="margin: 4px;">
+                                        <label style="visibility:hidden;">Clock Out</label>
+                                        <button type="button" class="btn btn-warning" style="width: 100%;"><i class="fa fa-clock"></i> Clock Out</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="d-xl-flex align-items-xl-start">
+                                <div class="flex-grow-1">
+                                    <div class="form-group" style="margin: 4px;"><label>Job</label>
+                                        <select class="form-control sltJob" id="sltJob" name="sltJob">
+                                            {{#if jobsrecords}}
+                                                {{#each itemjob in jobsrecords}}
+                                                    <option value="{{itemjob.jobname}}">{{itemjob.jobname}}</option>
+                                                {{/each}}
+                                            {{/if}}
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="d-xl-flex align-items-xl-start">
+                                <div class="flex-grow-1">
+                                    <div class="form-group" style="margin: 4px;"><label>Title</label>
+                                        <input type="text" class="form-control" id="edtTitle" name="edtTitle">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="modal-footer" style="background-color: #ededed;">
+                        <button class="btn btn-primary btnSaveShift" type="submit" name='submitShift' style="margin: 8px;" id="btnSaveAccount"><i class="fa fa-save" style="margin-right: 5px;"></i>Save</button>
+
+                        <!-- <button class="btn btn-danger btnDeleteAccount" type="button" style="margin: 16px; width: 95px;"><i class="fa fa-trash" style="padding-right: 8px;"></i>Delete</button> -->
+                        <button class="btn btn-secondary" data-dismiss="modal" type="button" style="margin: 8px;"><i class="fa fa-close" style="margin-right: 5px;"></i>Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- End Add Shift Modal -->
+    <script>
+        modalDraggable();
+    </script>
+</template>

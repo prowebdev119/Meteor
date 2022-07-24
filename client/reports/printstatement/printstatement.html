@@ -1,0 +1,117 @@
+<template name="printstatement">
+    <div style="margin-top: -24px;">
+                <header style="padding: 16px;">
+                    <h1 style="margin: 16px;">Print Statements</h1>
+                </header>
+                <div class="row no-gutters d-xl-flex justify-content-center justify-content-xl-center mb-3" style="width: 100%;">
+                    <div class="col-auto">
+                        <div class="card shadow flex-grow-1 mb-3" style="margin-top: 16px;margin-right: 16px;margin-left: 16px;">
+                            <div class="card-header py-3" style="background-color: rgb(248,249,252);">
+                                <p class="text-primary m-0 font-weight-bold">Print Statements</p>
+                            </div>
+                            <div class="card-body">
+                                <div class="row no-gutters d-xl-flex align-items-xl-end">
+                                    <div class="col d-sm-flex justify-content-sm-start align-items-sm-center"><button class="btn btn-primary text-nowrap float-left" type="button" style="margin: 8px;"><i class="la la-lightbulb-o" style="padding-right: 5px;"></i>Refresh</button>
+                                        <div><a class="btn btn-primary" role="button" data-toggle="modal" href="#myModal"><i class="fas fa-users-cog" style="margin-right: 5px;"></i>Department</a>
+                                            <div class="modal fade" role="dialog" tabindex="-1" id="myModal">
+                                                <div class="modal-dialog modal-sm" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h4>Deparment</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                                                        <div class="modal-body"></div>
+                                                        <div class="modal-footer"><button class="btn btn-primary" type="button"><i class="fa fa-save" style="margin-right: 5px;"></i>Save</button><button class="btn btn-light" data-dismiss="modal" type="button"><i class="fa fa-close" style="margin-right: 5px;"></i>Close</button></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col float-right d-sm-flex d-xl-flex justify-content-sm-end align-items-sm-center justify-content-xl-end align-items-xl-end">
+                                        <div class="dropdown" style="margin: 8px;">
+                                            <style>
+                                                .dropdown-toggle::after {
+                                                    display: none;
+                                                }
+                                            </style>
+                                            <button class="btn dropdown-toggle" data-toggle="dropdown" aria-expanded="true" type="button"><i class="fas fa-ellipsis-v"></i></button>
+                                            <div class="dropdown-menu" role="menu">
+                                                <h6 class="dropdown-header" role="presentation">Date ranges</h6>
+                                                <a class="dropdown-item lastMonth"  id="lastMonth" role="presentation" href="#">Last Month</a>
+                                                <a class="dropdown-item lastQuarter"  id="lastQuarter" role="presentation" href="#">Last Quarter</a>
+                                                <a class="dropdown-item last12Months"  id="last12Months" role="presentation" href="#">Last 12 Months</a>
+                                            </div>
+                                        </div>
+                                        <div class="form-group d-xl-flex flex-column justify-content-xl-start" style="margin: 8px;">
+                                            <label style="margin-right: 16px;">From</label>
+                                            <div class="input-group date" style="width: 160px;">
+                                                <input type="text" class="form-control printfromdate" id="printfromdate" name="printfromdate" value="">
+                                                <div class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-th"></span>
+                                                </div>
+                                            </div></div>
+                                        <div class="form-group d-xl-flex flex-column justify-content-xl-start" style="margin: 8px;">
+                                            <label style="margin-right: 16px;">To</label>
+                                            <div class="input-group date" style="width: 160px;">
+                                                <input type="text" class="form-control printtodate" id="printtodate" name="printtodate" value="">
+                                                <div class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-th"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <p class="text-center" style="margin-bottom: 0px;font-weight: bold;">Print Statements</p>
+                                        <p class="text-center" style="margin-bottom: 0px;">blank_erp&nbsp;</p>
+                                        <p class="text-center" style="margin-bottom: 8px;">Starting from 14 April 2020 to 11 May 2020</p>
+                                    </div>
+                                </div>
+                                <div class="row no-gutters">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover table-sm">
+                                            <thead>
+                                                <tr class="table-active">
+                                                    <th style="width: 220px">Customer</th>
+                                                    <th style="width: 220px">Job Name</th>
+                                                    <th style="width: 220px">Type</th>
+                                                    <th style="width: 220px">Amount Due</th>
+                                                    <th style="width: 25px;"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>FrozeCorp</td>
+                                                    <td></td>
+                                                    <td>Default</td>
+                                                    <td class="text-right">R 4'359.99</td>
+                                                    <td><div class="custom-control custom-checkbox"><input class="custom-control-input" type="checkbox" id="formCheck-1"><label class="custom-control-label" for="formCheck-1"></label></div></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Apple Inc</td>
+                                                    <td></td>
+                                                    <td>Default</td>
+                                                    <td class="text-right">R 9'057'359.99</td>
+                                                    <td><div class="custom-control custom-checkbox"><input class="custom-control-input" type="checkbox" id="formCheck-2"><label class="custom-control-label" for="formCheck-2"></label></div></td>
+                                                </tr>
+                                            </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <th colspan="3" style="text-align: center; background-color: #fff; padding-top: 32px;">
+                                                        Powered by <a href="https://www.vs1cloud.com" target="_blank">VS1Cloud</a>
+                                                    </th>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col d-xl-flex justify-content-xl-start"><button class="btn btn-primary float-left" type="button" style="margin: 16px;width: 97px;"><i class="fa fa-print" style="margin-right: 5px;"></i>Print</button></div>
+                                    <div class="col d-xl-flex justify-content-xl-end"><button class="btn btn-primary" type="button" style="margin: 16px;width: 97px;"><i class="fas fa-file-export" style="margin-right: 5px;"></i>Export</button></div>
+                                </div>
+                                <div class="d-xl-flex justify-content-xl-center"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+</template>

@@ -1,0 +1,77 @@
+<template name="newProjectModal">
+  <div class="modal fade" id="newCrmProject" tabindex="-1" role="dialog" aria-labelledby="newCrmProjectLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="newCrmProjectLabel">New Project</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-12">
+              <div class="form-group">
+                <label>Project Name</label>
+                <input type="text" class="form-control" id="crmProjectName" name="crmProjectName" autocomplete="off">
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="form-group">
+                <label>Project Color</label>
+                <input type="color" class="form-control" id="crmProjectColor" name="crmProjectColor" autocomplete="off">
+              </div>
+            </div>
+            <div class="col-12 mb-4">
+              <div class="custom-control custom-switch">
+                <input class="custom-control-input" type="checkbox" value="swtNewCrmProjectFavorite"
+                  id="swtNewCrmProjectFavorite" name="swtNewCrmProjectFavorite" style="cursor: pointer;">
+                <label class="custom-control-label" for="swtNewCrmProjectFavorite" style="cursor: pointer;">Add to
+                  Favorites</label>
+              </div>
+            </div>
+            <div class="col-12 mb-4">
+              <label>View</label>
+              <div class="row">
+                <div class="col-6 listCol">
+                  <div class="listoptiondiv mb-2"
+                    style="background-image: url('images/listoption.svg'); height: 85px; width: 100%; border-radius: 5px; border: 2px solid #d1d3e2;">
+                  </div>
+                  <!-- <img src="images/listoption.svg" style="width: 100%; "> -->
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="crmViewOption" id="crmViewOptionList"
+                      value="listoption" checked>
+                    <label class="form-check-label" for="crmViewOptionList">
+                      List
+                    </label>
+                  </div>
+                </div>
+                <div class="col-6 boardCol">
+                  <div class="boardoptiondiv mb-2"
+                    style="background-image: url('images/gridoption.svg'); height: 85px; width: 100%; border-radius: 5px; border: 2px solid #d1d3e2;">
+                  </div>
+                  <!-- <img src="images/gridoption.svg" style="width: 100%;"> -->
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="crmViewOption" id="crmViewOptionGrid"
+                      value="gridoption">
+                    <label class="form-check-label" for="crmViewOptionGrid">
+                      Board
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-12">
+              <p>View is synced between teammates in shared projects. Learn more.</p>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary btnNewCrmProject" data-dismiss="modal">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

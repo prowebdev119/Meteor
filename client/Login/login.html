@@ -1,0 +1,68 @@
+<template name="login">
+  <!-- {{> login}} -->
+  <div class="login_body">
+  <div class="login_head">
+  <img src="/img/vs1_logo_cloud.png" width="200px;" class="">
+  </div>
+  <div class="fullScreenSpin" style="display:none;"><div class="spinner"></div></div>
+  <main role="main">
+<div class="container_login">
+  <script type="text/javascript">
+   var date = new Date();
+  var startTime = moment(date, "HH:mm:ss a");
+  if (typeof(Storage) !== "undefined") {
+    // Store
+    localStorage.setItem("loginTime", startTime);
+    // Retrieve
+    var getLoginTime = localStorage.getItem("loginTime");
+  }
+  
+  </script>
+<div class="wrap_login">
+<div class="log_col_left">
+<h2>Welcome to VS1Cloud</h2>
+<form data-form-type="request" accept-charset="UTF-8" action="" id="formlogin" method="POST">
+<!-- <select name="dbname" id="erpdbname" class="login_form_control_database" required>
+   {{#each companyDatabases}}
+   <option value="{{server}},{{database}},{{username}},{{password}},{{port}}">{{description}}</option>
+   {{/each}}
+</select>
+<select name="Username" id="erpusername" class="login_form_control_user" required>
+</select> -->
+<!-- <select name="dbname" id="erpdbname" class="login_form_control_database">
+   {{#each companyDatabases}}
+   <option value="{{server}},{{database}},{{username}},{{password}},{{port}}">{{description}}</option>
+   {{/each}}
+</select> -->
+<div class="form-group"><input class="form-control login_form_control_password" type="email" name="email" id="email" placeholder="Email" required></div>
+<div style="display:none;"><input type="hidden" id="user_password" class="form-control" readonly></div>
+<input type="password" placeholder="Password" id="erppassword" class="login_form_control_password" >
+
+<!-- <input type="submit" class="login_btn" id="formloginbtn" value="Login"> -->
+<button type="button" id="login-button" name="login-button" class="login_btn" style="font-family: FontAwesome, 'Trebuchet MS'; font-size: 16px;">
+  <i class="fa fa-spinner fa-spin loginSpinner" style="display:none;"></i> Login
+</button>
+
+</form>
+<p>
+<!-- <a href="/register">Setup Connection</a><br> -->
+<a href="/forgotpassword">Forgot your password ?</a><br>
+Version: 2020.0.1.4 DEV - VS1Cloud
+</p>
+</div>
+<div class="log_col_right">
+<div class="log_col_right_slogan">
+<div class="login_slogan_divider"></div>
+<h2>Let's do business better</h2>
+<div class="login_slogan_divider"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="login_notice">
+  <p>Don't have a login? <a href="#">Try VS1Cloud today!</a></p>
+</div>
+
+</main>
+</div>
+</template>

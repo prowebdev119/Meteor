@@ -1,0 +1,768 @@
+<template name="journalentrycard">
+    <div id="form" style="margin-top: -24px;">
+        <div class="fullScreenSpin" style="display:none;">
+            <div class="spinner"></div>
+        </div>
+        {{#if record}}
+            <div class="row no-gutters" style="background-color: #ededed;">
+                <div class="col">
+                    <header>
+                        <h2 style="margin: 32px;margin-bottom: 0px;">{{record.lid}}
+
+                            <a role="button" data-toggle="modal" href="#helpViewModal" style="font-size: 20px;">Help <i class="fa fa-question-circle-o" style="font-size: 20px;"></i></a>
+
+                            <!-- Start Help View Modal -->
+                            <div class="modal fade" role="dialog" tabindex="-1" id="helpViewModal">
+                                <div class="modal-dialog modal-sm" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header" style="padding-bottom: 8px;">
+                                            <h4>Help</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p class="text-center text-muted"><a role="button" data-toggle="modal" href="#helpModal" class="btn btn-primary helpModal">View Help Video</a></p>
+                                            <p class="text-center text-muted"><a href="https://vs1forum.com/" target="_blank" class="btn btn-primary">Download Help File</a></p>
+                                            <p class="text-center text-muted"><button class="btn btn-primary" type="button">Employ Advisor</button></p>
+                                            <p class="text-center text-muted" style="margin: 0px;"><a href="https://vs1forum.com/ucp.php?mode=register&cloudusername={{loggedCompany}}" target="_blank" class="btn btn-primary">Go To Forum</a></p>
+                                        </div>
+                                        <div class="modal-footer" style="padding: 6px;"><button class="btn btn-light" data-dismiss="modal" type="button">Close</button></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Help View Modal -->
+
+                        </h2>
+                    </header>
+                </div>
+                {{#if equals record.isReconciled true}}
+                    <div class="col-2 colProcessed" id="colProcessed">
+                        <h3 style="margin-left: -24px; margin-top: 36px; color: #e02d1b; font-weight: 600;">Reconciled</h3>
+                    </div>
+                {{/if}}
+            </div>
+
+            <div class="row" style="padding: 32px; padding-bottom: 0px; background-color: #ededed;">
+                <div class="col-12 col-md-8">
+                    <div class="row">
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <div class="form-group d-xl-flex flex-column justify-content-xl-start">
+                                <label>Date</label>
+                                <div class="input-group date" style="cursor: pointer;">
+                                    <input type="text" class="form-control" id="dtTransDate" name="dtTransDate" value="{{record.transdate}}" style="background-color: #ffffff;height: 38px;">
+                                    <div class="input-group-addon" style="">
+                                        <span class="glyphicon glyphicon-th" style="cursor: pointer;"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <div class="form-group d-xl-flex flex-column justify-content-xl-start">
+                                <label>Department</label>
+                                <select type="search" class="form-control" id="sltDepartment" name="sltDepartment" style="background-color:rgb(255, 255, 255); cursor: pointer;">
+                                </select>
+                                <!-- <select class="form-control" style="cursor: pointer;" id="sltDepartment" name="sltDepartment">
+                                    {{#each item in deptrecords}}
+                                        {{#if equals item.department record.department }}
+                                            <option value="{{record.department}}" selected="">{{record.department}}</option>
+                                        {{else}}
+                                            <option value="{{item.department}}">{{item.department}}</option>
+                                        {{/if}}
+                                    {{/each}}
+                                </select> -->
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <div class="form-group d-xl-flex flex-column justify-content-xl-start">
+                                <label>Entry No.</label>
+                                <input type="text" class="form-control" id="edtEnrtyNo" name="edtEnrtyNo" value="{{record.entryno}}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-lg-9">
+                            <div class="form-group d-xl-flex flex-column justify-content-xl-start">
+                                <label>Memo</label>
+                                <textarea class="form-control" rows="3" id="txaMemo" name="txaMemo" style="width: 100%;">{{record.memo}}</textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row no-gutters">
+                <div class="col">
+                    <div class="card-body p-3 rounded" style="padding-bottom: 0px!important;">
+                        <div>
+                            <div class="card-body rounded" style="padding: 0px !important;">
+                                <!-- Remove p-5 to resize the form -->
+                                <!-- Start {{> optionNav}} -->
+                                <div class="d-xl-flex justify-content-xl-end">
+                                    <div><a class="btn" role="button" data-toggle="modal" href="#myModal2"><i class="icon ion-android-more-horizontal"></i></a>
+                                        <div class="modal fade" role="dialog" tabindex="-1" id="myModal2">
+                                            <div class="modal-dialog modal-dialog-centered" role="document" style="float: right;">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h4>Display Settings</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div>
+                                                            <form class="d-xl-flex align-items-xl-center">
+                                                                <div class="flex-grow-1">
+                                                                    <style>
+                                                                        .groove {
+                                                                            border-style: solid;
+                                                                            border-width: 1px;
+                                                                            width: 200px;
+                                                                            padding: 2px;
+                                                                            border-radius: .35rem;
+                                                                        }
+
+                                                                        .custom-control-label {
+                                                                            position: absolute;
+                                                                        }
+
+                                                                        .file-name span {
+                                                                            width: 100%;
+                                                                            float: left;
+                                                                        }
+
+                                                                        #file-display .fileIocns i.fa.fa-file {
+                                                                            color: rgb(252, 181, 38);
+                                                                            font-size: 24px;
+                                                                        }
+
+                                                                        #file-display {
+                                                                            padding: 0;
+                                                                            margin: 0;
+                                                                        }
+
+                                                                        .uploaded-element {
+                                                                            display: inherit;
+                                                                        }
+
+                                                                        .uploaded-element {
+
+                                                                            border: 1px solid rgb(237, 237, 237);
+                                                                            border-top: none;
+
+                                                                            float: left;
+                                                                            width: 100%;
+                                                                            display: flex;
+                                                                            align-items: center;
+                                                                            padding: 1rem;
+                                                                        }
+
+                                                                        #file-display .fileIocns {
+                                                                            background-image: url(img/file_icons-samall.png);
+                                                                            background-repeat: no-repeat;
+                                                                            background-position: 0 -105px;
+                                                                        }
+
+                                                                        #file-display .fileIocns {
+                                                                            float: left;
+                                                                            margin-right: 10px;
+                                                                        }
+
+                                                                        .file-name {
+                                                                            float: left;
+                                                                            width: 87%;
+                                                                        }
+
+                                                                        .uploaded-element-header {
+                                                                            border: 1px solid rgb(237, 237, 237);
+                                                                            border-top: none;
+                                                                            float: left;
+                                                                            width: 100%;
+                                                                            display: flex;
+                                                                            align-items: center;
+                                                                            padding: 10px;
+                                                                            background: #e3e6f0;
+                                                                        }
+
+                                                                        .uploaded-header {
+                                                                            width: 100%;
+                                                                            text-align: center;
+                                                                        }
+
+                                                                        .uploaded-element .confirm-action a.confirm-delete-attachment {
+                                                                            padding: 6px 13px 5px;
+                                                                            background-color: rgb(216, 68, 68) !important;
+                                                                            border-color: rgb(197, 112, 119) rgb(169, 29, 29) rgb(169, 29, 29) rgb(197, 112, 119);
+                                                                            color: rgb(255, 255, 255) !important;
+                                                                            text-shadow: 1px 1px 1px rgba(30, 30, 30, 0.15);
+                                                                            line-height: initial;
+                                                                            font-size: 12px;
+                                                                            float: left;
+                                                                        }
+
+                                                                        button.save-to-library {
+                                                                            padding: 6px 13px 5px;
+                                                                            border-radius: 4px;
+                                                                            background: linear-gradient(rgb(255, 255, 255), rgb(230, 234, 236));
+                                                                            border: 1px solid rgb(230, 230, 230);
+                                                                            border-color: rgb(230, 230, 230) rgb(179, 179, 179) rgb(179, 179, 179) rgb(230, 230, 230) !important;
+                                                                            color: rgb(204, 0, 0) !important;
+                                                                            font-weight: bold;
+                                                                            margin-left: 10px !important;
+                                                                            font-size: 12px;
+                                                                        }
+
+                                                                        .uploaded-element {
+                                                                            display: inherit;
+                                                                        }
+
+                                                                        /* HERE */
+                                                                        #files_view .modal-title {
+                                                                            white-space: nowrap;
+                                                                            overflow: hidden;
+                                                                            text-overflow: ellipsis;
+                                                                            width: 70%;
+                                                                        }
+
+                                                                        #files_view .modal-title {
+                                                                            color: #333;
+                                                                            font-size: 18px;
+                                                                            font-weight: 700;
+                                                                            text-rendering: optimizelegibility;
+                                                                            padding: 9px 0;
+                                                                            padding-left: 15px;
+                                                                            padding-top: 11px;
+                                                                        }
+
+                                                                        #files_view .modal-dialog {
+                                                                            width: 750px;
+                                                                            margin: 30px auto;
+                                                                        }
+
+                                                                        #files_view .modal-header .close {
+                                                                            margin-top: 0;
+                                                                            width: 46px;
+                                                                            height: 46px;
+                                                                            padding: 6px 0 0;
+                                                                            border-left: 1px solid #ddd;
+                                                                            opacity: 1;
+                                                                            margin: 0;
+                                                                        }
+
+                                                                        #files_view .modal-header {
+                                                                            padding: 0;
+                                                                            display: block;
+                                                                        }
+
+                                                                        #files_view .modal-body {
+                                                                            background-color: rgb(250, 251, 251);
+                                                                        }
+
+                                                                        #files_view .image-previewer img {
+                                                                            border: 3px solid #fff;
+                                                                            box-shadow: 2px 2px 8px rgba(0, 0, 0, .2);
+                                                                            width: 100%;
+                                                                        }
+
+                                                                        .download_button {
+                                                                            width: 100%;
+                                                                            text-align: center;
+                                                                            margin-top: 20px;
+                                                                        }
+                                                                    </style>
+                                                                    <style>
+                                                                        .groove {
+                                                                            border-style: solid;
+                                                                            border-width: 1px;
+                                                                            width: 200px;
+                                                                            padding: 2px;
+                                                                            border-radius: .35rem;
+                                                                        }
+
+                                                                        .custom-control-label {
+                                                                            position: absolute;
+                                                                        }
+
+                                                                        .rngRange {
+                                                                            position: relative;
+                                                                            display: flex;
+                                                                            flex-direction: column;
+                                                                            width: 100%;
+                                                                            pointer-events: auto;
+                                                                            background-color: rgb(255, 255, 255);
+                                                                            background-clip: padding-box;
+                                                                            border: 1px solid rgb(133, 135, 150);
+                                                                            border-radius: .3rem;
+                                                                            border-style: solid;
+                                                                            border-width: 1px;
+                                                                            padding: 2px;
+                                                                            border-radius: .35rem;
+                                                                            color: rgb(128, 128, 128);
+                                                                            height: inherit !important;
+                                                                        }
+
+                                                                        @media only screen and (max-width: 480px) {
+                                                                            .modal.show .modal-dialog {
+                                                                                float: inherit !important;
+                                                                                left: inherit !important;
+                                                                                top: auto !important;
+
+                                                                            }
+                                                                        }
+
+                                                                        .widthElement {
+                                                                            position: relative;
+                                                                            display: flex;
+                                                                            flex-direction: column;
+                                                                            width: 100%;
+                                                                            pointer-events: auto;
+                                                                            background-color: rgb(255, 255, 255);
+                                                                            background-clip: padding-box;
+                                                                            border: 1px solid rgb(133, 135, 150);
+                                                                            border-radius: .3rem;
+                                                                            border-style: solid;
+                                                                            border-width: 1px;
+                                                                            padding: 2px;
+                                                                            border-radius: .35rem;
+                                                                            color: rgb(128, 128, 128);
+                                                                            height: inherit !important;
+                                                                        }
+                                                                    </style>
+                                                                    <div class="columnSettings">
+                                                                        <div class="custom-control custom-switch" style="margin: 8px; float:left;">
+                                                                            <input class="custom-control-input chkcolAccountName" type="checkbox" id="formCheck-01" checked="">
+                                                                            <label class="custom-control-label" for="formCheck-01"></label>
+                                                                            <div contenteditable="true" class="groove divcolumn" type="text"
+                                                                                value="{{#if salesCloudGridPreferenceRec}}{{salesCloudGridPreferenceRec.customFields.[0].label}}{{else}}Account Name{{/if}}" valueupdate="th.colAccountName">
+                                                                                {{#if salesCloudGridPreferenceRec}}{{salesCloudGridPreferenceRec.customFields.[0].label}}{{else}}Account Name{{/if}}</div>
+                                                                        </div>
+                                                                        <div class="d-xl-flex align-items-xl-center divColWidth" style="margin: 8px;">
+                                                                            <label class="text-nowrap" style="padding-left: 0px;margin-top: 8px;">Width:</label>
+                                                                            <input class="custom-range widthElement rngRangeAccountName" type="number" style="margin: 8px;"
+                                                                                value="{{#if salesCloudGridPreferenceRec}}{{salesCloudGridPreferenceRec.customFields.[0].width}}{{else}}0{{/if}}" min="0" max="1000">
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="columnSettings">
+                                                                        <div class="custom-control custom-switch" style="margin: 8px; float:left;">
+                                                                            <input class="custom-control-input chkcolMemo" type="checkbox" id="formCheck-03" checked="">
+                                                                            <label class="custom-control-label" for="formCheck-03"></label>
+                                                                            <div contenteditable="true" class="groove divcolumn" type="text"
+                                                                                value="{{#if salesCloudGridPreferenceRec}}{{salesCloudGridPreferenceRec.customFields.[2].label}}{{else}}Memo{{/if}}" valueupdate="th.colMemo">
+                                                                                {{#if salesCloudGridPreferenceRec}}{{salesCloudGridPreferenceRec.customFields.[2].label}}{{else}}Memo{{/if}}</div>
+                                                                        </div>
+                                                                        <div class="d-xl-flex align-items-xl-center divColWidth" style="margin: 8px;">
+                                                                            <label class="text-nowrap" style="padding-left: 0px;margin-top: 8px;">Width:</label>
+                                                                            <input class="custom-range widthElement rngRangeMemo" type="number" style="margin: 8px;"
+                                                                                value="{{#if salesCloudGridPreferenceRec}}{{salesCloudGridPreferenceRec.customFields.[2].width}}{{else}}0{{/if}}" min="0" max="1000">
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="columnSettings">
+                                                                        <div class="custom-control custom-switch" style="margin: 8px; float:left;">
+                                                                            <input class="custom-control-input chkcolCreditEx" type="checkbox" id="formCheck-04" checked="">
+                                                                            <label class="custom-control-label" for="formCheck-04"></label>
+                                                                            <div contenteditable="true" class="groove divcolumn" type="text"
+                                                                                value="{{#if salesCloudGridPreferenceRec}}{{salesCloudGridPreferenceRec.customFields.[3].label}}{{else}}Credit (Ex){{/if}}" valueupdate="th.colCreditEx">
+                                                                                {{#if salesCloudGridPreferenceRec}}{{salesCloudGridPreferenceRec.customFields.[3].label}}{{else}}Credit (Ex){{/if}}</div>
+                                                                        </div>
+                                                                        <div class="d-xl-flex align-items-xl-center divColWidth" style="margin: 8px;">
+                                                                            <label class="text-nowrap" style="padding-left: 0px;margin-top: 8px;">Width:</label>
+                                                                            <input class="custom-range widthElement rngRangeCreditEx" type="number" style="margin: 8px;"
+                                                                                value="{{#if salesCloudGridPreferenceRec}}{{salesCloudGridPreferenceRec.customFields.[3].width}}{{else}}0{{/if}}" min="0" max="1000">
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="columnSettings">
+                                                                        <div class="custom-control custom-switch" style="margin: 8px; float:left;">
+                                                                            <input class="custom-control-input chkcolDebitEx" type="checkbox" id="formCheck-07" checked="">
+                                                                            <label class="custom-control-label" for="formCheck-07"></label>
+                                                                            <div contenteditable="true" class="groove divcolumn" type="text"
+                                                                                value="{{#if salesCloudGridPreferenceRec}}{{salesCloudGridPreferenceRec.customFields.[4].label}}{{else}}Debit (Ex){{/if}}" valueupdate="th.colDebitEx">
+                                                                                {{#if salesCloudGridPreferenceRec}}{{salesCloudGridPreferenceRec.customFields.[4].label}}{{else}}Debit (Ex){{/if}}</div>
+                                                                        </div>
+                                                                        <div class="d-xl-flex align-items-xl-center divColWidth" style="margin: 8px;">
+                                                                            <label class="text-nowrap" style="padding-left: 0px;margin-top: 8px;">Width:</label>
+                                                                            <input class="custom-range widthElement rngRangeDebitEx" type="number" style="margin: 8px;"
+                                                                                value="{{#if salesCloudGridPreferenceRec}}{{salesCloudGridPreferenceRec.customFields.[4].width}}{{else}}0{{/if}}" min="0" max="1000">
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button class="btn btn-success btnSaveGridSettings" type="button"><i class="fa fa-save" style="margin-right: 5px;"></i>Save</button>
+                                                        <button class="btn btn-warning btnResetGridSettings" data-dismiss="modal" type="reset"><i class="fa fa-repeat" style="margin-right: 5px;"></i>Reset</button>
+                                                        <button class="btn btn-secondary" data-dismiss="modal" type="button"><i class="fa fa-remove" style="margin-right: 5px;"></i>Close</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- END -->
+                                <div class="table-responsive" style="padding: .375rem .75rem;">
+                                    <style>
+                                        th {
+                                            background-color: #ededed;
+                                        }
+
+
+                                        .table-striped tbody tr:nth-of-type(odd) {
+                                            background-color: white !important;
+                                        }
+
+                                        .table-striped tbody tr:nth-of-type(even) {
+                                            background-color: rgba(0, 163, 211, 0.07) !important;
+                                        }
+
+                                        #accountListModal .dataTables_scrollHeadInner,
+                                        #accountListModal .dataTables_scrollHeadInner .table {
+                                            width: 100% !important;
+                                        }
+
+                                        #taxRateListModal .dataTables_scrollHeadInner,
+                                        #taxRateListModal .dataTables_scrollHeadInner .table {
+                                            width: 100% !important;
+                                        }
+
+                                        @media only screen and (max-width: 480px) {
+
+                                            #ponumber,
+                                            #edtRef,
+                                            .form-group,
+                                            .input-group,
+                                            .formgoup {
+                                                max-width: 100% !important;
+                                                width: 100% !important;
+                                            }
+
+                                            .formgoup {
+                                                margin: 0px !important;
+                                            }
+
+                                            .flex-row {
+                                                margin: 16px !important;
+                                            }
+                                        }
+
+                                        .resizer {
+                                            position: absolute;
+                                            top: 0;
+                                            right: -8px;
+                                            bottom: 0;
+                                            left: auto;
+                                            width: 16px;
+                                            cursor: col-resize;
+                                        }
+
+                                        .box {
+                                            /* display: none; */
+                                        }
+
+                                        .outerBox {
+                                            display: none;
+                                        }
+
+                                        .hiddenColumn {
+                                            display: none;
+                                        }
+
+                                        .showColumn {
+                                            display: table-cell;
+                                            padding: .75rem;
+                                            vertical-align: top;
+                                        }
+
+                                        .highlightInput {
+                                            border: 0px solid transparent !important;
+                                            background-color: rgba(0, 0, 0, 0) !important;
+                                            padding: 0px !important;
+                                            width: 100% !important;
+                                            text-align: right !important;
+                                            color: #858796 !important;
+                                        }
+
+                                        .highlightInput::-webkit-outer-spin-button,
+                                        .highlightInput::-webkit-inner-spin-button {
+                                            -webkit-appearance: none !important;
+                                            margin: 0 !important;
+                                        }
+
+                                        /* Firefox */
+                                        .highlightInput[type=number] {
+                                            -moz-appearance: textfield !important;
+                                        }
+                                    </style>
+
+                                    <div class="modal fade" role="dialog" tabindex="-1" id="deleteLineModal">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <input type="hidden" style="width: 100%; display:none;" id="selectDeleteLineID" name="selectDeleteLineID" readonly>
+                                                <div class="modal-header">
+                                                    <h4>Delete</h4>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">×</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>Please select "Delete Line" to remove row or "Delete Journal" to delete the entire journal.</p>
+                                                    <button class="btn btn-danger float-left btnDeleteLine" type="button">
+                                                        <i class="fa fa-close" style="margin-right: 5px;"></i>Delete Line
+                                                    </button>
+                                                    <button class="btn btn-danger float-right btnDeleteJournal" type="button">
+                                                        <i class="fa fa-close" style="margin-right: 5px;"></i>Delete Journal
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <style>
+                                        .colCreditEx,
+                                        .colDebitEx {
+                                            color: #00a3d3;
+                                        }
+
+                                        .colCreditInc,
+                                        .colDebitInc {
+                                            color: #17a673;
+                                        }
+
+                                        .fa-random {
+                                            float: right;
+                                            margin-top: 4px;
+                                        }
+
+                                        .fa-trans {
+                                            -ms-transform: rotate(180deg);
+                                            transform: rotate(180deg);
+                                        }
+
+                                        .colCreditEx,
+                                        .colCreditInc,
+                                        .colDebitEx,
+                                        .colDebitInc {
+                                            cursor: pointer;
+                                            -webkit-touch-callout: none;
+                                            -webkit-user-select: none;
+                                            -khtml-user-select: none;
+                                            -moz-user-select: none;
+                                            -ms-user-select: none;
+                                            user-select: none;
+                                        }
+                                    </style>
+                                    <table id="tblJournalEntryLine" style="width:100%" class="table table-striped table-bordered tblJournalEntryLine">
+                                        <thead>
+                                            <tr class="dnd-moved">
+                                                <th class="th colAccountName" style="width: 300px;">Account Name</th>
+                                                <!-- <th class="th colAccountNo" style="width: 300px;">Account No</th> -->
+                                                <th class="th colMemo">Memo</th>
+                                                <th class="th colTaxCode " style="width: 95px; text-align: left!important;">Tax Code</th>
+                                                <th class="th colCreditEx colCreditExCheck" style="width: 130px; text-align: left!important;">Credit (Ex) <i class="fas fa-random"></i></th>
+                                                <th class="th colCreditInc colCreditIncCheck hiddenColumn" style="width: 130px; text-align: left!important;">Credit (Inc) <i class="fas fa-random fa-trans"></i></th>
+                                                <th class="th colDebitEx colDebitExCheck" style="width: 130px; text-align: left!important;">Debit (Ex) <i class="fas fa-random"></i></th>
+                                                <th class="th colDebitInc colDebitIncCheck hiddenColumn" style="width: 130px; text-align: left!important;">Debit (Inc) <i class="fas fa-random fa-trans"></i></th>
+                                                <th class="th colTaxRate hiddenColumn" style="width: 91px; text-align: left!important;">Tax Rate</th>
+                                                <th class="th colTaxAmount hiddenColumn" style="width: 95px; text-align: left!important;">Tax Amt</th>
+                                                <!-- <th class="th">Tax Price</th> -->
+                                                <th class="th" style="width: 25px;"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {{#each item in record.LineItems}}
+                                                <tr class="dnd-moved" id="{{item.lineID}}">
+                                                    <!-- <td contenteditable="false" class="lineAccountName colAccountName" taxCode="{{item.taxCode}}" lineid="{{item.id}}">{{item.accountname}}</td> -->
+                                                    <td contenteditable="false" class="colAccountName"><input class="es-input highlightSelect lineAccountName" type="search" value="{{item.accountname}}" taxCode="{{item.taxCode}}" lineid="{{item.id}}"></td>
+                                                    <!-- <td contenteditable="true" class="lineAccountNo colAccountNo">{{item.accountno}}</td> -->
+                                                    <td contenteditable="true" class="lineMemo colMemo">{{item.memo}}</td>
+                                                    <!-- <td contenteditable="false" class="lineTaxCode colTaxCode" style="text-align: right!important;cursor: pointer;">{{item.taxCode}}</td> -->
+                                                    <td contenteditable="false" class="colTaxCode"><input class="es-input highlightSelect lineTaxCode" type="search" value="{{item.taxCode}}"></td>
+                                                    <td class="colCreditExCheck" style="text-align: right!important;"><input class="lineCreditEx colCreditEx lineCreditExChange highlightInput" type="text" value="{{item.creditex}}"></td>
+                                                    <td class="colCreditIncCheck hiddenColumn" style="text-align: right!important;"><input class="lineCreditInc colCreditInc lineCreditIncChange highlightInput" type="text" value="{{item.creditinc}}">
+                                                    </td>
+                                                    <td class="colDebitExCheck" style="text-align: right!important;"><input class="lineDebitEx colDebitEx lineDebitExChange highlightInput" type="text" value="{{item.debitex}}"></td>
+                                                    <td class="colDebitIncCheck hiddenColumn" style="text-align: right!important;"><input class="lineDebitInc colDebitInc lineDebitIncChange highlightInput" type="text" value="{{item.debitinc}}"></td>
+                                                    <td contenteditable="false" class="lineTaxRate colTaxRate pointer hiddenColumn" style="text-align: right!important;">{{item.taxRate}}</td>
+                                                    <td contenteditable="false" class=" lineTaxAmount colTaxAmount pointer hiddenColumn">{{item.TaxTotal}}</td>
+
+                                                    <td contenteditable="false"><span class="table-remove btnRemove"><button type="button" id="btnRemove1" class="btn btn-danger btn-rounded btn-sm my-0 "><i class="fa fa-remove"></i></button></span>
+                                                    </td>
+                                                </tr>
+                                            {{/each}}
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <td colspan="2" style="font-size: 20px; color: #696969; font-weight: 800;">Total</td>
+                                                <td class="colTaxCode"></td>
+                                                <td class="colCreditExCheck" style="font-size: 20px; color: #696969; font-weight: 800; text-align: right!important; margin: 0px;" id="creditTotal" name="creditTotal">{{totalCredit}}</td>
+                                                <td class="colCreditIncCheck hiddenColumn" style="font-size: 20px; color: #696969; font-weight: 800; text-align: right!important; margin: 0px;" id="creditTotal" name="creditTotal">{{totalCreditInc}}
+                                                </td>
+                                                <td class="colDebitExCheck" style="font-size: 20px; color: #696969; font-weight: 800; text-align: right!important; margin: 0px;" id="debitTotal" name="debitTotal">{{totalDebit}}</td>
+                                                <td class="colDebitIncCheck hiddenColumn" style="font-size: 20px; color: #696969; font-weight: 800; text-align: right!important; margin: 0px;" id="debitTotal" name="debitTotal">{{totalDebitInc}}</td>
+                                                <td class="colTaxRate hiddenColumn"></td>
+                                                <td class="colTaxAmount hiddenColumn"></td>
+                                                <td></td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                    <div align="left">
+                                        <button class="btn btn-primary" type="button" id="addRow" style="margin: 16px; margin-left: 0px;">+ Add New Entry</button>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" role="dialog" tabindex="-1" id="departmentModal">
+                {{> departmentpop}}
+            </div>
+
+            <div class="modal fade" role="dialog" tabindex="-1" id="newDepartmentModal">
+                {{> newdepartmentpop}}
+            </div>
+
+            <div class="row no-gutters">
+                <div class="col d-xl-flex justify-content-xl-center align-items-xl-center" style="padding: 16px;padding-top: 0px!important;">
+                    <button class="btn btn-success btnSave" type="button" style="margin: 16px;"><i class="fa fa-save" style="margin-right: 5px;"></i>Save</button>
+                    <button class="btn btn-danger btnDelete" type="button" style="margin: 16px;" autocomplete="off"><i class="fa fa-trash" style="padding-right: 8px;"></i>Delete</button>
+                    <button class="btn btn-primary printConfirm" type="button" style="margin: 16px;"><i class="fa fa-print" style="margin-right: 5px;"></i>Print</button>
+                    <button class="btn btn-secondary btnBack" type="button" style="margin: 16px;"><i class="fa fa-close" style="margin-right: 5px;"></i>Cancel</button>
+                </div>
+
+            </div>
+
+
+
+            <!-- Start PDF -->
+            <!-- new a4 -->
+            <div style="width: 210mm; background-color: #ffffff; padding: 8px; height: 297mm; font-size: 13.33px; display: none; color: #000000; overflow-x: visible;" id="html-2-pdfwrapper" name="html-2-pdfwrapper">
+                <div style="display: flex; height: 70mm;">
+                    <div style="margin: 0px; padding: 16px; width: 130mm; max-width: 130mm;">
+                        <div style="display: flex;">
+                            <div style="max-width: 60mm; max-height: 30mm;">
+                                <img src="assets/img/VS1.png" class="uploadedImage" style="max-height: 30mm; max-width: 200px;margin-bottom: 8px;">
+
+                            </div>
+                            <div style="width: 70mm;">
+                                <div style="padding-left: 16px;font-weight: bold;">
+                                    <a href="{{organizationurl}}">{{organizationurl}}</a>
+                                    <p style="margin-bottom: 0px; color: rgb(0 0 0);">{{organizationname}}</p>
+                                    <p style="margin-bottom: 0px; color: rgb(0 0 0);">{{companyaddress1}}</p>
+                                    <p style="margin-bottom: 0px; color: rgb(0 0 0);">{{companyaddress2}}</p>
+                                    <p style="margin-bottom: 0px; color: rgb(0 0 0);">{{city}}</p>
+                                    <p style="margin-bottom: 0px; color: rgb(0 0 0);">{{state}} {{poBox}} </p>
+                                    <p style="margin-bottom: 0px; color: rgb(0 0 0);">ABN: {{companyabn}}</p>
+                                    <p style="margin-bottom: 0px; color: rgb(0 0 0);">Phone: {{companyphone}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div style="font-size: 14px;">
+                        <h5 style="margin-bottom: 0px; color: rgb(0 0 0);font-weight: bold;">Customer</h5>
+                        <p style="margin-bottom: 0px; color: rgb(0 0 0); display:none;" class="pdfCustomerName"></p>
+                        <div style="min-height:50px; width:30%; margin-bottom: 0px; color: rgb(0 0 0);" class="pdfCustomerAddress"></div>
+                    </div> -->
+                    </div>
+                    <div style="margin: 0px; padding: 16px; border: none !important; width: 60mm; max-width: 60mm;">
+                        <h4 style="font-weight: bold; font-size: 26.667px; color: rgb(0 0 0);">Journal&nbsp;&nbsp;&nbsp; {{record.id}}</h4>
+                        <div style="display: flex; width: 100%;">
+                            <div style="width: 50%; padding-right: 16px;font-weight: bold;">
+                                <label style="margin-bottom: 0px; color: rgb(0 0 0);">Date:</label>
+                                <label class="pdfPONumber" style="margin-bottom: 0px; color: rgb(0 0 0);">Entry No:</label>
+                                <label class="pdfTerms" style="margin-bottom: 0px; color: rgb(0 0 0);">Department:</label>
+                            </div>
+                            <div style="width: 50%; padding-left: 16px;">
+                                <p style="margin-bottom: 0px; color: rgb(0 0 0);">{{record.transdate}}.</p>
+                                <p style="margin-bottom: 0px; color: rgb(0 0 0);">{{record.entryno}}.</p>
+                                <p style="margin-bottom: 0px; color: rgb(0 0 0);">{{record.department}}.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div style="height: 160mm;">
+                    <div style="margin: 8px; border: none !important; background-color: rgba(0,0,0,0);">
+                        <table style="width: 200mm; max-width: 200mm; margin: auto;">
+                            <thead style="color: rgb(251,251,251);">
+                                <tr style="border-bottom: 1px solid rgba(0, 0, 0, 1);">
+                                    <th style="width: 200px; background-color: white; color: rgb(0 0 0);">Account Name</th>
+                                    <th style="width: 250px; background-color: white; color: rgb(0 0 0);">Memo</th>
+                                    <th style="text-align: right; width: 77px; background-color: white; color: rgb(0 0 0);">Credit (Ex)</th>
+                                    <th style="text-align: right; width: 100px; background-color: white; color: rgb(0 0 0);">Debit (Ex)</th>
+                                </tr>
+                            </thead>
+                            <tbody style="color: rgb(0 0 0);">
+                                {{#each item in record.LineItems}}
+                                    <tr style="border-bottom: 1px solid rgba(0, 0, 0, .1);">
+                                        <td>{{item.accountname}}</td>
+                                        <td>{{item.memo}}</td>
+                                        <td style="text-align: right;">{{item.creditex}}</td>
+                                        <td style="text-align: right;">{{item.debitex}}</td>
+                                    </tr>
+                                {{/each}}
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="2" style="color: #696969; font-weight: 800;">Total</td>
+                                    <td style="color: #696969; font-weight: 800; text-align: right!important; margin: 0px;" id="creditTotal" name="creditTotal">{{totalCredit}}</td>
+                                    <td style="color: #696969; font-weight: 800; text-align: right!important; margin: 0px;" id="debitTotal" name="debitTotal">{{totalDebit}}</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+                <hr>
+                <div style="display: flex;">
+                    <div style="margin: 8px;">
+                        <p style="font-weight: 600; color: rgb(0 0 0);">Memo</p>
+                        <p style="color: rgb(0 0 0);">{{record.memo}}</p>
+                    </div>
+                </div>
+            </div>
+            <!-- END PDF -->
+        {{/if}}
+
+        <!-- Modal print-button -modal -->
+        <div class="modal fade" role="dialog" tabindex="-1" id="accountListModal">
+            {{> accountlistpop}}
+        </div>
+        <!-- End AccountList -->
+
+        <div class="modal fade" role="dialog" tabindex="-1" id="addAccountModal">
+            {{> addaccountpop}}
+        </div>
+
+        <!-- Modal Tax Rate -modal -->
+        <div class="modal fade" role="dialog" tabindex="-1" id="taxRateListModal">
+            {{> taxratelistpop}}
+        </div>
+        <div class="modal fade" role="dialog" tabindex="-1" id="newTaxRateModal">
+            {{> newtaxratepop}}
+        </div>
+        <!-- End Modal Tax Rate -->
+    </div>
+
+    <!-- Start Help Video Modal -->
+    <div class="modal fade" role="dialog" tabindex="-1" id="helpModal">
+        <div class="modal-dialog" role="document" style="max-width: 670px!important;">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <h4 class="title-header">Journal Entries</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+                    <!-- <iframe width="640" height="360" src="https://player.vimeo.com/video/99892791" frameborder="0" allowfullscreen=""></iframe> -->
+                    <!-- <iframe width="640" height="360" src="https://erphelpes.com/vs1videos/journalentry.mp4" frameborder="0" allowfullscreen=""></iframe> -->
+                    <video id="myVideo" width="640" height="360" controls="" name="media" style="border: solid 5px #999999f0; height: auto; outline: none;">
+                        <source src="https://erphelpes.com/vs1videos/journalentry.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- End Help Video Modal -->
+    <script>
+        modalDraggable();
+    </script>
+</template>

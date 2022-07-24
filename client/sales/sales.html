@@ -1,0 +1,267 @@
+
+<template name="allsales">
+    <div class="allsales">
+        <div class="active_page">
+            <div class="active_page_content">
+
+                <h1>Sales
+                  <!-- <a href="#1" name="1" id="open_help" onclick="helpshow();" style="margin-left: 86%;">Show Help</a> -->
+                </h1>
+                <script>
+                    function helpconceal() {
+                        if(document.getElementById('help_open').style.display=='block') {
+                            document.getElementById('help_open').style.display='none';
+                            document.getElementById('open_help').style.display='inline-block';
+
+                        }
+                    }
+
+                    function helpshow() {
+                        if(document.getElementById('help_open').style.display=='none') {
+                            document.getElementById('help_open').style.display='block';
+                            document.getElementById('open_help').style.display='none';
+                        }
+                    }
+
+                    $(document).ready(function(){
+                        // we call the function
+                        helpshow();
+                    });
+                </script>
+
+                <!-- <div id="help_open" style="display:none;">
+                    <div id="close_helpbutton"><a id="close_help" onclick="helpconceal();">Hide Help<img src="icons/closehelp.PNG" class=""></a></div>
+                    <table class="helpvideos">
+                        <tbody>
+                        <tr>
+                            <td><a href="#"><img src="/icons/vidsales.png" class=""></a></td>
+                            <td>
+                                <p>The sales dashboard shows your invoices, who owes you money and your quotes</p>
+                                <p><a href="#">Watch</a>  how to create online invoices so your customers can pay you faster</p>
+                                <p>Streamline your sales process by <a href="#">creating online quotes</a></p>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div> -->
+            </div>
+        </div>
+
+        <div class="salesBg">
+            <div id="wrapper_main">
+                <main id="page-content-wrapper_main" role="main">
+
+
+
+
+                    <script>
+                        $('.Show').click(function() {
+                            $('#search_box').show(500);
+                            $('.Show').hide(0);
+                            $('.Hide').show(0);
+                        });
+                        $('.Hide').click(function() {
+                            $('#search_box').hide(500);
+                            $('.Show').show(0);
+                            $('.Hide').hide(0);
+                        });
+                        $('.list_search').click(function() {
+                            $('#search_box').toggle('slow');
+                        });
+                    </script>
+
+                    <div class="second_content_links_container">
+
+                        <div class="second_content_content">
+                            <div class="second_content_left">
+
+
+                                <div id="sales_dropdown_options">
+                                    <ul class="levelone" >
+                                        <!--<li class="btn_save_one"><a href="#" class="createInv" id="updateQuote">Options</a>-->
+                                        <li class="btn_save_one"><a href="#" class="" id="newInvoice">+ New</a>
+                                            <span class="plus_vertical_line"></span>
+                                            <a href="#" class="fly"><span class="caret"></span></a>
+                                            <ul class="add_lines_dropdown d1">
+                                                <li><a href="#" id="newInvoiceDropdown"><img src="icons/poic1.png" class="">Invoice</a></li>
+                                                <li><a href="#" id="newQuoteDropdown"><img src="icons/poic5.png" class="">Quote</a></li>
+                                                <li><a href="#" id="newSODropdown"><img src="icons/poic6.png" class="">Sales Order</a></li>
+                                                <!-- <li><a href="#"><img src="icons/poic2.png" class="">Repeating Invoice</a></li> -->
+                                                <!-- <li><a href="#"><img src="icons/poic3.png" class=""> Credit note</a></li> -->
+                                                <!-- <li class="separatortext">Invoice to contact group</li> -->
+                                                <!-- <li><a href="#">Training</a></li> -->
+                                                <!-- <li><a href="#">Add contact group</a></li> -->
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <a href="#" class="new_create_btn" id="sendStatements">Send Statements</a>
+                                <a href="/importinvoicefile" class="new_create_btn">Import</a>
+                            </div>
+
+                            <div class="second_content_right">
+                                <a href="#" class="new_create_btn list_search" id="list_search">Search <i class="fa fa-search" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="search_box">
+                        <div class="search_box_inner">
+                            <a href="#" class="list_search"><i class="fa fa-times" aria-hidden="true"></i></a>
+                            <table class="invoice_list_search" id="salesSearch_box">
+                                <tbody>
+                                <tr>
+                                    <td colspan="3" id="salesearch_Head">
+                                        <div id="salessearch_Quo"><input type="radio" name="sales-search-radio" id="rdoQu" value="Quotes"> <label>Quotes</label></div>
+                                        <div id="salessearch_Inv"><input type="radio" name="sales-search-radio" id="rdoInv" value="Invoices" checked> <label>Invoices</label></div>
+                                        <label>Search</label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label>Search for</label>
+                                        <input type="text" id="mySearchInput" placeholder="Number, Reference, Customer or Amount">
+                                    </td>
+                                    <td>
+                                        <label>Within</label>
+                                        <div class="input-group dropdown-add-rec" >
+                                            <input type="text" id="mySearchDropdown" class="form-control dateCompare">
+                                            <div class="input-group-addon" data-toggle="dropdown">
+                                                <img src="/img/dropdown_icon.png" id="region-dropdown-img" class="region-img">
+                                            </div>
+                                        <ul class="dropdown-menu" id="uItem" name="uItem">
+                                            <li class="selectDateValue">Any Date</li>
+                                            {{#if showInvoiceDropdown}}
+                                            <li class="selectDateValue">Transaction Date</li>
+                                                <li class="selectDateValue">Due Date</li>
+                                                {{else}}
+                                                <li class="selectDateValue">Date Created</li>
+                                                <!--<li class="select-tax-type">Date Created</li>-->
+                                                {{/if}}
+                                        </ul>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <label>Start</label>
+                                        <div class="search-date-pick">
+                                            <input class="datepick" id="listdatepickerstart">
+                                        </div>
+                                    </td>
+                                    <td><label>End</label>
+                                        <div class="search-date-pick">
+                                            <input class="datepick" id="listdatepickerend">
+                                        </div>
+                                    </td>
+                                    <td name="unsentshow" id="unsentshow"><label></label>
+                                        <input type="checkbox" name="unsent" id="unsent" value="Unsent Only"> <label>Unsent Only</label>
+                                    </td>
+                                    <td></td>
+                                    <td><label></label><button id="search_list">Search</button></td>
+                                    <td><label></label><a href="#" id="searchreset" class="list_reset">Reset</a></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="second_content">
+                        <div class="second_content_content">
+                            <h2>Invoices</h2>
+                            <a href="/invoicelist/Paid" class="second_content_links">Paid</a> | <a href="/invoicelist/Repeating" class="second_content_links" id="repeatingInvoice">Repeating</a> | <a href="/invoicelist/All" class="second_content_links">See all</a>
+                            <div class="sumcolumns">
+                                <a id="invDraftLink" href="#"><div class="sum1"><span id="draftSentCount">Draft</span><br>
+                                    <h1 id="sumInvDraft">None</h1></div></a>
+
+                                <a id="invAwtAppLink" href="#"><div class="sum2"><span id="invAwAppCount"> Awaiting Approval</span><br>
+                                    <h1 id="sumInvAwApp">None</h1></div></a>
+
+                                <a id="invAwtPayLink" href="#"><div class="sum3"><span id="InvAwPayCnt">Awaiting Payment </span><br>
+                                    <h1 id="sumInvAwPay">None</h1></div></a>
+
+                                <a id="invOverdueLink" href="#"><div class="sum4"><span id="InvOverdueCnt">Overdue</span><br>
+                                    <h1 id="sumInvOverdue">None</h1></div></a>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+
+                    <div class="dashboard_container bottom-spacing-remove">
+                        <div class="dashboard_col1" >
+                            <div class="dash1">
+                                <h3 style="color:#828c96">Money coming in</h3>
+                                <div id="sales" style="margin-top: 15px;"></div>
+                            </div>
+
+
+
+                        </div>
+
+                        <div class="dashboard_col2" id="">
+                            <div class="dash1">
+                                <h3 style="color:#828c96">Customers owing the most
+                                    <a href="#" id="show_list" class="second_content_links">List</a> | <a id="show_pie" href="#" class="" style="color:#999">Pie</a>
+                                    <a href="#" class="right_all" id="right_all">All</a>
+                                </h3>
+                                <div id="container" style="display: inline-block; position: relative;  z-index: 99"></div>
+
+
+                            </div>
+
+
+
+                        </div>
+                    </div>
+
+
+
+
+
+
+                    <div class="second_content">
+                        <div class="second_content_content">
+                            <h2>Quotes</h2>
+                            <a href="/quoteslist/#All" class="second_content_links">See all</a>
+                            <div class="sumcolumns">
+                                <a id="quDraftLink" href="#"><div class="sum1"><span id="quoteDraftCount">Draft</span><br>
+                                    <h1 id="sumQuoteDraft">None</h1></div></a>
+
+                                <a id="quSentLink" href="#"><div class="sum2"><span id="quoteSentCount">Sent</span><br>
+                                    <h1 id="sumQuoteSent">None</h1></div></a>
+
+                                <a id="quAccptLink" href="#"><div class="sum3"><span id="quoteAcptCount">Accepted</span><br>
+                                    <h1 id="sumQuoteAcpt">None</h1></div></a>
+
+                                <a id="quDecLink" href="#"><div class="sum4"><span id="quoteDecCount">Expired</span><br>
+                                    <h1 id="sumQuoteDec">None</h1></div></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="second_content">
+                        <div class="second_content_content">
+                            <h2>Sales Orders</h2>
+                            <a href="/salesorderslist" class="second_content_links">See all</a>
+                            <div class="sumcolumns">
+                                <a id="soDraftLink" href="#"><div class="sum1"><span id="soDraftCount">Draft</span><br>
+                                    <h1 id="sumSODraft" >None</h1></div></a>
+
+                                <a id="soSentLink" href="#"><div class="sum2"><span id="soSentCount">Sent</span><br>
+                                    <h1 id="sumSOSent">None</h1></div></a>
+
+                                <a id="soAccptLink" href="#"><div class="sum3"><span id="soAcptCount">Accepted</span><br>
+                                    <h1 id="sumSOAcpt">None</h1></div></a>
+
+                                <a id="soDecLink" href="#"><div class="sum4"><span id="soDecCount">Declined</span><br>
+                                    <h1 id="sumSODec">None</h1></div></a>
+                            </div>
+                        </div>
+                    </div>
+
+                </main>
+            </div>
+        </div>
+    </div>
+</template>

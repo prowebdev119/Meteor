@@ -1,0 +1,776 @@
+<template name="stockscan">
+  <div class="newstockadjust">
+    {{#if stockAdjustrecord}}
+  <div class="active_page">
+  <div class="active_page_content">
+  <p><a href="/stockadjlist">Stock Take</a> &nbsp;›&nbsp;</p><br>
+  <h1>{{stockAdjustrecord.stockadjustStatus}}</h1><span id="processed"></span>
+  </div>
+</div>
+<div class="new_create_form_page">
+<div id="wrapper_main">
+<main id="page-content-wrapper_main" role="main">
+<form action="" id="stockadjustcreate" method="POST">
+<div class="new_create_container">
+<div class="new_create_head">
+{{#if stockupdate}}
+<h3>Update</h3>
+{{else}}
+<h3>Create</h3>
+{{/if}}
+<label>Search for product by barcode</label><br>
+<input type="text" id="prodBarcode" name="prodBarcode" class="" placeholder="Enter Product Barcode">
+<a href="#" class="send_new" id="btnScanPSN" name="btnScanPSN" style="float: right;">+ Scan</a>
+<br>
+</div>
+<div class="new_create_body">
+<div class="new_create_options">
+  <table class="new_create_options_table">
+  	<tbody>
+  		<tr>
+  			<td>
+        <label>To Account</label>
+        <div class="dropdown-add-rec" id="account-dropdown-">
+            <input type="text" name="STAccountName" id="STAccountName"
+                   class="form-control select-account no-border"
+                   value="{{stockAdjustrecord.AccountName}}">
+             <div class="" data-toggle="dropdown" >
+                 <img src="/img/dropdown_icon.png" class="account-img">
+             </div>
+        </div>
+        </td>
+        <td>
+        <label>Employee</label>
+        <div class="dropdown-add-rec2">
+            <input style="" type="text" class="form-control select-employee" name="STEmployeeName" id="STEmployeeName" value="{{stockAdjustrecord.EmployeeName}}">
+            <div class="" data-toggle="dropdown" >
+                <img src="/img/dropdown_icon.png" class="employee-img">
+            </div>
+        </div>
+        </td>
+  			<td>
+        <label>Date</label>
+      <div class="dropdown-add-rec2">
+          <input type="text" class="form-control" id="listdatepickerstart"
+                 name="listdatepickerstart" value="{{stockAdjustrecord.AdjustmentDate}}">
+      </div>
+        </td>
+
+        {{#if stockupdate}}
+        <td>
+          <label>Stock Adjust #</label>
+          <input type="text" id="StockAdjustId" name="StockAdjustId" value="{{stockAdjustrecord.id}}" readonly>
+        </td>
+        {{else}}
+
+        {{/if}}
+
+
+<td></td>
+      <td><label></label><a href="#" id="btn_preview" class="new_create_btn preview_button" data-toggle="modal" data-target="#preview_modal"><i class="fa fa-eye" aria-hidden="true"></i> Preview</a></td>
+
+  		</tr>
+
+  	</tbody>
+  </table>
+</div>
+<div class="new_create_lines">
+  <table id="component_tb" style="width: 100%" class=" table table-hover table-bordered">
+          <thead>
+              <tr>
+                  <th style="display:none "></th>
+                  <th></th>
+                  <th>Item</th>
+                  <th>Description</th>
+                  <th>Department</th>
+                  <th>UOM</th>
+                  <th>In-Stock</th>
+                  <th>Available</th>
+                  <th>Final</th>
+                  <th>Adjust</th>
+                  <th style="display:none">ItemID</th>
+                  <th style="display:none">LineID</th>
+                  <th></th>
+              </tr>
+          </thead>
+          <tbody>
+            {{#each item in stockAdjustrecord.LineItems}}
+          <tr id="pq_entry_{{@index}}" class="clonedSection" data-saved="1">
+            <td style="display:none "><input type="text" name="prod_id" id="prod_id" value='1' readonly /></td>
+            <td style="padding: 1px; width: 5px;  text-align: center;"><img src="/icons/tableRow_Icon.png" width="22px" id="product-image-{{@index}}" class="viewProdImage" ></td>
+            <td>
+              <div class="input-group dropdown-add-rec" id="product-dropdown">
+                  <div contenteditable="true" type="text" id="product-input-{{@index}}"
+                         class="select-product no-border for-preview product-name" value="{{item.item}}">{{item.item}}</div>
+              </div>
+            </td>
+            <!---->
+            <td><div class="select-products for-preview" contenteditable="true" type="text" name="productdesc-{{@index}}" id="productdesc-{{@index}}" value="{{item.description}}">{{item.description}}</div></td>
+            <td>
+              <div class="input-group dropdown-add-rec" id="pick-department">
+                  <div contenteditable="true" type="text" id="department-input-{{@index}}"
+                         class="select-department no-border select-products for-preview" value="{{item.department}}">{{item.department}}</div>
+
+                  <!--<div class="input-group-addon" style="display:none ">
+                      <img src="/img/dropdown_icon.png" id="department-dropdown-img-{{@index}}"
+                           class="department-img">
+                  </div>
+                  -->
+
+              </div>
+            </td>
+              <td>
+                <div class="input-group dropdown-add-rec" id="pick-uom">
+                    <div contenteditable="true" type="text" id="uom-input-{{@index}}"
+                           class="select-uom no-border select-products for-preview" value="{{item.uom}}">{{item.uom}}</div>
+
+                    <!--<div class="input-group-addon" style="display:none ">
+                        <img src="/img/dropdown_icon.png" id="uom-dropdown-img-"
+                             class="uom-img">
+                    </div>
+                    -->
+
+                </div>
+              </td>
+
+              <td><div contenteditable="true" type="text" name="instock-{{@index}}" id="instock-{{@index}}" class="instock unitPrice select-products for-preview" value="{{item.instock}}">{{item.instock}}</div></td>
+              <td><div contenteditable="true" type="text" name="available-{{@index}}" id="available-{{@index}}" class="available unitPrice select-products for-preview" value="{{item.available}}" readonly="true">{{item.available}}</div></td>
+              <td><div contenteditable="true" type="text" name="finalQty-{{@index}}" id="finalQty-{{@index}}" class="finalQty unitPrice select-products for-preview" value="{{item.final}}">{{item.final}}</div></td>
+              <td><div contenteditable="true" type="text" name="adjust-{{@index}}" id="adjust-{{@index}}" class="adjust unitPrice select-products for-preview" value="{{item.adjust}}">{{item.adjust}}</div></td>
+              <td style="display:none"><div class="select-products for-preview" contenteditable="false" type="text" name="productID-{{@index}}" id="productID-{{@index}}" value="{{item.productID}}">{{item.productID}}</div></td>
+              <td style="display:none"><div class="select-products for-preview" contenteditable="false" type="text" name="lineID-{{@index}}" id="lineID-{{@index}}" value="{{item.id}}">{{item.id}}</div></td>
+              <!--
+            <td><input type="text" name="instock" id="instock" readonly></td>
+            <td>
+              <input type="text" name="available" id="available" readonly>
+            </td>
+            <td><input type="text" name="final" id="final" class="finalQty" readonly></td>
+            <td><input type="text" name="adjust" id="adjust" class="AdjustQty"></td>
+            -->
+            <td><a href="#" name="removebutton-{{@index}}" id="removebutton-{{@index}}" class="removebutton">x</a></td>
+          </tr>
+          {{/each}}
+        </tbody>
+        </table>
+</div>
+<div id="add_lines_menu">
+    <ul class="levelone" >
+      <li class=""><a href="#" class="" id="new_create_btn">+ Add a new line<span class="plus_vertical_line"></span></a>
+        <a href="#" class="fly"><span class="caret"></span></a>
+        <ul class="add_lines_dropdown d1">
+          <li class="add_firstline"><a href="#" id="new_5Line_btn">Add 5</a></li>
+          <li><a href="#" id="new_10Line_btn">Add 10</a></li>
+          <li><a href="#" id="new_20Line_btn">Add 20</a></li>
+        </ul>
+      </li>
+    </ul>
+</div>
+<br><br>
+<br><br>
+<br><br>
+</div>
+<br>
+<div class="new_create_buttons" id="stockAdjBtns">
+<div class="new_create_buttons_g1">
+  <button type="button" id="createStockAdjust" class="send_new add-stock-diff-status">Process
+  </button>
+  <!--<input id="createStockAdjust" type="submit" class="send_new add-stock-diff-status" value="Process">-->
+</div>
+<div class="new_create_buttons_g2" id="stockAdjBtns2">
+  <!--<input id="createHoldStockAdjust" type="submit" class="save_new add-stock-diff-status" value="Hold">-->
+  <button type="button" id="createHoldStockAdjust" class="save_new add-stock-diff-status">Hold
+  </button>
+  <a href="#" onclick="javascript:history.back()" class="cancel_new">Cancel</a>
+</div>
+</div>
+</div>
+<div class="new_create_footer_container">
+  <div class="new_create_footer">
+      <h3 style="border-bottom: 0px" >History & Notes</h3>
+      <a href="#" class="list_search" id="notesbtn">Add Note</a>
+      <div id="AddNote" style="">
+        <div class="search_box_inner">
+          <div class="notes">
+            <label>Reason:</label>
+          </div>
+          <textarea id="allnotes" name="allnotes" style="width:350px;height:125px;" rows="8" cols="80">{{stockAdjustrecord.Notes}}</textarea>
+        </div>
+        <div class="" style="width:352px;">
+          <span class=""><button type="button" class="send_new"><span>Save</span></button></span>
+          <span class=""><button type="button" class="list_search cancel_new"><span>Cancel</span></button></span>
+        </div>
+      </div>
+      <script>
+      $('.Show').click(function() {
+          $('#AddNote').show(500);
+          $('.Show').hide(0);
+          $('.Hide').show(0);
+      });
+      $('.Hide').click(function() {
+          $('#AddNote').hide(500);
+          $('.Show').show(0);
+          $('.Hide').hide(0);
+      });
+      $('.list_search').click(function() {
+          $('#AddNote').toggle('slow');
+          $( "#allnotes" ).focus();
+      });
+      </script>
+  </div>
+</div>
+</form>
+</main>
+</div>
+</div>
+{{/if}}
+</div>
+<!-- preview modal -->
+<div id="preview_modal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">x</button>
+                <div class="mobile_tab">
+                    <span class="previewInvoiceDesktop active" id="modal_body_desktop"><i class="fa fa-desktop" aria-hidden="true"></i></span>
+                    <span id="modal_body_mobile" class="previewInvoiceMobile"><i class="fa fa-mobile" aria-hidden="true"></i></span>
+                </div>
+
+                <h4 class="modal-title">StockAdjust Preview</h4>
+            </div>
+            <div class="modal_body" id="modal_body_desktop_view">
+                <div class="modal-body">
+                    <div class="ods-section">
+                        <h2>STOCK ADJUST</h2>
+                        <img src="/img/demo-logo.png">
+                    </div>
+                    <div class="ods-document-details middle-part">
+                        <div class="xui-column-6-of-12 xui-column-12-of-12-small xui-padding-right">
+                            <table class="ods-document-info-table">
+                                <tbody>
+                                <tr>
+                                    <td class="ods-document-info-table__label null"><strong>To Account</strong></td>
+                                    <td class="ods-document-info-table__details null"
+                                        data-automationid="to-contact"><span>{{recordLineForPreview.AccountName}}</span></td>
+                                </tr><!-- react-empty: 19 -->
+
+                                {{#if stockupdate}}
+                                <tr>
+                                    <td class="ods-document-info-table__label null"><strong>Adjust
+                                        Number</strong></td>
+                                    <td class="ods-document-info-table__details null"
+                                        data-automationid="invoice-number"><span id="inv-num-prev">{{recordLineForPreview.id}}</span>
+                                    </td>
+                                </tr>
+                                {{else}}
+
+                                {{/if}}
+
+
+                                <tr>
+                                    <td class="ods-document-info-table__label null"><strong>ABN</strong></td>
+                                    <td class="ods-document-info-table__details null"
+                                        data-automationid="org-tax-number">{{abn}}
+                                    </td>
+                                </tr>
+                                <!--
+                                <tr>
+                                    <td class="ods-document-info-table__label null"><strong>Reference
+                                        Number</strong></td>
+                                    <td class="ods-document-info-table__details null"
+                                        data-automationid="invoice-reference">{{referenceNumber}}
+                                    </td>
+                                </tr>
+                                -->
+                                <tr>
+                                    <td class="ods-document-info-table__label null"><strong>Adjust Date</strong></td>
+                                    <td class="ods-document-info-table__details null"
+                                        data-automationid="document-issue-date"><span id="inv-date-prev">{{recordLineForPreview.AdjustmentDate}}</span>
+                                    </td>
+                                </tr>
+                                <!--
+                                <tr>
+                                    <td class="ods-document-info-table__label null"><strong>Due</strong></td>
+                                    <td class="ods-document-info-table__details ods-date-paid"
+                                        data-automationid="document-due-date"><span>{{recordForPreview.Total}}</span></td>
+                                </tr>
+                                -->
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="xui-column-6-of-12 xui-column-12-of-12-small ods-organisation-address">
+                            <table class="ods-document-info-table ">
+                                <tbody>
+                                <tr>
+                                    <td class="ods-document-info-table__label null"><strong>From</strong></td>
+                                    <td class="ods-document-info-table__details null"
+                                        data-automationid="organisation-details">{{companyname}}<br><span class="address-office">{{address}}</span></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                    <div class="ods-document-details bottom-part">
+                        <div class="ods-line-items" data-automationid="line-items">
+                            <table>
+                                <thead>
+                                <tr class="prev-header">
+                                    <th class="xui-text-align-left" data-automationid="item-header">
+                                        Item
+                                    </th>
+                                    <th class="xui-text-align-left" data-automationid="description-header">
+                                        Description
+                                    </th>
+                                    <th class="xui-text-align-right ods-hide-when-small"
+                                        data-automationid="department-header">Department
+                                    </th>
+                                    <th class="xui-text-align-right ods-hide-when-small"
+                                        data-automationid="uom-header">UOM
+                                    </th>
+                                    <th class="xui-text-align-right ods-hide-when-small"
+                                        data-automationid="instock-header">In-Stock
+                                    </th>
+                                    <th class="xui-text-align-right ods-hide-when-small"
+                                        data-automationid="available-header">Available
+                                    </th>
+                                    <th class="xui-text-align-right" data-automationid="final-header">Final
+
+                                    </th>
+                                    <th class="xui-text-align-right" data-automationid="adjust-header">Adjust
+
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {{#each lineItem in recordLineForPreview.LineItems}}
+                                    <tr class="ods-line-item--small-screen-divider">
+                                      <td class="StandardLineItemsRow-item xui-text-align-left">
+                                          <!-- react-text: 464 -->{{lineItem.item}}<!-- /react-text --></td>
+                                        <td class="StandardLineItemsRow-description xui-text-align-left">
+                                            <!-- react-text: 464 -->{{lineItem.description}}<!-- /react-text --></td>
+                                        <td class="StandardLineItemsRow-department xui-text-align-right ods-hide-when-small">
+                                            {{lineItem.department}}
+                                        </td>
+                                        <td class="StandardLineItemsRow-uom xui-text-align-right ods-hide-when-small">
+                                            {{lineItem.uom}}
+                                        </td>
+                                        <td class="StandardLineItemsRow-instock xui-text-align-right ods-hide-when-small">
+                                            {{lineItem.instock}}
+                                        </td>
+                                        <td class="StandardLineItemsRow-available xui-text-align-right ods-hide-when-small">
+                                            {{lineItem.available}}
+                                        </td>
+                                        <td class="StandardLineItemsRow-finalQty xui-text-align-right ods-hide-when-small">
+                                            {{lineItem.final}}
+                                        </td>
+                                        <td class="StandardLineItemsRow-adjust xui-text-align-right ods-hide-when-small">
+                                            {{lineItem.adjust}}
+                                        </td>
+
+                                    </tr>
+                                {{/each}}
+                                </tbody>
+                            </table>
+                        </div>
+
+
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <p class="StandardFootnotes-terms"><!-- react-text: 118 -->When
+                        paying by cheque, please complete this payment advice, detach and post to the address
+                        provided.<!-- /react-text --><br><!-- react-text: 120 --><!-- /react-text --><br>
+                        <!-- react-text: 122 -->Online payment preferred - use our account 083-234-12345678 or
+                        use the 'Pay online now' link to pay via PayPal with your credit card.
+                        <!-- /react-text --></p>
+                </div>
+            </div>
+            <div class="modal_body mobile_view" id="modal_body_mobile_view" style="display: none">
+                <div class="mobile_div">
+                    <div class="modal-body">
+                        <div class="ods-section">
+                            <h2>STOCK ADJUST</h2>
+                            <img src="./img/demo-logo.png">
+                        </div>
+                        <div class="ods-document-details">
+                            <div class="xui-column-6-of-12 xui-column-12-of-12-small xui-padding-right">
+                                <table class="ods-document-info-table">
+                                    <tbody>
+                                    <tr>
+                                        <td class="ods-document-info-table__label null"><strong>To Account</strong></td>
+                                        <td class="ods-document-info-table__details null"
+                                            data-automationid="to-contact"><span>{{recordLineForPreview.AccountName}}</span></td>
+                                    </tr><!-- react-empty: 19 -->
+                                    {{#if stockupdate}}
+                                       <tr>
+                                           <td class="ods-document-info-table__label null"><strong>Adjust
+                                               Number</strong></td>
+                                           <td class="ods-document-info-table__details null"
+                                               data-automationid="invoice-number"><span id="inv-num-prev">{{recordLineForPreview.id}}</span>
+                                           </td>
+                                       </tr>
+                                       {{else}}
+
+                                       {{/if}}
+                                    <tr>
+                                        <td class="ods-document-info-table__label null"><strong>ABN</strong>
+                                        </td>
+                                        <td class="ods-document-info-table__details null"
+                                            data-automationid="org-tax-number">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="ods-document-info-table__label null"><strong>ABN</strong></td>
+                                        <td class="ods-document-info-table__details null"
+                                            data-automationid="invoice-reference">{{abn}}
+                                        </td>
+                                    </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="xui-column-6-of-12 xui-column-12-of-12-small ods-organisation-address">
+                                <table class="ods-document-info-table Company_table">
+                                    <tbody>
+                                    <tr>
+                                        <td class="ods-document-info-table__label null"><strong>From</strong>
+                                        </td>
+                                        <td class="ods-document-info-table__details null"
+                                            data-automationid="organisation-details">{{companyname}}<br><span class="address-office">{{address}}</span>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="ods-document-details">
+                            <div class="ods-line-items" data-automationid="line-items">
+                                <table>
+                                    <thead>
+                                    <tr>
+                                        <th class="xui-text-align-left" data-automationid="description-header">
+                                            Description
+                                        </th>
+                                        <th class="xui-text-align-right" data-automationid="adjust-header">
+                                            Adjust
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {{#each lineItem in recordLineForPreview.LineItems}}
+                                        <tr class="ods-line-item--small-screen-divider">
+                                            <td class="StandardLineItemsRow-item xui-text-align-left">{{lineItem.item}}</td>
+                                            <td class="StandardLineItemsRow-description xui-text-align-right"><strong>{{lineItem.adjust}}</strong>
+                                            </td>
+                                        </tr>
+
+                                        <tr class="ods-hide-when-large">
+                                            <td colspan="2" class="ods-line-item--small-screen">
+                                                <!-- react-text: 143 -->Final: <!-- /react-text -->
+                                                <!-- react-text: 144 -->{{lineItem.final}}<!-- /react-text --></td>
+                                        </tr>
+                                    {{/each}}
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <p class="StandardFootnotes-terms"><!-- react-text: 118 -->When
+                                paying by cheque, please complete this payment advice, detach and post to the
+                                address
+                                provided.<!-- /react-text --><br><!-- react-text: 120 --><!-- /react-text --><br>
+                                <!-- react-text: 122 -->Online payment preferred - use our account 083-234-12345678
+                                or
+                                use the 'Pay online now' link to pay via PayPal with your credit card.
+                                <!-- /react-text --></p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="newProduct" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">x</button>
+                <h4 class="modal-title">New Item</h4>
+            </div>
+            <div class="modal-body">
+                <form action="" id="productadd" method="POST">
+                    <table class="product_add Itemtd">
+                        <tbody>
+                        <tr>
+                            <td>
+                                <label>Item Code</label><br>
+                                <input type="text" name="NProdCode" id="NProdCode" required></td>
+                            <td>
+                                <label>Item Name</label><br>
+                                <input type="text" name="NProdName" id="NProdName" required></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <table class="product_add ">
+                        <tbody>
+                        <tr>
+                            <td class="checkboxdiv">
+                                <label><input type="checkbox" name="ItrackThisItem" value="Bike"> I track this
+                                    item </label>
+                            </td>
+
+                            <td>
+                                <div class="assetNumber" id="trackItemContent">
+                                    <label>Inventory Asset Account</label><br>
+                                    <div name="assettypedrop" class="input-group dropdown-add-rec width-remove"
+                                         id="asset-type-dropdown">
+                                        <input name="assettype" type="text" class="form-control select-account-type"
+                                               id="inventoryAssetAccount" value="">
+                                        <div class="input-group-addon" data-toggle="dropdown">
+                                            <img src="/img/dropdown_icon.png" id="asset-type-dropdown-img"
+                                                 class="asset-type-img">
+                                        </div>
+                                        <ul class="dropdown-menu">
+                                            <li class="accountTypeValues"><a href="#">001 - test AA</a></li>
+                                            <li class="accountTypeValues"><a href="#">630 - Inventory</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+
+                                <div class="your-item">
+                                    <p><i class="fa fa-question-circle" aria-hidden="true"></i>This treats
+                                        your item as a tracked
+                                        inventory asset. VS1Cloud will record the quantity on hand and
+                                        prevent
+                                        you selling below a quantity of zero. <br><b>Note: </b>this option
+                                        can not be changed once you have recorded transactions against the
+                                        item.</p>
+                                    <a href="#" target="_blank">Find out if tracked inventory</a> is right for you.
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <table class="product_add ">
+                        <tbody>
+                        <tr>
+                            <td class="checkboxdiv">
+                                <label><input type="checkbox" name="purchaseThisItem"  class="{{#if isTrackChecked}}opacity-add{{/if}}" checked>I purchase
+                                    this item</label>
+                            </td>
+
+                            <td class="purchaseAcconutContent inputboxDiv">
+                                <div class="inputbox">
+                                                <span>
+                                                     <label>Unit Price</label><br>
+                                            <input type="text" name="NProdCode" id="NProdPUPrice" required>
+                                                </span>
+
+                                    <span>
+                                                    <div class=" assetNumber">
+                                                     <label>Purchases Account</label><br>
+
+                                <div name="assettypedrop" class="input-group dropdown-add-rec  mandatory-item" id="asset-type-dropdown">
+                                   <input name="assettype" type="text" class="form-control select-account-type select-account1 hide-add-account"
+                                          id="NProdPAcc" value="">
+                                   <div class="input-group-addon" >
+                                       <img src="/img/dropdown_icon.png" id="asset-type-dropdown-img-1"
+                                            class="asset-type-img hide-add-account">
+                                   </div>
+                                </div>
+
+                                                    </div>
+                                                </span>
+
+                                    <span>
+                                                    <div class=" assetNumber">
+                               <label>Tax Rate</label>
+                               <div name="assettypedrop" class="input-group dropdown-add-rec"
+                                    id="asset-type-dropdown">
+                                   <input name="assettype" type="text" class="form-control select-tax-type1"
+                                          id="NPTaxPR" value="">
+                                   <div class="input-group-addon" data-toggle="dropdown">
+                                       <img src="/img/dropdown_icon.png" id="tax-type-dropdown-img1"
+                                            class="asset-type-img">
+                                   </div>
+                               </div>
+                           </div>
+                                                </span>
+                                </div>
+
+                                <div class="textareadiv">
+                                    <label>Purchases Description<span> (for my suppliers)</span></label><br>
+                                    <textarea rows="4" cols="50" id="NProdPDesc"></textarea>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <table class="product_add ">
+                        <tbody>
+                        <tr>
+                            <td class="checkboxdiv">
+                                <label><input type="checkbox" name="SellThisItem"  class="{{#if isTrackChecked}}opacity-add{{/if}}" checked>I sell this item</label>
+                            </td>
+
+                            <td class="saleAccountContent inputboxDiv">
+                                <div class="inputbox">
+                                                <span>
+                                                     <label>Unit Price</label><br>
+                                            <input type="text" name="NProdCode" id="NProdSUPrice" required>
+                                                </span>
+
+                                    <span>
+                                                    <div class=" assetNumber">
+                                                     <label>Sales Account</label><br>
+                                <div name="assettypedrop" class="input-group dropdown-add-rec  mandatory-item" id="asset-type-dropdown">
+                                   <input name="assettype" type="text" class="form-control select-account-type select-account2 hide-add-account"
+                                          id="NProdSAcc" value="">
+                                   <div class="input-group-addon" >
+                                       <img src="/img/dropdown_icon.png" id="asset-type-dropdown-img-2"
+                                            class="asset-type-img hide-add-account">
+                                   </div>
+                                </div>
+
+                                                    </div>
+                                                </span>
+
+                                    <span>
+                                                    <div class=" assetNumber">
+                               <label>Tax Rate</label>
+                               <div name="assettypedrop" class="input-group dropdown-add-rec"
+                                    id="asset-type-dropdown">
+                                   <input name="assettype" type="text" class="form-control select-tax-type2"
+                                          id="NPTaxSR" value="{{record.AssetType}}">
+                                   <div class="input-group-addon" data-toggle="dropdown">
+                                       <img src="/img/dropdown_icon.png" id="tax-type-dropdown-img2"
+                                            class="asset-type-img">
+                                   </div>
+                               </div>
+                           </div>
+                                                </span>
+                                </div>
+
+                                <div class="textareadiv">
+                                    <label>Sales Description <span> (for my customers)</span></label><br>
+                                    <textarea rows="4" cols="50" id="NProdSDesc"></textarea>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div class="new_create_buttons">
+                    <div id="inventoryadd" class="new_create_buttons_g1">
+                        <div id="poapprove">
+                            <!--<input type="submit" name="productaddbtn" id="productaddbtn" class="send_new" value="Save">-->
+                            <div class="approveBnt">
+                                <a href="#" class="newDropContainerText newLineMargin productaddbtn_save"
+                                   id="save">Save<span class="plus_vertical_line"> </span> </a>
+
+                                <a class="dropdown-toggle newDropContainerArrow" data-toggle="dropdown"><span
+                                        class="caret"></span></a>
+
+
+                                <ul class="dropdown-menu newLineDropdownOptions2 " id="newSOLineDropdownOptions">
+                                    <li><a href="#" id="save" class="productaddbtn_save">Save</a></li>
+                                    <li><a href="#" name="productaddbtn" id="saveAndNew" class="productaddbtn_save" >Save & add another</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <a href="#" class="cancel_new product_edit" id="cancelButton" data-dismiss="modal">Cancel</a>
+                            <!--onclick="window.location.reload(true);"-->
+                        </div>
+                    </div>
+                    <!--
+                    <div class="new_create_buttons_g2" style="border-bottom: 0px;">
+
+                    </div>
+                  -->
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!--
+<div class="modal fade" id="myPrevImgModal" role="dialog">
+    <div class="modal-dialog">
+
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">x</button>
+                <h4 class="modal-title">Upload logo</h4>
+
+            </div>
+            <div class="modal-body">
+                <p class="maximums">The maximum file size is 1MB. For best results, upload the largest logo you have, at
+                    least 140 pixels on its shortest side.</p>
+                <form>
+                    <div class="form-group relative-div">
+                        <p><b>Choose a file to upload</b></p>
+                        <label for="FileName" class="browseBtn">Browse</label>
+                        <label for="exampleFormControlFile1" class="Choose_file">No file selected</label>
+                        <input type="file" name="fileInput" id="fileInput" accept="image/*/" >
+                    </div>
+                    <div class="check">
+                       <label class="checkbox_div"> <input class="form-check-input" type="checkbox" checked> Use on my invoices and other documents I send to clients</label>
+
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+               <div class="footer-button">
+                   <button type="submit" class="btn btn-default" data-dismiss="modal" value="submit" id="uploadImg" disabled>Upload</button>
+                   <button type="button" class="btn cancel_new" data-dismiss="modal"> Cancel</button>
+               </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+-->
+<div id="myPrevImgModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">x</button>
+                <h4 class="modal-title" >{{previewImage.name}}</h4>
+            </div>
+            <div class="modal-body">
+
+                <!--{{#if uploadedFile.image}}-->
+                    <div class="image-previewer">
+                        <img  src="{{previewImage.link}}">
+                    </div>
+                    <!--
+                {{else}}
+                    <div class=" default-file {{uploadedFile.class}}">
+
+                    </div>
+                {{/if}}
+                -->
+                <div class="download_button">
+                    <a class="new_create_btn" id="downloadButton"  download="{{previewImage.name}}" href="{{previewImage.link}}">Download</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+  modalDraggable();
+</script>
+</template>

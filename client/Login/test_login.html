@@ -1,0 +1,100 @@
+<template name="testlogin">
+  <head>
+    <link rel="stylesheet" href="assets/css/Login-Form-Clean.css">
+    <link rel="stylesheet" href="assets/css/Login-Form-Dark.css">
+  </head>
+  <div class="login-dark" style="background-image: url(&quot;assets/img/VS1CloudBackground.jpeg&quot;);background-color: #fe9e6b;">
+    <div class="fullScreenSpin" style="display:none;">
+      <div class="spinner"></div>
+    </div>
+    <script type="text/javascript">
+      $(function() {
+
+        if (localStorage.chkbx && localStorage.chkbx != '') {
+          $('#remember_me').attr('checked', 'checked');
+          $('#email').val(localStorage.usremail);
+          $('#erppassword').val(localStorage.usrpassword);
+        } else {
+          $('#remember_me').removeAttr('checked');
+          $('#email').val('');
+          $('#erppassword').val('');
+        }
+
+        $('#remember_me').click(function() {
+
+          if ($('#remember_me').is(':checked')) {
+            // save username and password
+            localStorage.usremail = $('#email').val();
+            localStorage.usrpassword = $('#erppassword').val();
+            localStorage.chkbx = $('#remember_me').val();
+          } else {
+            localStorage.usremail = '';
+            localStorage.usrpassword = '';
+            localStorage.chkbx = '';
+          }
+        });
+      });
+    </script>
+
+    <form data-form-type="request" accept-charset="UTF-8" action="" id="formlogin" method="POST" style="background-color: rgba(255,255,255,0.78);width: 360px;max-width: 360px;filter: saturate(100%);">
+      <h1 class="text-center" style="color: #00a3d3;font-size: 25px;line-height: 30px;">Welcome to VS1 Cloud</h1>
+    <!--<div class="illustration" style="background-image: url('assets/img/vs1logo.png');background-size: cover;background-repeat: no-repeat;background-position: center; width: 100%;"></div>-->
+
+        <img src="assets/img/vs1logo.png" style="width: 100%;" />
+
+      <div class="form-group"><input class="form-control" type="email" name="email" id="email" placeholder="Email" style="color: #404040;"></div>
+      <div class="form-group"><input class="form-control" type="password" name="erppassword" id="erppassword" placeholder="Password" style="color: #404040;">
+          <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password" style="color: #00a3d3;"></span>
+        </div>
+      <div class="form-group">
+
+        <button id="erplogin-button" name="erplogin-button" class="btn btn-primary btn-block erplogin_btn" type="submit" style="background-color: #00a3d3;">
+          <i class="fa fa-spinner fa-spin loginSpinner" style="display:none; margin-right: 8px;"></i>Log In Binny
+        </button>
+
+        <button id="erplogin-buttonSimon" name="erplogin-buttonSimon" class="btn btn-primary btn-block erplogin_btn" type="submit" style="background-color: #00a3d3;">
+          <i class="fa fa-spinner fa-spin loginSpinner" style="display:none; margin-right: 8px;"></i>Log In Simon
+        </button>
+        <!-- <button id="login-button" name="login-button" class="btn btn-primary btn-block login_btn" type="submit" style="background-color: #00a3d3; ">
+            <i class="fa fa-spinner fa-spin loginSpinner" style="display:none; margin-right: 8px;"></i>Log In (Local)
+        </button> -->
+      </div>
+        <!-- New Password Field -->
+        <!--<div class="form-group">
+            <input id="password" type="password" class="form-control" name="password" placeholder="Password" style="color: #404040;" value="secret">
+            <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+        </div>-->
+        <style>
+            .field-icon {
+                float: right;
+                margin-left: -25px;
+                margin-top: -25px;
+                position: relative;
+                z-index: 2;
+                color: #00a3d3;
+            }
+        </style>
+        <!-- end -->
+      <!--<label style="margin-top: 16px; font-size: 17px; color: #87939B; font-weight: inherit;">
+        <input type="checkbox" checked="checked" name="remember_me" id="remember_me"> Remember me
+      </label>-->
+        <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" name="remember_me" id="remember_me" />
+            <label class="custom-control-label" for="remember_me" style="font-size: 17px; color: #87939B; font-weight: inherit;">Remember Me</label>
+        </div>
+
+        <a class="forgot" href="/forgotpassword" style="margin-top: -16px; margin-bottom: 16px;"><br><br>Forgot your email or password?</a>
+
+        <a class="forgot reset signmeout" id="signmeout" name="signmeout" href="#" style="">Sign me out of all devices</a>
+
+        <small style="color: rgb(128,137,154); font-size: 10px;"><br>Version: 2021.06.01 - 06/17 Binny DEV - VS1Cloud</small>
+
+        <hr style="margin: 10px 0px;">
+
+        <small style="color: rgb(128,137,154); font-size: 12px;">
+            Don&#39;t have an account? <a href="http://www.vs1cloud.com/purchase.php" target="_blank"><span style="color: #00a3d3;">Try VS1Cloud today!</span></a>
+        </small>
+
+    </form>
+  </div>
+</template>

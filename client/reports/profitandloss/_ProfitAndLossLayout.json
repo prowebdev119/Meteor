@@ -1,0 +1,143 @@
+[
+  {
+      "position": "0",
+      "accountType": "Cost of Goods Sold",
+      "employeeId": 32,
+      "subAccounts": [
+          {
+              "accountId": "4",
+              "accountType": "Cost of Goods Sold",
+              "accountName": "Cost of Goods Sold",
+              "position": "0"
+          },
+          {
+              "accountId": "164",
+              "accountType": "Cost of Goods Sold",
+              "accountName": "Test Act 5",
+              "position": "1"
+          },
+          {
+              "accountId": "",
+              "accountType": "Cost of Goods Sold",
+              "accountName": "Total COGS",
+              "position": "2"
+          }
+      ]
+  },
+  {
+      "position": "1",
+      "accountType": "Expense",
+      "employeeId": 32,
+      "subAccounts": [
+          {
+              "accountId": "48",
+              "accountType": "Expense",
+              "accountName": "Admin Fee (Credit Card)",
+              "position": "0"
+          },
+          {
+              "accountId": "49",
+              "accountType": "Expense",
+              "accountName": "Advertising",
+              "position": "1"
+          },
+          {
+              "accountId": "50",
+              "accountType": "Expense",
+              "accountName": "Bad debts",
+              "position": "2"
+          },
+          {
+              "accountId": "207",
+              "accountType": "Expense",
+              "accountName": "Bank Charges",
+              "position": "3"
+          },
+          {
+              "accountId": "152",
+              "accountType": "Expense",
+              "accountName": "Bank Fees",
+              "position": "4"
+          },
+          {
+              "accountId": "53",
+              "accountType": "Expense",
+              "accountName": "Cleaning",
+              "position": "5"
+          },
+          {
+              "accountId": "18",
+              "accountType": "Expense",
+              "accountName": "Payroll Expenses",
+              "position": "6"
+          },
+          {
+              "accountId": "19",
+              "accountType": "Expense",
+              "accountName": "     Gross Wages",
+              "position": "7"
+          },
+          {
+              "accountId": "40",
+              "accountType": "Expense",
+              "accountName": "          Allowance Paid",
+              "position": "8"
+          },
+          {
+              "accountId": "",
+              "accountType": "Expense",
+              "accountName": "Total Expenses",
+              "position": "9"
+          }
+      ]
+  },
+  {
+      "position": "2",
+      "accountType": "Gross Profit",
+      "employeeId": 32,
+      "subAccounts": []
+  },
+  {
+      "position": "3",
+      "accountType": "Income",
+      "employeeId": 32,
+      "subAccounts": [
+          {
+              "accountId": "179",
+              "accountType": "Income",
+              "accountName": "Acc Income",
+              "position": "0"
+          },
+          {
+              "accountId": "230",
+              "accountType": "Income",
+              "accountName": "Acc Income test",
+              "position": "1"
+          },
+          {
+              "accountId": "202",
+              "accountType": "Income",
+              "accountName": "Old Mutual",
+              "position": "2"
+          },
+          {
+              "accountId": "7",
+              "accountType": "Income",
+              "accountName": "Sales",
+              "position": "3"
+          },
+          {
+              "accountId": "",
+              "accountType": "Income",
+              "accountName": "Total Income",
+              "position": "4"
+          }
+      ]
+  },
+  {
+      "position": "4",
+      "accountType": "Net Income",
+      "employeeId": 32,
+      "subAccounts": []
+  }
+]

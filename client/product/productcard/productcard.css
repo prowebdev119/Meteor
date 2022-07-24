@@ -1,0 +1,539 @@
+.productcard {
+    font-family: Helvetica, sans-serif;
+    width: 100%;
+    float: left;
+}
+
+#delete-inventory .modal-dialog {
+    width: 400px;
+    margin: 30px auto;
+}
+
+#delete-inventory .modal-body {
+    background: #fbfbfb;
+}
+
+#delete-inventory .modal-header .close {
+    margin-top: 0;
+    border-left: 1px solid #ddd;
+    height: 46px;
+    width: 46px;
+    opacity: 1;
+    color: #9a9a9a;
+}
+
+#delete-inventory .modal-title {
+    margin: 0;
+    float: left;
+    line-height: 46px;
+    padding-left: 15px;
+    color: #444;
+    font-weight: bold;
+}
+
+#delete-inventory .modal-header {
+    padding: 0;
+}
+
+#delete-inventory .delete-popup-text {
+    padding: 15px 0 10px 10px;
+}
+
+#delete-inventory .modal-body {
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+#delete-inventory .info-icon {
+    margin: 30px 0 0 10px;
+    background: url(/icons/prodDelIcon.png);
+    width: 32px;
+    height: 32px;
+    zoom: 70%;
+}
+
+#delete-inventory .x-box-item {
+    position: absolute !important;
+
+}
+
+#delete-inventory .modal-body {
+    margin-bottom: 50px !important;
+    margin-top: 25px !important;
+
+}
+
+#delete-inventory .modal-footer {
+    padding: 5px !important;
+
+}
+
+#delete-inventory .modal-footer .btn-delete {
+    border-color: transparent;
+    text-shadow: inherit;
+    background: #b84447;
+    color: #fff;
+    width: 100px;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: initial;
+    background: linear-gradient(#d85151, #ce2222);
+    border-radius: 4px;
+    margin-bottom: 0;
+    padding: 6px 12px;
+    white-space: nowrap;
+}
+
+.productcard .active_page_content h1 {
+    margin-bottom: 0;
+    border-bottom: 0;
+}
+
+.productcard #inventoryexport li:hover a {
+    background-image: inherit !important;
+    background-color: #e6f5fa !important;
+    color: #048abb !important;
+}
+
+.productcard #inventoryexport {
+    position: absolute;
+    left: auto;
+    top: auto !important;
+    margin-top: 28px;
+    margin-left: 8px;
+}
+
+.productcard .table-bordered thead > tr > th {
+    border: 0;
+    border-bottom: solid 1px #ddd;
+}
+
+.productcard .table-bordered tr td {
+    border: 0;
+    border-bottom: 1px solid #ddd;
+    line-height: 29px;
+}
+
+.productcard .new_create_container {
+    background: #fff;
+    box-shadow: inherit;
+    border: solid 1px #ddd;
+}
+
+.productcard .new_create_footer_container .new_create_footer {
+    padding: 0;
+    background: transparent;
+}
+
+.productcard .new_create_footer_container .new_create_footer a#notesbtn {
+    margin-left: 0;
+    margin-top: 15px;
+}
+
+.productcard .previous-note {
+    word-wrap: break-word;
+    border-top: 1px solid #e3e3e3;
+    margin-top: 12px;
+    line-height: 1.6;
+    font-size: 12px;
+    color: #333;
+    float: left;
+    width: 100%;
+    padding-top: 8px;
+}
+
+.productcard table.table-bordered-footer tr th {
+    border: 0;
+    border-bottom: solid 1px #ddd;
+    border-right: solid 1px #ddd;
+    width: 100px;
+    font-size: 12px;
+    background: linear-gradient(#fdfefe, #f6f7f8);
+}
+
+.productcard table.table-bordered-footer tr th:last-child {
+    border-right: 0;
+}
+
+.productcard table.table-bordered-footer tr td {
+    border-bottom: solid 1px #ddd;
+    padding-left: 10px;
+    font-size: 12px;
+}
+
+.productcard table.table-bordered-footer {
+    width: 100%;
+    float: left;
+    background: #fff;
+    margin-top: 10px;
+}
+
+.productcard span.showDiv {
+    float: left;
+    width: 100%;
+    font-size: 12px;
+    margin-top: 10px;
+    font-weight: 500;
+}
+
+#edit-inventory .modal-dialog {
+    width: 740px;
+}
+
+#edit-inventory .modal-title {
+    margin: 0;
+    line-height: 1.42857143;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    padding-top: 15px;
+    padding-bottom: 5px;
+    padding-left: 15px;
+}
+
+#edit-inventory .modal-header .close {
+    margin-top: 0;
+    border-left: 1px solid #e5e5e5;
+    height: 46px;
+    width: 46px;
+    opacity: 1;
+    font-weight: normal;
+}
+
+#edit-inventory .modal-header {
+    padding: 0;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+#edit-inventory .modal-body {
+    background-color: #FBFBFB;
+
+}
+
+#edit-inventory table.product_add .your-item {
+    float: left;
+    width: 100%;
+    text-align: left;
+    margin-top: 6px;
+}
+
+#edit-inventory .width-remove {
+    width: 30%;
+}
+
+#edit-inventory .opacity-add {
+    opacity: 0.5;
+}
+
+#edit-inventory table.product_add td.inputboxDiv .assetNumber input {
+    border: 0;
+}
+
+#edit-inventory table.product_add {
+    width: 100%;
+    padding: 10px 0;
+    border-bottom: 1px solid #dfe1e2;
+    display: inline-block;
+}
+
+#edit-inventory table.product_add tr td {
+    vertical-align: top;
+}
+
+#edit-inventory table.product_add tr td p {
+    font-size: 12px;
+}
+
+#edit-inventory table.product_add tr td:first-child {
+    width: 150px;
+    padding-right: 10px;
+}
+
+#edit-inventory table.product_add tr td input {
+    box-sizing: border-box;
+    border-style: solid;
+    border-radius: 0;
+    height: 27px;
+    padding: 0;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    padding-left: 5px;
+    width: 90%;
+    border: 1px solid #ccc;
+}
+
+#edit-inventory table.Itemtd tr td:last-child {
+    width: 250px;
+}
+
+#edit-inventory table.product_add tr td.checkboxdiv input {
+    width: 16px;
+    height: 17px;
+    border-color: #ddd;
+    border-radius: 3px;
+    float: left;
+    margin-top: 3px;
+    margin-right: 6px;
+    /*box-shadow: 0 0 3px #ccc;*/
+}
+
+#edit-inventory table.product_add tr td p i {
+    font-size: 19px;
+    margin-right: 5px;
+    color: #0783bb;
+}
+
+#edit-inventory table.product_add td.checkboxdiv {
+    font-size: 15px;
+    width: 200px !important;
+}
+
+#edit-inventory table.product_add td.inputboxDiv {
+    width: 72%;
+}
+
+#edit-inventory table.product_add td.inputboxDiv .inputbox {
+    width: 100%;
+    float: left;
+}
+
+#edit-inventory table.product_add td.inputboxDiv .inputbox span {
+    float: left;
+    margin-right: 1%;
+    width: 38%;
+}
+
+#edit-inventory table.product_add td.inputboxDiv .inputbox span:first-child {
+    width: 20%;
+}
+
+#edit-inventory table.product_add tr td .textareadiv {
+    width: 100%;
+    float: left;
+    margin-top: 26px;
+}
+
+#edit-inventory table.product_add tr td .textareadiv textarea {
+    width: 98%;
+}
+
+#edit-inventory table.product_add tr td .textareadiv label span {
+    color: #bbb;
+}
+
+#edit-inventory #inventoryadd {
+    width: auto;
+    text-align: right;
+    float: right;
+    margin-right: 15px;
+}
+
+#edit-inventory #inventoryadd .dropdown-menu {
+    left: auto;
+    top: auto !important;
+    margin-left: 57.2%;
+    margin-top: 0.2%;
+    font-size: 12px !important;
+}
+
+#edit-inventory #inventoryadd .newDropContainerArrow {
+    box-shadow: inherit;
+    padding-top: 4px;
+    padding-bottom: 5px;
+    border-left: 1px solid hsla(0, 0%, 100%, .3);
+    margin-left: -6px;
+}
+
+#edit-inventory .assetNumber div#asset-type-dropdown input#asset-type {
+    border: 0;
+    height: 24px;
+    margin-top: 0;
+    width: 90%;
+}
+
+#edit-inventory .dropdown-add-rec .input-group-addon img, .dropdown-add-rec img {
+    height: 27px;
+}
+
+#edit-inventory .modal-body .assettypedrop .dropdown-menu li a {
+    font-size: 12px;
+    color: #000;
+    border-bottom: 1px solid #e9edf2 !important;
+    border-top: 0;
+}
+
+#edit-inventory .modal-body .assetNumber .dropdown-menu {
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, .4);
+    border-radius: 0;
+    padding: 0 0;
+    width: 100%;
+}
+
+#edit-inventory .modal-body .assetNumber .dropdown-menu li a {
+    font-size: 12px;
+    cursor: pointer;
+    border-bottom: 1px solid #e9edf2;
+    color: #000;
+    border-top: 0;
+}
+
+#edit-inventory .modal-body .assetNumber .dropdown-menu li > a:hover {
+    background-image: linear-gradient(#e6f5fa, #e6f5fa) !important;
+    color: #000 !important;
+}
+
+#edit-inventory .new_create_buttons #inventoryadd .dropdown-menu {
+    left: auto;
+    top: auto !important;
+    margin-left: 0;
+    margin-top: 4px;
+    font-size: 12px !important;
+}
+
+#edit-inventory .new_create_buttons #inventoryadd #newSOLineDropdownOptions li > a:hover {
+    background-color: #e6f5fa !important;
+    color: #048abb !important;
+}
+
+#edit-inventory table.product_add:last-child {
+    border-bottom: 0 !important;
+}
+
+#edit-inventory .modal-footer {
+    padding: 0;
+}
+
+#edit-inventory .modal-footer .new_create_buttons {
+    border: 0;
+}
+
+.productcard .modal {
+    position: absolute;
+    bottom: initial;
+}
+
+form#productcommentupdform .new_create_buttons .new_create_buttons_g1 {
+    background: linear-gradient(#ffffff 0%, #efefef 98%, #ffffff 99%);
+    color: #bbb;
+    cursor: default;
+    text-shadow: 0 1px 1px #fff;
+    border-color: #d7dadd #d7d9dd #d6d9dd #d7dade;
+    margin-left: 0;
+    font-size: 12px;
+}
+
+input#productcommentupd {
+    margin-left: 0px;
+}
+
+.productcard #productrecentlist > tbody > tr > td:nth-child(2) {
+    color: #048abb;
+}
+
+.productcard #productrecentlist tr th {
+    border-right: solid 1px #ddd;
+}
+
+.productcard #productrecentlist tr th:last-child {
+    border-right: 0;
+}
+
+.productcard .table-bordered tr:last-child td {
+    border-bottom: 0;
+}
+
+#edit-inventory .width-remove input#inventoryAssetAccount {
+    border: 0;
+}
+
+.productcard main#page-content-wrapper_main {
+    float: left;
+    width: 100%;
+}
+
+.productcard .notify {
+    display: flex;
+    align-items: center;
+}
+
+.productcard .file-name {
+    float: left;
+    width: 85%;
+}
+
+.productcard #new-attachment2-tooltip {
+    padding-top: 0;
+    border-radius: 6px 6px 0 0;
+    top: 100px;
+}
+
+.productcard .V2attachment-help {
+    margin-top: 0 !important;
+}
+
+.productcard .V2attachment-help:after {
+    top: -9px !important;
+}
+
+.productcard #file-display {
+    align-items: center;
+    display: block;
+    justify-content: space-between;
+    max-height: 300px;
+    overflow: auto;
+}
+
+.productcard .files_inbox2 .inboxcol1 img {
+    margin-top: 0 !important;
+}
+
+.productcard .file_header3 {
+    font-size: 11px;
+    text-align: center;
+    font-weight: bold;
+    color: #c1c1c1;
+}
+
+.productcard .remove-attachment .fa-times:hover {
+    color: #C00;
+}
+
+.productcard .uploaded-element {
+    display: inline-block;
+}
+
+.productcard .uploaded-element .confirm-action {
+    float: left;
+    width: 100%;
+    padding-left: 30px;
+    box-sizing: border-box;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.productcard .uploaded-element .confirm-action button.confirm-delete-attachment {
+    padding: 6px 13px 5px;
+    background-color: #d84444 !important;
+    border-color: #c57077 #a91d1d #a91d1d #c57077;
+    color: #fff !important;
+    text-shadow: 1px 1px 1px rgba(30, 30, 30, 0.15);
+    line-height: initial;
+    font-size: 12px;
+}
+
+.productcard button.save-to-library {
+    padding: 6px 13px 5px;
+    border-radius: 4px;
+    background: linear-gradient(#ffffff, #e6eaec);
+    border: 1px solid #e6e6e6;
+    border-color: #e6e6e6 #b3b3b3 #b3b3b3 #e6e6e6 !important;
+    color: #c00 !important;
+    font-weight: bold;
+    margin-left: 10px;
+    font-size: 12px;
+}
+
+.productcard .uploaded-element:hover {
+    background-color: transparent;
+}

@@ -1,0 +1,78 @@
+<template name="purchasesaleschart">
+    <div class="col-md-6 col-xl-3 mb-4 card-visibility" position="0" card-active="true" card-key="dashboard-outstanding-invoice-amount">
+        <div class="card shadow customCardMainDiv border-left-primary py-2 overdueInvoiceAmt" style="cursor: pointer;">
+            <div class="hideShowDiv">
+                <a href="javascript:void(0);" class="cardShowBtn hideelement"><i class="far fa-eye"></i></a>
+                <a href="javascript:void(0);" class="cardSettingBtn editCardBtn"><i class="fas fa-cog"></i></a>
+            </div>
+            <div class="card-body">
+                <div class="row align-items-center no-gutters">
+                    <div class="col mr-2">
+                        <div class="text-uppercase text-primary font-weight-bold text-xs mb-1"><span>Outstanding Invoices (Amount)</span></div>
+                        <div class="text-dark font-weight-bold h5 mb-0"><a href="/agedreceivablessummary"><span class="custOverdueAmt">0.00</span></a></div>
+                    </div>
+                    <div class="col-auto"><i class="fas fa-file-invoice-dollar fa-2x text-gray-300"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-xl-3 mb-4 card-visibility" position="0" card-active="true" card-key="dashboard-outstanding-invoice-quantity">
+        <div class="card shadow customCardMainDiv border-left-primary py-2 overdueInvoiceQty" style="cursor: pointer;">
+            <div class="hideShowDiv">
+                <a href="javascript:void(0);" class="cardShowBtn hideelement"><i class="far fa-eye"></i></a>
+                <a href="javascript:void(0);" class="cardSettingBtn editCardBtn"><i class="fas fa-cog"></i></a>
+            </div>
+            <div class="card-body">
+                <div class="row align-items-center no-gutters">
+                    <div class="col mr-2">
+                        <div class="text-uppercase text-primary font-weight-bold text-xs mb-1"><span class="text-primary">Outstanding Invoices (Quantity)</span></div>
+                        <div class="text-dark font-weight-bold h5 mb-0"><a href="/agedreceivables"><span class="custOverdue">0</span></a></div>
+                    </div>
+                    <div class="col-auto"><i class="fas fa-file-invoice fa-2x text-gray-300"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-xl-3 mb-4 card-visibility" position="0" card-active="true" card-key="dashboard-outstanding-payables-amount">
+        <div class="card shadow customCardMainDiv border-left-danger py-2 outstaningPayablesAmt" style="cursor: pointer;">
+            <div class="hideShowDiv">
+                <a href="javascript:void(0);" class="cardShowBtn hideelement"><i class="far fa-eye"></i></a>
+                <a href="javascript:void(0);" class="cardSettingBtn editCardBtn"><i class="fas fa-cog"></i></a>
+            </div>
+            <div class="card-body">
+                <div class="row align-items-center no-gutters">
+                    <div class="col mr-2">
+                        <div class="text-uppercase text-danger font-weight-bold text-xs mb-1"><span>Outstanding Payables (Amount)</span></div>
+                        <div class="row no-gutters align-items-center">
+                            <div class="col-auto">
+                                <div class="text-dark font-weight-bold h5 mb-0 mr-3"><a href="/agedpayablessummary"><span class="suppAwaitingAmt">0.00</span></a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-auto"><i class="fas fa-dollar-sign fa-2x text-gray-300"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-xl-3 mb-4 card-visibility" position="0" card-active="true" card-key="dashboard-outstanding-payables-quantity">
+        <div class="card shadow customCardMainDiv border-left-danger py-2 outstaningPayablesQty" style="cursor: pointer;">
+            <div class="hideShowDiv">
+                <a href="javascript:void(0);" class="cardShowBtn hideelement"><i class="far fa-eye"></i></a>
+                <a href="javascript:void(0);" class="cardSettingBtn editCardBtn"><i class="fas fa-cog"></i></a>
+            </div>
+            <div class="card-body">
+                <div class="row align-items-center no-gutters">
+                    <div class="col mr-2">
+                        <div class="text-uppercase text-danger font-weight-bold text-xs mb-1"><span>Outstanding Payables (Quantity)</span></div>
+                        <div class="row no-gutters align-items-center">
+                            <div class="col-auto">
+                                <div class="text-dark font-weight-bold h5 mb-0 mr-3"><a href="/agedpayables"><span class="suppAwaiting">0</span></a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-auto"><i class="far fa-list-alt fa-2x text-gray-300"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

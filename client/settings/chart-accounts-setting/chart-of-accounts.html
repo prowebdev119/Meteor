@@ -1,0 +1,882 @@
+<template name="chartOfAccountSettings">
+    <div class="chartAccountSettings chartAccountSettingsB">
+        <div class="active_page">
+            <div class="active_page_content">
+                <p><a href="/settings">General Settings</a> &nbsp;›&nbsp;</p>
+                <br>
+                <h1>Chart of Accounts </h1>
+                  <!--<a href="#1" name="1" id="open_help" onclick="helpshow();"
+                                         style="margin-left: 71.5%;">Show Help</a> -->
+
+                <script>
+                    function helpconceal() {
+                        if (document.getElementById('help_open').style.display == 'block') {
+                            document.getElementById('help_open').style.display = 'none';
+                            document.getElementById('open_help').style.display = 'inline-block';
+
+                        }
+                    }
+
+                    function helpshow() {
+                        if (document.getElementById('help_open').style.display == 'none') {
+                            document.getElementById('help_open').style.display = 'block';
+                            document.getElementById('open_help').style.display = 'none';
+                        }
+                    }
+
+                    $(document).ready(function () {
+                        // we call the function
+                        // helpshow();
+                    });
+                </script>
+
+
+            </div>
+        </div>
+        <div class="accountsDiv">
+            <div id="wrapper_main">
+                <div id="help_open" style="display:none;">
+                    <div id="close_helpbutton"><a id="close_help" onclick="helpconceal();">Hide Help<img
+                            src="/icons/closehelp.PNG" class=""></a></div>
+                    <table class="helpvideos">
+                        <tbody>
+                        <tr>
+                            <td><a href="#"><img src="/icons/vidchartofaccounts.png" class=""></a></td>
+                            <td>
+                                <p>Categorise every transaction in VS1Cloud with our full <a href="#">Chart of
+                                    Accounts</a>
+                                </p>
+                                <p>Financial reports draw on each account to show how your business is performing</p>
+                                <p><a href="#">Learn more</a> about customizing the chart of accounts</p>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        {{#if addBankAccount}}
+            <div id="wrapper_main" class="notify-div">
+                <div class="notify" id="receipt-deleted-message">
+                    <span class="check-icon"><i class="fa fa-check"></i></span>
+                    <span class="icons msg-close" id="close-draft-aw-notification">x</span>
+                    {{#if addSingleBankAccount}}
+                        <div class="message"><p id="ext-gen102"> {{accountCode}} - {{accountName}} has been added.</p></div>
+                    {{/if}}
+                    {{#if addMultipleBankAccount}}
+                        <div class="message"><p id="ext-gen102">Accounts added</p></div>
+                    {{/if}}
+                </div>
+            </div>
+        {{/if}}
+        <div class="chartAccountSettingsBg">
+            <div id="wrapper_main">
+                <main id="page-content-wrapper_main" role="main">
+                    <div class="contacts_container">
+                        <div class="secondaryButtons secondaryButtonsB">
+                            <!-- Edits by Bruno -->
+                            <button type="button" class="btn btn-default new_create_btnB2" data-toggle="modal" data-target="#addNewAccount" id="add-new-account-modal">
+                                <i class="fa fa-plus-square"></i> Add Account
+                            </button>
+                            <button type="button" class="btn btn-default new_create_btnB2">                         
+                                <i class="fa fa-plus-square"></i><a href="/addbankaccounts"> Add Bank Account</a>
+                            </button>
+                            <button type="button" class="btn btn-default pdfIcons new_create_btnB2" id="getPdf">
+                                <i class="fa fa-file-pdf-o" aria-hidden="true"></i> Print PDF
+                            </button>
+                            <button class="btn btn-default new_create_btnB2">
+                                <a href="/Import-your-chart-of-accounts">Import</a>
+                            </button>
+                            <button class="btn btn-default new_create_btnB2">
+                                <a href="" id="chart-export">Export</a>
+                            </button>
+                            <!-- Edits by Bruno -->
+                        </div>
+                        <div class="">
+                            <div class="PageContents">
+                                <ul class="nav nav-tabs chart-accounts-tab-li">
+                                    <li class="active" id="all-accounts"><a data-toggle="tab" href="#Accounts">All Accounts</a></li>
+                                    <li id="assets-accounts"><a data-toggle="tab" href="#Assets"> Assets</a></li>
+                                    <li id="liabilities-accounts"><a data-toggle="tab" href="#Liabilities">Liabilities</a></li>
+                                    <li id="equity-accounts"><a data-toggle="tab" href="#Equity">Equity</a></li>
+                                    <li id="expenses-accounts"><a data-toggle="tab" href="#Expenses">Expenses</a></li>
+                                    <li id="revenue-accounts"><a data-toggle="tab" href="#Revenue">Revenue</a></li>
+                                    <li id="archive-accounts"><a data-toggle="tab" href="#Archive">Archive</a></li>
+                                </ul>
+                                <div class="tab-content">
+                                    <!-- All Accounts Table -->
+                                    <div id="Accounts" class="tab-pane fade in active">
+                                        <div id="Accounts" class="chartaccountsettingtable">
+                                            {{> chartaccountsettingtable type="allaccountlist"}}
+                                            <div class="bubbleToolbar bubbleToolbarB">
+                                                <button type="button" class="btn btn-default btn-defaultB {{#if selectedObj}}btn-delete{{/if}}" data-toggle="modal" data-target="#delete-modal" style="cursor: {{#if selectedObj}}pointer{{else}}default{{/if}}; pointer-events: {{#if selectedObj}}auto{{else}}none{{/if}};"> Delete</button>
+                                                <button type="button" class="btn btn-default btn-defaultB {{#if selectedObj}}btn-selected{{/if}}" data-toggle="modal" data-target="#archive-accounts-modal" style="cursor: {{#if selectedObj}}pointer{{else}}default{{/if}}; pointer-events: {{#if selectedObj}}auto{{else}}none{{/if}};"> Archive</button>
+                                                <button type="button" class="btn btn-default btn-defaultB {{#if selectedObj}}btn-selected{{/if}}" data-toggle="modal" data-target="#change-tax-rate-modal" style="cursor: {{#if selectedObj}}pointer{{else}}default{{/if}}; pointer-events: {{#if selectedObj}}auto{{else}}none{{/if}};"> Change Tax Rate</button>
+                                                <div class="searchBreakB1">
+                                                    <!--For Device Screen MaxWidth 360-->
+                                                    <br>
+                                                </div>
+                                                <span id="no-item" class="no-itemB"> {{ selectedObj }}  accounts selected</span>
+                                                <div class="searchBreakB">
+                                                    <!--For Device Screen MaxWidth 480-->
+                                                    <br>
+                                                </div>
+                                                <div class="serachBar">
+                                                    <input id="SearchTermsText-allaccountlist"  class="table-search-input table-search-inputB" name="SearchTermsText" type="text" value="">
+                                                    <button type="button" class="btn btn-default tableSearchButton-allaccountlist"> Search</button>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <br>
+                                            <div class="searchBreakB2">
+                                                <!--For Device Screen MaxWidth 360-->
+                                                <br>    
+                                            </div>
+                                            <div id="tableTopDiv" style="width: 1033px; float: left;">
+                                                <table class="standard -trueerp-lang-force table-allaccountlist tableB" id="chart-accounts-table" style="margin-top: 0 !important; margin-bottom: 0 !important;">
+                                                  <thead>
+                                                      <tr>
+                                                          <th class="nosorting boxB" style="padding: 5px">
+                                                              <label>
+                                                                  <input type="checkbox" value="" class="head-checkbox" id="head-check-allaccountlist">
+                                                              </label>
+                                                          </th>
+                                                          <th>
+                                                              <a href="#">Code<span class="caret"></span></a>
+                                                          </th>
+                                                          <th>
+                                                              <a href="#">Name</a>
+                                                          </th>
+                                                          <th>
+                                                              <a href="#">Type</a>
+                                                          </th>
+                                                          <th>
+                                                              <a href="#">Tax Rate</a>
+                                                          </th>
+                                                          <th>
+                                                              YTD
+                                                          </th>
+                                                      </tr>
+                                                  </thead>
+                                                  <tbody>
+                                                  {{#each records.allaccountlist}}
+                                                      <tr id="caccount-row-{{id}}" class="default current-account-row {{#if selected}}selected{{/if}}">
+                                                          <td class="thin thinB">
+                                                              <label>
+                                                                  <input id="caccount-allaccountlist-{{id}}" type="checkbox" checked="{{selected}}"
+                                                                         class="checkbox-allaccountlist table-row-checkbox"/>
+                                                              </label>
+                                                          </td>
+
+                                                          {{#each value in dataArr}}
+                                                              <td class="detailB">{{value}}</td>
+                                                          {{/each}}
+                                                      </tr>
+                                                  {{/each}}
+
+                                                  </tbody>
+                                              </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Assets Table -->
+                                    <div id="Assets" class="tab-pane fade">
+                                        <div id="Accounts" class="chartaccountsettingtable chartaccountsettingtableB">
+                                            {{> chartaccountsettingtable type="accountassetslist"}}
+                                            <div class="bubbleToolbar">
+                                                <button type="button" class="btn btn-default btn-defaultB {{#if selectedObj}}btn-delete{{/if}}" data-toggle="modal" data-target="#delete-modal" style="cursor: {{#if selectedObj}}pointer{{else}}default{{/if}}; pointer-events: {{#if selectedObj}}auto{{else}}none{{/if}};"> Delete</button>
+                                                <button type="button" class="btn btn-default btn-defaultB {{#if selectedObj}}btn-selected{{/if}}" data-toggle="modal" data-target="#archive-accounts-modal" style="cursor: {{#if selectedObj}}pointer{{else}}default{{/if}}; pointer-events: {{#if selectedObj}}auto{{else}}none{{/if}};"> Archive</button>
+                                                <button type="button" class="btn btn-default btn-defaultB {{#if selectedObj}}btn-selected{{/if}}" data-toggle="modal" data-target="#change-tax-rate-modal" style="cursor: {{#if selectedObj}}pointer{{else}}default{{/if}}; pointer-events: {{#if selectedObj}}auto{{else}}none{{/if}};"> Change Tax Rate</button>
+                                                <div class="searchBreakB1">
+                                                    <!--For Device Screen MaxWidth 360-->
+                                                    <br>
+                                                </div>
+                                                <span id="no-item"  class="no-itemB">{{ selectedObj }}  accounts selected</span>
+                                                <div class="searchBreakB">
+                                                    <br>
+                                                </div>
+                                                <div class="serachBar searchBarB">
+                                                    <input id="SearchTermsText-accountassetslist" class="table-search-input table-search-inputB"  name="SearchTermsText" type="text" value="">
+                                                    <button type="button" class="btn btn-default tableSearchButton-accountassetslist"> Search</button>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <br>
+                                            <div class="searchBreakB2">
+                                                <!--For Device Screen MaxWidth 360-->
+                                                <br>    
+                                            </div>
+                                            <div id="tableTopDiv" style="width: 1033px; float: left;">
+                                                <table class="standard -trueerp-lang-force table-accountassetslist tableB" id="chart-accounts-table" style="margin-top: 0 !important; margin-bottom: 0 !important;">
+                                                    <thead>
+                                                    <tr>
+                                                        <td class="nosorting" style="padding: 5px">
+                                                            <label><input type="checkbox" value="" class="head-checkbox" id="head-check-accountassetslist" ></label>
+                                                        </td>
+                                                        <td>
+                                                            <a href="#"> Code<span class="caret"></span></a>
+                                                        </td>
+                                                        <td>
+                                                            <a href="#"> Name</a>
+                                                        </td>
+                                                        <td>
+                                                            <a href="#"> Type</a>
+                                                        </td>
+                                                        <td>
+                                                            <a href="#"> Tax Rate</a>
+                                                        </td>
+                                                        <td>
+                                                            YTD
+                                                        </td>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    {{#each records.accountassetslist}}
+                                                    <tr id="caccount-row-{{id}}" class="default current-account-row ">
+                                                        <td class="thin thinB">
+                                                            <label>
+                                                                <input id="caccount-accountassetslist-{{id}}" type="checkbox" checked="{{selected}}"
+                                                                       class="checkbox-accountassetslist table-row-checkbox"/>
+                                                            </label>
+                                                        </td>
+
+                                                        {{#each value in dataArr}}
+                                                        <td class="detailB">{{value}}</td>
+                                                        {{/each}}
+                                                    </tr>
+                                                    {{/each}}
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <!-- Liabilities Table -->
+                                    <div id="Liabilities" class="tab-pane fade">
+                                        <div id="Accounts" class="chartaccountsettingtable chartaccountsettingtableB">
+                                            {{> chartaccountsettingtable type="accountliabilitylist"}}
+                                            <div class="bubbleToolbar">
+                                                <button type="button" class="btn btn-default btn-defaultB {{#if selectedObj}}btn-delete{{/if}}" data-toggle="modal" data-target="#delete-modal" style="cursor: {{#if selectedObj}}pointer{{else}}default{{/if}}; pointer-events: {{#if selectedObj}}auto{{else}}none{{/if}};"> Delete</button>
+                                                <button type="button" class="btn btn-default btn-defaultB {{#if selectedObj}}btn-selected{{/if}}" data-toggle="modal" data-target="#archive-accounts-modal" style="cursor: {{#if selectedObj}}pointer{{else}}default{{/if}}; pointer-events: {{#if selectedObj}}auto{{else}}none{{/if}};"> Archive</button>
+                                                <button type="button" class="btn btn-default btn-defaultB {{#if selectedObj}}btn-selected{{/if}}" data-toggle="modal" data-target="#change-tax-rate-modal" style="cursor: {{#if selectedObj}}pointer{{else}}default{{/if}}; pointer-events: {{#if selectedObj}}auto{{else}}none{{/if}};"> Change Tax Rate</button>
+                                                <div class="searchBreakB1">
+                                                    <!--For Device Screen MaxWidth 360-->
+                                                    <br>
+                                                </div>
+                                                <span id="no-item"  class="no-itemB">{{ selectedObj }}  accounts selected</span>
+                                                <div class="searchBreakB">
+                                                    <br>
+                                                </div>
+                                                <div class="serachBar">
+                                                    <input id="SearchTermsText-accountliabilitylist" class="table-search-input table-search-inputB"  name="SearchTermsText" type="text" value="">
+                                                    <button type="button" class="btn btn-default tableSearchButton-accountliabilitylist"> Search</button>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <br>
+                                            <div class="searchBreakB2">
+                                                <!--For Device Screen MaxWidth 360-->
+                                                <br>    
+                                            </div>
+                                            <div id="tableTopDiv" style="width: 1033px; float: left;">
+                                                <table class="standard -trueerp-lang-force table-accountliabilitylist tableB" id="chart-accounts-table" style="margin-top: 0 !important; margin-bottom: 0 !important;">
+                                                    <thead>
+                                                    <tr>
+                                                        <td class="nosorting" style="padding: 5px">
+                                                            <label><input type="checkbox" value="" class="head-checkbox"  id="head-check-accountliabilitylist" ></label>
+                                                        </td>
+                                                        <td>
+                                                            <a href="#"> Code<span class="caret"></span></a>
+                                                        </td>
+                                                        <td>
+                                                            <a href="#"> Name</a>
+                                                        </td>
+                                                        <td>
+                                                            <a href="#"> Type</a>
+                                                        </td>
+                                                        <td>
+                                                            <a href="#"> Tax Rate</a>
+                                                        </td>
+                                                        <td>
+                                                            YTD
+                                                        </td>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    {{#each records.accountliabilitylist}}
+                                                    <tr id="caccount-row-{{id}}" class="default current-account-row ">
+                                                        <td class="thin thinB">
+                                                            <label>
+                                                                <input id="caccount-accountliabilitylist-{{id}}" type="checkbox" checked="{{selected}}"
+                                                                       class="checkbox-accountliabilitylist table-row-checkbox"/>
+                                                            </label>
+                                                        </td>
+
+                                                        {{#each value in dataArr}}
+                                                        <td class="detailB">{{value}}</td>
+                                                        {{/each}}
+                                                    </tr>
+                                                    {{/each}}
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <!-- Equity Table -->
+                                    <div id="Equity" class="tab-pane fade">
+                                        <div id="Accounts" class="chartaccountsettingtable chartaccountsettingtableB">
+                                            {{> chartaccountsettingtable type="accountequitylist"}}
+                                            <div class="bubbleToolbar">
+                                                <button type="button" class="btn btn-default btn-defaultB {{#if selectedObj}}btn-delete{{/if}}" data-toggle="modal" data-target="#delete-modal" style="cursor: {{#if selectedObj}}pointer{{else}}default{{/if}}; pointer-events: {{#if selectedObj}}auto{{else}}none{{/if}};"> Delete</button>
+                                                <button type="button" class="btn btn-default btn-defaultB {{#if selectedObj}}btn-selected{{/if}}" data-toggle="modal" data-target="#archive-accounts-modal" style="cursor: {{#if selectedObj}}pointer{{else}}default{{/if}}; pointer-events: {{#if selectedObj}}auto{{else}}none{{/if}};"> Archive</button>
+                                                <button type="button" class="btn btn-default btn-defaultB {{#if selectedObj}}btn-selected{{/if}}" data-toggle="modal" data-target="#change-tax-rate-modal" style="cursor: {{#if selectedObj}}pointer{{else}}default{{/if}}; pointer-events: {{#if selectedObj}}auto{{else}}none{{/if}};"> Change Tax Rate</button>
+                                                <div class="searchBreakB1">
+                                                    <!--For Device Screen MaxWidth 360-->
+                                                    <br>
+                                                </div>
+                                                <span id="no-item"  class="no-itemB">{{ selectedObj }}  accounts selected</span>
+                                                <div class="searchBreakB">
+                                                    <br>
+                                                </div>
+                                                <div class="serachBar">
+                                                    <input id="SearchTermsText-accountequitylist" class="table-search-input table-search-inputB" name="SearchTermsText" type="text" value="">
+                                                    <button type="button" class="btn btn-default tableSearchButton-accountequitylist"> Search</button>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <br>
+                                            <div class="searchBreakB2">
+                                                <!--For Device Screen MaxWidth 360-->
+                                                <br>    
+                                            </div>
+                                            <div id="tableTopDiv" style="width: 1033px; float: left;">
+                                                <table class="standard -trueerp-lang-force table-accountequitylist tableB" id="chart-accounts-table" style="margin-top: 0 !important; margin-bottom: 0 !important;">
+                                                    <thead>
+                                                    <tr>
+                                                        <td class="nosorting" style="padding: 5px">
+                                                            <label><input type="checkbox" value="" class="head-checkbox"  id="head-check-accountequitylist" ></label>
+                                                        </td>
+                                                        <td>
+                                                            <a href="#"> Code<span class="caret"></span></a>
+                                                        </td>
+                                                        <td>
+                                                            <a href="#"> Name</a>
+                                                        </td>
+                                                        <td>
+                                                            <a href="#"> Type</a>
+                                                        </td>
+                                                        <td>
+                                                            <a href="#"> Tax Rate</a>
+                                                        </td>
+                                                        <td>
+                                                            YTD
+                                                        </td>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    {{#each records.accountequitylist}}
+                                                    <tr id="caccount-row-{{id}}" class="default current-account-row ">
+                                                        <td class="thin thinB">
+                                                            <label>
+                                                                <input id="caccount-accountequitylist-{{id}}" type="checkbox" checked="{{selected}}"
+                                                                       class="checkbox-accountequitylist table-row-checkbox"/>
+                                                            </label>
+                                                        </td>
+
+                                                        {{#each value in dataArr}}
+                                                        <td class="detailB">{{value}}</td>
+                                                        {{/each}}
+                                                    </tr>
+                                                    {{/each}}
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <!-- Expenses Table -->
+                                    <div id="Expenses" class="tab-pane fade">
+                                        <div id="Accounts" class="chartaccountsettingtable chartaccountsettingtableB">
+                                            {{> chartaccountsettingtable type="accountexpenselist"}}
+                                            <div class="bubbleToolbar">
+                                                <button type="button" class="btn btn-default btn-defaultB {{#if selectedObj}}btn-delete{{/if}}" data-toggle="modal" data-target="#delete-modal" style="cursor: {{#if selectedObj}}pointer{{else}}default{{/if}}; pointer-events: {{#if selectedObj}}auto{{else}}none{{/if}};"> Delete</button>
+                                                <button type="button" class="btn btn-default btn-defaultB {{#if selectedObj}}btn-selected{{/if}}" data-toggle="modal" data-target="#archive-accounts-modal" style="cursor: {{#if selectedObj}}pointer{{else}}default{{/if}}; pointer-events: {{#if selectedObj}}auto{{else}}none{{/if}};"> Archive</button>
+                                                <button type="button" class="btn btn-default btn-defaultB {{#if selectedObj}}btn-selected{{/if}}" data-toggle="modal" data-target="#change-tax-rate-modal" style="cursor: {{#if selectedObj}}pointer{{else}}default{{/if}}; pointer-events: {{#if selectedObj}}auto{{else}}none{{/if}};"> Change Tax Rate</button>
+                                                <div class="searchBreakB1">
+                                                    <!--For Device Screen MaxWidth 360-->
+                                                    <br>
+                                                </div>
+                                                <span id="no-item"  class="no-itemB">{{ selectedObj }}  accounts selected</span>
+                                                <div class="searchBreakB">
+                                                    <br>
+                                                </div>
+                                                <div class="serachBar">
+                                                    <input id="SearchTermsText-accountexpenselist"  class="table-search-input table-search-inputB" name="SearchTermsText" type="text" value="">
+                                                    <button type="button" class="btn btn-default tableSearchButton-accountexpenselist"> Search</button>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <br>
+                                            <div class="searchBreakB2">
+                                                <!--For Device Screen MaxWidth 360-->
+                                                <br>    
+                                            </div>
+                                            <div id="tableTopDiv" style="width: 1033px; float: left;">
+                                                <table class="standard -trueerp-lang-force table-accountexpenselist tableB" id="chart-accounts-table" style="margin-top: 0 !important; margin-bottom: 0 !important;">
+                                                    <thead>
+                                                    <tr>
+                                                        <td class="nosorting" style="padding: 5px">
+                                                            <label><input type="checkbox" value="" class="head-checkbox"  id="head-check-accountexpenselist" ></label>
+                                                        </td>
+                                                        <td>
+                                                            <a href="#"> Code<span class="caret"></span></a>
+                                                        </td>
+                                                        <td>
+                                                            <a href="#"> Name</a>
+                                                        </td>
+                                                        <td>
+                                                            <a href="#"> Type</a>
+                                                        </td>
+                                                        <td>
+                                                            <a href="#"> Tax Rate</a>
+                                                        </td>
+                                                        <td>
+                                                            YTD
+                                                        </td>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    {{#each records.accountexpenselist}}
+                                                    <tr id="caccount-row-{{id}}" class="default current-account-row ">
+                                                        <td class="thin thinB">
+                                                            <label>
+                                                                <input id="caccount-accountexpenselist-{{id}}" type="checkbox" checked="{{selected}}"
+                                                                       class="checkbox-accountexpenselist table-row-checkbox"/>
+                                                            </label>
+                                                        </td>
+
+                                                        {{#each value in dataArr}}
+                                                        <td class="detailB">{{value}}</td>
+                                                        {{/each}}
+                                                    </tr>
+                                                    {{/each}}
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <!-- Revenue Table -->
+                                    <div id="Revenue" class="tab-pane fade">
+                                        <div id="Accounts" class="chartaccountsettingtable chartaccountsettingtableB">
+                                            {{> chartaccountsettingtable type="accountrevenuelist"}}
+                                            <div class="bubbleToolbar">
+                                                <button type="button" class="btn btn-default btn-defaultB {{#if selectedObj}}btn-delete{{/if}}" data-toggle="modal" data-target="#delete-modal" style="cursor: {{#if selectedObj}}pointer{{else}}default{{/if}}; pointer-events: {{#if selectedObj}}auto{{else}}none{{/if}};"> Delete</button>
+                                                <button type="button" class="btn btn-default btn-defaultB {{#if selectedObj}}btn-selected{{/if}}" data-toggle="modal" data-target="#archive-accounts-modal" style="cursor: {{#if selectedObj}}pointer{{else}}default{{/if}}; pointer-events: {{#if selectedObj}}auto{{else}}none{{/if}};"> Archive</button>
+                                                <button type="button" class="btn btn-default btn-defaultB {{#if selectedObj}}btn-selected{{/if}}" data-toggle="modal" data-target="#change-tax-rate-modal" style="cursor: {{#if selectedObj}}pointer{{else}}default{{/if}}; pointer-events: {{#if selectedObj}}auto{{else}}none{{/if}};"> Change Tax Rate</button>
+                                                <div class="searchBreakB1">
+                                                    <!--For Device Screen MaxWidth 360-->
+                                                    <br>
+                                                </div>
+                                                <span id="no-item"  class="no-itemB">{{ selectedObj }}  accounts selected</span>
+                                                <div class="searchBreakB">
+                                                  <br>
+                                                </div>
+                                                <div class="serachBar">
+                                                    <input id="SearchTermsText-accountrevenuelist" class="table-search-input table-search-inputB" name="SearchTermsText" type="text" value="">
+                                                    <button type="button" class="btn btn-default tableSearchButton-accountrevenuelist"> Search</button>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <br>
+                                            <div class="searchBreakB2">
+                                                <!--For Device Screen MaxWidth 360-->
+                                                <br>    
+                                            </div>
+                                            <div id="tableTopDiv" style="width: 1033px; float: left;">
+                                                <table class="standard -trueerp-lang-force table-accountrevenuelist tableB" id="chart-accounts-table" style="margin-top: 0 !important; margin-bottom: 0 !important;">
+                                                    <thead>
+                                                    <tr>
+                                                        <td class="nosorting" style="padding: 5px">
+                                                            <label><input type="checkbox" value="" class="head-checkbox"  id="head-check-accountrevenuelist" ></label>
+                                                        </td>
+                                                        <td>
+                                                            <a href="#"> Code<span class="caret"></span></a>
+                                                        </td>
+                                                        <td>
+                                                            <a href="#"> Name</a>
+                                                        </td>
+                                                        <td>
+                                                            <a href="#"> Type</a>
+                                                        </td>
+                                                        <td>
+                                                            <a href="#"> Tax Rate</a>
+                                                        </td>
+                                                        <td>
+                                                            YTD
+                                                        </td>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    {{#each records.accountrevenuelist}}
+                                                    <tr id="caccount-row-{{id}}" class="default current-account-row ">
+                                                        <td class="thin thinB">
+                                                            <label>
+                                                                <input id="caccount-accountrevenuelist-{{id}}" type="checkbox" checked="{{selected}}"
+                                                                       class="checkbox-accountrevenuelist table-row-checkbox"/>
+                                                            </label>
+                                                        </td>
+
+                                                        {{#each value in dataArr}}
+                                                        <td class="detailB">{{value}}</td>
+                                                        {{/each}}
+                                                    </tr>
+                                                    {{/each}}
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Archive Table -->
+                                    <div id="Archive" class="tab-pane fade">
+                                        <div id="Accounts" class="chartaccountsettingtable chartaccountsettingtableB">
+                                            {{> chartaccountsettingtable type="accountarchivelist"}}
+                                            <div class="bubbleToolbar">
+                                                <button type="button" class="btn btn-default btn-defaultB {{#if selectedObj}}btn-delete{{/if}}" id="restoreAccounts" style="cursor: {{#if selectedObj}}pointer{{else}}default{{/if}}; pointer-events: {{#if selectedObj}}auto{{else}}none{{/if}};"> Restore</button>
+                                                
+                                                <span id="no-item"  class="no-itemB">{{ selectedObj }}  accounts selected</span>
+                                                <div class="searchBreakB">
+                                                  <br>
+                                                  <br>
+                                                </div>
+                                                <div class="searchBreakB3">
+                                                  <br>
+                                                </div>
+                                                <div class="serachBar">
+                                                    <input id="SearchTermsText-accountarchivelist" class="table-search-input table-search-inputB" name="SearchTermsText" type="text" value="">
+                                                    <button type="button" class="btn btn-default tableSearchButton-accountarchivelist"> Search</button>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <br>
+                                            <div class="searchBreakB2">
+                                                <!--For Device Screen MaxWidth 360-->
+                                                <br>    
+                                            </div>
+                                            <div id="tableTopDiv" style="width: 1033px; float: left;">
+                                                <table class="standard -trueerp-lang-force table-accountarchivelist tableB" id="chart-accounts-table" style="margin-top: 0 !important; margin-bottom: 0 !important;">
+                                                    <thead>
+                                                    <tr>
+                                                        <td class="nosorting" style="padding: 5px">
+                                                            <label><input type="checkbox" value="" class="head-checkbox"  id="head-check-accountarchivelist" ></label>
+                                                        </td>
+                                                        <td>
+                                                            <a href="#"> Code<span class="caret"></span></a>
+                                                        </td>
+                                                        <td>
+                                                            <a href="#"> Name</a>
+                                                        </td>
+                                                        <td>
+                                                            <a href="#"> Type</a>
+                                                        </td>
+                                                        <td>
+                                                            <a href="#"> Tax Rate</a>
+                                                        </td>
+                                                        <td>
+                                                            YTD
+                                                        </td>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    {{#each records.accountarchivelist}}
+                                                    <tr id="caccount-row-{{id}}" class="default current-account-row ">
+                                                        <td class="thin thinB">
+                                                            <label>
+                                                                <input id="caccount-accountarchivelist-{{id}}" type="checkbox" checked="{{selected}}"
+                                                                       class="checkbox-accountarchivelist table-row-checkbox"/>
+                                                            </label>
+                                                        </td>
+
+                                                        {{#each value in dataArr}}
+                                                        <td class="detailB">{{value}}</td>
+                                                        {{/each}}
+                                                    </tr>
+                                                    {{/each}}
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+        <!-- Edit Bank Account Details Modal -->
+        <div class="modal fade" id="editBankAccountDetails" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Edit Bank Account Details</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Your Bank</label>
+                            <input type="text" class="form-control" id="usr" placeholder="BankWest (AU)">
+                        </div>
+                        <div class="form-group">
+                            <label>Account Name</label>
+                            <input type="text" class="form-control" id="usr" placeholder="Business Bank Account">
+                            <p>As you would like it to appear in VS1Cloud (limited 30 characters)</p>
+                        </div>
+                        <div class="form-group">
+                            <label>Account Type</label>
+                            <select class=" form-control">
+                                <option>Fixed Amount</option>
+                                <option>Multiple of employee's ordinary earnings rate</option>
+                                <option>Rate per Unit</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Code</label>
+                            <input type="text" class="form-control" id="usr" placeholder="090">
+                            <p>A unique code/number for this account (limited to 10 characters)</p>
+                        </div>
+                        <p>Currency</p>
+                        <p>AUD Australian Dollar</p>
+                        <div class="form-group">
+                            <label>Bank Account Number</label>
+                            <div class="BSB">
+                                <label>BSB</label>
+                                <input type="text" placeholder="306-234">
+                            </div>
+
+                            <div class="accountNumber">
+                                <label>Account Number</label>
+                                <input type="text" placeholder="12345678">
+                            </div>
+                        </div>
+
+                        <div class="userOption"><p>Use the options below if you make batch payments...
+                            <i class="fa fa-question questionCircle" aria-hidden="true" id="btn1"></i>
+                        </p></div>
+
+                        <div class="deUser">
+                            <label>DE User ID</label>
+                            <input type="text">
+                            <p>(Required by some banks)</p>
+                        </div>
+                        <div class="form-group checkboxDiv">
+                            <label><input type="checkbox" value=""> Include self-balancing transaction in the ABA
+                                file</label>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn" data-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn btn-success" data-dismiss="modal">Save</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- Add New Account Modal -->
+        <div class="modal fade" id="addNewAccount" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close close-account-modal" data-dismiss="modal">x</button>
+                        <h4 class="modal-title" id="add-account-title"></h4>
+                        <input type="hidden"  id="accountID" name="accountID" >
+
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-6 accountType">
+                                <label><b>Account Type</b></label>
+                                <div class="input-group dropdown-add-rec mandatory-item" id="account-dropdown">
+                                    <input type="text" id="account-input"
+                                           class="form-control select-account no-border" name="receiptLineAccount"
+                                           value="">
+                                    <div class="input-group-addon">
+                                        <img src="/img/dropdown_icon.png" id="acc-dropdown-img"
+                                             class="account-img">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label><b>Code</b></label>
+                                    <p>A unique code/number for this account (limited to 10 characters)</p>
+                                    <input type="text" id="accountNo" name="accountNo">
+                                </div>
+
+                                <div class="form-group">
+                                    <label><b>Name</b></label>
+                                    <p>A short title for this account (limited to 150 characters)</p>
+                                    <input type="text" id="accountName" name="accountName">
+                                </div>
+                                <div class="form-group">
+                                    <label><b>Description(optional)</b></label>
+                                    <p>A description of how this account should be used</p>
+                                    <input type="text" id="accountDesc" name="accountDesc">
+                                </div>
+                                <div class="form-group">
+                                    <label><b>Tax</b></label>
+                                    <div class="input-group dropdown-add-rec" id="pick-tax-rate">
+                                        <input type="text" id="tax-rate-input"
+                                               class="form-control select-tax-rate no-border"
+                                               value="">
+                                        <div class="input-group-addon">
+                                            <img src="/img/dropdown_icon.png" id="tax-dropdown-img"
+                                                 class="tax-img">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group label-div">
+                                    <label><input type="checkbox" value=""> Show on Dashboard Watchlist</label>
+                                    <label><input type="checkbox" id="chkExpenseClaim" name="chkExpenseClaim" value=""> Show in Expense Claims</label>
+                                    <label><input type="checkbox" value=""> Enable payments to this account</label>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-success account-add-update-save-click"   name="createNewAccount">Save</button>
+                                    <button type="button" class="btn btn-cancel" data-dismiss="modal">Cancel</button>
+                                </div>
+                            </div>
+                            <div class="col-md-6 modifyAccounts">
+                                <img class="documents" src="/img/documents.png">
+                                <p>You can also modify where accounts appear in your reports using <a
+                                        href="#"> Customised Report
+                                    Layouts</a></p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- delete-modal -->
+        <div id="delete-modal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">x</button>
+                        <h4 class="modal-title">Delete Accounts</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            You have selected {{selectedrecords}}&nbsp;Account to be Deleted:
+                        </p>
+<!--
+                        <div class="MessageLine"><span class="BlueBox">1</span>Account
+                            cannot be Deleted so
+                            it will be <span class="BoldBlueText">Archived</span></div>
+                        <p>This account will be removed from any contacts using it as a default account.</p>
+-->
+                    </div>
+
+                    <div class="modal-footer">
+                        <div class="footer-div"><strong>Note:</strong> Deleting Accounts is permanent and cannot be
+                            undone.
+
+                            Archived Accounts can be Restored at any time.
+                        </div>
+                        <div class="footer_button">
+                            <button type="button" class="btn btn-success delete-account-modal-click">Ok</button>
+                            <button type="button" class="btn btn-default cancel_new" data-dismiss="modal">Cancel
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- Archive Accounts-modal -->
+        <div id="archive-accounts-modal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">x</button>
+                        <h4 class="modal-title">Archive Accounts</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            You have selected {{selectedrecords}}&nbsp;Account to be Archived.
+                        </p>
+                        <p>This account will be removed from any contacts using
+                            it as a default account.
+                        </p>
+                    </div>
+
+                    <div class="modal-footer">
+                        <div class="footer_button">
+                            <button type="button" class="btn btn-success archive-modal-click">Ok</button>
+                            <button type="button" class="btn btn-default cancel_new" data-dismiss="modal">Cancel
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- Change-Tax-Ratemodal -->
+        <div id="change-tax-rate-modal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">x</button>
+                        <h4 class="modal-title">Change Tax Rate</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            Select a Tax Rate
+
+                        </p>
+                            <div class="currency_option1" id="soselect_cur">
+                                    <div class="input-group dropdown-add-rec" id="">
+                                        <input type="text" id="myTaxDropdown" name="myTaxDropdown" class="form-control select-tax-type-input-list" value="" >
+                                        <div class="input-group-addon tax-rate-list-dropdown-img" data-toggle="dropdown">
+                                            <img src="/img/dropdown_icon.png" id="region-dropdown-img" class="region-img" >
+                                        </div>
+                                    </div>
+                            </div>
+                        <div class="footer_button">
+                            <button type="button" class="btn btn-success update-all-tax-rates">Save</button>
+                            <button type="button" class="btn btn-default cancel_new" data-dismiss="modal">Cancel
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <style>
+      .select-acc-type {
+        top: 131px!important;
+        width: 218px!important;
+        left: 447.5px!important;
+      }
+    </style> -->
+    <script>
+      modalDraggable();
+   </script>
+</template>

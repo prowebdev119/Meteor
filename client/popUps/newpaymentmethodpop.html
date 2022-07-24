@@ -1,0 +1,35 @@
+<template name="newpaymentmethodpop">
+    <div class="modal-dialog modal-sm modal-dialog-centered" role="document" style="min-width: 330px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4><div id="paymentMethodHeader">New Payment Method</div></h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+            </div>
+            <div class="modal-body">
+                <div class="card-body p-1 rounded">
+                    <input type="hidden" class="form-control" id="edtPaymentMethodID" name="edtPaymentMethodID" style="display:none;">
+                    <div class="row no-gutters">
+                        <div class="col d-xl-flex align-items-xl-end">
+                            <div class="form-group flex-grow-1" style="margin: 8px;"><label data-toggle="tooltip" data-bs-tooltip="" data-placement="bottom">Name</label>
+                                <input type="text" class="form-control" id="edtPaymentMethodName" name="edtPaymentMethodName"></div>
+                        </div>
+                    </div>
+                    <div class="row no-gutters">
+                        <div class="col d-xl-flex align-items-xl-end">
+                            <div class="form-group flex-grow-1" style="margin: 8px;">
+                                {{#if equals includeCreditCard true}}
+                                <div class="custom-control custom-checkbox chkBox"><input class="custom-control-input chkBox" type="checkbox" id="isformcreditcard" name="isformcreditcard" checked><label class="custom-control-label chkBox" for="isformcreditcard">Is Credit card?</label></div>
+                                {{else}}
+                                <div class="custom-control custom-checkbox chkBox"><input class="custom-control-input chkBox" type="checkbox" id="isformcreditcard" name="isformcreditcard"><label class="custom-control-label chkBox" for="isformcreditcard">Is Credit card?</label></div>
+                                {{/if}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-success btnSavePaymentMethodPOP" type="button"><i class="fa fa-save" style="padding-right: 8px;"></i>Save</button>
+                <button class="btn btn-light" data-dismiss="modal" type="button">Close</button>
+            </div>
+        </div>
+    </div>
+</template>

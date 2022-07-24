@@ -1,0 +1,199 @@
+.importChartAccount {
+    width: 100%;
+    float: left;
+
+}
+
+.importChartAccount .active_page_content h1 {
+    margin-bottom: 0;
+    border-bottom: 0;
+}
+
+.importChartAccount .bg-orange {
+    border-color: #fb8200;
+    background-color: #fffaea;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding-top: 1px;
+    padding-bottom: 1px;
+}
+
+.importChartAccount .bg-orange .message p {
+    color: #bf4900;
+    font: normal 13px/15px Arial, sans-serif;
+    margin-bottom: 0;
+}
+
+.importChartAccount .bg-orange span.info-icon {
+    float: left;
+    font-size: 32px;
+    color: #fb8200;
+    padding: 0;
+}
+
+.importChartAccount .bg-orange span.icons-msg-close {
+    float: right;
+    position: absolute;
+    right: 4px;
+    top: 3px;
+    background: #fb8200;
+    color: #fff;
+    font-weight: normal;
+    width: 17px;
+    height: 17px;
+    font-size: 12px;
+    text-align: center;
+    border-radius: 3px;
+    line-height: 17px;
+}
+
+.importChartAccount .FullWidth {
+    width: 100%;
+    float: left;
+    margin-top: 15px;
+}
+
+.importChartAccount .FullWidth .HalfWidth {
+    background-color: #e8f1ff;
+    border: 1px solid #c1c1c1;
+    float: left;
+    padding: 10px 0;
+    width: 42%;
+    padding-bottom: 0;
+}
+
+.importChartAccount .FullWidth .HalfWidth .pad {
+    width: 100%;
+    float: left;
+    box-sizing: border-box;
+    padding: 0 0 25px;
+    padding-left: 10px;
+
+}
+
+.importChartAccount .FullWidth .HalfWidth .pad .file-upload{
+    position: relative;
+    margin-top: 15px;
+}
+
+.importChartAccount .FullWidth .HalfWidth .pad h3 {
+    padding: 0;
+    margin: 0;
+    font-weight: 600;
+    color: #000;
+    font-size: 12px;
+}
+
+.importChartAccount .FullWidth .HalfWidth .pad .checkbox {
+    font-size: 11px;
+    margin: 4px 0;
+    color: #333;
+}
+.importChartAccount .FullWidth .HalfWidth .pad .checkbox label {
+    padding: 0;
+    margin: 0;
+}
+.importChartAccount .FullWidth .HalfWidth .pad .checkbox label input{
+    margin-right: 5px;
+    padding-top: 1px;
+    float: left;
+}
+
+
+.footerDiv{
+    width: 100%;
+    float: left;
+    background-color: #d7e7ff;
+    padding: 8px 0 10px;
+}
+.footerDiv .new_create_buttons_g2{
+    width: 100%;
+    float: left;
+    padding-bottom: 0;
+}
+.footerDiv .new_create_buttons_g2 input {
+    padding: 6px 12px;
+    line-height: 18px !important;
+    width: 90px;
+    font-size: 11px;
+}
+
+.footerDiv .new_create_buttons_g2 a.cancel_new {
+    width: 90px;
+    padding: 6px 12px;
+    float: right;
+    line-height: 18px !important;
+    margin-right: 10px;
+}
+
+.importChartAccount .FullWidth .call-out{
+    float: left;
+    width: 340px;
+    margin-left: 40px;
+    padding: 10px 15px;
+    background-color: #fffaea;
+    border: 1px solid #fbdbc2;
+
+}
+
+.importChartAccount .FullWidth .call-out h3 {
+    padding: 0;
+    margin: 0;
+    font-weight: 600;
+    color: #000;
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+.importChartAccount .FullWidth .call-out ul{
+    float: left;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+.importChartAccount .FullWidth .call-out ul li{
+    padding: 0;
+    margin: 0;
+    font-size: 11px;
+    margin-left: 17px;
+    line-height: 150%;
+    margin-bottom: 5px;
+}
+.importChartAccount .FullWidth .call-out ul li a{
+    text-decoration: none;
+}
+.importChartAccount .FullWidth .call-out ul li a:hover {
+    color: #005e7b;
+    text-decoration: underline;
+}
+.importChartAccount .FullWidth .call-out p{
+    padding: 0;
+    font-size: 11px;
+}
+
+.importChartAccount span.file-icons {
+    float: left;
+    margin-left: 7px;
+    margin-top: 5px;
+    font-size: 12px;
+}
+
+.importChartAccount .FullWidth .HalfWidth .pad .file-upload .browseBtn {
+    padding: 4px 13px;
+    border-color: #cfd2d4;
+    background-color: #fafafa;
+    background: linear-gradient(#fff, #e6eaec);
+    box-shadow: rgba(255,255,255,0.3) 0 0 0 1px inset;
+    border-radius: 3px;
+    border-width: 1px;
+    border-style: solid;
+    transition: opacity 0.2s ease-out;
+    font-size: 11px;
+    text-align: center;
+    color: #048FC2;
+    float: left;
+}
+
+.importChartAccount div#FileName_container input {
+    opacity: 0;
+}

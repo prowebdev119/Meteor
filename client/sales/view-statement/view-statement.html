@@ -1,0 +1,382 @@
+<template name="viewStatement" onload="initAutocomplete()">
+    <div class="bankSummary viewStatement">
+        <div class="active_page">
+            <div class="active_page_content">
+                <p>
+                    <a href="/allsales">Sales</a> &nbsp;›</p><br>
+                <h1>Statement for {{customerName}}</h1>
+            </div>
+        </div>
+        <div id="wrapper_main">
+            {{#if errorMessage}}
+            <div class="msgBlue">
+                <i class="fa fa-exclamation-triangle"></i>
+                <div class="message">
+                    <p>An error occurred for the following reason:</p>
+                    <ul>
+                        <li>The statement from date can't be greater than the to date, please change one of these dates.</li>
+                    </ul>
+                </div>
+            </div>
+            {{/if}}
+            <div class="summaryHeader search_box_inner">
+                <div class="row" id="balance_sheet_search">
+                    <h2>Statement Type</h2>
+                    <div class="col-lg-2">
+                        <div class="input-group dropdown-add-rec" id="select-type">
+                            <input type="text" id="select-input" class="form-control select-account">
+                            <div class="input-group-addon" data-toggle="dropdown">
+                                <img src="/img/dropdown_icon.png" id="select-type-img" class="type-img">
+                            </div>
+                            <ul class="dropdown-menu select-type-menu" id='uItem' name="uItem">
+                                <li class="select-menu" value="0">Activity</li>
+                                <li class="select-menu" value="1">Outstanding</li>
+                            </ul>
+
+                        </div>
+                    </div>
+                    <div class="outstanding-div">
+                        <span>as at</span>
+                        <div class="col-lg-2">
+                            <div class="input-group dropdown-add-rec" id="period-dropdown">
+                                <input type="text" id="period-input" class="form-control" >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="activity-div">
+                      <span >between</span>
+                      <div class="col-lg-2 ">
+                          <div class="input-group dropdown-add-rec" id="from-dropdown">
+                              <input type="text" id="from-input" class="form-control">
+                          </div>
+                      </div>
+                      <span>and</span>
+                      <div class="col-lg-2">
+                          <div class="input-group dropdown-add-rec" id="to-input-dropdwon">
+                              <input type="text" id="to-input" class="form-control" >
+                          </div>
+                      </div>
+                    </div>
+                    <div class="col-md-2 search_button">
+                        <button type="button" class="updateBtn"> Update</button>
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+            <div class="status pdf-email-btn">
+                <a href="#" class="new_create_btn" id="new_create_btn2" data-toggle="modal" data-target="#pdfModal">Print PDF</a>
+                <a class="new_create_btn list_search openSearch" id="send-email-modal" data-toggle="modal" data-target="#email-modal"> Email</a>
+            </div>
+            <div class="read-only">
+                <div class="to">
+                    <div><label>
+                        To
+                    </label>
+                        <a href="#" id="customer-name">{{customerName}}</a>
+                        {{#if attention}}<p>Attention: {{attention}}</p>{{/if}}
+                        <p>{{streetAddress}}</p>
+                        <a href="#" class="editAddress"  data-toggle="modal" data-target="#address-modal">
+                            {{#if streetAddress}}Edit address {{else}} Add Address {{/if}}
+                    </a>
+                    </div>
+                    <div class="outstanding-date">
+                       <p> <label>
+                           As At Date
+                       </label><em class="asAtDate">{{asAtDate}}</em></p>
+                    </div>
+                    <div class="activity-date">
+                       <p><label>
+                           From Date
+                       </label><em class="fromDate">{{fromDate}}</em></p>
+                        <p> <label>
+                            To Date
+                        </label><em class="toDate">{{toDate}}</em></p>
+                       </div>
+                </div>
+
+                <div class="tax"><strong>
+                    &nbsp;
+                </strong><label>
+                    &nbsp;
+                </label></div>
+                <table class="standard" id="viewStandardTable">
+                    <thead>
+                    <tr>
+                        <td class="date">
+                            Date
+                        </td>
+                        <td>
+                            Activity
+                        </td>
+                        <td>
+                            Reference
+                        </td>
+                        <td>
+                            Due Date
+                        </td>
+                        <td class="right">
+                            Invoice Amount
+                        </td>
+                        <td class="right">
+                            Payments
+                        </td>
+                        <td class="right">
+                            Balance AUD</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {{#each item in records}}
+                    <tr id="{{item.activity}}">
+                        <td>{{item.date}}</td>
+                        <td>{{item.activity}}</td>
+                        <td>{{item.reference}}</td>
+                        <td>{{item.dueDate}}</td>
+                        <td class="right">{{item.invoiceAmount}}</td>
+                        <td class="right">{{item.payment}}</td>
+                        <td class="right">{{item.balance}}</td>
+                    </tr>
+                    {{/each}}
+                    </tbody>
+                </table>
+                <div class="total">
+                    <div class="bottom-line no-border-top no-padding-top"><label>
+                        BALANCE DUE AUD</label><span>{{totalAmount}}</span><span class="delete">
+                    &nbsp;
+                </span></div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!--Email Modal Start-->
+        <div id="email-modal" class="modal fade email-modal" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">x</button>
+                        <h4 class="modal-title">Send Statement</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="field-placeholder">
+                            <div class="email-template">
+                                <label>To</label>
+                                <div class="right-bar">
+                                    <input type="text" id="sendEmailTo" value="" placeholder="">
+                                    <span class="tip">Separate multiple email addresses with a comma (,) or a semicolon (;)</span>
+                                </div>
+                            </div>
+                            <div class="email-template">
+                                <label>From</label>
+                                <div class="right-bar">
+                                    <span id="loggedUserName"></span>
+                                </div>
+                            </div>
+                            <div class="email-template">
+                                <label>Reply to</label>
+                                <div class="right-bar">
+                                    <span id="loggedUserEmail"></span>
+                                </div>
+                            </div>
+
+                            <div class="email-template">
+                                <label>Email Template</label>
+                                <div class="right-bar">
+                                    <div class="dropdown-add-rec2 for-fonts">
+                                        <input type="text" class="select-branding" name="EMailTempType"
+                                               id="emailTempType" value="Statement: Basic">
+                                        <div class="" data-toggle="dropdown" >
+                                            <img src="/img/dropdown_icon.png" class="department-img">
+                                        </div>
+                                        <ul class="dropdown-menu">
+                                            <li class="branding-option">Statement: Basic</li>
+                                        </ul>
+                                    </div>
+                                   </div>
+                            </div>
+                            <div class="email-template">
+                                <label>Subject</label>
+                                <div class="right-bar">
+                                    <input type="text" value="" placeholder="" id="emailSubject">
+                                </div>
+                            </div>
+                            <div class="email-template">
+                                <label>Branding</label>
+                                <div class="right-bar">
+                                    <div class="dropdown-add-rec2 for-fonts">
+                                        <input type="text" class="select-branding" name="EMailTempType"
+                                               id="brandingType" value="Standard">
+                                        <div class="" data-toggle="dropdown" >
+                                            <img src="/img/dropdown_icon.png" class="department-img">
+                                        </div>
+                                        <ul class="dropdown-menu">
+                                            <li class="branding-option">Standard</li>
+                                            <li class="branding-option">Special Projects</li>
+                                            <li class="branding-option">Very orange invoice!</li>
+                                        </ul>
+                                    </div>
+                                    <a href="#" id="show-info">{{#if showPlaceholderInfo}}Hide placeholder info {{else}} Show placeholder info {{/if}}</a>
+                                    {{#if showPlaceholderInfo}}<p>You can include certain core info in your emails with easy placeholders. The placeholders available for this email are: [Statement Date Range], [Contact Name], [Contact First Name], [Contact Last Name], [Trading Name], [Statement Balance], [Balance With Symbol], [Balance With Currency and Symbol]. </p>{{/if}}
+                                </div>
+                            </div>
+                            <div class="email-template">
+                                <label>Message</label>
+                                <div class="right-bar">
+                                    <textarea id="emailBody"></textarea>
+                                </div>
+                            </div>
+                            <div class="email-template checkboxdiv">
+                                <div class="left-bar"></div>
+                                <form>
+                                    <label><input type="checkbox" name="mailCopyToUsr" id="mailCopyToUsr" value="">Send me (<span id="loggedUserForCC"></span>) a copy </label>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="heading footer">
+                            <button type="button" class="btn btn-success" id="send_email_btn">Send</button>
+                            <button type="button" class="btn btn-default cancel_new"  data-dismiss="modal">Cancel
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Email Modal End -->
+
+        <!-- Address Modal Start -->
+        <div id="address-modal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close address-modal-hide" data-dismiss="modal">x</button>
+                        <h4 class="modal-title">Customer's Address</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div id="email">
+                            <h3>Email Address</h3>
+                            <label>Email</label>
+                            <input type="text" value="" placeholder="" id="emailAddress" class="emailSubjectFont">
+                        </div>
+                        <div class="field-placeholder">
+                            <div class="email-template">
+                                <h3>Postal Address</h3>
+                                <div class="form-group">
+                                    <label>Attention</label>
+                                    <input type="text" value="" placeholder="" id="attention" class="emailSubjectFont">
+                                </div>
+                                <div class="form-group">
+                                    <label>Street Address or PO Box</label>
+                                    <textarea id="streetAddress" name="streetAddress" style="width:350px;height:125px;" rows="8" cols="80"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>Town/City</label>
+                                    <input type="text" value="" placeholder="" id="city" class="emailSubjectFont">
+                                </div>
+                                <div class="form-group">
+                                    <label>State/Region</label>
+                                    <input type="text" value="" placeholder="" id="state" class="emailSubjectFont">
+                                </div>
+                                <div class="form-group">
+                                    <label>Postal/Zip Code</label>
+                                    <input type="text" value="" placeholder="" id="postal" class="emailSubjectFont">
+                                </div>
+                                <div class="form-group">
+                                    <label>Country</label>
+                                    <input type="text" value="" placeholder="" id="country" class="emailSubjectFont">
+                                </div>
+
+                            </div>
+                            <div class="heading footer">
+                                <button type="button" class="btn btn-success" id="save_address">Save</button>
+                                <button type="button" class="btn btn-default gray address-modal-hide" data-dismiss="modal">Cancel
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+<!--                        <div class="heading footer">-->
+<!--                            <button type="button" class="btn btn-success" id="save_address">Save</button>-->
+<!--                            <button type="button" class="btn btn-default gray address-modal-hide" data-dismiss="modal">Cancel-->
+<!--                            </button>-->
+<!--                        </div>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Address Modal end-->
+
+
+        <!--Pdf Modal Start-->
+
+        <div id="pdfModal" class="modal fade pdf-modal" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Print Statement</h4>
+                        <button type="button" class="close" data-dismiss="modal">x</button>
+                    </div>
+                    <div class="modal-body">
+                        <p>What branding would you like to apply to the selected statement?</p>
+
+                        <div class="dropdown-add-rec2 for-fonts">
+                            <input type="text" class="select-branding" name="EMailTempType"
+                                   id="brandingPdf">
+                            <div class="" data-toggle="dropdown" >
+                                <img src="/img/dropdown_icon.png" class="department-img">
+                            </div>
+                            <ul class="dropdown-menu">
+                                <li class="pdf-option">Standard</li>
+                                <li class="pdf-option">Special Projects</li>
+                                <li class="pdf-option">Very orange invoice!</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="heading footer">
+                            <button type="button" class="btn btn-success" id="save_pdf" data-dismiss="modal" data-toggle="modal" data-target="#invoice">Ok</button>
+                            <button type="button" class="btn btn-default gray address-modal-hide" data-dismiss="modal">Cancel
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="invoice" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Print Statement</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Preparing to print: <b>1 Statement</b></p>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="heading footer">
+                            <button type="button" class="btn btn-default silver"> <i class="fa fa-spinner fa-spin"></i> Please Wait</button>
+                            <button type="button" class="btn btn-default gray" data-dismiss="modal">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Pdf Modal End-->
+
+    </div>
+    <script>
+      modalDraggable();
+   </script>
+</template>

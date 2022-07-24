@@ -1,0 +1,117 @@
+<template name="productlistpop">
+    <style>
+        @media screen and (max-width: 450px) {
+            .modal-inner-productlist {
+                max-width: 98vw !important;
+            }
+        }
+    </style>
+    <div class="modal-dialog modal-xl modal-dialog-scrollable modal-inner-productlist" role="document" style="max-width: 90vw;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4>Product List</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+            </div>
+            <div class="modal-body">
+                <!--
+              <div style="margin: 4px; margin-bottom: 8px;">
+                  <button class='btn btn-primary btnRefreshProduct' type='button' id='btnRefreshProduct' style='padding: 4px 10px; font-size: 14px; margin-left: 8px !important;'><i class='icon ion-android-bulb' style='margin-right: 5px;'></i>Refresh</button>
+              </div>
+  -->
+                <input type="hidden" style="width: 100%; display:none;" id="selectLineID" name="selectLineID" readonly>
+                <div class="card-body p-1 rounded">
+                    <div class="table-responsive">
+                        <style>
+                            .thQty {
+                                width: 8% !important;
+                            }
+
+                            .thSalesPrice {
+                                width: 8% !important;
+                            }
+
+                            .thSalesPrice {
+                                width: 8% !important;
+                            }
+
+                            .thTax {
+                                width: 8% !important;
+                            }
+
+                            .thCostPrice {
+                                width: 8% !important;
+                            }
+
+                            .thProductName {
+                                width: 20% !important;
+                            }
+                            .thColBarcode {
+                                width: 15% !important;
+                            }
+                        </style>
+                        <table id="tblInventory" style="width:100%" class="table table-striped table-bordered tblInventory">
+                            <thead>
+                                <tr class="dnd-moved">
+
+                                    <th class="thProductName" style="width: 20% !important;">Product Name</th>
+                                    <th>Sales Description</th>
+                                    <th class="thColBarcode">Barcode</th>
+                                    <th class="thCostPrice" style="width: 8% !important;text-align: left!important;">Cost Price</th>
+                                    <th class="thSalesPrice" style="width: 8% !important;text-align: left!important;">Sale Price</th>
+                                    <th class="thQty" style="width: 8% !important;">Quantity</th>
+                                    <th class="thTax" style="width: 8% !important;text-align: left!important;">Tax Rate</th>
+                                    <th class="thProuctPOPID hiddenColumn">Prouct ID</th>
+                                    <th class="thExtraSellPrice hiddenColumn">Prouct ID</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Close</button></div>
+        </div>
+    </div>
+
+    <div class="modal fade" role="dialog" tabindex="-1" id="scanBarcodeModalProduct">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Barcode Scanner</h4>
+                    <button type="button" class="close btnCloseProdModal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+                    <style>
+                        #qr-reader-productmodal>div:first-of-type {
+                            display: none !important;
+                        }
+
+                        #qr-reader-productmodal__dashboard_section_swaplink {
+                            display: none !important;
+                        }
+
+                        #qr-reader-productmodal__dashboard_section_csr>div>button:first-of-type {
+                            color: #fff !important;
+                            background-color: #00a3d3 !important;
+                            border-color: #00a3d3 !important;
+                            border: 1px solid transparent;
+                            display: inline-block !important;
+                            font-weight: 400 !important;
+                            text-align: center !important;
+                            vertical-align: middle !important;
+                            padding: .375rem .75rem !important;
+                            font-size: 1rem !important;
+                            line-height: 1.5 !important;
+                            border-radius: .35rem !important;
+                            transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+                        }
+                    </style>
+                    <!-- <div id="reader" style="width: 100%"></div> -->
+                    <div id="qr-reader-productmodal" style="width:100%"></div>
+                </div>
+                <div class="modal-footer"><button class="btn btn-secondary btnCloseProdModal" type="button" >Close</button></div>
+            </div>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,58 @@
+<template name="crm_help_modal">
+  <a role="button" data-toggle="modal" href="#helpViewModal" style="font-size: 20px;">Help <i
+      class="fa fa-question-circle-o" style="font-size: 20px;"></i></a>
+
+  <!-- Start Help View Modal -->
+  <div class="modal fade" role="dialog" tabindex="-1" id="helpViewModal">
+    <div class="modal-dialog modal-sm" role="document">
+      <div class="modal-content">
+        <div class="modal-header" style="padding-bottom: 8px;">
+          <h4>Help</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+              aria-hidden="true">×</span></button>
+        </div>
+        <div class="modal-body">
+          <p class="text-center text-muted"><a role="button" data-toggle="modal" href="#helpModal"
+              class="btn btn-primary helpModal">View Help Video</a></p>
+          <p class="text-center text-muted"><a href="https://vs1forum.com/viewforum.php?f=6" target="_blank"
+              class="btn btn-primary">Download Help File</a></p>
+          <p class="text-center text-muted"><button class="btn btn-primary" type="button">Employ Advisor</button>
+          </p>
+          <p class="text-center text-muted" style="margin: 0px;"><a
+              href="https://vs1forum.com/ucp.php?mode=register&cloudusername={{loggedCompany}}" target="_blank"
+              class="btn btn-primary">Go To Forum</a></p>
+        </div>
+        <div class="modal-footer" style="padding: 6px;"><button class="btn btn-light" data-dismiss="modal"
+            type="button">Close</button></div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Start Help Video Modal -->
+  <div class="modal fade" role="dialog" tabindex="-1" id="helpModal">
+    <div class="modal-dialog" role="document" style="max-width: 670px!important;">
+      <div class="modal-content">
+        <div class="modal-header">
+
+          <h4 class="title-header">CRM Overview</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+              aria-hidden="true">×</span></button>
+        </div>
+        <div class="modal-body">
+          <!-- <iframe width="640" height="360" src="https://player.vimeo.com/video/99892791" frameborder="0" allowfullscreen=""></iframe> -->
+          <!-- <iframe width="640" height="360" src="https://erphelpes.com/vs1videos/bankingoverview.mp4" frameborder="0" allowfullscreen=""></iframe> -->
+          <video id="myVideo" width="640" height="360" controls="" name="media"
+            style="border: solid 5px #999999f0; height: auto; outline: none;">
+            <source src="https://erphelpes.com/vs1videos/bankingoverview.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- End Help Video Modal -->
+  <script>
+    modalDraggable();
+  </script>
+
+</template>

@@ -1,0 +1,42 @@
+<template name="top10Customers">
+    <div class="minHeight100">
+        <div class="card shadow mb-4  portlet ui-widget ui-widget-content ui-helper-clearfix ui-corner-all ui-resizable">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h6 class="text-primary font-weight-bold m-0">Top 10 Customers</h6>
+
+                <div class="dropdown no-arrow">
+                    <a class="on-editor-change-mode btn btn-link hideelement" role="presentation" href="">Hide</a>
+                    <button class="btn btn-link btn-sm dropdown-toggle btnchartdropdown" data-toggle="dropdown"
+                        aria-expanded="false" type="button">
+                        <i class="fas fa-ellipsis-v text-gray-400"></i>
+                    </button>
+
+                    <div class="dropdown-menu shadow dropdown-menu-right animated--fade-in" role="menu">
+                        <a class="dropdown-item" role="presentation" href="#">Last Month</a>
+                        <a class="dropdown-item" role="presentation" href="#">Current Month</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" role="presentation" href="#">More Details</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item editchartsbtn pointer" role="presentation" data-toggle="modal"
+                            data-target="#editDashboardModal">Edit
+                            Chart</a>
+                        <a class="dropdown-item pointer" role="presentation">Reset Chart</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+
+                <!-- {{/each}} -->
+                <!-- /{{#each itemData in topTenData}} -->
+                <div class="canvasParentDiv canvasHeight100">
+
+                    <canvas id="top10customers" name="top10customers"></canvas>
+                    <!-- data-bs-chart="{&quot;type&quot;:&quot;horizontalBar&quot;,&quot;data&quot;:{&quot;labels&quot;:[&quot;{{topTenData.[0].name}}&quot;,&quot;Josef&quot;,&quot;Bruno&quot;,&quot;Dene&quot;,&quot;Shanika&quot;],&quot;datasets&quot;:[{&quot;label&quot;:&quot;Earnings&quot;,&quot;backgroundColor&quot;:&quot;#f6c23e&quot;,&quot;borderColor&quot;:&quot;rgba(78,115,223,0)&quot;,&quot;data&quot;:[&quot;10000&quot;,&quot;9000&quot;,&quot;8000&quot;,&quot;15000&quot;,&quot;10000&quot;]}]},&quot;options&quot;:{&quot;maintainAspectRatio&quot;:false,&quot;legend&quot;:{&quot;display&quot;:false},&quot;title&quot;:{},&quot;scales&quot;:{&quot;xAxes&quot;:[{&quot;gridLines&quot;:{&quot;color&quot;:&quot;rgb(234, 236, 244)&quot;,&quot;zeroLineColor&quot;:&quot;rgb(234, 236, 244)&quot;,&quot;drawBorder&quot;:false,&quot;drawTicks&quot;:false,&quot;borderDash&quot;:[&quot;2&quot;],&quot;zeroLineBorderDash&quot;:[&quot;2&quot;],&quot;drawOnChartArea&quot;:false},&quot;ticks&quot;:{&quot;fontColor&quot;:&quot;#858796&quot;,&quot;beginAtZero&quot;:true,&quot;padding&quot;:20}}],&quot;yAxes&quot;:[{&quot;gridLines&quot;:{&quot;color&quot;:&quot;rgb(234, 236, 244)&quot;,&quot;zeroLineColor&quot;:&quot;rgb(234, 236, 244)&quot;,&quot;drawBorder&quot;:false,&quot;drawTicks&quot;:false,&quot;borderDash&quot;:[&quot;2&quot;],&quot;zeroLineBorderDash&quot;:[&quot;2&quot;]},&quot;ticks&quot;:{&quot;fontColor&quot;:&quot;#858796&quot;,&quot;beginAtZero&quot;:true,&quot;padding&quot;:20}}]}}}" -->
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</template>

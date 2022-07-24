@@ -1,0 +1,481 @@
+<template name="featureallocation">
+    <div class="container-fluid">
+        <header style="background-color: #ededed;padding: 16px;margin: -24px;">
+            <h1 style="margin: 16px;">Company Features Allocation<a role="button" data-toggle="modal" href="#helpModal" class="helpModal"><label class="lblplay">PLAY</label><i class="far fa-play-circle"  style="font-size: 20px;"></i></a>
+            </h1>
+        </header>
+        <div class="fullScreenSpin" style="display:none;">
+            <div class="spinner"></div>
+        </div>
+        <div class="d-xl-flex flex-row align-items-xl-end" style="margin: -24px;padding: 32px;background-color: #ededed;margin-bottom: 20px;margin-top: 0px;">
+            <div class="d-xl-flex flex-grow-0 align-items-xl-end">
+                <button class="btn btn-primary btnRefresh" type="button" style="margin: 8px;"><i class="icon ion-android-bulb" style="margin-right: 8px;"></i>Refresh</button>
+                <button class="btn btn-success btnAddVS1User" type="button" style="margin: 8px;"><i class="fa fa-plus" style="margin-right: 8px"></i>Add VS1 User</button>
+                <!-- <div class="form-group d-xl-flex flex-column justify-content-xl-start align-items-xl-start" style="margin: 8px;"><label>Employee</label>
+<select class="form-control" id="sltEmployeeName" name="sltEmployeeName" style="cursor: pointer;">
+<option value="All" selected="" class="selectAll">All</option>
+{{#each item in employeerecords}}
+
+<option value="{{item.employeename}}" mytag="{{item.empID}}">{{item.employeename}}</option>
+
+{{/each}}
+</select>
+</div> -->
+            </div>
+            <div class="float-right d-xl-flex flex-row flex-grow-1 justify-content-xl-end">
+                <button class="btn btn-primary btnTopGlobalSave" type="button" style="margin: 8px;margin-left: 8px;"><i class="fa fa-save" style="margin-right: 8px;"></i>Save</button>
+                <button class="btn btn-secondary btnBack" type="button" style="margin: 8px;"><i class="fa fa-close" style="margin-right: 8px;"></i>Cancel</button></div>
+        </div>
+        <div class="row d-xl-flex flex-row align-items-xl-start">
+            <div class="col d-xl-flex flex-row flex-wrap justify-content-xl-center">
+                <div class="card shadow mb-4">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h6 class="text-primary font-weight-bold m-0">Available Features</h6>
+                    </div>
+                    <div class="card-body"><table class="table simplediv">
+                                    <thead>
+                                        <tr>
+                                            <th style="min-width: 332px;">
+                                                Features
+                                            </th>
+                                            <th style="min-width: 332px;">
+                                                No. Available
+                                            </th>
+                                            
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                Feature 1
+                                            </td>
+                                            <td>
+                                                4
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Feature 2
+                                            </td>
+                                            <td>
+                                                2
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Feature 3
+                                            </td>
+                                            <td>
+                                                12
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Feature 4
+                                            </td>
+                                            <td>
+                                                0
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row d-xl-flex flex-row align-items-xl-start mb-3" style="width: 100%; margin-bottom: 2em;">
+
+            <!--<div class="col-auto d-xl-flex flex-row flex-wrap justify-content-xl-center">-->
+            <div class="col d-xl-flex flex-row flex-wrap justify-content-xl-center">
+                <!-- 1 -->
+                <div class="card shadow mb-3 SimpleStart" style="margin: 16px;">
+                    <div class="card-header py-3">
+                        <p class="text-primary m-0 font-weight-bold">User #1</p>
+                    </div>
+                    <div class="card-body">
+                        <div>
+                            <div class="table-responsive">
+                                <style>
+
+                                    .accordion2 {
+                                        background-color: rgba(255,255,255,0);
+                                        color: #1D2726 !important;
+                                        cursor: pointer;
+                                        padding: 0px 18px ;
+                                        float: right;
+                                        /* width: 100%; */
+                                        border: none;
+                                        text-align: left;
+                                        outline: none;
+                                        font-size: 15.5px;
+                                        font-weight: 500;
+                                        transition: 0.4s;
+                                        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;
+                                        letter-spacing: 0em !important;
+                                    }
+
+                                    .active2, .accordion2:hover {
+                                        color: #00a3d3 !important;
+                                        background-color: #ffffff !important;
+                                    }
+
+                                    .accordion2:after {
+                                        content: '\002B';
+                                        color: #777;
+                                        font-weight: bold;
+                                        float: right;
+                                        margin-left: 5px;
+                                    }
+
+                                    .active2:after {
+                                        content: "\2212";
+                                        color: #00a3d3 !important;
+                                    }
+
+                                    .panel2 {
+                                        padding: 0;
+                                        background-color: white;
+                                        max-height: 0;
+                                        overflow: hidden;
+                                        transition: max-height 0.2s ease-out;
+                                    }
+
+                                    .function {
+                                        background-color: rgba(255,255,255,0);
+                                        color: #1D2726 !important;
+                                        width: 100%;
+                                        margin: 0 !important;
+                                        text-align: left !important;
+                                        outline: none !important;
+                                        font-size: 15px;
+                                        transition: 0.4s;
+                                    }
+
+                                    .function:hover {
+                                        color: #fff !important;
+                                    }
+
+                                    .detailp {
+                                        /* margin: 1em 2em; */
+                                        margin: 1em 1em;
+                                        margin-left: 0px;
+                                    }
+                                    .card {
+                                        max-width: min-content;
+                                    }
+                                </style>
+                                <table class="table simplediv">
+                                    <thead>
+                                        <tr>
+                                            <th style="min-width: 332px;">
+                                                Features
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr id="{{item.moduleId}}" name="{{item.moduleId}}" class="{{item.moduleId}}">
+                                            <td style="min-width: 332px;">
+                                                <div class="custom-control custom-switch" style="cursor: pointer;">
+                                                    <input class="custom-control-input " type="checkbox" value="{{item.moduleId}}" id="formCheck-1" name=""  style="cursor: pointer;">
+                                                    <label class="custom-control-label" for="formCheck-1" style="cursor: pointer;">Feature 1</label>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr id="{{item.moduleId}}" name="{{item.moduleId}}" class="{{item.moduleId}}">
+                                            <td style="min-width: 332px;">
+                                                <div class="custom-control custom-switch" style="cursor: pointer;">
+                                                    <input class="custom-control-input " type="checkbox" value="{{item.moduleId}}" id="formCheck-2" name=""  style="cursor: pointer;">
+                                                    <label class="custom-control-label" for="formCheck-2" style="cursor: pointer;">Feature 2</label>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr id="{{item.moduleId}}" name="{{item.moduleId}}" class="{{item.moduleId}}">
+                                            <td style="min-width: 332px;">
+                                                <div class="custom-control custom-switch" style="cursor: pointer;">
+                                                    <input class="custom-control-input " type="checkbox" value="{{item.moduleId}}" id="formCheck-3" name=""  style="cursor: pointer;">
+                                                    <label class="custom-control-label" for="formCheck-3" style="cursor: pointer;">Feature 3</label>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr id="{{item.moduleId}}" name="{{item.moduleId}}" class="{{item.moduleId}}">
+                                            <td style="min-width: 332px;">
+                                                <div class="custom-control custom-switch" style="cursor: pointer;">
+                                                    <input class="custom-control-input " type="checkbox" value="{{item.moduleId}}" id="formCheck-4" name=""  style="cursor: pointer;">
+                                                    <label class="custom-control-label" for="formCheck-4" style="cursor: pointer;">Feature 4</label>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- 2 -->
+                <div class="card shadow mb-3 SimpleStart" style="margin: 16px;">
+                    <div class="card-header py-3">
+                        <p class="text-primary m-0 font-weight-bold">User #2</p>
+                    </div>
+                    <div class="card-body">
+                        <div>
+                            <div class="table-responsive">
+                                <table class="table simplediv">
+                                    <thead>
+                                        <tr>
+                                            <th style="min-width: 332px;">
+                                                Features
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr id="{{item.moduleId}}" name="{{item.moduleId}}" class="{{item.moduleId}}">
+                                            <td style="min-width: 332px;">
+                                                <div class="custom-control custom-switch" style="cursor: pointer;">
+                                                    <input class="custom-control-input " type="checkbox" value="{{item.moduleId}}" id="formCheck-5" name=""  style="cursor: pointer;">
+                                                    <label class="custom-control-label" for="formCheck-5" style="cursor: pointer;">Feature 1</label>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr id="{{item.moduleId}}" name="{{item.moduleId}}" class="{{item.moduleId}}">
+                                            <td style="min-width: 332px;">
+                                                <div class="custom-control custom-switch" style="cursor: pointer;">
+                                                    <input class="custom-control-input " type="checkbox" value="{{item.moduleId}}" id="formCheck-6" name=""  style="cursor: pointer;">
+                                                    <label class="custom-control-label" for="formCheck-6" style="cursor: pointer;">Feature 2</label>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr id="{{item.moduleId}}" name="{{item.moduleId}}" class="{{item.moduleId}}">
+                                            <td style="min-width: 332px;">
+                                                <div class="custom-control custom-switch" style="cursor: pointer;">
+                                                    <input class="custom-control-input " type="checkbox" value="{{item.moduleId}}" id="formCheck-7" name=""  style="cursor: pointer;">
+                                                    <label class="custom-control-label" for="formCheck-7" style="cursor: pointer;">Feature 3</label>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr id="{{item.moduleId}}" name="{{item.moduleId}}" class="{{item.moduleId}}">
+                                            <td style="min-width: 332px;">
+                                                <div class="custom-control custom-switch" style="cursor: pointer;">
+                                                    <input class="custom-control-input " type="checkbox" value="{{item.moduleId}}" id="formCheck-8" name=""  style="cursor: pointer;">
+                                                    <label class="custom-control-label" for="formCheck-8" style="cursor: pointer;">Feature 4</label>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- 3 -->
+                <div class="card shadow mb-3 SimpleStart" style="margin: 16px;">
+                    <div class="card-header py-3">
+                        <p class="text-primary m-0 font-weight-bold">User #3</p>
+                    </div>
+                    <div class="card-body">
+                        <div>
+                            <div class="table-responsive">
+                                <table class="table simplediv">
+                                    <thead>
+                                        <tr>
+                                            <th style="min-width: 332px;">
+                                                Features
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr id="{{item.moduleId}}" name="{{item.moduleId}}" class="{{item.moduleId}}">
+                                            <td style="min-width: 332px;">
+                                                <div class="custom-control custom-switch" style="cursor: pointer;">
+                                                    <input class="custom-control-input " type="checkbox" value="{{item.moduleId}}" id="formCheck-9" name=""  style="cursor: pointer;">
+                                                    <label class="custom-control-label" for="formCheck-9" style="cursor: pointer;">Feature 1</label>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr id="{{item.moduleId}}" name="{{item.moduleId}}" class="{{item.moduleId}}">
+                                            <td style="min-width: 332px;">
+                                                <div class="custom-control custom-switch" style="cursor: pointer;">
+                                                    <input class="custom-control-input " type="checkbox" value="{{item.moduleId}}" id="formCheck-10" name=""  style="cursor: pointer;">
+                                                    <label class="custom-control-label" for="formCheck-10" style="cursor: pointer;">Feature 2</label>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr id="{{item.moduleId}}" name="{{item.moduleId}}" class="{{item.moduleId}}">
+                                            <td style="min-width: 332px;">
+                                                <div class="custom-control custom-switch" style="cursor: pointer;">
+                                                    <input class="custom-control-input " type="checkbox" value="{{item.moduleId}}" id="formCheck-11" name=""  style="cursor: pointer;">
+                                                    <label class="custom-control-label" for="formCheck-11" style="cursor: pointer;">Feature 3</label>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr id="{{item.moduleId}}" name="{{item.moduleId}}" class="{{item.moduleId}}">
+                                            <td style="min-width: 332px;">
+                                                <div class="custom-control custom-switch" style="cursor: pointer;">
+                                                    <input class="custom-control-input " type="checkbox" value="{{item.moduleId}}" id="formCheck-12" name=""  style="cursor: pointer;">
+                                                    <label class="custom-control-label" for="formCheck-12" style="cursor: pointer;">Feature 4</label>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- 4 -->
+                <div class="card shadow mb-3 SimpleStart" style="margin: 16px;">
+                    <div class="card-header py-3">
+                        <p class="text-primary m-0 font-weight-bold">User #4</p>
+                    </div>
+                    <div class="card-body">
+                        <div>
+                            <div class="table-responsive">
+                                <table class="table simplediv">
+                                    <thead>
+                                        <tr>
+                                            <th style="min-width: 332px;">
+                                                Features
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr id="{{item.moduleId}}" name="{{item.moduleId}}" class="{{item.moduleId}}">
+                                            <td style="min-width: 332px;">
+                                                <div class="custom-control custom-switch" style="cursor: pointer;">
+                                                    <input class="custom-control-input " type="checkbox" value="{{item.moduleId}}" id="formCheck-13" name=""  style="cursor: pointer;">
+                                                    <label class="custom-control-label" for="formCheck-13" style="cursor: pointer;">Feature 1</label>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr id="{{item.moduleId}}" name="{{item.moduleId}}" class="{{item.moduleId}}">
+                                            <td style="min-width: 332px;">
+                                                <div class="custom-control custom-switch" style="cursor: pointer;">
+                                                    <input class="custom-control-input " type="checkbox" value="{{item.moduleId}}" id="formCheck-14" name=""  style="cursor: pointer;">
+                                                    <label class="custom-control-label" for="formCheck-14" style="cursor: pointer;">Feature 2</label>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr id="{{item.moduleId}}" name="{{item.moduleId}}" class="{{item.moduleId}}">
+                                            <td style="min-width: 332px;">
+                                                <div class="custom-control custom-switch" style="cursor: pointer;">
+                                                    <input class="custom-control-input " type="checkbox" value="{{item.moduleId}}" id="formCheck-15" name=""  style="cursor: pointer;">
+                                                    <label class="custom-control-label" for="formCheck-15" style="cursor: pointer;">Feature 3</label>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr id="{{item.moduleId}}" name="{{item.moduleId}}" class="{{item.moduleId}}">
+                                            <td style="min-width: 332px;">
+                                                <div class="custom-control custom-switch" style="cursor: pointer;">
+                                                    <input class="custom-control-input " type="checkbox" value="{{item.moduleId}}" id="formCheck-16" name=""  style="cursor: pointer;">
+                                                    <label class="custom-control-label" for="formCheck-16" style="cursor: pointer;">Feature 4</label>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <!-- Upgrade POP ACCESS -->
+        <div class="modal fade" role="dialog" tabindex="-1" id="upgradeModal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content" style="border: #00a3d3;">
+                    <div class="modal-header" style="background-color:#00a3d3;">
+                        <!-- <div class="mr-3"> -->
+                        <!-- <div class="bg-success icon-circle"><i class="fas fa-donate text-white"></i></div> -->
+                        <!-- </div> -->
+                        <h4 class="title-header" style="color:white;">UNLOCK FEATURE</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row no-gutters d-xl-flex flex-row justify-content-xl-start align-items-xl-start">
+                            <p style="font-weight: bold;">Upgrade to the Essentials Pack</p>
+                            <p style="margin-bottom: 0px;margin-top: 4px;">Please upgrade to our Essentials plan to access this feature.</p>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-success btnImport" type="button"><i class="fa fa-save" style="margin-right: 5px;" ></i>Upgrade</button>
+                        <button class="btn btn-secondary" data-dismiss="modal" type="button"><i class="fa fa-close" style="margin-right: 5px;"></i>Close</button></div>
+                </div>
+            </div>
+        </div>
+        <!-- End Upgrade POP -->
+
+        <!-- Upgrade POP Plus ACCESS -->
+        <div class="modal fade" role="dialog" tabindex="-1" id="upgradeModalPlus">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content" style="border: #00a3d3;">
+                    <div class="modal-header" style="background-color:#00a3d3;">
+
+                        <h4 class="title-header" style="color:white;">UNLOCK FEATURE</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row no-gutters d-xl-flex flex-row justify-content-xl-start align-items-xl-start">
+                            <p style="font-weight: bold;">Upgrade to the Plus Pack</p>
+                            <p style="margin-bottom: 0px;margin-top: 4px;">Please upgrade to our Plus plan to access this feature.</p>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-success btnImport" type="button"><i class="fa fa-save" style="margin-right: 5px;" ></i>Upgrade</button>
+                        <button class="btn btn-secondary" data-dismiss="modal" type="button"><i class="fa fa-close" style="margin-right: 5px;"></i>Close</button></div>
+                </div>
+            </div>
+        </div>
+        <!-- End Upgrade Plus POP -->
+    </div>
+    <!-- Start Help Video Modal -->
+    <div class="modal fade" role="dialog" tabindex="-1" id="helpModal">
+        <div class="modal-dialog" role="document" style="max-width: 670px!important;">
+            <div class="modal-content" >
+                <div class="modal-header" >
+                    <h4 class="title-header" >Company App Settings</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+                    <!-- <iframe width="640" height="360" src="https://player.vimeo.com/video/99892791" frameborder="0" allowfullscreen=""></iframe> -->
+                    <!-- <iframe width="640" height="360" src="https://www.youtube.com/embed/BzxoYOp42fg" frameborder="0" allowfullscreen=""></iframe> -->
+                    <video id="myVideo" width="640" height="360" controls="" name="media" style="border: solid 5px #999999f0; height: auto; outline: none;">
+                        <source src="https://erphelpes.com/vs1videos/comingsoon.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- End Help Video Modal -->
+
+    <!-- Start Modal Product -->
+    <div class="modal fade" role="dialog" tabindex="-1" id="employeeListModal">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Employee List</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+                    <!-- {{> refreshbutton}} -->
+                    {{> popemployeelist}}
+
+                </div>
+                <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Close</button>
+                    <button class="btn btn-primary btnProdSelect" type="button" style="background-color: #00A3D3; border-color: #00A3D3;">Select</button></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- End Modal Product -->
+    <script>
+        modalDraggable();
+    </script>
+
+</template>

@@ -1,0 +1,197 @@
+.usersSettings {
+    width: 100%;
+    float: left;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+.usersSettings .active_page {
+    background: #fff;
+    float: left;
+    width: 100%;
+    padding-top: 7px;
+}
+
+.usersSettings .nav-tabs {
+    border-bottom: 0;
+    margin-left: 40px;
+    float: left;
+    padding-top: 14px;
+}
+.usersSettings .nav-tabs li > a{
+    border: 0;
+    font-size: 13px;
+}
+.usersSettings .nav-tabs li.active > a{
+    border: 0;
+    border-bottom: 3px solid #028dde;
+}
+.usersSettings .active_page_content h1{
+    margin-bottom: 0;
+    border-bottom: 0 !important;
+    margin-top:20px;
+    float: left;
+    width: auto;
+    padding-bottom: 10px;
+}
+
+.usersSettings .usersTab{
+    width: 100%;
+    float: left;
+    margin-top: 30px;
+}
+
+.usersSettings .bannerBox {
+    background-color: #fff;
+    border-radius: 3px;
+    box-shadow: 0 0 0 1px rgba(50,70,90,.2);
+    color: #32465a;
+    opacity: 1;
+    position: relative;
+    transition: opacity .1s ease;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    height: 51px;
+}
+.usersSettings .bannerBox p{
+    color: #32465a;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size:13px;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.usersSettings .bannerBox i.fa.fa-info {
+    float: left;
+    background: #657483;
+    width: 15px;
+    height: 15px;
+    text-align: center;
+    color: #fff;
+    border-radius: 100%;
+    line-height: 15px;
+    font-size: 10px;
+    margin-right:7px;
+}
+
+
+.usersSettings .margin-vertical {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    background-color: #fff;
+    border-radius: 3px;
+    box-shadow: 0 0 0 1px rgba(50,70,90,.2);
+    width: 100%;
+    float: left;
+}
+
+
+.usersSettings .listviewcontainer{
+    width: 100%;
+    float: left;
+    min-height: 51px;
+    border-bottom: 1px solid #d6dade;
+    display: flex;
+    align-items: center;
+}
+.usersSettings .listviewcontainer span{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-left: 15px;
+    font-weight: 400;
+}
+
+.usersSettings .contentblock{
+    width: 100%;
+    float: left;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.usersSettings .contentblock .margin-left-small{
+    float: left;
+}
+
+.usersSettings .tag-warning {
+    background-color: #fee6cc;
+    box-shadow: inset 0 0 0 1px #fcb366;
+    color: #c86700;
+    margin-right: 5px;
+    padding: 4px 6px;
+    vertical-align: middle;
+    font-size: 11px !important;
+    border-radius: 3px;
+}
+
+.usersSettings .avatarIcons{
+    float: left;
+    background-color: #89eafa;
+    width: 32px;
+    height: 32px;
+    text-align: center;
+    border-radius: 100%;
+    line-height: 32px;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.usersSettings .margin-left-small span {
+    font-weight: 700;
+    margin-right: 10px;
+    font-size: 13px;
+}
+
+.usersSettings .Adviser {
+    float: left;
+    width: 100%;
+    font-size: 12px;
+    color: rgba(50,70,90,.75);
+    margin-top: 5px;
+}
+
+.usersSettings .right {
+    float: left;
+    margin-left: 10px;
+    width: 93%;
+
+}
+.usersSettings .xui-panel {
+    background-color: #fff;
+    border-radius: 3px;
+    box-shadow: 0 0 0 1px rgba(50,70,90,.2);
+    width: 100%;
+    float: left;
+    border: 0;
+}
+
+.usersSettings .xui-sectionheading {
+    border-bottom: 1px solid #d6dade;
+    margin: 0;
+    text-align: left;
+}
+
+.usersSettings .xui-heading-separator {
+    line-height: 1.3077;
+    font-weight: 400;
+    color: rgba(50,70,90,.75);
+    font-size: 12px;
+}
+
+.usersSettings .xui-sectionheading-layout {
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.usersSettings .tdPadding {
+    padding: 15px;
+}
+
+.usersSettings .contentblockItem{
+    border-top: 1px solid #d6dade;
+    list-style: none;
+    position: relative;
+}

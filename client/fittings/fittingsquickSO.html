@@ -1,0 +1,186 @@
+<template name="manufacturingquickSO">
+  <script>
+  document.getElementById("scanResult").href = "zxing://scan/?";
+  </script>
+  <div class="active_page">
+  <div class="active_page_content">
+  <p><a href="/manufacturing">Manufacturing</a> &nbsp;›&nbsp;</p><br>
+  <h1>Manufacturing</h1>
+  <h4><span id="docscanbc" style=""></span></h4>
+  <input type="text" id="SalesId" name="SalesId" style="display: none;" readonly>
+  </div>
+</div>
+  <div class="tabs_line_break" style="padding-bottom: 45px;"></div>
+  <div class="fullScreenSpin" style="display:none;"><div class="spinner"></div></div>
+  <div id="wrapper_main" class="shipping new-wrapper fittings">
+   <main id="page-content-wrapper_main" role="main">
+   <!-- <h4>Content Here!</h4> -->
+   <br>
+   <div class="reports_container1" style="float: none; margin-top: -15px;">
+     <div class="search_box_inner" style="padding-bottom: 13px;">
+         <table class="invoice_list_search" style="width: 100%;">
+         <tbody>
+           <tr>
+             <td>
+               <h3 class="page_subheader" style="width: 100%; margin-bottom: 4px; margin-left: 4px;">Company:</h3>
+               <input type="text" style="width: 100%" id="salecustomer" name="salecustomer" placeholder="Company" readonly>
+             </td>
+           </tr>
+         </tbody>
+       </table>
+     </div>
+   </div>
+   <div id="search_box">
+   <div class="search_box_inner">
+     <a href="#" class="list_search"><i class="fa fa-times" aria-hidden="true"></i></a>
+     <table style="width: 42%">
+     	<tbody>
+     		<tr>
+     			<td>
+           <label>Search for</label>
+           <input type="text" id="mySearchInput" placeholder="Product, Description or Ordered">
+           </td>
+     			<td><label></label><button id="search_list">Search</button></td>
+     			<td><label></label><a href="#" id="searchreset" class="list_reset">Reset</a></td>
+     			<td> </td>
+     			<td> </td>
+     		</tr>
+     	</tbody>
+     </table>
+   </div>
+   </div>
+   <script>
+   $('.Show').click(function() {
+       $('#search_box').show(500);
+       $('.Show').hide(0);
+       $('.Hide').show(0);
+   });
+   $('.Hide').click(function() {
+       $('#search_box').hide(500);
+       $('.Show').show(0);
+       $('.Hide').hide(0);
+   });
+   $('.list_search').click(function() {
+       $('#search_box').toggle('slow');
+   });
+   </script>
+
+   <div id = "contentshipdock" >
+     <table id="fittingscanlist" style="width: 100%;" class="table table-hover table-bordered dataTable no-footer">
+           <thead>
+               <tr>
+                   <th></th>
+                   <th style="display:none "></th>
+                   <th>Product</th>
+                   <th>Description</th>
+                   <th>Qty Built</th>
+                   <th>To Be Built</th>
+                   <th style="display:none">InitVal</th>
+                   <th style="display:none">ID</th>
+                   <th style="display: none;">ProductID</th>
+                   <th style="display: none;">SeqNo</th>
+                   <th style="display: none;">MemoLine</th>
+               </tr>
+           </thead>
+           <tbody>
+           </tbody>
+       </table>
+       <hr style="margin-top: -10px; border: 0; background: #fff;">
+      <div id="serailscanlistdis" style="visibility: hidden;">
+         <div class="new_create_buttons_g2" style="width: 100%; background-color: #e8f1ff; border: 1px solid #b7bec5;
+           border-radius: 3px; margin-bottom: 5px; padding-top: 12px; padding-right: 12px;" id="soBtns2">
+           <a href="" id="minusBuild" class="scan_new minusBuild"><i class="fas fa-minus"></i></a>
+           <a href="" id="plusBuild" class="scan_new plusBuild"><i class="fas fa-plus"></i></a>
+           <a href="#" id="printFitting" class="scan_new">Print</a>
+            <!-- <a href="#" id="serialistclose" class="cancel_new">Close</a> -->
+         </div>
+         <input type="text" id="salestbLineID" name="salestbLineID" style="display: none;" readonly>
+       </div>
+       <br>
+       <div class="new_create_footer_container">
+         <div class="new_create_footer">
+           <div class="new_create_buttons_g2" style="width: 100%;">
+               <!-- <div class="new_create_buttons_g1" style="visibility:hidden">
+                 <input id="save_fitting" type="submit" class="save_new" value="Print">
+               </div> -->
+               <div class="new_create_buttons_g2" id="soBtns2" style="width: 100%;
+                 margin-bottom: 5px; padding-top: 12px; padding-right: 12px;">
+                 <a href="/manufacturing" id="shipdoccancel" class="cancel_new">Close</a>
+               </div>
+           </div>
+         </div>
+      </div>
+</div>
+
+<!-- Modal print-button -modal -->
+<div id="print-fitting-button" class="fittingModel" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close closeModal" data-dismiss="modal">x</button>
+                <h4 class="modal-title">Confirm</h4>
+            </div>
+            <div class="modal-body">
+                  <table style="width: 100%;">
+                  <tbody style="width: 100%;">
+                  <tr>
+                  <td style="width: 62px!important;">Serial #</td>
+                  <td style="padding-left: 5px;"><div class="serialNodata"></div></td>
+                  </tr>
+                  <br>
+                  <tr>
+                  <td style="width: 62px!important;">Link To:</td>
+                  <td style="padding-left: 5px;"> <input type="text" name='linkto' class="form-control" id="linkto"  value='' placeholder="" style="height: 43px!important;" autofocus></td>
+                  <td style="display:none"> <input type="text" name='memoLineData' class="form-control" id="memoLineData"  value='' placeholder=""></td>
+                  </tr>
+                  </tbody>
+                  </table>
+            </div>
+            <div class="modal-footer">
+                <div class="heading footer">
+                    <button type="button" id="printConfirm" class="btn btn-success btnprintFitting"
+                            >OK</button>
+                    <button type="button" id="btncancelFitting" name="btncancelFitting" class="btncancelFitting btn btn-default gray">Cancel
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+  <!-- Old Modal content-->
+<!--
+<div id="print-fitting-button" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">x</button>
+                <h4 class="modal-title">Confirm</h4>
+            </div>
+            <div class="modal-body">
+                <p>Would you like to Print the Serial Number Label?</p>
+            </div>
+            <div class="modal-footer">
+                <div class="heading footer">
+                    <button type="button" id="printConfirm" class="btn btn-success btnprintFitting" data-toggle="modal"
+                            data-target="#print-fittings" data-dismiss="modal">OK</button>
+                    <button type="button" class="btn btn-default gray btncancelFitting" data-dismiss="modal">Cancel
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+-->
+ </main>
+ </div>
+ <style>
+</style>
+<script>
+  modalDraggable();
+</script>
+</template>

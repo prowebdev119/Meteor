@@ -1,0 +1,253 @@
+<template name="report1099">
+    <div style="margin-top: -24px;">
+        <div class="fullScreenSpin" style="display:none;">
+            <div class="spinner"></div>
+        </div>
+        <header style="padding: 16px;">
+            <h2 style="margin: 16px;">1099 Contractor Report <a role="button" data-toggle="modal" href="#helpViewModal" style="font-size: 20px;">Help <i class="fa fa-question-circle-o"  style="font-size: 20px;"></i></a></h2>
+        </header>
+
+        <div class="modal fade" role="dialog" tabindex="-1" id="helpViewModal">
+                <div class="modal-dialog modal-sm" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header" style="padding-bottom: 8px;">
+                            <h4>Help</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                        <div class="modal-body">
+                            <p class="text-center text-muted"><a role="button" data-toggle="modal" href="#helpModal" class="btn btn-primary helpModal">View Help Video</a></p>
+                            <p class="text-center text-muted"><a href="https://vs1forum.com/viewtopic.php?f=6&t=29" target="_blank" class="btn btn-primary">Download Help File</a></p>
+                            <p class="text-center text-muted"><button class="btn btn-primary" type="button">Employ Advisor</button></p>
+                            <p class="text-center text-muted" style="margin: 0px;"><a href="https://vs1forum.com/ucp.php?mode=register&cloudusername={{loggedCompany}}" target="_blank" class="btn btn-primary">Go To Forum</a></p>
+                        </div>
+                        <div class="modal-footer" style="padding: 6px;"><button class="btn btn-light" data-dismiss="modal" type="button">Close</button></div>
+                    </div>
+                </div>
+            </div>
+
+        <style>
+            @media only screen and (min-width: 1200px) {
+
+                .cardB {
+                    width: 1000px;
+                }
+            }
+
+            /* Remove Hyperlinks */
+            @media print {
+                a:link {text-decoration: none !important;}
+                a[href]:after {content: none !important;}
+            }
+        </style>
+
+        <div class="row no-gutters d-xl-flex justify-content-center justify-content-xl-center mb-3" style="width: 100%;">
+            <div class="col-12 col-md-8">
+                <div class="card shadow flex-grow-1 mb-3" style="margin-top: 16px;margin-right: 16px;margin-left: 16px;">
+                    <div class="card-header py-3" style="background-color: rgb(248,249,252);">
+                        <p class="text-primary m-0 font-weight-bold">1099 Contractor Report</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12 col-md-5">
+                                <div class="form-group" style="margin: 16px;margin-left: 8px; width: 215.5px;">
+                                    <label>Search:</label>
+                                    <input type="search" class="form-control form-control-sm" placeholder="" aria-controls="Search" autocomplete="off" id="myInputSearch" name="myInputSearch">
+                                </div>
+                                <div>
+                                    <div class="modal fade" role="dialog" tabindex="-1" id="myModal">
+                                        <div class="modal-dialog modal-sm" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4>Deparment</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                                                <div class="modal-body">
+                                                    {{#each item in deptrecords}}
+                                                    <div class="custom-control custom-switch" style="margin: 8px;">
+                                                        <input class="custom-control-input chkDepartment" type="checkbox" id="formCheck-{{item.id}}" name="chkDepartment" value="{{item.department}}">
+                                                        <label class="custom-control-label" for="formCheck-{{item.id}}">{{item.department}}</label>
+                                                    </div>
+                                                    {{/each}}
+                                                </div>
+                                                <div class="modal-footer"><button class="btn btn-primary" type="button" data-dismiss="modal"><i class="fa fa-save" style="margin-right: 5px;"></i>Save</button><button class="btn btn-light" data-dismiss="modal" type="button"><i class="fa fa-close" style="margin-right: 5px;"></i>Close</button></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-2">
+                                <style>
+                                    #uploadedImage {
+                                        margin: 0 auto !important;
+                                    }
+                                </style>
+                                <img class="imageUpload img-fluid" id="uploadedImage" src="assets/img/VS1.png">
+                            </div>
+                            <div class="col-12 col-md-5 justify-content-end" style="display: inline-flex;">
+                                <div class="dropdown" style="margin: 16px;">
+                                    <style>
+                                        .dropdown-toggle::after {
+                                            display: none;
+                                        }
+                                    </style>
+                                    <button class="btn dropdown-toggle" data-toggle="dropdown" aria-expanded="true" type="button" style="margin-top: 32px;"><i class="fas fa-ellipsis-v"></i></button>
+                                    <div class="dropdown-menu" role="menu">
+                                        <h6 class="dropdown-header" role="presentation">Date ranges</h6>
+                                        <a class="dropdown-item lastMonth"  id="lastMonth" role="presentation" href="#">Last Month</a>
+                                        <a class="dropdown-item lastQuarter"  id="lastQuarter" role="presentation" href="#">Last Quarter</a>
+                                        <a class="dropdown-item last12Months"  id="last12Months" role="presentation" href="#">Last 12 Months</a>
+                                        <a class="dropdown-item ignoreDate"  id="ignoreDate" role="presentation" href="#">Ignore Date</a>
+                                    </div>
+                                </div>
+                                <div class="form-group" style="margin: 16px;">
+                                    <label>From</label>
+                                    <div class="input-group date" style="width: 160px;">
+                                        <input type="text" class="form-control" id="dateFrom" name="dateFrom" >
+                                        <div class="input-group-addon">
+                                            <span class="glyphicon glyphicon-th"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group" style="margin: 16px;"><label>To</label>
+                                    <div class="input-group date" style="width: 160px;">
+                                        <input type="text" class="form-control" id="dateTo" name="dateTo" >
+                                        <div class="input-group-addon">
+                                            <span class="glyphicon glyphicon-th"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row no-gutters d-xl-flex align-items-xl-end">
+                            <div class="col d-sm-flex justify-content-sm-start align-items-sm-center">
+                                <button class="btn btn-primary text-nowrap float-left btnRefresh" type="button" style="margin: 8px;"><i class="la la-lightbulb-o" style="padding-right: 5px;"></i>Refresh</button>
+                            </div>
+                            <div class="col d-sm-flex justify-content-sm-end align-items-sm-center">
+                                <div class="col d-xl-flex justify-content-xl-end">
+                                    <button class="btn btn-primary float-left btnExportReport" type="button" style="margin: 16px;width: 97px;"><i class="fas fa-file-export" style="margin-right: 5px;"></i>Export</button>
+                                    <button class="btn btn-primary btnPrintReport" type="button" style="margin: 16px;width: 97px; margin-right:0px;"><i class="fa fa-print" style="margin-right: 5px;"></i>Print</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="printReport">
+                        <div class="row">
+                            <div class="col">
+                                <p class="text-center" style="margin-bottom: 0px;font-weight: bold;">1099 Contractor Report</p>
+                                <p class="text-center" style="margin-bottom: 0px;">{{companyname}}&nbsp;</p>
+                                <p class="text-center" style="margin-bottom: 8px;">As of {{dateAsAt}}</p>
+                            </div>
+                        </div>
+                        <div class="row no-gutters">
+                            <style>
+                                .totalhr {
+                                    border-top: 2px #858999 solid;
+                                }
+                                .grandtotal {
+                                    border-top: 2px #858999 solid;
+                                    border-bottom: 2px #858999 solid;
+                                }
+                            </style>
+                            <div class="table-responsive">
+                                <table class="table table-sm" id="tableExport" name="tableExport">
+                                    <thead>
+                                        <tr class="table-active">
+                                            <th>Company</th>
+                                            <th style="width: 130px;">Type</th>
+                                            <th>Payment #</th>
+                                            <th>Date</th>
+                                            <th>Method</th>
+                                            <th>Bill Street</th>
+                                            <th>Bill Place</th>
+                                            <th>Card Amount</th>
+                                            <th>Non Card Amount</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {{#if records}}
+                                        {{#each record in records}}
+                                        {{#each recordItem in record}}
+                                        {{#if recordItem.key}}
+                                        <tr class="totalhr">
+                                            <td  style="font-weight: 800;">
+                                                <div class="SectionTitle2 report-heading-last">{{recordItem.key}}</div>
+                                            </td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        {{/if}}
+                                        {{#each item in recordItem.data}}
+                                        <tr class="{{item.type}}" id="{{item.Id}}">
+                                            <div style="display:none;">{{item.Company}}</div>
+                                            {{#each subItem in item.dataArr}}
+                                            <td class="Total1Indented MenuLeft text-nowrap Indent1"><a href="#" style="text-decoration:none!important;">{{subItem}}</a></td>
+                                            {{/each}}
+                                        </tr>
+                                        {{/each}}
+                                        {{#each total in recordItem.total}}
+                                        <tr class="TotalField">
+                                            {{#each items in total.dataArr}}
+                                            <td class="Total1Indented MenuLeft TotalField"><span class="table-cells"><strong>{{items}}</strong></span></td>
+                                            {{/each}}
+                                        </tr>
+                                        {{/each}}
+                                        {{/each}}
+                                        {{/each}}
+                                        {{#if grandrecords}}
+                                        <!-- {{#each item in grandrecords}} -->
+                                        <tr class="grandtotal" style="font-weight: 800;font-size: 16px;">
+                                            {{#each item in grandrecords}}
+                                            <td>{{item}}</td>
+                                            {{/each}}
+                                        </tr>
+                                        {{/if}}
+                                        {{else}}
+                                        <tr class="odd" style="text-align: center;"><td valign="top" colspan="10" class="dataTables_empty">No data available in table</td></tr>
+                                        {{/if}}
+
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th colspan="10" style="text-align: center; background-color: #fff; padding-top: 32px;">
+                                                Powered by <a href="https://www.vs1cloud.com" target="_blank">VS1Cloud</a>
+                                            </th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <div class="d-xl-flex justify-content-xl-center"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Start Help Video Modal -->
+    <div class="modal fade" role="dialog" tabindex="-1" id="helpModal">
+        <div class="modal-dialog" role="document" style="max-width: 670px!important;">
+            <div class="modal-content" >
+                <div class="modal-header" >
+                    <h4 class="title-header" >1099 Contractor Report </h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+                    <!-- <iframe width="640" height="360" src="https://player.vimeo.com/video/99892791" frameborder="0" allowfullscreen=""></iframe> -->
+                    <!-- <iframe width="640" height="360" src="https://www.youtube.com/embed/BzxoYOp42fg" frameborder="0" allowfullscreen=""></iframe> -->
+                    <video id="myVideo" width="640" height="360" controls="" name="media" style="border: solid 5px #999999f0; height: auto; outline: none;">
+                        <source src="https://erphelpes.com/vs1videos/comingsoon.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- End Help Video Modal -->
+
+</template>

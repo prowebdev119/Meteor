@@ -1,0 +1,24 @@
+<template name="accountWatchlistWidget">
+    <div class="dash1 minHeight"><span class="simpleHeading">Account watchlist</span>
+        <hr>
+        <table class="dash_account_watchlist">
+            <tbody>
+            <tr>
+                <th>Account</th>
+                <th>This month</th>
+                <th>YTD</th>
+            </tr>
+            {{#each item in records}}
+                <tr>
+                    {{#each data in item}}
+                        <td ><span><a class="noredirectLink" href="javascript:void(0)" id="dash_Advert">{{data}}</a></span></td>
+
+                    {{/each}}
+                    <!--<td><span id="dash_advertisingtm"></span></td>-->
+                    <!--<td><span id="dash_advertisingytd"></span></td>-->
+                </tr>
+            {{/each}}
+            </tbody>
+        </table>
+    </div>
+</template>

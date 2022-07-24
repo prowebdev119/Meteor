@@ -1,0 +1,78 @@
+<template name="ststransfers">
+    <style>
+        .aligncenter {
+            margin: 40px auto; 
+            text-align:center; 
+            display:block;
+        }
+        .aligncenter2 {
+            margin: 30px auto; 
+            text-align:center; 
+            display:block;
+        }
+        .aligncenter3 {
+            margin: 10px auto; 
+            text-align:center; 
+            display:block;
+        }
+        .aligncenter4 {
+            margin: 20px auto; 
+            text-align:center; 
+            display:block;
+        }
+    </style>
+    <div class="container-fluid">
+        <div class="fullScreenSpin" style="display:none;">
+            <div class="spinner"></div>
+        </div>
+        <div class="d-sm-flex justify-content-between align-items-center mb-4">
+            <h3 class="text-dark mb-0">Seed To Sale - Transfers</h3>
+        </div>
+        <div class="row d-xl-flex justify-content-center align-items-center justify-content-xl-start" style="max-width: 568px;margin: auto;padding: 20px;">
+            <h5 style="margin: 0px;">Quick Actions</h5>
+        </div>
+        <div class="row" style="max-width: 568px;margin: auto;">
+            <div class="col" style="height: 142px;width: 142px;max-width: 142px;max-height: 142px;min-width: 142px;min-height: 142px;padding: 8px;"><a class="btn btn-success" role="button" style="width: 126px;height: 126px;" data-toggle="modal" href="/stscreatetransfer"><span class="aligncenter2" style="width: 100px;height: 100px;">Create Transfer</span></a></div>
+            <div class="col" style="height: 142px;width: 142px;max-width: 142px;max-height: 142px;min-width: 142px;min-height: 142px;padding: 8px;"><a class="btn btn-info" role="button" style="width: 126px;height: 126px;" data-toggle="modal" href="/ststransferhistory"><span class="aligncenter2" style="width: 100px;height: 100px;">Transfer History</span></a></div>
+        </div>
+        <div class="row d-xl-flex justify-content-center align-items-center justify-content-xl-start" style="max-width: 568px;margin: auto;padding: 20px;padding-bottom: 0px;">
+            <h5 style="margin: 0px;">Recent Transfers</h5>
+        </div>
+        <div class="row d-xl-flex justify-content-center align-items-center justify-content-xl-center" style="max-width: 568px;margin: auto;padding: 8px;">
+            <div class="modal-body" style="padding-bottom: 0px;">
+                <a href="">
+                    <div class="row no-gutters" style="box-shadow: 2px 2px 7px rgba(133,135,150,0.37);padding: 8px;margin-bottom: 16px; border-radius: 5px;">
+                        <div class="col">
+                            <div class="row no-gutters">
+                                <p style="margin: 0px;font-weight: bold;padding-left: 8px;">Transfer #420</p>
+                            </div>
+                            <div class="row no-gutters">
+                                <p style="margin: 0px;padding-left: 8px;">[ Facility Name ]</p>
+                            </div>
+                            <div class="row no-gutters">
+                                <p style="margin: 0px;padding-left: 8px;">Est. Departure: Mon, April 20, 2020</p>
+                            </div>
+                        </div>
+                        <div class="col d-xl-flex flex-grow-0 align-items-xl-center" style="padding: 16px;"><i class="fa fa-arrow-right"></i></div>
+                    </div>
+                </a>
+                <a href="">
+                    <div class="row no-gutters" style="box-shadow: 2px 2px 7px rgba(133,135,150,0.37);padding: 8px;margin-bottom: 16px; border-radius: 5px;">
+                        <div class="col">
+                            <div class="row no-gutters">
+                                <p style="margin: 0px;font-weight: bold;padding-left: 8px;">Transfer #419</p>
+                            </div>
+                            <div class="row no-gutters">
+                                <p style="margin: 0px;padding-left: 8px;">[ Facility Name ]</p>
+                            </div>
+                            <div class="row no-gutters">
+                                <p style="margin: 0px;padding-left: 8px;">Est. Departure: Mon, April 14, 2020</p>
+                            </div>
+                        </div>
+                        <div class="col d-xl-flex flex-grow-0 align-items-xl-center" style="padding: 16px;"><i class="fa fa-arrow-right"></i></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,459 @@
+<template name="productexpresslist">
+   
+    <div class="productexpresslist productexpresslistB invoicelist datatableSetuplist">
+        <div class="active_page">
+            <div class="active_page_content">
+                <!--<p><a href="/solist">Sales</a> &nbsp;›&nbsp;</p><br>-->
+                <h1>Inventory Overview</h1>
+                <script>
+                    function helpconceal() {
+                        if (document.getElementById('help_open').style.display == 'block') {
+                            document.getElementById('help_open').style.display = 'none';
+                            document.getElementById('open_help').style.display = 'inline-block';
+
+                        }
+                    }
+
+                    function helpshow() {
+                        if (document.getElementById('help_open').style.display == 'none') {
+                            document.getElementById('help_open').style.display = 'block';
+                            document.getElementById('open_help').style.display = 'none';
+                        }
+                    }
+
+                    $(document).ready(function () {
+                    });
+                </script>
+            </div>
+        </div>
+        <div class="bridge-lower new-wrapper">
+            <div id="wrapper_main" class=""></div>
+
+            <div class="tabs_line_break" style="padding-bottom: 0px; background: none; border-bottom: 0px;"></div>
+            <div class="fullScreenSpin" style="display:none;">
+                <div class="spinner"></div>
+            </div>
+            <div id="" class="container">
+                {{#if showNotificaton}}
+                <div class="notify" id="receipt-saved-message">
+                    <span class="check-icon"><i class="fa fa-check"></i></span>
+                    <a href="#" class="icons msg-close" id="close-notification">x</a>
+                    <div class="message">
+                        <p id="notificationDetails">{{notificationData}}</p>
+                    </div>
+                </div>
+                {{/if}}
+                <div style="width: 100%; height: 15px;"></div>
+                <div class="second_content_right_headtop second_content_right_headtopB">
+                    <div class="divNewItemB" style="float: left;">
+                        <a href="#" class="new_create_btn new_create_btnB product_edit" id="showAddItemModal"
+                            data-toggle="modal" data-target="#newProduct">+ New Item</a>
+                    </div>
+                    <div class="divInExFloat divInExFloatB">
+                        <div class="divimport">
+                            <a href="/productexpresslist/Import" class="new_create_btn new_create_btnB product_edit"
+                                id="import_Item">Import</a>
+                        </div>
+                        <div class="divexport">
+                            <button class="new_create_btn new_create_btnB dropdown-toggle" type="button" id="menu1"
+                                data-toggle="dropdown">
+                                Export<span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="menu1" id="inventoryexport">
+                                <li role="presentation">
+                                    <a role="menuitem" tabindex="-1" href="#" id="exportinv_csv">CSV</a>
+                                </li>
+                                <li role="presentation">
+                                    <a role="menuitem" tabindex="-1" href="#" id="exportinv_pdf">PDF</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <script>
+                    $('.Show').click(function () {
+                        $('#product_box').show(500);
+                        $('.Show').hide(0);
+                        $('.Hide').show(0);
+                    });
+                    $('.Hide').click(function () {
+                        $('#product_box').hide(500);
+                        $('.Show').show(0);
+                        $('.Hide').hide(0);
+                    });
+                    $('.product_edit').click(function () {
+                        $('#product_box').toggle('slow');
+                    });
+                </script>
+            </div>
+            <div class=" container" style="padding-top: 5px!important;">
+                <div class="tab-content">
+                    {{> refreshbutton}}
+                    <table id="productexpress_list" style="width: 100%"
+                        class="dataTable table table-hover table-bordered  table-striped">
+                        <!-- class= nowrap -->
+                        <thead>
+                            <tr>
+                                <!-- <th></th> -->
+                                <th>Item No</th>
+                                <th>Item Code</th>
+                                <th>Item Name</th>
+                                <th>Cost Price</th>
+                                <th>Sale Price</th>
+                                <th>Quantity</th>
+                            </tr>
+                        </thead>
+                    </table>
+                    <!-- </div> -->
+                </div>
+                <script>
+                // $('.Show').click(function () {
+                //     $('#search_box').show(500);
+                //     $('.Show').hide(0);
+                //     $('.Hide').show(0);
+                // });
+                // $('.Hide').click(function () {
+                //     $('#search_box').hide(500);
+                //     $('.Show').show(0);
+                //     $('.Hide').hide(0);
+                // });
+                // $('.list_search').click(function () {
+                //     $('#search_box').toggle('slow');
+                // });
+                </script>
+            </div>
+            <!-- Modal -->
+            <div id="newProduct" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">x</button>
+                            <h4 class="modal-title">New Item</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form action="" id="productadd" method="POST">
+                                <table class="product_add Itemtd">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <label>Item Code</label><br>
+                                                <input type="text" name="NProdCode" id="NProdCode" required>
+                                            </td>
+                                            <td>
+                                                <label>Item Name</label><br>
+                                                <input type="text" name="NProdName" id="NProdName" required>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <table class="product_add ">
+                                    <tbody>
+                                        <tr>
+                                            <td class="checkboxdiv">
+                                                <label><input type="checkbox" name="ItrackThisItem" value="Bike"> I
+                                                    track this
+                                                    item </label>
+                                            </td>
+
+                                            <td>
+                                                <div class="assetNumber" id="trackItemContent">
+                                                    <label>Inventory Asset Account</label><br>
+                                                    <div name="assettypedrop"
+                                                        class="input-group dropdown-add-rec  width-remove"
+                                                        id="asset-type-dropdown">
+                                                        <input name="assettype" type="text"
+                                                            class="form-control select-account-type select-account"
+                                                            id="inventoryAssetAccount" value="Inventory Asset">
+                                                        <div class="input-group-addon">
+                                                            <img src="/img/dropdown_icon.png"
+                                                                id="asset-type-dropdown-img-0" class="asset-type-img">
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+
+                                                <div class="your-item">
+                                                    <p><i class="fa fa-question-circle" aria-hidden="true"></i>This
+                                                        treats
+                                                        your item as a tracked
+                                                        inventory asset. TrueERp will record the quantity on hand and
+                                                        prevent
+                                                        you selling below a quantity of zero. <br><b>Note: </b>this
+                                                        option
+                                                        can not be changed once you have recorded transactions against
+                                                        the
+                                                        item.</p>
+                                                    <a href="#" target="_self">Find out if tracked inventory</a> is
+                                                    right for you.
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <table class="product_add ">
+                                    <tbody>
+                                        <tr>
+                                            <td class="checkboxdiv">
+                                                <label><input type="checkbox" name="purchaseThisItem"
+                                                        class="{{#if isTrackChecked}}opacity-add{{/if}}" checked>I
+                                                    purchase
+                                                    this item</label>
+                                            </td>
+
+                                            <td class="purchaseAcconutContent inputboxDiv">
+                                                <div class="inputbox">
+                                                    <span>
+                                                        <label>Unit Price</label><br>
+                                                        <input type="text" name="NProdCode" id="NProdPUPrice" required>
+                                                    </span>
+
+                                                    <span>
+                                                        <div class=" assetNumber">
+                                                            <label>COGS Account</label><br>
+
+                                                            <div name="assettypedrop"
+                                                                class="input-group dropdown-add-rec  mandatory-item"
+                                                                id="asset-type-dropdown">
+                                                                <input name="assettype" type="text"
+                                                                    class="form-control select-account-type select-account1"
+                                                                    id="NProdPAcc" value="">
+                                                                <div class="input-group-addon">
+                                                                    <img src="/img/dropdown_icon.png"
+                                                                        id="asset-type-dropdown-img-1"
+                                                                        class="asset-type-img">
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </span>
+
+                                                    <span>
+                                                        <div class=" assetNumber">
+                                                            <label>Tax Rate</label>
+                                                            <div name="assettypedrop"
+                                                                class="input-group dropdown-add-rec"
+                                                                id="asset-type-dropdown">
+                                                                <input name="assettype" type="text"
+                                                                    class="form-control select-tax-type1" id="NPTaxPR"
+                                                                    value="">
+                                                                <div class="input-group-addon" data-toggle="dropdown">
+                                                                    <img src="/img/dropdown_icon.png"
+                                                                        id="tax-type-dropdown-img1"
+                                                                        class="asset-type-img">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </span>
+                                                </div>
+
+                                                <div class="textareadiv">
+                                                    <label>Purchases Description<span> (for my
+                                                            suppliers)</span></label><br>
+                                                    <textarea rows="4" cols="50" id="NProdPDesc"></textarea>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <table class="product_add ">
+                                    <tbody>
+                                        <tr>
+                                            <td class="checkboxdiv">
+                                                <label><input type="checkbox" name="SellThisItem"
+                                                        class="{{#if isTrackChecked}}opacity-add{{/if}}" checked>I sell
+                                                    this item</label>
+                                            </td>
+
+                                            <td class="saleAccountContent inputboxDiv">
+                                                <div class="inputbox">
+                                                    <span>
+                                                        <label>Unit Price</label><br>
+                                                        <input type="text" name="NProdCode" id="NProdSUPrice" required>
+                                                    </span>
+
+                                                    <span>
+                                                        <div class=" assetNumber">
+                                                            <label>Sales Account</label><br>
+                                                            <div name="assettypedrop"
+                                                                class="input-group dropdown-add-rec  mandatory-item"
+                                                                id="asset-type-dropdown">
+                                                                <input name="assettype" type="text"
+                                                                    class="form-control select-account-type select-account2"
+                                                                    id="NProdSAcc" value="">
+                                                                <div class="input-group-addon">
+                                                                    <img src="/img/dropdown_icon.png"
+                                                                        id="asset-type-dropdown-img-2"
+                                                                        class="asset-type-img">
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </span>
+
+                                                    <span>
+                                                        <div class=" assetNumber">
+                                                            <label>Tax Rate</label>
+                                                            <div name="assettypedrop"
+                                                                class="input-group dropdown-add-rec"
+                                                                id="asset-type-dropdown">
+                                                                <input name="assettype" type="text"
+                                                                    class="form-control select-tax-type2" id="NPTaxSR"
+                                                                    value="{{record.AssetType}}">
+                                                                <div class="input-group-addon" data-toggle="dropdown">
+                                                                    <img src="/img/dropdown_icon.png"
+                                                                        id="tax-type-dropdown-img2"
+                                                                        class="asset-type-img">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </span>
+                                                </div>
+
+                                                <div class="textareadiv">
+                                                    <label>Sales Description <span> (for my
+                                                            customers)</span></label><br>
+                                                    <textarea rows="4" cols="50" id="NProdSDesc"></textarea>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <div class="new_create_buttons">
+                                <div id="inventoryadd" class="new_create_buttons_g1">
+                                    <div id="poapprove">
+                                        <!--<input type="submit" name="productaddbtn" id="productaddbtn" class="send_new" value="Save">-->
+                                        <div class="approveBnt">
+                                            <a href="#" class="newDropContainerText newLineMargin productaddbtn_save"
+                                                id="save">Save<span class="plus_vertical_line"> </span> </a>
+
+                                            <a class="dropdown-toggle newDropContainerArrow"
+                                                data-toggle="dropdown"><span class="caret"></span></a>
+
+
+                                            <ul class="dropdown-menu newLineDropdownOptions2 "
+                                                id="newSOLineDropdownOptions">
+                                                <li><a href="#" id="save" class="productaddbtn_save">Save</a></li>
+                                                <li><a href="#" name="productaddbtn" id="saveAndNew"
+                                                        class="productaddbtn_save">Save & add another</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <a href="#" class="cancel_new product_edit" id="cancelButton"
+                                            data-dismiss="modal">Cancel</a>
+                                        <!--onclick="window.location.reload(true);"-->
+                                    </div>
+                                </div>
+                                <!--
+                            <div class="new_create_buttons_g2" style="border-bottom: 0px;">
+
+                            </div>
+                          -->
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- Modal delete-product -->
+            <div id="delete-modal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">x</button>
+                            <h4 class="modal-title">Delete {{selectedObj}} Items </h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>Deleting inventory items will not affect reports or historical transactions.</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn co-btn-destroy" id="delete-product">Delete</button>
+                            <button type="button" class="btn cancel_new" data-dismiss="modal">Cancel</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        modalDraggable();
+    </script>
+</template>
+
+
+<!-- <template name="productexpresslist2">
+ <div id="wrapper_main">
+  <main id="page-content-wrapper_main" role="main">
+    <div class="bread_crumbs"><p>Inventory -> <a href="/productexpresslist">Product Express List</a></p></div>
+  <h1>Product Express List</h1>
+  <div class="add_new_container">
+  <div class="add_new">
+  <a href="/productexpresslist" class="btn btn-primary btn-block"><i class="fa fa-plus"></i> Product View 1</a>
+  </div>
+  <div class="add_new">
+  <a href="/productexpresslist2" class="btn btn-primary btn-block"><i class="fa fa-plus"></i> Product View 2</a>
+  </div>
+  <div class="add_new">
+  <a href="/productexpresslist3" class="btn btn-primary btn-block"><i class="fa fa-plus"></i> Product View 3</a>
+  </div>
+  </div>
+  <hr>
+  <h4>Content Here!</h4>
+  <table id="productexpresslist2" style="width: 100%" class="table table-hover table-bordered">
+          <thead>
+              <tr>
+                  <th></th>
+                  <th>ID</th>
+                  <th>Picture</th>
+                  <th>Product Name</th>
+                  <th>Description</th>
+                  <th>Price (Inc)</th>
+                  <th>Qty</th>
+              </tr>
+          </thead>
+      </table>
+</main>
+</div>
+</template> -->
+
+<!-- <template name="productexpresslist3">
+ <div id="wrapper_main">
+  <main id="page-content-wrapper_main" role="main">
+    <div class="bread_crumbs"><p>Inventory -> <a href="/productexpresslist">Product Express List</a></p></div>
+  <h1>Product Express List</h1>
+  <div class="add_new_container">
+  <div class="add_new">
+  <a href="/productexpresslist" class="btn btn-primary btn-block"><i class="fa fa-plus"></i> Product View 1</a>
+  </div>
+  <div class="add_new">
+  <a href="/productexpresslist2" class="btn btn-primary btn-block"><i class="fa fa-plus"></i> Product View 2</a>
+  </div>
+  <div class="add_new">
+  <a href="/productexpresslist3" class="btn btn-primary btn-block"><i class="fa fa-plus"></i> Product View 3</a>
+  </div>
+  </div>
+  <hr>
+  <h4>Content Here!</h4>
+  <table id="productexpresslist3" style="width: 100%" class="table table-hover table-bordered">
+          <thead>
+              <tr>
+                  <th></th>
+                  <th>ID</th>
+                  <th>Picture</th>
+                  <th>Product Name</th>
+                  <th>Price (Inc)</th>
+                  <th>Qty</th>
+              </tr>
+          </thead>
+      </table>
+</main>
+</div>
+</template>  -->

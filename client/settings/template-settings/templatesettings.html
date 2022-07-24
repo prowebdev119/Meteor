@@ -1,0 +1,340 @@
+<template name="templatesettings">
+    <style>
+        .templateItem {
+            display: inline-flex !important;
+
+        }
+
+        .btnPreviewTemplate {
+            padding: 6px;
+            cursor: pointer;
+        }
+
+        .btnPreviewTemplate:hover {
+            background-color: #f8f9fc;
+        }
+    </style>
+
+
+    <div class="container-fluid">
+        <div class="fullScreenSpin" style="display:none;">
+            <div class="spinner"></div>
+        </div>
+        <h3 class="text-dark mb-4">
+  
+            <a role="button" data-toggle="modal" href="#helpViewModal" style="font-size: 16px; float: right;">Help <i
+                    class="fa fa-question-circle-o" style="font-size: 16px;"></i></a>
+        </h3>
+
+        <div class="modal fade" role="dialog" tabindex="-1" id="helpViewModal">
+            <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                    <div class="modal-header" style="padding-bottom: 8px;">
+                        <h4>Help</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">×</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <p class="text-center text-muted"><a role="button" data-toggle="modal" href="#helpModal"
+                                class="btn btn-primary helpModal">View Help Video</a></p>
+                        <p class="text-center text-muted"><a href="https://vs1forum.com/" target="_blank"
+                                class="btn btn-primary">Download Help File</a></p>
+                        <p class="text-center text-muted"><button class="btn btn-primary" type="button">Employ
+                                Advisor</button></p>
+                        <p class="text-center text-muted" style="margin: 0px;"><a
+                                href="https://vs1forum.com/ucp.php?mode=register&cloudusername={{loggedCompany}}"
+                                target="_blank" class="btn btn-primary">Go To Forum</a></p>
+                    </div>
+                    <div class="modal-footer" style="padding: 6px;"><button class="btn btn-light" data-dismiss="modal"
+                            type="button">Close</button></div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row justify-content-center mb-3">
+            <div class="col-12 col-md-10">
+                <div class="row">
+                    {{#each title in getTemplateList}}
+                    <div class="col-12 col-md-4">
+                        <div class="card shadow mb-3">
+                            <div class="card-header py-3">
+                                <span id="{{title}}_title" class="text-primary m-0 font-weight-bold">{{title}}</span>
+                            </div>
+                            <div class="card-body">
+                                <ul class="list-group list-group-flush">
+                                    {{#each index in getTemplateNumber}}
+                                    <li class="list-group-item templateItem justify-content-between"  data-id="{{title}}">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="billRadio" id="bill_1"
+                                                value="bill_1" checked>
+                                            <label class="form-check-label" for="bill_1">
+                                                Template {{index}}
+                                            </label>
+                                        </div>
+
+                                        <i id="btnPreviewTemplate" data-id="{{title}}"
+                                            class="far fa-eye btnPreviewTemplate" data-toggle="modal"></i>
+                                    </li>
+                                    {{/each}}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="templatePreviewModal" tabindex="-1" role="dialog" aria-labelledby="templatePreviewLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="templatePreviewLabel"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body"
+                    style="background-color: #f8f9fc; max-height: calc(100vh - 200px); overflow-y: auto;">
+                    <div style="width: 90%; background-color: #ffffff; padding: 8px; height: 297mm; font-size: 13.33px; color: #000000; overflow-x: visible; margin: 0 auto; -webkit-font-smoothing: subpixel-antialiased;"
+                        id="html-2-pdfwrapper" name="html-2-pdfwrapper">
+                        <div class="d-flex flex-row d-sm-flex d-md-flex ">
+                            <div class="col-7 col-md-7 col-sm-12" style="margin: 0px; padding: 16px;">
+                                <div style="display: flex;" class="col-6 col-md-6 col-sm-12">
+                                    <div class="col-4 col-md-4 col-sm-10" style="max-width: 60mm; max-height: 30mm;">
+                                        <img src="assets/img/VS1.png" class="uploadedImage"
+                                            style="max-height: 30mm; max-width: 200px;margin-bottom: 8px;">
+                                    </div>
+                                    <div  class="col-8 col-md-8 col-sm-10">
+                                        <div style="padding-left: 16px;font-weight: bold;">
+                                            <p class="o_url" style="margin-bottom: 0px; color: rgb(0 0 0);"></p>
+                                            <p class="o_name" style="margin-bottom: 0px; color: rgb(0 0 0);"></p>
+                                            <p class="o_address1" style="margin-bottom: 0px; color: rgb(0 0 0);"></p>
+                                            <p class="o_address2" style="margin-bottom: 0px; color: rgb(0 0 0);"></p>
+                                            <p class="o_city" style="margin-bottom: 0px; color: rgb(0 0 0);"></p>
+                                            <p class="o_state" style="margin-bottom: 0px; color: rgb(0 0 0);"></p>
+                                            <p class="o_reg" style="margin-bottom: 0px; color: rgb(0 0 0);"></p>
+                                            <p class="o_abn" style="margin-bottom: 0px; color: rgb(0 0 0);"></p>
+                                            <p class="o_phone" style="margin-bottom: 0px; color: rgb(0 0 0);"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="font-size: 14px;">
+                                    <div class="customer" style="margin-bottom: 0px; color: rgb(0 0 0);font-weight: 600;">
+                                    </div>
+                                    <div style="margin-bottom: 0px; color: rgb(0 0 0); display:none;"
+                                        class="pdfCustomerName"></div>
+                                    <div style="min-height: 50px; width: 50%; margin-bottom: 0px; color: rgb(0 0 0);"
+                                        class="pdfCustomerAddress"></div>
+                                </div>
+                            </div>
+                            <div class="col-5 col-md-5 col-sm-12" style="margin: 0px; padding: 16px; border: none !important; ">
+                                <div style="display: flex; width: 100%;">
+                                    <div style="width: 50%; padding-right: 16px;font-weight: bold;">
+                                        <h4 class="print-header"
+                                            style="font-weight: bold; font-size: 26.667px; color: rgb(0 0 0); -webkit-font-smoothing: subpixel-antialiased">
+                                        </h4>
+                                    </div>
+
+                                </div>
+
+
+                                <div style="display: flex; width: 100%;">
+                                    <div style="width: 50%; padding-right: 16px;font-weight: bold;">
+                                        <p class="dateNumber" style="margin-bottom: 4px; color: rgb(0 0 0);">Date:</p>
+                                        <p class="pdfPONumber" style="margin-bottom: 4px; color: rgb(0 0 0);">P.O
+                                            Number:</p>
+                                        <p class="invoiceNumber"
+                                            style="margin-bottom: 4px; color: rgb(0 0 0);">Invoice No:</p>
+                                        <p class="refNumber" style="margin-bottom: 4px; color: rgb(0 0 0);">Ref No
+                                            :</p>
+                                        <p class="pdfTerms" style="margin-bottom: 4px; color: rgb(0 0 0);">Due
+                                            Date:</p>
+                                        <p class="link" style="color: rgb(0 0 0);">Pay Link:</p>
+                                    </div>
+                                    <div style="width: 50%; padding-left: 16px;">
+                                        <p class="date" style="margin-bottom: 4px; color: rgb(0 0 0);"></p>
+                                        <p class="po"
+                                            style="margin-bottom: 4px; color: rgb(0 0 0); white-space: nowrap;"></p>
+                                        <p class="io"
+                                            style="margin-bottom: 4px; color: rgb(0 0 0); white-space: nowrap;"></p>
+                                        <p class="ro"
+                                            style="margin-bottom: 4px; color: rgb(0 0 0); white-space: nowrap;"></p>
+                                        <p class="due"
+                                            style="margin-bottom: 4px; color: rgb(0 0 0); white-space: nowrap;"></p>
+                                        <p class="link"
+                                            style="text-align: center; width : 100px; margin-bottom : 8px; color: rgb(0 0 0);color: #fff !important; background-color: #17a673; border-color: #169b6b; border-radius: 10px;     padding: 4px 8px;">
+                                            <a class="linkText" href="" style="color: #fff !important; padding: 0px; padding-left: 5px; text-align: center;">Pay
+                                            Now</a>
+                                        </p>
+
+                                            
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div style="height: 120mm;">
+                            <div style="margin: 8px; border: none !important; background-color: rgba(0,0,0,0);">
+                                <table class="invoice_print" style="width: 100%;  margin: auto;">
+                                    <thead style="color: rgb(251,251,251);">
+                                        <tr class="tbl_header"
+                                            style="border-bottom: 1px solid rgba(0, 0, 0); color: #000000;">
+                                        </tr>
+                                    </thead>
+                                    <tbody class="tbl_content" style="color: rgb(0 0 0);">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <hr>
+                        <div style="display: flex;">
+                            <div style="margin: 8px; width: 100%">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <p style="font-weight: bold; color: rgb(0 0 0);">Comments</p>
+                                        <div id="printcomment"
+                                            style="color: rgb(0 0 0);  height: 3em; line-height: 1em; overflow: hidden;">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6 ">
+                                        <div class="row field_payment"  style="border: 1px solid;">
+                                            <div class="col-12">
+                                                <p style="font-weight: 600; color: rgb(0 0 0);">Payment Details</p>
+                                            </div>
+                                            <!-- <div class="bankDetails" style="margin: 16px;">
+
+                                        </div> -->
+                                            <div class="col-12">
+                                                <p style="font-weight: 600; color: rgb(0 0 0);"></p>
+                                            </div>
+
+                                            <div class="col-12">
+                                               
+                                                <p class="bsb"
+                                                    style="text-align: left; margin-bottom: 8px; font-weight: 600; color: rgb(0 0 0);">
+                                                    BSB (Branch Number) :
+                                                    <span
+                                                        style="margin-bottom: 8px; font-weight: 800; color: rgb(0 0 0);"></span>
+                                                </p>
+
+                                                <p class="account_number"
+                                                    style="text-align: left; margin-bottom: 8px; font-weight: 600; color: rgb(0 0 0);">
+                                                    Account Number: <span
+                                                        style="margin-bottom: 8px; font-weight: 800; color: rgb(0 0 0);"></span>
+                                                </p>
+
+                                                <p class="swift"
+                                                    style="text-align: left; margin-bottom: 8px; font-weight: 600; color: rgb(0 0 0);">
+                                                    Swift Code: <span
+                                                        style="margin-bottom: 8px; font-weight: 800; color: rgb(0 0 0);"></span>
+                                                </p>
+
+                                               
+                                            </div>
+        
+                                        </div>
+                                    </div>
+                                    <div class="col-6 field_amount">
+                                        <div style="margin: 8px; border: none !important;">
+                                            <div style="width: 100%; display: flex;">
+                                                <div style="padding-right: 16px; width: 50%;">
+                                                    <p id="subtotal_total"
+                                                        style="font-weight: 600; margin-bottom: 8px; color: rgb(0 0 0);">
+                                                        Sub Total</p>
+                                                    <p id="grandTotal"
+                                                        style="font-weight: 600; margin-bottom: 8px; color: rgb(0 0 0);">
+                                                        Total GST</p>
+                                                </div>
+                                                <div style="padding-left: 16px; width: 50%;">
+                                                    <p id="subtotal_totalPrint"
+                                                        style="text-align: right; margin-bottom: 8px; font-weight: 600; color: rgb(0 0 0);">
+                                                        </p>
+                                                    <p id="totalTax_totalPrint"
+                                                        style="text-align: right; margin-bottom: 8px; font-weight: 600; color: rgb(0 0 0);">
+                                                        </p>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <div style="width: 100%; display: flex;">
+                                                <div style="padding-right: 16px; width: 50%;">
+                                                    <p style="font-weight: 800; margin-bottom: 8px; color: rgb(0 0 0);">
+                                                        TOTAL</p>
+                                                </div>
+                                                <div style="padding-left: 16px; width: 50%;">
+                                                    <p id="grandTotalPrint"
+                                                        style="text-align: right; margin-bottom: 8px; font-weight: 800;">
+                                                       <br></p>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <div style="width: 100%; display: flex;">
+                                                <div style="padding-right: 16px; width: 50%;">
+                                                    <p style="font-weight: 600; margin-bottom: 8px; color: rgb(0 0 0);">
+                                                        Paid Amount</p>
+                                                    <p style="font-weight: 600; margin-bottom: 8px; color: rgb(0 0 0);">
+                                                        Balance Due</p>
+                                                </div>
+                                                <div style="padding-left: 16px; width: 50%;">
+                                                    <p id="paid_amount"
+                                                        style="text-align: right; margin-bottom: 8px; font-weight: 600; color: rgb(0 0 0);">
+                                                        </p>
+                                                    <p id="totalBalanceDuePrint"
+                                                        style="text-align: right; margin-bottom: 8px; font-weight: 600; color: rgb(0 0 0);">
+                                                        </p>
+                                                      
+                                                </div>
+
+                                               
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        
+                        <div style="font-size: 10px; margin-right: 8px; float: right;">
+                            <p class="applied font-weight-bold" style="font-size: 14px;" >Applied $50.00</p>    
+                            <p>Page 1 of 1</p>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-times"
+                            style="margin-right: 5px;"></i>Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Start Help Video Modal -->
+    <div class="modal fade" role="dialog" tabindex="-1" id="helpModal">
+        <div class="modal-dialog" role="document" style="max-width: 670px!important;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="title-header">Print Templates Settings</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+                    <video id="myVideo" width="640" height="360" controls="" name="media"
+                        style="border: solid 5px #999999f0; height: auto; outline: none;">
+                        <source src="https://erphelpes.com/vs1videos/organizationdetails.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Help Video Modal -->
+    <script>
+        modalDraggable();
+    </script>
+</template>

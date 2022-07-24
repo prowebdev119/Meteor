@@ -1,0 +1,760 @@
+<template name="header">
+    <style>
+        @media (min-width: 768px) {
+            .sidebar {
+                width: 0 !important;
+                overflow: hidden;
+            }
+
+            #upgradem {
+                display: none;
+            }
+        }
+
+        @media (max-width: 767px) {
+            #upgrade {
+                display: none;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .vs1logodesktop {
+                display: none;
+            }
+        }
+
+        .topbar .nav-item .nav-link {
+            height: 2.375rem !important;
+            display: flex;
+            align-items: center;
+            padding: 0 .75rem;
+        }
+
+        .isProcessedColumn {
+            background-color: #1cc88a !important;
+            color: #fff;
+        }
+
+        .isOnHoldColumn {
+            background-color: #f6c23e !important;
+            color: #fff;
+        }
+    </style>
+
+    <!-- Mobile Search Header BEGIN -->
+    <style>
+        @media (max-width: 450px) {
+            .vs1logodesktop {
+                display: none;
+            }
+
+            .trueERPConnection {
+                display: none;
+            }
+
+            .upgradeToVS1 {
+                display: none;
+            }
+
+            .upgradeToVS1mobile {
+                display: none;
+            }
+
+            .supportLi {
+                display: none;
+            }
+
+            .modal-globalsearch {
+                max-width: 98vw !important;
+                height: 98vh !important;
+            }
+        }
+    </style>
+    <style>
+        @media (min-width: 450px) {
+            .mobileSearchBar {
+                display: none;
+            }
+            .btnSearchGuide {
+                display: none;
+            }
+        }
+    </style>
+    <!-- Mobile Search Header END -->
+
+    <nav class="navbar navbar-light navbar-expand bg-white shadow topbar static-top mb-4">
+        <div class="container-fluid">
+            <button class="btn btn-link d-md rounded-circle mr-3" id="sidebarToggleTop" type="button"><i class="fas fa-bars" style="color: #00A3D3;"></i></button>
+
+            <style>
+                @-webkit-keyframes alerts-border {
+
+                    from,
+                    to {
+                        border-color: #00a3d3;
+                    }
+
+                    50% {
+                        border-color: #1cc88a;
+                        border: 1px solid #1cc88a;
+                        box-shadow: 0 0 10px #1cc88a;
+                    }
+                }
+
+                @keyframes alerts-border {
+
+                    from,
+                    to {
+                        border-color: #00a3d3;
+                    }
+
+                    50% {
+                        border-color: #1cc88a;
+                        border: 1px solid #1cc88a;
+                        box-shadow: 0 0 10px #1cc88a;
+                    }
+                }
+
+                .alerts-border {
+                    border: 1px solid #00a3d3;
+                    animation: alerts-border 2s infinite !important;
+                }
+
+                /* @-webkit-keyframes blinker {
+                    from,
+                    to {
+                        color: #6e707e;
+                    }
+                    50% {
+                        color: #1cc88a;
+                    }
+                }
+
+                @keyframes blinker {
+                    from,
+                    to {
+                        color: #6e707e;
+                    }
+                    50% {
+                        color: #1cc88a;
+                    }
+                }
+                .txtGlobalSearch::placeholder {
+                    color: #6e707e;
+                    animation: blinker 2s infinite !important;
+                } */
+
+                .boldtablealertsborder {
+                    /* border: 2px solid; */
+                    background-color: #fff;
+
+                    animation: blink 2s infinite;
+                }
+
+                @keyframes blink {
+                    50% {
+                        background-color: rgba(0, 163, 211, 0.2);
+                    }
+                }
+            </style>
+
+            <form class="form-inline d-none d-sm-inline-block mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" action=" ">
+                <div class="input-group">
+                    <input class="bg-light form-control border-2 small txtGlobalSearch alerts-border" type="text" placeholder="Search all ...">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary py-0 btnGlobalSearch" type="button" style="background-color: rgb(0,163,211); border-color: rgb(0,163,211);border-top-right-radius: 0.35rem; border-bottom-right-radius: 0.35rem; height:34px;"><i
+                                class="fas fa-search"></i></button>
+                    </div>
+                    <a class="btn btn-primary scanBarcodeHeadTop" href="" id="scanBarcodeHeadTop" role="button" style="margin-left: 8px; height:34px;padding-top:4px;"><i class="fas fa-camera"></i></a>
+                    <button type="button" class="btn btn-primary" id="mobileBarcodeScan" data-toggle="modal" data-target="#scanBarcodeModalHeader" style="margin-left: 8px;height:34px; display: none;"><i class="fas fa-camera"></i></button>
+                    <button type="button" class="btn btn-primary" id="btnSearchGuide" style="margin-left: 8px;height:34px;padding-top: 4px;"><i class="far fa-question-circle"></i></button>
+                </div>
+            </form>
+
+            <div style="width: 215px;" class="vs1logodesktop">
+                <img class="img-support" src="images/VS1logo.png" style="width: 100%;">
+            </div>
+
+            <ul class="nav navbar-nav flex-nowrap ml-auto">
+
+                <li class="nav-item no-arrow mx-1 mobileSearchBar" role="presentation">
+                    <form class="form-inline mr-auto navbar-search w-100" style="margin-top: 3px;">
+                        <div class="input-group">
+                            <input class="bg-light form-control border-0 small txtGlobalSearchMobile alerts-border" type="text" placeholder="Search all ..." style="text-align: left !important;">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary py-0 btnGlobalSearchMobile" type="button" style="background-color: #00A3D3; border-color: #00A3D3;border-top-right-radius: 0.35rem; border-bottom-right-radius: 0.35rem;height:34px;"><i
+                                        class="fas fa-search"></i></button>
+                            </div>
+                            <a class="btn btn-primary scanBarcodeHeadTop2" href="" id="scanBarcodeHeadTop2" role="button" style="margin-left: 8px; height:34px;padding-top:4px;height:34px;"><i class="fas fa-camera"></i></a>
+                            <button type="button" class="btn btn-primary" id="mobileBarcodeScan2" data-toggle="modal" data-target="#scanBarcodeModalHeader" style="margin-left: 8px; display: none;height:34px;"><i class="fas fa-camera"></i></button>
+                        </div>
+                    </form>
+                </li>
+
+                <li class="nav-item dropdown d-sm-none no-arrow">
+                    <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#"><i class="fas fa-plus"></i></a>
+                    <div class="dropdown-menu dropdown-menu-right p-3 animated--grow-in" role="menu" aria-labelledby="searchDropdown">
+                        {{#if isCloudTrueERP}}
+                            <a class="nav-link" href="linktrueerp" style="color:#00a3d3; border-style: solid; border-radius: 25px;border: 2px solid; width: 47%; float: left;">
+                                <i class="fas fa-link" style="margin-right: 5px;"></i> TrueERP
+                            </a>
+                        {{/if}}
+
+                        {{#if isGreenTrack}}
+                        {{else}}
+                            <a class="nav-link mobileGetSupportBtn" data-toggle="modal" data-target="#supportModal" style="color:#00a3d3; border-style: solid; border-radius: 25px;border: 2px solid;width: 47%; float: right;">Get <img class="img-support"
+                                    src="images/phone-support.png" style="width: 25px!important;padding: 2px;"> Support</a>
+                        {{/if}}
+
+                        <button type="button" class="nav-link" data-toggle="modal" data-target="#searchGuideModal" style="color:#00a3d3; border-style: solid; border-radius: 25px;border: 2px solid; width: 47%; float: left; margin-top: 8px;background-color: #fff;">
+                            <i class="far fa-question-circle" style="margin-right: 5px;"></i> Search Guide
+                        </button>
+                    </div>
+                </li>
+                {{#if isCloudTrueERP}}
+                    <li class="nav-item no-arrow mx-1 trueERPConnection" id="" role="presentation" style="padding-right: 10px;">
+                        <a class="nav-link" href="linktrueerp" style="color:#00a3d3; border-style: solid; border-radius: 25px;border: 2px solid;">
+                            <i class="fas fa-link" style="margin-right: 5px;"></i> TrueERP
+                        </a>
+                    </li>
+                {{/if}}
+                {{#if isGreenTrack}}
+                    <li class="nav-item no-arrow mx-1 upgradeToVS1" id="upgrade" role="presentation">
+                        <a class="nav-link"
+                            href="https://www.payments.vs1cloud.com/mascartdirect/direct/add/product/12/bypass/1/?product=12&selected_configurable_option=&related_product=&item=12&form_key=fBHY2DVgwe0CQzLa&aw_sarp2_subscription_type=9&qty=1&bypass=1"
+                            target="_blank" style="color:#00a3d3"><img class="img-skype" src="images/upgradetovs1.png" style="height: 25px!important;"></a>
+                    </li>
+                    <li class="nav-item no-arrow mx-1 upgradeToVS1mobile" id="upgradem" role="presentation">
+                        <a class="nav-link"
+                            href="https://www.payments.vs1cloud.com/mascartdirect/direct/add/product/12/bypass/1/?product=12&selected_configurable_option=&related_product=&item=12&form_key=fBHY2DVgwe0CQzLa&aw_sarp2_subscription_type=9&qty=1&bypass=1"
+                            target="_blank" style="color:#00a3d3"><img class="img-skype" src="images/VS1CloudIcon.png" style="height: 25px!important;"></a>
+                    </li>
+                {{/if}}
+                {{#if isGreenTrack}}
+                {{else}}
+                    <li class="nav-item no-arrow mx-1 supportLi">
+                        <!-- <a class="nav-link" href="https://sos.splashtop.com" target="_blank" style="color:#00a3d3; border-style: solid; border-radius: 25px;border: 2px solid;">tests <img class="img-support" src="images/phone-support.png" style="width: 25px!important;padding: 2px;"> Support</a> -->
+                        <a class="nav-link pointer" data-toggle="modal" data-target="#supportModal" style="color:#00a3d3; border-style: solid; border-radius: 25px;border: 2px solid;">Get <img class="img-support" src="images/phone-support.png" style="width: 25px!important;padding: 2px;"> Support</a>
+                    </li>
+
+                    <div class="modal fade" role="dialog" tabindex="-1" id="supportModal">
+                        {{> supportmodalpop}}
+                    </div>
+                {{/if}}
+
+                <div class="d-none d-sm-block topbar-divider"></div>
+                <li class="nav-item dropdown no-arrow" role="presentation">
+                    <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#"><span class="d-none d-lg-inline mr-2 text-gray-600 small" id="logged_user"></span><img
+                                class="border rounded-circle img-profile" src="img/avatar.png"></a>
+                        <div class="dropdown-menu shadow dropdown-menu-right animated--grow-in" role="menu">
+                            {{#if isCloudUserPass}}
+                                <a class="dropdown-item userprofileclick" role="presentation" href="#" id="userprofileclick" name="userprofileclick">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Profile</a>
+                            {{/if}}
+                            {{#if includeSettings}}
+                                <a class="dropdown-item" role="presentation" href="#" id="navOrganisationSettings" name="navOrganisationSettings">
+                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Settings</a>
+                            {{/if}}
+                            <!-- <a class="dropdown-item" role="presentation" href="#"><i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Activity log</a> -->
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" role="presentation" href="#" onclick="logOutFunc()">
+                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Logout</a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+
+
+        </div>
+    </nav>
+
+    <style>
+        /* .headerprogressbarHidden {
+            height: 0px;
+            transition: height 0.15s ease-out;
+        }
+
+        .headerprogressbarShow {
+            height: 35px;
+            transition: height 0.25s ease-out;
+        } */
+
+        .headerprogressbarHidden {
+            display: none;
+        }
+
+        .headerprogressbarShow {
+            display: block;
+        }
+
+        .killProgressBar {
+            display: none !important;
+        }
+
+        .killAllocationPOP {
+            display: none !important;
+        }
+    </style>
+    <!-- <div class="headerprogressbarHidden headerprogressbar progress progress-striped active mb-4" style="border-radius: 0px;">
+        <div class="loadingbar progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"><span class="progressBarInner"></span></div>
+    </div> -->
+
+    {{#if isGreenTrack}}
+        <script>
+            function logOutFunc() {
+                window.open('/vs1greentracklogin', '_self');
+                CloudUser.update({
+                    _id: Session.get('mycloudLogonID')
+                }, {
+                    $set: {
+                        userMultiLogon: false
+                    }
+                });
+            };
+        </script>
+    {{else}}
+        <script>
+            function logOutFunc() {
+                window.open('/', '_self');
+                CloudUser.update({
+                    _id: Session.get('mycloudLogonID')
+                }, {
+                    $set: {
+                        userMultiLogon: false
+                    }
+                });
+            };
+        </script>
+    {{/if}}
+
+    <div id="" class="headerprogressbarHidden headerprogressbar">
+        <div class="modal show" role="dialog" tabindex="-1" id="waterfallModal2" data-backdrop="static" data-keyboard="false" style="display: block; background: rgba(0,0,0,0.7)!important;">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title"><span class="headerprogressLabel">Loading Your Information To Your Device</span></h5>
+                        <i class="fas fa-spinner fa-pulse" style="font-size: 16px; margin-top: 6px;"></i>
+                    </div>
+                    <div class="modal-body" style="padding-top: 0px;">
+                        <div class="row" style="margin-bottom: 32px;">
+                            <div class="col-12" style="margin-bottom: 16px; padding: 0px;">
+                                <div class="progress progress-striped active" style="height: 35px; margin-left: -4px; margin-right: -4px; border-radius: 0px;">
+                                    <div class="loadingbar progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="font-size: 20px; font-weight: 500;"><span
+                                            class="progressBarInner"></span></div>
+                                </div>
+                            </div>
+                            <div class="col-12" id="headerprogressLabelFirst" style="display:none;">
+                                <p class="" style="text-align: center;">This is the first time we are loading your tables to this device after an upgrade or first install, so it will take some time. Next time you login will be a lot quicker.</p>
+                            </div>
+                            <!-- <div class="col-12" style="text-align: center;font-size: 23px;font-weight: 700;margin-bottom: 8px; color: #1cc88a;">
+                                <span class="progressName"></span><i class="fas fa-check"></i>
+                            </div> -->
+                            <style>
+                                #processContainer {
+                                    height: 165px;
+                                    overflow: hidden;
+                                }
+
+                                #processContainerInner {
+                                    height: 100%;
+                                    text-align: center;
+                                }
+
+                                .process {
+                                    color: #1cc88a;
+                                    animation-name: redtogreen;
+                                    animation-duration: 2s;
+                                    animation-iteration-count: 1;
+                                }
+
+                                @keyframes redtogreen {
+                                    from {
+                                        color: #e74a3b;
+                                    }
+
+                                    to {
+                                        color: #1cc88a;
+                                    }
+                                }
+
+                                .process-check {
+                                    color: #1cc88a;
+                                    animation-name: transtogreen;
+                                    animation-duration: 4s;
+                                    animation-iteration-count: 1;
+                                }
+
+                                @keyframes transtogreen {
+                                    from {
+                                        color: rgba(0, 0, 0, 0);
+                                    }
+
+                                    to {
+                                        color: #1cc88a;
+                                    }
+                                }
+
+                                .hideProcess {
+                                    display: none;
+                                    transition: display 0.2s ease-out;
+                                    height: 0px;
+                                    transition: height 0.2s ease-out;
+                                }
+
+                                .hide {
+                                    display: none !important;
+                                }
+
+                                .checkmarkwrapper {
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                }
+
+                                .checkmark__circle {
+                                    stroke-dasharray: 166;
+                                    stroke-dashoffset: 166;
+                                    stroke-width: 2;
+                                    stroke-miterlimit: 10;
+                                    stroke: #1cc88a;
+                                    fill: none;
+                                    animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards
+                                }
+
+                                .checkmark {
+                                    width: 56px;
+                                    height: 56px;
+                                    border-radius: 50%;
+                                    display: block;
+                                    stroke-width: 2;
+                                    stroke: #fff;
+                                    stroke-miterlimit: 10;
+                                    margin: 0 auto;
+                                    box-shadow: inset 0px 0px 0px #1cc88a;
+                                    animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both
+                                }
+
+                                .checkmark__check {
+                                    transform-origin: 50% 50%;
+                                    stroke-dasharray: 48;
+                                    stroke-dashoffset: 48;
+                                    animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards
+                                }
+
+                                @keyframes stroke {
+                                    100% {
+                                        stroke-dashoffset: 0
+                                    }
+                                }
+
+                                @keyframes scale {
+
+                                    0%,
+                                    100% {
+                                        transform: none
+                                    }
+
+                                    50% {
+                                        transform: scale3d(1.1, 1.1, 1)
+                                    }
+                                }
+
+                                @keyframes fill {
+                                    100% {
+                                        box-shadow: inset 0px 0px 0px 30px #7ac142
+                                    }
+                                }
+                            </style>
+                            <div class="col-12">
+                                <div id="processContainer">
+                                    <div id="processContainerInner" style="font-size: 23px;">
+                                        <div class="processContainerAnchor"></div>
+                                        <div class="checkmarkwrapper hide" id="checkmarkwrapper" style="margin-top: 2em;">
+                                            <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                                                <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
+                                                <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" role="dialog" tabindex="-1" id="searchGuideModal">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Search Guide</h4>
+                    <button type="button" class="close btnClose" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+                    <p>Just swap the <b style="color: #00a3d3;">123</b> with the relevant ID</p>
+                    <div class="row">
+                        <style>
+                            .shorthandSearchli {
+                                border-bottom: 1px solid #858796;
+                                margin-bottom: 4px;
+                            }
+
+                            .shorthandCode {
+                                color: #00a3d3;
+/*                                cursor: pointer;*/
+                            }
+                        </style>
+                        <div class="col-6" style="padding-right: 0px;">
+                            <ul class="" style="list-style-type: none; padding-left: 0px;">
+                                <li class="shorthandSearchli">Account</li>
+                                <li class="shorthandSearchli">Bill</li>
+                                <li class="shorthandSearchli">Check </li>
+                                <li class="shorthandSearchli">Customer</li>
+                                <li class="shorthandSearchli">Employee</li>
+                                <li class="shorthandSearchli">Invoice</li>
+                                <li class="shorthandSearchli">Journal</li>
+                                <li class="shorthandSearchli">Payment</li>
+                                <li class="shorthandSearchli">Product</li>
+                                <li class="shorthandSearchli">Purchase Order</li>
+                                <li class="shorthandSearchli">Quote </li>
+                                <li class="shorthandSearchli">Refund</li>
+                                <li class="shorthandSearchli">Sales Order</li>
+                                <li class="shorthandSearchli">Shipping</li>
+                                <li class="shorthandSearchli">Stock Adjustment</li>
+                                <li class="shorthandSearchli">Stock Transfer</li>
+                                <li class="shorthandSearchli">Supplier</li>
+                                <li class="shorthandSearchli">Time Sheet</li>
+                            </ul>
+                        </div>
+
+                        <div class="col-6" style="padding-left: 0px;">
+                            <ul class="" style="list-style-type: none; padding-left: 0px;">
+                                <li class="shorthandSearchli shorthandCode">ACC-123</li>
+                                <li class="shorthandSearchli shorthandCode">BI-123</li>
+                                <li class="shorthandSearchli shorthandCode">CH-123</li>
+                                <li class="shorthandSearchli shorthandCode">CUS-123</li>
+                                <li class="shorthandSearchli shorthandCode">EMP-123</li>
+                                <li class="shorthandSearchli shorthandCode">IN-123</li>
+                                <li class="shorthandSearchli shorthandCode">JO-123</li>
+                                <li class="shorthandSearchli shorthandCode">PA-123</li>
+                                <li class="shorthandSearchli shorthandCode">PRO-123</li>
+                                <li class="shorthandSearchli shorthandCode">PO-123</li>
+                                <li class="shorthandSearchli shorthandCode">QU-123</li>
+                                <li class="shorthandSearchli shorthandCode">RE-123</li>
+                                <li class="shorthandSearchli shorthandCode">SO-123</li>
+                                <li class="shorthandSearchli shorthandCode">SH-123</li>
+                                <li class="shorthandSearchli shorthandCode">SA-123</li>
+                                <li class="shorthandSearchli shorthandCode">ST-123</li>
+                                <li class="shorthandSearchli shorthandCode">SUP-123</li>
+                                <li class="shorthandSearchli shorthandCode">TS-123</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- <p>In order to use these codes, simply type their shorthand followed by a dash and the relevant ID of the associated item.</p>
+                    <p>For example, to quickly search for a specific Product with an ID of 00123, you would simply type in "PRO-00123".</p> -->
+                </div>
+                <div class="modal-footer">
+                  <!-- <div id="close_helpbutton"><a href="#" id="close_help">Don't open by default<img src="icons/closehelp.PNG" class=""></a></div> -->
+                  <div class="custom-control custom-switch">
+                      <input type="checkbox" class="custom-control-input chkOpenByDefault" id="chkOpenByDefault">
+                      <label style="width: 275px;" class="custom-control-label" for="chkOpenByDefault">Don't open by default</label>
+                  </div>
+                <button class="btn btn-secondary btnClose" type="button" style="margin: -1rem 0rem -1rem auto;">Close</button></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" role="dialog" tabindex="-1" id="scanBarcodeModalHeader">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Barcode Scanner</h4>
+                    <button type="button" class="close"  aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+                    <style>
+                        #qr-reader-global>div:first-of-type {
+                            display: none !important;
+                        }
+
+                        #qr-reader-global__dashboard_section_swaplink {
+                            display: none !important;
+                        }
+
+                        #qr-reader-global__dashboard_section_csr>div>button:first-of-type {
+                            color: #fff !important;
+                            background-color: #00a3d3 !important;
+                            border-color: #00a3d3 !important;
+                            border: 1px solid transparent;
+                            display: inline-block !important;
+                            font-weight: 400 !important;
+                            text-align: center !important;
+                            vertical-align: middle !important;
+                            padding: .375rem .75rem !important;
+                            font-size: 1rem !important;
+                            line-height: 1.5 !important;
+                            border-radius: .35rem !important;
+                            transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+                        }
+                    </style>
+                    <!-- <div id="reader" style="width: 100%"></div> -->
+                    <div id="qr-reader-global" style="width:100%"></div>
+                </div>
+                <div class="modal-footer"><button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" role="dialog" tabindex="-1" id="searchPOP">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable modal-globalsearch" role="document" style="max-width: 75vw;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 style="">
+                        <div style="float: left;">Global Search List</div> <a role="button" data-toggle="modal" href="#helpGlobalSearch" class="helpGlobalSearch" style="float: right;"><label class="lblplay">Help</label><i
+                                class="fa fa-question-circle-o" style="font-size: 20px;"></i></a>
+                    </h4><button type="button" class="close btnCloseModal" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body" style="background-color: #ededed;">
+                    <div class="row d-xl-flex flex-row justify-content-xl-center">
+                        <div class="col d-xl-flex flex-grow-1 align-items-xl-start">
+                            <button id="btnRefresh" class="btn btn-primary btnRefreshSearch float-left" type="button" style="margin: 16px;min-width: 117.016px;"><i class="la la-lightbulb-o" style="margin-right: 5px;"></i>Refresh</button>
+                        </div>
+                        <div class="col">
+                            <button class="btn btn-primary printConfirm float-right" type="button" style="margin: 16px;"><i class="fa fa-print" style="padding-right: 5px;"></i>Print</button>
+                            <button class="btn btn-primary export float-right" type="button" style="margin: 16px;" id="exportbtn" name="exportbtn"><i class="fas fa-file-export" style="padding-right: 5px;"></i>Export</button>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <style>
+                            th {
+                                background-color: #ededed;
+                            }
+
+                            .table-striped tbody tr:nth-of-type(odd) {
+                                background-color: white !important;
+                            }
+
+                            .table-striped tbody tr:nth-of-type(even) {
+                                /* background-color: #0000000d !important; */
+                            }
+
+                            .JColResizer>tbody>tr>td,
+                            .JColResizer>tbody>tr>th {
+                                padding: .75rem !important;
+                            }
+
+                            .hiddenColumn {
+                                display: none;
+                            }
+
+                            .showColumn {
+                                display: table-cell;
+                                padding: .75rem;
+                                vertical-align: top;
+                            }
+
+                            input[type=number]::-webkit-inner-spin-button,
+                            input[type=number]::-webkit-outer-spin-button {
+                                opacity: 1;
+                            }
+
+                            table tr td {
+                                cursor: pointer;
+                            }
+
+                            .searchIDth {
+                                width: 10% !important;
+                            }
+
+                            .colStatusth {
+                                width: 5% !important;
+                                s
+                            }
+
+                            .globalRefTh {
+                                width: 20% !important;
+                            }
+
+                            /* .nameTh {
+                                width: 15% !important;
+                            } */
+                            .typeTh {
+                                width: 15% !important;
+                            }
+                        </style>
+                        <table id="tblSearchOverview" style="width:100%" class="table table-striped table-bordered tblSearchOverview">
+                            <thead>
+                                <tr class="dnd-moved">
+                                    <th class="searchIDth" style="width: 10%;">ID</th>
+                                    <th class="nameTh" style="width:;">Name</th>
+                                    <th class="typeTh" style="width: 15%;">Type</th>
+                                    <th class="globalRefTh" style="width: 20%;">Global Ref</th>
+                                    <th class="th colStatus colStatusth" style="width: 5%;">Status</th>
+                                    <!-- <th>Trans Date</th> -->
+                                </tr>
+                            </thead>
+                            <tbody class="pointer">
+                                <!-- {{#if searchdatatablerecords}}
+{{#each item in searchdatatablerecords}}
+<tr class="dnd-moved" id="{{item.id}}" style="cursor: pointer;">
+<td contenteditable="false" class="colName" >{{item.company}}</td>
+<td contenteditable="false" class="colType">{{item.type}}</td>
+<td contenteditable="false" class="colTransGlobal">{{item.globalref}}</td>
+<td contenteditable="false" class="colTransDate">{{item.transDate}}</td>
+</tr>
+{{/each}}
+{{/if}} -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <form></form>
+                <div class="modal-footer" style="background-color: #ededed;">
+                    <button class="btn btn-secondary btnCloseModal btnCloseModalMobile" data-dismiss="modal" type="button" style="margin: 8px;"><i class="fa fa-close" style="margin-right: 5px;"></i>Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Start Help View Modal -->
+    <div class="modal fade" role="dialog" tabindex="-1" id="helpGlobalSearch">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="padding-bottom: 8px;">
+                    <h4>Help</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-center text-muted"><a role="button" data-toggle="modal" href="#helpVideoModal" class="btn btn-primary">View Help Video</a></p>
+                    <p class="text-center text-muted"><a href="https://vs1forum.com/" target="_blank" class="btn btn-primary">Download Help File</a></p>
+                    <p class="text-center text-muted"><button class="btn btn-primary" type="button">Employ Advisor</button></p>
+                    <p class="text-center text-muted" style="margin: 0px;"><a href="https://vs1forum.com/ucp.php?mode=register&cloudusername={{loggedCompany}}" target="_blank" class="btn btn-primary">Go To Forum</a></p>
+                </div>
+                <div class="modal-footer" style="padding: 6px;"><button class="btn btn-light" data-dismiss="modal" type="button">Close</button></div>
+            </div>
+        </div>
+    </div>
+    <!-- End Help View Modal -->
+
+    <div class="modal fade" role="dialog" tabindex="-1" id="helpVideoModal">
+        <div class="modal-dialog" role="document" style="max-width: 670px!important;">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <h4 class="title-header">Global Search</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+                    <!-- <iframe width="640" height="360" src="https://player.vimeo.com/video/99892791" frameborder="0" allowfullscreen=""></iframe> -->
+                    <!-- <iframe width="640" height="360" src="https://www.youtube.com/embed/BzxoYOp42fg" frameborder="0" allowfullscreen=""></iframe> -->
+                    <video id="myVideo" width="640" height="360" controls="" name="media" style="border: solid 5px #999999f0; height: auto; outline: none;">
+                        <source src="https://erphelpes.com/vs1videos/comingsoon.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</template>

@@ -1,0 +1,55 @@
+<template name="clienttypemodal">
+<div class="modal fade" role="dialog" tabindex="-1" id="myModalClientType">
+    <div class="modal-dialog  modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 style="" ><div id="add-clienttype-title" name="add-clienttype-title" style="float: left;">Add New Customer Type</div>
+                  <!-- <a role="button" data-toggle="modal" href="#helpModalAdd" class="helpModalAdd" style="float: right;"><label class="lblplay">PLAY</label><i class="far fa-play-circle"  style="font-size: 20px;"></i></a> -->
+                  <a role="button" data-toggle="modal" href="#helpViewModalAdd"  style="font-size: 20px; padding-left:5px;">Help <i class="fa fa-question-circle-o" style="font-size: 20px;"></i></a>
+
+                  <!-- Start Help View Modal -->
+                <div class="modal fade" role="dialog" tabindex="-1" id="helpViewModalAdd">
+                      <div class="modal-dialog modal-sm" role="document">
+                          <div class="modal-content">
+                              <div class="modal-header" style="padding-bottom: 8px;">
+                                  <h4>Help</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                                  <div class="modal-body">
+                                      <p class="text-center text-muted"><a role="button" data-toggle="modal" href="#helpModalAdd" class="btn btn-primary helpModal">View Help Video</a></p>
+                                      <p class="text-center text-muted"><a href="https://vs1forum.com/viewtopic.php?f=6&t=186" target="_blank" class="btn btn-primary">Download Help File</a></p>
+                                      <p class="text-center text-muted"><button class="btn btn-primary" type="button">Employ Advisor</button></p>
+                                      <p class="text-center text-muted" style="margin: 0px;"><a href="https://vs1forum.com/ucp.php?mode=register&cloudusername={{loggedCompany}}" target="_blank" class="btn btn-primary">Go To Forum</a></p>
+                                  </div>
+                              <div class="modal-footer" style="padding: 6px;"><button class="btn btn-light" data-dismiss="modal" type="button">Close</button></div>
+                          </div>
+                      </div>
+                </div>
+                  <!-- End Help View Modal -->
+                </h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+            <div class="modal-body" style="background-color: #ededed;">
+                <input type="hidden" class="form-control" id="edtClientTypeID" name="edtClientTypeID" style="display:none;">
+                <div class="row no-gutters">
+                    <div class="col d-xl-flex align-items-xl-end">
+                        <div class="form-group flex-grow-1" style="margin: 8px;"><label data-toggle="tooltip" data-bs-tooltip="" data-placement="bottom">Type Name</label>
+                            <input type="text" class="form-control" id="edtClientTypeName" name="edtClientTypeName">
+                            <input type="hidden" class="form-control" id="typeID" name="typeID">
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row no-gutters">
+                    <div class="col d-xl-flex align-items-xl-end">
+                        <div class="form-group flex-grow-1" style="margin: 8px;"><label>Description</label>
+                            <textarea class="form-control" rows="5" id="txaDescription" name="txaDescription"></textarea>
+                          </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer" style="background-color: #ededed;">
+                <button class="btn btn-primary btnSaveClientType" type="button"><i class="fa fa-save" style="padding-right: 8px;"></i>Save</button>
+                <button class="btn btn-secondary" data-dismiss="modal" type="button"><i class="fa fa-close" style="margin-right: 8px;"></i>Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+</template>

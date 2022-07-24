@@ -1,0 +1,39 @@
+<template name="billsPendingWidget">
+    <div class="billsPendingWidget">
+    <div class="dash3" style="position: relative">
+        <div class="loader" id="billsPendingWidget"><i class="fa fa-spinner fa-spin" style="font-size:24px"></i></div>
+        <a href="/purchases"><h3>Bills you need to pay</h3></a>
+        <hr>
+        <a href="/billadd" class="dash_links">New bill</a>
+
+        <div class="dash_invtotals">
+
+            <table class="dash_invtotals_table">
+                <tbody>
+                <tr>
+                    <td><span class="sumBillDraft"><a href="/billslist/Draft"
+                                                       id="sumBillDraft">{{sumBillDraft}}  Draft bill</a></span></td>
+                    <td><span class="totBillDraft"><a href="/billslist/Draft"
+                                                       id="totBillDraft">{{totBillDraft}}</a></span></td>
+                </tr>
+                <tr>
+                    <td><span class="sumBillPayment"><a href="/billslist/AwaitingPayment"
+                                                        id="sumBillPayment">{{sumBillPayment}}  Awaiting payment</a></span></td>
+                    <td><span class="totBillPayment"><a href="/billslist/AwaitingPayment"
+                                                        id="totBillPayment">{{totBillPayment}}</a></span></td>
+                </tr>
+                <tr>
+                    <td><span class="sumBillOverdue"><a href="/billslist/Paid"
+                                                        class="dash_overdue"
+                                                        id="sumBillOverdue">{{sumBillOverdue}}  Overdue</a></span></td>
+                    <td><span class="totBillOverdue"><a href="/billslist/Paid"
+                                                        class="dash_overdue"
+                                                        id="totBillOverdue">{{totBillOverdue}}</a></span></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="bills"></div>
+    </div>
+    </div>
+</template>

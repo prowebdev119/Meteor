@@ -1,0 +1,360 @@
+<template name="stockadjustmentoverview">
+    <div style="margin-top: -24px;">
+        <div class="fullScreenSpin" style="display:none;">
+            <div class="spinner"></div>
+        </div>
+        <!-- <style>
+            .dataTables_filter {
+                display: none;
+            }
+        </style> -->
+        <header style="padding: 16px;padding-bottom: 0px; background-color: #ededed;">
+            <h2 style="margin: 16px; margin-bottom: 0px">Stock Adjustments
+
+                <a role="button" data-toggle="modal" href="#helpViewModal"  style="font-size: 20px;">Help <i class="fa fa-question-circle-o" style="font-size: 20px;"></i></a>
+
+                <!-- Start Help View Modal -->
+                <div class="modal fade" role="dialog" tabindex="-1" id="helpViewModal">
+                    <div class="modal-dialog modal-sm" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header" style="padding-bottom: 8px;">
+                                <h4>Help</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                            <div class="modal-body">
+                                <p class="text-center text-muted"><a role="button" data-toggle="modal" href="#helpModal" class="btn btn-primary helpModal">View Help Video</a></p>
+                                <p class="text-center text-muted"><a href="https://vs1forum.com/" target="_blank" class="btn btn-primary">Download Help File</a></p>
+                                <p class="text-center text-muted"><button class="btn btn-primary" type="button">Employ Advisor</button></p>
+                                <p class="text-center text-muted" style="margin: 0px;"><a href="https://vs1forum.com/ucp.php?mode=register&cloudusername={{loggedCompany}}" target="_blank" class="btn btn-primary">Go To Forum</a></p>
+                            </div>
+                            <div class="modal-footer" style="padding: 6px;"><button class="btn btn-light" data-dismiss="modal" type="button">Close</button></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Help View Modal -->
+                <style>
+                    @media screen and (max-width: 376px) {
+                        .btnOpenSettings {
+                            margin-right: 0px;
+                        }
+                    }
+                </style>
+
+
+                <div class="modal fade" role="dialog" tabindex="-1" id="myModal2">
+                    <div class="modal-dialog modal-dialog-centered" role="document" style="float: right;">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4>Display Settings</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                            <div class="modal-body">
+                                <div>
+                                    {{#if tableheaderrecords}}
+                                    <form class="d-xl-flex align-items-xl-center">
+                                        <div class="flex-grow-1" style="font-size: 16px !important;">
+                                            <style>
+                                                .groove {
+                                                    border-style: solid;
+                                                    border-width: 1px;
+                                                    width: 200px;
+                                                    padding: 2px;
+                                                    border-radius: .35rem;
+                                                }
+                                                .custom-control-label{
+                                                    position: absolute;
+                                                }
+                                                .rngRange {
+                                                    position: relative;
+                                                    display: flex;
+                                                    flex-direction: column;
+                                                    width: 100%;
+                                                    pointer-events: auto;
+                                                    background-color: rgb(255, 255, 255);
+                                                    background-clip: padding-box;
+                                                    border: 1px solid rgb(133, 135, 150);
+                                                    border-radius: .3rem;
+                                                    border-style: solid;
+                                                    border-width: 1px;
+                                                    padding: 2px;
+                                                    border-radius: .35rem;
+                                                    color: rgb(128, 128, 128);
+                                                    height:inherit!important;
+                                                }
+                                                @media only screen and (max-width: 480px) {
+                                                    .modal.show .modal-dialog{
+                                                        float: inherit!important;
+                                                        left: inherit!important;
+                                                        top: auto!important;
+
+                                                    }
+                                                }
+                                                #page-top.active{
+                                                    padding-right: 0px!important;
+                                                }
+                                            </style>
+                                            {{#each item in tableheaderrecords}}
+                                            {{#if equals item.sTitle "id"}}
+                                            {{else}}
+
+                                            <div id="{{item.sIndex}}" class="columnSettings">
+                                                <div class="custom-control custom-switch" style="margin: 8px; float:left;">
+                                                    <input class="custom-control-input chkDatatable" type="checkbox" id="chkSalesNo-{{item.sIndex}}" name="chkSalesNo-{{item.sIndex}}" checked="{{#if item.sVisible}}checked{{else}}{{/if}}" value="{{item.sTitle}}">
+                                                    <label class="custom-control-label" for="chkSalesNo-{{item.sIndex}}"></label>
+                                                    <div contenteditable="true" class="groove divcolumn" type="text" value="{{item.sTitle}}" valueupdate="{{item.sClass}}">{{item.sTitle}}</div>
+                                                </div>
+                                                <div class="d-xl-flex align-items-xl-center divColWidth" style="margin: 8px;">
+                                                    <label class="text-nowrap" style="padding-left: 0px;margin-top: 8px;">Width: <!--<span class="spWidth" value="{{item.sTitle}}">{{item.sWidth}}px</span>--></label>
+                                                    <input class="custom-range rngRange" type="number" style="margin: 8px;" value="{{item.sWidth}}" min="0" max="1000">
+                                                    <!-- <div contenteditable="true" class="groove rngRange" type="text" value="{{item.sWidth}}" min="0" max="1000">{{item.sWidth}}px</div> -->
+                                                </div>
+                                            </div>
+
+                                            {{#if equals item.sVisible true}}
+                                            <script>
+                                                $("#"+ {{item.sIndex}} +".chkDatatable").attr("checked","checked");
+                                            </script>
+                                            {{else}}
+                                            <script>
+                                                $("#"+ {{item.sIndex}} +".chkDatatable").removeAttr("checked");
+                                            </script>
+                                            {{/if}}
+
+                                            {{/if}}
+                                            {{/each}}
+                                        </div>
+                                    </form>
+                                    {{/if}}
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary saveTable" type="button"><i class="fa fa-save" style="margin-right: 5px;"></i>Save</button>
+                                <button class="btn btn-warning resetTable" data-dismiss="modal" type="reset"><i class="fa fa-repeat" style="margin-right: 5px;"></i>Reset</button>
+                                <button class="btn btn-secondary" data-dismiss="modal" type="button"><i class="fa fa-remove" style="margin-right: 5px;"></i>Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </h2>
+        </header>
+
+        <div class="row d-xl-flex flex-row justify-content-xl-center" style="padding: 0px 16px; background-color: #ededed;">
+            <div class="col float-left flex-grow-1 mb-4">
+                <button id="btnRefresh" class="btn btn-primary btnRefresh" type="button" style="margin: 16px;"><i class="la la-lightbulb-o" style="margin-right: 5px;"></i>Refresh</button>
+                <button class="btn btn-primary btnnewstockadjustment" type="button" style="margin: 16px;"><i class="fa fa-plus" style="padding-right: 5px;"></i>New Stock Adjustment</button>
+            </div>
+            <div class="col">
+                <a class="btn btnOpenSettings float-right" role="button" style="margin: 16px;" data-toggle="modal" href="#myModal2"><i class="icon ion-android-more-horizontal"></i></a>
+                <button class="btn btn-primary printConfirm float-right" type="button" style="margin: 16px;"><i class="fa fa-print" style="padding-right: 5px;"></i>Print</button>
+                <button class="btn btn-primary export float-right" type="button" style="margin: 16px;" id="exportbtn" name="exportbtn"><i class="fas fa-file-export" style="padding-right: 5px;"></i>Export</button>
+            </div>
+        </div>
+
+        <div style="padding: 0px 12px;">
+            <div class="card-body p-3 rounded">
+                <div class="table-responsive">
+                    <style>
+                        th {
+                            background-color: #ededed;
+                        }
+                        .table-striped tbody tr:nth-of-type(odd) {
+                            background-color: white !important;
+                        }
+
+                        .table-striped tbody tr:nth-of-type(even) {
+                            background-color: #0000000d !important;
+                        }
+
+                        .JColResizer > tbody > tr > td, .JColResizer > tbody > tr > th {
+                            padding: .75rem!important;
+                        }
+                        .hiddenColumn{
+                            display:none;
+                        }
+                        .showColumn {
+                            display:table-cell;
+                            padding:.75rem;
+                            vertical-align:top;
+                        }
+
+                        input[type=number]::-webkit-inner-spin-button,
+                        input[type=number]::-webkit-outer-spin-button {
+                            opacity: 1;
+                        }
+
+                        .colStockAdjID {
+                            width: 8% !important;
+                        }
+
+                    </style>
+                    <table id="tblStockAdjustOverview" style="width:100%;" class="dataTable table table-striped table-bordered tblStockAdjustOverview">
+                        <thead>
+                            <tr class="dnd-moved">
+                                <th class="th colStockAdjID" style="width: 3%;">Adjust No.</th>
+                                <th class="th colSortDate hiddenColumn">id</th>
+                                <th class="th colCreationDate" style="width:105px;">Creation Date</th>
+                                <th class="th colAccountName" style="width:200px;">Account Name</th>
+                                <th class="th colAdjustmentDate" style="width:150px;">Adjustment Date</th>
+                                <!-- <th class="th colProcessed" style="width:80px;">Processed?</th>
+<th class="th colIsStockTake" style="width:105px;">Is Stock Take?</th> -->
+                                <th class="th colSaleCustField1 hiddenColumn">Custom Field 1</th>
+                                <th class="th colSaleCustField2 hiddenColumn">Custom Field 2</th>
+                                <th class="th colEmployee" style="width:200px;">Employee</th>
+                                <th class="th colTotalCost" style="width:80px;">Total Cost</th>
+                                <th class="th colNotes">Comments</th>
+                                <th class="th colStatus" style="width:70px;">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#if datatablerecords}}
+                            {{#each item in datatablerecords}}
+                            <tr class="dnd-moved" id="{{item.id}}" style="cursor: pointer;">
+                                <td contenteditable="false" class="colStockAdjID">{{item.id}}</td>
+                                <td contenteditable="false" class="colSortDate hiddenColumn">{{item.sortdate}}</td>
+                                <td contenteditable="false" class="colCreationDate" ><span style="display:none;">{{item.sortdate}}</span>{{item.creationdate}}</td>
+                                <td contenteditable="false" class="colAccountName">{{item.accountname}}</td>
+                                <td contenteditable="false" class="colAdjustmentDate">{{item.adjustmentdate}}</td>
+                                <td contenteditable="false" class="colSaleCustField1 hiddenColumn">{{item.custfield1}}</td>
+                                <td contenteditable="false" class="colSaleCustField2 hiddenColumn">{{item.custfield2}}</td>
+                                <td contenteditable="false" class="colEmployee">{{item.employee}}</td>
+                                <td contenteditable="false" class="colTotalCost" style="text-align: right!important;">{{item.totalcostex}}</td>
+                                <td contenteditable="false" class="colNotes" >{{item.notes}}</td>
+                                {{#if equals item.processed true}}
+                                <td class="colStatus" style="background-color: #1cc88a !important; color:#fff">Processed</td>
+                                {{else}}
+                                <td class="colStatus" style="background-color: #f6c23e !important; color:#fff">On Hold</td>
+                                {{/if}}
+                            </tr>
+                            {{/each}}
+                            {{/if}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        modalDraggable();
+    </script>
+
+    <!-- Start PDF -->
+    <div style="width: 280mm;background-color: #ffffff;padding: 8px; display:none!important;" id="html-2-pdfwrapper" name="html-2-pdfwrapper">
+        <div class="d-xl-flex align-items-xl-start">
+            <div class="d-flex d-xl-flex flex-column flex-nowrap align-items-xl-center" >
+                <div class="d-lg-flex d-xl-flex flex-grow-0 align-items-lg-start align-items-xl-start">
+                    <div class="d-xl-flex flex-grow-1 align-items-xl-start">
+                        <div class="card float-left flex-grow-1 specialcard" style="margin: 8px; border: none !important;">
+                            <div class="card-body">
+                                <div class="d-lg-flex justify-content-lg-start" style="margin-bottom: 16px;">
+                                    <div class="d-lg-flex flex-column justify-content-lg-start"><img src="assets/img/VS1.png" style="width: 200px;margin-bottom: 8px;"><a href="#">www.vs1cloud.com</a></div>
+                                    <div class="d-lg-flex d-xl-flex justify-content-lg-center align-items-xl-start card-text">
+                                        <div style="padding-left: 16px;font-weight: bold;">
+                                            <p style="margin-bottom: 0px;">Cloud Customer PTY Ltd</p>
+                                            <p style="margin-bottom: 0px;">Unit 123, 109 Main Street</p>
+                                            <p style="margin-bottom: 8px;">Costa Mesa, CA 90210</p>
+                                            <p style="margin-bottom: 0px;">ABN: 95684365812</p>
+                                            <p style="margin-bottom: 0px;">Phone: 084 568 9842</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card float-right flex-grow-1 specialcard" style="margin: 8px; border: none !important;">
+                            <div class="card-body">
+                                <h4 class="card-title" style="font-weight: bold;">Sales Overview</h4>
+                                <div class="d-lg-flex d-xl-flex align-items-xl-start card-text">
+                                    <div class="d-lg-flex d-xl-flex flex-column align-items-lg-start align-items-xl-start" style="padding-right: 16px;font-weight: bold;"><label class="text-nowrap">Date:</label></div>
+                                    <div style="padding-left: 16px;">
+                                        <p style="margin-bottom: 8px;">{{currentdate}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-grow-1">
+                    <div class="card flex-grow-1 specialcard" style="margin: 8px; border: none !important;">
+                        <div class="card-body" style="padding-right: 0px!important;">
+                            <div class="table-responsive">
+                                <table class="table table-sm">
+                                    <thead class="text-secondary" style="color: rgb(251,251,251);">
+                                        <tr>
+                                            <!-- <th class="text-nowrap">Sales No</th>
+<th class="text-nowrap">Employee</th>
+<th class="text-nowrap text-left">Sale Date</th>
+<th class="text-nowrap text-left">Customer</th>
+<th class="text-nowrap text-left">Amount</th>
+<th class="text-nowrap text-left">Status</th>
+<th class="text-nowrap text-left">SaleCustField1<br></th>
+<th class="text-nowrap text-left">SaleCustField2<br></th>
+<th class="text-nowrap text-left">Comment<br></th>
+-->
+                                            <th class="th colSaleDate text-nowrap text-left">Sale Date</th>
+                                            <th class="th colSalesNo text-nowrap text-left">Sales No.</th>
+                                            <th class="th colCustomer text-nowrap text-left">Customer</th>
+                                            <th class="th colAmountEx text-nowrap text-left">Amount(Ex)</th>
+                                            <th class="th colTax text-nowrap text-left">Tax</th>
+                                            <th class="th colAmount text-nowrap text-left">Amount</th>
+                                            <th class="th colPaid text-nowrap text-left">Paid</th>
+                                            <th class="th colBalanceOutstanding text-nowrap text-left">Balance Outstanding</th>
+                                            <th class="th colStatus hiddenColumn text-nowrap text-left">Status</th>
+                                            <th class="th colSaleCustField1 hiddenColumn text-nowrap text-left">SaleCustField1</th>
+                                            <th class="th colSaleCustField2 hiddenColumn text-nowrap text-left">SaleCustField2</th>
+                                            <th class="th colEmployee hiddenColumn text-nowrap text-left">Employee</th>
+                                            <th class="th colComments text-nowrap text-left">Comments</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {{#each item in datatablerecords}}
+                                        <tr>
+                                            <td class="colSaleDate" >{{item.saledate}}</td>
+                                            <td class="colSalesNo">{{item.id}}</td>
+                                            <td class="colCustomer">{{item.customername}}</td>
+                                            <td class="colAmountEx text-nowrap text-right" >{{item.totalamountex}}</td>
+                                            <td class="colTax text-nowrap text-right">{{item.totaltax}}</td>
+                                            <td class="colAmount text-nowrap text-right">{{item.totalamount}}</td>
+                                            <td class="colPaid text-nowrap text-right">{{item.totalpaid}}</td>
+                                            <td class="colBalanceOutstanding text-nowrap text-right">{{item.totaloustanding}}</td>
+                                            <td class="colStatus hiddenColumn">{{item.salestatus}}</td>
+                                            <td class="colSaleCustField1 hiddenColumn">{{item.custfield1}}</td>
+                                            <td class="colSaleCustField2 hiddenColumn">{{item.custfield2}}</td>
+                                            <td class="colEmployee hiddenColumn">{{item.employee}}</td>
+                                            <td class="colComments" >{{item.comments}}</td>
+                                        </tr>
+                                        {{/each}}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-grow-0" style="width: 100%;">
+                    <!-- <span class="d-lg-flex d-xl-flex justify-content-lg-end justify-content-xl-end" style="font-size: 10px;margin-right: 8px;">Page 1 of 1</span> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END PDF -->
+
+    <!-- Start Help Video Modal -->
+    <div class="modal fade" role="dialog" tabindex="-1" id="helpModal">
+        <div class="modal-dialog" role="document" style="max-width: 670px!important;">
+            <div class="modal-content" >
+                <div class="modal-header" >
+
+                    <h4 class="title-header" >Stock Adjustment</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+                    <!-- <iframe width="640" height="360" src="https://player.vimeo.com/video/99892791" frameborder="0" allowfullscreen=""></iframe> -->
+                    <!-- <iframe width="640" height="360" src="https://www.youtube.com/embed/BzxoYOp42fg" frameborder="0" allowfullscreen=""></iframe> -->
+                    <video id="myVideo" width="640" height="360" controls="" name="media" style="border: solid 5px #999999f0; height: auto; outline: none;">
+                        <source src="https://erphelpes.com/vs1videos/stockadjustmentlist.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- End Help Video Modal -->
+    <script>
+        modalDraggable();
+    </script>
+</template>

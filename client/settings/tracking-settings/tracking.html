@@ -1,0 +1,136 @@
+<template name="trackingSettings">
+    <div class="trackingSettings">
+        <div class="active_page">
+            <div class="active_page_content">
+                <p><a href="/settings">General Settings</a> &nbsp;›&nbsp;
+                </p><br>
+                <h1>Tracking Settings</h1>
+            </div>
+            <div class="gettingStarted">
+                <div id="wrapper_main">
+                    <div class="documentHeader"><p>Create unique categories for transactions to suit
+                        your business needs</p>
+                        <p><a class="videoTrigger" href="#">Learn how</a> to set them up and how to
+                            access them in your financial reports</p>
+                        <p style="border: 0">See our <a href="#" target="_self">help article</a>
+                            to learn more</p><a href="#" class="close" id="ext-gen14">Hide Help</a><a
+                                href="javascript:void(0)"
+                                class="video video-tracking videoTrigger html shadow">&nbsp;</a></div>
+                </div>
+            </div>
+        </div>
+
+           <div class="AllPagePaddingPullSize">
+               <div id="wrapper_main">
+                   <main id="page-content-wrapper_main" role="main">
+                       <div class="AllPagePadding">
+                           <a href="#" id="showModal2" class="expcBublink"> What's this?
+                               <img src="/icons/exp_bubble.jpg">
+                               <div class="addActivityStatement" id="currentClaims2">
+                                   <div class="headTitle">
+                                       <span id="closeCurrModel2"> <img src="/img/closeButton.png"></span>
+                                       <span>Tracking categories</span>
+                                   </div>
+                                   <div class="bodyTitle">
+                                       <p>Add up to 2 tracking categories to see how different areas of your business (such
+                                           as departments, cost centres, or locations) are performing. </p>
+                                       <ul>
+                                           <li>Enter a tracking category name <span class="UK">(eg </span>Branch)</li>
+                                           <li class="UK">Enter up to 100 category options for each category (eg West
+                                               Yorkshire, West Midlands, Lincolnshire)
+                                           </li>
+                                       </ul>
+                                       <p><a target="_self" href="#">Set up
+                                           tracking categories to monitor different areas of your business</a></p>
+                                   </div>
+                               </div>
+                           </a>
+                           <div class="secondaryButtons">
+                               <a href="#"><i class="fa fa-plus-square"></i> Add Tracking Category</a>
+                           </div>
+                           <div class="containertab">
+                               <ul class="nav nav-tabs">
+                                   <li class="active"><a data-toggle="tab" href="#home">Region</a></li>
+                               </ul>
+                               <div class="tab-content">
+                                   <div id="home" class="tab-pane fade in active">
+                                       <div class="HalfWidth">
+                                           <p>Tracking category name</p>
+                                           <div class="trackingItems ">
+                                               <span class="item">Region</span>
+                                               <span class="tracking-delete-button"><a href="#"><img
+                                                       src="../img/RenameIcon.gif"></a></span>
+                                               <span class="trackingRename" data-toggle="modal" data-target="#myModal"><a
+                                                       href="#">Rename</a></span>
+                                           </div>
+                                           <p class="categoryOptions">Category options</p>
+                                           <div class="trackingItems ">
+                                               <div class="itemsTracking">
+                                                   <span class="item">Eastside</span>
+                                                   <span class="tracking-delete-button"><a href="#"><img
+                                                           src="../img/RenameIcon.gif"></a></span>
+                                                   <span class="trackingRename"><a href="#">Rename</a></span>
+                                               </div>
+                                               <div class="itemsTracking">
+                                                   <span class="item">North</span>
+                                                   <span class="tracking-delete-button"><a href="#"><img
+                                                           src="../img/RenameIcon.gif"></a></span>
+                                                   <span class="trackingRename"><a href="#">Rename</a></span>
+                                               </div>
+                                               <div class="itemsTracking">
+                                                   <span class="item">South</span>
+                                                   <span class="tracking-delete-button"><a href="#"><img
+                                                           src="../img/RenameIcon.gif"></a></span>
+                                                   <span class="trackingRename"><a href="#">Rename</a></span>
+                                               </div>
+                                               <div class="itemsTracking">
+                                                   <span class="item">West Coast</span>
+                                                   <span class="tracking-delete-button"><a href="#"><img
+                                                           src="../img/RenameIcon.gif"></a></span>
+                                                   <span class="trackingRename"><a href="#">Rename</a></span>
+                                               </div>
+
+                                           </div>
+                                           <div class="secondaryButtons">
+                                               <a href="#"> <i class="fa fa-level-up"></i> Add another option</a>
+                                           </div>
+                                       </div>
+                                   </div>
+
+                               </div>
+                           </div>
+                       </div>
+                   </main>
+               </div>
+           </div>
+
+        <div class="modal fade editTracking" id="myModal" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Edit Tracking</h4>
+                    </div>
+                    <div class="modal-body">
+                        <h2>Region tracking</h2>
+                        <p>Rename the Region tracking category.</p>
+                        <label>Category:</label>
+                        <input type="text" class="form-control">
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-success" data-dismiss="modal">Rename</button>
+                            <button type="button" class="btn" data-dismiss="modal">Cancel</button>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+      modalDraggable();
+   </script>
+</template>

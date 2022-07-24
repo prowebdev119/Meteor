@@ -1,0 +1,464 @@
+<template name="crmoverview">
+  <div style="margin-top: -24px;">
+
+    <header style="padding: 16px;padding-bottom: 0px;">
+      <h2 style="margin: 14px;margin-bottom: 0px;">CRM Overview
+        {{> crm_help_modal}}
+      </h2>
+    </header>
+
+    {{> crm_top_cards}}
+    {{> crm_top_menu}}
+
+    {{> alltaskdatatable}}
+
+    <div class="row justify-content-center">
+
+      {{> tasklist_sidebar}}
+
+      <div class="col-8">
+
+        {{#if isAllTasks}}
+        <div class="crmtasksall">
+          {{> alltasks}}
+        </div>
+        {{/if}}
+
+        {{#if isTaskToday}}
+        <div class="crmtasktoday">
+          {{> tasktoday}}
+        </div>
+        {{/if}}
+
+        {{#if isTaskUpcoming}}
+        <div class="crmtaskupcoming">
+          {{> taskupcoming}}
+        </div>
+        {{/if}}
+
+      </div>
+
+      {{> taskmodal}}
+    </div>
+
+  </div>
+
+  <style>
+    .banklink:hover {
+      color: #00a3d3 !important;
+      text-decoration: underline;
+    }
+
+    .task_priority_0 {
+      color: #858796;
+    }
+
+    .task_priority_1 {
+      color: #0013bd;
+    }
+
+    .task_priority_2 {
+      color: #a76213;
+    }
+
+    .task_priority_3 {
+      color: #cb1705;
+    }
+
+    .task_priority_0 label:before {
+      border: 2px solid #b7b9cc !important;
+    }
+
+    .task_priority_1 label:before {
+      border: 2px solid #0013bd !important;
+    }
+
+    .task_priority_2 label:before {
+      border: 2px solid #a76213 !important;
+    }
+
+    .task_priority_3 label:before {
+      border: 2px solid #cb1705 !important;
+    }
+
+    .chk_complete:before {
+      width: 18px;
+      height: 18px;
+      margin: 3px;
+      border-radius: 100% !important;
+    }
+
+    .chk_complete:after {
+      margin: 4px;
+    }
+
+    .taskNodate {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .taskDropSecondFlag {
+      font-size: 18px;
+      padding: 0.6rem 0.8rem;
+    }
+
+    .taskDropMenuToday {
+      color: #199700;
+    }
+
+    .taskDropMenuTomorrow {
+      color: rgb(255, 174, 0)
+    }
+
+    .taskDropMenuWeekend {
+      color: rgb(0, 102, 255);
+    }
+
+    .taskDropMenuNextweek {
+      color: #9e169e
+    }
+
+    .taskDropMenuNodate {
+      color: #858796;
+    }
+
+    .dropdown-item-wrap {
+      padding: 0.25rem 1.5rem;
+    }
+
+    .taskDropSecondMenu {
+      font-size: 22px;
+      padding: 0.6rem 0.4rem;
+    }
+
+    .addTaskModal {
+      border-radius: 5px;
+      padding: 15px;
+      border: solid 1px #e3e3e3;
+    }
+
+    .crmtaskdrop {
+      min-width: 15rem !important;
+    }
+
+    .dropdown-menu a {
+      cursor: pointer;
+    }
+
+    .menuItems {
+      float: right;
+    }
+
+    .taskmenuoption:hover {
+      background-color: #f8f9fc;
+      cursor: pointer;
+    }
+
+    .projectmenuoption {
+      /* font-size: 14px; */
+      padding-left: 22px;
+    }
+
+    .projectmenuoption:hover {
+      background-color: #f8f9fc;
+      cursor: pointer;
+    }
+
+    .projectmenuoption:hover .projectMenu {
+      display: block;
+    }
+
+    .projectmenuoption:hover .projectItems {
+      display: none;
+    }
+
+    .projectmenuoption>span {
+      color: #858796 !important;
+    }
+
+    .projectItems {
+      float: right;
+    }
+
+    .projectMenu {
+      float: right;
+      display: none;
+    }
+
+    .newProject {
+      float: right;
+      display: none;
+      padding: 0px !important;
+    }
+
+    .newProject:hover {
+      background-color: rgba(0, 0, 0, 0);
+      border-color: rgba(0, 0, 0, 0);
+      color: #00a3d3;
+    }
+
+    .newProject:active {
+      background-color: rgba(0, 0, 0, 0);
+      border-color: rgba(0, 0, 0, 0);
+      color: #00a3d3;
+    }
+
+    #projectsMenuOption:hover .newProject {
+      display: block;
+    }
+
+    .projectmenuoption:hover .newProject {
+      display: block;
+    }
+
+    .projectDropdown {
+      color: #858796;
+      padding: 0px;
+      background-color: rgba(0, 0, 0, 0);
+      border-color: rgba(0, 0, 0, 0);
+    }
+
+    .projectDropdown:hover {
+      color: #858796;
+      padding: 0px;
+      background-color: rgba(0, 0, 0, 0);
+      border-color: rgba(0, 0, 0, 0);
+    }
+
+    .projectDropdown:after {
+      display: none;
+    }
+
+    .project-dropdown-menu {
+      width: 225px !important;
+    }
+
+    .activeProjectOption {
+      border: 2px solid #00a3d3;
+    }
+
+    .listCol:hover .listoptiondiv {
+      border: 2px solid #00a3d3 !important;
+    }
+
+    .boardCol:hover .boardoptiondiv {
+      border: 2px solid #00a3d3 !important;
+    }
+
+
+    .todayDate {
+      margin-left: 8px;
+      margin-top: 8px;
+    }
+
+    .overdueHeader {
+      font-weight: 700;
+    }
+
+    .todayHeader {
+      font-weight: 700;
+    }
+
+    .dropdownReschedule {
+      float: right;
+      margin-top: -40px;
+    }
+
+    .btnReschedule:hover {
+      border-color: rgba(0, 0, 0, 0);
+    }
+
+    .btnReschedule:focus {
+      border-color: rgba(0, 0, 0, 0);
+    }
+
+    .btnReschedule:after {
+      display: none;
+    }
+
+    .reschedule-dropdown-menu {
+      width: 275px;
+    }
+
+    .taskActionButton {
+      padding: 4px;
+      margin: 4px;
+      cursor: pointer;
+      /*Visibility set to hidden for hover effect*/
+      visibility: hidden;
+    }
+
+    .taskCol:hover .taskActionButton {
+      visibility: visible;
+    }
+
+    .mainSubtaskCol {
+      padding-left: 46px !important;
+    }
+
+    .taskDrag {
+      cursor: all-scroll !important;
+    }
+
+    .taskActionButton:hover {
+      background-color: #f8f9fc;
+    }
+
+    .taskName {
+      margin: 4px;
+    }
+
+    .dueDateTags {
+      padding-left: 64px;
+    }
+
+    .taskDueDate {
+      margin: 4px;
+      /* font-size: 12px; */
+    }
+
+    .taskOverdue {
+      color: #e74a3b !important;
+    }
+
+    .taskToday {
+      color: #159b32 !important;
+    }
+
+    .taskTomorrow {
+      color: #a78413 !important;
+    }
+
+    .taskUpcoming {
+      color: #9e169e !important;
+    }
+
+    .taskTag {
+      margin: 4px;
+      /* font-size: 12px; */
+    }
+
+    .taganchor {
+      color: #858796 !important;
+    }
+
+    .taskLocation {
+      margin: 4px;
+      /* font-size: 12px; */
+      margin-right: 42px;
+    }
+
+    .taskCol {
+      border: none;
+      background: white;
+      border-bottom: 1px solid #e3e6f0;
+      padding-top: 8px;
+      padding-bottom: 8px;
+      cursor: pointer;
+    }
+
+    .taskDescription {
+      margin: 0xp 4px;
+      margin-left: 64px;
+      /* font-size: 12px; */
+    }
+
+    .taskModalAction {
+      font-size: 18px;
+      padding: 6px;
+      cursor: pointer;
+    }
+
+    .taskModalAction:hover {
+      background-color: #f8f9fc;
+    }
+
+    .newTaskRow {
+      margin: 8px;
+    }
+
+    .btnSchedule:after {
+      display: none;
+    }
+
+    .dropdownFilter {
+      color: #00a3d3;
+    }
+
+    .taskDropdownFilter {
+      margin-left: 12px;
+    }
+
+    .dropdown-project-section {
+      padding-left: 46px;
+      padding-top: 0px;
+      padding-bottom: 0px;
+    }
+
+    .taskModalActionDropdown:after {
+      display: none;
+    }
+
+    .subtaskCol {
+      padding-left: 24px !important;
+      padding-right: 24px !important;
+      border-bottom: 0px;
+    }
+
+    .commenterName {
+      font-weight: 600;
+    }
+
+    .commentDateTime {
+      font-weight: 300;
+      margin-left: 12px;
+      /* font-size: 14px; */
+    }
+
+    .commentUser {
+      width: 50px;
+      line-height: 50px;
+      border-radius: 50%;
+      text-align: center;
+      font-size: 16px;
+      border: 2px solid #00a3d3;
+    }
+
+    .activityAdded {
+      width: 100%;
+      font-weight: 700;
+      padding: 16px 32px;
+      padding-bottom: 12px;
+    }
+
+    .activityDate {
+      font-weight: 700;
+    }
+
+    .activityName {
+      font-weight: 700;
+      margin-right: 4px;
+    }
+
+    .activityAction {
+      margin-right: 4px;
+    }
+
+    .activityTaskName {
+      font-style: italic;
+      color: #8f8f8f;
+    }
+
+    .activityComment {
+      font-size: 15px;
+      color: #8f8f8f;
+    }
+
+    .activityTime {
+      font-size: 15px;
+      color: #8f8f8f;
+    }
+  </style>
+
+</template>

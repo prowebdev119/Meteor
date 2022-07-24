@@ -1,0 +1,370 @@
+.allsales {
+    float: left;
+    width: 100%;
+}
+
+.allsales .active_page_content h1 {
+    margin-bottom: 0;
+}
+
+.allsales .helpvideos p:last-child {
+    border: 0;
+}
+
+.allsales .salesBg {
+    width: 100%;
+    background: #fff;
+    float: left;
+}
+
+.allsales .salesBg .dash1 {
+    min-height: initial;
+    box-shadow: inherit;
+    border: 0;
+}
+
+.allsales .second_content {
+    border: 0;
+}
+
+.allsales .dashboard_container {
+    float: left;
+    width: 100%;
+    border: 0;
+    position: relative;
+    min-height: 220px;
+
+}
+.allsales .dashboard_container:after{
+    content: "";
+    width: 100%;
+    height: 1px;
+    background: #dee0e2;
+    position: absolute;
+    bottom: 34px;
+    left: 0;
+    z-index: 99;
+
+}
+
+.allsales .dash1 #container .highcharts-background {
+    fill: #fff !important;
+}
+
+.allsales .dash1 #sales .highcharts-background {
+    fill: #fff !important;
+    height: 173px;
+}
+.allsales #sales text.highcharts-credits {
+    display: none;
+}
+
+.allsales #sales g.highcharts-legend-item {
+    display: none;
+}
+
+.allsales #sales g.highcharts-button.highcharts-contextbutton.highcharts-button-normal {
+    display: none;
+}
+
+.allsales #sales .highcharts-button {
+    display: none;
+}
+
+.allsales .second_content_content {
+    width: 100% !important;
+}
+
+.allsales #sales_dropdown_options {
+    margin-left: 0 !important;
+}
+
+.allsales .second_content_links_container {
+    border-top: 0;
+}
+
+.allsales .dash_account_watchlist {
+    margin-top: -47% !important;
+}
+
+.allsales div#highcharts-1oxka5e-0 {
+    width: 450px !important;
+    height: inherit !important;
+}
+
+.allsales .like-table {
+    width: 260px;
+    float: left;
+    border-bottom: solid 1px #ccc;
+    padding: 7px 0;
+    margin-left: 13px;
+}
+
+.allsales .like-table b {
+    width: auto;
+    float: left;
+    font-weight: normal;
+    color: #828c96;
+}
+
+.allsales .like-table span {
+    width: auto;
+    float: right;
+    font-weight: normal;
+    color: #048abb;
+}
+
+.allsales .highcharts-legend-item.highcharts-pie-series .highcharts-point {
+    y: 15;
+    rx: 0;
+    ry: 0;
+    width:9px;
+    height:9px;
+}
+
+.allsales .dashboard_container.bottom-spacing-remove .dashboard_col1 {
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+.allsales .dashboard_container.bottom-spacing-remove .dashboard_col1 .dash1 {
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+.allsales .dashboard_container.bottom-spacing-remove .dashboard_col2 {
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+.allsales .dashboard_container.bottom-spacing-remove .dashboard_col2 .dash1 {
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+.allsales .dashboard_container.bottom-spacing-remove .dashboard_col1 .dash1 h3 {
+    border-bottom: 2px solid #e8e8e8;
+    padding-bottom: 11px;
+    margin-bottom: 0;
+
+}
+
+.allsales .dashboard_container.bottom-spacing-remove .dashboard_col2 .dash1 h3 {
+    border-bottom: 2px solid #e8e8e8;
+    padding-bottom: 11px;
+    margin-bottom: 0;
+    position: relative;
+    z-index: 9;
+}
+
+.allsales .highcharts-container {
+    height: 173px !important;
+}
+
+
+.allsales path.highcharts-tick {
+    display: none;
+}
+
+
+.allsales g.highcharts-label.highcharts-tooltip{
+    display: none !important;
+}
+
+
+.allsales .highcharts-tooltip span:after{
+    content: "";
+    width: 0px;
+    height: 0px;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 6px solid #fff;
+    left: 50%;
+    -ms-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    transform: rotate(180deg);
+    bottom: -6px;
+    position: absolute;
+}
+.allsales .highcharts-tooltip span {
+    opacity: 1;
+    z-index: 9999 !important;
+    margin-top: 5px !important;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    top: 5px;
+}
+.allsales .dash1 #sales .highcharts-container, .allsales .dash1 #container .highcharts-container{
+    overflow: visible !important;
+}
+.allsales .dashboard_container.bottom-spacing-remove .dashboard_col1 .dash1{
+    overflow: hidden;
+}
+
+
+.allsales .highcharts-legend-item.highcharts-pie-series.highcharts-color-4 .like-table{
+    border: 0;
+}
+
+#sales-ask .modal-dialog{
+    width: 400px;
+    margin: 30px auto;
+}
+
+#sales-ask .modal-dialog  .gray {
+    border: 1px solid #949a9e!important;
+    background: linear-gradient(#bbbec2,#949a9e);
+    text-shadow: none;
+    color: #fff!important;
+    width: 80px;
+}
+#sales-ask .modal-dialog .silver {
+    border: 1px solid #048abb!important;
+    background: linear-gradient(#048abb,#048abb);
+    text-shadow: none;
+    color: #ffffff !important;
+    width: 110px;
+}
+
+#sales-confirm .modal-dialog{
+    width: 400px;
+    margin: 30px auto;
+}
+
+#sales-confirm .modal-dialog  .gray {
+    border: 1px solid #949a9e!important;
+    background: linear-gradient(#bbbec2,#949a9e);
+    text-shadow: none;
+    color: #fff!important;
+    width: 80px;
+}
+#sales-confirm .modal-dialog .silver {
+    border: 1px solid #048abb!important;
+    background: linear-gradient(#048abb,#048abb);
+    text-shadow: none;
+    color: #ffffff !important;
+    width: 110px;
+}
+
+.newso .active_page_content h1{
+    margin-bottom: 0;
+    border-bottom: 0;
+}
+
+.allsales .notify-div{
+    padding-bottom: 0 !important;
+    margin-top: 21px !important;
+}
+.allsales .notify-div .notify span.check-icon .fa{
+    color: #fff;
+}
+.allsales .notify-div .notify .message a{
+    font-size: 12px;
+}
+.allsales .notify-div .notification-cross-icon{
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    right: 3px;
+    top: 3px;
+    background: #47b101;
+    text-align: center;
+    line-height: 15px;
+    color: #fff;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 0;
+    border-radius: 3px;
+    padding-left: 1px;
+    margin-top: 0;
+    float: right;
+    cursor: pointer;
+}
+.allsales #mySearchDropdown.dateCompare{
+    width: 128px;
+}
+.allsales .search-date-pick{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    border: solid 1px;
+    border-color: #b5b8bb #e2e4e7 #e8eaec #bdbfc3;
+}
+.allsales .search-date-pick input.datepick.hasDatepicker {
+    border: 0;
+    -webkit-appearance: initial;
+    height: 24px;
+    width: 110px;
+}
+.allsales .search-date-pick img {
+    width: 19px;
+    height: 24px;
+    cursor: pointer;
+    z-index: 9 !important;
+}
+.allsales .dropdown-add-rec{
+    border:none;
+}
+.allsales .dropdown-add-rec .input-group-addon{
+    position: relative;
+}
+.allsales input-group.dropdown-add-rec #mySearchDropdown{
+    border-bottom: 1px solid #ccc;
+}
+.allsales .dropdown-add-rec .input-group-addon img{
+    border: 1px solid #ccc;
+    border-left: none;
+}
+.allsales #search_box .search_box_inner ul.dropdown-menu li {
+    cursor: pointer;
+    font-size: 12px;
+    margin: 0;
+    float: left;
+    width: 190px;
+    background-color: #fff;
+    text-align: left;
+    padding: 10px 10px 10px!important;
+    position: relative;
+    text-overflow: ellipsis;
+    border-bottom: 1px solid #e9edf2;
+    font-weight: normal;
+}
+.allsales #search_box .search_box_inner ul.dropdown-menu li:hover {
+    background-color: #e6f5fa;
+}
+.allsales #search_box{
+    padding:0 !important;
+    float: left;
+}
+.allsales #search_box .search_box_inner{
+    float: left;
+    width: 100%;
+    padding: 10px 10px;
+}
+.allsales #search_box .fa {
+    width: auto;
+    position: absolute;
+    right: 15px;
+}
+.allsales #search_box .search_box_inner table {
+    border-spacing: 3px;
+    border-collapse: separate;
+    width: 100%;
+}
+.allsales #salesSearch_box #salesearch_Head {
+      float: left !important;
+      margin-top: 0 !important;
+}
+.allsales .salesSearch_box tbody tr:nth-child(2) td:nth-child(1){
+    width: 200px;
+}
+.allsales .salesSearch_box tbody tr:nth-child(2) td:nth-child(2){
+    width: 128px;
+}
+.allsales .salesSearch_box tbody tr:nth-child(2) td:nth-child(3){
+    width: 128px;
+}
+.allsales .salesSearch_box tbody tr:nth-child(2) td:nth-child(4){
+    width: 128px;
+}

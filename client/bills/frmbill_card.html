@@ -1,0 +1,1731 @@
+<template name="billcard">
+    <div class="container-fluid purchasesmodule" style="padding-right: 0px;padding-left: 0px;">
+        <div class="fullScreenSpin" style="display:none;">
+            <div class="spinner"></div>
+        </div>
+        {{#if billrecord}}
+            <form>
+                <header style="padding: 16px; padding-right: 0px;background-color: #ededed;margin-top: -24px;padding-bottom: 0px;">
+                    <h1 style="margin: 16px;margin-bottom: 0px;">{{billrecord.lid}}
+
+                        <a role="button" data-toggle="modal" href="#helpViewModal" style="font-size: 20px;">Help <i class="fa fa-question-circle-o" style="font-size: 20px;"></i></a>
+
+                        <!-- Start Help View Modal -->
+                        <div class="modal fade" role="dialog" tabindex="-1" id="helpViewModal">
+                            <div class="modal-dialog modal-sm" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header" style="padding-bottom: 8px;">
+                                        <h4>Help</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p class="text-center text-muted"><a role="button" data-toggle="modal" href="#helpModal" class="btn btn-primary helpModal">View Help Video</a></p>
+                                        <p class="text-center text-muted"><a href="https://vs1forum.com/" target="_blank" class="btn btn-primary">Download Help File</a></p>
+                                        <p class="text-center text-muted"><button class="btn btn-primary" type="button">Employ Advisor</button></p>
+                                        <p class="text-center text-muted" style="margin: 0px;"><a href="https://vs1forum.com/ucp.php?mode=register&cloudusername={{loggedCompany}}" target="_blank" class="btn btn-primary">Go To Forum</a></p>
+                                    </div>
+                                    <div class="modal-footer" style="padding: 6px;"><button class="btn btn-light" data-dismiss="modal" type="button">Close</button></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Help View Modal -->
+
+                        <a class="btn" role="button" data-toggle="modal" href="#myModal4" style="float: right;"><i class="icon ion-android-more-horizontal"></i></a>
+                        <!--<button class="btn float-right" type="button" id="btnCustomFileds" name="btnCustomFileds"><i class="icon ion-android-more-horizontal"></i></button>-->
+                    </h1>
+                    <div class="printID" id="{{billrecord.id}}" style="display: none;">{{billrecord.id}}</div>
+                </header>
+                <!-- Start {{> optionCustomFiled}} -->
+                <div class="modal fade" role="dialog" tabindex="-1" id="myModal4">
+                    <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4>Field Settings</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                            </div>
+                            <div class="modal-body">
+                                <div>
+                                    <form class="d-xl-flex align-items-xl-center">
+                                        <div class="flex-grow-1">
+                                            <div class="custom-control custom-switch" style="margin: 8px;">
+                                                <input class="custom-control-input" type="checkbox" id="formCheck-one" value="one">
+                                                {{#if purchaseCloudPreferenceRec}}
+                                                    {{#if equals purchaseCloudPreferenceRec.customFields.[0].hidden false}}
+                                                        <script>
+                                                            $('#formCheck-one').attr("checked", "checked");
+                                                        </script>
+                                                    {{else}}
+                                                        <script>
+                                                            $('#formCheck-one').removeAttr("checked");
+                                                        </script>
+                                                    {{/if}}
+                                                {{/if}}
+                                                <label class="custom-control-label" style="position: absolute;" for="formCheck-one"></label>
+                                                <div contenteditable="true" class="groove customField1Text">{{#if purchaseCloudPreferenceRec}}{{purchaseCloudPreferenceRec.customFields.[0].label}}{{else}}CustField1{{/if}}</div>
+                                            </div>
+
+                                            <div class="custom-control custom-switch" style="margin: 8px;">
+                                                <input class="custom-control-input" type="checkbox" id="formCheck-two" value="two">
+                                                {{#if purchaseCloudPreferenceRec}}
+                                                    {{#if equals purchaseCloudPreferenceRec.customFields.[1].hidden false}}
+                                                        <script>
+                                                            $('#formCheck-two').attr("checked", "checked");
+                                                        </script>
+                                                    {{else}}
+                                                        <script>
+                                                            $('#formCheck-two').removeAttr("checked");
+                                                        </script>
+                                                    {{/if}}
+                                                {{/if}}
+                                                <label class="custom-control-label" style="position: absolute;" for="formCheck-two"></label>
+                                                <div contenteditable="true" class="groove customField2Text">{{#if purchaseCloudPreferenceRec}}{{purchaseCloudPreferenceRec.customFields.[1].label}}{{else}}CustField2{{/if}}</div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-success btnSaveSettings" type="button"><i class="fa fa-save" style="margin-right: 5px;"></i>Save</button>
+                                <button class="btn btn-warning btnResetSettings" data-dismiss="modal" type="reset"><i class="fa fa-repeat" style="margin-right: 5px;"></i>Reset</button>
+                                <button class="btn btn-secondary" data-dismiss="modal" type="button"><i class="fa fa-remove" style="margin-right: 5px;"></i>Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- END  -->
+
+                <!-- Start Attachemt -->
+                <div class="modal fade" role="dialog" tabindex="-1" id="myModalAttachment">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4>Upload Attachments</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                            </div>
+                            <div class="modal-body" style="padding: 0px;">
+                                <div class="divTable" id="file-display">
+
+                                    <div class="col inboxcol1">
+                                        <img src="/icons/nofiles_icon.jpg" class="" style="width:100%;">
+                                    </div>
+                                    <div class="col inboxcol2" style="text-align: center;">
+                                        <div>Upload files or add files from the file library.</div>
+                                        {{#if isMobileDevices}}
+                                            <div>Capture copies of receipt's or take photo's of completed jobs.</div>
+                                        {{/if}}
+                                        <p style="color: #ababab;">Only users with access to your company can view these files</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                {{#if isMobileDevices}}
+                                    <input type="file" id="img-attachment-upload" style="display:none" accept="image/*" capture="camera">
+                                    <button class="btn btn-primary btnUploadFile img_new_attachment_btn" type="button"><i class="fas fa-camera" style="margin-right: 5px;"></i>Capture</button>
+
+                                    <input type="file" id="attachment-upload" style="display:none" multiple accept=".jpg,.gif,.png">
+                                {{else}}
+                                    <input type="file" id="attachment-upload" style="display:none" multiple accept=".jpg,.gif,.png,.bmp,.tiff,.pdf,.doc,.docx,.xls,.xlsx,.ppt,
+                                           .pptx,.odf,.csv,.txt,.rtf,.eml,.msg,.ods,.odt,.keynote,.key,.pages-tef,
+                                           .pages,.numbers-tef,.numbers,.zip,.rar,.zipx,.xzip,.7z,image/jpeg,
+                                           image/gif,image/png,image/bmp,image/tiff,application/pdf,
+                                           application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,
+                                           application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,
+                                           application/vnd.ms-powerpoint,application/vnd.openxmlformats-officedocument.presentationml.presentation,
+                                           application/vnd.oasis.opendocument.formula,text/csv,text/plain,text/rtf,message/rfc822,
+                                           application/vnd.ms-outlook,application/vnd.oasis.opendocument.spreadsheet,
+                                           application/vnd.oasis.opendocument.text,application/x-iwork-keynote-sffkey,
+                                           application/vnd.apple.keynote,application/x-iwork-pages-sffpages,
+                                           application/vnd.apple.pages,application/x-iwork-numbers-sffnumbers,
+                                           application/vnd.apple.numbers,application/zip,application/rar,
+                                           application/x-zip-compressed,application/x-zip,application/x-7z-compressed">
+                                {{/if}}
+                                <button class="btn btn-primary btnUploadFile new_attachment_btn" type="button"><i class="fa fa-cloud-upload" style="margin-right: 5px;"></i>Upload</button>
+                                <button class="btn btn-success closeModal" data-dismiss="modal" type="button" style="margin-right: 5px;" autocomplete="off">
+                                    <i class="fa fa-save" style="padding-right: 8px;"></i>Save
+                                </button>
+                                <button class="btn btn-secondary" data-dismiss="modal" type="button"><i class="fa fa-remove" style="margin-right: 5px;"></i>Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- END Attachments -->
+
+                <!-- View File Attachemt -->
+                <div id="files_view" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">x</button>
+                                <h4 class="modal-title">{{uploadedFile.name}}</h4>
+                            </div>
+                            <div class="modal-body">
+                                {{#if uploadedFile.image}}
+                                    <div class="image-previewer">
+                                        <img src="{{uploadedFile.link}}">
+                                    </div>
+                                {{else}}
+                                    <div class=" default-file {{uploadedFile.class}}">
+
+                                    </div>
+                                {{/if}}
+                                <div class="download_button">
+                                    <a class="new_create_btn btn btn-primary" id="downloadButton" download="{{uploadedFile.name}}" href="{{uploadedFile.link}}">Download</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End View File attachment -->
+
+                <div class="row" style="background-color: #ededed;">
+                    <div class="col-12 col-xl-10">
+                        <div class="row" style="margin: 8px 16px 0px 16px;">
+                            <div class="col-12 col-md-6 col-lg-6 col-xl-3">
+                                <div class="form-group">
+                                    <label>Supplier</label>
+                                    <select type="search" class="form-control" id="edtSupplierName" name="edtSupplierName" suppid=" " style="background-color:rgb(255, 255, 255); cursor: pointer;" autofocus>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6 col-lg-6 col-xl-3">
+                                <div class="form-group">
+                                    <label>Supplier Email</label>
+                                    <input class="form-control form-control" type="text" id="edtSupplierEmail" name="edtSupplierEmail" customerid=" ">
+                                </div>
+                                <div class="custom-control custom-control-inline custom-switch d-xl-flex align-items-xl-center" style="margin: 0px 16px;padding: -2px;padding-left: 24px;width: 100%;">
+                                    <div class="form-group" style="margin-right: 35px; Width:50%;">
+                                        <input class="custom-control-input chkEmailCopy" type="checkbox" id="formCheck-1" style="font-size: 22px;"><label class="custom-control-label" for="formCheck-1">Email Supplier</label>
+                                    </div>
+                                    <div class="form-group" style="margin-left: 35px; Width:50%;">
+                                        <input class="custom-control-input chkEmailRep" type="checkbox" id="formCheck-2" style="font-size: 22px;"><label class="custom-control-label" for="formCheck-2">Email User</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="margin: 16px 16px 0px 16px;">
+                            <div class="col-12 col-md-6 col-lg-2 col-xl-3">
+                                <div class="form-group billaddressfield" id="fieldwidth"><label>Billing Address</label>
+                                    <textarea class="form-control" rows="5" id="txabillingAddress" name="txabillingAddress">{{billrecord.invoiceToDesc}}</textarea>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6 col-lg-2 col-xl-3">
+                                <div class="row">
+                                    <div class="col-12 col-md-6 col-lg-6 col-xl-6">
+                                        <div class="row">
+                                            <div class="col-6 col-md-12 col-lg-12">
+                                                <div class="form-group"><label>Order Date</label>
+                                                    <div class="input-group date">
+                                                        <input type="text" class="form-control" id="dtSODate" name="dtSODate" value="{{billrecord.saledate}}" style="cursor: pointer;">
+                                                        <div class="input-group-addon">
+                                                            <span class="glyphicon glyphicon-th" style="cursor: pointer;"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-6 col-md-12 col-lg-12">
+                                                <div class="form-group"><label>Reference</label>
+                                                    <input class="form-control form-control" style="width: 150px;" type="text" id="edtRef" name="edtRef" value="{{billrecord.connote}}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6 col-lg-6 col-xl-6">
+                                        <div class="row">
+                                            <div class="col-6 col-md-12 col-lg-12">
+                                                <div class="form-group"><label>Invoice Number</label>
+                                                    <input class="form-control form-control" type="text" id="ponumber" name="ponumber" value="{{billrecord.invoicenumber}}">
+                                                </div>
+                                            </div>
+                                            <div class="col-6 col-md-12 col-lg-12">
+                                                <div class="form-group"><label>Via</label>
+                                                    <select type="search" class="form-control" id="shipvia" name="shipvia" style="background-color:rgb(255, 255, 255); cursor: pointer;">
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6 col-lg-2 col-xl-3">
+                                <div class="row">
+                                    <div class="col-12 col-md-6 col-lg-6 col-xl-6">
+                                        <div class="row">
+                                            <div class="col-6 col-md-12 col-lg-12">
+                                                <div class="form-group"><label>Terms</label>
+                                                    <select type="search" class="form-control" id="sltTerms" name="sltTerms" style="background-color:rgb(255, 255, 255); cursor: pointer;">
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-6 col-md-12 col-lg-12">
+                                                {{#if isCurrencyEnable}}
+                                                    {{> currencydropdown}}
+                                                {{else}}
+                                                    <div class="form-group"><label>Department</label>
+                                                        <select type="search" class="form-control" id="sltDept" name="sltDept" style="background-color:rgb(255, 255, 255); cursor: pointer;"></select>
+                                                    </div>
+                                                {{/if}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6 col-lg-6 col-xl-6">
+                                        <div class="row">
+                                            <div class="col-6 col-md-12 col-lg-12">
+                                                <div class="form-group"><label>Status</label>
+                                                    <select type="search" class="form-control" id="sltStatus" name="sltStatus" style="background-color:rgb(255, 255, 255); cursor: pointer;">
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-6 col-md-12 col-lg-12">
+                                                {{#if isCurrencyEnable}}
+                                                    <div class="form-group"><label>Department</label>
+                                                        <select type="search" class="form-control" id="sltDept" name="sltDept" style="background-color:rgb(255, 255, 255); cursor: pointer;">
+                                                        </select>
+                                                    </div>
+                                                {{else}}
+
+                                                {{/if}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-3 col-lg-2 col-xl-2">
+                                <div class="row">
+                                    <div class="col-6 col-md-12 col-lg-12">
+                                        <div class="one box checkbox1div" style="{{#if purchaseCloudPreferenceRec}}{{#if equals purchaseCloudPreferenceRec.customFields.[0].hidden false}}display:block{{else}}display:none{{/if}}{{else}}display:none{{/if}}">
+                                            <div class="form-group">
+                                                <label class="lblCustomField1">{{#if purchaseCloudPreferenceRec}}{{purchaseCloudPreferenceRec.customFields.[0].label}}{{else}}CustField1{{/if}}</label>
+                                                <input class="form-control form-control" type="text" id="edtSaleCustField1" name="edtSaleCustField1" value="{{billrecord.saleCustField1}}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-md-12 col-lg-12">
+                                        <div class="two box checkbox2div" style="{{#if purchaseCloudPreferenceRec}}{{#if equals purchaseCloudPreferenceRec.customFields.[1].hidden false}}display:block{{else}}display:none{{/if}}{{else}}display:none{{/if}}">
+                                            <div class="form-group">
+                                                <label class="lblCustomField2">{{#if purchaseCloudPreferenceRec}}{{purchaseCloudPreferenceRec.customFields.[1].label}}{{else}}CustField2{{/if}}<br></label>
+                                                <input class="form-control form-control" type="text" id="edtSaleCustField2" name="edtSaleCustField2" value="{{billrecord.saleCustField2}}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-xl-2">
+                        <div class="text-right" style="font-size: 14px;min-width: 175px;margin: 16px; margin-right: 24px;">
+                            <p style="font-size: 20px; font-weight: 700;color: rgb(84,94,103);">BALANCE DUE</p>
+                            {{#if equals billrecord.ispaid true}}
+                                <p style="font-size: 25px;font-weight: 705;color: #e74a3b;">Paid</p>
+                                <input class="form-control form-control ispaidInv" type="hidden" value="true">
+                            {{else}}
+                                <input class="form-control form-control ispaidInv" type="hidden" value="false">
+                                <p style="font-size: 25px;font-weight: 705;color: rgb(56,63,69);" id="balanceDue" name="balanceDue">{{billrecord.balanceDue}}</p>
+                            {{/if}}
+                            <!-- <p style="font-size: 25px;font-weight: 705;color: rgb(56,63,69);" id="balanceDue" name="balanceDue">{{billrecord.balanceDue}}</p> -->
+                        </div>
+                         <!-- {{#if equals billrecord.ispaid true}}
+                        <div class="colPaid float-right" style="display: none; margin-right: 24px;">
+                            <p style="font-size: 25px;font-weight: 705;color: #e74a3b;">Paid</p>
+                            <input class="form-control form-control ispaidInv" type="hidden" value="true">
+                        </div>
+                         {{/if}} -->
+                        {{#if equals billrecord.ispaid false }}
+                            <button class="btn btn-primary float-right" type="button" style="width: 150px;margin: 16px; margin-left: 0px; margin-right: 24px;" id="btnPayment" name="btnPayment">Payment</button>
+                        {{else}}
+                            <button class="btn btn-primary float-right" type="button" style="width: 150px;margin: 16px; margin-left: 0px; margin-right: 24px;" id="btnViewPayment" name="btnViewPayment">View Payment</button>
+                        {{/if}}
+                    </div>
+                </div>
+                <div class="row" style="background-color: #ededed; padding: 0px 32px;">
+                    <div class="col-12 mb-3">
+                        <a class="btn btn-link" data-toggle="collapse" aria-expanded="false" aria-controls="collapse-notes" href="#collapse-notes" role="button">+ Shipping Information</a>
+                        <div class="row">
+                            <div class="col-12 col-md-3">
+                                <div class="collapse" id="collapse-notes" style="margin-top: 8px;">
+                                    <div class="form-group">
+                                        <label style="color: #858796;">Shipping Address</label>
+                                        <textarea class="form-control" rows="3" id="txaShipingInfo" name="txaShipingInfo">{{creditrecord.shipToDesc}}</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- <div class="row" style="background-color: #ededed;padding: 32px; padding-bottom: 0px;">
+                    <div class="col-auto colSupplierName" id="colSupplierName">
+                        <div style="margin: 16px 0px;width: 350px;" class="formgoup">
+                            <div class="form-group"><label>Supplier</label>
+                                <select type="search" class="form-control" id="edtSupplierName" name="edtSupplierName" suppid=" " style="background-color:rgb(255, 255, 255); cursor: pointer;" autofocus>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-auto colSupplierEmail" id="colSupplierEmail">
+                        <div style="margin: 16px 0px;width: 350px;" class="formgoup">
+                            <div class="form-group"><label>Supplier Email</label>
+                                <input class="form-control form-control" type="text" id="edtSupplierEmail" name="edtSupplierEmail" customerid=" ">
+                            </div>
+                            <div class="custom-control custom-control-inline custom-switch d-xl-flex align-items-xl-center" style="margin: 0px 16px;padding: -2px;padding-left: 24px;width: 100%;">
+                                <div class="form-group" style="margin-right: 35px; Width:50%;">
+                                    <input class="custom-control-input chkEmailCopy" type="checkbox" id="formCheck-1" style="font-size: 22px;"><label class="custom-control-label" for="formCheck-1">Email Supplier</label>
+                                </div>
+                                <div class="form-group" style="margin-left: 35px; Width:50%;">
+                                    <input class="custom-control-input chkEmailRep" type="checkbox" id="formCheck-2" style="font-size: 22px;"><label class="custom-control-label" for="formCheck-2">Email User</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-auto flex-grow-1">
+                        <div class="text-right" style="font-size: 14px;min-width: 175px;margin: 16px ;">
+                            <p style="font-size: 20px; font-weight: 700;color: rgb(84,94,103);">BALANCE DUE</p>
+                            <p style="font-size: 25px;font-weight: 705;color: rgb(56,63,69);" id="balanceDue" name="balanceDue">{{billrecord.balanceDue}}</p>
+                        </div>
+                    </div>
+                </div>
+                <style>
+                    .billaddressfield {
+                        width: 350px;
+                    }
+
+                    .billaddressfield2 {
+                        width: 100%;
+                    }
+                </style>
+                <div class="row" style="background-color: #ededed;padding: 32px;">
+                    <div class="col-auto colBillingAddress" id="colBillingAddress">
+                        <div style="margin: 16px 0px;">
+                            <div class="form-group billaddressfield fieldwidth" id="fieldwidth"><label>Billing Address</label>
+                                <textarea class="form-control" rows="5" id="txabillingAddress" name="txabillingAddress">{{billrecord.invoiceToDesc}}</textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-auto colOrderDue" id="colOrderDue">
+                        <div style="margin: 16px 0px;">
+                            <div class="form-group"><label>Order Date</label>
+                                <div class="input-group date" style="width: 150px;">
+                                    <input type="text" class="form-control" id="dtSODate" name="dtSODate" value="{{billrecord.saledate}}" style="cursor: pointer;">
+                                    <div class="input-group-addon">
+                                        <span class="glyphicon glyphicon-th" style="cursor: pointer;"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group"><label>Reference</label>
+                                <input class="form-control form-control" style="width: 150px;" type="text" id="edtRef" name="edtRef" value="{{billrecord.connote}}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-auto colInvnoReference" id="colInvnoReference">
+                        <div style="margin: 16px 0px; max-width: 150px;" class='setMaxWith'>
+                            <div class="form-group"><label>Invoice Number</label>
+                                <input class="form-control form-control" type="text" id="ponumber" name="ponumber" value="{{billrecord.invoicenumber}}">
+                            </div>
+                            <div class="form-group"><label>Via</label>
+                                <select type="search" class="form-control" id="shipvia" name="shipvia" style="background-color:rgb(255, 255, 255); cursor: pointer;">
+                                </select>
+                                <select class="form-control" id="sltVia" name="sltVia" style="cursor: pointer;">
+                                    {{#each item in viarecords}}
+                                        {{#if equals item.shippingmethod billrecord.shipping }}
+                                            <option value="{{billrecord.shipping}}" selected="">{{billrecord.shipping}}</option>
+                                        {{else}}
+                                            <option value="{{item.shippingmethod}}">{{item.shippingmethod}}</option>
+                                        {{/if}}
+                                    {{/each}}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-auto colTermsVia" id="colTermsVia">
+                        <div style="margin: 16px  0px; max-width: 150px;" class='setMaxWith'>
+                            <div class="form-group"><label>Terms</label>
+                                <select type="search" class="form-control" id="sltTerms" name="sltTerms" style="background-color:rgb(255, 255, 255); cursor: pointer;">
+                                </select>
+                                <select class="form-control" id="sltTerms" name="sltTerms" style="cursor: pointer;">
+                                    {{#if equals billrecord.termsName ''}}
+                                        <option value="" selected="selected"></option>
+                                    {{/if}}
+                                    {{#each item in termrecords}}
+                                        {{#if equals item.termsname billrecord.termsName }}
+                                            <option value="{{billrecord.termsName}}" selected="">{{billrecord.termsName}}</option>
+                                        {{else}}
+                                            <option value="{{item.termsname}}">{{item.termsname}}</option>
+                                        {{/if}}
+                                    {{/each}}
+                                </select>
+                            </div>
+                            {{#if isCurrencyEnable}}
+                                {{> currencydropdown}}
+                            {{else}}
+                                <div class="form-group"><label>Department</label>
+                                    <select type="search" class="form-control" id="sltDept" name="sltDept" style="background-color:rgb(255, 255, 255); cursor: pointer;">
+                                    </select>
+                                    <select class="form-control" id="sltDept" name="sltDept" style="cursor: pointer;">
+                                        {{#each itemDept2 in deptrecords}}
+                                            {{#if equals itemDept2.department billrecord.department }}
+                                                <option value="{{billrecord.department}}" selected="">{{billrecord.department}}</option>
+                                            {{else}}
+                                                <option value="{{itemDept2.department}}">{{itemDept2.department}}</option>
+                                            {{/if}}
+                                        {{/each}}
+                                    </select>
+                                </div>
+                            {{/if}}
+                        </div>
+                    </div>
+                    <div class="col-auto colStatusDepartment" id="colStatusDepartment">
+                        <div style="margin: 16px 0px; max-width: 150px;" class='setMaxWith'>
+                            <div class="form-group"><label>Status</label>
+                                <select type="search" class="form-control" id="sltStatus" name="sltStatus" style="background-color:rgb(255, 255, 255); cursor: pointer;">
+                                </select>
+                                <select class="form-control" id="sltStatus" name="sltStatus" style="background-color:rgb(255, 255, 255); cursor: pointer;">
+                                    <option value="{{billrecord.status}}" selected="">{{billrecord.status}}</option>
+                                    {{#each item in statusrecords}}
+                                        {{#if equals item.orderstatus billrecord.status }}
+                                            <option value="{{billrecord.status}}" selected="">{{billrecord.status}}</option>
+                                        {{else}}
+                                            <option value="{{item.orderstatus}}">{{item.orderstatus}}</option>
+                                        {{/if}}
+                                    {{/each}}
+                                </select>
+                            </div>
+                            {{#if isCurrencyEnable}}
+                                <div class="form-group"><label>Department</label>
+                                    <select type="search" class="form-control" id="sltDept" name="sltDept" style="background-color:rgb(255, 255, 255); cursor: pointer;">
+                                    </select>
+                                    <select class="form-control" id="sltDept" name="sltDept" style="cursor: pointer;">
+                                        {{#each itemDept in deptrecords}}
+                                            {{#if equals itemDept.department billrecord.department }}
+                                                <option value="{{billrecord.department}}" selected="">{{billrecord.department}}</option>
+                                            {{else}}
+                                                <option value="{{itemDept.department}}">{{itemDept.department}}</option>
+                                            {{/if}}
+                                        {{/each}}
+                                    </select>
+                                </div>
+                            {{else}}
+
+                            {{/if}}
+                            <div class="form-group" style="width: 90%; display: none;"><label>Due Date</label>
+                                <div class="input-group date" style="width: 150px;">
+                                    <input type="text" class="form-control" id="dtDueDate" name="dtDueDate" value="{{billrecord.duedate}}" style="cursor: pointer;">
+                                    <div class="input-group-addon">
+                                        <span class="glyphicon glyphicon-th" style="cursor: pointer;"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <div style="margin: 16px 0px; max-width: 150px;" class='setMaxWith'>
+                            <div class="one box checkbox1div" style="{{#if purchaseCloudPreferenceRec}}{{#if equals purchaseCloudPreferenceRec.customFields.[0].hidden false}}display:block{{else}}display:none{{/if}}{{else}}display:none{{/if}}">
+                                <div class="form-group">
+                                    <label class="lblCustomField1">{{#if purchaseCloudPreferenceRec}}{{purchaseCloudPreferenceRec.customFields.[0].label}}{{else}}CustField1{{/if}}</label>
+                                    <input class="form-control form-control" type="text" id="edtSaleCustField1" name="edtSaleCustField1" value="{{billrecord.saleCustField1}}">
+                                </div>
+                            </div>
+                            <div class="two box checkbox2div" style="{{#if purchaseCloudPreferenceRec}}{{#if equals purchaseCloudPreferenceRec.customFields.[1].hidden false}}display:block{{else}}display:none{{/if}}{{else}}display:none{{/if}}">
+                                <div class="form-group">
+                                    <label class="lblCustomField2">{{#if purchaseCloudPreferenceRec}}{{purchaseCloudPreferenceRec.customFields.[1].label}}{{else}}CustField2{{/if}}<br></label>
+                                    <input class="form-control form-control" type="text" id="edtSaleCustField2" name="edtSaleCustField2" value="{{billrecord.saleCustField2}}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-auto flex-grow-1">
+                        <div class="flex-grow-1 setMaxWith2 float-right" style="margin: 16px 0px;max-width: 150px;">
+                            <div class="d-xl-flex flex-column justify-content-xl-end align-items-xl-end ">
+                                {{#if equals billrecord.ispaid false }}
+                                    <label style="visibility:hidden;">Payment</label>
+                                    <button class="btn btn-primary" type="button" style="width: 150px;margin: 16px; margin-left: 0px; margin-right: 0px;" id="btnPayment" name="btnPayment">Payment</button>
+                                {{else}}
+                                    <label style="visibility:hidden;">View Payment</label>
+                                    <button class="btn btn-primary" type="button" style="width: 150px;margin: 16px; margin-left: 0px; margin-right: 0px;" id="btnViewPayment" name="btnViewPayment">View Payment</button>
+                                {{/if}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="background-color: #ededed;padding: 0px 32px 8px 32px;">
+                    <div class="col-auto">
+                        <a class="btn btn-link" data-toggle="collapse" aria-expanded="false" aria-controls="collapse-notes" href="#collapse-notes" role="button">+ Shipping Information</a>
+                        <div class="collapse" id="collapse-notes">
+                            <div class="d-xl-flex align-items-xl-start">
+                                <div class="flex-grow-0" style="margin: 16px;">
+                                    <div class="form-group" style="width: 350px;"><label>Shipping Address</label>
+                                        <textarea class="form-control" rows="3" id="txaShipingInfo" name="txaShipingInfo">{{billrecord.shipToDesc}}</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+
+                <div>
+                    <div class="card-body rounded" style="padding-bottom: 0px !important;padding-top: 0px !important;">
+                        <!-- Remove p-5 to resize the form -->
+                        <!-- Start {{> optionNav}} -->
+                        <div class="d-xl-flex justify-content-xl-end">
+                            <div><a class="btn" role="button" data-toggle="modal" href="#myModal2"><i class="icon ion-android-more-horizontal"></i></a>
+                                <div class="modal fade" role="dialog" tabindex="-1" id="myModal2">
+                                    <div class="modal-dialog modal-dialog-centered" role="document" style="float: right;">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4>Display Settings</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div>
+                                                    <form class="d-xl-flex align-items-xl-center">
+                                                        <div class="flex-grow-1">
+                                                            <style>
+                                                                .widthElement {
+                                                                    position: relative;
+                                                                    display: flex;
+                                                                    flex-direction: column;
+                                                                    width: 100%;
+                                                                    pointer-events: auto;
+                                                                    background-color: rgb(255, 255, 255);
+                                                                    background-clip: padding-box;
+                                                                    border: 1px solid rgb(133, 135, 150);
+                                                                    border-radius: .3rem;
+                                                                    border-style: solid;
+                                                                    border-width: 1px;
+                                                                    padding: 2px;
+                                                                    border-radius: .35rem;
+                                                                    color: rgb(128, 128, 128);
+                                                                    height: inherit !important;
+                                                                }
+
+                                                                .groove {
+                                                                    border-style: solid;
+                                                                    border-width: 1px;
+                                                                    width: 200px;
+                                                                    padding: 2px;
+                                                                    border-radius: .35rem;
+                                                                }
+
+                                                                .custom-control-label {
+                                                                    position: absolute;
+                                                                }
+
+                                                                .file-name span {
+                                                                    width: 100%;
+                                                                    float: left;
+                                                                }
+
+                                                                #file-display .fileIocns i.fa.fa-file {
+                                                                    color: rgb(252, 181, 38);
+                                                                    font-size: 24px;
+                                                                }
+
+                                                                #file-display {
+                                                                    padding: 0;
+                                                                    margin: 0;
+                                                                }
+
+                                                                .uploaded-element {
+                                                                    display: inherit;
+                                                                }
+
+                                                                .uploaded-element {
+                                                                    border: 1px solid rgb(237, 237, 237);
+                                                                    border-top: none;
+                                                                    float: left;
+                                                                    width: 100%;
+                                                                    display: flex;
+                                                                    align-items: center;
+                                                                    padding: 1rem;
+                                                                }
+
+                                                                #file-display .fileIocns {
+                                                                    background-image: url(img/file_icons-samall.png);
+                                                                    background-repeat: no-repeat;
+                                                                    background-position: 0 -105px;
+                                                                }
+
+                                                                #file-display .fileIocns {
+                                                                    float: left;
+                                                                    margin-right: 10px;
+                                                                }
+
+                                                                .file-name {
+                                                                    float: left;
+                                                                    width: 87%;
+                                                                }
+
+                                                                .uploaded-element-header {
+                                                                    border: 1px solid rgb(237, 237, 237);
+                                                                    border-top: none;
+                                                                    float: left;
+                                                                    width: 100%;
+                                                                    display: flex;
+                                                                    align-items: center;
+                                                                    padding: 10px;
+                                                                    background: #e3e6f0;
+                                                                }
+
+                                                                .uploaded-header {
+                                                                    width: 100%;
+                                                                    text-align: center;
+                                                                }
+
+                                                                .uploaded-element .confirm-action a.confirm-delete-attachment {
+                                                                    padding: 6px 13px 5px;
+                                                                    background-color: rgb(216, 68, 68) !important;
+                                                                    border-color: rgb(197, 112, 119) rgb(169, 29, 29) rgb(169, 29, 29) rgb(197, 112, 119);
+                                                                    color: rgb(255, 255, 255) !important;
+                                                                    text-shadow: 1px 1px 1px rgba(30, 30, 30, 0.15);
+                                                                    line-height: initial;
+                                                                    font-size: 12px;
+                                                                    float: left;
+                                                                }
+
+                                                                button.save-to-library {
+                                                                    padding: 6px 13px 5px;
+                                                                    border-radius: 4px;
+                                                                    background: linear-gradient(rgb(255, 255, 255), rgb(230, 234, 236));
+                                                                    border: 1px solid rgb(230, 230, 230);
+                                                                    border-color: rgb(230, 230, 230) rgb(179, 179, 179) rgb(179, 179, 179) rgb(230, 230, 230) !important;
+                                                                    color: rgb(204, 0, 0) !important;
+                                                                    font-weight: bold;
+                                                                    margin-left: 10px !important;
+                                                                    font-size: 12px;
+                                                                }
+
+                                                                .uploaded-element {
+                                                                    display: inherit;
+                                                                }
+
+                                                                /* HERE */
+                                                                #files_view .modal-title {
+                                                                    white-space: nowrap;
+                                                                    overflow: hidden;
+                                                                    text-overflow: ellipsis;
+                                                                    width: 70%;
+                                                                }
+
+                                                                #files_view .modal-title {
+                                                                    color: #333;
+                                                                    font-size: 18px;
+                                                                    font-weight: 700;
+                                                                    text-rendering: optimizelegibility;
+                                                                    padding: 9px 0;
+                                                                    padding-left: 15px;
+                                                                    padding-top: 11px;
+                                                                }
+
+                                                                #files_view .modal-dialog {
+                                                                    /* width: 750px; */
+                                                                    margin: 30px auto;
+                                                                }
+
+                                                                #files_view .modal-header .close {
+                                                                    margin-top: 0;
+                                                                    width: 46px;
+                                                                    height: 46px;
+                                                                    padding: 6px 0 0;
+                                                                    border-left: 1px solid #ddd;
+                                                                    opacity: 1;
+                                                                    margin: 0;
+                                                                }
+
+                                                                #files_view .modal-header {
+                                                                    padding: 0;
+                                                                    display: block;
+                                                                }
+
+                                                                #files_view .modal-body {
+                                                                    background-color: rgb(250, 251, 251);
+                                                                }
+
+                                                                #files_view .image-previewer img {
+                                                                    border: 3px solid #fff;
+                                                                    box-shadow: 2px 2px 8px rgba(0, 0, 0, .2);
+                                                                    width: 100%;
+                                                                }
+
+                                                                .download_button {
+                                                                    width: 100%;
+                                                                    text-align: center;
+                                                                    margin-top: 20px;
+                                                                }
+
+                                                                #customerListModal header,
+                                                                #customerListModal .poptohide {
+                                                                    display: none !important;
+                                                                }
+                                                            </style>
+                                                            <div class="columnSettings">
+                                                                <div class="custom-control custom-switch" style="margin: 8px; float:left;">
+                                                                    <input class="custom-control-input chkAccountName" type="checkbox" id="formCheck-01" checked="">
+                                                                    <label class="custom-control-label" for="formCheck-01"></label>
+                                                                    <div contenteditable="true" class="groove divcolumn" type="text"
+                                                                        value="{{#if purchaseCloudGridPreferenceRec}}{{purchaseCloudGridPreferenceRec.customFields.[0].label}}{{else}}Account Name{{/if}}" valueupdate="th.colAccountName">
+                                                                        {{#if purchaseCloudGridPreferenceRec}}{{purchaseCloudGridPreferenceRec.customFields.[0].label}}{{else}}Account Name{{/if}}
+                                                                    </div>
+                                                                </div>
+                                                                <div class="d-xl-flex align-items-xl-center divColWidth" style="margin: 8px;">
+                                                                    <label class="text-nowrap" style="padding-left: 0px;margin-top: 8px;">Width:</label>
+                                                                    <input class="custom-range widthElement rngRangeProductName" type="number" style="margin: 8px;"
+                                                                        value="{{#if salesCloudGridPreferenceRec}}{{salesCloudGridPreferenceRec.customFields.[0].width}}{{else}}0{{/if}}" min="0" max="1000">
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="columnSettings">
+                                                                <div class="custom-control custom-switch" style="margin: 8px; float:left;">
+                                                                    <input class="custom-control-input chkMemo" type="checkbox" id="formCheck-02" checked="">
+                                                                    <label class="custom-control-label" for="formCheck-02"></label>
+                                                                    <div contenteditable="true" class="groove divcolumn" type="text"
+                                                                        value="{{#if purchaseCloudGridPreferenceRec}}{{purchaseCloudGridPreferenceRec.customFields.[1].label}}{{else}}Memo{{/if}}" valueupdate="th.colMemo">
+                                                                        {{#if purchaseCloudGridPreferenceRec}}{{purchaseCloudGridPreferenceRec.customFields.[1].label}}{{else}}Memo{{/if}}
+                                                                    </div>
+                                                                </div>
+                                                                <div class="d-xl-flex align-items-xl-center divColWidth" style="margin: 8px;">
+                                                                    <label class="text-nowrap" style="padding-left: 0px;margin-top: 8px;">Width:</label>
+                                                                    <input class="custom-range widthElement rngRangeMemo" type="number" style="margin: 8px;"
+                                                                        value="{{#if salesCloudGridPreferenceRec}}{{salesCloudGridPreferenceRec.customFields.[1].width}}{{else}}0{{/if}}" min="0" max="1000">
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="columnSettings">
+                                                                <div class="custom-control custom-switch" style="margin: 8px; float:left;">
+                                                                    <input class="custom-control-input chkAmount" type="checkbox" id="formCheck-03" checked="">
+                                                                    <label class="custom-control-label" for="formCheck-03"></label>
+                                                                    <div contenteditable="true" class="groove divcolumn" type="text"
+                                                                        value="{{#if purchaseCloudGridPreferenceRec}}{{purchaseCloudGridPreferenceRec.customFields.[2].label}}{{else}}Amount{{/if}}" valueupdate="th.colAmount">
+                                                                        {{#if purchaseCloudGridPreferenceRec}}{{purchaseCloudGridPreferenceRec.customFields.[2].label}}{{else}}Amount{{/if}}
+                                                                    </div>
+                                                                </div>
+                                                                <div class="d-xl-flex align-items-xl-center divColWidth" style="margin: 8px;">
+                                                                    <label class="text-nowrap" style="padding-left: 0px;margin-top: 8px;">Width:</label>
+                                                                    <input class="custom-range widthElement rngRangeAmount" type="number" style="margin: 8px;"
+                                                                        value="{{#if salesCloudGridPreferenceRec}}{{salesCloudGridPreferenceRec.customFields.[2].width}}{{else}}0{{/if}}" min="0" max="1000">
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="columnSettings">
+                                                                <div class="custom-control custom-switch" style="margin: 8px; float:left;">
+                                                                    <input class="custom-control-input chkCustomerJob" type="checkbox" id="formCheck-CustomerJob" checked="">
+                                                                    <label class="custom-control-label" for="formCheck-CustomerJob"></label>
+                                                                    <div contenteditable="true" class="groove divcolumn" type="text"
+                                                                        value="{{#if purchaseCloudGridPreferenceRec}}{{purchaseCloudGridPreferenceRec.customFields.[7].label}}{{else}}Customer/Job{{/if}}" valueupdate="th.colCustomerJob">
+                                                                        {{#if purchaseCloudGridPreferenceRec}}{{purchaseCloudGridPreferenceRec.customFields.[7].label}}{{else}}Customer/Job{{/if}}
+                                                                    </div>
+                                                                </div>
+                                                                <div class="d-xl-flex align-items-xl-center divColWidth" style="margin: 8px;">
+                                                                    <label class="text-nowrap" style="padding-left: 0px;margin-top: 8px;">Width:</label>
+                                                                    <input class="custom-range widthElement rngRangeCustomerJob" type="number" style="margin: 8px;"
+                                                                        value="{{#if salesCloudGridPreferenceRec}}{{salesCloudGridPreferenceRec.customFields.[7].width}}{{else}}0{{/if}}" min="0" max="1000">
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="columnSettings">
+                                                                <div class="custom-control custom-switch" style="margin: 8px; float:left;">
+                                                                    <input class="custom-control-input chkTaxRate" type="checkbox" id="formCheck-04">
+                                                                    <label class="custom-control-label" for="formCheck-04"></label>
+                                                                    <div contenteditable="true" class="groove divcolumn" type="text"
+                                                                        value="{{#if purchaseCloudGridPreferenceRec}}{{purchaseCloudGridPreferenceRec.customFields.[3].label}}{{else}}Tax Rate{{/if}}" valueupdate="th.colTaxRate">
+                                                                        {{#if purchaseCloudGridPreferenceRec}}{{purchaseCloudGridPreferenceRec.customFields.[3].label}}{{else}}Tax Rate{{/if}}
+                                                                    </div>
+                                                                </div>
+                                                                <div class="d-xl-flex align-items-xl-center divColWidth" style="margin: 8px;">
+                                                                    <label class="text-nowrap" style="padding-left: 0px;margin-top: 8px;">Width:</label>
+                                                                    <input class="custom-range widthElement rngRangeTaxRate" type="number" style="margin: 8px;"
+                                                                        value="{{#if salesCloudGridPreferenceRec}}{{salesCloudGridPreferenceRec.customFields.[3].width}}{{else}}0{{/if}}" min="0" max="1000">
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="columnSettings">
+                                                                <div class="custom-control custom-switch" style="margin: 8px; float:left;">
+                                                                    <input class="custom-control-input chkTaxCode" type="checkbox" id="formCheck-05" checked="">
+                                                                    <label class="custom-control-label" for="formCheck-05"></label>
+                                                                    <div contenteditable="true" class="groove divcolumn" type="text"
+                                                                        value="{{#if purchaseCloudGridPreferenceRec}}{{purchaseCloudGridPreferenceRec.customFields.[4].label}}{{else}}Tax Code{{/if}}" valueupdate="th.colTaxCode">
+                                                                        {{#if purchaseCloudGridPreferenceRec}}{{purchaseCloudGridPreferenceRec.customFields.[4].label}}{{else}}Tax Code{{/if}}
+                                                                    </div>
+                                                                </div>
+                                                                <div class="d-xl-flex align-items-xl-center divColWidth" style="margin: 8px;">
+                                                                    <label class="text-nowrap" style="padding-left: 0px;margin-top: 8px;">Width:</label>
+                                                                    <input class="custom-range widthElement rngRangeTaxCode" type="number" style="margin: 8px;"
+                                                                        value="{{#if salesCloudGridPreferenceRec}}{{salesCloudGridPreferenceRec.customFields.[4].width}}{{else}}0{{/if}}" min="0" max="1000">
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="columnSettings">
+                                                                <div class="custom-control custom-switch" style="margin: 8px; float:left;">
+                                                                    <input class="custom-control-input chkCustomField1" type="checkbox" id="formCheck-06">
+                                                                    <label class="custom-control-label" for="formCheck-06"></label>
+                                                                    <div contenteditable="true" class="groove divcolumn" type="text"
+                                                                        value="{{#if purchaseCloudGridPreferenceRec}}{{purchaseCloudGridPreferenceRec.customFields.[5].label}}{{else}}Custom Field 1{{/if}}" valueupdate="th.colCustomField1">
+                                                                        {{#if purchaseCloudGridPreferenceRec}}{{purchaseCloudGridPreferenceRec.customFields.[5].label}}{{else}}Custom Field 1{{/if}}
+                                                                    </div>
+                                                                </div>
+                                                                <div class="d-xl-flex align-items-xl-center divColWidth" style="margin: 8px;">
+                                                                    <label class="text-nowrap" style="padding-left: 0px;margin-top: 8px;">Width:</label>
+                                                                    <input class="custom-range widthElement rngRangeCustomField1" type="number" style="margin: 8px;"
+                                                                        value="{{#if salesCloudGridPreferenceRec}}{{salesCloudGridPreferenceRec.customFields.[5].width}}{{else}}0{{/if}}" min="0" max="1000">
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="columnSettings">
+                                                                <div class="custom-control custom-switch" style="margin: 8px; float:left;">
+                                                                    <input class="custom-control-input chkCustomField2" type="checkbox" id="formCheck-07">
+                                                                    <label class="custom-control-label" for="formCheck-07"></label>
+                                                                    <div contenteditable="true" class="groove divcolumn" type="text"
+                                                                        value="{{#if purchaseCloudGridPreferenceRec}}{{purchaseCloudGridPreferenceRec.customFields.[6].label}}{{else}}Custom Field 2{{/if}}" valueupdate="th.colCustomField2">
+                                                                        {{#if purchaseCloudGridPreferenceRec}}{{purchaseCloudGridPreferenceRec.customFields.[6].label}}{{else}}Custom Field 2{{/if}}
+                                                                    </div>
+                                                                </div>
+                                                                <div class="d-xl-flex align-items-xl-center divColWidth" style="margin: 8px;">
+                                                                    <label class="text-nowrap" style="padding-left: 0px;margin-top: 8px;">Width:</label>
+                                                                    <input class="custom-range widthElement rngRangeCustomField2" type="number" style="margin: 8px;"
+                                                                        value="{{#if salesCloudGridPreferenceRec}}{{salesCloudGridPreferenceRec.customFields.[6].width}}{{else}}0{{/if}}" min="0" max="1000">
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="columnSettings">
+                                                                <div class="custom-control custom-switch" style="margin: 8px; float:left;">
+                                                                    <input class="custom-control-input chkAmount" type="checkbox" id="formCheck-09" checked="">
+                                                                    <label class="custom-control-label" for="formCheck-09"></label>
+                                                                    <div contenteditable="true" class="groove divcolumn" type="text" value="" valueupdate="">Tax Amount</div>
+                                                                </div>
+                                                                <div class="d-xl-flex align-items-xl-center divColWidth" style="margin: 8px;">
+                                                                    <label class="text-nowrap" style="padding-left: 0px;margin-top: 8px;">Width:</label>
+                                                                    <input class="custom-range widthElement rngRangeAmount" type="number" style="margin: 8px;" value="" min="0" max="1000">
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button class="btn btn-success btnSaveGridSettings" type="button"><i class="fa fa-save" style="margin-right: 5px;"></i>Save</button>
+                                                <button class="btn btn-warning btnResetGridSettings" data-dismiss="modal" type="reset"><i class="fa fa-repeat" style="margin-right: 5px;"></i>Reset</button>
+                                                <button class="btn btn-secondary" data-dismiss="modal" type="button"><i class="fa fa-remove" style="margin-right: 5px;"></i>Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END -->
+                        <div class="table-responsive" style="padding: .375rem .75rem;">
+                            <style>
+                                th {
+                                    background-color: #ededed;
+                                }
+
+
+                                .table-striped tbody tr:nth-of-type(odd) {
+                                    background-color: white !important;
+                                }
+
+                                .table-striped tbody tr:nth-of-type(even) {
+                                    /*                                background-color: rgba(0, 163, 211, 0.07) !important;*/
+                                }
+
+                                #accountListModal .dataTables_scrollHeadInner,
+                                #accountListModal .dataTables_scrollHeadInner .table {
+                                    width: 100% !important;
+                                }
+
+                                #taxRateListModal .dataTables_scrollHeadInner,
+                                #taxRateListModal .dataTables_scrollHeadInner .table {
+                                    width: 100% !important;
+                                }
+
+                                @media only screen and (max-width: 480px) {
+
+                                    #ponumber,
+                                    #edtRef,
+                                    .form-group,
+                                    .input-group,
+                                    .formgoup {
+                                        max-width: 100% !important;
+                                        width: 100% !important;
+                                    }
+
+                                    .formgoup {
+                                        margin: 0px !important;
+                                    }
+
+                                    .flex-row {
+                                        margin: 16px !important;
+                                    }
+
+                                }
+
+
+                                .resizer {
+                                    position: absolute;
+                                    top: 0;
+                                    right: -8px;
+                                    bottom: 0;
+                                    left: auto;
+                                    width: 16px;
+                                    cursor: col-resize;
+                                }
+
+                                .box {
+                                    /* display: none; */
+                                }
+
+                                .outerBox {
+                                    display: none;
+                                }
+
+                                .hiddenColumn {
+                                    display: none;
+                                }
+
+                                .showColumn {
+                                    display: table-cell;
+                                    padding: .75rem;
+                                    vertical-align: top;
+                                }
+                            </style>
+
+                            <div class="modal fade" role="dialog" tabindex="-1" id="deleteLineModal">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <input type="hidden" style="width: 100%; display:none;" id="selectDeleteLineID" name="selectDeleteLineID" readonly>
+                                        <div class="modal-header">
+                                            <h4>Delete</h4>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">×</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Please select "Delete Line" to remove row or "Delete Bill" to delete the entire bill</p>
+                                            <button class="btn btn-danger float-left btnDeleteLine" type="button">
+                                                <i class="fa fa-close" style="margin-right: 5px;"></i>Delete Line
+                                            </button>
+                                            <button class="btn btn-danger float-right btnDeleteBill" type="button">
+                                                <i class="fa fa-close" style="margin-right: 5px;"></i>Delete Bill
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <style>
+                                .colAmountEx {
+                                    color: #00a3d3;
+                                }
+
+                                .colAmountInc {
+                                    color: #17a673;
+                                }
+
+                                .fa-random {
+                                    float: right;
+                                    margin-top: 4px;
+                                }
+
+                                .fa-trans {
+                                    -ms-transform: rotate(180deg);
+                                    transform: rotate(180deg);
+                                }
+                                .colPaid {
+                                    display: block !important;
+                                 }
+
+                                .colAmount {
+                                    cursor: pointer;
+                                    -webkit-touch-callout: none;
+                                    -webkit-user-select: none;
+                                    -khtml-user-select: none;
+                                    -moz-user-select: none;
+                                    -ms-user-select: none;
+                                    user-select: none;
+                                }
+                            </style>
+
+                            <table id="tblBillLine" style="width:100%" class="table table-striped table-bordered tblBillLine">
+                                <thead>
+                                    <tr class="dnd-moved">
+                                        <th class="th colAccountName" style="width: 300px;">Account Name</th>
+                                        <th class="th colMemo">Memo</th>
+                                        <th class="th colAmount colAmountEx" style="width: 140px; text-align: left!important;">Amount (Ex) <i class="fas fa-random"></i></th>
+                                        <th class="th colAmount colAmountInc hiddenColumn" style="width: 140px; text-align: left!important;">Amount (Inc) <i class="fas fa-random fa-trans"></i></th>
+                                        <th class="th colCustomerJob " style="width: 200px;">Customer/Job</th>
+                                        <!-- <th class="th colCostPrice thLinceCostPrice hiddenColumn" style="width: 110px; text-align: left!important;">Cost Price</th> -->
+                                        <th class="th colTaxRate hiddenColumn" style="width: 91px; text-align: left!important;">Tax Rate</th>
+                                        <th class="th colTaxCode " style="width: 95px; text-align: left!important;">Tax Code</th>
+                                        <th class="th colTaxAmount " style="width: 95px; text-align: left!important;">Tax Amt</th>
+                                        <th class="th colCustomField1 thCustomField1 hiddenColumn" style="width: 110px;">Custom Field 1</th>
+                                        <th class="th colCustomField2 thCustomField2 hiddenColumn" style="width: 110px;">Custom Field 2</th>
+                                        <th class="th" style="width: 25px;"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{#each item in billrecord.LineItems}}
+                                        <tr class="dnd-moved" id={{item.lineID}}>
+                                            <!-- <td contenteditable="false" class="lineAccountName colAccountName" style="cursor: pointer;">{{item.accountname}}</td> -->
+                                            <td contenteditable="false" class="colAccountName"><input class="es-input highlightSelect lineAccountName" type="search" value="{{item.accountname}}"></td>
+                                            <td contenteditable="true" class="lineMemo colMemo">{{item.memo}}</td>
+
+                                            <td class="colAmountEx"><input class="lineAmount colAmount highlightInput colAmountExChange" type="text" value="{{item.unitPrice}}"></td>
+                                            <td class="colAmountInc hiddenColumn"><input class="lineAmount colAmount highlightInput colAmountIncChange" type="text" value="{{item.unitPriceInc}}"></td>
+                                            <td contenteditable="false" class="colCustomerJob">
+                                              <input class="es-input highlightSelect lineCustomerJob" type="search" value="{{item.customerJob}}">
+                                            </td>
+                                            <!--                                    <td contenteditable="true" class="lineAmount colAmount" style="text-align: right!important;">{{item.unitPrice}}</td>-->
+                                            <!-- <td contenteditable="true" class="lineCostPrice colCostPrice hiddenColumn" style="text-align: right!important;">{{item.lineCost}}</td> -->
+                                            <td contenteditable="false" class="lineTaxRate colTaxRate hiddenColumn" style="text-align: right!important;cursor: pointer;">{{item.taxRate}}</td>
+                                            <!-- <td contenteditable="false" class="lineTaxCode colTaxCode td-input" style="text-align: right!important;cursor: pointer;">{{item.taxCode}}</td> -->
+                                            <td contenteditable="false" class="colTaxCode"><input class="es-input highlightSelect lineTaxCode" type="search" value="{{item.taxCode}}"></td>
+                                            <td contenteditable="false" class="lineTaxAmount colTaxAmount pointer" style=" ">{{item.TaxTotal}}</td>
+                                            <td contenteditable="true" class="lineCustomField1 colCustomField1 hiddenColumn">{{item.CustomField1}}</td>
+                                            <td contenteditable="true" class="lineCustomField2 colCustomField2 hiddenColumn">{{item.CustomField2}}</td>
+                                            <td><span class="table-remove btnRemove"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0 "><i class="fa fa-remove"></i></button></span></td>
+                                        </tr>
+                                    {{/each}}
+                                </tbody>
+                            </table>
+
+                            <style>
+                                .highlightInput {
+                                    border: 0px solid transparent !important;
+                                    background-color: rgba(0, 0, 0, 0) !important;
+                                    padding: 0px !important;
+                                    width: 100% !important;
+                                    text-align: right !important;
+                                    color: #858796 !important;
+                                }
+
+                                .highlightInput::-webkit-outer-spin-button,
+                                .highlightInput::-webkit-inner-spin-button {
+                                    -webkit-appearance: none !important;
+                                    margin: 0 !important;
+                                }
+
+                                /* Firefox */
+                                .highlightInput[type=number] {
+                                    -moz-appearance: textfield !important;
+                                }
+                            </style>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <style>
+                    .lead {
+                        font-size: 25px;
+                        font-weight: 500;
+                        margin: 0px;
+                        color: #696969;
+                        float: right;
+                    }
+
+                    .leadTotal {
+                        font-weight: 800 !important;
+                    }
+
+                    .leadHidden {
+                        visibility: hidden;
+                        height: 0px !important;
+                    }
+                    @media screen and (min-width: 1366px) {
+                        .colComments {
+                            padding-right: 2.5rem;
+                        }
+                    }
+                    @media screen and (max-width: 450px) {
+                        .desktopButtons {
+                            display: none;
+                        }
+                        .mobileButtons {
+                            display: flex !important;
+                        }
+                    }
+
+                    .paidIcon {
+                        animation: blink 2s ease-in infinite;
+                        -webkit-animation: blink 2s ease-in infinite;
+                    }
+
+                    @keyframes blink {
+
+                        from, to {
+                            opacity: 1
+                        }
+
+                        50% {
+                            opacity: 0
+                        }
+                    }
+                </style>
+
+                <div class="row align-items-end" style="margin: 16px; margin-top: 0px;">
+                    <div class="col-12 col-lg-8 col-xl-10" style="rpadding-right: 24px;">
+                        <div class="row">
+                            <button class="btn btn-primary" type="button" id="addRow" style="margin: 16px; margin-top: 0px;">+ Add New Entry</button>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-md-6">
+                                <div class="form-group"><label>Comments</label>
+                                    <textarea class="form-control" rows="3" id="txaComment" name="txaComment">{{billrecord.comments}}</textarea>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="form-group"><label>Picking Instructions</label>
+                                    <textarea class="form-control" rows="3" id="txapickmemo" name="txapickmemo">{{billrecord.pickmemo}}</textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center desktopButtons">
+                            <button class="btn btn-success btnSave btnFooter" type="button" style="margin: 16px;margin-top: 0px;width: 100px;">
+                                <i class="fa fa-save" style="padding-right: 8px;"></i>Save
+                            </button>
+
+                            <button class="btn btn-primary printConfirm btnFooter" type="button" style="margin: 16px;margin-top: 0px;width: 100px;">
+                                <i class="fa fa-print" style="padding-right: 8px;"></i>Print
+                            </button>
+
+                            <a class="btn btn-primary btn_Attachment btnFooter" role="button" style="margin: 16px;margin-top: 0px;" data-toggle="modal" href="#myModalAttachment" id="btn_Attachment" name="btn_Attachment">
+                                {{#if attachmentCount}}<span id="attachment-count">{{attachmentCount}}</span>{{/if}} <i class="fa fa-paperclip" style="padding-right: 8px;"></i>Add Attachments
+                            </a>
+
+                            <button class="btn btn-secondary btnBack btnFooter" type="button" style="margin: 16px;margin-top: 0px;width: 100px;">
+                                <i class="fa fa-remove" style="padding-right: 8px;"></i>Cancel
+                            </button>
+                        </div>
+                    </div>
+                    <!-- <div class="col-12 col-md-6 col-lg-4 col-xl-5">
+                        <button class="btn btn-primary" type="button" id="addRow" style="margin-bottom: 120px;">+ Add New Entry</button>
+                        <div class="form-group"><label>Comments</label>
+                            <textarea class="form-control" rows="4" id="txaComment" name="txaComment">{{invoicerecord.comments}}</textarea>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4 col-xl-5 colComments">
+                        <div class="form-group"><label>Picking Instructions</label>
+                            <textarea class="form-control" rows="4" id="txapickmemo" name="txapickmemo">{{invoicerecord.pickmemo}}</textarea>
+                        </div>
+                    </div> -->
+                    <div class="col-12 col-md-6 col-lg-4 col-xl-2" id="totalSection" style="padding-right: 1.5rem; padding-left: 1.5rem;">
+                        <div class="row">
+                            <div class="col-4" style="padding: 0px;">
+                                <p class="lead">Subtotal</p>
+                            </div>
+                            <div class="col-8" style="padding: 0px;">
+                                <p class="lead" id="subtotal_total" name="subtotal_total">{{billrecord.SubTotal}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4" style="padding: 0px;">
+                                <p class="lead">Tax</p>
+                            </div>
+                            <div class="col-8" style="padding: 0px;">
+                                <p class="lead" id="subtotal_tax" name="subtotal_tax">{{billrecord.TotalTax}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12" style="padding: 0px;">
+                                <hr style="border-top: 1px solid #696969;" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4" style="padding: 0px;">
+                                <p class="lead leadTotal">TOTAL</p>
+                            </div>
+                            <div class="col-8" style="padding: 0px;">
+                                <p class="lead leadTotal" id="grandTotal" name="grandTotal">{{billrecord.Total}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12" style="padding: 0px;">
+                                <hr style="border-top: 3px solid #696969;" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4" style="padding: 0px;">
+                                {{#if equals billrecord.isPartialPaid true}}
+                                    <p class="lead text-success pointer btnTransactionPaid" id=""><i class="fas fa-comments-dollar paidIcon"></i> Paid</p>
+                                {{else}}
+                                    <p class="lead">Paid</p>
+                                {{/if}}
+                            </div>
+                            <div class="col-8" style="padding: 0px;">
+                                <p class="lead" id="totalPaidAmt" name="totalPaidAmt">{{billrecord.totalPaid}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4" style="padding: 0px;">
+                                <p class="lead">Due</p>
+                            </div>
+                            <div class="col-8" style="padding: 0px;">
+                                <p class="lead" id="totalBalanceDue" name="totalBalanceDue">{{billrecord.balanceDue}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12" style="padding: 0px;">
+                                <hr style="border-top: 3px solid #696969;" />
+                                <p style="display:none;" id="totalBalanceDue" name="totalBalanceDue">{{billrecord.balanceDue}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center mobileButtons" style="display: none;">
+                    <button class="btn btn-success btnSave btnFooter" type="button" style="margin: 16px;margin-top: 0px;width: 100px;">
+                        <i class="fa fa-save" style="padding-right: 8px;"></i>Save
+                    </button>
+
+                    <button class="btn btn-primary printConfirm btnFooter" type="button" style="margin: 16px;margin-top: 0px;width: 100px;">
+                        <i class="fa fa-print" style="padding-right: 8px;"></i>Print
+                    </button>
+
+                    <a class="btn btn-primary btn_Attachment btnFooter" role="button" style="margin: 16px;margin-top: 0px;" data-toggle="modal" href="#myModalAttachment" id="btn_Attachment" name="btn_Attachment">
+                        {{#if attachmentCount}}<span id="attachment-count">{{attachmentCount}}</span>{{/if}} <i class="fa fa-paperclip" style="padding-right: 8px;"></i>Add Attachments
+                    </a>
+
+                    <button class="btn btn-secondary btnBack btnFooter" type="button" style="margin: 16px;margin-top: 0px;width: 100px;">
+                        <i class="fa fa-remove" style="padding-right: 8px;"></i>Cancel
+                    </button>
+                </div>
+                <div class="printID" style="display: none;"></div>
+                <style>
+                    @media screen and (max-width: 450px) {
+                        .btnFooter {
+                            width: 39% !important;
+                        }
+                        .btnSave {
+                            margin-right: 8px !important;
+                        }
+                        .btn_Attachment {
+                            margin-right: 8px !important;
+                        }
+
+                        .printConfirm {
+                            margin-left: 8px !important;
+                        }
+                        .btnBack {
+                            margin-left: 8px !important;
+                        }
+                    }
+
+                    @media screen and (max-width: 427px) {
+                        .btn_Attachment {
+                            font-size: 14px !important;
+                        }
+                    }
+                </style>
+                <!-- <div class="row justify-content-center">
+                    <button class="btn btn-success btnSave btnFooter" type="button" style="margin: 16px;margin-top: 0px;width: 100px;">
+                        <i class="fa fa-save" style="padding-right: 8px;"></i>Save
+                    </button>
+
+                    <button class="btn btn-primary printConfirm btnFooter" type="button" style="margin: 16px;margin-top: 0px;width: 100px;">
+                        <i class="fa fa-print" style="padding-right: 8px;"></i>Print
+                    </button>
+
+                    <a class="btn btn-primary btn_Attachment btnFooter" role="button" style="margin: 16px;margin-top: 0px;" data-toggle="modal" href="#myModalAttachment" id="btn_Attachment" name="btn_Attachment">
+                        {{#if attachmentCount}}<span id="attachment-count">{{attachmentCount}}</span>{{/if}} <i class="fa fa-paperclip" style="padding-right: 8px;"></i>Add Attachments
+                    </a>
+
+                    <button class="btn btn-secondary btnBack btnFooter" type="button" style="margin: 16px;margin-top: 0px;width: 100px;">
+                        <i class="fa fa-remove" style="padding-right: 8px;"></i>Cancel
+                    </button>
+                </div> -->
+            </form>
+
+            <!-- Start PDF -->
+            <!-- New A4 -->
+            <div style="width: 210mm; background-color: #ffffff; padding: 8px; height: 297mm; font-size: 13.33px; display: none; color: #000000; overflow-x: visible;" id="html-2-pdfwrapper" name="html-2-pdfwrapper">
+                <div style="display: flex; height: fit-content; min-height: 30mm;">
+                    <div style="margin: 0px; padding: 16px; width: 130mm; max-width: 130mm;">
+                        <div style="display: flex;">
+                            <div style="max-width: 60mm; max-height: 30mm;">
+                                <img src="assets/img/VS1.png" class="uploadedImage" style="max-height: 30mm;max-width: 200px;margin-bottom: 8px;">
+
+                            </div>
+                            <div style="width: 70mm;">
+                                <div style="padding-left: 16px;font-weight: bold;">
+                                    <a href="{{organizationurl}}">{{organizationurl}}</a>
+                                    <p style="margin-bottom: 0px; color: rgb(0 0 0);">{{organizationname}}</p>
+                                    <p style="margin-bottom: 0px; color: rgb(0 0 0);">{{companyaddress1}}</p>
+                                    <p style="margin-bottom: 0px; color: rgb(0 0 0);">{{companyaddress2}}</p>
+                                    <p style="margin-bottom: 0px; color: rgb(0 0 0);">{{city}}</p>
+                                    <p style="margin-bottom: 0px; color: rgb(0 0 0);">{{state}} {{poBox}} </p>
+                                    {{#if equals companyReg ''}}
+
+                                    {{else}}
+                                    <p style="margin-bottom: 0px; color: rgb(0 0 0);">{{companyReg}}</p>
+                                    {{/if}}
+                                    <p style="margin-bottom: 0px; color: rgb(0 0 0);">{{companyabn}}</p>
+                                    <p style="margin-bottom: 0px; color: rgb(0 0 0);">Phone: {{companyphone}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="font-size: 14px;">
+                            <p style="margin-bottom: 0px; color: rgb(0 0 0);font-weight: 600;">Supplier</p>
+                            <p style="margin-bottom: 0px; color: rgb(0 0 0); display:none;" class="pdfCustomerName"></p>
+                            <div style="min-height:50px; width: 50%; margin-bottom: 0px; color: rgb(0 0 0);" class="pdfCustomerAddress"></div>
+                        </div>
+                    </div>
+                    <div style="margin: 0px; padding: 16px; border: none !important; width: 60mm; max-width: 60mm;">
+                        <h4 style="font-weight: bold; font-size: 26.667px; color: rgb(0 0 0);">Bill&nbsp;&nbsp;&nbsp; {{billrecord.id}}</h4>
+                        <div style="display: flex; width: 100%;">
+                            <div style="width: 50%; padding-right: 16px;font-weight: bold;">
+                                <label style="margin-bottom: 4px; color: rgb(0 0 0);">Date:</label>
+                                <label class="pdfPONumber" style="margin-bottom: 4px; color: rgb(0 0 0);">Invoice No.:</label>
+                            </div>
+                            <div style="width: 50%; padding-left: 16px;">
+                                <p style="margin-bottom: 4px; color: rgb(0 0 0);">{{billrecord.saledate}}</p>
+                                <p class="po" style="margin-bottom: 4px; color: rgb(0 0 0); white-space: nowrap;">{{billrecord.invoicenumber}}.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div style="height: 160mm;">
+                    <div style="margin: 8px; border: none !important; background-color: rgba(0,0,0,0);">
+                        <table class="bill_print" style="width: 200mm; max-width: 200mm; margin: auto;">
+                            <thead style="color: rgb(251,251,251);">
+                                <tr style="border-bottom: 1px solid rgba(0, 0, 0, 1);">
+                                    <th style="width: 200px; background-color: white; color: rgb(0 0 0);">Account Name</th>
+                                    <th style="width: 250px; background-color: white; color: rgb(0 0 0);">Memo</th>
+                                    <th style="text-align: right; width: 77px; background-color: white; color: rgb(0 0 0);">Tax</th>
+                                    <th style="text-align: right; width: 77px; background-color: white; color: rgb(0 0 0);" class="hiddenColumn">Tax</th>
+                                    <th style="text-align: right; width: 100px; background-color: white; color: rgb(0 0 0);">Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody style="color: rgb(0 0 0);">
+                                {{#each item in billrecord.LineItems}}
+                                    <tr id={{item.lineID}} style="border-bottom: 1px solid rgba(0, 0, 0, .1);">
+                                        <td id="lineAccountName">{{item.accountname}}</td>
+                                        <td id="lineMemo">{{item.description}}</td>
+                                        <td id="lineTaxAmount" style="text-align: right;">{{item.TaxTotal}}</td>
+                                        <td id="lineTaxCode" class="hiddenColumn" style="text-align: right;">{{item.taxCode}}</td>
+                                        <td id="lineAmount" style="text-align: right;">{{item.TotalAmt}}</td>
+                                    </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <hr>
+                <div style="display: flex;">
+                    <div style="margin: 8px;min-width: 100mm;max-width: 100mm;width: 100mm;">
+                        <p style="font-weight: 600; color: rgb(0 0 0);">Comments</p>
+                        <div id="printcomment" style="color: rgb(0 0 0);">{{billrecord.comments}}</div>
+                    </div>
+                    <div style="margin: 8px; border: none !important; min-width: 90mm;max-width: 90mm;width: 90mm;">
+                        <div style="width: 100%; display: flex;">
+                            <div style="padding-right: 16px; width: 50%;">
+                                <p id="subtotal_total" style="font-weight: 600; margin-bottom: 8px; color: rgb(0 0 0);">Sub Total</p>
+                                <p id="grandTotal" style="font-weight: 600; margin-bottom: 8px; color: rgb(0 0 0);">Total GST</p>
+                            </div>
+                            <div style="padding-left: 16px; width: 50%;">
+                                <p id="subtotal_totalPrint" style="text-align: right; margin-bottom: 8px; font-weight: 600; color: rgb(0 0 0);">{{billrecord.SubTotal}}</p>
+                                <p style="text-align: right; margin-bottom: 8px; font-weight: 600; color: rgb(0 0 0);">{{billrecord.TotalTax}}</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div style="width: 100%; display: flex;">
+                            <div style="padding-right: 16px; width: 50%;">
+                                <p style="font-weight: 800; margin-bottom: 8px; color: rgb(0 0 0);">TOTAL</p>
+                            </div>
+                            <div style="padding-left: 16px; width: 50%;">
+                                <p id="grandTotalPrint" style="text-align: right; margin-bottom: 8px; font-weight: 800;">{{billrecord.Total}}<br></p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div style="width: 100%; display: flex;">
+                            <div style="padding-right: 16px; width: 50%;">
+                                <p style="font-weight: 600; margin-bottom: 8px; color: rgb(0 0 0);">Paid Amount</p>
+                                <p style="font-weight: 600; margin-bottom: 8px; color: rgb(0 0 0);">Balance Due</p>
+                            </div>
+                            <div style="padding-left: 16px; width: 50%;">
+                                <p style="text-align: right; margin-bottom: 8px; font-weight: 600; color: rgb(0 0 0);">{{billrecord.totalPaid}}</p>
+                                <p id="totalBalanceDuePrint" style="text-align: right; margin-bottom: 8px; font-weight: 600; color: rgb(0 0 0);">{{billrecord.balanceDue}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <span style="font-size: 10px;margin-right: 8px; float: right;">Page 1 of 1</span>
+            </div>
+
+            <!-- Letter -->
+            <div style="width: 216mm;background-color: #ffffff;padding: 8px;height: 279mm; font-size: 13.33px; display:none; color: #000000;" id="html-2-pdfwrapperLetter" name="html-2-pdfwrapperLetter">
+                <div class="d-xl-flex align-items-xl-start" style="height: 100%;">
+                    <div class="d-flex d-xl-flex flex-column flex-nowrap align-items-xl-center" style="min-height: 100%;height: 100%;max-height: 100%;">
+                        <div class="d-lg-flex d-xl-flex align-items-lg-start align-items-xl-start">
+                            <div class="card flex-grow-1" style="margin: 8px; border: none !important; width: 140mm; max-width: 140mm; background-color: rgba(0,0,0,0);">
+                                <div class="card-body">
+                                    <div class="d-lg-flex justify-content-lg-start" style="margin-bottom: 16px;">
+                                        <div class="d-lg-flex flex-column justify-content-lg-start"><img src="assets/img/VS1.png" class="uploadedImage" style="width: 200px;margin-bottom: 8px;"><a href="#">www.vs1cloud.com</a></div>
+                                        <div class="d-lg-flex d-xl-flex justify-content-lg-center align-items-xl-start card-text">
+                                            <div style="padding-left: 16px;font-weight: bold;">
+                                                <p style="margin-bottom: 0px; color: rgb(0 0 0);">{{organizationname}}</p>
+                                                <p style="margin-bottom: 0px; color: rgb(0 0 0);">{{companyaddress1}}</p>
+                                                <p style="margin-bottom: 0px; color: rgb(0 0 0);">{{companyaddress2}}</p>
+                                                <p style="margin-bottom: 0px; color: rgb(0 0 0);">{{city}}</p>
+                                                <p style="margin-bottom: 0px; color: rgb(0 0 0);">{{state}} {{poBox}} </p>
+                                                {{#if equals companyReg ''}}
+
+                                                {{else}}
+                                                <p style="margin-bottom: 0px; color: rgb(0 0 0);">{{companyReg}}</p>
+                                                {{/if}}
+                                                <p style="margin-bottom: 0px; color: rgb(0 0 0);">{{companyabn}}</p>
+                                                <p style="margin-bottom: 0px; color: rgb(0 0 0);">Phone: {{companyphone}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="font-size: 14px;">
+                                        <p style="margin-bottom: 0px;font-weight: 600; color: rgb(0 0 0);">Supplier Name</p>
+                                        <p style="margin-bottom: 0px; display:none;" class="pdfCustomerName">Big Burtha</p>
+                                        <p style="margin-bottom: 0px; color: rgb(0 0 0);" class="pdfCustomerAddress">12 Golf Drive</p>
+                                        <!-- <p style="margin-bottom: 0px;">Caulifield South Vic 9820</p>
+<p style="margin-bottom: 0px;">Australia</p> -->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card" style="margin: 8px; border: none !important; width: 65mm; max-width: 65mm; background-color: rgba(0,0,0,0);">
+                                <div class="card-body">
+                                    <h4 class="card-title" style="font-weight: bold; color: rgb(0 0 0);">Bill {{billrecord.id}}</h4>
+                                    <div class="d-lg-flex d-xl-flex align-items-xl-start card-text">
+                                        <div class="d-lg-flex d-xl-flex flex-column align-items-lg-start align-items-xl-start" style="padding-right: 16px;font-weight: bold;"><label class="text-nowrap">No:</label><label
+                                                class="text-nowrap">Date:</label><label class="text-nowrap">PO Number:</label><label class="text-nowrap">Terms:</label></div>
+                                        <div style="padding-left: 16px;">
+                                            <p style="margin-bottom: 8px; color: rgb(0 0 0);">{{billrecord.id}}</p>
+                                            <p style="margin-bottom: 8px; color: rgb(0 0 0);">{{billrecord.saledate}}</p>
+                                            <p style="margin-bottom: 8px; color: rgb(0 0 0);">{{billrecord.custPONumber}}.</p>
+                                            <p style="margin-bottom: 8px; color: rgb(0 0 0);">{{billrecord.termsName}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex-grow-1">
+                            <div class="card" style="margin: 8px; border: none !important;  background-color: rgba(0,0,0,0);">
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table" style="width: 200mm; max-width: 200mm;">
+                                            <!-- table-sm -->
+                                            <thead class="text-secondary" style="color: rgb(251,251,251);">
+                                                <tr>
+                                                    <th class="text-nowrap" style="width: 200px; background-color: white; color: rgb(0 0 0);">Account Name</th>
+                                                    <th class="text-nowrap" style=" background-color: white; color: rgb(0 0 0);">Memo</th>
+                                                    <!-- <th class="text-nowrap text-left" style="width: 50px; background-color: white; color: rgb(0 0 0);">Qty</th>
+<th class="text-nowrap text-left" style="width: 90px; background-color: white; color: rgb(0 0 0);">Unit Price</th> -->
+                                                    <th class="text-nowrap text-left" style="width: 77px; background-color: white; color: rgb(0 0 0);">Tax</th>
+                                                    <th class="text-nowrap text-left" style="width: 100px; background-color: white; color: rgb(0 0 0);">Amount</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody style="color: rgb(0 0 0);">
+                                                {{#each item in billrecord.LineItems}}
+                                                    <tr>
+                                                        <td>{{item.accountname}}</td>
+                                                        <td>{{item.description}}</td>
+                                                        <!-- <td class="text-right">{{item.quantity}}</td>
+<td class="text-nowrap text-right">{{item.unitPrice}}</td> -->
+                                                        <td class="text-nowrap text-right">{{item.TaxTotal}}</td>
+                                                        <td class="text-nowrap text-right">{{item.TotalAmt}}</td>
+                                                    </tr>
+
+                                                {{/each}}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex-grow-0">
+                            <hr style="margin: 0px;">
+                            <div class="d-lg-flex d-xl-flex align-items-lg-start align-items-xl-start">
+                                <div class="card flex-grow-1" style="margin: 8px;min-width: 90mm;max-width: 90mm;width: 90mm; background-color: rgba(0,0,0,0);">
+                                    <div class="card-body" style="">
+                                        <p class="card-title" style="font-weight: 600; color: rgb(0 0 0);">Comments</p>
+                                        <p style="color: rgb(0 0 0);">{{billrecord.comments}}</p>
+                                    </div>
+                                </div>
+                                <div class="card flex-grow-1" style="margin: 8px; border: none !important; min-width: 110mm;max-width: 110mm;width: 110mm; background-color: rgba(0,0,0,0);">
+                                    <div class="card-body">
+                                        <div class="d-lg-flex d-xl-flex flex-row justify-content-lg-center align-items-xl-start card-text">
+                                            <div class="d-lg-flex d-xl-flex flex-column align-items-lg-start align-items-xl-start" style="padding-right: 16px;"><label class="text-nowrap" style="font-weight: 600; color: rgb(0 0 0);">Sub
+                                                    Total</label><label class="text-nowrap" style="font-weight: 600; color: rgb(0 0 0);">Total GST</label></div>
+                                            <div class="d-lg-flex flex-column flex-grow-1 justify-content-lg-end" style="padding-left: 16px;">
+                                                <p class="text-right" style="margin-bottom: 8px;font-weight: 600;  color: rgb(0 0 0);">{{billrecord.SubTotal}}</p>
+                                                <p class="text-right" style="margin-bottom: 8px;font-weight: 600; color: rgb(0 0 0);">{{billrecord.TotalTax}}</p>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="d-lg-flex d-xl-flex align-items-lg-start align-items-xl-start card-text">
+                                            <div class="d-xl-flex flex-column flex-grow-1 align-items-xl-start" style="padding-right: 16px;"><label class="text-nowrap" style="font-weight: 800; color: rgb(0 0 0);">TOTAL&nbsp; (inc GST)</label></div>
+                                            <div class="flex-grow-1" style="padding-left: 16px;">
+                                                <p class="text-right flex-grow-1" style="margin-bottom: 8px;font-weight: 800; color: rgb(0 0 0);">{{billrecord.Total}}<br></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card" style="margin: 8px; border: none !important; min-width: 200mm;max-width: 200mm;width: 200mm; background-color: rgba(0,0,0,0);">
+                                <div class="card-body">
+                                    <h6 class="text-muted card-subtitle mb-2">Supplier Notice</h6>
+                                    <p class="card-text" style="font-size: 10px;">When paying on delivery or pick up, only cash and bank cheques will be accepeted as final payment. Personal and Business cheques require 7 days clearance before goods
+                                        leave store. Thank you.</p>
+                                </div>
+                            </div><span class="d-lg-flex d-xl-flex justify-content-lg-end justify-content-xl-end" style="font-size: 10px;margin-right: 8px;">Page 1 of 1</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END PDF -->
+        {{/if}}
+        <div class="modal fade" role="dialog" tabindex="-1" id="statusModal">
+            <div class="modal-dialog modal-sm modal-dialog-centered" role="document" style="max-width: 400px;">
+                <div class="modal-content">
+                    <form id="newstatus" name="newstatus">
+                        <div class="modal-header">
+                            <h4>Add New Lead Status</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                        </div>
+                        <div class="modal-body" style="padding: 24px;">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group flex-grow-1" style="margin: 8px 0px;">
+                                        <label>Status</label>
+                                        <input type="text" id="status" name="status" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-success btnSaveStatus" type="button"><i class="fa fa-save" style="margin-right: 5px;"></i>Save</button>
+                            <button class="btn btn-warning btnResetSettings" data-dismiss="modal" type="reset"><i class="fa fa-repeat" style="margin-right: 5px;"></i>Reset</button>
+                            <button class="btn btn-secondary" data-dismiss="modal" type="button"><i class="fa fa-remove" style="margin-right: 5px;"></i>Close</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- Modal print-button -modal -->
+        <div class="modal fade" role="dialog" tabindex="-1" id="accountListModal">
+            {{> accountlistpop}}
+        </div>
+
+        <div class="modal fade" role="dialog" tabindex="-1" id="addAccountModal">
+            {{> addaccountpop}}
+        </div>
+        <!-- End Modal Product -->
+        <!-- Modal Tax Rate -modal -->
+        <div class="modal fade" role="dialog" tabindex="-1" id="taxRateListModal">
+            {{> taxratelistpop}}
+        </div>
+
+        <div class="modal fade" role="dialog" tabindex="-1" id="newTaxRateModal">
+            {{> newtaxratepop}}
+        </div>
+        <!-- End Modal Tax Rate -->
+
+        <div class="modal fade" role="dialog" tabindex="-1" id="addCustomerModal">
+            {{> addcustomerpop}}
+        </div>
+
+        <div class="modal fade" role="dialog" tabindex="-1" id="termsListModal">
+            {{> termlistpop}}
+        </div>
+
+        <div class="modal fade" role="dialog" tabindex="-1" id="newTermsModal">
+            {{> newtermspop}}
+        </div>
+
+        <div class="modal fade" role="dialog" tabindex="-1" id="currencyModal">
+            {{> currencypop}}
+        </div>
+
+        <div class="modal fade" role="dialog" tabindex="-1" id="newCurrencyModal">
+            {{> newcurrencypop}}
+        </div>
+
+        <div class="modal fade" role="dialog" tabindex="-1" id="statusPopModal">
+            {{> statuspop}}
+        </div>
+
+        <div class="modal fade" role="dialog" tabindex="-1" id="newStatusPopModal">
+            {{> newstatuspop}}
+        </div>
+
+        <div class="modal fade" role="dialog" tabindex="-1" id="departmentModal">
+            {{> departmentpop}}
+        </div>
+
+        <div class="modal fade" role="dialog" tabindex="-1" id="newDepartmentModal">
+            {{> newdepartmentpop}}
+        </div>
+
+        <div class="modal fade" role="dialog" tabindex="-1" id="shipViaModal">
+            {{> shipviapop}}
+        </div>
+
+        <div class="modal fade" role="dialog" tabindex="-1" id="newShipViaModal">
+            {{> newshipvia}}
+        </div>
+
+        <!-- ModalCustomer -->
+        <div class="modal fade" role="dialog" tabindex="-1" id="customerListModal">
+            <div class="modal-dialog modal-xl modal-dialog-scrollable" role="document" style="max-width: 90vw;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4>Customer List</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    </div>
+                    <div class="modal-body" style="padding: 0px;">
+                        <input type="hidden" style="width: 100%; display:none;" id="customerSelectLineID" name="customerSelectLineID" readonly>
+                        {{> customerlistpop}}
+                    </div>
+                    <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Close</button></div>
+                </div>
+            </div>
+        </div>
+        <!-- End Modal Customer -->
+
+        <!-- ModalSupplier -->
+        <div class="modal fade supplierListModal" role="dialog" tabindex="-1" id="supplierListModal">
+            <div class="modal-dialog modal-xl modal-dialog-scrollable supplierListModalInner" role="document" style="max-width: 90vw;">
+                <div class="modal-content supplierListContent">
+                    <div class="modal-header">
+                        <h4>Supplier List</h4><button type="button" class="close checkclose" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    </div>
+                    <div class="modal-body mainSupplierModalBody" style="padding: 0px; overflow-x: hidden;">
+                        <input type="hidden" style="width: 100%; display:none;" id="supplierSelectLineID" name="supplierSelectLineID" readonly>
+                        {{> supplierlistpop}}
+
+                    </div>
+                    <div class="modal-footer"><button class="btn btn-light checkclose" data-dismiss="modal" type="button">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- End Modal Supplier -->
+        <div class="modal fade" role="dialog" tabindex="-1" id="addSupplierModal">
+            {{> addsupplierpop}}
+        </div>
+
+    </div>
+
+    <!-- Start Help Video Modal -->
+    <div class="modal fade" role="dialog" tabindex="-1" id="helpModal">
+        <div class="modal-dialog" role="document" style="max-width: 670px!important;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="title-header">New Bill</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+                    <!-- <iframe width="640" height="360" src="https://player.vimeo.com/video/99892791" frameborder="0" allowfullscreen=""></iframe> -->
+                    <!-- <iframe width="640" height="360" src="https://www.youtube.com/embed/BzxoYOp42fg" frameborder="0" allowfullscreen=""></iframe> -->
+                    <video id="myVideo" width="640" height="360" controls="" name="media" style="border: solid 5px #999999f0; height: auto; outline: none;">
+                        <source src="https://erphelpes.com/vs1videos/bill.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- End Help Video Modal -->
+
+    <script>
+        modalDraggable();
+    </script>
+</template>

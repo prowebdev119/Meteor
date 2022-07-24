@@ -1,0 +1,432 @@
+.financialSettings {
+    float: left;
+    width: 100%;
+    font-family: Tahoma,sans-serif;
+}
+
+.financialSettings .active_page_content h1 {
+    border-bottom: 0;
+   margin-bottom: 0;
+}
+
+.financialSettings .simplerbasMessage {
+    border-color: #fb8200;
+    background-color: #fffaea;
+    position: relative;
+    padding: 10px;
+    width: 100%;
+    border-width: 2px;
+    border-style: solid;
+    margin-bottom: 15px;
+    box-shadow: 1px 1px 3px #ddd;
+    border-radius: 5px;
+    margin-top: 1em;
+}
+
+.financialSettings .message-icon {
+    background-color: transparent;
+    background-image: url(./img/eceaicons.png);
+    background-repeat: no-repeat;
+    width: 32px;
+    height: 32px;
+    float: none;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-position: 0 -99px;
+}
+
+.financialSettings .simplerbasMessage span {
+    float: right;
+    margin-top: 8px;
+    padding-right: 10px;
+}
+
+.financialSettings .message {
+    padding: 8px 0 0 40px;
+    margin-top: 0;
+    float: none;
+}
+
+.financialSettings .message p {
+    font-size: 13px;
+}
+
+.financialSettings .FullWidthSetupBorder {
+    background-color: #e8f1ff;
+    border: 1px solid #c1c1c1;
+    float: left;
+    padding: 10px 0;
+    width: 600px;
+    margin-bottom: 30px;
+    padding-bottom: 0;
+    margin-top: 20px;
+}
+
+.financialSettings .largeHeadingAddresses {
+    float: left;
+    width: 100%;
+}
+
+.financialSettings .largeHeadingAddresses h2 {
+    border-bottom: 1px solid #bfd3f2;
+    margin: 0;
+    position: relative;
+    font: 700 14px Arial,sans-serif;
+    color: #333;
+    padding: 0 0 .25em;
+}
+
+.financialSettings .pad {
+    width: 100%;
+    padding-left: 10px;
+    float: left;
+    box-shadow: 0 0 black;
+    padding-right: 10px;
+    padding-bottom: 20px;
+}
+
+.financialSettings .fields {
+    border-top: 1px solid #fff;
+    width: 100%;
+    float: left;
+    font-size: 11px;
+}
+
+.financialSettings .activityStatement h2 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #333;
+    padding: 0;
+    border-bottom: 1px solid #bfd3f2;
+    margin: 0;
+    padding-bottom: 8px;
+    position: relative;
+}
+
+.financialSettings .addActivityStatement {
+    position: absolute;
+    left: 220px;
+    width: 500px;
+    background: #fff;
+    min-height: 207px;
+    z-index: 9;
+    top: 0;
+    display: none;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+    border-radius: 0 0 5px 5px;
+    border-top: 0;
+}
+.financialSettings .lockDate {
+    position: absolute;
+    left: 223px;
+    width: 450px;
+    background: transparent;
+    min-height: 207px;
+    z-index: 9;
+    top: 22px;
+    display: none;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+    border-radius: 0 0 5px 5px;
+    border-top: 0;
+}
+
+
+.financialSettings .paddingLeft {
+    padding-left: 0;
+}
+
+.financialSettings .activityStatement label {
+    font-size: 11px;
+    font-weight: normal;
+}
+
+.financialSettings .activityStatement select.form-control, .financialSettings .activityStatement input.form-control {
+    height: 27px;
+    padding: 4px 12px;
+    font-size: 11px;
+    padding-left: 6px;
+}
+
+.financialSettings .activityStatement p {
+    color: #666;
+    float: left;
+    width: 100%;
+    padding-top: 10px;
+}
+
+.financialSettings .additionalCheckboxes {
+    float: left;
+    width: 100%;
+}
+
+.financialSettings .additionalCheckboxes input {
+    margin-top: 1px;
+    float: left;
+    margin-right: 6px;
+}
+
+.financialSettings .additionalCheckboxes label {
+    margin-right: 20px;
+}
+
+.financialSettings .pad.largeHeadingAddresses.DefaultTax label {
+    width: 100%;
+    float: left;
+    font-weight: normal;
+}
+
+.financialSettings .pad.largeHeadingAddresses.DefaultTax {
+    margin-top: 15px;
+}
+
+.financialSettings .pad.largeHeadingAddresses.DefaultTax select.form-control {
+    float: left;
+    width: 30%;
+    margin-right: 10px;
+    height: 27px;
+    padding: 4px 12px;
+    font-size: 12px;
+    padding-left: 6px;
+    color: #333;
+}
+
+.financialSettings .pad.largeHeadingAddresses.DefaultTax p {
+    float: left;
+    width: auto;
+    line-height: 27px;
+    margin-bottom: 4px;
+    color: #666;
+}
+
+.financialSettings .SoftLockDate {
+    width: 100%;
+    float: left;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.financialSettings .financalFooter {
+    background-color: #d7e7ff;
+    padding: 8px 0 10px;
+    float: left;
+    width: 100%;
+    text-align: right;
+    padding-right: 10px;
+}
+
+.financialSettings .financalFooter button:last-child {
+    color: #fff;
+}
+
+.financialSettings .modal-body {
+    font-size: 12px;
+}
+
+.financialSettings .modal-content {
+    width: 420px;
+}
+
+.financialSettings .modal-header {
+    border-bottom: 0;
+}
+
+.financialSettings .modal-footer {
+    border-top: 0;
+}
+
+.financialSettings .modal-title {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.financialSettings .advanced select:first-child {
+    width: 24%;
+    height: 35px;
+    background-color: #fff;
+    border: 1px solid #bfc8d1;
+    border-radius: 3px;
+}
+
+.financialSettings .advanced select:last-child {
+    width: 72%;
+    height: 35px;
+    background-color: #fff;
+    border: 1px solid #bfc8d1;
+    border-radius: 3px;
+}
+
+.financialSettings .btn.btn-default {
+    color: #2baaed;
+}
+.financialSettings .addActivityStatement .headTitle{
+    background: #f7850e;
+    padding: 10px;
+    color: #fff;
+}
+.financialSettings .addActivityStatement button.close{
+    opacity: 1;
+    color: #fff;
+}
+.financialSettings .addActivityStatement .bodyTitle{
+    padding: 15px;
+    background-color: #fbfbfb;
+    font-size: 11px;
+    height: 300px;
+}
+.financialSettings .addActivityStatement .bodyTitle ul li {
+    line-height: 140%;
+    padding-bottom: 10px;
+}
+.financialSettings .lockDate .headTitle{
+    color: #fff;
+    background: linear-gradient(#f7850e,#f46f00);
+    height: 44px;
+    line-height: 44px;
+    padding: 0;
+    border-radius: 5px 5px 0 0;
+    border: 1px solid #f6810b;
+    border-bottom: 0;
+}
+.financialSettings .lockDate button.close{
+    opacity: 1;
+    color: #fff;
+}
+.financialSettings .lockDate .bodyTitle{
+    padding: 15px;
+    background-color: #fbfbfb;
+    font-size: 11px;
+    float: left;
+}
+.financialSettings .lockDate .bodyTitle ul{
+    float: left;
+    width: 100%;
+}
+.financialSettings .lockDate .bodyTitle ul li {
+    line-height: 140%;
+    padding-bottom: 10px;
+    font-weight: normal;
+}
+
+
+.financialSettings div#lock_date .bodyTitle p {
+    color: #000 !important;
+    float: left;
+    width: 100%;
+    padding-top: 10px;
+    padding-top: 0;
+    margin-top: 0;
+    font-size: 11px;
+    font-weight: normal;
+    line-height: 140%;
+    padding-bottom: 10px;
+}
+.financialSettings .addActivityStatement .headTitle span {
+    font: 700 18px Helvetica,sans-serif;
+    padding: 12px 15px;
+}
+.financialSettings div#lock_date .headTitle span {
+    font: 700 18px Helvetica,sans-serif;
+    padding: 12px 15px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: block;
+}
+
+.financialSettings .paddingMargin{
+    padding-left: 0;
+}
+.financialSettings form.checkboxButton input {
+    float: left;
+    margin-top: 1px;
+    margin-right: 5px;
+}
+
+.financialSettings .pad.largeHeadingAddresses.DefaultTax.lockDates .fields span {
+    color: #666;
+    padding-bottom: 10px;
+    line-height: 120%;
+}
+
+.financialSettings .top-spacer {
+    float: left;
+    width: 100%;
+    margin-bottom: 14px;
+}
+
+.financialSettings .pad.largeHeadingAddresses.timeZone .fields select.form-control {
+    width: 64%;
+    height: 34px;
+    font-size: 12px;
+    color: #333;
+}
+
+.financialSettings .financalFooter button {
+    line-height: initial;
+    width: 104px;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.financialSettings .headTitle span#close_model ,.financialSettings .headTitle span#close_model_bacs ,.financialSettings .headTitle span#close_model_dates{
+    float: right;
+    height: 44px;
+    width: 45px;
+    margin-left: 0;
+    border-left: 1px solid #ddd;
+    cursor: pointer;
+}
+
+.financialSettings .headTitle span#close_model:hover ,.financialSettings .headTitle span#close_model_bacs:hover ,.financialSettings .headTitle span#close_model_dates:hover {
+    background: #ec7003;
+}
+
+.financialSettings .headTitle span {
+    font: 700 18px Helvetica,sans-serif;
+    padding: 12px 15px;
+}
+
+.financialSettings .bodyTitle p {
+    color: #000 !important;
+    float: left;
+    width: 100%;
+    padding-top: 10px;
+    padding-top: 0;
+    margin-top: 0;
+    font-size: 11px;
+    font-weight: normal;
+    line-height: 140% !important;
+}
+
+.financialSettings .lockDate .bodyTitle ul {
+    float: left;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    padding-left: 19px;
+}
+.financialSettings .lockDate .bodyTitle ul li a{
+    font-weight: normal;
+}
+.financialSettings .lockDate .bodyTitle ul li a:hover{
+    text-decoration: none;
+}
+
+.financialSettings div#lock_date_bacs {
+    left: 50px;
+}
+
+.financialSettings div#lock_date_dates {
+    left: 92px;
+}
+
+.pad.largeHeadingAddresses.DefaultTax.taxDefaults .fields p {
+    color: #666;
+    line-height: 120%;
+    padding-top: 8px;
+}
+
+.pad.largeHeadingAddresses.timeZone .fields select.form-control {
+    margin-top: 6px;
+}

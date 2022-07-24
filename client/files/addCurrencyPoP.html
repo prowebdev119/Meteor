@@ -1,0 +1,52 @@
+<template name="addCurrencyModel">
+  <div class="currenciesSettings">
+      <div class="modal fade" id="addCurrency" role="dialog">
+          <div class="modal-dialog">
+
+              <!-- Modal content-->
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">x</button>
+                      <h4 class="modal-title">Add Currency</h4>
+                  </div>
+                  <div class="modal-body">
+                      <p>Select a currency</p>
+                      <div class="input-group dropdown-add-rec" id="">
+                          <input type="text" id="TaxDropdown" name="myTaxDropdown" class="form-control currency-list-dropdown-list" value="Select one...">
+                          <div class="input-group-addon currency-list-dropdown-img" data-toggle="dropdown">
+                              <img src="/img/dropdown_icon.png" id="region-dropdown-img" class="region-img">
+                          </div>
+                      </div>
+                      <div class="currency-div" style="display:{{#if noCountry}}inline-block{{else}}none{{/if}}">
+                          <label>Currency</label>
+                          <input class="currency-input" type="text" value="" name="" id="currency">
+                          <label>Currency Description</label>
+                          <input class="currency-input" type="text" value="" name="" id="currencyDesc">
+                          <div class="code">
+                              <label>Code</label>
+                              <input type="text" value="" name="" id="code">
+                          </div>
+                          <div class="code">
+                              <label>Currency Symbol</label>
+                              <input type="text" value="" name="" id="currSymbol">
+                          </div>
+                          <div class="code">
+                              <label>Buy Rate</label>
+                              <input type="number" value="" name="" id="buyRt">
+                          </div>
+                          <div class="code">
+                              <label>Sell Rate</label>
+                              <input type="text" value="" name="" id="sellRt">
+                          </div>
+                      </div>
+                  </div>
+                  <div class="modal-footer">
+                      <button type="submit" class="btn btn-success" data-dismiss="modal" id="saveCurrency">Add Currency</button>
+                      <button type="button" class="btn gray" data-dismiss="modal" id="cancelRate">Cancel</button>
+                  </div>
+              </div>
+
+          </div>
+      </div>
+</div>
+</template>

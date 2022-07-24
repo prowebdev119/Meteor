@@ -1,0 +1,129 @@
+<template name="supportmodalpop">
+
+    <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4>Get Support</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" style="width: 100%; display:none;" id="selectLineID" name="selectLineID" readonly>
+                <div class="card-body p-1 rounded" style="text-align: center;">
+                    <h4>How can we help?</h4>
+
+                    <p class="mb-4">
+                        Want to get in touch? We'd love to hear from you! Here's how you can reach us...
+                    </p>
+                    <style>
+                        @media screen and (max-width: 450px) {
+                            .mobileSupportCol {
+                                border-bottom: 1px solid #00a3d3;
+                                padding-bottom: 16px;
+                                margin-bottom: 24px;
+                            }
+                        }
+                    </style>
+                    <div class="row">
+                        <div class="col-12 col-md-4 mobileSupportCol" style="padding-left: 24px; padding-right: 24px;">
+                            <a href="mailto:support@vs1cloud.com"><i class="fas fa-envelope-open-text" style="font-size: 65px; color: #00a3d3;"></i></a>
+                            <p class="mt-4">
+                                You can email us anytime, and we'll quickly get back to you with the best support available.
+                            </p>
+                            <a href="mailto:support@vs1cloud.com">support@vs1cloud.com</a>
+                            <!-- email support -->
+                        </div>
+                        <div class="col-12 col-md-4 mobileSupportCol" style="padding-left: 16px; padding-right: 16px;">
+                            <a href="tel+18433371599:" id="iconUSA"><i class="fas fa-phone-alt" style="font-size: 65px; color: #00a3d3;"></i></a>
+                            <a href="tel:+61755331730" id="iconAUS"><i class="fas fa-phone-alt" style="font-size: 65px; color: #00a3d3;"></i></a>
+                            <a href="tel:+27612414123" id="iconSA"><i class="fas fa-phone-alt" style="font-size: 65px; color: #00a3d3;"></i></a>
+                            <p class="mt-4">
+                                Our phone lines are available during weekdays, from 8am-4pm.
+                            </p>
+
+                            <style>
+                                .phoneOpen {
+                                    color: #1cc88a;
+                                }
+
+                                .phoneClosed {
+                                    color: #E74A3B;
+                                    pointer-events: none !important;
+                                }
+
+                                .phoneClosed:after {
+                                    content: " (closed)";
+                                }
+
+                                #phoneUSA {
+                                    display: none;
+                                }
+
+                                #phoneAUS {
+                                    display: none;
+                                }
+
+                                #phoneSA {
+                                    display: none;
+                                }
+
+                                #iconAUS {
+                                    display: none;
+                                }
+
+                                #iconUSA {
+                                    display: none;
+                                }
+
+                                #iconSA {
+                                    display: none;
+                                }
+
+                                .viewAllNumbers:hover {
+                                    color: #00a3d3 !important;
+                                    background-color: rgba(0, 0, 0, 0) !important;
+                                    text-decoration: underline;
+                                    border-color: rgba(0, 0, 0, 0) !important;
+                                }
+
+                                .viewAllNumbers:focus {
+                                    color: #00a3d3 !important;
+                                    background-color: rgba(0, 0, 0, 0) !important;
+                                    border-color: rgba(0, 0, 0, 0) !important;
+                                }
+                            </style>
+                            <span id="phoneUSA"><img src="images/icon_usa.png" style="height: 20px!important; margin-right: 5px; margin-top: -4px;" /><a href="tel:+18433371599" id="phoneParentUSA" class="">+1 843 337 1599</a><br /></span>
+                            <span id="phoneAUS"><img src="images/icon_australia.png" style="height: 20px!important; margin-right: 5px; margin-top: -4px;" /><a href="tel:+61755331730" id="phoneParentAUS" class="">+61 7 5533 1730</a><br /></span>
+                            <span id="phoneSA"><img src="images/icon_southafrica.png" style="height: 20px!important; margin-right: 5px; margin-top: -4px;" /><a href="tel:+27612414123" id="phoneParentSA" class="">+27 61 241 4123</a><br /></span>
+                            <!--
+                            <button type="button" class="btn btn-link viewAllNumbers" data-toggle="collapse" data-target="#globalNumbersCollapse" aria-expanded="false" aria-controls="globalNumbersCollapse">View all global numbers <i class="fas fa-angle-down"
+                                    style="margin-left: 5px;"></i></button>
+                            <div class="collapse" id="globalNumbersCollapse">
+                                <span class="mb-2"><img src="images/icon_usa.png" style="height: 20px!important; margin-right: 5px;"/><a href="tel:+18433371599" id="phoneChildUSA" class="">+1 843 337 1599</a><br /></span>
+                                <span class="mb-2"><img src="images/icon_australia.png" style="height: 20px!important; margin-right: 5px;"/><a href="tel:+61755331730" id="phoneChildAUS" class="">+61 7 5533 1730</a><br /></span>
+                                <span class="mb-2"><img src="images/icon_southafrica.png" style="height: 20px!important; margin-right: 5px;"/><a href="+27818074827" id="phoneChildSA" class="">+27 81 807 4827</a><br /></span>
+                            </div> -->
+                        </div>
+                        <div class="col-12 col-md-4 mobileSupportCol" style="padding-left: 24px; padding-right: 24px;">
+                            <a href="https://sos.splashtop.com" target="_blank"><img class="img-splashtop" src="images/splashtop.png" style="height: 75px!important;"></a>
+                            <p class="" style="margin-top: 0.8rem !important;">
+                                Splashtop allows us to provide you with remote access support.
+                            </p>
+                            <button onclick="window.open('https://sos.splashtop.com','_blank')" type="button" class="btn btn-primary mb-2" style="width: 100%;">Download Splashtop</button>
+                            <!-- <button type="button" class="btn btn-primary btnOpenSpashtop" style="width: 100%;">Open Splashtop</button> -->
+                            <!-- <input type="file" id="img-attachment-upload" style="display:block" accept=".exe"> -->
+                        </div>
+                    </div>
+
+
+                    <!-- <div class="label" id="Johannesburg">Johannesburg</div>
+                     <div class="label" id="Queensland">Queensland</div>
+                     <div class="label" id="New_York">New_York</div> -->
+                    <!-- <div class="label" id="Austin">Austin</div> -->
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-dismiss="modal" type="button" autocomplete="off"><i class="fa fa-close" style="margin-right: 5px;"></i>Close</button>
+            </div>
+        </div>
+    </div>
+</template>

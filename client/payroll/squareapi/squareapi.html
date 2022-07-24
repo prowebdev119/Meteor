@@ -1,0 +1,180 @@
+<template name="squareapi">
+    <div class="container-fluid" style="padding-left: 0px; padding-right: 0px; margin-top: -24px;">
+        <div class="fullScreenSpin" style="display:none;">
+            <div class="spinner"></div>
+        </div>
+        <header style="padding: 16px; background-color: #ededed;">
+            <h1 style="margin: 16px;">Square  <a role="button" data-toggle="modal" href="#helpModal" class="helpModal"><label class="lblplay">PLAY</label><i class="far fa-play-circle"  style="font-size: 20px;"></i></a>  <a href="https://www.youtube.com/watch?v=27OBSNW5LbM" class="helpModal" target="_blank"><label class="lblplay">Square Set Up </label><i class="far fa-play-circle"  style="font-size: 20px;"></i></a></h1>
+            <!-- <h1 style="margin: 16px;margin-bottom: 0px;margin-top: 0px;"><a href="https://www.youtube.com/watch?v=27OBSNW5LbM" class="helpModal" target="_blank"><label class="lblplay">Square Set Up </label><i class="far fa-play-circle"  style="font-size: 20px;"></i></a></h1> -->
+        </header>
+        <div class="d-xl-flex flex-row align-items-xl-end" style="padding-bottom: 16px; background-color: #ededed; padding-right: 16px;">
+            <div class="d-xl-flex flex-grow-1 justify-content-xl-start"></div>
+            <div class="d-xl-flex justify-content-xl-end align-items-xl-end">
+                <div class="d-xl-flex flex-row justify-content-xl-start">
+                    <div class="form-group d-xl-flex flex-column justify-content-xl-start" style="margin: 16px;">
+                      <label>From</label>
+                      <!-- <input type="date" style="width: 240px;background-color: #ffffff;"> -->
+                      <div class="input-group date" style="width: 160px;">
+                        <input type="text" class="form-control" id="dateFrom" name="dateFrom" >
+                        <div class="input-group-addon">
+                            <span class="glyphicon glyphicon-th"></span>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                <div class="d-xl-flex flex-row justify-content-xl-start">
+                    <div class="form-group d-xl-flex flex-column justify-content-xl-start" style="margin: 16px;">
+                      <label>To</label>
+                      <!-- <input type="date" style="width: 240px;background-color: #ffffff;"> -->
+                      <div class="input-group date" style="width: 160px;">
+                         <input type="text" class="form-control" id="dateTo" name="dateTo" >
+                         <div class="input-group-addon">
+                             <span class="glyphicon glyphicon-th"></span>
+                         </div>
+                     </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row d-xl-flex justify-content-xl-end" style="padding: 24px; padding-right: 32px; padding-bottom: 0px;">
+            <div><a class="btn btnOpenSettings" role="button" data-toggle="modal" href="#myModal2"><i class="icon ion-android-more-horizontal"></i></a>
+                <div class="modal fade" role="dialog" tabindex="-1" id="myModal2">
+                    <div class="modal-dialog modal-dialog-centered" role="document" style="float: right;">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4>Display Settings</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                            </div>
+                            <div class="modal-body">
+                                <div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary saveTable" type="button"><i class="fa fa-save" style="margin-right: 5px;"></i>Save</button>
+                                <button class="btn btn-warning resetTable" data-dismiss="modal" type="reset"><i class="fa fa-repeat" style="margin-right: 5px;"></i>Reset</button>
+                                <button class="btn btn-secondary" data-dismiss="modal" type="button"><i class="fa fa-remove" style="margin-right: 5px;"></i>Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col" style="margin-bottom: 16px;">
+                <div class="card-body p-5 rounded" style="padding: 0rem 2rem !important;">
+                    <style>
+                        .cashamount {
+                            text-align: right;
+                        }
+                        th {
+                            background-color: #ededed;
+                        }
+                        .table-striped tbody tr:nth-of-type(odd) {
+                            background-color: white !important;
+                        }
+                        .table-striped tbody tr:nth-of-type(even) {
+                            background-color: #0000000d !important;
+                        }
+                        .JColResizer > tbody > tr > td, .JColResizer > tbody > tr > th {
+                            padding: .75rem!important;
+                        }
+                        .hiddenColumn{
+                            display:none;
+                        }
+                        .showColumn {
+                            display:table-cell;
+                            padding:.75rem;
+                            vertical-align:top;
+                        }
+                        input[type=number]::-webkit-inner-spin-button,
+                        input[type=number]::-webkit-outer-spin-button {
+                            opacity: 1;
+                        }
+                    </style>
+                    <div class="table-responsive">
+                        <table id="tblTimeSheet" style="width:100%" class="dataTable table table-hover table-striped table-bordered tblTimeSheet">
+                            <thead>
+                                <tr class="dnd-moved">
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Job Title</th>
+                                    <th>Pay Type</th>
+                                    <th>Rate</th>
+                                    <th>Reg Hours</th>
+                                    <th>Overtime</th>
+                                    <th>Double</th>
+                                    <th style="max-width: 50px;"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                              {{#if datatablerecords}}
+                              {{#each item in datatablerecords}}
+                                <tr class="dnd-moved">
+                                    <td contenteditable="false">{{item.employeename}}</td>
+                                    <td contenteditable="false">{{item.email}}</td>
+                                    <td contenteditable="false">{{item.phone}}</td>
+                                    <td contenteditable="false">{{item.jobtitle}}</td>
+                                    <td contenteditable="false"></td>
+                                    <td class="cashamount">$<span contenteditable="true">0.00</span></td>
+                                    <td class="cashamount">0</td>
+                                    <td class="cashamount">$<span contenteditable="true">0.00</span></td>
+                                    <td contenteditable="false" class="cashamount">0.00</td>
+                                    <td style="max-width: 50px;"><button class="btn float-right" type="button" style="margin: 0px;margin-left: 0px;padding: 0px;"><i class="la la-ellipsis-h" style="color: #00a3d3;font-size: 20px;"></i></button></td>
+                                </tr>
+                                {{/each}}
+                              {{/if}}
+
+                                <tr class="dnd-moved" style="font-weight: 700;">
+                                    <td contenteditable="false">Subtotal</td>
+                                    <td contenteditable="false"></td>
+                                    <td contenteditable="false" ></td>
+                                    <td contenteditable="false" ></td>
+                                    <td contenteditable="false" ></td>
+                                    <td class="cashamount">$<span contenteditable="false">0.00</span></td>
+                                    <td class="cashamount">0</td>
+                                    <td class="cashamount">$<span contenteditable="false">0.00</span></td>
+                                    <td contenteditable="false" class="cashamount">0.00</td>
+                                    <td style="max-width: 50px;"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="d-xl-flex justify-content-xl-center" style="padding-top: 2rem;">
+            <button class="btn btn-primary btnSave" type="button" style="margin: 16px;margin-top: 0px;width: 95px;">
+                <i class="fa fa-save" style="padding-right: 8px;"></i>Save
+            </button>
+            <button class="btn btn-primary printConfirm" type="button" style="margin: 16px;margin-top: 0px;width: 95px;">
+                <i class="fa fa-print" style="padding-right: 8px;"></i>Print
+            </button>
+            <button class="btn btn-secondary btnBack" type="button" style="margin: 16px;margin-top: 0px;width: 95px;">
+                <i class="fa fa-remove" style="padding-right: 8px;"></i>Cancel
+            </button>
+        </div>
+    </div>
+    <!-- Start Help Video Modal -->
+    <div class="modal fade" role="dialog" tabindex="-1" id="helpModal">
+        <div class="modal-dialog" role="document" style="max-width: 670px!important;">
+            <div class="modal-content" >
+                <div class="modal-header" >
+
+                    <h4 class="title-header" >Square</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+                    <!-- <iframe width="640" height="360" src="https://player.vimeo.com/video/99892791" frameborder="0" allowfullscreen=""></iframe> -->
+                    <!-- <iframe width="640" height="360" src="https://erphelpes.com/vs1videos/invoicelist.mp4" frameborder="0" allowfullscreen=""></iframe> -->
+                    <video id="myVideo" width="640" height="360" controls="" name="media" style="border: solid 5px #999999f0; height: auto; outline: none;">
+                        <source src="https://erphelpes.com/vs1videos/comingsoon.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Help Video Modal -->
+    <script>
+        modalDraggable();
+    </script>
+</template>

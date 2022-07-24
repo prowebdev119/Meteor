@@ -1,0 +1,293 @@
+<template name="emailSettings">
+    <div class="emailSettings conversionBalancesSettings">
+        <div class="active_page">
+            <div class="active_page_content">
+                <p><a href="/settings">General Settings</a> &nbsp;›&nbsp;
+                </p><br>
+                <h1>Email Settings</h1>
+            </div>
+            <div class="gettingStarted">
+                <div id="wrapper_main">
+                    <div class="documentHeader">
+                        <div class="col-lg-12">
+                            <p>Tailor the emails you send from VS1Cloud</p>
+                            <p>See our <a href="#">help article</a> to learn how to
+                                control the display name and reply address</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="wrapper_main">
+            <main id="page-content-wrapper_main" role="main">
+                <div class="EmailPage">
+                    <h2 class="template">Tailor the emails sent from this organisation</h2>
+                    <div class="collapseDie">
+                        <div class="panel-group">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" href="#collapse1"><b>Email address</b><span> As you are the logged
+                                            in user, emails are sent using the name <b id="loggedusername"></b> with replies
+                                            going to <b id="loggeduseremail"></b></span>
+                                            <span class="lastchild" href="#">Edit</span>
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapse1" class="panel-collapse collapse">
+                                    <div class="collapseData">
+                                        <ul>
+                                            <li><input type="radio" name="optradio">
+                                            </li>
+                                            <li>
+                                                <b>The logged in user</b> For you, emails are
+                                                sent as <b id="loggedusernameEdit"></b> with replies going to <b id="loggeduseremailEdit"></b>
+                                            </li>
+                                            <li class="pull-right">
+                                                <span class="selected">Selected</span>
+                                            </li>
+                                        </ul>
+                                        <div class="addButton">
+                                            <a href="#" data-toggle="modal"  data-target="#addEmailAddress">+ Add email address</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="collapseDie" style="margin-top: 20px;">
+                        <div class="panel-group">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" href="#collapse2"><b>Templates</b> <span>You have <b>8 standard templates</b> and <b>1 custom template</b></span>
+                                            <span class="lastchild" href="#">Edit</span>
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapse2" class="panel-collapse collapse">
+                                    <div class="collapseData collapseData-title">
+                                        <div class="title-collapseData">
+                                            <ul class="title">
+                                                <li><a href="#">Type</a></li>
+                                                <li><a href="#">Name</a></li>
+                                            </ul>
+                                            <div class="creditNote" data-toggle="modal"
+                                                 data-target="#editCreditTemplate">
+                                                <ul class="titleData">
+                                                    <li>Credit Note <span class="default">DEFAULT</span></li>
+                                                    <li><a href="#">Basic</a></li>
+                                                </ul>
+                                                <ul class="titleData">
+                                                    <li>Credit Note <span class="default">DEFAULT</span></li>
+                                                    <li><a href="#">Basic</a></li>
+                                                </ul>
+                                                <ul class="titleData">
+                                                    <li>Credit Note <span class="default">DEFAULT</span></li>
+                                                    <li><a href="#">Basic</a></li>
+                                                </ul>
+                                                <ul class="titleData">
+                                                    <li>Credit Note <span class="default">DEFAULT</span></li>
+                                                    <li><a href="#">Basic</a></li>
+                                                </ul>
+                                                <ul class="titleData">
+                                                    <li>Credit Note <span class="default">DEFAULT</span></li>
+                                                    <li><a href="#">Basic</a></li>
+                                                </ul>
+                                                <ul class="titleData">
+                                                    <li>Credit Note <span class="default">DEFAULT</span></li>
+                                                    <li><a href="#">Basic</a></li>
+                                                </ul>
+                                                <ul class="titleData">
+                                                    <li>Credit Note <span class="default">DEFAULT</span></li>
+                                                    <li><a href="#">Basic</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="add_email_template">
+                                            <a href="#" data-toggle="modal" data-target="#addEmailTemplate">+ Add email template</a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </main>
+        </div>
+
+
+        <div class="modal fade" id="addEmailAddress" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">x</button>
+                        <h4 class="modal-title">Add a new reply email address</h4>
+                    </div>
+                    <div class="modal-body">
+                        <label>'Reply to' Email address</label>
+                        <div class="input-group dropdown-add-rec" id="region-dropdown">
+                            <input type="text" id="sltnew_email" name="sltnew_email" value="goldcraige2@gmail.com">
+                            <div class="input-group-addon">
+                                <img src="/img/dropdown_icon.png" id="asset-type-dropdown-img" class="supplier-img">
+                            </div>
+                        </div>
+
+
+
+                        <label>Email name</label>
+                        <input class="form-control" type="text" placeholder="e.g. Hornblower Enterprises">
+                        <p>Emails sent from this organisation will use this name and email address.</p>
+                        <p>For more information <a href="#"> view help.</a></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-gray" data-dismiss="modal" disabled>Add email</button>
+                        <button type="button" class="btn cancel_new" data-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="modal fade edit_credit_template" id="editCreditTemplate" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">x</button>
+                        <h4 class="modal-title">Edit Credit Note template</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p><b>Name</b></p>
+                        <div class="advanced">
+                            <input type="text" placeholder="Basic">
+                        </div>
+                        <div class="checkbox">
+                            <label><input type="checkbox" value=""> <span>Default</span></label>
+                            <label><input type="checkbox" value=""> Include quick link to online invoice and detail summary</label>
+                            <label><input type="checkbox" value=""> Replace existing repeat invoice messages</label>
+                        </div>
+                        <div class="email">
+                            <span class="Message"><b>Message</b></span>
+                            <div class="addContact">
+                                <div class="dropdown ">
+                                    <a class="addContact" href="#" data-toggle="dropdown" id="add_field"  style="display:{{#if equals}}none{{else}}inline-block{{/if}}" >Insert placeholder<span
+                                            class="caret"></span></a>
+                                    <ul class="dropdown-menu" id="ul_o">
+                                        <li><a href="#" class="item">Amount Due Without Currency</a></li>
+                                        <li><a href="#" class="item">Amount Due</a></li>
+                                        <li><a href="#" class="item">Contact First Name</a></li>
+                                        <li><a href="#" class="item">Contact Last Name</a></li>
+                                        <li><a href="#" class="item">Contact Name</a></li>
+                                        <li><a href="#" class="item">Currency Code</a></li>
+                                        <li><a href="#" class="item">Currency Symbol</a></li>
+                                        <li><a href="#" class="item">Current Month</a></li>
+                                        <li><a href="#" class="item">Due Date</a></li>
+                                        <li><a href="#" class="item">Invoice Number</a></li>
+                                        <li><a href="#" class="item">Invoice Total Without Currency</a></li>
+                                        <li><a href="#" class="item">Invoice Total</a></li>
+                                        <li><a href="#" class="item">Month Year</a></li>
+                                        <li><a href="#" class="item">Month</a></li>
+                                        <li><a href="#" class="item">Online Invoice Link</a></li>
+                                        <li><a href="#" class="item">Reference</a></li>
+                                        <li><a href="#" class="item">Trading Name</a></li>
+                                        <li><a href="#" class="item">Week Year</a></li>
+                                        <li><a href="#" class="item">Week</a></li>
+                                        <li><a href="#" class="item">Year</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <input type="text" value="[Current Month] Invoice [Invoice Number] from [Trading Name] for [Contact Name]">
+                            <textarea rows="4" cols="50"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" data-dismiss="modal">Save</button>
+                        <button type="button" class="btn cancel_new" data-dismiss="modal">Cancel</button>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="modal fade edit_credit_template" id="addEmailTemplate" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">x</button>
+                        <h4 class="modal-title">Add an email template</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="addContact Typeemial">
+                            <label>Type</label>
+                            <div class="dropdown ">
+                                <span data-toggle="dropdown" id="add_field"> <input type="text" value="" name=""></span>
+                                <ul class="dropdown-menu" id="ul_o">
+                                    <li><a href="#">Credit Note</a></li>
+                                    <li><a href="#">Purchase Ordere</a></li>
+                                    <li><a href="#">Quote</a></li>
+                                    <li><a href="#">Sales Invoice</a></li>
+                                    <li><a href="#">Remittance Advice</a></li>
+                                    <li><a href="#">Repeating Invoice</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="advanced">
+                            <label>Name</label>
+                            <input type="text" placeholder="Basic">
+                        </div>
+                        <div class="checkbox">
+                            <label><input type="checkbox" value=""> <span>Default</span></label>
+                        </div>
+                        <div class="email">
+                            <span class="Message"><b>Message</b></span>
+                            <div class="addContact">
+                                <div class="dropdown ">
+                                    <a class="addContact" href="#" data-toggle="dropdown" id="add_field"  style="display:{{#if equals}}none{{else}}inline-block{{/if}}" >Insert placeholder<span
+                                            class="caret"></span></a>
+                                    <ul class="dropdown-menu" id="ul_o">
+                                        <li><a href="#" class="item">Amount Due Without Currency</a></li>
+                                        <li><a href="#" class="item">Amount Due</a></li>
+                                        <li><a href="#" class="item">Contact First Name</a></li>
+                                        <li><a href="#" class="item">Contact Last Name</a></li>
+                                        <li><a href="#" class="item">Contact Name</a></li>
+                                        <li><a href="#" class="item">Currency Code</a></li>
+                                        <li><a href="#" class="item">Currency Symbol</a></li>
+                                        <li><a href="#" class="item">Current Month</a></li>
+                                        <li><a href="#" class="item">Due Date</a></li>
+                                        <li><a href="#" class="item">Invoice Number</a></li>
+                                        <li><a href="#" class="item">Invoice Total Without Currency</a></li>
+                                        <li><a href="#" class="item">Invoice Total</a></li>
+                                        <li><a href="#" class="item">Month Year</a></li>
+                                        <li><a href="#" class="item">Month</a></li>
+                                        <li><a href="#" class="item">Online Invoice Link</a></li>
+                                        <li><a href="#" class="item">Reference</a></li>
+                                        <li><a href="#" class="item">Trading Name</a></li>
+                                        <li><a href="#" class="item">Week Year</a></li>
+                                        <li><a href="#" class="item">Week</a></li>
+                                        <li><a href="#" class="item">Year</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <input type="text" value="[Current Month] Invoice [Invoice Number] from [Trading Name] for [Contact Name]">
+                            <textarea rows="4" cols="50"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" data-dismiss="modal">Save</button>
+                        <button type="button" class="btn cancel_new" data-dismiss="modal">Cancel</button>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script>
+      modalDraggable();
+   </script>
+</template>

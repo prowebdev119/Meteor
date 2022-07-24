@@ -1,0 +1,13 @@
+<template name="crm_top_menu">
+    <div class="row d-xl-flex flex-row justify-content-xl-center" style="padding: 0px 16px;">
+        <div class="col-7 d-xl-flex flex-grow-1 align-items-xl-start">
+            <button id="btnRefresh" class="btn btn-primary btnRefresh" type="button" style="margin: 16px;"><i class="la la-lightbulb-o" style="margin-right: 5px;"></i>Refresh</button>
+            <button class="btn btn-primary btnTaskList" id="btnTaskList" type="button" style="margin: 16px;" autocomplete="off"><i class="fas fa-tasks" style="padding-right: 5px;"></i>Task List</button>
+        </div>
+        <div class="col-5 d-xl-flex justify-content-xl-end align-items-end">
+            <button id="exportbtn" class="btn btn-primary float-right" type="button" style="margin: 16px;"><i class="fas fa-file-export" style="margin-right: 5px;"></i>Export</button>
+            <button class="btn btn-primary printConfirm float-right" type="button" style="margin: 16px;"><i class="fa fa-print" style="margin-right: 5px;"></i>Print</button>
+            <a class="btn btnOpenSettings float-right" role="button" data-toggle="modal" href="#myModal2" style="margin: 16px;"><i class="icon ion-android-more-horizontal"></i></a>
+        </div>
+    </div>
+</template>

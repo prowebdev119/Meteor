@@ -1,0 +1,171 @@
+<template name="addaccountpop">
+  <style>
+
+      .hiddenColumn{
+          display:none;
+      }
+      .showColumn {
+          display:table-cell;
+          padding:.75rem;
+          vertical-align:top;
+      }
+
+      input[type=number]::-webkit-inner-spin-button,
+      input[type=number]::-webkit-outer-spin-button {
+          opacity: 1;
+      }
+      .isNotBankAccount {
+          display: none!important;
+      }
+      .isNotCreditAccount {
+          display: none!important;
+      }
+  </style>
+    <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4><div id="add-account-title" name="add-account-title" style="float: left;">Add New Account</div></h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+            </div>
+            <div class="modal-body" style="background-color: #ededed;">
+
+                <input type="hidden" class="form-control" id="edtAccountID" name="edtAccountID" style="display:none;">
+                <input type="hidden" class="form-control" id="accSelected" name="accSelected" style="display:none;">
+                <div>
+                    <div class="d-xl-flex align-items-xl-start">
+                        <div class="flex-grow-1">
+                            <div class="form-group" style="margin: 4px;"><label>Account Type</label>
+                                <select class="form-control pointer" id="sltAccountType" name="sltAccountType">
+                                    {{#each item in accounttyperecords}}
+                                    <option value="{{item.accounttypename}}">{{item.description}}</option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="flex-grow-1">
+                            <div class="form-group" style="margin: 4px;"><label>Account Name</label>
+                                <input type="text" class="form-control" id="edtAccountName" name="edtAccountName"></div>
+                        </div>
+                        <div class="flex-grow-1">
+                            <div class="form-group" style="margin: 4px;"><label>Account No</label>
+                                <input type="text" class="form-control" id="edtAccountNo" name="edtAccountNo"></div>
+                        </div>
+                        <div class="flex-grow-1">
+                            <div class="form-group" style="margin: 4px;"><label>Tax Code</label>
+                                <select type="search" class="form-control" id="sltTaxCode" name="sltTaxCode" style="background-color:rgb(255, 255, 255); cursor: pointer;">
+                                </select>
+                                <!-- <select class="form-control pointer" id="sltTaxCode" name="sltTaxCode">
+                                    {{#each item in taxraterecords}}
+                                    <option value="{{item.codename}}">{{item.codename}}</option>
+                                    {{/each}}
+                                </select> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <hr class="reporthr" style="width: 100%;margin: 4px;">
+                    </div>
+                    <div class="d-xl-flex align-items-xl-center">
+                        <div class="flex-grow-1">
+                            <div class="d-xl-flex align-items-xl-start"></div>
+                            <div class="d-xl-flex align-items-xl-start">
+                                <div class="flex-grow-1">
+                                    <div class="form-group d-xl-flex flex-column justify-content-xl-start" style="margin: 4px;"><label>Account Description</label>
+                                        <textarea class="border rounded" rows="3" id="txaAccountDescription" name="txaAccountDescription" style="width: 100%; color: rgb(110, 112, 126);"></textarea></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <hr class="reporthr" style="width: 100%;margin: 4px;">
+                    </div>
+                    <!-- {{#if isBankAccount}} -->
+                    <div class="d-xl-flex align-items-xl-center isBankAccount isNotBankAccount">
+                        <div class="flex-grow-1">
+                            <label><b>Bank Account Details</b></label>
+                            <div class="d-xl-flex align-items-xl-start">
+                              <div class="flex-grow-1">
+                                  <div class="form-group" style="margin: 4px;"><label>Bank Name</label>
+                                      <input type="text" class="form-control" id="edtBankName" name="edtBankName"></div>
+                              </div>
+                                <div class="flex-grow-1">
+                                    <div class="form-group" style="margin: 4px;"><label>Bank Account Name</label>
+                                        <input type="text" class="form-control" id="edtBankAccountName" name="edtBankAccountName"></div>
+                                </div>
+
+
+
+                                <div class="flex-grow-0">
+                                    <div class="form-group" style="margin: 4px; width: 150px;"><label>{{bsbRegionName}}</label>
+                                        <input type="text" class="form-control" id="edtBSB" name="edtBSB"></div>
+                                </div>
+                            </div>
+
+                             <div class="d-xl-flex align-items-xl-start">
+                               <div class="flex-grow-1">
+                                   <div class="form-group" style="margin: 4px;"><label>Bank Account No</label>
+                                       <input type="text" class="form-control" id="edtBankAccountNo" name="edtBankAccountNo"></div>
+                               </div>
+                                <div class="flex-grow-1">
+                                    <div class="form-group" style="margin: 4px;"><label>Swift Code</label>
+                                        <input type="text" class="form-control" id="swiftCode" name="swiftCode"></div>
+                                </div>
+                                <div class="flex-grow-0">
+                                    <div class="form-group" style="margin: 4px; width: 150px;"><label>Routing Number</label>
+                                        <input type="text" class="form-control" id="routingNo" name="routingNo"></div>
+                                </div>
+                            </div>
+
+                    <div class="d-xl-flex align-items-xl-center">
+                      <div class="flex-grow-1">
+                        <div class = "custom-control custom-switch" >
+                            <input type = "checkbox" class = "custom-control-input showOnTransactions" id="showOnTransactions"/>
+                            <label class = "custom-control-label" for  = "showOnTransactions" >Show On Transactions</label>
+                        </div >
+                    </div>
+                    </div>
+                        </div>
+                    </div>
+
+                    <div class="d-xl-flex align-items-xl-center isCreditAccount isNotCreditAccount">
+                        <div class="flex-grow-1">
+                            <label><b>Credit Card Details</b></label>
+                            <div class="d-xl-flex align-items-xl-start">
+                              <div class="flex-grow-1">
+                                  <div class="form-group" style="margin: 4px;"><label>Card Number</label>
+                                      <input type="tel" inputmode="numeric" pattern="[0-9\s]{13,19}" class="form-control" id="edtCardNumber" name="edtCardNumber" autocomplete="cc-number" maxlength="19" placeholder="xxxx xxxx xxxx xxxx"></div>
+                              </div>
+                                <div class="flex-grow-0">
+                                    <div class="form-group" style="margin: 4px;"><label>Expiry Date</label>
+                                        <!-- <input type="text" class="form-control" id="edtExpiryDate" name="edtExpiryDate"></div> -->
+
+                                        <div class="input-group date" style="width: 150px; cursor: pointer;">
+                                            <input type="text" class="form-control" id="edtExpiryDate" name="edtExpiryDate">
+                                            <div class="input-group-addon">
+                                                <span class="glyphicon glyphicon-th"></span>
+                                            </div>
+                                        </div>
+                                </div>
+
+                                </div>
+
+                                <div class="flex-grow-0">
+                                    <div class="form-group" style="margin: 4px; width: 150px;"><label>CVC</label>
+                                        <input type="tel" inputmode="numeric" class="form-control" id="edtCvc" name="edtCvc" ></div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <!-- {{/if}} -->
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-success btnSaveAccountPOP" type="button" style="min-width: 90px;"><i class="fa fa-save" style="margin: 4px;"></i>Save</button>
+                <button class="btn btn-light" data-dismiss="modal" type="button">Close</button>
+            </div>
+        </div>
+    </div>
+</template>

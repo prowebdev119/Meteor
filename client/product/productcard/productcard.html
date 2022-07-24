@@ -1,0 +1,791 @@
+<template name="productcard">
+    <div class="productcard">
+        <div class="productupdate">
+            <div class="active_page_content">
+                <p><a href="/productexpresslist">Inventory</a> &nbsp;›&nbsp;</p><br>
+                <h1 id="productcardname"></h1>
+            </div>
+        </div>
+        <div class="fullScreenSpin" style="display:none;">
+            <div class="spinner"></div>
+        </div>
+        <div id="wrapper_main">
+            {{#if itemUpdated}}
+                <div class="notify" id="receipt-saved-message">
+                    <span class="check-icon"><i class="fa fa-check"></i></span>
+                    <a href="#" class="icons msg-close" id="close-notification">x</a>
+                    <div class="message">
+                        <p id="ext-gen101">Item updated - <span id="editItemCode">{{successNotificationData.itemCode}}</span>: <span id="editItemName">{{successNotificationData.itemName}}</span></p>
+                    </div>
+                </div>
+            {{/if}}
+            <main id="page-content-wrapper_main" role="main">
+                <div class="new_create_container">
+                    <div class="new_create_head">
+                        <h3 id="productcardid" style="color: #fff;"></h3>
+                        <!--<a href="#" class="new_create_btn" id="new_create_btn2">Options</a>-->
+                        <!--
+                          <button class="new_create_btn dropdown-toggle" type="button" data-toggle="dropdown">Options
+                          <span class="caret"></span></button>
+                          <ul class="dropdown-menu" id="billDropdownOption">
+                            <li><a href="#">Mark as Inactive</a></li>
+                            <li><a href="#">Delete</a></li>
+                          </ul>
+                        -->
+                        <div class="divexport pull-right" id="form_dropdown_options">
+                            <button class="new_create_btn dropdown-toggle" type="button" id="menu1" data-toggle="dropdown"> Options <span class="caret"></span></button>
+                            <ul class="dropdown-menu add_lines_dropdown" role="menu" aria-labelledby="menu1" id="inventoryexport">
+                                {{#if isStatusMode}}
+                                    <li><a href="#" id="productInActiveUpdate" class="productStatusUpdate" name="productInActiveUpdate">Mark as Inactive</a></li>
+                                {{else}}
+                                    <li><a href="#" id="productActiveUpdate" class="productStatusUpdate" name="productActiveUpdate">Mark as Active</a></li>
+                                {{/if}}
+                                <!-- New Adjustment -->
+                                <li><a href="#" data-toggle="modal" data-target="#new-adjustment" id="newAdjustment" name="newAdjustment">New Adjustment</a></li>
+                                <li><a href="#" data-toggle="modal" data-target="#delete-inventory" id="productDeletePop" name="productDeletePop">Delete</a></li>
+                            </ul>
+                        </div>
+                        <a href="#" class="new_create_btn product_edit" id="btn_edit_item" data-toggle="modal" data-target="#edit-inventory">Edit Item</a>
+                        <a href="#" class="new_create_btn" id="btn_Attachment" name="btn_Attachment">
+                            <i class="far fa-file" aria-hidden="true"></i>
+                            {{#if attachmentCount}}
+                                <span id="attachment-count">{{attachmentCount}}</span>
+                            {{/if}}
+                        </a>
+                        <div id="new-attachment2-tooltip" class="attchment-tooltip exProduct_attachment">
+                            <div class="V2attachment-help">
+                                <div class="files_inbox2" id="finbox_1" style="display: block;">
+                                    <div class="file_header3">RELATED FILES</div>
+                                    <div class="row inboxcol" id="file-display">
+                                        <div class="file-display_img">
+                                            <div class="col inboxcol1">
+                                                <img src="/icons/nofiles_icon.jpg" class="">
+                                            </div>
+                                            <div class="col inboxcol2">
+                                                <div>Upload your files to store them alongside all of your financial documents</div>
+                                                <p style="color: #ababab;">Added files will only be visible to users with access to your company</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="divTable">
+                            </div>
+                            <div class="attachment_footer2 divTable">
+                                <div class="divTableBody">
+                                    <div class="divTableRow">
+                                        <div class="divTableCell">
+                                          <a href="#" class="new_attachment_btn x-btn-text">+ Add from file library...</a>
+                                          <input type="file" id="attachment-upload" style="display:none" multiple
+                                                 accept=".jpg,.gif,.png,.bmp,.tiff,.pdf,.doc,.docx,.xls,.xlsx,.ppt,
+                                               .pptx,.odf,.csv,.txt,.rtf,.eml,.msg,.ods,.odt,.keynote,.key,.pages-tef,
+                                               .pages,.numbers-tef,.numbers,.zip,.rar,.zipx,.xzip,.7z,image/jpeg,
+                                               image/gif,image/png,image/bmp,image/tiff,application/pdf,
+                                               application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,
+                                               application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,
+                                               application/vnd.ms-powerpoint,application/vnd.openxmlformats-officedocument.presentationml.presentation,
+                                               application/vnd.oasis.opendocument.formula,text/csv,text/plain,text/rtf,message/rfc822,
+                                               application/vnd.ms-outlook,application/vnd.oasis.opendocument.spreadsheet,
+                                               application/vnd.oasis.opendocument.text,application/x-iwork-keynote-sffkey,
+                                               application/vnd.apple.keynote,application/x-iwork-pages-sffpages,
+                                               application/vnd.apple.pages,application/x-iwork-numbers-sffnumbers,
+                                               application/vnd.apple.numbers,application/zip,application/rar,
+                                               application/x-zip-compressed,application/x-zip,application/x-7z-compressed">
+                                        </div>
+                                    <div class="divTableCell"><a href="#" id="upload-content" class="new_attachment_btn x-btn-text">+ Upload files...</a></div>
+                                    </div>
+                                </div>
+                            </div>
+  </div>
+                    </div>
+ <!-- <div id="product_box">
+  <div class="product_box_inner">
+    <a href="#" class="product_edit" onclick="window.location.reload(true);"><i class="fa fa-times" aria-hidden="true"></i></a>
+    <h3>Edit Item</h3>
+  <hr>
+  <form action="" id="productupdateform" method="POST">
+    <table style="width: 50%;">
+      <tbody>
+        <tr>
+          <td><div style="display: none;"><label>ID</label><br>
+            <input type="text" name="UProdID" id="UProdID" readonly></div>
+            <label>Item Code</label><br>
+            <input type="text" name="UProdCode" id="UProdCode"></td>
+            <td>
+              <label>Item Name</label><br>
+              <input type="text" name="UProdName" id="UProdName"></td>
+          &lt;!&ndash; <td><label>Barcode</label><br>
+            <input type="text" name="UProdBar" id="UProdBar"></td>
+            <td><label>Preferred Supplier</label><br>
+              <select id="UProdSupp" name="UProdSupp" required>
+                <option selected="selected" value="" disabled>Select Supplier</option>
+              </select>
+            </td> &ndash;&gt;
+        </tr>
+      </tbody>
+    </table>
+  <h3>I purchase this item</h3>
+  <hr>
+<table>
+  	<tbody>
+  		<tr>
+  			<td><label>Unit Price</label><br>
+        <input type="text" name="UProdPUPrice" id="UProdPUPrice"></td>
+  			<td><label>Purchase Account</label><br>
+          <select id="UProdPAcc" name="UProdPAcc" required>
+            <option selected="selected" value="" disabled>Select Account</option>
+          </select>
+        </td>
+  			<td><label>Tax Rate</label><br>
+          <select id="UPTaxPR" name="UPTaxPR" required>
+            <option selected="selected" value="" disabled>Select Tax Rate</option>
+          </select>
+        </td>
+  		</tr>
+  	</tbody>
+  </table>
+  <label>Description</label><br>
+<textarea name="UProdPDesc" id="UProdPDesc"></textarea>
+    <hr>
+  <h3>I sell this item</h3>
+  <table>
+    	<tbody>
+    		<tr>
+          <td><label>Unit Price</label><br>
+          <input type="text" name="UProdSUPrice" id="UProdSUPrice"></td>
+    			<td><label>Sales Account</label><br>
+            <select id="UProdSAcc" name="UProdSAcc" required>
+              <option selected="selected" value="" disabled>Select Account</option>
+            </select></td>
+    			<td><label>Tax Rate</label><br>
+            <select id="UPTaxSR" name="UPTaxSR" required>
+              <option selected="selected" value="" disabled>Select Tax Rate</option>
+            </select>
+          </td>
+    		</tr>
+    	</tbody>
+    </table>
+    <label>Description</label><br>
+    <textarea name="UProdSDesc" id="UProdSDesc"></textarea>
+
+  <div class="new_create_buttons">
+  <div class="new_create_buttons_g1">
+        <input type="submit" name="productupdate" id="productupdate" class="save_new" value="Save">
+  </div>
+  <div class="new_create_buttons_g2" style="border-bottom: 0px;">
+      <a href="#" class="cancel_new product_edit" onclick="window.location.reload(true);">Cancel</a>
+  </div>
+  </div>
+  </form>
+  </div>
+  </div>-->
+  <script>
+  $('.Show').click(function() {
+      $('#product_box').show(500);
+      $('.Show').hide(0);
+      $('.Hide').show(0);
+  });
+  $('.Hide').click(function() {
+      $('#product_box').hide(500);
+      $('.Show').show(0);
+      $('.Hide').hide(0);
+  });
+  $('.product_edit').click(function() {
+      $('#product_box').toggle('slow');
+  });
+  </script>
+
+
+
+  <div class="new_create_body">
+  <div class="new_create_options">
+  <div class="product_details_container">
+  <h3 id="productcardbodyname"></h3>
+  <h5 id="productcardbodycode"></h5>
+  <div class="product_purchases">
+    <!--<h3>Barcode: <span id="productbarcode" style="font-weight: normal;"></span></h3>-->
+    <!--<h3>Preferred Supplier: <span id="productsupplier" style="font-weight: normal;"></span></h3>-->
+    <h3>Purchases</h3>
+    <table>
+  	<tbody>
+  		<tr>
+  			<td>Unit Price</td>
+  			<td id="prpunitprice"> </td>
+  		</tr>
+  		<tr>
+  			<td>Account</td>
+  			<td id="prpaccount"> </td>
+  		</tr>
+  		<tr>
+  			<td>Tax Rate</td>
+  			<td id="prptax"> </td>
+  		</tr>
+  		<tr>
+  			<td>Description</td>
+  			<td id="prpdescription"> </td>
+  		</tr>
+  	</tbody>
+  </table>
+  </div>
+  <div class="product_sales">
+    <h3>Sales</h3>
+    <table>
+    <tbody>
+      <tr>
+        <td>Unit Price</td>
+        <td id="prsunitprice"> </td>
+      </tr>
+      <tr>
+        <td>Account</td>
+        <td id="prsaccount"> </td>
+      </tr>
+      <tr>
+        <td>Tax Rate</td>
+        <td id="prstax"> </td>
+      </tr>
+      <tr>
+        <td>Description</td>
+        <td id="prsdescription"> </td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  <br>
+
+   <div  class="left-icons" style="display:block!important;">
+    <a href="#" class="new_create_btn product_edit loadrecenttransaction" id="loadrecenttransaction" style="margin-left:0px!important; font: bold 14px Helvetica, sans-serif!important;">Recent Transactions</a>
+  </div>
+  <div class="product_recent_trans" style="display:none">
+    <h3>Recent Transactions</h3>
+    <table id="productrecentlist" style="width: 100%" class="dataTable table table-hover table-bordered">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Type</th>
+                    <th>Reference</th>
+                    <th>Quantity</th>
+                    <th>Unit Price</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+            {{#each item in recentTrasactions}}
+                <tr>
+                    <td>{{item.date}}</td>
+                    <td>{{item.type}}</td>
+                    <td>{{item.reference}}</td>
+                    <td>{{item.quantity}}</td>
+                    <td>{{item.unitPrice}}</td>
+                    <td>{{item.total}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+
+        </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="new_create_footer_container">
+                    <div class="new_create_footer">
+                        <h3>History & Notes</h3>
+                        <a href="#" class="list_search" id="notesbtn">Add a note</a>
+                        <div id="search_box">
+                            <div class="search_box_inner">
+                                <!--<a href="#" class="list_search"><i class="fa fa-times" aria-hidden="true"></i></a>-->
+                                <table>
+                                    <tbody>
+                                    <tr>
+                                        <td>
+                                            <label style="width: 80%">Notes <span
+                                                    id="productnoteschars">300</span></label>
+                                            <script>
+                                                var maxLength = 300;
+                                                $('textarea').keyup(function () {
+                                                    var length = $(this).val().length;
+                                                    var length = maxLength - length;
+                                                    $('#productnoteschars').text(length);
+                                                });
+                                            </script>
+                                            <form action="" id="productcommentupdform" method="POST">
+                                                <div style="display: none;"><label>ID</label><br>
+                                                    <input type="text" name="notesid" id="notesid" readonly></div>
+                                                <textarea name="allnotes" id="productcomment"
+                                                          maxlength="300"></textarea>
+                                                <div class="new_create_buttons"
+                                                     style="padding: 0px; background: none; border-top: 0px;">
+                                                    <div class="new_create_buttons_g1"
+                                                         style="padding: 0px; background: none; border-top: 0px; width: 30%;">
+                                                        <input id="productcommentupd" name="productcommentupd"
+                                                               type="submit" class="save_new" value="Save">
+                                                        <a href="#" class="cancel_new list_search" style="">Cancel</a>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <script>
+                            $('.Show').click(function () {
+                                $('#search_box').show(500);
+                                $('.Show').hide(0);
+                                $('.Hide').show(0);
+                            });
+                            $('.Hide').click(function () {
+                                $('#search_box').hide(500);
+                                $('.Show').show(0);
+                                $('.Hide').hide(0);
+                            });
+                            $('.list_search').click(function () {
+                                $('#search_box').toggle('slow');
+                            });
+                        </script>
+                    </div>
+                </div>
+                <!--<div class="previous-note"><b>Edited — </b><span class="header">Item DevD - Development work - developer onsite per day edited.-->
+<!--Item name changed from empty to Development work - developer onsite per day.</span><br><span class="date">By gold craige, 6 Aug 2018</span>-->
+                <!--</div>-->
+                <!--<span class="showDiv"><a href="#"> Show all (1)</a></span>-->
+                <!--<table id="productrecentlist" style="width: 100%"-->
+                       <!--class="table table-hover table-bordered table-bordered-footer">-->
+                    <!--<thead>-->
+                    <!--<tr>-->
+                        <!--<th>Date</th>-->
+                        <!--<th><a href="#">Action</a></th>-->
+                        <!--<th><a href="#">User</a></th>-->
+                        <!--<th><a href="#">Notes</a></th>-->
+                    <!--</tr>-->
+                    <!--</thead>-->
+                    <!--<tr>-->
+                        <!--<td>6 August, 2018 1:52am</td>-->
+                        <!--<td>Edited</td>-->
+                        <!--<td>gold craige</td>-->
+                        <!--<td>Item DevD - Development work - developer onsite per day edited.-->
+                            <!--Item name changed from empty to Development work - developer onsite per day.-->
+                        <!--</td>-->
+                    <!--</tr>-->
+                <!--</table>-->
+
+
+            </main>
+        </div>
+
+        <!-- New Adjustment Modal -->
+        <div id="new-adjustment" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">x</button>
+                        <h4 class="modal-title">New Adjustment Item</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form action="" id="productadd" method="POST">
+                            <table class="product_add Itemtd">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <input type="hidden" name="UProdID" id="UProdID" >
+                                            <label>Item Code</label>
+                                            <br>
+                                            <input type="text" name="UProdCode" id="UProdCode" required>
+                                        </td>
+                                        <td>
+                                            <label>Item Name</label>
+                                            <br>
+                                            <input type="text" name="UProdName" id="UProdName" required>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <table class="product_add ">
+                                <tbody>
+                                    <tr>
+                                        <td class="checkboxdiv">
+                                            <label>
+                                                <input type="checkbox" name="ItrackThisItem" value="Bike" checked="{{#if isTrackChecked}}checked{{/if}}"> I track this item
+                                            </label>
+                                        </td>
+                                        <td>
+                                            <div class="assetNumber" id="trackItemContent">
+                                                <label>Inventory Asset Account</label>
+                                                <br>
+                                                <div name="assettypedrop" class="input-group dropdown-add-rec  width-remove" id="asset-type-dropdown">
+                                                   <input name="UinventoryAssetAccount" type="text" class="form-control select-account-type select-account" id="UinventoryAssetAccount" value="Inventory Asset">
+                                                   <div class="input-group-addon">
+                                                       <img src="/img/dropdown_icon.png" id="asset-type-dropdown-img-0" class="asset-type-img">
+                                                   </div>
+                                                </div>
+                                            </div>
+                                            <div class="your-item">
+                                                <p>
+                                                    <i class="fa fa-question-circle" aria-hidden="true"></i>This treats
+                                                    your item as a tracked
+                                                    inventory asset. VS1Cloud will record the quantity on hand and
+                                                    prevent
+                                                    you selling below a quantity of zero. <br><b>Note: </b>this option
+                                                    can not be changed once you have recorded transactions against the
+                                                    item.
+                                                </p>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <table class="product_add ">
+                                <tbody>
+                                <tr>
+                                    <td class="checkboxdiv">
+                                        <label>
+                                            <input type="checkbox" name="purchaseThisItem"  class="{{#if isTrackChecked}}opacity-add{{/if}}" checked>I purchase this item
+                                        </label>
+                                    </td>
+                                    <td class="purchaseAcconutContent inputboxDiv">
+                                        <div class="inputbox">
+                                            <span>
+                                                <label>Unit Price</label>
+                                                <br>
+                                                <input type="text" name="UProdPUPrice" id="UProdPUPrice" required>
+                                            </span>
+                                            <span>
+                                                <div class=" assetNumber">
+                                                    <label>COGS Account</label>
+                                                    <br>
+                                                    <div name="assettypedrop" class="input-group dropdown-add-rec  mandatory-item" id="asset-type-dropdown">
+                                                        <input  type="text" class="form-control select-account-type select-account1" value="" id="UProdPAcc" name="UProdPAcc">
+                                                        <div class="input-group-addon" >
+                                                            <img src="/img/dropdown_icon.png" id="asset-type-dropdown-img-1" class="asset-type-img">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </span>
+                                            <span>
+                                                <div class=" assetNumber">
+                                                    <label>Tax Rate</label>
+                                                    <div name="assettypedrop" class="input-group dropdown-add-rec" id="asset-type-dropdown">
+                                                        <input  type="text" class="form-control select-tax-type1" id="UPTaxPR" name="UPTaxPR" value="">
+                                                        <div class="input-group-addon" data-toggle="dropdown">
+                                                            <img src="/img/dropdown_icon.png" id="tax-type-dropdown-img1" class="asset-type-img">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </span>
+                                        </div>
+                                        <div class="textareadiv">
+                                            <label>Purchases Description<span> (for my suppliers)</span></label>
+                                            <br>
+                                            <textarea rows="4" cols="50" name="UProdPDesc" id="UProdPDesc"></textarea>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <table class="product_add ">
+                                <tbody>
+                                    <tr>
+                                        <td class="checkboxdiv">
+                                            <label>
+                                                <input type="checkbox" name="SellThisItem"  class="{{#if isTrackChecked}}opacity-add{{/if}}" checked>I sell this item
+                                            </label>
+                                        </td>
+                                        <td class="saleAccountContent inputboxDiv">
+                                            <div class="inputbox">
+                                                <span>
+                                                    <label>Unit Price</label>
+                                                    <br>
+                                                    <input type="text" name="UProdSUPrice" id="UProdSUPrice" required>
+                                                </span>
+                                                <span>
+                                                    <div class=" assetNumber">
+                                                        <label>Sales Account</label>
+                                                        <br>
+                                                        <div name="assettypedrop" class="input-group dropdown-add-rec  mandatory-item" id="asset-type-dropdown">
+                                                            <input  type="text" class="form-control select-account-type select-account2" id="UProdSAcc" name="UProdSAcc" value="">
+                                                            <div class="input-group-addon" >
+                                                                <img src="/img/dropdown_icon.png" id="asset-type-dropdown-img-2" class="asset-type-img">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </span>
+                                                <span>
+                                                    <div class=" assetNumber">
+                                                       <label>Tax Rate</label>
+                                                       <div name="assettypedrop" class="input-group dropdown-add-rec" id="asset-type-dropdown">
+                                                           <input type="text" class="form-control select-tax-type2" value="" id="UPTaxSR" name="UPTaxSR">
+                                                           <div class="input-group-addon" data-toggle="dropdown">
+                                                               <img src="/img/dropdown_icon.png" id="tax-type-dropdown-img2" class="asset-type-img">
+                                                           </div>
+                                                       </div>
+                                                   </div>
+                                                </span>
+                                            </div>
+                                            <div class="textareadiv">
+                                                <label>Sales Description <span> (for my customers)</span></label>
+                                                <br>
+                                                <textarea rows="4" cols="50" name="UProdSDesc" id="UProdSDesc"></textarea>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="new_create_buttons">
+                            <div id="inventoryadd" class="new_create_buttons_g1">
+                                <a href="#" class="newDropContainerText newLineMargin productaddbtn_save" id="productupdate">Save<span class="plus_vertical_line"></span></a>
+                                <a href="#" class="cancel_new product_edit" id="cancelButton" data-dismiss="modal">Cancel</a>
+                            </div>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal delete-modal -->
+        <div id="delete-inventory" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">x</button>
+                        <h4 class="modal-title">Delete Items</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="x-component info-icon x-box-item x-component-default" id="component-1281"
+                             style="right: auto; left: 10px; top: 30px; margin: 0px;"></div>
+                        <div class="x-component delete-popup-text x-box-item x-component-default" id="component-1282"
+                             style="right: auto; left: 41px; top: 0px; margin: 0px;">Deleting inventory items will not
+                            affect reports or historical transactions.
+                        </div>
+                        <!--<p>Deleting inventory items will not affect reports or historical transactions.</p>-->
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <div class="heading footer">
+                            <button id="deleteButton" type="button" class="btn-delete deleteProduct">Delete</button>
+                            <button id="draftCancelButton" type="button" class="btn cancel_new"
+                                    data-dismiss="modal">Cancel
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal -->
+        <div id="edit-inventory" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">x</button>
+                        <h4 class="modal-title">Edit Item</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form action="" id="productadd" method="POST">
+                            <table class="product_add Itemtd">
+                                <tbody>
+                                <tr>
+                                    <td>
+                                        <input type="hidden" name="UProdID" id="UProdID" >
+                                        <label>Item Code</label><br>
+                                        <input type="text" name="UProdCode" id="UProdCode" required></td>
+                                    <td>
+                                        <label>Item Name</label><br>
+                                        <input type="text" name="UProdName" id="UProdName" required></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <table class="product_add ">
+                                <tbody>
+                                <tr>
+                                    <td class="checkboxdiv">
+                                        <label><input type="checkbox" name="ItrackThisItem" value="Bike" checked="{{#if isTrackChecked}}checked{{/if}}"> I track this
+                                            item </label>
+                                    </td>
+
+                                    <td>
+                                        <div class="assetNumber" id="trackItemContent">
+                                            <label>Inventory Asset Account</label><br>
+                                            <div name="assettypedrop" class="input-group dropdown-add-rec  width-remove" id="asset-type-dropdown">
+                                               <input name="UinventoryAssetAccount" type="text" class="form-control select-account-type select-account"
+                                                      id="UinventoryAssetAccount" value="Inventory Asset">
+                                               <div class="input-group-addon" >
+                                                   <img src="/img/dropdown_icon.png" id="asset-type-dropdown-img-0"
+                                                        class="asset-type-img">
+                                               </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="your-item">
+                                            <p><i class="fa fa-question-circle" aria-hidden="true"></i>This treats
+                                                your item as a tracked
+                                                inventory asset. VS1Cloud will record the quantity on hand and
+                                                prevent
+                                                you selling below a quantity of zero. <br><b>Note: </b>this option
+                                                can not be changed once you have recorded transactions against the
+                                                item.</p>
+                                            <!-- <a href="#" target="_self">Find out if tracked inventory</a> is right for you. -->
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <table class="product_add ">
+                                <tbody>
+                                <tr>
+                                    <td class="checkboxdiv">
+                                        <label><input type="checkbox" name="purchaseThisItem"  class="{{#if isTrackChecked}}opacity-add{{/if}}" checked>I purchase
+                                            this item</label>
+                                    </td>
+
+                                    <td class="purchaseAcconutContent inputboxDiv">
+                                        <div class="inputbox">
+                                                    <span>
+                                                         <label>Unit Price</label><br>
+                                                <input type="text" name="UProdPUPrice" id="UProdPUPrice" required>
+                                                    </span>
+
+                                            <span>
+                                                        <div class=" assetNumber">
+                                                         <label>COGS Account</label><br>
+
+                                    <div name="assettypedrop" class="input-group dropdown-add-rec  mandatory-item" id="asset-type-dropdown">
+                                       <input  type="text" class="form-control select-account-type select-account1" value="" id="UProdPAcc" name="UProdPAcc">
+                                       <div class="input-group-addon" >
+                                           <img src="/img/dropdown_icon.png" id="asset-type-dropdown-img-1"
+                                                class="asset-type-img">
+                                       </div>
+                                    </div>
+
+                                                        </div>
+                                                    </span>
+
+                                            <span>
+                                                        <div class=" assetNumber">
+                                   <label>Tax Rate</label>
+                                   <div name="assettypedrop" class="input-group dropdown-add-rec"
+                                        id="asset-type-dropdown">
+                                       <input  type="text" class="form-control select-tax-type1" id="UPTaxPR" name="UPTaxPR"
+                                               value="">
+                                       <div class="input-group-addon" data-toggle="dropdown">
+                                           <img src="/img/dropdown_icon.png" id="tax-type-dropdown-img1"
+                                                class="asset-type-img">
+                                       </div>
+                                   </div>
+                               </div>
+                                                    </span>
+                                        </div>
+
+                                        <div class="textareadiv">
+                                            <label>Purchases Description<span> (for my suppliers)</span></label><br>
+                                            <textarea rows="4" cols="50" name="UProdPDesc" id="UProdPDesc"></textarea>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <table class="product_add ">
+                                <tbody>
+                                <tr>
+                                    <td class="checkboxdiv">
+                                        <label><input type="checkbox" name="SellThisItem"  class="{{#if isTrackChecked}}opacity-add{{/if}}" checked>I sell this item</label>
+                                    </td>
+
+                                    <td class="saleAccountContent inputboxDiv">
+                                        <div class="inputbox">
+                                                    <span>
+                                                         <label>Unit Price</label><br>
+                                                <input type="text" name="UProdSUPrice" id="UProdSUPrice" required>
+                                                    </span>
+
+                                            <span>
+                                                        <div class=" assetNumber">
+                                                         <label>Sales Account</label><br>
+                                    <div name="assettypedrop" class="input-group dropdown-add-rec  mandatory-item" id="asset-type-dropdown">
+                                       <input  type="text" class="form-control select-account-type select-account2" id="UProdSAcc" name="UProdSAcc"
+                                               value="">
+                                       <div class="input-group-addon" >
+                                           <img src="/img/dropdown_icon.png" id="asset-type-dropdown-img-2"
+                                                class="asset-type-img">
+                                       </div>
+                                    </div>
+
+                                                        </div>
+                                                    </span>
+
+                                            <span>
+                                                        <div class=" assetNumber">
+                                   <label>Tax Rate</label>
+                                   <div name="assettypedrop" class="input-group dropdown-add-rec"
+                                        id="asset-type-dropdown">
+                                       <input type="text" class="form-control select-tax-type2" value="" id="UPTaxSR" name="UPTaxSR">
+                                       <div class="input-group-addon" data-toggle="dropdown">
+                                           <img src="/img/dropdown_icon.png" id="tax-type-dropdown-img2"
+                                                class="asset-type-img">
+                                       </div>
+                                   </div>
+                               </div>
+                                                    </span>
+                                        </div>
+
+                                        <div class="textareadiv">
+                                            <label>Sales Description <span> (for my customers)</span></label><br>
+                                            <textarea rows="4" cols="50" name="UProdSDesc" id="UProdSDesc"></textarea>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="new_create_buttons">
+                            <div id="inventoryadd" class="new_create_buttons_g1">
+                                <a href="#" class="newDropContainerText newLineMargin productaddbtn_save" id="productupdate">Save<span class="plus_vertical_line"></span></a>
+                                <a href="#" class="cancel_new product_edit" id="cancelButton" data-dismiss="modal">Cancel</a>
+                            </div>
+                         </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <div id="files_view" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">x</button>
+                    <h4 class="modal-title" >{{uploadedFile.name}}</h4>
+                </div>
+                <div class="modal-body">
+                   {{#if uploadedFile.image}}
+                       <div class="image-previewer">
+                        <img  src="{{uploadedFile.link}}">
+                    </div>
+                    {{else}}
+                    <div class=" default-file {{uploadedFile.class}}">
+
+                    </div>
+                       {{/if}}
+                    <div class="download_button">
+                        <a class="new_create_btn" id="downloadButton"  download="{{uploadedFile.name}}" href="{{uploadedFile.link}}">Download</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+      modalDraggable();
+   </script>
+</template>

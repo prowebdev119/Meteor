@@ -1,0 +1,177 @@
+<template name="allChartLists">
+    <style>
+        .portlet-placeholder {
+            border: 1px dotted black;
+            margin: 0 1em 1em 0;
+            height: 50px;
+            width: 50px;
+        }
+        .ui-sortable .card.hovered {
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.50) !important;
+            cursor: move;
+            transition-duration: 300ms;
+
+        }
+        .ui-widget.ui-widget-content {
+            border: 1px solid #e3e6f0;
+        }
+        .responsive-chart {
+            position: relative;
+            height: 100%;
+            width: 100%;
+        }
+        .canvasHeight100 {
+            height: 100% !important;
+        }
+        .canvasParentDiv {
+            display: inline-block;
+            width: 100%;
+            height: calc(100% - 44px);
+            position: relative;
+        }
+        .canvasParentDiv canvas {
+            height: 100% !important;
+            object-fit: contain;
+        }
+        .minHeight100 {
+            height: 100% !important;
+            position: relative;
+        }
+        .minHeight100 .canvasHeight100 {
+            position: relative;
+            min-height: 110px;
+            max-height: 100%;
+        }
+        .col-md-4 .minHeight100 .canvasParentDiv.canvasHeight100,
+        .col-md-6 .minHeight100 .canvasParentDiv.canvasHeight100,
+        .col-md-8 .minHeight100 .canvasParentDiv.canvasHeight100 {
+            height: 45vh !important;
+            float: left;
+            width: 100%;
+        }
+        .col-md-4 .minHeight100 .canvasParentDiv,
+        .col-md-6 .minHeight100 .canvasParentDiv,
+        .col-md-8 .minHeight100 .canvasParentDiv {
+            height: calc(45vh - 52.8px) !important;
+            position: relative;
+            max-height: 100%;
+        }
+        /* .resizeAfterChart {
+            margin: .75rem !important;
+            padding: 0px !important;
+        }
+        .resizeAfterChart .card {
+            margin: 0px !important;
+        } */
+        .minHeight100 {
+            display: inline-block;
+            width: 100%;
+        }
+        .sortable-chart-widget-js {
+            margin-bottom: 30px !important;
+        }
+        .minHeight100 .card.mb-4 {
+            margin: 0px !important;
+        }
+        .resizeAfterChart .card {
+            max-width: 100%;
+        }
+        .sortable-chart-widget-js .minHeight100 .card canvas,
+        .sortable-chart-widget-js .minHeight100 .card .chartjs-size-monitor,
+        .sortable-chart-widget-js .minHeight100 .card .canvasParentDiv,
+        .sortable-chart-widget-js .minHeight100 .card .card-body,
+        .sortable-chart-widget-js .minHeight100 .card .card-header,
+        .sortable-chart-widget-js .minHeight100 .card,
+        .sortable-chart-widget-js .minHeight100 {
+            float: left;
+            width: 100%;
+        }
+        /* .col-md-6 .minHeight100 .canvasHeight100 canvas {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+        } */
+    </style>
+        <div class="charts row connectedChartSortable connectedSortable" id="connectedSortable" data-key="chart" data-chartgroup="{{ chartGroup }}" data-tabgroup="{{ tabGroupID }}">
+            <div class="col-auto col-md-8 sortable-chart-widget-js hideelement" id="monthylprofiteandlosscol" key="dashboard__monthyl_profit_and_loss">
+                {{> monthlyprofitandloss}}
+            </div>
+        
+            <div class="sortable-chart-widget-js hideelement col-auto col-md-4" key="sales__sales_overview">
+                {{> quotedsalesorderinvoicedamounts}}
+            </div>
+        
+            <div class="col-auto col-md-8 sortable-chart-widget-js hideelement" key="accounts__revenue_streams">
+                {{> accountrevenuestreams}}
+            </div>
+        
+            <div class="col-auto col-md-4 sortable-chart-widget-js hideelement" id="profiteandlosschartcol" key="dashboard__profit_and_loss">
+                {{> profitandlosschart}}
+            </div>
+
+            <div class="col-auto col-md-8 sortable-chart-widget-js hideelement" key="inventory__stock_on_hand_and_demand">
+                {{> invstockonhandanddemand}}
+            </div>
+        
+            <div class="col-auto col-md-4 sortable-chart-widget-js hideelement" key="contacts__top_10_customers">
+                {{> top10Customers}}
+            </div>
+        
+            <div class="col-auto col-md-4 sortable-chart-widget-js hideelement" key="contacts__top_10_supplies">
+                {{> top10Suppliers}}
+            </div>
+
+            <div class="col-auto col-md-4 sortable-chart-widget-js hideelement" id="resalecomparisioncol" key="dashboard__employee_sales_comparison">
+                {{> resalescomparision}}
+            </div>
+        
+            <div class="col-auto col-md-8 sortable-chart-widget-js hideelement"  key="dashboard__expenses">
+                {{> expenseschart}}
+            </div>
+        
+            <div class="col-auto col-md-6 sortable-chart-widget-js hideelement" id="monthlyearningscol" key="dashboard__monthly_earnings">
+                {{> monthlyearnings}}
+            </div>    
+        
+            <div class="col-auto col-md-6 sortable-chart-widget-js hideelement" id="quotedinvoicedamountscol" key="dashboard__quoted_amounts_/_invoiced_amounts">
+                {{> quotedinvoicedamounts}}
+            </div>
+            
+        
+            <div class="col-auto col-md-4 sortable-chart-widget-js hideelement" key="contacts__active_employees">
+                {{> activeEmployees}}
+            </div>  
+            <div class="col-auto col-md-8 sortable-chart-widget-js hideelement" key="payroll__employee_jobs_completed">
+                {{> employeecompletedjobs}}
+            </div>
+        
+            <div class="col-auto col-md-4 sortable-chart-widget-js hideelement" key="payroll__clocked_on_employees">
+                {{> clockedOnEmployees}}
+            </div>
+        
+            <div class="col-auto col-md-8 sortable-chart-widget-js hideelement" key="purchases__monthly_expenses">
+                {{> monthllyexpenses}}
+            </div>
+        
+            <div class="col-auto col-md-4 sortable-chart-widget-js hideelement" key="purchases__expenses_breakdown">
+                {{> expensebreakdown}}
+            </div>
+        
+            <div class="sortable-chart-widget-js hideelement col-auto col-md-8" key="employees__absentee_rate_over_last_12_months">
+                {{> absenteeRate }}
+            </div>
+        </div>
+        <div class="row no-gutters justify-content-center">
+            <button class="btn btn-success float-right hideelement" id="btnDone" type="button" style="margin:0 8px 16px;">
+                <i class="fa fa-save" style="margin-right: 5px;"></i>Save Changes
+            </button>
+            <button class="btn btn-warning float-right hideelement" id="resetcharts" type="button" style="margin:0 8px 16px;">
+                <i class="fas fa-rotate-right" style="margin-right: 5px;"></i>Reset Charts
+            </button>
+            <button class="btn btn-secondary float-right hideelement" id="btnCancel" type="button" style="margin:0 8px 16px;">
+                <i class="fa fa-close" style="margin-right: 5px;"></i>Cancel
+            </button>
+        </div>
+</template>    

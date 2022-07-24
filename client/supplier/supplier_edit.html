@@ -1,0 +1,68 @@
+<template name="supplieredit">
+<div class="active_page">
+<div class="active_page_content">
+<p><a href="/allcontacts">Contacts</a> &nbsp;›&nbsp; <a href="#" onclick="redirectToPage()" id="suppliereditpage">View Contact</a> </p><br>
+<script>
+var url = FlowRouter.current().path;
+var getsupplieredt_id = url.split('?id=');
+var supplieredt_id = getsupplieredt_id[getsupplieredt_id.length-1];
+// onclick event is assigned to the #button element.
+document.getElementById("suppliereditpage").onclick = function() {
+  window.open('/suppliercard?id=' + supplieredt_id,'_self');
+};
+</script>
+<h1 id="suppliereditname"></h1>
+</div>
+</div>
+<div id="wrapper_main">
+<main id="page-content-wrapper_main" role="main">
+<div class="contacts_container_main">
+<form action="" id="supplierupdate" method="POST">
+<div class="add_contact_top">
+<h3>Contact Information</h3>
+<div style="display: none;"><label>ID:</label><input type="text" id="USId" name="USId" readonly><br></div>
+<label>Contact Name:</label><input type="text" id="USCustomer" name="USCustomer" readonly><br><br>
+
+<label>Primary Person:</label>
+<input type="text" id="USFName" name="USFName" placeholder="First" required><input type="text" id="USLName" name="USLName" placeholder="Last" required><br>
+<label>Email:</label><input type="email" id="USEmail" name="USEmail" required><br><br>
+<label>Phone:</label><input type="text" id="USPhone" name="USPhone"><br>
+<label>Mobile:</label><input type="text" id="USMobile" name="USMobile"><br><br>
+<label>Street Address:</label><input type="text" id="USAddress1" name="USAddress1"><br>
+<label></label><input type="text" id="USAddress2" name="USAddress2"><br>
+<label></label><input type="text" id="USSuburb" name="USSuburb"><br>
+<label></label><input type="text" id="USState" name="USState"><br>
+<label></label><input type="text" id="USPostCode" name="USPostCode"><br>
+<label></label><input type="text" id="USCountry" name="USCountry">
+</div>
+<div class="add_contact_bottom">
+<h3>Financial Details</h3>
+<label>Company Registration Number:</label><input type="text" id="USCompReg" name="USCompReg"><br>
+<label>Currency:</label>
+<select id="USCurrency" name="USCurrency">
+  <option value="AUD">AUD</option>
+  <option value="NZD">NZD</option>
+  <option value="ZAR">ZAR</option>
+  <option value="AED">AED</option>
+  <option value="GBP">GBP</option>
+  <option value="USD">USD</option>
+</select><br>
+<label><b>Banking Details:</b></label><br><hr>
+<label>Bank Account Name:</label><input type="text" id="USBankName" name="USBankName"><br>
+<label>Bank Account Number:</label><input type="text" id="USBankNumber" name="USBankNumber"><br>
+<label>Bank Code:</label><input type="text" id="USBankCode" name="USBankCode"><br>
+</div>
+
+  <div class="new_create_buttons">
+  <div class="new_create_buttons_g1">
+        <a href="#" onclick="javascript:history.back()" class="cancel_new">Cancel</a>
+  </div>
+  <div class="new_create_buttons_g2">
+  <input type="submit" name="edtsupplier" id="edtsupplier" class="save_new" value="Save">
+  </div>
+  </div>
+</form>
+</div>
+</main>
+</div>
+</template>

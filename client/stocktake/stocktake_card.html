@@ -1,0 +1,268 @@
+<template name="stockscancard">
+  <div class="active_page">
+  <div class="active_page_content">
+  <p><a href="/stockadjlist">Stock Take</a> &nbsp;›&nbsp;</p><br>
+  <h1 id="stocktakenumber"></h1><span id="processed"></span>
+  </div>
+</div>
+<div class="new_create_form_page">
+<div id="wrapper_main">
+<main id="page-content-wrapper_main" role="main">
+<form action="" id="stockcardform" name="stockcardform" method="POST">
+<div class="new_create_container">
+<div class="new_create_head">
+<h3>Update</h3>
+<label>Search for product by barcode</label><br>
+<input type="text" id="prodBarcode" name="prodBarcode" class="" placeholder="Enter Product Barcode">
+<a href="#" class="send_new" style="float: right;">+ Scan</a>
+<br>
+</div>
+<div class="new_create_body">
+<div class="new_create_options">
+  <table>
+  	<tbody>
+  		<tr>
+  			<td>
+        <label>To Account</label>
+        <select name="STAccountName" id="STAccountName" class="" required>
+   <option selected="selected" value="" disabled>Select Account</option>-->
+   </select>
+        </td>
+        <td>
+        <label>Employee</label>
+        <select name="STEmployeeName" id="STEmployeeName" class="" required>
+   <option selected="selected" value="" disabled>Select Employee</option>
+   </select>
+        </td>
+  			<td>
+        <label>Date</label>
+        <input class="datepick" name="listdatepickerstart" id="listdatepickerstart">
+        </td>
+  			<td>
+          <input type="hidden" id="StockAdjustId" name="StockAdjustId" readonly>
+        </td>
+  			<td>
+        </td>
+        <td>
+        </td>
+  		</tr>
+  	</tbody>
+  </table>
+<!--<a href="#">+ Add a Title & Summary  </a>-->
+</div>
+<div class="new_create_currency">
+  <div class="currency_option1" id="soselect_cur">
+    <label>Select Currency</label>
+  <div class="col-md-4">
+      <div class="input-group dropdown-add-rec" id="">
+          <input type="text" class="form-control select-currency-option" placeholder="Select Currency Code" id="mycurrency" name="mycurrency" value="">
+          <div class="input-group-addon " data-toggle="dropdown">
+              <img src="/img/dropdown_icon.png" id="region-dropdown-img" class="region-img" >
+          </div>
+          <ul class="dropdown-menu" id='uItem' name="uItem">
+		  <!--
+            {{#each item in records}}
+                <li class="curreny-option">{{item.Code}} {{item.Country}} {{item.Currency}}</li>
+            {{/each}}
+			-->
+            <li data-toggle="modal"  data-target="#addCurrency">+ Add Currency...</li>
+          </ul>
+      </div>
+  </div>
+</div>
+<div class="currency_option2" id="sotax_amt">
+  <label>Database:</label>
+<select id="myDatabase">
+  <option value="Database" selected>Please select Database</option>
+</select>
+</div>
+</div>
+<div class="new_create_lines">
+  <!--
+  <style>
+  .new_create_lines table th:nth-child(2) {
+    width: 1px !important;
+    padding: 0;
+    line-height: 0;
+    display: none;
+    overflow: hidden;
+}
+
+.new_create_lines table td:nth-child(2) {
+  width: 1px !important;
+  padding: 0;
+  line-height: 0;
+  display: none;
+  overflow: hidden;
+}
+
+.new_create_lines table th:nth-child(6) {
+  width: 75px !important;
+}
+.new_create_lines table td:nth-child(6) select {
+  width: 75px !important;
+}
+
+.new_create_lines table th:nth-child(7) {
+  width: 50px !important;
+}
+.new_create_lines table td:nth-child(7) select {
+  width: 50px !important;
+}
+
+.new_create_lines table th:nth-child(8) {
+  width: 75px !important;
+}
+.new_create_lines table td:nth-child(8) input[type="text"] {
+  width: 75px !important;
+}
+
+.new_create_lines table th:nth-child(9) {
+  width: 75px !important;
+}
+.new_create_lines table td:nth-child(9) input[type="text"] {
+  width: 75px !important;
+}
+
+.new_create_lines table th:nth-child(10) {
+  width: 75px !important;
+}
+.new_create_lines table td:nth-child(10) input[type="text"] {
+  width: 75px !important;
+}
+
+.new_create_lines table th:nth-child(11) {
+  width: 75px !important;
+}
+.new_create_lines table td:nth-child(11) input[type="text"] {
+  width: 75px !important;
+}
+
+</style>
+-->
+  <table id="tblStockAdjust" style="width: 100%" class="newSOform table table-hover table-bordered">
+          <thead>
+              <tr>
+                <th style="display:none "></th>
+                <th style="visibility: hidden;">AccountName</th>
+                  <th>Product Name</th>
+                  <th>Description</th>
+                  <th>Barcode</th>
+                  <th>Department</th>
+                  <th>UOM</th>
+                  <th>In Stock</th>
+                  <th>Available</th>
+                  <th>Final</th>
+                  <th>Adjust</th>
+                  <th ></th>
+              </tr>
+          </thead>
+          <!--
+          <tbody>
+          <tr id="pq_entry_1" class="clonedSection" data-saved="1">
+            <td style="display:none "><input type="text" name="prod_id" id="prod_id" value='1' readonly /></td>
+            <td></td>
+            <td>
+            <select name="ProdName_1" id="ProdName" class="prodSelect"  required>
+              <option selected="selected" disabled="disabled" value="">Choose Product</option>
+            </select>
+            </td>
+            <td><input type="text" name="productdesc_1" id="productdesc" ></td>
+            <td><input type="text" name="barcode_1" id="barcode" class="qty"></td>
+            <td>
+              <select name="department_1" id="department">
+              <option selected="selected" disabled="disabled" value=""></option>
+            </select>
+          </td>
+            <td>
+
+              <select name="uom_1" id="uom">
+              <option selected="selected" disabled="disabled" value=""></option>
+            </select>
+            </td>
+            <td><input type="text" name="instock_1" id="instock" readonly></td>
+            <td>
+              <input type="text" name="available_1" id="available" readonly>
+            </td>
+            <td><input type="text" name="final_1" id="final" class="finalQty" readonly></td>
+            <td><input type="text" name="adjust_1" id="adjust" class="AdjustQty"></td>
+            <td><a href="#" class="removebutton"><i class="fa fa-times" aria-hidden="true"></i></a></td>
+          </tr>
+        </tbody>
+      -->
+        </table>
+</div>
+<div id="add_lines_menu">
+    <ul class="levelone" >
+      <li class=""><a href="#" class="" id="new_create_btn">+ Add a new line<span class="plus_vertical_line"></span></a>
+        <a href="#" class="fly"><span class="caret"></span></a>
+        <ul class="add_lines_dropdown d1">
+          <li class="add_firstline"><a href="#" id="new_5Line_btn">Add 5</a></li>
+          <li><a href="#" id="new_10Line_btn">Add 10</a></li>
+          <li><a href="#" id="new_20Line_btn">Add 20</a></li>
+        </ul>
+      </li>
+    </ul>
+</div>
+<!--<div class="new_line_btn"><a href="#" id="new_create_btn" class="new_create_btn">+ Add a new line</a></div>
+<a href="#" class="newDropContainerText newLineMargin" id="new_create_btn">+ Add a new line<span class="plus_vertical_line"></span></a>
+
+<a class="dropdown-toggle newDropContainerArrow" data-toggle="dropdown" ><span class="caret"></span></a>
+
+<ul class="dropdown-menu newLineDropdownOptions2" id="viewstockDropdownOptions">
+  <li><a href="#" id="new_5Line_btn">Add 5</a></li>
+  <li><a href="#" id="new_10Line_btn">Add 10</a></li>
+  <li><a href="#" id="new_20Line_btn">Add 20</a></li>
+</ul>
+-->
+</div>
+<br>
+<div class="new_create_buttons">
+<div class="new_create_buttons_g1">
+  <input id="updateStockAdjust" type="submit" class="send_new" value="Process">
+</div>
+<div class="new_create_buttons_g2" id="stockBtns2a">
+  <input id="updateHoldStockAdjust" type="submit" class="save_new" value="Hold">
+  <a href="#" onclick="javascript:history.back()" class="cancel_new">Cancel</a>
+</div>
+</div>
+</div>
+<div class="new_create_footer_container">
+  <div class="new_create_footer">
+      <h3 style="border-bottom: 0px" >History & Notes</h3>
+      <a href="#" class="list_search" id="notesbtn">Add Note</a>
+      <div id="AddNote" style="">
+        <div class="search_box_inner">
+          <div class="notes">
+            <label>Note:</label>
+          </div>
+          <textarea id="allnotes" name="allnotes" style="width:350px;height:125px;" rows="8" cols="80"></textarea>
+        </div>
+        <div class="" style="width:352px;">
+          <span class=""><button type="button" class="send_new"><span>Save</span></button></span>
+          <span class=""><button type="button" class="list_search cancel_new"><span>Cancel</span></button></span>
+        </div>
+      </div>
+      <script>
+      $('.Show').click(function() {
+          $('#AddNote').show(500);
+          $('.Show').hide(0);
+          $('.Hide').show(0);
+      });
+      $('.Hide').click(function() {
+          $('#AddNote').hide(500);
+          $('.Show').show(0);
+          $('.Hide').hide(0);
+      });
+      $('.list_search').click(function() {
+          $('#AddNote').toggle('slow');
+          $( "#allnotes" ).focus();
+      });
+      </script>
+  </div>
+</div>
+</form>
+</main>
+</div>
+</div>
+</template>

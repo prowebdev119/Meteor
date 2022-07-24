@@ -1,0 +1,24 @@
+.fixedAssetEditAssetType .assetNumber span {
+    width: 100%;
+    float: left;
+    line-height: 26px;
+    font-size: 12px;
+    font-weight: normal;
+    color: #222;
+}
+.organisationSettings .loader
+{
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    z-index: 9999;
+    opacity: 1;
+    left: 0;
+    top: 0;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+.organisationSettings .loader i {
+    font-size:40px;
+}

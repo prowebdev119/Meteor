@@ -1,0 +1,68 @@
+<template name="expensebreakdown">
+    <style type="text/css">
+        .hideelement {
+            display: none !important;
+        }
+
+        .showelement {
+            display: block;
+        }
+        .sortableExpenseBreakdown {
+            width: 100%;
+            min-width: 275px;
+            max-width: calc(25% - 0.5rem);
+        }
+
+        .sortableExpenseBreakdown .expense-widget {
+            width: -webkit-fill-available;
+
+        }
+
+
+        @media screen and (max-width: 1306px) {
+            .sortableExpenseBreakdown {
+                width: 100%;
+                max-width: 512px;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .sortableExpenseBreakdown {
+                width: 100%;
+                max-width: 100%;
+            }
+        }
+       
+    </style>
+    <div class="minHeight100">
+        <div class="card shadow mb-4 portlet expense-widget">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h6 class="text-info font-weight-bold m-0">Expenses Breakdown</h6>
+                <div class="dropdown no-arrow">
+                    <a class="on-editor-change-mode btn btn-link hideelement" role="presentation" href="">Hide</a>
+                    <button class="btn btn-link btn-sm dropdown-toggle btnchartdropdown" data-toggle="dropdown" aria-expanded="false" type="button"><i class="fas fa-ellipsis-v text-gray-400"></i></button>
+                    <div class="dropdown-menu shadow dropdown-menu-right animated--fade-in" role="menu">
+                        <a  class="dropdown-item" role="presentation" href="/agedpayables">&nbsp;More Details</a>
+                        <div class="dropdown-divider"></div>
+                        <a id="" class="dropdown-item pointer editchartsbtn " role="presentation" data-toggle="modal" data-target="#">&nbsp;Edit Chart</a>
+                        <a id="" class="dropdown-item pointer resetchartbtn" role="presentation">&nbsp;Reset Chart</a>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row align-items-center no-gutters" style="display: flow-root;" >
+                    <div class="col mr-2">
+                        <div class="text-dark font-weight-bold h5 mb-0"><span style="font-size: 24px;"
+                                class="spExpenseTotal">0.00</span></div>
+                    </div>
+                    <span>Current Month</span>
+                </div>
+            
+                <div class="canvasParentDiv">
+                    <canvas id="expensebreakdownchart" name="expensebreakdownchart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

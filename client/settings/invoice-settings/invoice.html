@@ -1,0 +1,428 @@
+<template name="invoiceSettings">
+    <div class="invoiceSettings">
+        <div class="active_page">
+            <div class="active_page_content">
+                <p><a href="/settings">General Settings</a> &nbsp;›&nbsp;
+                </p><br>
+                <h1>Invoice Settings</h1>
+                <div id="wrapper_main">
+                    <div class="documentHeaderContainer">
+                        <p>Customize invoices to suit your organisation and match your brand</p>
+                        <p>Create <a class="videoTrigger" href="javascript:void()">invoice templates</a>, add your logo
+                            and
+                            select which financial information to show</p>
+                        <p class="lastChild">See our <a href="#"
+                                                        target="_self">help
+                            article</a>
+                            to learn more</p><a href="javascript:void(0)" class="close" id="ext-gen14">Hide Help</a><a
+                            href="javascript:void(0)" class="video video-settingsInvoice videoTrigger html shadow">&nbsp;</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="invoiceSettingsBg">
+            <div id="wrapper_main">
+                <main id="page-content-wrapper_main" role="main">
+                    <div class="InvoiceTemplates">
+                        <a href="#" id="showModal2" class="expcBublink">What's this? <img src="/icons/exp_bubble.jpg"
+                                                                                          class="">
+                            <div class="addActivityStatement" id="currentClaims2">
+                                <div class="headTitle">
+                                    <span id="closeCurrModel2"> <img src="/img/closeButton.png"></span>
+                                    <span>Invoice branding</span>
+                                </div>
+                                <div class="bodyTitle">
+                                    <p>Use invoice branding to customise 1 or more themes to appear on your sales
+                                        invoices,
+                                        credit notes and statements.</p>
+                                    <p>With branding themes you can specify these elements for sales (customer)
+                                        invoices,
+                                        credit notes and statements:</p>
+                                    <ul>
+                                        <li>Customise a theme name, formatting and titles</li>
+                                        <li>Add a link to PayPal so your customers can use this to pay you online
+                                            (you'll
+                                            need a relevant PayPal account to do this). Create standard text to be a
+                                            message
+                                            or payment advice to your customers (invoices only). You don’t need to have
+                                            this.
+                                        </li>
+                                        <li>Add your logo (for a standard theme the max size is 400x120 pixel image
+                                            file).
+                                            You can just leave this blank if you don’t want to use a logo.
+                                        </li>
+                                        <li>Add your organisation address</li>
+                                    </ul>
+                                    <p><a target="_self" href="#">Invoice branding</a></p>
+                                    <p><a target="_self" href="#">Add new standard branding theme</a></p>
+                                    <p><a target="_self" href="#">Fully customise a branding theme using DOCX</a></p>
+                                </div>
+                            </div>
+
+                        </a>
+
+                        <div class="tasksButton">
+                            <div class="dropdown">
+                                <button class=" dropdown-toggle" type="button" data-toggle="dropdown"><i
+                                        class="fa fa-plus-square"></i> New Branding Theme <i
+                                        class="fa fa-sort-down"></i></button>
+                                <ul class="dropdown-menu">
+                                    <li data-toggle="modal" data-target="#myModal1"><a href="#">Standard </a></li>
+                                    <li data-toggle="modal" data-target="#myModal"><a href="#">Custom .docx</a></li>
+                                </ul>
+                            </div>
+
+                            <button type="button"><i class="fa fa-caret-right"></i> Default Settings</button>
+                            <button type="button"> Payment Services</button>
+                            <a href="/Invoice_reminders"> Invoice Reminders</a>
+                        </div>
+                        <div class="template">
+                            <div class="titile">
+                                <span> <i class="fa fa-ellipsis-v"></i><i class="fa fa-ellipsis-v"></i>  Standard</span>
+                                <div class="dropdown">
+                                    <button class=" dropdown-toggle" type="button" data-toggle="dropdown"> Options <i
+                                            class="fa fa-sort-down"></i></button>
+                                    <ul class="dropdown-menu">
+                                        <li data-toggle="modal" data-target="#myModal1"><a href="#"> Edit </a></li>
+                                        <li data-toggle="modal" data-target="#myModal"><a href="#">Copy</a></li>
+                                        <li data-toggle="modal" data-target="#myModal"><a href="#">Logo</a></li>
+                                        <li data-toggle="modal" data-target="#myModal"><a href="#">Change Logo</a></li>
+                                        <li data-toggle="modal" data-target="#myModal"><a href="#">Delete</a></li>
+                                        <li data-toggle="modal" data-target="#myModal"><a href="#">Preview</a></li>
+                                        <li data-toggle="modal" data-target="#myModal"><a href="#">Remove Logo</a></li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="details">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <p>
+                                            Page:
+                                            <strong>A4</strong>
+                                            Margins Top: <strong>1.35cm</strong>
+                                            Bottom: <strong>1.00 cm</strong>
+                                            Address Padding: <strong>1.00 cm</strong>
+                                        <p>
+                                            Font: <strong>Calibri,
+                                            9pt</strong></p>
+                                        </p>
+
+                                        <div class="showDiv">
+                                            <span>Show:</span>
+                                            <ul>
+
+                                                <li>
+                                                    Tax number
+                                                </li>
+                                                <li>
+                                                    Column headings
+                                                </li>
+                                                <li>
+                                                    Tax column
+                                                </li>
+                                                <li>
+                                                    Unit price and quantity
+                                                </li>
+                                                <li>
+                                                    Payment advice cut-away
+                                                </li>
+                                                <li>
+                                                    Logo
+                                                </li>
+                                                <li>
+                                                    Discount
+                                                </li>
+                                            </ul>
+                                            <ul class="long">
+                                                <li>
+                                                    Logo align:
+
+                                                    Right
+                                                </li>
+                                                <li>
+                                                    Tax
+                                                    exclusive
+                                                </li>
+                                                <li>
+                                                    Tax subtotals
+
+                                                    by tax rates over 0%
+                                                </li>
+                                                <li>
+                                                    Currency conversion as
+
+                                                    a single tax total
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="headings">
+                                            Headings: DRAFT INVOICE,
+                                            TAX INVOICE,
+                                            TAX INVOICE,
+                                            CREDIT NOTE,
+                                            STATEMENT,
+                                            DRAFT PURCHASE ORDER,
+                                            PURCHASE ORDER,
+                                            DRAFT QUOTE,
+                                            QUOTE,
+                                            REMITTANCE ADVICE,
+                                            RECEIPT
+                                        </div>
+                                        <div class="headings"><b>Payment service:</b>&nbsp;
+                                            democo@for-demo-purposes-only.co
+                                        </div>
+                                        <div class="terms">
+                                            <div class="ellipsis">When paying by cheque, please complete this payment
+                                                advice, detach and post to the address provided. Online payment
+                                                preferred - use our account 083-234-12345678 or use the 'Pay online now'
+                                                link to pay via PayPal with your credit card.
+                                            </div>
+                                        </div>
+                                        <div class="terms">
+                                            Terms (Quotes):
+                                            <div class="ellipsis"><span class="gray">(None added)</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="address"><strong>
+                                            Contact Details
+                                        </strong>Orange Demo Co<br>23 Main Street<br>Central City<br>Marineville<br>MV12
+                                            3CC
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="logo">
+                                            <img src="/img/GetFile.jpg">
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="template">
+                            <div class="titile">
+                            <span> <i class="fa fa-ellipsis-v"></i><i
+                                    class="fa fa-ellipsis-v"></i>  Special Projects</span>
+                                <div class="dropdown">
+                                    <button class=" dropdown-toggle" type="button" data-toggle="dropdown"> Options <i
+                                            class="fa fa-sort-down"></i></button>
+                                    <ul class="dropdown-menu">
+                                        <li data-toggle="modal" data-target="#myModal1"><a href="#"> Edit </a></li>
+                                        <li data-toggle="modal" data-target="#myModal"><a href="#">Copy</a></li>
+                                        <li data-toggle="modal" data-target="#myModal"><a href="#">Logo</a></li>
+                                        <li data-toggle="modal" data-target="#myModal"><a href="#">Change Logo</a></li>
+                                        <li data-toggle="modal" data-target="#myModal"><a href="#">Delete</a></li>
+                                        <li data-toggle="modal" data-target="#myModal"><a href="#">Preview</a></li>
+                                        <li data-toggle="modal" data-target="#myModal"><a href="#">Remove Logo</a></li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="details">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <p>
+                                            Page:
+                                            <strong>A4</strong>
+                                            Margins Top: <strong>1.35cm</strong>
+                                            Bottom: <strong>1.00 cm</strong>
+                                            Address Padding: <strong>1.00 cm</strong>
+                                        <p>
+                                            Font: <strong>Calibri,
+                                            9pt</strong></p>
+                                        </p>
+
+                                        <div class="showDiv">
+                                        <span>
+              Show:
+            </span>
+                                            <ul>
+                                                <li>
+                                                    Tax number
+                                                </li>
+                                                <li>
+                                                    Column headings
+                                                </li>
+                                                <li>
+                                                    Tax column
+                                                </li>
+                                                <li>
+                                                    Unit price and quantity
+                                                </li>
+                                                <li>
+                                                    Payment advice cut-away
+                                                </li>
+                                                <li>
+                                                    Logo
+                                                </li>
+                                                <li>
+                                                    Discount
+                                                </li>
+                                            </ul>
+                                            <ul class="long">
+                                                <li>
+                                                    Logo align:
+
+                                                    Right
+                                                </li>
+                                                <li>
+                                                    Tax
+                                                    exclusive
+                                                </li>
+                                                <li>
+                                                    Tax subtotals
+
+                                                    by tax rates over 0%
+                                                </li>
+                                                <li>
+                                                    Currency conversion as
+
+                                                    a single tax total
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="headings">
+                                            Headings: DRAFT INVOICE,
+                                            TAX INVOICE,
+                                            TAX INVOICE,
+                                            CREDIT NOTE,
+                                            STATEMENT,
+                                            DRAFT PURCHASE ORDER,
+                                            PURCHASE ORDER,
+                                            DRAFT QUOTE,
+                                            QUOTE,
+                                            REMITTANCE ADVICE,
+                                            RECEIPT
+                                        </div>
+                                        <div class="headings"><b>Payment service:</b>&nbsp;
+                                            democo@for-demo-purposes-only.co
+                                        </div>
+                                        <div class="terms">
+                                            <div class="ellipsis">When paying by cheque, please complete this payment
+                                                advice, detach and post to the address provided. Online payment
+                                                preferred - use our account 99-04-04 987654321 or use the 'Pay online
+                                                now' link to pay via PayPal with your credit card.
+                                            </div>
+                                        </div>
+                                        <div class="terms">
+                                            Terms (Quotes):
+                                            <div class="ellipsis"><span class="gray">(None added)</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="address"><strong>
+                                            Contact Details
+                                        </strong>Orange Demo Co<br>:::Special Projects Division:::<br>23 Main Street<br>Central
+                                            City<br>Marineville<br>MV12 3CC
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="logo">
+                                            <img src="/img/GetFile (1).jpg">
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="template">
+                            <div class="titile">
+                            <span> <i class="fa fa-ellipsis-v"></i><i
+                                    class="fa fa-ellipsis-v"></i> Very orange invoice!</span>
+                                <div class="dropdown">
+                                    <button class=" dropdown-toggle" type="button" data-toggle="dropdown"> Options <i
+                                            class="fa fa-sort-down"></i></button>
+                                    <ul class="dropdown-menu">
+                                        <li data-toggle="modal" data-target="#myModal1"><a href="#"> Edit </a></li>
+                                        <li data-toggle="modal" data-target="#myModal"><a href="#">Copy</a></li>
+                                        <li data-toggle="modal" data-target="#myModal"><a href="#">Logo</a></li>
+                                        <li data-toggle="modal" data-target="#myModal"><a href="#">Change Logo</a></li>
+                                        <li data-toggle="modal" data-target="#myModal"><a href="#">Delete</a></li>
+                                        <li data-toggle="modal" data-target="#myModal"><a href="#">Preview</a></li>
+                                        <li data-toggle="modal" data-target="#myModal"><a href="#">Remove Logo</a></li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="details">
+                                <div class="docx">
+                                    <div class="icon">
+                                        &nbsp;
+                                    </div>
+                                    <div class="invoice"><strong>
+                                        Invoice
+                                    </strong>
+                                        <p title="OrangeInvoice4dp.docx">OrangeInvoice4dp.docx</p>
+                                    </div>
+                                    <div class="credit-note"><strong>
+                                        Credit Note
+                                    </strong>
+                                        <p>
+                                            Standard template
+                                        </p>
+                                    </div>
+                                    <div class="statement"><strong>
+                                        Statement
+                                    </strong>
+                                        <p>
+                                            Standard template
+                                        </p>
+                                    </div>
+                                    <div class="purchase-order"><strong>
+                                        Purchase Order
+                                    </strong>
+                                        <p>
+                                            Standard template
+                                        </p>
+                                    </div>
+                                    <div class="quote"><strong>
+                                        Quote
+                                    </strong>
+                                        <p>
+                                            Standard template
+                                        </p>
+                                    </div>
+                                    <div class="uploads"><a class="xbtn upload skip" href="#"> <i class="fa fa-download"
+                                                                                                  aria-hidden="true"></i>
+                                        Download</a>
+                                        <p>
+                                            Download a .zip file that contains each .docx template
+
+                                        </p>
+                                    </div>
+                                    <div class="uploads"><a class="xbtn upload skip" href="%"> <i class="fa fa-upload"
+                                                                                                  aria-hidden="true"></i>
+                                        Upload</a>
+                                        <p>
+                                            Upload your customised<br>.docx template files
+                                        </p>
+                                    </div>
+                                    <div class="settings" style="margin-top:15px;">
+                                        <div><b>Headings:</b>&nbsp;DRAFT INVOICE,
+                                            TAX INVOICE,
+                                            TAX INVOICE,
+                                            CREDIT NOTE,
+                                            STATEMENT,
+                                            DRAFT PURCHASE ORDER,
+                                            PURCHASE ORDER,
+                                            DRAFT QUOTE,
+                                            QUOTE
+                                        </div>
+                                        <div><b>Payment service:</b>&nbsp;
+                                            DONOTPAYTHISISFAKE@fakedemoaccount.com
+                                        </div>
+                                    </div>
+                                    <div class="logo" style="float:right;padding-top:10px;"><a href="javascript:;"
+                                                                                               onclick="InvoiceSettings.updateTemplateLogo('2ced98b8-3be9-42c4-ae79-fe3c8bca3490', true)">
+                                        Upload email logo
+                                    </a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
+</template>

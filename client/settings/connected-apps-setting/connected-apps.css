@@ -1,0 +1,262 @@
+.connectedAppsSettings {
+    width: 100%;
+    float: left;
+}
+
+.connectedAppsSettings .active_page {
+    float: left;
+    width: 100%;
+}
+
+.connectedAppsSettings .active_page_content h1 {
+    margin-bottom: 0;
+    border-bottom: 0;
+}
+
+.connectedAppsSettings .gettingStarted {
+    width: 100%;
+    float: left;
+    background: white;
+    border-bottom: 1px solid #dee0e2;
+}
+
+.connectedAppsSettings .documentHeader {
+    border-top: 1px solid #cfd2d4;
+    padding: 20px 0 30px;
+    width: 100%;
+    float: left;
+}
+
+.connectedAppsSettings .gettingStarted .documentHeader {
+    border-top: 0;
+    margin-top: 0;
+}
+
+.connectedAppsSettings .popularApps {
+    float: left;
+    width: 100%;
+    padding: 20px;
+}
+
+.connectedAppsSettings .popularApps h2 {
+    font-size: 18px;
+    color: #333;
+    clear: both;
+    padding: 0;
+    margin: 0;
+    font-weight: bold;
+    margin-bottom: 25px;
+
+}
+
+.connectedAppsSettings .marketplace-tile {
+    width: 100%;
+    float: left;
+}
+
+.connectedAppsSettings a.marketplace-tile-head-wrapper {
+    float: left;
+    width: 100%;
+    background: #015D91;
+    height: 80px;
+    line-height: 60px;
+    padding: 10px;
+
+}
+
+.connectedAppsSettings a.marketplace-tile-head-wrapper span {
+    float: right;
+    color: #fff;
+}
+
+.marketplace-tile-body {
+    background: #fff;
+    padding: 1.25rem;
+    border-top: 0;
+    border-left: 1px solid #dadadb;
+    border-bottom: 1px solid #dadadb;
+    border-right: 1px solid #dadadb;
+    float: left;
+    width: 100%;
+}
+
+.connectedAppsSettings .marketplace-tile-body .marketplace-tile-body-type {
+    font-size: 11px;
+    color: #a8a9ac;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.connectedAppsSettings .marketplace-tile-body h3 {
+    font-size: 16px;
+    font-weight: 400;
+    color: #45474d;
+    width: 100%;
+    height: 1.5rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: .9em;
+}
+
+.connectedAppsSettings .marketplace-tile-body .ellipsis-container {
+    width: 100%;
+    overflow: hidden;
+    padding: 1rem 0;
+    height: 8em;
+    text-overflow: ellipsis;
+}
+
+.connectedAppsSettings .marketplace-tile-body .ellipsis-container p {
+    padding: 0;
+    margin: 0;
+    font-size: 13px;
+    font-weight: 400;
+}
+
+.connectedAppsSettings .marketplace-tile-body .marketplace-tile-links {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    float: left;
+}
+
+.connectedAppsSettings .marketplace-tile-body .marketplace-tile-links a {
+    color: #a8a9ac;
+    text-transform: uppercase;
+    font-size: 13px;
+    line-height: 1;
+}
+
+.connectedAppsSettings .marketplace-tile-body .reviews {
+    float: left;
+    width: 100%;
+}
+
+.connectedAppsSettings .marketplace-tile-body .reviews p {
+    font-size: 13px;
+    color: #a8a9ac;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.connectedAppsSettings .marketplace-tile-body .reviews span {
+    width: 100%;
+    float: left;
+}
+
+.connectedAppsSettings .marketplace-tile-body .reviews span i {
+    float: left;
+    margin-right: 5px;
+    color: #13b5ea;
+}
+
+.connectedAppsSettings table.table tr {
+    border: solid 1px #ccc;
+}
+
+.connectedAppsSettings table.table  tr th {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 13px;
+    border-bottom: 0 !important;
+
+}
+
+
+
+.connectedAppsSettings table.table tr td {
+    background: #fff;
+    padding: 10px 0 11px 10px;
+    font-size: 12px;
+
+}
+
+.connectedAppsSettings .apps {
+    font-weight: bold;
+}
+
+.connectedAppsSettings .marketPlace {
+    float: left;
+    width: 100%;
+    text-align: center;
+}
+
+.connectedAppsSettings .openButton {
+    width: 100%;
+    float: left;
+}
+
+.connectedAppsSettings .marketplace-tile .product {
+    background: #00a3d3;
+}
+
+.connectedAppsSettings .marketplace-tile .product1 {
+    background: #3c763d;
+}
+
+.connectedAppsSettings .marketPlace button.btn.btn-primary a {
+    color: #fff;
+}
+
+.connectedAppsSettings .marketPlace button.btn.btn-primary a:hover {
+    text-decoration: none;
+}
+
+.connectedAppsSettings .rightIcons {
+    float: right;
+    line-height: 19px;
+}
+
+.connectedAppsSettings .connecteDiv p {
+    padding-bottom: 10px;
+    margin-bottom: 0;
+    margin-top: 10px;
+    border-bottom: 1px solid #e2e2e2;
+    color: #333;
+    font-size: 16px;
+    margin-left: 0;
+}
+
+.connectedAppsSettings .connecteDiv p:nth-child(2) {
+    font-size: 15px;
+}
+
+.connectedAppsSettings .connecteDiv p a {
+    font-weight: normal;
+}
+
+.connectedAppsSettings .connecteDiv p:last-child {
+    border-bottom: 0;
+}
+.connectedAppsSettings .connecteDiv p a.tell{
+    font-weight: bold;
+}
+
+
+.connectedAppsSettings .blue {
+    background: linear-gradient(#00b1e6,#0382b3) !important;
+    color: #fff;
+    border-color: #0078a5;
+    background-color: #00b1e6;
+    text-shadow: 0 1px rgba(0,0,0,0.1);
+    background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #00b1e6),color-stop(100%, #0382b3));
+    background: -webkit-linear-gradient(#00b1e6,#0382b3);
+    background: -webkit-linear-gradient(#00b1e6, #0382b3);
+    background: linear-gradient(#00b1e6,#0382b3);
+    font-size: 12px;
+    font-weight: bold;
+    margin:0;
+    padding: 6px 12px;
+    margin-top: 0 !important;
+}
+
+.connectedAppsSettings table.table tr td .blue{
+    width: 75px;
+    top: 4px;
+    right: 16px;
+    position: relative;
+}
+.connectedAppsSettings table tbody tr:hover {
+    background-color: #e6f5fa;
+}

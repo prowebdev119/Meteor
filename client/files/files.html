@@ -1,0 +1,141 @@
+<template name="files">
+  <script>
+  var divs = ["finbox_1", "finbox_2", "finbox_3"];
+    var visibleDivId = null;
+
+    function toggleVisibility(divId) {
+      if(visibleDivId === divId) {
+        visibleDivId = null;
+      } else {
+        visibleDivId = divId;
+      }
+
+      hideNonVisibleDivs();
+    }
+
+    function hideNonVisibleDivs() {
+      var i, divId, div;
+
+      for(i = 0; i < divs.length; i++) {
+        divId = divs[i];
+        div = document.getElementById(divId);
+
+        if(visibleDivId === divId) {
+          div.style.display = "block";
+        } else {
+          div.style.display = "none";
+        }
+      }
+    }
+    </script>
+<div class="active_page">
+<div class="active_page_content">
+<h1>Files</h1>
+</div>
+</div>
+
+<div id="wrapper_main">
+<main id="page-content-wrapper_main" role="main">
+
+<div class="files_container">
+<div class="files_folder_list">
+  <a href="#" onclick="toggleVisibility('finbox_1');" class="inbox_folder">Inbox (0)</a>
+  <a href="#" onclick="toggleVisibility('finbox_2');">Contracts (0)</a>
+  <a href="#" onclick="toggleVisibility('finbox_3');" class="new_folder">+ New Folder</a>
+</div>
+<!-- files inbox start -->
+<div class="files_inbox" id="finbox_1" style="display: block;">
+  <div class="row">
+    <div class="col"><h1>Inbox</h1></div>
+    <div class="col">
+      <p>Send files to this email address:<br>
+      <span id="useremail"></span>
+    </p>
+    <div class="files_cogdropdown">
+    <i class="fa fa-cog" aria-hidden="true"></i>
+    <i class="fa fa-caret-down" aria-hidden="true"></i>
+    <div class="files_cogdropdown_content">
+  <a href="#">Copy to clipboard</a>
+  <a href="#">Download vCard</a>
+  <a href="#" class="reset_email">Reset email address</a>
+</div>
+</div>
+</div>
+</div>
+  <div class="row inboxcol">
+    <div class="col inboxcol1"><img src="../icons/nofiles_icon.jpg" class=""></div>
+    <div class="col inboxcol2">
+      <h1>No files</h1>
+      <p>Upload your files to store them alongside all of your financial documents</p>
+      <a href="#" class="new_create_btn">+ Upload files</a>
+      <a href="#" class="new_create_btn">Take Photo</a>
+    </div>
+  </div>
+</div>
+<!-- files inbox end -->
+<!-- files contracts start -->
+<div class="files_inbox" id="finbox_2" style="display: none;">
+  <div class="row">
+    <div class="col"><h1>Contracts</h1></div>
+    <div class="col">
+      <!-- <p>Send files to this email address:<br>
+      <a href="mailto:example@email.com">exampleemailaddress@email.com</a>
+    </p> -->
+    <div class="files_cogdropdown">
+      <button class="new_create_btn dropdown-toggle" type="button" data-toggle="dropdown">Options
+<span class="caret"></span></button>
+  <div class="files_cogdropdown_content">
+  <a href="#">Rename</a>
+  <a href="#" class="reset_email">Delete</a>
+</div>
+</div>
+</div>
+</div>
+  <div class="row inboxcol">
+    <div class="col inboxcol1"><img src="icons/nofiles_icon.jpg" class=""></div>
+    <div class="col inboxcol2">
+      <h1>No files</h1>
+      <p>Upload your files to store them alongside all of your financial documents</p>
+      <a href="#" class="new_create_btn">+ Upload files</a>
+      <a href="#" class="new_create_btn">Take Photo</a>
+    </div>
+  </div>
+</div>
+<!-- files contracts end -->
+<!-- files new folder end -->
+<div class="files_inbox" id="finbox_3" style="display: none;">
+  <div class="row">
+    <div class="col newfolder_container">
+      <input type="text" id="files_newfolder" value="New folder">
+      <!-- <p>Send files to this email address:<br>
+      <a href="mailto:example@email.com">exampleemailaddress@email.com</a>
+    </p> -->
+    <a href="#" class="send_new">Save</a>
+    <a href="#" class="cancel_new product_edit" id="cancelButton">Cancel</a>
+
+    <div class="files_cogdropdown" style="margin-top: 0px; margin-right: -60px;">
+      <button class="new_create_btn dropdown-toggle" type="button" data-toggle="dropdown">Options
+<span class="caret"></span></button>
+  <div class="files_cogdropdown_content">
+  <a href="#">Rename</a>
+  <a href="#" class="reset_email">Delete</a>
+</div>
+</div>
+</div>
+</div>
+  <div class="row inboxcol">
+    <div class="col inboxcol1"><img src="icons/nofiles_icon.jpg" class=""></div>
+    <div class="col inboxcol2">
+      <h1>No files</h1>
+      <p>Upload your files to store them alongside all of your financial documents</p>
+      <a href="#" class="new_create_btn">+ Upload files</a>
+      <a href="#" class="new_create_btn">Take Photo</a>
+    </div>
+  </div>
+</div>
+<!-- files new folder end -->
+</div>
+
+</main>
+</div>
+</template>

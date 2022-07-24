@@ -1,0 +1,105 @@
+<template name="termlistpop">
+
+    <div class="modal-dialog modal-xl modal-dialog-scrollable" role="document" style="max-width: 90vw;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4>Terms List</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" style="width: 100%; display:none;" id="selectLineID" name="selectLineID" readonly>
+                <div class="card-body p-1 rounded">
+                    <div class="table-responsive">
+                        <style>
+                            .colIsDays {
+                                width: 5%;
+                            }
+
+                            .colIsEOM {
+                                width: 5%;
+                            }
+
+                            .colIsEOMPlus {
+                                width: 5%;
+                            }
+
+                            .colDelete {
+                                width: 3% !important;
+                            }
+
+                            .colCustomerDef {
+                                width: 11%;
+                            }
+
+                            .colSupplierDef {
+                                width: 11%;
+                            }
+                        </style>
+                        <table id="termsList" style="width:100%" class="dataTable table table-hover table-striped table-bordered termsList">
+                            <thead>
+                                <tr class="dnd-moved">
+                                    <th class="th colTermName" style="">Term Name</th>
+                                    <th class="th colIsDays" style="">Days</th>
+                                    <th class="th colIsEOM" style="">EOM</th>
+                                    <th class="th colIsEOMPlus" style="">EOM+</th>
+                                    <th class="th colDescription">Description</th>
+                                    <th class="th colCustomerDef" style="">Customer Default</th>
+                                    <th class="th colSupplierDef" style="">Supplier Default</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#if datatablerecords}}
+                                    {{#each item in datatablerecords}}
+                                        <tr class="dnd-moved" id="{{item.id}}" style="cursor: default;">
+                                            <td contenteditable="false" class="colTermName">{{item.termname}}</td>
+                                            <td contenteditable="false" class="colIsDays">{{item.termdays}}</td>
+                                            <td contenteditable="false" class="colIsEOM text-center">
+                                                {{#if equals item.iseom true}}
+                                                    <div class="custom-control custom-checkbox chkBox"><input class="custom-control-input chkBox" type="checkbox" id="iseom-{{item.id}}" checked disabled><label class="custom-control-label chkBox"
+                                                            for="iseom-{{item.id}}"></label></div>
+                                                {{else}}
+                                                    <div class="custom-control custom-checkbox chkBox"><input class="custom-control-input chkBox" type="checkbox" id="iseom-{{item.id}}" disabled><label class="custom-control-label chkBox"
+                                                            for="iseom-{{item.id}}"></label></div>
+                                                {{/if}}
+                                            </td>
+                                            <td contenteditable="false" class="colIsEOMPlus text-center">
+                                                {{#if equals item.iseomplus true}}
+                                                    <div class="custom-control custom-checkbox chkBox"><input class="custom-control-input chkBox" type="checkbox" id="iseomplus-{{item.id}}" checked disabled><label class="custom-control-label chkBox"
+                                                            for="iseomplus-{{item.id}}"></label></div>
+                                                {{else}}
+                                                    <div class="custom-control custom-checkbox chkBox"><input class="custom-control-input chkBox" type="checkbox" id="iseomplus-{{item.id}}" disabled><label class="custom-control-label chkBox"
+                                                            for="iseomplus-{{item.id}}"></label></div>
+                                                {{/if}}
+                                            </td>
+                                            <td contenteditable="false" class="colDescription">{{item.description}}</td>
+                                            <td contenteditable="false" class="colCustomerDef text-center">
+                                                {{#if equals item.isSalesdefault true}}
+                                                    <div class="custom-control custom-checkbox chkBox"><input class="custom-control-input chkBox" type="checkbox" id="isSalesdefault-{{item.id}}" checked disabled><label class="custom-control-label chkBox"
+                                                            for="isSalesdefault-{{item.id}}"></label></div>
+                                                {{else}}
+                                                    <div class="custom-control custom-checkbox chkBox"><input class="custom-control-input chkBox" type="checkbox" id="isSalesdefault-{{item.id}}" disabled><label class="custom-control-label chkBox"
+                                                            for="isSalesdefault-{{item.id}}"></label></div>
+                                                {{/if}}
+                                            </td>
+                                            <td contenteditable="false" class="colSupplierDef text-center">
+                                                {{#if equals item.isPurchasedefault true}}
+                                                    <div class="custom-control custom-checkbox chkBox"><input class="custom-control-input chkBox" type="checkbox" id="isPurchasedefault-{{item.id}}" checked disabled><label class="custom-control-label chkBox"
+                                                            for="isPurchasedefault-{{item.id}}"></label></div>
+                                                {{else}}
+                                                    <div class="custom-control custom-checkbox chkBox"><input class="custom-control-input chkBox" type="checkbox" id="isPurchasedefault-{{item.id}}" disabled><label class="custom-control-label chkBox"
+                                                            for="isPurchasedefault-{{item.id}}"></label></div>
+                                                {{/if}}
+                                            </td>
+                                        </tr>
+                                    {{/each}}
+                                {{/if}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-light" data-dismiss="modal" type="button">Close</button>
+            </div>
+        </div>
+    </div>
+</template>

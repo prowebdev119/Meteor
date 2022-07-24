@@ -1,0 +1,174 @@
+ <template name="customfieldpop">
+     <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+         <div class="modal-content">
+             <div class="modal-header">
+                 <h4>Field Settings</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+             </div>
+             <div class="modal-body">
+                 <div>
+                     <div class="row">
+                         <div class="col-12">
+                             <span class="custField1Text" style="margin-left: 42px; font-size: 14px;">Text Field</span>
+                             <span class="custField1Date" style="margin-left: 42px; font-size: 14px; display: none;">Date Field</span>
+                             <span class="custField1Dropdown" style="margin-left: 42px; font-size: 14px; display: none;">Dropdown Field</span>
+
+                             <input type="hidden" id="statusId1" name="statusId1" class="form-control" value="">
+                             <!-- <input type="hidden" id="clickedControl" name="clickedControl" class="form-control" value=""> -->
+                             <input type="hidden" id="isdropDown" name="isdropDown" class="form-control" value="">
+
+                             <div class="custom-control custom-switch" style="margin: 8px; display: inline-flex !important;">
+                                 <input class="custom-control-input chkFieldSettings" type="checkbox" id="formCheck-customOne" value="one">
+                                 <label class="custom-control-label" style="position: absolute; margin-top: 8px;" for="formCheck-customOne"></label>
+
+                                 <div class="input-group">
+                                     <!-- text field -->
+                                     <input id="customFieldText1" value="{{custfields.[0].custfieldlabel}}" custid="{{custfields.[0].id}}" type="text" class="form-control customfieldcommon customField1" placeholder="Custom Field1"
+                                         style="border-color: #858796;">
+                                     <!-- date field -->
+                                     <div id="customFieldDate1" class="input-group date pointer" style="width: 86% !important; display: none;">
+                                         <input type="text" class="form-control customField1" style=" border-color: #858796 !important; width: 86% !important; " id="customdateone" name="customdateone" value="{{custfields.[0].custfieldlabel}}">
+                                         <div class="input-group-addon" style="">
+                                             <span class="glyphicon glyphicon-th" style="cursor: pointer;"></span>
+                                         </div>
+                                     </div>
+                                     <!-- text field -->
+                                     <select type="search" class="form-control pointer customField1" id="sltCustomOne1" name="sltCustomOne"
+                                         style="background-color:rgb(255, 255, 255); border-color: #858796; display: none; border-top-left-radius: 0.35rem; border-bottom-left-radius: 0.35rem;">
+                                     </select>
+                                     <div class="input-group-append">
+                                         <button class="btn btn-outline-secondary dropdown-toggle btn-sm" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                                         <div class="dropdown-menu">
+                                             <a class="dropdown-item pointer btnToggleText1">Text Field</a>
+                                             <a class="dropdown-item pointer btnToggleDate1">Date Field</a>
+                                             <a class="dropdown-item pointer btnToggleDrop1">Dropdown</a>
+                                         </div>
+                                     </div>
+                                 </div>
+                             </div>
+
+
+
+                             <span class="custField2Text" style="margin-left: 42px; font-size: 14px;">Text Field</span>
+                             <span class="custField2Date" style="margin-left: 42px; font-size: 14px; display: none;">Date Field</span>
+                             <span class="custField2Dropdown" style="margin-left: 42px; font-size: 14px; display: none;">Dropdown Field</span>
+
+                             <input type="hidden" id="statusId2" name="statusId2" class="form-control" value="">
+                             <!-- <input type="hidden" id="clickedControl2" name="clickedControl2" class="form-control" value=""> -->
+                             <input type="hidden" id="isdropDown2" name="isdropDown2" class="form-control" value="">
+
+                             <div class="custom-control custom-switch" style="margin: 8px; display: inline-flex !important;">
+                                 <input class="custom-control-input chkFieldSettings" type="checkbox" id="formCheck-customTwo" value="one">
+                                 <label class="custom-control-label" style="position: absolute; margin-top: 8px;" for="formCheck-customTwo"></label>
+
+                                 <div class="input-group">
+                                     <!-- text field -->
+                                     <input id="customFieldText2" value="{{custfields.[1].custfieldlabel}}" custid="{{custfields.[1].id}}" type="text" class="form-control customfieldcommon customField2" placeholder="Custom Field2"
+                                         style="border-color: #858796;">
+                                     <!-- date field -->
+                                     <div id="customFieldDate2" class="input-group date pointer" style="width: 86% !important; display: none;">
+                                         <input type="text" class="form-control customField2" style=" border-color: #858796 !important; width: 86% !important; " id="customdateone" name="customdateone" value="{{invoicerecord.saledate}}">
+                                         <div class="input-group-addon" style="">
+                                             <span class="glyphicon glyphicon-th" style="cursor: pointer;"></span>
+                                         </div>
+                                     </div>
+                                     <!-- text field -->
+                                     <select type="search" class="form-control pointer customField2" id="sltCustomOne2" name="sltCustomOne"
+                                         style="background-color:rgb(255, 255, 255); border-color: #858796; display: none; border-top-left-radius: 0.35rem; border-bottom-left-radius: 0.35rem;">
+                                     </select>
+                                     <div class="input-group-append">
+                                         <button class="btn btn-outline-secondary dropdown-toggle btn-sm" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                                         <div class="dropdown-menu">
+                                             <a class="dropdown-item pointer btnToggleText2">Text Field</a>
+                                             <a class="dropdown-item pointer btnToggleDate2">Date Field</a>
+                                             <a class="dropdown-item pointer btnToggleDrop2">Dropdown</a>
+                                         </div>
+                                     </div>
+                                 </div>
+                             </div>
+
+                             <span class="custField3Text" style="margin-left: 42px; font-size: 14px;">Text Field</span>
+                             <span class="custField3Date" style="margin-left: 42px; font-size: 14px; display: none;">Date Field</span>
+                             <span class="custField3Dropdown" style="margin-left: 42px; font-size: 14px; display: none;">Dropdown Field</span>
+
+                             <input type="hidden" id="statusId3" name="statusId3" class="form-control" value="">
+                             <!-- <input type="hidden" id="clickedControl3" name="clickedControl3" class="form-control" value=""> -->
+                             <input type="hidden" id="isdropDown3" name="isdropDown3" class="form-control" value="">
+
+                             <div class="custom-control custom-switch" style="margin: 8px; display: inline-flex !important;">
+                                 <input class="custom-control-input chkFieldSettings" type="checkbox" id="formCheck-customThree" value="one">
+                                 <label class="custom-control-label" style="position: absolute; margin-top: 8px;" for="formCheck-customThree"></label>
+                                 <div class="input-group">
+                                     <!-- text field -->
+                                     <input id="customFieldText3" value="{{custfields.[2].custfieldlabel}}" custid="{{custfields.[2].id}}" type="text" class="form-control customfieldcommon customField3" placeholder="Custom Field3"
+                                         style="border-color: #858796;">
+                                     <!-- date field -->
+                                     <div id="customFieldDate3" class="input-group date pointer" style="width: 86% !important; display: none;">
+                                         <input type="text" class="form-control customField3" style=" border-color: #858796 !important; width: 86% !important; " id="customdateone" name="customdateone" value="{{invoicerecord.saledate}}">
+                                         <div class="input-group-addon" style="">
+                                             <span class="glyphicon glyphicon-th" style="cursor: pointer;"></span>
+                                         </div>
+                                     </div>
+                                     <!-- text field -->
+                                     <select type="search" class="form-control pointer customField3" id="sltCustomOne3" name="sltCustomOne"
+                                         style="background-color:rgb(255, 255, 255); border-color: #858796; display: none; border-top-left-radius: 0.35rem; border-bottom-left-radius: 0.35rem;">
+                                     </select>
+                                     <div class="input-group-append">
+                                         <button class="btn btn-outline-secondary dropdown-toggle btn-sm" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                                         <div class="dropdown-menu">
+                                             <a class="dropdown-item pointer btnToggleText3">Text Field</a>
+                                             <a class="dropdown-item pointer btnToggleDate3">Date Field</a>
+                                             <a class="dropdown-item pointer btnToggleDrop3">Dropdown</a>
+                                         </div>
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                     <!-- <form class="d-xl-flex align-items-xl-center">
+                                        <div class="flex-grow-1">
+                                            <div class="custom-control custom-switch" style="margin: 8px;">
+                                                <input class="custom-control-input" type="checkbox" id="formCheck-one" value="one">
+                                                {{#if salesCloudPreferenceRec}}
+                                                    {{#if equals salesCloudPreferenceRec.customFields.[0].hidden false}}
+                                                        <script>
+                                                            $('#formCheck-one').attr("checked", "checked");
+                                                        </script>
+                                                    {{else}}
+                                                        <script>
+                                                            $('#formCheck-one').removeAttr("checked");
+                                                        </script>
+                                                    {{/if}}
+                                                {{/if}}
+                                                <label class="custom-control-label" style="position: absolute;" for="formCheck-one"></label>
+                                                <div contenteditable="true" class="groove customField1Text">{{#if salesCloudPreferenceRec}}{{salesCloudPreferenceRec.customFields.[0].label}}{{else}}SaleCustField1{{/if}}</div>
+                                            </div>
+
+                                            <div class="custom-control custom-switch" style="margin: 8px;">
+                                                <input class="custom-control-input" type="checkbox" id="formCheck-two" value="two">
+                                                {{#if salesCloudPreferenceRec}}
+                                                    {{#if equals salesCloudPreferenceRec.customFields.[1].hidden false}}
+                                                        <script>
+                                                            $('#formCheck-two').attr("checked", "checked");
+                                                        </script>
+                                                    {{else}}
+                                                        <script>
+                                                            $('#formCheck-two').removeAttr("checked");
+                                                        </script>
+                                                    {{/if}}
+                                                {{/if}}
+                                                <label class="custom-control-label" style="position: absolute;" for="formCheck-two"></label>
+                                                <div contenteditable="true" class="groove customField2Text">{{#if salesCloudPreferenceRec}}{{salesCloudPreferenceRec.customFields.[1].label}}{{else}}SaleCustField2{{/if}}</div>
+                                            </div>
+                                        </div>
+                                    </form> -->
+                 </div>
+             </div>
+
+             <div class="modal-footer">
+                 <button class="btn btn-success btnSaveSettings" type="button"><i class="fa fa-save" style="margin-right: 5px;"></i>Save</button>
+                 <button class="btn btn-warning btnResetSettings" data-dismiss="modal" type="reset"><i class="fa fa-repeat" style="margin-right: 5px;"></i>Reset</button>
+                 <button class="btn btn-secondary" data-dismiss="modal" type="button"><i class="fa fa-remove" style="margin-right: 5px;"></i>Close</button>
+             </div>
+         </div>
+     </div>
+ </template>

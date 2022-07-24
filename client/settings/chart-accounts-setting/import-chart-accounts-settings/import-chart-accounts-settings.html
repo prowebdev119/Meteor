@@ -1,0 +1,120 @@
+<template name="importChartAccount">
+    <div class="importChartAccount">
+        <div class="active_page">
+            <div class="active_page_content">
+                <h1>Import your Chart of Accounts</h1>
+            </div>
+        </div>
+        <div id="wrapper_main">
+            <div id="msg" class="notify bg-orange">
+                <span class="info-icon">
+                    <i class="fa fa-info-circle" aria-hidden="true"></i>
+                </span>
+                <span class="icons-msg-close"><i class="fa fa-times" aria-hidden="true"></i></span>
+                <div class="message">
+                    <p id="ext-gen16">WARNING: You have entered balances for some of your accounts. If you continue,
+                        that information will be lost.</p>
+                </div>
+            </div>
+            <div class="FullWidth">
+                <div class="HalfWidth">
+                    <div class="pad">
+                        <h3>What system are you importing from?</h3>
+                        <div class="checkbox">
+                            <label><input id="trueERP" type="radio" name="optradio" checked="checked">VS1Cloud</label>
+                        </div>
+                        <div class="checkbox">
+                            <label><input id="myob" type="radio" name="optradio">MYOB</label>
+                        </div>
+                        <div class="checkbox">
+                            <label><input id="bankLink" type="radio" name="optradio">BankLink</label>
+                        </div>
+                    </div>
+                    {{#if steps}}
+                        <div class="pad">
+                            <h3>Does the file you are importing contain account balances?</h3>
+                            <div class="checkbox">
+                                <label><input type="radio" name="balance">Yes</label>
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="radio" name="balance" checked="checked">No / Don't know</label>
+                            </div>
+                        </div>
+                    {{/if}}
+                    <div class="pad">
+                        <h3>Select the file to import</h3>
+                        <div class="file-upload" id="FileName_container" style="border-width:0px;">
+                            <label for="FileName" class="browseBtn">Browse</label>
+                            <span class="file-icons">No File Chosen</span>
+                            <input type="file" class="file" id="FileName" name="FileName" size="40" maxlength=""
+                                   value="" accept=".csv,.txt">
+
+                        </div>
+                    </div>
+                    <div class="footerDiv">
+                        <div class="new_create_buttons_g2">
+                            <input type="submit" id="continueBtn" class="save_new" value="Continue">
+                            <a href="#" class="cancel_new">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="call-out">
+                    <h3>Select the file to import</h3>
+                    <ul>
+                        <li><a href="#" id="export-csv-GST">
+                            Chart of Accounts CSV file for a GST registered company
+                        </a></li>
+                        <li><a href="#" id="export-csv-Non-GST">
+                            Chart of Accounts CSV file for a Non-GST registered company
+                        </a></li>
+                    </ul>
+                    <p>
+                        You can import your chart of accounts from:
+                    </p>
+                    <ul>
+                        <li>
+                            MYOB Accounting or AccountRight Standard
+                        </li>
+                        <li>
+                            MYOB Accounting Plus or AccountRight Plus
+                        </li>
+                        <li>
+                            MYOB Premier or AccountRight Premier
+                        </li>
+                        <li>
+                            MYOB Premier Enterprise or AccountRight Enterprise
+                        </li>
+                        <li>
+                            MYOB AccountEdge
+                        </li>
+                        <li>
+                            BankLink Practice
+                        </li>
+                    </ul>
+
+                    <h3>Tips for importing</h3>
+                    <p>Whether you have created your own Chart of Accounts, exported one from your previous accounting
+                        system or you are using a TrueREP Chart of Accounts, you should make sure you follow a few simple
+                        guidelines:</p>
+                    <ul>
+                        <li>
+                            The file you import must be a CSV (Comma Separated Values) file. The name of your file
+                            should end with either .CSV or .TXT.
+                        </li>
+                        <li>
+                            Be sure to include all of the active accounts you used in your previous accounting system.
+                        </li>
+                        <li>
+                            If you're importing from another accounting system we recommend that you first review your
+                            accounts in that system, bringing your accounts up-to-date and removing any accounts that
+                            are no longer active, before you import it into TrueREP.
+                        </li>
+                        <li><a target="_self" href="">More help for
+                            importing Chart of Accounts</a></li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

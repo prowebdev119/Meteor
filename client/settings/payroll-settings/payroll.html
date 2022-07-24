@@ -1,0 +1,254 @@
+<template name="payrollSettings">
+    <div class="fullScreenSpin" style="display:none;">
+        <div class="spinner"></div>
+    </div>
+    <div class="payrollSettings">
+        <div class="active_page">
+            <div class="active_page_content">
+                <p><a href="/settings">General Settings</a> &nbsp;›&nbsp;</p>
+                <br>
+                <h1>Payment Services</h1>
+            </div>
+        </div>
+        <div class="payrollSettingsDiv">
+            <div id="wrapper_main">
+                <main id="page-content-wrapper_main" role="main">
+                    <div class="active_page_content">
+                        <div class="PaymentDiv">
+                            <p>
+                                <strong>Get paid quickly and easily.</strong>
+                            </p>
+                            <p>
+                                Add a payment service to your invoices to allow easy online payment for your customers.
+                            </p>
+                            <p>
+
+                                <a href="#" class="x-orange-help" target="_self" >Learn more</a> about how they work or <a href="#" target="_self">browse available payment services</a>.
+                            </p>
+
+                            <a href="#" class="close" id="ext-gen1021">Hide Help</a>
+                            <a href="#" class="video html"></a>
+                        </div>
+                    </div>
+
+                </main>
+            </div>
+        </div>
+        <div class="paymentServicesViewport">
+            <div id="wrapper_main">
+                <div class="payment-services-viewport">
+                    <h2>Active Payment Services</h2>
+                    <div class="paymentGateways">
+                        <ul class="titleHeader">
+                            <li>Name</li>
+                            <li>Service</li>
+                            <li>Branding themes using this service</li>
+                        </ul>
+                        <ul class="headetTitle">
+                            <li>DONOTPAYTHISISFAKE@fakedemoaccount.com</li>
+                            <li><img src="/img/parPal.svg"></li>
+                            <li>Standard</li>
+                            <li class="lastchild">
+                                <div class="dropdown">
+                                    <button class=" dropdown-toggle" type="button" data-toggle="dropdown"> Edit <i
+                                            class="fa fa-sort-down"></i></button>
+                                    <ul class="dropdown-menu">
+                                        <li data-toggle="modal" data-target="#myModal"><a href="#">Service details</a>
+                                        </li>
+                                        <li data-toggle="modal" data-target="#myModal1"><a href="#">Remove...</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                        <ul class="headetTitle">
+                            <li>DONOTPAYTHISISFAKE@fakedemoaccount.com</li>
+                            <li><img src="/img/parPal.svg"></li>
+                            <li>Standard</li>
+                            <li class="lastchild">
+                                <div class="dropdown">
+                                    <button class=" dropdown-toggle" type="button" data-toggle="dropdown"> Edit <i
+                                            class="fa fa-sort-down"></i></button>
+                                    <ul class="dropdown-menu">
+                                        <li data-toggle="modal" data-target="#myModal"><a href="#">Service details</a>
+                                        </li>
+                                        <li data-toggle="modal" data-target="#myModal1"><a href="#">Remove...</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="PaymentButton">
+                        <button class="x-btn" type="button" data-toggle="dropdown">+ Add Payment Service</button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Mobile</a></li>
+                            <li><a href="#">Fax</a></li>
+                            <li><a href="#">DDI</a></li>
+                            <li><a href="#">Skype</a></li>
+                            <li><a href="#">Linkedin</a></li>
+                            <li><a href="#">Twitter</a></li>
+                            <li><a href="#">Facebook</a></li>
+                            <li><a href="#">Google+</a></li>
+                        </ul>
+                        <button class="x-btn" type="button" data-toggle="modal" data-target="#ApplyService">Manage
+                            themes
+                        </button>
+                    </div>
+
+                </div>
+                <div class="payment-services-viewport">
+                    <h3>History & Notes</h3>
+                    <div class="PaymentButton">
+                        <button class="x-btn" type="button">Add a note</button>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Edit PayPal</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Enter your <a href="#"> PayPal account
+                            details.</a></p>
+                        <p>Name (as you would like it to appear)</p>
+                        <input type="text" class="form-control" id="usr" placeholder="democo@for-demo-purposes-only.co">
+                        <p>PayPal Email</p>
+                        <input type="text" class="form-control" id="usr" placeholder="democo@for-demo-purposes-only.co">
+                        <p>Payment account (where the money will be deposited)</p>
+                        <select class=" form-control">
+                            <option>090 - Business Bank Account</option>
+                            <option>091 - Business Savings Account</option>
+                            <option>855 - Clearing Account</option>
+                            <option>880 - Owner A Drawings</option>
+                        </select>
+                        <input type="checkbox">
+                        <p>Automate my fees <a href="#">(learn more)</a></p>
+                        <p>Fees Account (where PayPal fees should go)</p>
+                        <select class=" form-control">
+                            <option></option>
+                        </select>
+                        <div class="modal-footer">
+                            <button type="button" class="btn" data-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal" disabled>Save</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="myModal1" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Remove Payment Service</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>You are about to remove the payment service democo@for-demo-purposes-only.co. The invoice
+                            theme Standard will no longer have a payment service assigned</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Remove</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="modal fade" id="ApplyService" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Apply Service to Branding Themes</h4>
+
+                    </div>
+                    <div class="modal-body">
+                        <div class="gateway-instructions" style="border-bottom:none;margin-bottom:5px;">Select the
+                            credit card service you'd like to accept for each of your branding themes. You can also
+                            accept PayPal.
+                        </div>
+
+                        <div class="applyServiceDiv">
+                            <ul>
+                                <li>Branding theme name </li>
+                                <li>Branding theme name </li>
+                                <li>Branding theme name </li>
+                            </ul>
+                            <ul class="applyTitle">
+
+                                <li>
+                                    Standard
+                                </li>
+                                <li>
+                                    <select class=" form-control">
+                                        <option>None</option>
+                                    </select>
+                                </li>
+                                <li>
+                                    <select class=" form-control">
+                                        <option>None</option>
+                                    </select>
+                                </li>
+
+                            </ul>
+                            <ul class="applyTitle">
+
+                                <li>
+                                    Standard
+                                </li>
+                                <li>
+                                    <select class=" form-control">
+                                        <option>None</option>
+                                    </select>
+                                </li>
+                                <li>
+                                    <select class=" form-control">
+                                        <option>None</option>
+                                    </select>
+                                </li>
+
+                            </ul>
+                            <ul class="applyTitle">
+
+                                <li>
+                                    Standard
+                                </li>
+                                <li>
+                                    <select class=" form-control">
+                                        <option>None</option>
+                                    </select>
+                                </li>
+                                <li>
+                                    <select class=" form-control">
+                                        <option>None</option>
+                                    </select>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal" disabled>Save</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script>
+      modalDraggable();
+   </script>
+</template>

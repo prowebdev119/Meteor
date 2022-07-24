@@ -1,0 +1,14 @@
+{
+  "galaxy.meteor.com": {
+    "env": {
+      "MONGO_URL": "mongodb://admin:UYm9Af4thq@cluster0-shard-00-00.i2mwf.mongodb.net:27017,cluster0-shard-00-01.i2mwf.mongodb.net:27017,cluster0-shard-00-02.i2mwf.mongodb.net:27017/vs1app?ssl=true&replicaSet=atlas-vjv752-shard-0&authSource=admin&retryWrites=true&w=majority",
+      "MAIL_URL": "smtps://noreply%40vs1cloud.com:Jp9CvV2M5g@mail.vs1cloud.com:465",
+      "NODE_TLS_REJECT_UNAUTHORIZED": 0
+    }
+  },
+  "braintree": {
+    "merchantId": "2mh4gq43myk73yby",
+    "publicKey": "k2j8pjckdvk94yck",
+    "privateKey": "cdd3badd1bddcc1388198d78b6da5652"
+  }
+}

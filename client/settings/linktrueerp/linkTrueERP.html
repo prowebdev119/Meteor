@@ -1,0 +1,197 @@
+<template name="linktrueerp">
+    <div class="container-fluid">
+        <div class="fullScreenSpin" style="display:none;">
+            <div class="spinner"></div>
+        </div>
+
+        <h3 class="text-dark mb-4">
+            Link to TrueERP
+            <a role="button" data-toggle="modal" href="#helpModal" class="helpModal"><label class="lblplay">PLAY</label><i class="far fa-play-circle"  style="font-size: 20px;"></i></a>
+        </h3>
+
+        <style>
+            .led-box {
+                height: 30px;
+                width: 25%;
+                margin: 10px 0;
+                float: left;
+            }
+
+            .led-box p {
+                font-size: 12px;
+                text-align: center;
+                margin: 1em;
+            }
+
+            .led-red {
+                float: right;
+                margin-top: -24px;
+                width: 24px;
+                height: 24px;
+                background-color: #F00;
+                border-radius: 50%;
+                box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #441313 0 -1px 9px, rgba(255, 0, 0, 0.5) 0 2px 12px;
+                -webkit-animation: blinkRed 0.5s infinite;
+                -moz-animation: blinkRed 0.5s infinite;
+                -ms-animation: blinkRed 0.5s infinite;
+                -o-animation: blinkRed 0.5s infinite;
+                animation: blinkRed 0.5s infinite;
+            }
+
+            @-webkit-keyframes blinkRed {
+                from { background-color: #F00; }
+                50% { background-color: #A00; box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #441313 0 -1px 9px, rgba(255, 0, 0, 0.5) 0 2px 0;}
+                to { background-color: #F00; }
+            }
+            @-moz-keyframes blinkRed {
+                from { background-color: #F00; }
+                50% { background-color: #A00; box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #441313 0 -1px 9px, rgba(255, 0, 0, 0.5) 0 2px 0;}
+                to { background-color: #F00; }
+            }
+            @-ms-keyframes blinkRed {
+                from { background-color: #F00; }
+                50% { background-color: #A00; box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #441313 0 -1px 9px, rgba(255, 0, 0, 0.5) 0 2px 0;}
+                to { background-color: #F00; }
+            }
+            @-o-keyframes blinkRed {
+                from { background-color: #F00; }
+                50% { background-color: #A00; box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #441313 0 -1px 9px, rgba(255, 0, 0, 0.5) 0 2px 0;}
+                to { background-color: #F00; }
+            }
+            @keyframes blinkRed {
+                from { background-color: #F00; }
+                50% { background-color: #A00; box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #441313 0 -1px 9px, rgba(255, 0, 0, 0.5) 0 2px 0;}
+                to { background-color: #F00; }
+            }
+
+            .led-green {
+                float: right;
+                margin-top: -24px;
+                width: 24px;
+                height: 24px;
+                background-color: #ABFF00;
+                border-radius: 50%;
+                box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #304701 0 -1px 9px, #89FF00 0 2px 12px;
+            }
+        </style>
+        <div class="row d-xl-flex justify-content-center justify-content-xl-center mb-3">
+            <div class="col-6 colConnect" id="colConnect" style="margin: auto;">
+                <div class="card shadow">
+                    <div class="card-header py-3" style="background-color: rgb(248,249,252);">
+                        <div align="left">
+                            <p class="text-primary m-0 font-weight-bold">TrueERP Connection</p>
+
+                            <div class="led-green" style="display: none;"></div>
+                            <div class="led-red"></div>
+
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h4 class="text-left">Personal Details</h4>
+                        <div class="row">
+                            <div class="col-6 col-md-4">
+                                <div class="form-group" style="margin: 4px;">
+                                    <label>First Name</label>
+                                    <input type="text" class="form-control edtFirstName"/>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-4">
+                                <div class="form-group" style="margin: 4px;">
+                                    <label>Last Name</label>
+                                    <input type="text" class="form-control edtLastName"/>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-4">
+                                <div class="form-group" style="margin: 4px;">
+                                    <label>Phone Number</label>
+                                    <input type="text" class="form-control edtPhone"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h4 class="text-left" style="margin-top: 20px;">TrueERP Credentials</h4>
+                        <div class="row">
+                            <div class="col-12 col-md-4">
+                                <div class="form-group" style="margin: 4px;">
+                                    <label>Server IP Address</label>
+                                    <input type="text" class="form-control edtServerName"/>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-4">
+                                <div class="form-group" style="margin: 4px;">
+                                    <label>Database Name</label>
+                                    <input type="text" class="form-control edtDatabaseName"/>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-2">
+                                <div class="form-group" style="margin: 4px;">
+                                    <label>Port No.</label>
+                                    <input type="text" class="form-control edtPortNo"/>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-2">
+                                <div class="form-group" style="margin: 4px;">
+                                    <label>HTTPS</label>
+                                    <div class="custom-control custom-switch" style="margin-top: 5px;">
+                                        <input type="checkbox" class="custom-control-input" id="formCheck-https" name="formCheck-https" />
+                                        <label class="custom-control-label" for="formCheck-https">Enabled</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-md-6">
+                                <div class="form-group" style="margin: 4px;">
+                                    <label>ERP Username</label>
+                                    <input type="text" class="form-control edtERPUsername"/>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="form-group" style="margin: 4px;">
+                                    <label>ERP Password</label>
+                                    <input type="text" class="form-control edtERPPassword"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- <hr style="margin-top: 4px;">
+
+                        <div class="row d-xl-flex justify-content-xl-end">
+
+                            <button class="btn btn-success btnSave" type="button" id="btnSave" name="" style="margin: 8px;">
+                                <i class="fa fa-save" style="margin-right: 8px;"></i>Save
+                            </button>
+                            {{#if isCloudTrueERP}}
+                            <button class="btn btn-warning btnUploadERPUSer" type="button" id="btnUploadERPUSer" name="" style="margin: 8px;">
+                                <i class="fas fa-cloud-upload-alt"></i> Import ERP Users
+                            </button>
+                            {{/if}}
+                            <button class="btn btn-secondary btnBack" type="button" style="margin: 8px;">
+                                <i class="fa fa-close" style="margin-right: 8px;"></i>Cancel
+                            </button>
+                        </div> -->
+
+                    </div>
+                    <div class="card-footer">
+                        <div class="row justify-content-end">
+                            <button class="btn btn-success btnSave" type="button" id="btnSave" name="" style="margin: 8px;">
+                                <i class="fa fa-save" style="margin-right: 8px;"></i>Save
+                            </button>
+                            {{#if isCloudTrueERP}}
+                            <button class="btn btn-warning btnUploadERPUSer" type="button" id="btnUploadERPUSer" name="" style="margin: 8px;">
+                                <i class="fas fa-cloud-upload-alt"></i> Import ERP Users
+                            </button>
+                            {{/if}}
+                            <button class="btn btn-secondary btnBack" type="button" style="margin: 8px;">
+                                <i class="fa fa-close" style="margin-right: 8px;"></i>Cancel
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        modalDraggable();
+    </script>
+</template>

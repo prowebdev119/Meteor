@@ -1,0 +1,265 @@
+<template name="conversionBalancesSettings">
+    <div class="conversionBalancesSettings">
+    <div class="active_page">
+        <div class="active_page_content">
+            <p><a href="/settings">General Settings</a> &nbsp;›&nbsp;
+            </p><br>
+            <h1>Conversion Balances</h1>
+        </div>
+    </div>
+    <div class="conversionBg">
+        <div id="wrapper_main">
+            <main id="page-content-wrapper_main" role="main">
+                <div class="AllPagePadding">
+                    <div class="secondaryButtons">
+                        <button type="button" class="btn btn-default"><i class="fa fa-plus-square"></i> Add Comparative Balances
+                        </button>
+                        <button type="button" class="btn btn-default"><i class="fa fa-table"></i> Conversion Date
+                        </button>
+
+                    </div>
+                    <div class="balancesTabs">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a data-toggle="tab" href="#home">1 Jul 2017 - 14 Jan 2018</a></li>
+
+                        </ul>
+
+                        <div class="tab-content">
+                            <div id="home" class="tab-pane fade in active">
+                                <div class="col-md-12 paddingLeft">
+                                    <div class="col-md-6 paddingLeft">
+                                        <div class="HalfWidth ">
+                                            <div class="accountBalancesGrid">
+                                                <ul class="Title">
+                                                    <li> Account</li>
+                                                    <li>Debit</li>
+                                                    <li>Credit</li>
+                                                </ul>
+                                                <ul class="balancesData">
+                                                    <li>090 - Business Bank Account</li>
+                                                    <li>4130.98</li>
+                                                    <li></li>
+                                                    <li> <i class="fa fa-times" aria-hidden="true"></i> </li>
+                                                </ul>
+                                                <ul class="balancesData">
+                                                    <li>090 - Business Bank Account</li>
+                                                    <li>4130.98</li>
+                                                    <li></li>
+                                                    <li><i class="fa fa-times" aria-hidden="true"></i></li>
+                                                </ul>
+                                                <ul class="balancesData">
+                                                    <li>090 - Business Bank Account</li>
+                                                    <li>4130.98</li>
+                                                    <li></li>
+                                                    <li><i class="fa fa-times" aria-hidden="true"></i></li>
+                                                </ul>
+                                                <ul class="balancesData">
+                                                    <li>090 - Business Bank Account</li>
+                                                    <li>4130.98</li>
+                                                    <li>0.00</li>
+                                                    <li><i class="fa fa-times" aria-hidden="true"></i></li>
+                                                </ul>
+
+                                                <div class="subdued">
+                                                    <a href="#" class="accounts"> <i class="fa fa-level-up"></i> Add a new line</a>
+                                                    <a href="#">Show all accounts</a>
+                                                    <a href="#">Remove zero balances</a>
+                                                </div>
+                                                <table class="conversion-total">
+                                                    <tbody>
+                                                    <tr>
+                                                        <td>Total Debits</td>
+                                                        <td id="totalDebits" class="right">19,212.21</td>
+                                                        <td class="noRule">&nbsp;</td>
+                                                        <td>Total Credits</td>
+                                                        <td id="totalCredits" class="right">0.00</td>
+                                                    </tr>
+                                                    <tr class="no-border">
+                                                        <td colspan="4"><strong>Adjustments</strong><br><small>
+                                                            This accounts for the difference between debits and credits and for FX gains and losses</small></td>
+                                                        <td id="adjustments" class="right">19,212.21</td>
+                                                    </tr>
+                                                    <tr class="no-border">
+                                                        <td colspan="5"></td>
+                                                    </tr>
+                                                    <tr class="border-top balancesDiv">
+                                                        <td colspan="5"><input type="checkbox" class="checkbox" name="LockBalances" value="SetLock"><strong> Lock balances at 14 Jan 2018</strong></td>
+                                                    </tr>
+                                                    <tr class="no-pad no-border balancesDivs">
+                                                        <td colspan="5"><small>
+                                                            Locking ensures no accidental edits to balances or transactions are made before this date. Only users with Adviser roles will be able to make any changes. <a href="https://help.vs1cloud.com/au/Settings_LockDate" target="_self">Read more</a></small></td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="halffooter ">
+                                                <button type="button" class="btn btn-success">Save</button>
+                                                <button type="button" class="btn cancel_new">Cancel</button>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="tips-header">
+                                            <span class="tips-title xui-u-flex-grow"> <i class="fa fa-question-circle"></i> Starting with the right numbers</span>
+                                            <a href="#" target="_self">Get more help</a>
+                                        </div>
+                                        <div class="collapseDie">
+                                            <div class="panel-group">
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading">
+                                                        <h4 class="panel-title">
+                                                            <a data-toggle="collapse" href="#collapse1">What's this? <i class="fa fa-angle-down"></i> </a>
+                                                        </h4>
+                                                    </div>
+                                                    <div id="collapse1" class="panel-collapse collapse">
+                                                        <p>VS1Cloud needs to pick up where your old system left off. Entering your opening balances gives VS1Cloud an accurate set of numbers to start from.</p>
+                                                        <p>Just trying to correct a bank balance? Read the first step, then confirm.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="collapseDie">
+                                            <div class="panel-group">
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading">
+                                                        <h4 class="panel-title">
+                                                            <a data-toggle="collapse" href="#collapse2">1. Enter bank balances as they were on this date <i class="fa fa-angle-down"></i> </a>
+                                                        </h4>
+                                                    </div>
+                                                    <div id="collapse2" class="panel-collapse collapse">
+                                                        <ul>
+                                                            <li>
+                                                                Check your internet banking or a statement for balances as they were by the end of the date on this screen.
+                                                            </li>
+                                                            <li>
+                                                                Enter any bank account balances above zero into the Debit column.
+                                                            </li>
+                                                            <li>
+                                                                Enter the balance of any overdrawn accounts or credit cards into the Credit column.
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="collapseDie">
+                                            <div class="panel-group">
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading">
+                                                        <h4 class="panel-title">
+                                                            <a data-toggle="collapse" href="#collapse3">2. Enter total outstanding invoices on this date <i class="fa fa-angle-down"></i> </a>
+                                                        </h4>
+                                                    </div>
+                                                    <div id="collapse3" class="panel-collapse collapse">
+                                                        <ul>
+                                                            <li>
+                                                                Enter the outstanding balance of all unpaid or partly paid sales invoices into the Debit column for Accounts Receivable.
+                                                            </li>
+                                                            <li>
+                                                                After confirming your conversion balances, you’ll need to enter the outstanding invoices that make up this amount.
+                                                            </li>
+                                                            <li>
+                                                                Run a Trial Balance report in your old system to find this balance, along with any others you’d like to enter.
+                                                            </li>
+                                                            <li>
+                                                                Always enter positive numbers. If you have a negative total, for example due to an unpaid customer credit note, enter it into the Credit column as positive.
+                                                            </li>
+                                                            <li>
+                                                                We recommend you don't use tracked inventory items in these invoices. To avoid double-counting, import inventory items and enter inventory opening balances separately.
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="collapseDie">
+                                            <div class="panel-group">
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading">
+                                                        <h4 class="panel-title">
+                                                            <a data-toggle="collapse" href="#collapse4">3. Enter total outstanding bills on this date<i class="fa fa-angle-down"></i> </a>
+                                                        </h4>
+                                                    </div>
+                                                    <div id="collapse4" class="panel-collapse collapse">
+                                                        <ul>
+                                                            <li>
+                                                                Enter the outstanding balance of all unpaid or partly paid supplier invoices into the Credit column for Accounts Payable.
+                                                            </li>
+                                                            <li>
+                                                                After confirming your balances, you’ll need to enter the outstanding bills that make up this amount.
+                                                            </li>
+                                                            <li>
+                                                                Run a Trial Balance report in your old system to find this balance, along with any others you’d like to enter.
+                                                            </li>
+                                                            <li>
+                                                                Always enter positive numbers. If you have a negative total, for example due to a credit note owed to you, enter it into the Credit column as positive.
+                                                            </li>
+                                                            <li>
+                                                                We recommend you don't use tracked inventory items in these bills. To avoid double-counting, import inventory items and enter inventory opening balances separately.
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="collapseDie">
+                                            <div class="panel-group">
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading">
+                                                        <h4 class="panel-title">
+                                                            <a data-toggle="collapse" href="#collapse5">4. Enter any other balances <i class="fa fa-angle-down"></i> </a>
+                                                        </h4>
+                                                    </div>
+                                                    <div id="collapse5" class="panel-collapse collapse">
+                                                        <ul>
+                                                            <li>
+                                                                Add any other accounts you’d like to transition over.
+                                                            </li>
+                                                            <li>
+                                                                Run a Trial Balance report in your old system to find these balances.
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="collapseDie">
+                                            <div class="panel-group">
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading">
+                                                        <h4 class="panel-title">
+                                                            <a data-toggle="collapse" href="#collapse6">5. Confirm <i class="fa fa-angle-down"></i> </a>
+                                                        </h4>
+                                                    </div>
+                                                    <div id="collapse6" class="panel-collapse collapse">
+                                                        <ul>
+                                                            <li>
+                                                                Confirm your balances as at the date above.
+                                                            </li>
+                                                            <li>
+                                                                You’ll next need to enter any outstanding invoices and bills, equal to the Accounts Receivable and Payable totals.
+                                                            </li>
+                                                            <li>
+                                                                If total debits don’t equal total credits, VS1Cloud will add an adjustment using the Historical Adjustment account.
+                                                                <a id="helplink-historical-adjustment" href="#" target="_self">How do I account for this later?</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </main>
+        </div>
+    </div>
+    </div>
+</template>

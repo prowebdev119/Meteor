@@ -1,0 +1,106 @@
+{
+  "name": "vs1_cloud",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Application description.",
+  "scripts": {
+    "start": "meteor --settings settings-development.json",
+    "staging": "meteor deploy staging.meteor.com --settings settings-development.json",
+    "production": "meteor deploy production.meteor.com --settings settings-production.json"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.10.1",
+    "@fullcalendar/bootstrap": "^5.5.0",
+    "@fullcalendar/core": "^5.5.1",
+    "@fullcalendar/daygrid": "^5.5.0",
+    "@fullcalendar/interaction": "^5.5.0",
+    "@fullcalendar/list": "^5.5.0",
+    "@fullcalendar/react": "^5.5.0",
+    "@fullcalendar/resource-daygrid": "^5.5.0",
+    "@fullcalendar/resource-timegrid": "^5.5.0",
+    "@fullcalendar/resource-timeline": "^5.5.0",
+    "@fullcalendar/timegrid": "^5.5.1",
+    "@fullcalendar/timeline": "^5.5.0",
+    "@stripe/stripe-js": "^1.7.0",
+    "babel-runtime": "^6.26.0",
+    "bcrypt": "^1.0.3",
+    "bootstrap-sweetalert": "^1.0.1",
+    "braintree": "^3.11.0",
+    "braintree-web": "^3.68.0",
+    "chart.js": "^2.9.3",
+    "colresizable": "^1.6.0",
+    "cron": "^1.8.2",
+    "crypto": "^1.0.1",
+    "datatables.net": "^1.10.20",
+    "datatables.net-bs": "^1.10.20",
+    "datatables.net-colreorder": "^1.4.1",
+    "datatables.net-fixedcolumns": "^3.2.4",
+    "datatables.net-select": "^1.2.5",
+    "fibers": "^2.0.2",
+    "gauge-chart": "^0.5.3",
+    "highcharts": "^6.1.0",
+    "html2canvas": "^1.0.0-rc.5",
+    "jQuery.print": "^1.5.1",
+    "jquery": "^2.2.4",
+    "jquery-editable-select": "^2.2.5",
+    "jquery-highlight": "^3.5.0",
+    "jquery-ui-dist": "^1.12.1",
+    "jquery-validation": "^1.17.0",
+    "jspdf": "^2.3.1",
+    "jspdf-autotable": "^3.5.14",
+    "lodash": "^4.17.10",
+    "magento-api-rest": "^2.0.3",
+    "magento2": "0.0.2",
+    "magento2-client-nodejs": "^1.2.4",
+    "magento2-rest-client": "github:DivanteLtd/magento2-rest-client",
+    "meteor-mysql": "^2.8.9",
+    "meteor-node-stubs": "~0.2.0",
+    "meteor-random": "0.0.3",
+    "moment": "^2.29.1",
+    "mysql": "^2.15.0",
+    "node-magento2": "^1.1.4",
+    "quagga": "^0.12.1",
+    "react": "^16.1.1",
+    "react-addons-pure-render-mixin": "^15.6.2",
+    "react-dom": "^16.1.1",
+    "read-excel-file": "^2.0.7",
+    "save": "^2.3.2",
+    "source-map-support": "^0.5.6",
+    "square-connect": "^4.20200923.4",
+    "stripe": "^8.215.0",
+    "table2csv": "^1.0.0",
+    "underscore": "^1.9.1",
+    "xlsx": "^0.16.2",
+    "yodlee": "^1.0.5",
+    "yodlee-react-hook": "^0.2.0"
+  },
+  "server": {
+    "host": "192.168.1.53",
+    "username": "erpadmin",
+    "password": "Fy57eHH6wf",
+    "sshOptions": {
+      "port": 3000
+    },
+    "env": {
+      "port": 3000
+    }
+  },
+  "setup": {
+    "mongo": true,
+    "//": "Application server path .  must in /usr /opt /home /alidata directory.",
+    "path": "/home/erpadmin/cloud"
+  },
+  "deploy": {
+    "appName": "vs1_cloud",
+    "env": {
+      "YJENV": "vs1_cloud",
+      "MONGO_URL": "mongodb://127.0.0.1:27017/vs1_cloud",
+      "PORT": 3000,
+      "ROOT_URL": "http://erpclientserver.dyndns.org:3000"
+    }
+  },
+  "notice": "Well done",
+  "devDependencies": {
+    "html5-qrcode": "^2.0.11"
+  }
+}

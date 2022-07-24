@@ -1,0 +1,538 @@
+<template name="filterslabels">
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/dragula/3.7.3/dragula.min.js'></script>
+
+  <div class="row justify-content-center">
+
+    {{> tasklist_sidebar}}
+
+    <div class="col-8">
+
+      <div class="card shadow mb-4">
+        <div class="card-header" style="display: inline-flex; padding-bottom: 0px;">
+          <h3>Filters & Labels</h3>
+        </div>
+
+        <div class="row">
+          <div class="col-12">
+            <li class="list-group-item taskmenuoption filters-item" id="filtersLayer">
+              <i data-toggle="collapse" href="#filtersCollapse" role="button" aria-expanded="true"
+                aria-controls="filtersCollapse" class="fas text-secondary fa-angle-right"
+                style="margin-right: 8px; width: 25px;"></i>
+              Filters
+              <button type="button" class="btn btn-link newFilter" data-toggle="modal" data-target="#newFilter"><i
+                  class="fas fa-plus"></i></button>
+            </li>
+          </div>
+        </div>
+
+        <div class="collapse multi-collapse" id="filtersCollapse">
+          <ul class="list-group list-group-flush" id="filtersCollapseContainer">
+            <li class="list-group-item filtersmenuoption" id="projectName">
+              <i class="fas fa-circle" style="margin-right: 8px; width: 25px; color: purple;"></i>
+              <span class="projectName">Filter #1</span>
+              <span class="projectMenu" id="projectonemenu">
+                <div class="dropdown">
+                  <button class="btn btn-secondary projectDropdown" type="button" title="Add to favorites">
+                    <i class="far fa-heart"></i>
+                  </button>
+                  <button class="btn btn-secondary projectDropdown" type="button" data-toggle="tooltip"
+                    aria-haspopup="true" aria-expanded="false" title="Edit filter">
+                    <i class="far fa-edit"></i>
+                  </button>
+                  <button class="btn btn-secondary dropdown-toggle projectDropdown" type="button"
+                    id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                    title="More filter actions...">
+                    <i class="fas fa-ellipsis-h"></i>
+                  </button>
+                  <div class="dropdown-menu project-dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#"><i class="fas fa-arrow-up" style="margin-right: 8px;"></i>Add
+                      Filter Above</a>
+                    <a class="dropdown-item" href="#"><i class="fas fa-arrow-down" style="margin-right: 8px;"></i>Add
+                      Filter Below</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#"><i class="far fa-edit" style="margin-right: 8px;"></i>Edit
+                      Filter</a>
+                    <a class="dropdown-item" href="#"><i class="far fa-heart" style="margin-right: 8px;"></i>Add to
+                      Favorites</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#"><i class="fas fa-trash-alt" style="margin-right: 8px;"></i>Delete
+                      Filter</a>
+                  </div>
+                </div>
+              </span>
+              <span class="projectItems" id="projectone">7</span>
+            </li>
+            <li class="list-group-item filtersmenuoption">
+              <i class="fas fa-circle" style="margin-right: 8px; width: 25px; color: pink;"></i>
+              <span class="projectName">Filter #2</span>
+              <span class="projectMenu" id="projecttwomenu">
+                <div class="dropdown">
+                  <button class="btn btn-secondary projectDropdown" type="button" title="Add to favorites">
+                    <i class="far fa-heart"></i>
+                  </button>
+                  <button class="btn btn-secondary projectDropdown" type="button" data-toggle="tooltip"
+                    aria-haspopup="true" aria-expanded="false" title="Edit filter">
+                    <i class="far fa-edit"></i>
+                  </button>
+                  <button class="btn btn-secondary dropdown-toggle projectDropdown" type="button"
+                    id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                    title="More filter actions...">
+                    <i class="fas fa-ellipsis-h"></i>
+                  </button>
+                  <div class="dropdown-menu project-dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#"><i class="fas fa-arrow-up" style="margin-right: 8px;"></i>Add
+                      Filter Above</a>
+                    <a class="dropdown-item" href="#"><i class="fas fa-arrow-down" style="margin-right: 8px;"></i>Add
+                      Filter Below</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#"><i class="far fa-edit" style="margin-right: 8px;"></i>Edit
+                      Filter</a>
+                    <a class="dropdown-item" href="#"><i class="far fa-heart" style="margin-right: 8px;"></i>Add to
+                      Favorites</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#"><i class="fas fa-trash-alt" style="margin-right: 8px;"></i>Delete
+                      Filter</a>
+                  </div>
+                </div>
+              </span>
+              <span class="projectItems" id="projecttwo">10</span>
+            </li>
+            <li class="list-group-item filtersmenuoption">
+              <i class="fas fa-circle" style="margin-right: 8px; width: 25px; color: teal;"></i>
+              <span class="projectName">Filter #3</span>
+              <span class="projectMenu" id="projectthreemenu">
+                <div class="dropdown">
+                  <button class="btn btn-secondary projectDropdown" type="button" title="Add to favorites">
+                    <i class="far fa-heart"></i>
+                  </button>
+                  <button class="btn btn-secondary projectDropdown" type="button" data-toggle="tooltip"
+                    aria-haspopup="true" aria-expanded="false" title="Edit filter">
+                    <i class="far fa-edit"></i>
+                  </button>
+                  <button class="btn btn-secondary dropdown-toggle projectDropdown" type="button"
+                    id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                    title="More filter actions...">
+                    <i class="fas fa-ellipsis-h"></i>
+                  </button>
+                  <div class="dropdown-menu project-dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#"><i class="fas fa-arrow-up" style="margin-right: 8px;"></i>Add
+                      Filter Above</a>
+                    <a class="dropdown-item" href="#"><i class="fas fa-arrow-down" style="margin-right: 8px;"></i>Add
+                      Filter Below</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#"><i class="far fa-edit" style="margin-right: 8px;"></i>Edit
+                      Filter</a>
+                    <a class="dropdown-item" href="#"><i class="far fa-heart" style="margin-right: 8px;"></i>Add to
+                      Favorites</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#"><i class="fas fa-trash-alt" style="margin-right: 8px;"></i>Delete
+                      Filter</a>
+                  </div>
+                </div>
+              </span>
+              <span class="projectItems" id="projectthree">5</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="row">
+          <div class="col-12">
+            <li class="list-group-item taskmenuoption filters-item" id="labelslayer">
+              <i data-toggle="collapse" href="#labelsCollapse" role="button" aria-expanded="true"
+                aria-controls="labelsCollapse" class="fas text-secondary fa-angle-right"
+                style="margin-right: 8px; width: 25px;"></i>
+              Labels
+              <button type="button" class="btn btn-link newLabel" data-toggle="modal" data-target="#newLabel"><i
+                  class="fas fa-plus"></i></button>
+            </li>
+          </div>
+        </div>
+
+        <div class="collapse multi-collapse" id="labelsCollapse">
+          <ul class="list-group list-group-flush" id="labelsCollapseContainer">
+            {{#each item in alllabels}}
+            <li class="list-group-item filtersmenuoption">
+              <i class="fas fa-tag" style="margin-right: 8px; width: 25px; color: purple;"></i>
+              <span class="projectName">{{item.fields.TaskLabelName}}</span>
+              <span class="projectMenu" id="projectonemenu">
+                <div class="dropdown">
+                  <button class="btn btn-secondary projectDropdown" type="button" title="Add to favorites">
+                    <i class="far fa-heart"></i>
+                  </button>
+                  <button class="btn btn-secondary projectDropdown" type="button" data-toggle="tooltip"
+                    aria-haspopup="true" aria-expanded="false" title="Edit label">
+                    <i class="far fa-edit"></i>
+                  </button>
+                  <button class="btn btn-secondary dropdown-toggle projectDropdown" type="button"
+                    id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                    title="More label actions...">
+                    <i class="fas fa-ellipsis-h"></i>
+                  </button>
+                  <div class="dropdown-menu project-dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#"><i class="fas fa-arrow-up" style="margin-right: 8px;"></i>Add
+                      Label Above</a>
+                    <a class="dropdown-item" href="#"><i class="fas fa-arrow-down" style="margin-right: 8px;"></i>Add
+                      Label Below</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#"><i class="far fa-edit" style="margin-right: 8px;"></i>Edit
+                      Label</a>
+                    <a class="dropdown-item" href="#"><i class="far fa-heart" style="margin-right: 8px;"></i>Add to
+                      Favorites</a>
+                    <a class="dropdown-item" href="#"><i class="fas fa-arrow-down" style="margin-right: 8px;"></i>Move
+                      to shared labels</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#"><i class="fas fa-trash-alt" style="margin-right: 8px;"></i>Delete
+                      Label</a>
+                  </div>
+                </div>
+              </span>
+              <span class="projectItems" id="projectone">7</span>
+            </li>
+            {{/each}}
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    {{> newLabelModal}}
+    {{> newFilterModal}}
+
+  </div>
+
+  <style>
+    .newFilter,
+    .newLabel {
+      float: right;
+      padding: 0px !important;
+      background-color: transparent;
+      border: none !important;
+    }
+
+    .newFilter:hover,
+    .newLabel:hover {
+      background-color: transparent;
+      border-color: rgba(0, 0, 0, 0);
+      color: #00a3d3;
+    }
+
+    .newFilter:active,
+    .newLabel:active {
+      background-color: rgba(0, 0, 0, 0);
+      border-color: rgba(0, 0, 0, 0);
+      color: #00a3d3;
+    }
+
+    .btn-filters {
+      background-color: transparent;
+    }
+
+    .filters-item {
+      border: none;
+      border-radius: 0;
+      border-bottom: 1px solid #e3e6f0;
+    }
+
+    .menuItems {
+      float: right;
+    }
+
+    .taskmenuoption:hover {
+      background-color: #f8f9fc;
+      cursor: pointer;
+    }
+
+    .filtersmenuoption {
+      /* font-size: 14px; */
+      padding-left: 56px;
+    }
+
+    .filtersmenuoption:hover {
+      background-color: #f8f9fc;
+      cursor: pointer;
+    }
+
+    .filtersmenuoption:hover .projectMenu {
+      display: block;
+    }
+
+    .filtersmenuoption:hover .projectItems {
+      display: none;
+    }
+
+    .filtersmenuoption>span {
+      color: #858796 !important;
+    }
+
+    .projectItems {
+      float: right;
+    }
+
+    .projectMenu {
+      float: right;
+      display: none;
+    }
+
+    .newProject {
+      float: right;
+      display: none;
+      padding: 0px !important;
+    }
+
+    .newProject:hover {
+      background-color: rgba(0, 0, 0, 0);
+      border-color: rgba(0, 0, 0, 0);
+      color: #00a3d3;
+    }
+
+    .newProject:active {
+      background-color: rgba(0, 0, 0, 0);
+      border-color: rgba(0, 0, 0, 0);
+      color: #00a3d3;
+    }
+
+    #projectsMenuOption:hover .newProject {
+      display: block;
+    }
+
+    .filtersmenuoption:hover .newProject {
+      display: block;
+    }
+
+    .projectDropdown {
+      color: #858796;
+      padding: 0px;
+      background-color: rgba(0, 0, 0, 0);
+      border-color: rgba(0, 0, 0, 0);
+    }
+
+    .projectDropdown:hover {
+      color: #858796;
+      padding: 0px;
+      background-color: rgba(0, 0, 0, 0);
+      border-color: rgba(0, 0, 0, 0);
+    }
+
+    .projectDropdown:after {
+      display: none;
+    }
+
+    .project-dropdown-menu {
+      width: 225px !important;
+    }
+
+    .activeProjectOption {
+      border: 2px solid #00a3d3;
+    }
+
+    .listCol:hover .listoptiondiv {
+      border: 2px solid #00a3d3 !important;
+    }
+
+    .boardCol:hover .boardoptiondiv {
+      border: 2px solid #00a3d3 !important;
+    }
+
+
+    .todayDate {
+      margin-left: 8px;
+      margin-top: 8px;
+    }
+
+    .overdueHeader {
+      font-weight: 700;
+    }
+
+    .todayHeader {
+      font-weight: 700;
+    }
+
+    .dropdownReschedule {
+      float: right;
+      margin-top: -40px;
+    }
+
+    .btnReschedule:hover {
+      border-color: rgba(0, 0, 0, 0);
+    }
+
+    .btnReschedule:focus {
+      border-color: rgba(0, 0, 0, 0);
+    }
+
+    .btnReschedule:after {
+      display: none;
+    }
+
+    .reschedule-dropdown-menu {
+      width: 275px;
+    }
+
+    .taskActionButton {
+      padding: 4px;
+      margin: 4px;
+      cursor: pointer;
+      /*Visibility set to hidden for hover effect*/
+      visibility: hidden;
+    }
+
+    .taskCol:hover .taskActionButton {
+      visibility: visible;
+    }
+
+    .mainSubtaskCol {
+      padding-left: 46px !important;
+    }
+
+    .taskDrag {
+      cursor: all-scroll !important;
+    }
+
+    .taskActionButton:hover {
+      background-color: #f8f9fc;
+    }
+
+    .taskName {
+      margin: 4px;
+    }
+
+    .dueDateTags {
+      padding-left: 64px;
+    }
+
+    .taskDueDate {
+      margin: 4px;
+      /* font-size: 12px; */
+    }
+
+    .taskOverdue {
+      color: #e74a3b !important;
+    }
+
+    .taskTag {
+      margin: 4px;
+      /* font-size: 12px; */
+    }
+
+    .taganchor {
+      color: #858796 !important;
+    }
+
+    .taskLocation {
+      margin: 4px;
+      /* font-size: 12px; */
+      margin-right: 42px;
+    }
+
+    .taskCol {
+      border: none;
+      background: white;
+      border-bottom: 1px solid #e3e6f0;
+      padding-top: 8px;
+      padding-bottom: 8px;
+      cursor: pointer;
+    }
+
+    .taskDescription {
+      margin: 0xp 4px;
+      margin-left: 64px;
+      /* font-size: 12px; */
+    }
+
+    .taskModalAction {
+      font-size: 18px;
+      padding: 6px;
+      cursor: pointer;
+    }
+
+    .taskModalAction:hover {
+      background-color: #f8f9fc;
+    }
+
+    .newTaskRow {
+      margin: 8px;
+    }
+
+    .btnSchedule:after {
+      display: none;
+    }
+
+    .dropdownFilter {
+      color: #00a3d3;
+    }
+
+    .taskDropdownFilter {
+      margin-left: 12px;
+    }
+
+    .dropdown-project-section {
+      padding-left: 46px;
+      padding-top: 0px;
+      padding-bottom: 0px;
+    }
+
+    .taskModalActionDropdown:after {
+      display: none;
+    }
+
+    .subtaskCol {
+      padding-left: 24px !important;
+      padding-right: 24px !important;
+      border-bottom: 0px;
+    }
+
+    .commenterName {
+      font-weight: 600;
+    }
+
+    .commentDateTime {
+      font-weight: 300;
+      margin-left: 12px;
+      /* font-size: 14px; */
+    }
+
+    .commentUser {
+      width: 50px;
+      line-height: 50px;
+      border-radius: 50%;
+      text-align: center;
+      font-size: 16px;
+      border: 2px solid #00a3d3;
+    }
+
+    .activityAdded {
+      width: 100%;
+      font-weight: 700;
+      padding: 16px 32px;
+      padding-bottom: 12px;
+    }
+
+    .activityDate {
+      font-weight: 700;
+    }
+
+    .activityName {
+      font-weight: 700;
+      margin-right: 4px;
+    }
+
+    .activityAction {
+      margin-right: 4px;
+    }
+
+    .activityTaskName {
+      font-style: italic;
+      color: #8f8f8f;
+    }
+
+    .activityComment {
+      font-size: 15px;
+      color: #8f8f8f;
+    }
+
+    .activityTime {
+      font-size: 15px;
+      color: #8f8f8f;
+    }
+  </style>
+
+</template>

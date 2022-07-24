@@ -1,0 +1,549 @@
+.emailSettings .conversion-total tr td {
+    padding: 14px 0 11px 10px;
+}
+
+.emailSettings .gettingStarted {
+    width: 100%;
+    float: left;
+    border-bottom: 1px solid #dee0e2;
+    background-color: #fff;
+}
+
+.emailSettings .documentHeader {
+    padding: 20px 0 30px;
+    width: 100%;
+    float: left;
+    margin-top: 0;
+}
+
+.emailSettings .documentHeader p {
+    padding-bottom: 10px;
+    margin-bottom: 0;
+    margin-top: 10px;
+    border-bottom: 1px solid #e2e2e2;
+    color: #333;
+    font-size: 18px;
+    margin-left: 0;
+}
+
+.emailSettings .documentHeader .close {
+    position: absolute;
+    top: 0;
+    right: 3px;
+    color: #c4cbd1;
+    padding: 5px 22px 5px 0;
+    background: transparent url(./img/close.png) no-repeat 100%;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.emailSettings #modal-content {
+    width: 420px;
+}
+
+.emailSettings .modal-body {
+    font-size: 12px;
+    background-color: #FBFBFB;
+    display: inline-block;
+}
+
+.emailSettings .modal-content .modal-title {
+
+    font: 700 18px Helvetica, sans-serif;
+}
+
+.emailSettings .documentHeader p:last-child {
+    border: 0;
+}
+
+.emailSettings .EmailPage {
+    width: 100%;
+    float: left;
+    margin-top: 10px;
+}
+
+.emailSettings .EmailPage h2.template {
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.emailSettings.conversionBalancesSettings h4.panel-title a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.emailSettings.conversionBalancesSettings .panel-default {
+    float: left;
+    width: 100%;
+    margin-bottom:30px;
+}
+
+.emailSettings .collapseData ul {
+    margin: 0;
+    margin-top: 16px;
+    padding: 10px;
+}
+
+.emailSettings .collapseData ul li {
+    float: left;
+    list-style: none;
+    color: #666;
+}
+
+.emailSettings .collapseData ul li span.selected {
+    color: #999;
+}
+
+.emailSettings .collapseData ul li:first-child {
+    margin-right: 15px;
+}
+
+.emailSettings .addButton {
+    float: left;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-left: 10px;
+}
+
+.emailSettings.conversionBalancesSettings .panel-default > .panel-heading {
+    background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #feffff), color-stop(100%, #f5f7f8));
+    background: -webkit-linear-gradient(#feffff, #f5f7f8);
+    background: -webkit-linear-gradient(#feffff, #f5f7f8);
+    background: linear-gradient(#feffff, #f5f7f8);
+}
+
+.emailSettings .addButton a {
+    font-size: 11px;
+}
+
+.emailSettings .collapseData {
+    width: 100%;
+    float: left;
+    background-color: #FAFBFB;
+    margin-bottom: 0;
+    border: 0;
+    min-height: 70px;
+    border-radius: initial;
+    margin-top: 0;
+    border-top: solid 1px #ddd;
+}
+.emailSettings .collapseData ul.title {
+    padding: 0;
+    margin: 0;
+}
+
+.emailSettings .collapseData ul.title li {
+    color: #7e90a2;
+    font-size: 13px;
+    height: 31px;
+    padding: 6px 10px 7px;
+    background-color: #F8FAFA;
+    background: -ms-linear-gradient(top, #fcfdfd 0%, #f5f7f8 100%);
+    background-image: linear-gradient(to bottom, #fcfdfd 0%, #f5f7f8 100%);
+    float: left;
+    box-shadow: 0px 1px 0px 0px #fff;
+    border-bottom: 1px solid #EBEEEF;
+    border-right: 1px solid #EBEEEF;
+    border-top: 1px solid #EBEEEF;
+    margin: 0 !important;
+    width: 70%;
+    font-weight: bold;
+
+}
+
+.emailSettings .collapseData ul.title li:first-child {
+    width: 30%;
+}
+
+.emailSettings .collapseData ul.titleData {
+    padding: 0;
+    margin: 0;
+    border-bottom: 1px solid #e8e8e8;
+    background: #fff;
+    width: 100%;
+    float: left;
+
+}
+
+.emailSettings .collapseData ul.titleData li {
+    color: #000;
+    background: #fff;
+    margin-right: 0;
+    padding: 14px 0 11px 10px;
+    width: 70%;
+    font-size: 11px;
+}
+
+.emailSettings .collapseData ul.titleData li:first-child {
+    width: 30%;
+}
+
+.emailSettings .collapseData ul.titleData li .default {
+    color: #bbb;
+    text-transform: uppercase;
+    font-size: 11px;
+    margin-left: 5px;
+}
+
+.emailSettings h4.panel-title a{
+    font-weight: normal;
+}
+
+.emailSettings h4.panel-title b, strong {
+    font-weight: 600;
+}
+.emailSettings h4.panel-title a{ font-size: 16px;}
+.emailSettings h4.panel-title a span {
+    font-size: 12px;
+}
+
+.emailSettings span.lastchild {
+    color: #048abb;
+    font: bold 12px Helvetica, sans-serif;
+}
+.emailSettings.conversionBalancesSettings h4.panel-title a:hover{
+    text-decoration: none;
+}
+.emailSettings span.lastchild:hover{
+    text-decoration: underline;
+}
+
+
+.emailSettings .EmailPage .panel-heading {
+    padding: 18px 15px;
+}
+
+#addEmailAddress .modal-dialog {
+    width: 400px;
+    margin: 30px auto;
+}
+#addEmailAddress .modal-header{
+    padding: 0;
+}
+#addEmailAddress .modal-header .close {
+    margin-top: 0;
+    border-left: 1px solid #e5e5e5;
+    height: 46px;
+    top: 0 !important;
+    left: auto !important;
+    width: 46px !important;
+    right: 0 !important;
+}
+
+#addEmailAddress  .modal-title {
+    font: 700 18px Helvetica, sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    padding-top: 15px;
+    padding-left: 15px;
+    padding-bottom: 11px;
+}
+#addEmailAddress .modal-body select#sltnew_email ,
+#addEmailAddress .modal-body input.form-control{
+    margin-bottom: 15px;
+    border-color: #b5b8bb #e2e4e7 #e8eaec #bdbfc3;
+    box-shadow: inherit;
+    height: 27px;
+    line-height: initial;
+    padding: 2px 14px;
+    font-size: 12px;
+    margin-left: 0;
+    padding-left: 1px;
+}
+
+#addEmailAddress .modal-footer button.btn.btn-gray {
+    color: #bbb;
+    cursor: default;
+    text-shadow: 0 1px 1px #fff;
+    border-color: #d7dadd #d7d9dd #d6d9dd #d7dade;
+    background-color: #fafafa;
+    background: linear-gradient(#ffffff 0%,#efefef 98%,#ffffff 99%);
+    border-radius: 3px;
+    float: none;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 4px 12px;
+    width: 120px;
+}
+
+.emailSettings  .collapseDie .panel:hover{
+    background-color: #fff !important;
+}
+
+.emailSettings .collapseData ul li span.selected {
+    color: #999;
+    background: transparent !important;
+}
+
+.emailSettings .panel-collapse {
+    padding: 0;
+}
+
+
+.emailSettings .collapseData.collapseData-title {
+    padding: 10px;
+    background-color: #FAFBFB;
+}
+
+.emailSettings .title-collapseData {
+    float: left;
+    width: 100%;
+    border: solid 1px #ddd;
+    border-radius: 3px;
+    border-top: 0;
+    border-bottom: 0;
+    box-shadow: inherit;
+    margin-bottom: 20px;
+}
+div#editCreditTemplate .modal-header {
+    padding: 0;
+}
+.edit_credit_template .modal-header .close {
+    margin-top: 0;
+    border-left: 1px solid #e5e5e5;
+    height: 46px;
+    top: 0 ;
+    left: auto;
+    width: 46px ;
+    right:0;
+    opacity: 1;
+    color: #999;
+}
+
+.edit_credit_template .modal-content .modal-title {
+    font: 700 18px Helvetica, sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    padding-top: 15px;
+    padding-bottom: 10px;
+    padding-left: 15px;
+}
+
+.edit_credit_template .modal-body .advanced {
+    width: 100%;
+    float: left;
+}
+
+.edit_credit_template .modal-body .advanced input {
+    width: 100%;
+    float: left;
+    border: solid 1px;
+    border-color: #b5b8bb #e2e4e7 #e8eaec #bdbfc3;
+    padding: 4px;
+    color: #333;
+}
+.edit_credit_template .modal-body .checkbox {
+    float: left;
+    width: 100%;
+    margin-top: 10px;
+}
+.edit_credit_template .modal-body .checkbox label{
+    width: 100%;
+    float: left;
+    margin-bottom: 10px;
+    color: #333;
+}
+.edit_credit_template .modal-body .checkbox label input {
+    float: left;
+    margin-top: 0px;
+    width: 16px;
+    height: 16px;
+}
+
+.edit_credit_template .modal-body .email {
+    float: left;
+    width: 100%;
+    border-top: 1px solid #ddd;
+    padding-top: 7px;
+}
+.edit_credit_template .modal-body .email input{
+    width: 100%;
+    float: left;
+    border: solid 1px;
+    border-color: #b5b8bb #e2e4e7 #e8eaec #bdbfc3;
+    padding: 4px;
+    color: #333;
+    margin-bottom: 8px;
+}
+.edit_credit_template .modal-body .email textarea{
+    width: 100%;
+    float: left;
+    border: solid 1px;
+    border-color: #b5b8bb #e2e4e7 #e8eaec #bdbfc3;
+    padding: 4px;
+    color: #333;
+    margin-bottom: 8px;
+    min-height: 150px;
+}
+
+.edit_credit_template .modal-footer {
+    padding: 15px;
+    text-align: right;
+    border-top: 1px solid #e5e5e5;
+    background-color: #ffffff;
+    border: 1px solid #E5E5E5;
+    border-width: 1px 0;
+    padding: 15px;
+    display: inline-block;
+    width: 100%;
+    border-radius: 6px;
+}
+
+.edit_credit_template .modal-body .email  a.addContact {
+    cursor: pointer;
+    color: #048abb;
+    font-size: 12px;
+}
+
+.edit_credit_template .modal-body .email .dropdown-menu {
+    background-color: #fff;
+    margin-bottom: 30px;
+    min-width: 200px !important;
+    width: 250px;
+    left: 0;
+    top: 20px;
+    border-radius: 3px;
+    height: 250px;
+    overflow-y: scroll;
+}
+.edit_credit_template .modal-body .email .dropdown-menu li a {
+    color: #0084b5;
+    border-bottom: 1px solid #e9edf2;
+    border-top: 0;
+    font-size: 12px;
+}
+.edit_credit_template .modal-body .email .dropdown-menu li {
+    width: 100%;
+    float: left;
+}
+.edit_credit_template .modal-body .email .dropdown-menu > li > a:hover {
+    background-color: #e6f5fa;
+    color: #048abb !important;
+    background-image: inherit !important;
+}
+
+.edit_credit_template .modal-body .email .Message {
+    float: left;
+    padding-bottom: 5px;
+}
+
+.edit_credit_template .modal-body .email .addContact {
+    float: right;
+    padding-bottom: 5px;
+}
+
+.add_email_template {
+    float: left;
+    width: 100%;
+    cursor: pointer;
+    color: #048abb;
+    font: bold 12px Helvetica, sans-serif;
+    font-weight: normal;
+    margin-bottom: 20px;
+}
+
+
+div#addEmailTemplate .modal-body .Typeemial {
+    float: left;
+    width: 30%;
+}
+
+div#addEmailTemplate .modal-body .advanced {
+    width: 65%;
+    float: left;
+    margin-left: 2%;
+}
+
+div#addEmailTemplate .modal-body .addContact .dropdown span {
+    line-height: initial;
+}
+
+div#addEmailTemplate .modal-body .Typeemial .dropdown {
+    background: linear-gradient(#ffffff,#eaedef);
+    border-radius: 3px 0 0 3px;
+    cursor: pointer;
+    color: transparent;
+    text-shadow: 0px 0px 0px #444444;
+    height: 27px;
+    width: 100%;
+    border: solid 1px;
+    border-color: #d0d6d9;
+    position: relative;
+}
+div#addEmailTemplate .modal-body .Typeemial .dropdown:after{
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid #615f5f;
+    content: "";
+    right: 1em;
+    position: absolute;
+    top: 1em;
+    cursor: pointer;
+}
+div#addEmailTemplate .modal-body .Typeemial .dropdown input{
+    background-color: transparent;
+    border: 0;
+    height: 100%;
+    width: 100%;
+}
+
+div#addEmailTemplate .modal-body .Typeemial .dropdown-menu {
+    background-color: #fff;
+    margin-bottom: 30px;
+    min-width: 200px !important;
+    width: 250px;
+    left: 0;
+    top: 20px;
+    border-radius: 3px;
+    height: 250px;
+    overflow-y: scroll;
+}
+div#addEmailTemplate .modal-body .Typeemial .dropdown-menu li {
+    width: 100%;
+    float: left;
+}
+div#addEmailTemplate .modal-body .Typeemial .dropdown-menu li a {
+    color: #333;
+    border-bottom: 1px solid #e9edf2;
+    border-top: 0;
+    font-size: 12px;
+}
+
+div#addEmailTemplate .modal-body .Typeemial .dropdown-menu > li > a:hover {
+    background-color: #e6f5fa;
+    color: #333 !important;
+    background-image: inherit !important;
+}
+
+div#addEmailTemplate .modal-header {
+    padding: 0;
+}
+
+div#addEmailAddress .dropdown-add-rec .input-group-addon img, .dropdown-add-rec img {
+    width: 19px;
+    height: 25px;
+    margin-top: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+    z-index: 2;
+}
+
+div#addEmailAddress .dropdown-add-rec {
+    margin-bottom: 15px;
+    float: initial;
+}
+div#addEmailAddress .dropdown-add-rec input{
+    height: 25px;
+    padding-left: 5px;
+}
+
+div#addEmailAddress .modal-body input{
+    padding-left: 5px !important;
+    border-radius: inherit;
+}

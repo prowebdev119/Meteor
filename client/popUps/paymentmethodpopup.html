@@ -1,0 +1,61 @@
+<template name="paymentmethodpop">
+
+    <div class="modal-dialog modal-xl modal-dialog-scrollable" role="document" style="max-width: 90vw;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4>Payment Method List</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+            </div>
+            <div class="modal-body">
+                <div class="card-body p-1 rounded">
+                    <div class="table-responsive">
+                        <style>
+                            .dataTables_scrollHeadInner {
+                                width: 100% !important;
+                            }
+                            .paymentmethodList {
+                                width: 100% !important;
+                            }
+                            .colNamePopUp {
+                                width: 90% !important;
+                            }
+                            .colCreditCardPopUp {
+                                width: 10% !important;
+                            }
+                        </style>
+                        <input type="hidden" style="width: 100%; display:none;" id="selectPaymentMethodLineID" name="selectPaymentMethodLineID"  readonly>
+                        <table id="paymentmethodList" name="paymentmethodList" style="width:100% !important;" class="dataTable table table-hover table-striped table-bordered paymentmethodList">
+                            <thead>
+                                <tr class="dnd-moved">
+                                    <th class="th colName colNamePopUp" style="width: 90% !important;">Name</th>
+                                    <th class="th colIsCreditCard colCreditCardPopUp" style="width: 10% !importnat;">Is Credit Card</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- {{#if datatablerecords}}
+                                    {{#each item in datatablerecords}}
+                                        <tr class="dnd-moved" id="{{item.id}}" style="cursor: default;">
+                                            <td contenteditable="false" class="colName colNamePopUp pointer" style="width: 90% !important;">{{item.paymentmethodname}}</td>
+                                            <td contenteditable="false" class="colIsCreditCard colCreditCardPopUp text-center" style="width: 10% !important;">
+                                                {{#if equals item.iscreditcard true}}
+                                                    <div class="custom-control custom-checkbox chkBox"><input class="custom-control-input chkBox" type="checkbox" id="iscreditcard-{{item.id}}" checked><label class="custom-control-label chkBox"
+                                                            for="iscreditcard-{{item.id}}"></label></div>
+                                                {{else}}
+                                                    <div class="custom-control custom-checkbox chkBox"><input class="custom-control-input chkBox" type="checkbox" id="iscreditcard-{{item.id}}"><label class="custom-control-label chkBox"
+                                                            for="iscreditcard-{{item.id}}"></label></div>
+                                                {{/if}}
+                                            </td>
+                                        </tr>
+                                    {{/each}}
+                                {{/if}} -->
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-light" data-dismiss="modal" type="button">Close</button>
+            </div>
+        </div>
+    </div>
+</template>

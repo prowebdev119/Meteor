@@ -1,0 +1,847 @@
+<template name="stsdashboard">
+    <div class="container-fluid">
+        <div class="fullScreenSpin" style="display:none;">
+            <div class="spinner"></div>
+        </div>
+        <header class="p-2 d-flex align-items-center" style="padding-left: 0px !important;">
+            <h2 class="m-1">Seed to Sale - Dashboard</h2>
+                <a class="m-1" role="button" data-toggle="modal" href="#helpViewModal" style="font-size: 20px;">Help
+                    <i class="fa fa-question-circle-o" style="font-size: 20px;"></i></a>
+
+                <!-- Start Help View Modal -->
+                <div class="modal fade" role="dialog" tabindex="-1" id="helpViewModal">
+                    <div class="modal-dialog modal-sm" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header" style="padding-bottom: 8px;">
+                                <h4>Help</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                            </div>
+                            <div class="modal-body">
+                                <p class="text-center text-muted"><a role="button" data-toggle="modal" href="#helpModal" class="btn btn-primary helpModal">View Help Video</a></p>
+                                <p class="text-center text-muted"><a href="https://vs1forum.com/viewforum.php?f=6" target="_blank" class="btn btn-primary">Download Help File</a></p>
+                                <p class="text-center text-muted"><button class="btn btn-primary" type="button">Employ Advisor</button></p>
+                                <p class="text-center text-muted" style="margin: 0px;"><a href="https://vs1forum.com/ucp.php?mode=register&cloudusername={{loggedCompany}}" target="_blank" class="btn btn-primary">Go To Forum</a></p>
+                            </div>
+                            <div class="modal-footer" style="padding: 6px;"><button class="btn btn-light" data-dismiss="modal" type="button">Close</button></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Help View Modal -->
+
+            </header>
+        <div class="row">
+            <div class="col-lg-4 col-xl-4">
+                <div class="card shadow mb-4">
+                    <div class="card-body" style="padding: 0px;">
+                        <div class="row d-xl-flex justify-content-center align-items-center justify-content-xl-center" style="margin: auto;padding: 20px;">
+                            <div class="col" style="padding: 0 !important;">
+
+                                <style>
+                                    #qr-reader>div:first-of-type {
+                                        display: none !important;
+                                    }
+
+                                    #qr-reader__dashboard_section_swaplink {
+                                        display: none !important;
+                                    }
+
+                                    #qr-reader__dashboard_section_csr>div>button:first-of-type {
+                                        color: #fff !important;
+                                        background-color: #00a3d3 !important;
+                                        border-color: #00a3d3 !important;
+                                        border: 1px solid transparent;
+                                        display: inline-block !important;
+                                        font-weight: 400 !important;
+                                        text-align: center !important;
+                                        vertical-align: middle !important;
+                                        padding: .375rem .75rem !important;
+                                        font-size: 1rem !important;
+                                        line-height: 1.5 !important;
+                                        border-radius: .35rem !important;
+                                        transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+                                    }
+                                </style>
+                                <!-- <div id="reader" style="width: 100%"></div> -->
+
+                                <!-- New Scanner BEGIN -->
+                                <div id="qr-reader" style="width:100%"></div>
+                                <div id="qr-reader-results"></div>
+                                <!-- New Scanner END -->
+
+                                <script>
+                                    function docReady(fn) {
+                                        // see if DOM is already available
+                                        if (document.readyState === "complete" || document.readyState === "interactive") {
+                                            // call on next available tick
+                                            setTimeout(fn, 1);
+                                        } else {
+                                            document.addEventListener("DOMContentLoaded", fn);
+                                        }
+                                    }
+
+                                    docReady(function() {
+                                        var resultContainer = document.getElementById('qr-reader-results');
+                                        var lastResult, countResults = 0;
+
+                                        function onScanSuccess(decodedText, decodedResult) {
+                                            if (decodedText !== lastResult) {
+                                                ++countResults;
+                                                lastResult = decodedText;
+                                                document.getElementById("barcodeScanInput").value = decodedText;
+                                            }
+                                        }
+
+
+                                        var html5QrcodeScanner = new Html5QrcodeScanner(
+                                            "qr-reader", {
+                                                fps: 10,
+                                                qrbox: 250,
+                                                rememberLastUsedCamera: true
+                                            });
+                                        html5QrcodeScanner.render(onScanSuccess);
+                                    });
+                                </script>
+
+                                <!-- <script>
+                                    function onScanSuccess(decodedText, decodedResult) {
+                                        document.getElementById("barcodeScanInput").value = decodedText;
+                                    }
+
+                                    function onScanFailure(error) {
+                                        document.getElementById("barcodeScanInput").value = error;
+                                    }
+
+                                    let html5QrcodeScanner = new Html5QrcodeScanner(
+                                        "reader", {
+                                            fps: 10,
+                                            qrbox: 250
+                                        }, /* verbose= */ false);
+                                    html5QrcodeScanner.render(onScanSuccess, onScanFailure);
+                                </script> -->
+
+                                <div class="form-group flex-grow-1" style="margin: 4px;"><label>Quick Scan<br></label>
+                                    <div class="input-group"><input class="form-control" id="barcodeScanInput" type="text">
+                                        <div class="input-group-append"><a class="btn btn-primary border-success" role="button" style="background-color: #3dd79c;" href="#identifyPlant" data-toggle="modal">Scan</a></div>
+                                    </div>
+                                    <div class="modal fade" role="dialog" tabindex="-1" id="identifyPlant">
+                                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title">Identify Plant</h4>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                                </div>
+                                                <div class="row no-gutters d-xl-flex justify-content-center align-items-center justify-content-xl-start" style="max-width: 568px;padding: 20px;padding-bottom: 0px;">
+                                                    <div class="col">
+                                                        <div class="form-group flex-grow-1" style="margin: 4px;"><label>Batch Tag<br></label>
+                                                            <div class="input-group"><input class="form-control" type="text">
+                                                                <div class="input-group-append"><a class="btn btn-primary border-success" role="button" style="background-color: #3dd79c;" href="#scan" data-toggle="modal">Scan</a></div>
+                                                            </div>
+                                                            <div class="modal fade" role="dialog" tabindex="-1" id="scan">
+                                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h4 class="modal-title">Scan</h4><button type="button" class="close" onclick="$('#scan').modal('hide');" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                                                        </div>
+                                                                        <div class="modal-body"></div>
+                                                                        <div class="modal-footer invisible"><button class="btn btn-light" type="button" data-dismiss="modal">Close</button><button class="btn btn-primary" type="button">Save</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row no-gutters d-xl-flex justify-content-center align-items-center justify-content-xl-start" style="max-width: 568px;padding: 20px;">
+                                                    <div class="col">
+                                                        <div class="card">
+                                                            <div class="card-body">
+                                                                <h5 class="card-title">Plant Details</h5>
+                                                                <div class="row">
+                                                                    <div class="col">
+                                                                        <h6 class="text-muted mb-2" style="margin: 0px;">Batch Type</h6>
+                                                                    </div>
+                                                                    <div class="col">
+                                                                        <p class="float-right" style="margin: 0px;">N/A</p>
+                                                                    </div>
+                                                                    <hr style="width: 100%;margin: 0px 12px;">
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col">
+                                                                        <h6 class="text-muted mb-2" style="margin: 0px;">Strain</h6>
+                                                                    </div>
+                                                                    <div class="col">
+                                                                        <p class="float-right" style="margin: 0px;">N/A</p>
+                                                                    </div>
+                                                                    <hr style="width: 100%;margin: 0px 12px;">
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col">
+                                                                        <h6 class="text-muted mb-2" style="margin: 0px;">No. Immature</h6>
+                                                                    </div>
+                                                                    <div class="col">
+                                                                        <p class="float-right" style="margin: 0px;">N/A</p>
+                                                                    </div>
+                                                                    <hr style="width: 100%;margin: 0px 12px;">
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col">
+                                                                        <h6 class="text-muted mb-2" style="margin: 0px;">No. Tracked</h6>
+                                                                    </div>
+                                                                    <div class="col">
+                                                                        <p class="float-right" style="margin: 0px;">N/A</p>
+                                                                    </div>
+                                                                    <hr style="width: 100%;margin: 0px 12px;">
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col">
+                                                                        <h6 class="text-muted mb-2" style="margin: 0px;">Date Planted</h6>
+                                                                    </div>
+                                                                    <div class="col">
+                                                                        <p class="float-right" style="margin: 0px;">N/A</p>
+                                                                    </div>
+                                                                    <hr style="width: 100%;margin: 0px 12px;">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row no-gutters d-xl-flex justify-content-center align-items-center justify-content-xl-start" style="max-width: 568px;padding: 20px;">
+                                                    <div class="col">
+                                                        <style>
+                                                            .btn-primary {
+                                                                overflow: hidden;
+                                                                white-space: nowrap;
+                                                            }
+                                                        </style>
+                                                        <button class="btn btn-primary btnCreatePlantings" id="btnCreatePlantings" type="button" style="margin: 4px 8px; width: 190px;"><i class="fas fa-seedling" style="padding-right: 5px;"></i>Create
+                                                            Plantings</button>
+                                                        <button class="btn btn-primary btnRecordAdditives" id="btnRecordAdditives" type="button" style="margin: 4px 8px; width: 190px;"><i class="fas fa-laptop-medical"
+                                                                style="padding-right: 5px;"></i>Record Additives</button>
+                                                        <button class="btn btn-primary btnChangeRoom" id="btnChangeRoom" type="button" style="margin: 4px 8px; width: 190px;"><i class="fas fa-dolly" style="padding-right: 5px;"></i>Change Room</button>
+                                                        <button class="btn btn-primary btnManicurePlants" id="btnManicurePlants" type="button" style="margin: 4px 8px; width: 190px;"><i class="fas fa-cut" style="padding-right: 5px;"></i>Manicure
+                                                            Plants</button>
+                                                        <button class="btn btn-primary btnDestroyPlants" id="btnDestroyPlants" type="button" style="margin: 4px 8px; width: 190px;"><i class="fas fa-dumpster-fire"
+                                                                style="padding-right: 5px;"></i>Destroy Plants</button>
+                                                        <button class="btn btn-primary btnTransactionHistory" id="btnTransactionHistory" type="button" style="margin: 4px 8px; width: 190px;"><i class="fas fa-folder-open"
+                                                                style="padding-right: 5px;"></i>Transaction History</button>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer"><button class="btn btn-success" type="button" data-dismiss="modal">Continue</button></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal fade" role="dialog" tabindex="-1" id="scan">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title">Scan</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="row d-xl-flex justify-content-center align-items-center justify-content-xl-start" style="margin: auto;padding: 20px;padding-top: 0px;">
+                                                        <div class="col">
+                                                            <div class="card">
+                                                                <div class="card-body">
+                                                                    <h5 class="card-title">Plant Details</h5>
+                                                                    <div class="row">
+                                                                        <div class="col">
+                                                                            <h6 class="text-muted mb-2" style="margin: 0px;">Batch Type</h6>
+                                                                        </div>
+                                                                        <div class="col">
+                                                                            <p class="float-right" style="margin: 0px;">--</p>
+                                                                        </div>
+                                                                        <hr style="width: 100%;margin: 0px 12px;">
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col">
+                                                                            <h6 class="text-muted mb-2" style="margin: 0px;">Strain</h6>
+                                                                        </div>
+                                                                        <div class="col">
+                                                                            <p class="float-right" style="margin: 0px;">--</p>
+                                                                        </div>
+                                                                        <hr style="width: 100%;margin: 0px 12px;">
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col">
+                                                                            <h6 class="text-muted mb-2" style="margin: 0px;">No. Immature</h6>
+                                                                        </div>
+                                                                        <div class="col">
+                                                                            <p class="float-right" style="margin: 0px;">--</p>
+                                                                        </div>
+                                                                        <hr style="width: 100%;margin: 0px 12px;">
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col">
+                                                                            <h6 class="text-muted mb-2" style="margin: 0px;">No. Tracked</h6>
+                                                                        </div>
+                                                                        <div class="col">
+                                                                            <p class="float-right" style="margin: 0px;">--</p>
+                                                                        </div>
+                                                                        <hr style="width: 100%;margin: 0px 12px;">
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col">
+                                                                            <h6 class="text-muted mb-2" style="margin: 0px;">Date Planted</h6>
+                                                                        </div>
+                                                                        <div class="col">
+                                                                            <p class="float-right" style="margin: 0px;">--</p>
+                                                                        </div>
+                                                                        <hr style="width: 100%;margin: 0px 12px;">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer"><button class="btn btn-light" type="button" data-dismiss="modal">Close</button><button class="btn btn-primary" type="button">Save</button></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <style>
+            .dimmedChart>div {
+                background-color: #dddfeb !important;
+            }
+    
+            .card.hovered {
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.50) !important;
+                cursor: move;
+                transition-duration: 300ms;
+            }
+    
+            .hideelement {
+                display: none !important;
+            }
+    
+            .showelement {
+                display: block;
+            }
+    
+            .customCardMainDiv {
+                position: relative;
+                padding-top: 15px !important;
+            }
+    
+            .hideShowDiv {
+                display: inline-block;
+                width: 100%;
+                text-align: right;
+                padding: 0 8px;
+                margin: 0;
+                position: absolute;
+                top: 5px;
+                left: 0;
+            }
+    
+            a.cardSettingBtn {
+                display: inline-flex;
+                width: 22px;
+                height: 22px;
+                justify-content: center;
+                align-items: center;
+                font-size: 10px;
+                border-radius: 4px;
+                /*background: #dddfeb;*/
+                color: #dddfeb;
+                text-decoration: none;
+                margin-left: 3px;
+            }
+    
+            a.editCardBtn :hover{
+                background: #dddfeb;
+                color: #6e6e6e;
+                padding: 4px;
+                border-radius: 3px;
+            }
+    
+            a.cardHideBtn,
+            a.cardShowBtn {
+                display: inline-flex;
+                width: 22px;
+                height: 22px;
+                font-size: 10px;
+                justify-content: center;
+                align-items: center;
+                /*background: #dddfeb;*/
+                border-radius: 4px;
+                margin-left: 2px;
+                text-decoration: none;
+                color: #dddfeb;
+            }
+    
+            a.cardHideBtn:hover,
+            a.cardShowBtn:hover,
+            a.cardHideBtn.active,
+            a.cardShowBtn.active {
+                background: #00a3d3;
+                color: #fff;
+            }
+    
+            a.cardHideBtn i,
+            a.cardShowBtn i {
+                pointer-events: none;
+            }
+    
+            .dimmedChart a.cardHideBtn,
+            .dimmedChart a.cardShowBtn,
+            .dimmedChart a.cardSettingBtn  {
+                background: #f1f1f1 !important;
+                color: #6e6e6e;
+            }
+    
+            .dimmedChart a.editCardBtn :hover {
+                background: rgba(0,0,0,0) !important;
+            }
+    
+            .dimmedChart .cardSettingBtn {
+                background: #fff;
+            }
+        </style>
+        <div class="row connectedCardSortable">
+            <div class="col-md-6 col-xl-3 mb-4 card-visibility" position="0" card-active="true" card-key="seedtosale-immature-plantings">
+                <div class="card shadow customCardMainDiv border-left-primary py-2">
+                    <div class="hideShowDiv">
+                        <a href="javascript:void(0);" class="cardShowBtn hideelement"><i class="far fa-eye"></i></a>
+                        <a href="javascript:void(0);" class="cardSettingBtn editCardBtn"><i class="fas fa-cog"></i></a>
+                    </div>
+                    <div class="card-body">
+                        <div class="row align-items-center no-gutters">
+                            <div class="col mr-2">
+                                <div class="text-uppercase text-primary font-weight-bold text-xs mb-1"><span>Immature Plantings</span></div>
+                                <div class="text-dark font-weight-bold h5 mb-0"><span>70</span></div>
+                            </div>
+                            <div class="col-auto"><i class="fas fa-seedling fa-2x text-gray-300"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-3 mb-4 card-visibility" position="0" card-active="true" card-key="seedtosale-vegetative-plantings">
+                <div class="card shadow customCardMainDiv border-left-success py-2">
+                    <div class="hideShowDiv">
+                        <a href="javascript:void(0);" class="cardShowBtn hideelement"><i class="far fa-eye"></i></a>
+                        <a href="javascript:void(0);" class="cardSettingBtn editCardBtn"><i class="fas fa-cog"></i></a>
+                    </div>
+                    <div class="card-body">
+                        <div class="row align-items-center no-gutters">
+                            <div class="col mr-2">
+                                <div class="text-uppercase text-success font-weight-bold text-xs mb-1"><span>Vegetative Plantings</span></div>
+                                <div class="text-dark font-weight-bold h5 mb-0"><span>467</span></div>
+                            </div>
+                            <div class="col-auto"><i class="fas fa-cannabis fa-2x text-gray-300"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-3 mb-4 card-visibility" position="0" card-active="true" card-key="seedtosale-flowering-plantings">
+                <div class="card shadow customCardMainDiv border-left-info py-2">
+                    <div class="hideShowDiv">
+                        <a href="javascript:void(0);" class="cardShowBtn hideelement"><i class="far fa-eye"></i></a>
+                        <a href="javascript:void(0);" class="cardSettingBtn editCardBtn"><i class="fas fa-cog"></i></a>
+                    </div>
+                    <div class="card-body">
+                        <div class="row align-items-center no-gutters">
+                            <div class="col mr-2">
+                                <div class="text-uppercase text-success font-weight-bold text-xs mb-1"><span class="text-info">Flowering Plantings</span></div>
+                                <div class="text-dark font-weight-bold h5 mb-0"><span>243</span></div>
+                            </div>
+                            <div class="col-auto"><i class="fas fa-bong fa-2x text-gray-300"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-3 mb-4 card-visibility" position="0" card-active="true" card-key="seedtosale-harvests">
+                <div class="card shadow customCardMainDiv border-left-warning py-2">
+                    <div class="hideShowDiv">
+                        <a href="javascript:void(0);" class="cardShowBtn hideelement"><i class="far fa-eye"></i></a>
+                        <a href="javascript:void(0);" class="cardSettingBtn editCardBtn"><i class="fas fa-cog"></i></a>
+                    </div>
+                    <div class="card-body">
+                        <div class="row align-items-center no-gutters">
+                            <div class="col mr-2">
+                                <div class="text-uppercase text-warning font-weight-bold text-xs mb-1"><span class="text-warning">Harvests</span></div>
+                                <div class="text-dark font-weight-bold h5 mb-0"><span>124</span></div>
+                            </div>
+                            <div class="col-auto"><i class="fas fa-boxes fa-2x text-gray-300"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-xl-6">
+                <div class="card shadow mb-4">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h6 class="text-primary font-weight-bold m-0">Growth Phases</h6>
+                        <div class="dropdown no-arrow"><button class="btn btn-link btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button"><i class="fas fa-ellipsis-v text-gray-400"></i></button>
+                            <div class="dropdown-menu shadow dropdown-menu-right animated--fade-in" role="menu">
+                                <p class="text-center dropdown-header">dropdown header:</p><a class="dropdown-item" role="presentation" href="#">&nbsp;Action</a><a class="dropdown-item" role="presentation" href="#">&nbsp;Another action</a>
+                                <div class="dropdown-divider"></div><a class="dropdown-item" role="presentation" href="#">&nbsp;Something else here</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-area"><canvas
+                                data-bs-chart="{&quot;type&quot;:&quot;bar&quot;,&quot;data&quot;:{&quot;labels&quot;:[&quot;Immature&quot;,&quot;Vegetative&quot;,&quot;Flowering&quot;],&quot;datasets&quot;:[{&quot;label&quot;:&quot;Earnings&quot;,&quot;backgroundColor&quot;:&quot;rgba(90,223,78,0.55)&quot;,&quot;borderColor&quot;:&quot;#5adf4e&quot;,&quot;data&quot;:[&quot;70&quot;,&quot;467&quot;,&quot;243&quot;]}]},&quot;options&quot;:{&quot;maintainAspectRatio&quot;:false,&quot;legend&quot;:{&quot;display&quot;:false},&quot;title&quot;:{},&quot;scales&quot;:{&quot;xAxes&quot;:[{&quot;gridLines&quot;:{&quot;color&quot;:&quot;rgb(234, 236, 244)&quot;,&quot;zeroLineColor&quot;:&quot;rgb(234, 236, 244)&quot;,&quot;drawBorder&quot;:false,&quot;drawTicks&quot;:false,&quot;borderDash&quot;:[&quot;2&quot;],&quot;zeroLineBorderDash&quot;:[&quot;2&quot;],&quot;drawOnChartArea&quot;:false},&quot;ticks&quot;:{&quot;fontColor&quot;:&quot;#858796&quot;,&quot;beginAtZero&quot;:true,&quot;padding&quot;:20}}],&quot;yAxes&quot;:[{&quot;gridLines&quot;:{&quot;color&quot;:&quot;rgb(234, 236, 244)&quot;,&quot;zeroLineColor&quot;:&quot;rgb(234, 236, 244)&quot;,&quot;drawBorder&quot;:false,&quot;drawTicks&quot;:false,&quot;borderDash&quot;:[&quot;2&quot;],&quot;zeroLineBorderDash&quot;:[&quot;2&quot;]},&quot;ticks&quot;:{&quot;fontColor&quot;:&quot;#858796&quot;,&quot;beginAtZero&quot;:true,&quot;padding&quot;:20}}]}}}"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-xl-6">
+                <div class="card shadow mb-4">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h6 class="text-primary font-weight-bold m-0">Strains</h6>
+                        <div class="dropdown no-arrow"><button class="btn btn-link btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button"><i class="fas fa-ellipsis-v text-gray-400"></i></button>
+                            <div class="dropdown-menu shadow dropdown-menu-right animated--fade-in" role="menu">
+                                <p class="text-center dropdown-header">dropdown header:</p><a class="dropdown-item" role="presentation" href="#">&nbsp;Action</a><a class="dropdown-item" role="presentation" href="#">&nbsp;Another action</a>
+                                <div class="dropdown-divider"></div><a class="dropdown-item" role="presentation" href="#">&nbsp;Something else here</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-area"><canvas
+                                data-bs-chart="{&quot;type&quot;:&quot;bar&quot;,&quot;data&quot;:{&quot;labels&quot;:[&quot;Purple Haze&quot;,&quot;Blue Dream&quot;,&quot;Texas Sunrise&quot;,&quot;Damn I'm High&quot;],&quot;datasets&quot;:[{&quot;label&quot;:&quot;Strains&quot;,&quot;backgroundColor&quot;:&quot;rgba(90,223,78,0.55)&quot;,&quot;borderColor&quot;:&quot;#5adf4e&quot;,&quot;data&quot;:[&quot;20&quot;,&quot;12&quot;,&quot;10&quot;,&quot;40&quot;]}]},&quot;options&quot;:{&quot;maintainAspectRatio&quot;:false,&quot;legend&quot;:{&quot;display&quot;:false},&quot;title&quot;:{&quot;display&quot;:false},&quot;scales&quot;:{&quot;xAxes&quot;:[{&quot;gridLines&quot;:{&quot;color&quot;:&quot;rgb(234, 236, 244)&quot;,&quot;zeroLineColor&quot;:&quot;rgb(234, 236, 244)&quot;,&quot;drawBorder&quot;:false,&quot;drawTicks&quot;:false,&quot;borderDash&quot;:[&quot;2&quot;],&quot;zeroLineBorderDash&quot;:[&quot;2&quot;],&quot;drawOnChartArea&quot;:false},&quot;ticks&quot;:{&quot;fontColor&quot;:&quot;#858796&quot;,&quot;beginAtZero&quot;:true,&quot;padding&quot;:20}}],&quot;yAxes&quot;:[{&quot;gridLines&quot;:{&quot;color&quot;:&quot;rgb(234, 236, 244)&quot;,&quot;zeroLineColor&quot;:&quot;rgb(234, 236, 244)&quot;,&quot;drawBorder&quot;:false,&quot;drawTicks&quot;:false,&quot;borderDash&quot;:[&quot;2&quot;],&quot;zeroLineBorderDash&quot;:[&quot;2&quot;],&quot;drawOnChartArea&quot;:true},&quot;ticks&quot;:{&quot;fontColor&quot;:&quot;#858796&quot;,&quot;beginAtZero&quot;:true,&quot;padding&quot;:20}}]}}}"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row d-xl-flex flex-row justify-content-xl-center">
+            <div class="col-9 float-left flex-grow-1 mb-4">
+                <button class="btn btn-primary btnPlants" id="btnPlants" type="button" style="margin: 16px;"><i class="fas fa-seedling" style="padding-right: 5px;"></i>Plants</button>
+                <button class="btn btn-primary btnHarvests" id="btnHarvests" type="button" style="margin: 16px;"><i class="fas fa-tractor" style="padding-right: 5px;"></i>Harvests</button>
+                <button class="btn btn-primary btnPackages" id="btnPackages" type="button" style="margin: 16px;"><i class="fas fa-box-open" style="padding-right: 5px;"></i>Packages</button>
+                <button class="btn btn-primary btnTransfers" id="btnTransfers" type="button" style="margin: 16px;"><i class="fas fa-exchange-alt" style="padding-right: 5px;"></i>Transfers</button>
+                <button class="btn btn-primary btnOverviews" id="btnOverviews" type="button" style="margin: 16px;"><i class="fas fa-chart-area" style="padding-right: 5px;"></i>Overviews</button>
+                <button class="btn btn-primary btnSettings" id="btnSettings" type="button" style="margin: 16px;"><i class="fas fa-cog" style="padding-right: 5px;"></i>Settings</button>
+            </div>
+
+            <div class="col-3 float-right">
+                <button class="btn btn-primary float-right" type="button" style="margin: 16px;"><i class="fas fa-sync-alt" style="padding-right: 5px;"></i>Sync</button>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="card shadow mb-4">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h6 class="text-primary font-weight-bold m-0">Activity Log</h6>
+                        <div class="dropdown no-arrow"><button class="btn btn-link btn-sm dropdown-toggle invisible" data-toggle="dropdown" aria-expanded="false" type="button"><i class="fas fa-ellipsis-v text-gray-400"></i></button>
+                            <div class="dropdown-menu shadow dropdown-menu-right animated--fade-in" role="menu">
+                                <p class="text-center dropdown-header">dropdown header:</p><a class="dropdown-item" role="presentation" href="#">&nbsp;Action</a><a class="dropdown-item" role="presentation" href="#">&nbsp;Another action</a>
+                                <div class="dropdown-divider"></div><a class="dropdown-item" role="presentation" href="#">&nbsp;Something else here</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body" style="padding: 0px;">
+                        <div class="card-body p-3 rounded">
+                            <div class="table-responsive">
+                                <style>
+                                    th {
+                                        background-color: #ededed;
+                                    }
+
+                                    .table-striped tbody tr:nth-of-type(odd) {
+                                        background-color: white !important;
+                                    }
+
+                                    .table-striped tbody tr:nth-of-type(even) {
+                                        background-color: #0000000d !important;
+                                    }
+
+                                    .JColResizer>tbody>tr>td,
+                                    .JColResizer>tbody>tr>th {
+                                        padding: .75rem !important;
+                                    }
+
+                                    .hiddenColumn {
+                                        display: none;
+                                    }
+
+                                    .showColumn {
+                                        display: table-cell;
+                                        padding: .75rem;
+                                        vertical-align: top;
+                                    }
+
+                                    input[type=number]::-webkit-inner-spin-button,
+                                    input[type=number]::-webkit-outer-spin-button {
+                                        opacity: 1;
+                                    }
+                                </style>
+                                <table id="tblHarvests" style="width:100%;" class="table table-striped table-bordered tblHarvests">
+                                    <thead>
+                                        <tr class="dnd-moved">
+                                            <th colspan="3">Seed to Sale Tag</th>
+                                            <th colspan="3">Action</th>
+                                            <th colspan="3">New Phase</th>
+                                            <th style="width: 50px;"></th>
+                                        </tr>
+                                        <tr class="dnd-moved">
+                                            <th>Name</th>
+                                            <th>Used On</th>
+                                            <th>Completed</th>
+
+                                            <th>Name</th>
+                                            <th>Date</th>
+                                            <th>Description</th>
+
+                                            <th>Name</th>
+                                            <th>Tag</th>
+                                            <th>Created On</th>
+                                            <th style="width: 50px;"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="dnd-moved">
+                                            <td></td>
+                                            <td></td>
+                                            <td>
+                                                <div class="custom-control custom-checkbox"><input type="checkbox" class="custom-control-input" id="formCheck-1" /><label class="custom-control-label" for="formCheck-1"></label></div>
+                                            </td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td><span class="table-remove"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0"><i class="fa fa-remove"></i></button></span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row no-gutters d-xl-flex justify-content-xl-center align-items-xl-center" style="margin: 16px;margin-top: 0px;">
+                            <!--                            <button class="btn btn-primary" type="button">Download PDF&nbsp;<i class="fas fa-file-pdf" style="margin-left: 5px;"></i></button>-->
+                            <button class="btn btn-primary export float-right" type="button" style="margin: 16px;" id="exportbtn" name="exportbtn"><i class="fas fa-file-export" style="padding-right: 5px;"></i>Export</button>
+                            <button class="btn btn-primary printConfirm float-right" type="button" style="margin: 16px;"><i class="fa fa-print" style="padding-right: 5px;"></i>Print</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="margin-bottom: 20px; display: none;">
+            <div class="col-lg-4 col-xl-4">
+                <div class="card shadow mb-4">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h6 class="text-primary font-weight-bold m-0">Quick Scan</h6>
+                    </div>
+                    <div class="card-body" style="padding: 0px;">
+                        <div class="row d-xl-flex justify-content-center align-items-center justify-content-xl-center" style="margin: auto;padding: 20px;">
+                            <div class="col" style="max-width: 800px;">
+                                <div class="form-group flex-grow-1" style="margin: 4px;"><label>Quick Scan<br></label>
+                                    <div class="input-group"><input class="form-control" type="text">
+                                        <div class="input-group-append"><a class="btn btn-primary border-success" role="button" style="background-color: #3dd79c;" href="#scan" data-toggle="modal">Scan</a></div>
+                                    </div>
+                                    <div class="modal fade" role="dialog" tabindex="-1" id="scan">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title">Scan</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="row d-xl-flex justify-content-center align-items-center justify-content-xl-start" style="margin: auto;padding: 20px;padding-top: 0px;">
+                                                        <div class="col">
+                                                            <div class="card">
+                                                                <div class="card-body">
+                                                                    <h5 class="card-title">Plant Details</h5>
+                                                                    <div class="row">
+                                                                        <div class="col">
+                                                                            <h6 class="text-muted mb-2" style="margin: 0px;">Batch Type</h6>
+                                                                        </div>
+                                                                        <div class="col">
+                                                                            <p class="float-right" style="margin: 0px;">--</p>
+                                                                        </div>
+                                                                        <hr style="width: 100%;margin: 0px 12px;">
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col">
+                                                                            <h6 class="text-muted mb-2" style="margin: 0px;">Strain</h6>
+                                                                        </div>
+                                                                        <div class="col">
+                                                                            <p class="float-right" style="margin: 0px;">--</p>
+                                                                        </div>
+                                                                        <hr style="width: 100%;margin: 0px 12px;">
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col">
+                                                                            <h6 class="text-muted mb-2" style="margin: 0px;">No. Immature</h6>
+                                                                        </div>
+                                                                        <div class="col">
+                                                                            <p class="float-right" style="margin: 0px;">--</p>
+                                                                        </div>
+                                                                        <hr style="width: 100%;margin: 0px 12px;">
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col">
+                                                                            <h6 class="text-muted mb-2" style="margin: 0px;">No. Tracked</h6>
+                                                                        </div>
+                                                                        <div class="col">
+                                                                            <p class="float-right" style="margin: 0px;">--</p>
+                                                                        </div>
+                                                                        <hr style="width: 100%;margin: 0px 12px;">
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col">
+                                                                            <h6 class="text-muted mb-2" style="margin: 0px;">Date Planted</h6>
+                                                                        </div>
+                                                                        <div class="col">
+                                                                            <p class="float-right" style="margin: 0px;">--</p>
+                                                                        </div>
+                                                                        <hr style="width: 100%;margin: 0px 12px;">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer"><button class="btn btn-light" type="button" data-dismiss="modal">Close</button><button class="btn btn-primary" type="button">Save</button></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr style="width: 100%;margin: 0px;margin-top: 16px;">
+                            </div>
+                        </div>
+                        <div class="row d-xl-flex justify-content-center align-items-center justify-content-xl-start" style="margin: auto;padding: 20px;padding-top: 0px;">
+                            <div class="col">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Plant Details</h5>
+                                        <div class="row">
+                                            <div class="col">
+                                                <h6 class="text-muted mb-2" style="margin: 0px;">Batch Type</h6>
+                                            </div>
+                                            <div class="col">
+                                                <p class="float-right" style="margin: 0px;">--</p>
+                                            </div>
+                                            <hr style="width: 100%;margin: 0px 12px;">
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <h6 class="text-muted mb-2" style="margin: 0px;">Strain</h6>
+                                            </div>
+                                            <div class="col">
+                                                <p class="float-right" style="margin: 0px;">--</p>
+                                            </div>
+                                            <hr style="width: 100%;margin: 0px 12px;">
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <h6 class="text-muted mb-2" style="margin: 0px;">No. Immature</h6>
+                                            </div>
+                                            <div class="col">
+                                                <p class="float-right" style="margin: 0px;">--</p>
+                                            </div>
+                                            <hr style="width: 100%;margin: 0px 12px;">
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <h6 class="text-muted mb-2" style="margin: 0px;">No. Tracked</h6>
+                                            </div>
+                                            <div class="col">
+                                                <p class="float-right" style="margin: 0px;">--</p>
+                                            </div>
+                                            <hr style="width: 100%;margin: 0px 12px;">
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <h6 class="text-muted mb-2" style="margin: 0px;">Date Planted</h6>
+                                            </div>
+                                            <div class="col">
+                                                <p class="float-right" style="margin: 0px;">--</p>
+                                            </div>
+                                            <hr style="width: 100%;margin: 0px 12px;">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8 col-xl-8">
+                <div class="card">
+                    <div class="card-body card shadow" style="padding: 32px;padding-bottom: 24px;border-width: 0px;border-style: none;">
+                        <div class="row" style="margin: 0px;">
+                            <div class="col-3" style="width: 350px;max-width: 350px;margin-bottom: 8px;min-width: 350px;">
+                                <div class="row">
+                                    <div class="col" style="max-width: 126px;max-height: 126px;padding: 0px;"><a class="btn btn-success" role="button" style="padding: 12px;" href="/stsplants"><img src="sts_images/plants.svg"
+                                                style="width: 100px;height: 100px;"></a></div>
+                                    <div class="col" style="padding: 0px;">
+                                        <h3 style="margin: 16px;">Plants</h3>
+                                        <p style="margin: 16px;">Manage plants from immature to flowering.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3" style="width: 350px;max-width: 350px;margin-bottom: 8px;min-width: 350px;">
+                                <div class="row">
+                                    <div class="col" style="max-width: 126px;max-height: 126px;padding: 0px;"><a class="btn btn-info" role="button" style="padding: 12px;" href="/stsharvests"><img src="sts_images/harvest.svg"
+                                                style="width: 100px;height: 100px;"></a></div>
+                                    <div class="col" style="padding: 0px;">
+                                        <h3 style="margin: 16px;">Harvests</h3>
+                                        <p style="margin: 16px;">Harvest or manicure plants, and create harvest waste.<br></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3" style="width: 350px;max-width: 350px;margin-bottom: 8px;min-width: 350px;">
+                                <div class="row">
+                                    <div class="col" style="max-width: 126px;max-height: 126px;padding: 0px;"><a class="btn btn-warning" role="button" style="padding: 12px;" href="/stspackages"><img src="sts_images/packages.svg"
+                                                style="width: 100px;height: 100px;"></a></div>
+                                    <div class="col" style="padding: 0px;">
+                                        <h3 style="margin: 16px;">Packages</h3>
+                                        <p style="margin: 16px;">Create/modify packages used in processing/transfers.<br></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3" style="width: 350px;max-width: 350px;margin-bottom: 8px;min-width: 350px;">
+                                <div class="row">
+                                    <div class="col" style="max-width: 126px;max-height: 126px;padding: 0px;"><a class="btn btn-danger" role="button" style="padding: 12px;" href="/ststransfers"><img src="sts_images/transfers.svg"
+                                                style="width: 100px;height: 100px;"></a></div>
+                                    <div class="col" style="padding: 0px;">
+                                        <h3 style="margin: 16px;">Transfers</h3>
+                                        <p style="margin: 16px;">Transfer packages between facilities.<br></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3" style="width: 350px;max-width: 350px;margin-bottom: 8px;min-width: 350px;">
+                                <div class="row">
+                                    <div class="col" style="max-width: 126px;max-height: 126px;padding: 0px;"><a class="btn btn-primary" role="button" style="padding: 12px;" href="/stsoverviews"><img src="sts_images/graphs.svg"
+                                                style="width: 100px;height: 100px;"></a></div>
+                                    <div class="col" style="padding: 0px;">
+                                        <h3 style="margin: 16px;">Overviews</h3>
+                                        <p style="margin: 16px;">View detailed graphs and drillable reports.<br></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3" style="width: 350px;max-width: 350px;margin-bottom: 32px;min-width: 350px;">
+                                <div class="row">
+                                    <div class="col" style="max-width: 126px;max-height: 126px;padding: 0px;"><a class="btn btn-secondary" role="button" style="padding: 12px;background-color: rgb(235,126,48);border-color: rgb(235,126,48);" href="">
+                                            <img src="sts_images/refresh.svg" style="width: 100px;height: 100px;"></a></div>
+                                    <div class="col" style="padding: 0px;">
+                                        <h3 style="margin: 16px;">Sync</h3>
+                                        <p style="margin: 16px;">Sync your data with Metrc / BioTrackTHC.<br></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3" style="width: 350px;max-width: 350px;margin-bottom: 8px;min-width: 350px;">
+                                <div class="row">
+                                    <div class="col" style="max-width: 126px;max-height: 126px;padding: 0px;"><a class="btn btn-success" role="button" style="padding: 12px; background-color: mediumpurple;border-color: mediumpurple;"
+                                            href="/stssettings">
+                                            <img src="sts_images/settings.svg" style="width: 100px;height: 100px;"></a></div>
+                                    <div class="col" style="padding: 0px;">
+                                        <h3 style="margin: 16px;">Settings</h3>
+                                        <p style="margin: 16px;">Create items, strains and other things.<br></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

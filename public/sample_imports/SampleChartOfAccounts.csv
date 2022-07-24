@@ -1,0 +1,52 @@
+*Code,*Name,*Type,*Tax Code,Description
+200,Sales,Revenue,GST ,Income from any normal business activity
+260,Other Revenue,Revenue,GST,Any other income that does not relate to normal business activities and is not recurring
+270,Interest Income,Revenue,GST,Interest income
+310,Cost of Goods Sold,Direct Costs,GST,Cost of goods sold by the business
+400,Advertising,Expense,GST,Expenses incurred for advertising while trying to increase sales
+404,Bank Fees,Expense,GST,Fees charged by your bank for transactions regarding your bank account(s).
+408,Cleaning,Expense,GST,Expenses incurred for cleaning business property.
+412,Consulting & Accounting,Expense,GST,Expenses related to paying consultants
+416,Depreciation,Expense,GRFRE,The amount of the asset's cost (based on the useful life) that was consumed during the period
+420,Entertainment,Expense,GST,Expenses paid by company for the business but are not deductable for income tax purposes.
+425,Freight & Courier,Expense,GST,Expenses incurred on courier & freight costs
+429,General Expenses,Expense,GST,General expenses related to the running of the business.
+433,Insurance,Expense,GST,Expenses incurred for insuring the business' assets
+437,Interest Expense,Expense,GST,"Any interest expenses paid to ATO, business bank accounts or credit card accounts."
+441,Legal expenses,Expense,GST,Expenses incurred on any legal matters
+445,"Light, Power, Heating",Expense,GST,"Expenses incurred for lighting, powering or heating the premises"
+449,Motor Vehicle Expenses,Expense,GST,Expenses incurred on the running of company motor vehicles
+453,Office Expenses,Expense,GST,General expenses related to the running of the business office.
+461,Printing & Stationery,Expense,GST,Expenses incurred by the entity as a result of printing and stationery
+469,Rent,Expense,GST,The payment to lease a building or area.
+473,Repairs and Maintenance,Expense,GST,Expenses incurred on a damaged or run down asset that will bring the asset back to its original condition.
+477,Wages and Salaries,Expense,GRFRE,Payment to employees in exchange for their resources
+478,Superannuation,Expense,GRFRE,Superannuation contributions
+485,Subscriptions,Expense,GST,"E.g. Magazines, professional bodies."
+489,Telephone & Internet,Expense,GST,"Expenditure incurred from any business-related phone calls, phone lines, or internet connections"
+493,Travel - National,Expense,GST,Expenses incurred from domestic travel which has a business purpose
+494,Travel - International,Expense,GST,Expenses incurred from international travel which has a business purpose
+505,Income Tax Expense,Expense,GRFRE,A percentage of total earnings paid to the government.
+610,Accounts Receivable,Accounts Receivable,GRFRE,Outstanding invoices the company has issued out to the client but has not yet received in cash at balance date.
+620,Prepayments,Current Asset,GRFRE,An expenditure that has been paid for in advance.
+630,Inventory,Inventory,GRFRE,Value of tracked items for resale.
+710,Office Equipment,Fixed Asset,GRFRE,Office equipment that is owned and controlled by the business
+711,Less Accumulated Depreciation on Office Equipment,Fixed Asset,GRFRE,The total amount of office equipment cost that has been consumed by the entity (based on the useful life)
+720,Computer Equipment,Fixed Asset,GRFRE,Computer equipment that is owned and controlled by the business
+721,Less Accumulated Depreciation on Computer Equipment,Fixed Asset,GRFRE,The total amount of computer equipment cost that has been consumed by the business (based on the useful life)
+800,Accounts Payable,Accounts Payable,E,Outstanding invoices the company has received from suppliers but has not yet paid at balance date
+801,Unpaid Expense Claims,Unpaid Expense Claims,E,Expense claims typically made by employees/shareholder employees still outstanding.
+804,Wages Payable - Payroll,Current Liability,E,"Where this account is set as the nominated Wages Payable account within Payroll Settings, Xero allocates the net wage amount of each pay run created using Payroll to this account"
+820,GST,GST,E,"The balance in this account represents GST owing to or from the ATO. At the end of the GST period, it is this account that should be used to code against either the 'refunds from' or 'payments to' the ATO that will appear on the bank statement. Xero has been designed to use only one GST account to track GST on income and expenses, so there is no need to add any new GST accounts to Xero."
+825,PAYG Withholdings Payable,Current Liability,E,The amount of PAYE tax that is due to be paid
+826,Superannuation Payable,Current Liability,E,The amount of superannuation that is due to be paid
+830,Income Tax Payable,Current Liability,E,"The amount of income tax that is due to be paid, also resident withholding tax paid on interest received."
+840,Historical Adjustment,Historical,E,For accountant adjustments
+850,Suspense,Current Liability,E,"An entry that allows an unknown transaction to be entered, so the accounts can still be worked on in balance and the entry can be dealt with later."
+860,Rounding,Rounding,E,An adjustment entry to allow for rounding
+877,Tracking Transfers,Tracking,E,Transfers between tracking categories
+880,Owner A Drawings,Current Liability,E,Withdrawals by the owners
+881,Owner A Funds Introduced,Current Liability,E,Funds contributed by the owner
+900,Loan,Non-current Liability,E,Money that has been borrowed from a creditor
+960,Retained Earnings,Retained Earnings,E,Do not Use
+970,Owner A Share Capital,Equity,E,The value of shares purchased by the shareholders

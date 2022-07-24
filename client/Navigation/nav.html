@@ -1,0 +1,409 @@
+<template name="nav">
+    <div class = "nav">
+        <!--<script>
+$(function() {
+  var loc = window.location.href; // returns the full URL
+  if(/home/.test(loc)) {
+    $('#navhome').addClass('nav_activestate');
+  } else {
+    $('#navhome').removeClass('nav_activestate');
+  }
+});
+</script>-->
+<div class="nav_headtop">
+<div class="nav_details_contain">
+<div class="nav_company"><a href="#" onclick="myPopUpDB()">
+<i class="fa fa-th-list" aria-hidden="true"></i> <span id="erpconnected"></span></a>
+<div class="popupDatabase">
+  <br><span class="popupDatabasetext" id="myPopupDatabase">
+<div class="popupDatabaseUsername">
+
+</div>
+<!--<div class="popupDatabaseUserpic"><img src="img/70x70.jpg"></div>-->
+<a href="#" class="popupDatabaseLink1"><img src="/img/icon_100x100.png"> My TrueERP <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+<!--<a href="#" class="popupDatabaseLink2" id="loggeddatabaseuser"></a>-->
+<a href="#" class="popupDatabaseLink3" id="loggeddatabase"></a>
+  </span>
+</div>
+</div>
+<div class="nav_user">
+  <a href="#" onclick="myFunction()"><span id="logged_user"></span><span class="caret"></span></a>
+  <div class="popupLogout">
+    <br><span class="popupLogouttext" id="myPopupLogout">
+  <div class="popupUsername">
+    <span id="logged_dropdown"></span>
+  </div>
+  <div class="popupUserpic"><img src="/img/70x70.jpg"></div>
+<a href="/settings/user" class="popupLink1"><i class="fa fa-user" aria-hidden="true"></i> Profile</a>
+<a href="/settings/myAccount" class="popupLink2"><i class="fa fa-cog" aria-hidden="true"></i> Account</a>
+<a onclick="logOutFunc()" class="popupLink3"><i class="fa fa-power-off" aria-hidden="true"></i> Logout</a>
+    </span>
+  </div>
+</div>
+<script type="text/javascript">
+// When the user clicks on div, open the popup
+function myFunction() {
+    var popupLogout = document.getElementById("myPopupLogout");
+    popupLogout.classList.toggle("show");
+};
+
+/*$('body').click(function(event){
+    if (event.target === this) {
+        $('.popupLogouttext').css({'visibility': 'hidden'});
+    }
+});*/
+
+
+/*$(document).mouseup(function (e)                    {
+  var container = $(".nav_user .popupLogout"); // YOUR CONTAINER SELECTOR
+  if (!container.is(e.target) // if the target of the click isn't the container...
+      && container.has(e.target).length === 0) // ... nor a descendant of the container
+  {
+    //var hideUser = $('.popupLogouttext');
+    container.hide();
+  }
+});*/
+
+/*$(window).click(function() {
+//Hide the menus if visible
+var popupLogoutHide = document.getElementById("myPopupLogout");
+popupLogoutHide.hide();
+});
+
+$('#myPopupLogout').click(function(event){
+    event.stopPropagation();
+});*/
+
+function logOutFunc() {
+  window.open('/','_self');
+  CloudUser.update({_id: Session.get('mycloudLogonID')},{ $set: {userMultiLogon: false}});
+};
+
+$(document).ready(function(){
+    $(".nav_user").focusout(function(){
+      
+      var popupLogout = document.getElementById("myPopupLogout");
+      popupLogout.classList.toggle("show");
+    });
+});
+</script>
+
+
+
+<script type="text/javascript">
+// When the user clicks on div, open the popup
+function myPopUpDB() {
+    var popupDatabase = document.getElementById("myPopupDatabase");
+    popupDatabase.classList.toggle("show");
+};
+
+$(document).ready(function(){
+    $(".nav_company").focusout(function(){
+      
+      var popupLogout = document.getElementById("myPopupDatabase");
+      popupLogout.classList.toggle("show");
+    });
+});
+</script>
+
+
+</div>
+</div>
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li><a href="#" id="navhome">Dashboard <span class="sr-only">(current)</span></a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" id="navaccounts" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Accounts <!--<span class="caret"></span>--></a>
+            <ul class="dropdown-menu">
+              <li><a href="#" id="navbankaccounts">Bank Accounts</a></li>
+              <li><a href="#" id="navsales">Sales</a></li>
+              <li><a href="#" id="navpurchases">Purchases</a></li>
+              <li><a href="#" id="navinventory">Inventory</a></li>
+              <li><a href="#" id="navstockadjlist">Stock Adjustment</a></li>
+              <li><a href="#" id="navshipping">Shipping</a></li>
+              <li><a href="#" id="navfittings">Manufacturing</a></li>
+              <li><a href="#" id="navexpenseclaims">Expense Claims</a></li>
+              <!--<li><a href="/refundlist">Refunds</a></li>
+              <li><a href="/creditnotelist">Credit Notes</a></li>-->
+              <li><a href="#" id="navfixedassets">Fixed Assets</a></li>
+            </ul>
+          </li>
+          <!--<li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Payroll</a>
+            <ul class="dropdown-menu">
+              <li><a href="/payrolloverview">Overview</a></li>
+              <li><a href="/payrollemployees">Employees</a></li>
+              <li><a href="/payrolltimeoff">Time Off</a></li>
+              <li><a href="/payrolltimesheets">Timesheets</a></li>
+              <li><a href="/payrollpayruns">Pay Runs</a></li>
+              <li><a href="/pensionfiling">Pension Filings</a></li>
+              <li><a href="/rtifiling">RTI Filings</a></li>
+              <li><a href="/taxesfiling">Taxes & Filings</a></li>
+            </ul>
+          </li>-->
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" id="navreports" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Reports <!--<span class="caret"></span>--></a>
+            <ul class="dropdown-menu">
+              <li><a href="#" id="navallreports">All Reports</a></li>
+              <li><a href="/reports/budget-manager" id="navbudgetmanager">Budget Manager</a></li>
+              <li class="separatortext"><em>Favourites</em></li>
+              <li><a href="/reports/aged-payables" id="navagedpayables">Aged Payables</a></li>
+              <li><a href="/reports/aged-receivables" id="navagedreceivables">Aged Receivables</a></li>
+              <li><a href="/reports/balance-sheet" id="navbalancesheet">Balance Sheet</a></li>
+              <li><a href="/reports/cash-summary" id="navcashsummary">Cash Summary</a></li>
+              <li><a href="/reports/profit-and-loss" id="navprofitloss">Profit and Loss</a></li>
+              <li><a href="/reports/trial-balance" id="navtrialbalance">Trial Balance</a></li>
+              <!--<li><a href="#" id="navvatreturns">VAT Return</a></li>-->
+            </ul>
+          </li>
+          <!--<li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Adviser</a>
+            <ul class="dropdown-menu">
+              <li><a href="/advisermanualjournals">Manual Journals</a></li>
+              <li><a href="/adviserexport">Export</a></li>
+              <li><a href="/adviserhistorynotes">History & Notes Activity</a></li>
+              <li><a href="/adviserassurancedash">Assurance Dashboard</a></li>
+              <li><a href="/adviserfindrecode">Find & Recode</a></li>
+            </ul>
+          </li>-->
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" id="navcontacts" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Contacts <!--<span class="caret"></span>--></a>
+            <ul class="dropdown-menu">
+              <li><a href="#" id="navallcontacts">All Contacts</a></li>
+              <li><a href="#" id="navcustomers">Customers</a></li>
+              <li><a href="#" id="navsuppliers">Suppliers</a></li>
+              <!--<li class="separatortext"><em>Groups</em></li>
+              <li><a href="#" id="navtraining">Training</a></li>-->
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" id="navsettings" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Settings <!--<span class="caret"></span>--></a>
+            <ul class="dropdown-menu">
+              <li><a href="#" id="navgeneralsettings">General Settings</a></li>
+              <li class="separatortext"><em>Favourites</em></li>
+              <li><a href="/settings/accounts/all-accounts" id="navchartofaccounts">Chart of Accounts</a></li>
+            </ul>
+          </li>
+          <li><a href="#" id="navAccessLevel">Access Level</a></li>
+          <li class="nav_icons" style="margin-left: 200px;">
+          <a href="#"></a>
+          </li>
+          <li class="dropdown" id="faicons">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              <img src="/icons/nav_plus.png" width="22px" class=""> <!--<span class="caret"></span>--></a>
+            <ul class="dropdown-menu nav_icons_dropdown" id="nav_icons_dropdown">
+              <li><h3>New</h3></li>
+              <li><a href="/newinvoice"><strong>Invoice</strong></a></li>
+              <li><a href="/billadd"><strong>Bill</strong></a></li>
+
+              <li class="contactsdropdown"><a href=""><strong>Contact</strong></a>
+                <div class="contactsdropdown_content">
+                  <a href="/newcustomer">Customer</a>
+                  <a href="/newsupplier">Supplier</a>
+                  <a href="/newemployee">Employee</a>
+                </div>
+              </li>
+
+              <li><a href="/newquote"><strong>Quote</strong></a></li>
+              <li><a href="/newsalesorder"><strong>Sales Order</strong></a></li>
+              <li><a href="/newpo"><strong>Purchase Order</strong></a></li>
+              <!--<li><a href="/newso"><strong>Sales Order</strong></a></li>-->
+              <!-- <li><a href="/newcustomer"><strong>Customer</strong></a></li>
+              <li><a href="/newsupplier"><strong>Supplier</strong></a></li>
+              <li><a href="/newemployee"><strong>Employee</strong></a></li>
+              <li><a href="#"><strong>Manual Journal</strong></a></li> -->
+              <li><a href="/Banking/Account/select/spend"><strong>Spend Money</strong></a></li>
+              <li><a href="/Banking/Account/select/receive"><strong>Receive Money</strong></a></li>
+              <li><a href="/Banking/Account/select/transfer"><strong>Transfer Money</strong></a></li>
+            </ul>
+          </li>
+          <li id="faicons">
+          <a href="/files"><img src="/icons/nav_doc.png" width="19px" class=""></a>
+          </li>
+          <li id="faicons">
+          <a href="#" id="myenvelopeBtn"><img src="/icons/nav_mail.png" width="19px" class=""></a>
+        </li>
+
+        <!-- The Modal -->
+      <div id="myenvelopeModal" class="modal_navicons">
+      <!-- Modal content -->
+      <div class="modal_navicons_content">
+      <div class="navicons_tip"><i class="fa fa-caret-up" aria-hidden="true"></i></div>
+      <div class="top_head_modal">
+      <span class="modal_navicons_close">&times;</span>
+      <h2>Notifications</h2>
+      </div>
+      <p class="innerbox">------------------------------- No notifications -------------------------------</p>
+      <div class="bot_foot_modal">
+      <p>Mark all as read   |   <a href="#">Settings</a></p>
+      </div>
+      </div>
+      </div>
+
+
+
+      <li id="faicons">
+      <a href="#" id="mysearchBtn"><img src="/icons/nav_search.png" width="22px" class=""></a>
+      </li>
+
+      <!-- The Modal -->
+    <div id="mysearchModal" class="modal_searchnavicons">
+    <!-- Modal content -->
+    <div class="modal_searchnavicons_content">
+    <div class="navicons_tip"><i class="fa fa-caret-up" aria-hidden="true"></i></div>
+    <div class="top_head_modal">
+    <span class="modal_searchnavicons_close">&times;</span>
+    <h2>Search for anything in TrueERP</h2>
+    </div>
+    <p class="innerbox">
+      Watch the video to see how it works or learn more in the <a href="#">Help Centre.</a>
+    </p>
+    <img src="icons/demo_video.png" class="">
+    </div>
+    </div>
+
+
+          <li id="faicons">
+          <a href="#" id="myqueBtn"><img src="/icons/nav_ques.png" width="22px" class=""></a>
+          </li>
+
+          <!-- The Modal -->
+        <div id="myqueModal" class="modal_navqueicons">
+        <!-- Modal content -->
+        <div class="modal_navqueicons_content">
+        <div class="navicons_tip"><i class="fa fa-caret-up" aria-hidden="true"></i></div>
+        <div class="top_head_modal">
+        <span class="modal_navqueicons_close">&times;</span>
+        <h2>Help</h2>
+        </div>
+        <div class="top_head_modal2">
+          <form class="navbar-form" role="search">
+     <div class="input-group add-on">
+       <input class="form-control" placeholder="What do you need help with?" name="srch-term" id="srch-term" type="text">
+       <div class="input-group-btn">
+         <a class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></a>
+       </div>
+     </div>
+   </form>
+        </div>
+        <p class="innerbox">
+          <a href="#">Attach, view and download files</a>
+          <a href="#">Email a file to your organisation's file library Inbox</a>
+          <a href="#">Delete a file or folder from TrueERP</a>
+          <a href="#">Create folders and add files</a>
+        </p>
+        <div class="bot_foot_modal2">
+        <p>  <a href="#">Help Center</a></p>
+        </div>
+        <div class="bot_foot_modal">
+        <p>  <a href="#">Find an adviser</a></p>
+        </div>
+        </div>
+        </div>
+
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+
+
+
+  <script>
+  // Get the modal
+  var modal = document.getElementById('myenvelopeModal');
+
+  // Get the button that opens the modal
+  var btn = document.getElementById("myenvelopeBtn");
+
+  // Get the <span> element that closes the modal
+  var span = document.getElementsByClassName("modal_navicons_close")[0];
+
+  // When the user clicks the button, open the modal
+  btn.onclick = function() {
+      modal.style.display = "block";
+  }
+
+  // When the user clicks on <span> (x), close the modal
+  span.onclick = function() {
+      modal.style.display = "none";
+  }
+
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event) {
+      if (event.target == modal) {
+          modal.style.display = "none";
+      }
+  }
+  </script>
+
+  <script>
+  // Get the modal
+  var modal2 = document.getElementById('mysearchModal');
+
+  // Get the button that opens the modal
+  var btn2 = document.getElementById("mysearchBtn");
+
+  // Get the <span> element that closes the modal
+  var span2 = document.getElementsByClassName("modal_searchnavicons_close")[0];
+
+  // When the user clicks the button, open the modal
+  btn2.onclick = function() {
+      modal2.style.display = "block";
+  }
+
+  // When the user clicks on <span> (x), close the modal
+  span2.onclick = function() {
+      modal2.style.display = "none";
+  }
+
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event) {
+      if (event.target == modal2) {
+          modal2.style.display = "none";
+      }
+  }
+  </script>
+
+  <script>
+  // Get the modal
+  var modal3 = document.getElementById('myqueModal');
+
+  // Get the button that opens the modal
+  var btn3 = document.getElementById("myqueBtn");
+
+  // Get the <span> element that closes the modal
+  var span3 = document.getElementsByClassName("modal_navqueicons_close")[0];
+
+  // When the user clicks the button, open the modal
+  btn3.onclick = function() {
+      modal3.style.display = "block";
+  }
+
+  // When the user clicks on <span> (x), close the modal
+  span3.onclick = function() {
+      modal3.style.display = "none";
+  }
+
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event) {
+      if (event.target == modal3) {
+          modal3.style.display = "none";
+      }
+  }
+  </script>
+    </div>
+
+</template>

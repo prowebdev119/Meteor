@@ -1,0 +1,194 @@
+<template name="shipping">
+  <div class="active_page">
+  <div class="active_page_content">
+    <p></p><br>
+  <h1>Shipping</h1>
+  </div>
+</div>
+      <!-- <div class="tabs_line_break" style="padding-bottom: 65px;"></div> -->
+  <div id="wrapper_main" class="new-wrapper manufacturingform">
+   <main id="page-content-wrapper_main" role="main">
+
+   <!-- <h4>Content Here!</h4> -->
+   <br>
+
+   <script>
+   document.getElementById("scanResult").href = "zxing://scan/?ret="+window.location.protocol+"//"+window.location.host+"/shipping?bc=%7BCODE%7D";
+
+   var url = FlowRouter.current().path;
+   var getbarcode = url.split('?bc=');
+   var salesbarcode = getbarcode[getbarcode.length-1];
+
+   if(salesbarcode != ''){
+     if(salesbarcode.length <= 2){
+       Bert.alert( '<strong>WARNING:</strong>Invalid Barcode "'+salesbarcode+'"', 'danger','fixed-top', 'fa-frown-o' );
+     }else{
+       var segs = salesbarcode.split('-');
+
+       if(segs[0] == Barcode_Prefix_Sale){
+         var sales_ID = segs[1];
+         var erpGet = erpDb();
+         var oReqSID = new XMLHttpRequest();
+         oReqSID.open("GET",URLRequest + erpGet.ERPIPAddress + ':' + erpGet.ERPPort + '/' + erpGet.ERPApi + '/SaleGroup?SaleID='+ sales_ID, true);
+         oReqSID.setRequestHeader("database",erpGet.ERPDatabase);
+         oReqSID.setRequestHeader("username",erpGet.ERPUsername);
+         oReqSID.setRequestHeader("password",erpGet.ERPPassword);
+         oReqSID.send();
+
+     oReqSID.timeout = 30000;
+     oReqSID.onreadystatechange = function() {
+     if (oReqSID.readyState == 4 && oReqSID.status == 200) {
+       var dataListRet = JSON.parse(oReqSID.responseText)
+       for (var event in dataListRet) {
+       var dataCopy = dataListRet[event];
+       for (var data in dataCopy) {
+       var mainData = dataCopy[data];
+       var salesType = mainData.TransactionType;
+       var salesID = mainData.SaleID;
+           }
+         }
+         /*
+     if(salesType == "Quote"){
+         window.open('/quotecard?id=' + salesID,'_self');
+       }else*/ if(salesType == "Invoice"){
+         window.open('/shipquickInv?id='+salesID,'_self');
+         //FlowRouter.go('/shipquickInv?id='+salesID);
+       }else if(salesType == "Sales Order"){
+         window.open('/shipquickSO?id='+salesID,'_self');
+        // FlowRouter.go('/shipquickSO?id='+salesID);
+       }else{
+         Bert.alert( '<strong>WARNING:</strong> Could not find any Sales associated with this barcode "'+barcode+'"', 'danger','fixed-top', 'fa-frown-o' );
+         e.preventDefault();
+       }
+
+
+   }
+
+   AddUERP(oReqSID.responseText);
+     }
+
+       }else if(segs[0] == Barcode_Prefix_SalesLine){
+               var salesLine_ID = segs[1];
+               var erpGet = erpDb();
+               var oReqSLineID = new XMLHttpRequest();
+               oReqSLineID.open("GET",URLRequest + erpGet.ERPIPAddress + ':' + erpGet.ERPPort + '/' + erpGet.ERPApi + '/SaleGroup?SaleLineID='+ salesLine_ID, true);
+               oReqSLineID.setRequestHeader("database",erpGet.ERPDatabase);
+               oReqSLineID.setRequestHeader("username",erpGet.ERPUsername);
+               oReqSLineID.setRequestHeader("password",erpGet.ERPPassword);
+               oReqSLineID.send();
+
+           oReqSLineID.timeout = 30000;
+           oReqSLineID.onreadystatechange = function() {
+           if (oReqSLineID.readyState == 4 && oReqSLineID.status == 200) {
+             var dataListRet = JSON.parse(oReqSLineID.responseText)
+             for (var event in dataListRet) {
+             var dataCopy = dataListRet[event];
+             for (var data in dataCopy) {
+             var mainData = dataCopy[data];
+             var customerCardID = mainData.TransactionType;
+             var salesType = mainData.TransactionType;
+             var salesID = mainData.SaleID;
+                 }
+               }
+        if(salesType == "Invoice"){
+               window.open('/shipquickInv?id='+salesID,'_self');
+             }else if(salesType == "Sales Order"){
+               window.open('/shipquickSO?id='+salesID,'_self');
+             }else{
+               Bert.alert( '<strong>WARNING:</strong> Could not find any Sales associated with this barcode "'+barcode+'"', 'danger','fixed-top', 'fa-frown-o' );
+               e.preventDefault();
+             }
+
+
+         }
+
+         AddUERP(oReqSID.responseText);
+           }
+
+
+
+       }
+     }
+   }
+
+   </script>
+
+     <div class="container reports_container1">
+       <div class="row">
+        <!-- <div class="reports_container1" style="float: none; margin-top: 0px;"> -->
+        <div class="search_box_inner" style="padding-bottom: 13px;">
+         <div class="col-md-6 col-lg-4 scanBtnDiv" style="width:100%;">
+           <a href="" id="scanBarcode" name="scanBarcode" class="scan_new_btnBig"><i class="fa fa-camera" aria-hidden="true"></i> Scan</a>
+         </div>
+         <div class="col-md-6 col-lg-4 scanInputDiv" style="width:100%;">
+           <input type="text" style="height: 45px; margin-left: 7px;" id="SalesBC" name="salesbarcode" placeholder="Enter the barcode">
+         </div>
+         <div class="col-md-6 col-lg-4 viewDocketDiv" style="width:100%;">
+           <a href="/shippinglist" id="viewdocketlist" name="viewdocketlist" class="btnViewdocketList" style="{{#if includeViewDockets}}display:inline-block{{else}}display:none{{/if}}">View Docket</a>
+           <a href="#" id="viewdocket" name="viewdocket" class="send_new" style="display:none">View Docket</a>
+         </div>
+         </div>
+       </div>
+     </div>
+   <!-- </div> -->
+  <!-- </div> -->
+
+   <!--
+   <div class="reports_container1" style="float: none; margin-top: 0px;">
+     <div class="search_box_inner" style="padding-bottom: 13px;">
+   <div class="row invoice_list_search">
+     <div class="col-md-4 moduletablegrid">
+       <h3 class="page_subheader" style="width: 100%; margin-bottom: 7px; margin-left: 4px; visibility:hidden;">Enter Barcode:</h3>
+       <a href="" id="scanBarcode" name="scanBarcode" class="scan_new" style="margin-right: 3px;"><i class="fa fa-camera" aria-hidden="true"></i> Scan</a>
+     </div>
+     <div class="col-md-4 moduletablegrid">
+       <h3 class="page_subheader" style="width: 100%; margin-bottom: 7px; margin-left: 4px;">Enter Barcode:</h3>
+      <input type="text" style="height: 30px; margin-left: 4px; width:175px!important;" id="SalesBC" name="salesbarcode" placeholder="Enter the barcode">
+    </div>
+     <div class="col-md-4 moduletablegrid">
+       <h3 class="page_subheader" style="width: 100%; margin-bottom: 7px; margin-left: 4px; visibility:hidden;">Enter Barcode:</h3>
+       <a href="/shippinglist" id="viewdocketlist" name="viewdocketlist" class="send_new" >View Docket</a>
+     </div>
+   </div>
+   </div>
+   </div>
+-->
+   <script>
+   if(/Android/i.test(navigator.userAgent) )
+    {
+      $('#barcodeNoticeAndroid').show();
+   };
+   if(/iPhone|iPad|iPod/i.test(navigator.userAgent) )
+    {
+      $('#barcodeNoticeApple').show();
+   };
+   </script>
+   <style>
+   .barcodeNotice {
+    font-size: 12px;
+    font-family: Helvetica, Arial, sans-serif;
+    text-align: center;
+    color: #bbb;
+   }
+   </style>
+   <div class="barcodeNotice" id="barcodeNoticeAndroid" style="display: none;">
+     <strong>Please Note:</strong> Before using the <i class="fa fa-camera" aria-hidden="true"></i> Scan functionality via the devices camera on this module,
+     please ensure you have the "Barcode Scanner" app installed on your device, alternatively, you can download it by following the below link
+     and allow the app to be installed by following the on screen instructions...<br>
+     <a href="/APK/com.google.zxing.client.android-4.7.3-103-minAPI15.apk">Click here to Install Barcode Scanner app</a>
+   </div>
+   <div class="barcodeNotice" id="barcodeNoticeApple" style="display: none;">
+     <strong>Please Note:</strong> The camera <i class="fa fa-camera" aria-hidden="true"></i> Scan functionality via the devices camera is currently not available for iOS.<br>
+   </div>
+
+ </main>
+ <!--<a href="" id="scanBarcode" class="scan_new"><i class="fa fa-camera" aria-hidden="true"></i> Scan</a>-->
+ </div>
+</template>
+
+
+<template name="barcode_scanner">
+  <div id="deviceready">
+                <button id="scan">scan barcode</button>
+            </div>
+</template>

@@ -1,0 +1,243 @@
+<template name="fixedAssetsSettings">
+    <div class="fixedAssetsSettings payItemsSettings">
+    <div class="active_page">
+            <div class="active_page_content">
+                <p><a href="/settings">General Settings</a> &nbsp;›&nbsp;
+                </p><br>
+                <h1>Fixed Asset Settings
+                  <!-- <a href="#" name="1" id="open_help" style="display: none; margin-left: 68%;">Show Help</a> -->
+                </h1>
+                {{#if successMsg}}
+                <div class="Fixed-notify">
+                    <div class="notify" id="receipt-saved-message-main">
+                        <span class="check-icon"><i class="fa fa-check"></i></span>
+                        <div class="message"><p id="ext-gen101">{{assetTypeName}} saved
+                        </p></div>
+                    </div>
+                </div>
+                {{/if}}
+                <!-- <div class="row" id="help_open" style="display:block;" >
+                    <div class="col-md-3">
+                        <img src="/img/Fixed-Asset.png">
+                    </div>
+                    <div class="col-md-9">
+                        <div class="fa-pagehelp-line">Manage your asset types and default depreciation methods <a
+                                href="#" class="close" id="close_help">Hide Help </a></div>
+                        <div class="fa-pagehelp-line"><a href="#"
+                                                         target="_self">Find out more</a> about editing asset types
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+
+            <div class="active_page_content">
+                <div class="row">
+                    <div class="col-md-3">
+                     <div class="FixedButton">
+                            <!-- <a class="btn btn-white" data-toggle="modal"  data-target="#myModal">Change Start Date</a> -->
+                            <a class="btn btn-white" href="/fixedassets/draft">Fixed Assets</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="fixedAssetsTabs">
+            <div class="payrollSettings">
+                <div class="tabFull">
+                    <div id="wrapper_main">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a data-toggle="tab" href="#assetType">Asset Types</a></li>
+                            <!-- <li><a data-toggle="tab" href="#accounts">Accounts</a></li> -->
+                            <!-- <li><a data-toggle="tab" href="#taxReporting">Tax Reporting</a></li> -->
+                           <!-- <li><a data-toggle="tab" href="#pools">Pools</a></li>-->
+                        </ul>
+                    </div>
+                </div>
+                <div id="wrapper_main">
+                    <div class="tab-content">
+                        <div id="assetType" class="tab-pane fade in active">
+                            <div class="co-grid">
+                                <div class="docked-top">
+                                    <a type="button" class="btn btn-white " href="/fixed-assets-settings/asset-type/new"> + Asset Type</a>
+                                    <div class="rightDiv">
+                                        <span class="itemButton">{{fixedAssetsLength}} items</span>
+                                    </div>
+                                </div>
+                                <div id="tableTopDiv" style="width: 938px; float: left;">
+                                    <table id="assetTypes">
+                                        <thead>
+                                        <tr class="titleHeader">
+                                            <th><span class="sortIcon">Asset Type</span></th>
+                                            <th><span class="sortIcon">Asset Account</span></th><!--
+                                            <th><span class="sortIcon">Accumulated Depreciation Account</span></th>
+                                            <th><span class="sortIcon">Depreciation Expense Account</span></th>-->
+                                            <th>Asset Code</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <div class="loader" id="fixedAssetsSettings"><i class="fa fa-spinner fa-spin"></i></div>
+                                        {{#each item in fixedAssetsList}}
+                                        <tr class="headetTitle">
+                                            <td><a href="/fixed-assets-settings/asset-type/{{item.Id}}">{{item.AssetTypeName}}</a></td>
+                                            <td>{{item.Notes}}</td><!--
+                                            <td>{{item.FixedAssetDepreciationAccountName}}</td>
+                                            <td>{{item.FixedAssetDepreciationAssetAccountName}}</td>-->
+                                            <td>{{item.AssetTypeCode}}</td>
+                                        </tr>
+                                        {{/each}}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="accounts" class="tab-pane fade">
+                            {{#if loaderOnAccount}}<div class="loader" id="fixedAssetsSettings"><i class="fa fa-spinner fa-spin"></i></div> {{else}}
+                            <div class="accountsOverview">Set your default journal accounts for disposals. All future Disposal transactions will have these options pre-selected</div>
+                            <div class="pageContainer">
+                                <div class="autocontainer">
+                                    <div class="col-md-3"><span>Capital Gain on Disposal</span></div>
+                                    <div class="col-md-4">
+                                        <div class="input-group dropdown-add-rec" id="account-dropdown-1">
+                                            <input type="text"
+                                                   class="form-control select-account" value="{{defaultData}}" id="account-input-1" />
+                                            <div class="input-group-addon">
+                                                <img src="/img/dropdown_icon.png" id="acc-dropdown-img-1" class="account-img">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="autocontainer">
+                                    <div class="col-md-3"><span>Gain on Disposal</span></div>
+                                    <div class="col-md-4">
+                                        <div class="input-group dropdown-add-rec" id="account-dropdown-2">
+                                            <input type="text"
+                                                   class="form-control select-account" value="{{defaultData}}" id="account-input-2" />
+                                            <div class="input-group-addon">
+                                                <img src="/img/dropdown_icon.png" id="acc-dropdown-img-2" class="account-img">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="autocontainer last-child">
+                                    <div class="col-md-3"><span>Loss on Disposal</span></div>
+                                    <div class="col-md-4">
+                                        <div class="input-group dropdown-add-rec" id="account-dropdown-3">
+                                            <input type="text"
+                                                   class="form-control select-account" value="{{defaultData}}" id="account-input-3" />
+                                            <div class="input-group-addon">
+                                                <img src="/img/dropdown_icon.png" id="acc-dropdown-img-3" class="account-img">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="payFooter">
+                                    <button type="button" class="btn btn-success">Save</button>
+                                    <button type="button" class="btn btn-default account-cancel-btn cancel_new" style="font-weight: bold; font-size: 12px;  line-height: initial;">Cancel</button>
+                                </div>
+                            </div>
+                            {{/if}}
+                        </div>
+
+                        <div id="taxReporting" class="tab-pane fade">
+                            <div class="pageContainer">
+                                <div class="settingsTaxDescription">
+                                    <p>Tax reporting and asset pooling</p>
+                                    <span>Record both tax and book depreciation for assets. With tax reporting, you can group assets into pools that depreciate like single assets.</span>
+                                </div>
+                                <div class="divSettings">
+                                    <div class="settingsTaxForm">
+                                        <p>Start tax reporting from</p>
+                                        <span>1 Jul 2017</span>
+                                        <button type="button" class="co-btn-submit">Start Tax Reporting</button>
+                                    </div>
+                                    <div class="settingsTaxForm text-left">
+                                        <p><i class="fa fa-question-circle"></i> Need some help?</p>
+                                        <span>For more information on tax reporting and pooling, see our <a
+                                                href="#"
+                                                target="_self">Help Centre</a>.</span>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                     <!--   <div id="pools" class="tab-pane fade">
+                            <div class="co-grid">
+                                <div class="docked-top">
+                                    <a type="button" class="btn btn-white " href="/fixed-assets-settings/pool/new"> + New Pool</a>
+                                    <div class="rightDiv">
+                                        <span class="itemButton">{{fixedAssetsLength}} items</span>
+                                    </div>
+                                </div>
+                                <div id="tableTopDiv" style="width: 938px; float: left;">
+                                    <table id="poolsTable"  style="width: 100%">
+                                        <thead>
+                                        <tr class="titleHeader">
+                                            <th><span class="sortIcon">Pool</span></th>
+                                            <th><span class="sortIcon">Opening Balance</span></th>
+                                            <th><span class="sortIcon">Full rate</span></th>
+                                            <th><span class="sortIcon">Half Rate</span></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {{#each item in fixedAssetsList}}
+                                        <tr class="headetTitle">
+                                            <td><a href="/fixedAssets/assets/{{item.Id}}">{{item.AssetType}}</a></td>
+                                            <td>{{item.FixedAssetCostAccountName}}</td>
+                                            <td>{{item.FixedAssetDepreciationAccountName}}</td>
+                                            <td>{{item.FixedAssetDepreciationAssetAccountName}}</td>
+                                        </tr>
+                                        {{/each}}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>-->
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="modal changeStartDate fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Change Start Date</h4>
+                </div>
+                <div class="modal-body">
+                    <h3>If you click Save, the following will happen:</h3>
+                    <ul>
+                        <li>All depreciation and disposal journals will be reversed</li>
+                        <li>Start Date will change from 1 Jul 2017 to the date you select below</li>
+                        <li>You will need to re-enter the accumulated depreciation for any assets purchased before the new start date</li>
+                    </ul>
+                    <p>If you've set a lock date in Financial Settings, some start dates may be unavailable</p>
+
+                </div>
+                <div class="modal-body">
+                    <p><b>Start Date</b></p>
+                <select>
+                    <option>1 July 2017</option>
+                    <option>1 July 2018</option>
+                </select>
+            </div>
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success" data-dismiss="modal"  value="submit">Save</button>
+                    <button type="button" class="btn cancel_new" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script>
+      modalDraggable();
+   </script>
+</template>

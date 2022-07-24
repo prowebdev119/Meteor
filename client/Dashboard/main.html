@@ -1,0 +1,218 @@
+<template name="home">
+    <div class="dashboardGraph new-wrapper">
+        <div class="active_page">
+            <div class="active_page_content">
+              <script type="text/javascript">
+                var ip = "the ip number, retrieved of some way by a server";
+                // the request will be to http://www.geoplugin.net/json.gp?ip=my.ip.number but we need to avoid the cors issue, and we use cors-anywhere api.
+                $.getJSON("http://www.geoplugin.net/json.gp?ip="+ip,function(response){
+                
+                document.getElementById("countryLogin").innerHTML = response.geoplugin_countryName;
+              });
+              </script>
+
+              <script type="text/javascript">
+              var getLoginTime = localStorage.getItem("loginTime");
+              var endTime = moment();
+              var duration = moment.duration(endTime.diff(getLoginTime));
+              var hours = parseInt(duration.asHours());
+              var minutes = parseInt(duration.asMinutes())-hours*60;
+              document.getElementById("lastLogin").innerHTML = hours + ' hours and '+ minutes +' minutes ago from';
+              </script>
+                <h1 class="dashboard_header" id="loggeddatabasedash">{{loggedDb}}
+                  <span class="last_login" id="countryLogin"></span>
+                  <span class="last_login" id="lastLogin"></span>
+                  <span class="last_login">Your last login:</span>
+                </h1>
+            </div>
+        </div>
+        <section id="portfolio" class="portfolio">
+    <div class="container">
+        <h2 class="text-uppercase text-center text-secondary">MAIN</h2>
+        <hr class="star-dark mb-5">
+        <div class="row">
+          {{#if includeAccessLevels}}
+            <div class="col-md-6 col-lg-4 includeAccessLevels">
+                <a class="d-block mx-auto portfolio-item dashboardMenu" data-toggle="modal" href="/accesslevel">
+                    <div class="d-flex portfolio-item-caption position-absolute h-100 w-100">
+                        <div class="my-auto portfolio-item-caption-content w-100 text-center text-white"><i class="fa fa-wrench fa-3x"></i></div>
+                    </div><br>Access</a>
+            </div>
+          {{/if}}
+          {{#if includeAccounts}}
+            <div class="col-md-6 col-lg-4 includeAccounts">
+                <a class="d-block mx-auto portfolio-item dashboardMenu" data-toggle="modal" href="/bankaccounts">
+                    <div class="d-flex portfolio-item-caption position-absolute h-100 w-100">
+                        <div class="my-auto portfolio-item-caption-content w-100 text-center text-white"><i class="fas fa-calculator fa-3x"></i></div>
+                    </div><br>Accounts</a>
+            </div>
+          {{/if}}
+          {{#if includeContacts}}
+            <div class="col-md-6 col-lg-4 includeContacts">
+                <a class="d-block mx-auto portfolio-item dashboardMenu" data-toggle="modal" href="/allcontacts">
+                    <div class="d-flex portfolio-item-caption position-absolute h-100 w-100">
+                        <div class="my-auto portfolio-item-caption-content w-100 text-center text-white"><i class="fas fa-address-book fa-3x"></i></div>
+                    </div><br>Contacts</a>
+            </div>
+          {{/if}}
+          {{#if includeDashboard}}
+            <div class="col-md-6 col-lg-4 includeDashboard">
+                <a class="d-block mx-auto portfolio-item dashboardMenu" data-toggle="modal" href="/dashboard">
+                    <div class="d-flex portfolio-item-caption position-absolute h-100 w-100">
+                        <div class="my-auto portfolio-item-caption-content w-100 text-center text-white"><i class="fas fa-tachometer-alt fa-3x"></i></div>
+                    </div><br>Dashboard</a>
+            </div>
+          {{/if}}
+          {{#if includeExpenseClaims}}
+            <div class="col-md-6 col-lg-4 includeExpenseClaims">
+                <a class="d-block mx-auto portfolio-item dashboardMenu" data-toggle="modal" href="/expenseclaims/current-claims">
+                    <div class="d-flex portfolio-item-caption position-absolute h-100 w-100">
+                        <div class="my-auto portfolio-item-caption-content w-100 text-center text-white"><i class="far fa-money-bill-alt fa-3x"></i></div>
+                    </div><br>Expense Claims</a>
+            </div>
+          {{/if}}
+          {{#if includeFixedAssets}}
+            <div class="col-md-6 col-lg-4 includeFixedAssets">
+                <a class="d-block mx-auto portfolio-item dashboardMenu" data-toggle="modal" href="/fixedassets/draft">
+                    <div class="d-flex portfolio-item-caption position-absolute h-100 w-100">
+                        <div class="my-auto portfolio-item-caption-content w-100 text-center text-white"><i class="fas fa-clipboard-list fa-3x"></i></div>
+                    </div><br>Fixed Assets</a>
+            </div>
+          {{/if}}
+          {{#if includeInventory}}
+            <div class="col-md-6 col-lg-4 includeInventory">
+                <a class="d-block mx-auto portfolio-item dashboardMenu" data-toggle="modal" href="/productexpresslist">
+                    <div class="d-flex portfolio-item-caption position-absolute h-100 w-100">
+                        <div class="my-auto portfolio-item-caption-content w-100 text-center text-white"><i class="fas fa-box-open fa-3x"></i></div>
+                    </div><br>Inventory</a>
+            </div>
+          {{/if}}
+          {{#if includeMain}}
+            <div class="col-md-6 col-lg-4 includeMain">
+                <a class="d-block mx-auto portfolio-item dashboardMenu" data-toggle="modal" href="/home">
+                    <div class="d-flex portfolio-item-caption position-absolute h-100 w-100">
+                        <div class="my-auto portfolio-item-caption-content w-100 text-center text-white"><i class="fas fa-home fa-3x"></i></div>
+                    </div><br>Main</a>
+            </div>
+          {{/if}}
+          {{#if includeManufacturing}}
+            <div class="col-md-6 col-lg-4 includeManufacturing">
+                <a class="d-block mx-auto portfolio-item dashboardMenu" data-toggle="modal" href="/manufacturing">
+                    <div class="d-flex portfolio-item-caption position-absolute h-100 w-100">
+                        <div class="my-auto portfolio-item-caption-content w-100 text-center text-white"><i class="fas fa-building fa-3x"></i></div>
+                    </div><br>Manufacturing</a>
+            </div>
+          {{/if}}
+          {{#if includePayments}}
+            <div class="col-md-6 col-lg-4 includePayments">
+                <a class="d-block mx-auto portfolio-item dashboardMenu" data-toggle="modal" href="/customerpaymentlist">
+                    <div class="d-flex portfolio-item-caption position-absolute h-100 w-100">
+                        <div class="my-auto portfolio-item-caption-content w-100 text-center text-white"><i class="fas fa-handshake fa-3x"></i></div>
+                    </div><br>Payments</a>
+            </div>
+          {{/if}}
+          {{#if includePurchases}}
+            <div class="col-md-6 col-lg-4 includePurchases">
+                <a class="d-block mx-auto portfolio-item dashboardMenu" data-toggle="modal" href="/purchases">
+                    <div class="d-flex portfolio-item-caption position-absolute h-100 w-100">
+                        <div class="my-auto portfolio-item-caption-content w-100 text-center text-white"><i class="fas fa-wallet fa-3x"></i></div>
+                    </div><br>Purchases</a>
+            </div>
+          {{/if}}
+          {{#if includeReports}}
+            <div class="col-md-6 col-lg-4 includeReports">
+                <a class="d-block mx-auto portfolio-item dashboardMenu" data-toggle="modal" href="/allreports">
+                    <div class="d-flex portfolio-item-caption position-absolute h-100 w-100">
+                        <div class="my-auto portfolio-item-caption-content w-100 text-center text-white"><i class="fas fa-chart-bar fa-3x"></i></div>
+                    </div><br>Reports</a>
+            </div>
+          {{/if}}
+          {{#if includeSales}}
+            <div class="col-md-6 col-lg-4 includeSales">
+                <a class="d-block mx-auto portfolio-item dashboardMenu" data-toggle="modal" href="/allsales">
+                    <div class="d-flex portfolio-item-caption position-absolute h-100 w-100">
+                        <div class="my-auto portfolio-item-caption-content w-100 text-center text-white"><i class="fas fa-money-check-alt fa-3x"></i></div>
+                    </div><br>Sales</a>
+            </div>
+          {{/if}}
+          {{#if includeSettings}}
+            <div class="col-md-6 col-lg-4 includeSettings">
+                <a class="d-block mx-auto portfolio-item dashboardMenu" data-toggle="modal" href="/settings">
+                    <div class="d-flex portfolio-item-caption position-absolute h-100 w-100">
+                        <div class="my-auto portfolio-item-caption-content w-100 text-center text-white"><i class="fas fa-cogs fa-3x"></i></div>
+                    </div><br>Settings</a>
+            </div>
+          {{/if}}
+          {{#if includeShipping}}
+            <div class="col-md-6 col-lg-4 includeShipping">
+                <a class="d-block mx-auto portfolio-item dashboardMenu" data-toggle="modal" href="/shipping">
+                    <div class="d-flex portfolio-item-caption position-absolute h-100 w-100">
+                        <div class="my-auto portfolio-item-caption-content w-100 text-center text-white"><i class="fa fa-truck fa-3x"></i></div>
+                    </div><br>Shipping</a>
+            </div>
+          {{/if}}
+          {{#if includeStockTake}}
+            <div class="col-md-6 col-lg-4 includeStockTake">
+                <a class="d-block mx-auto portfolio-item dashboardMenu" data-toggle="modal" href="/stocktake">
+                    <div class="d-flex portfolio-item-caption position-absolute h-100 w-100">
+                        <div class="my-auto portfolio-item-caption-content w-100 text-center text-white"><i class="fa fa-server fa-3x"></i></div>
+                    </div><br>Stock Take</a>
+            </div>
+          {{/if}}
+          {{#if includeStockTransfer}}
+            <div class="col-md-6 col-lg-4 includeStockTransfer">
+                <a class="d-block mx-auto portfolio-item dashboardMenu" data-toggle="modal" href="/stocktransfer">
+                    <div class="d-flex portfolio-item-caption position-absolute h-100 w-100">
+                        <div class="my-auto portfolio-item-caption-content w-100 text-center text-white"><i class="fa fa-tasks fa-3x"></i></div>
+                    </div><br>Stock Transfer</a>
+            </div>
+          {{/if}}
+        </div>
+        <div class="row">
+          <div class="col-md-6 col-lg-4 includeLogOut" style="width:95%!important;">
+              <a class="d-block mx-auto portfolio-item dashboardMenu" data-toggle="modal" href="/">Log Out</a>
+          </div>
+        </div>
+    </div>
+</section>
+        <!-- <div id="wrapper_main"> -->
+            <!-- <main id="page-content-wrapper_main" role="main">
+                <div class="dashboard_container">
+                    <div class="dashboard_col1">
+                        {{>bankAccountsWidget}}
+                        {{>businessSavingAccount}}
+                        {{>totalCashWidget}}
+                    </div>
+
+                    <div class="dashboard_col2">
+                        {{>accountWatchlistWidget}}
+                        {{>invoiceOwedWidget}}
+                        {{>billsPendingWidget}}
+                        {{>expenseClaimsWidget}}
+                    </div>
+                </div>
+
+                <script>
+                jQuery(document).ready(function() {
+                    jQuery('.editdashhiddendiv').hide();
+                    jQuery("#editdash_linkcontent a").css('cursor', 'pointer').click(function() {
+                        var $this = $(this);
+                        $this.next("div").fadeToggle(200);
+                        $('.editdashhiddendiv').not($this.next("div")).fadeOut(800);
+                    });
+                });
+                </script>
+
+                <div class="dashboard_edit_link" id="editdash_linkcontent">
+                    <a href="#" class="toggle">Edit dashboard</a>
+                    <div class="editdashhiddendiv">
+                    <div class="editdash_btns">
+                      <a href="#" class="toggle edtcancel">Cancel</a>
+                      <a href="#" class="edtsave">Save Changes</a>
+                    </div>
+                    </div>
+                </div>
+            </main> -->
+        <!-- </div> -->
+    </div>
+</template>

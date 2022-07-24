@@ -1,0 +1,130 @@
+<template name="InvoiceReminders">
+    <div class="InvoiceReminders">
+        <div class="active_page">
+            <div class="active_page_content">
+                <p><a href="/settings">General Settings</a> &nbsp;›&nbsp;
+                </p><br>
+                <h1>Invoice Reminders</h1>
+            </div>
+        </div>
+        <div class="invoice_reminders_bg">
+            <div id="wrapper_main">
+                <div class="invoice_reminders_panel">
+                    <div class="top_checkbox"><label><input type="checkbox" name="vehicle1" value="Bike">Email customers when an invoice is...</label></div>
+                    <div class="container_innerCt">
+                        <div class="invoicereminder-container">
+                            <div class="invoicereminder-box">
+                                <p><i class="fa fa-envelope-o" aria-hidden="true"></i></p>
+                                <div class="invoicereminder-item-offset">14 days overdue</div>
+                                <div class="invoicereminder-edit">Edit</div>
+                            </div>
+                        </div>
+                        <div class="invoicereminder-container">
+                            <div class="invoicereminder-box">
+                                <p><i class="fa fa-envelope-o" aria-hidden="true"></i></p>
+                                <div class="invoicereminder-item-offset">21 days overdue</div>
+                                <div class="invoicereminder-edit">Edit</div>
+                            </div>
+                        </div>
+                        <div class="invoicereminder-container">
+                            <div class="invoicereminder-box">
+                                <p><i class="fa fa-envelope-o" aria-hidden="true"></i></p>
+                                <div class="invoicereminder-item-offset">28 days overdue</div>
+                                <div class="invoicereminder-edit">Edit</div>
+                            </div>
+                        </div>
+                        <div class="invoicereminder-container invoicereminder-add">
+                            <div class="invoicereminder-box">
+                                <div>+ Add reminder</div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="invoice_reminders_label">
+                        <label><input type="checkbox" name="vehicle1" value="Bike">Include quick link to online invoice
+                            and detail summary</label>
+                        <label><input type="checkbox" name="vehicle2" value="Car"> Include a link to the invoice
+                            PDF</label>
+                        <label><input type="checkbox" name="vehicle3" value="Boat" checked> Don't send reminders for
+                            amounts owing on an invoice under <input id="minimumValueField-inputEl" type="text">
+                        </label>
+
+                        <span class="email_id">Send replies to  goldcraige2@gmail.com</span>
+                    </div>
+                    <div class="invoic_footer">
+                        <button type="button" class="send_new">Save</button>
+                    </div>
+                </div>
+                <div class="new_create_footer_container">
+                    <div class="new_create_footer">
+                        <h3>History</h3>
+                        <div class="last">
+                            <b>Reminders — </b><span class="header">Deleted for invoices 7 days overdue.</span><br><span
+                                class="date">By Gold Craige, 21 Sep 2018</span>
+                        </div>
+                        <a href="#"> Show all (2)</a>
+                        <div id="AddNote">
+                            <div class="search_box_inner">
+                                <div class="notes">
+                                    <label>Note:</label>
+                                </div>
+                                <textarea id="allnotes" name="allnotes" style="width:350px; height:125px;" rows="8"
+                                          cols="80"></textarea>
+                            </div>
+                            <div class="" style="width:352px;">
+                            <span class=""><button type="button" class="send_new"
+                                                   id="addNote"><span>Save</span></button></span>
+                                <span class=""><button type="button"
+                                                       class="list_search cancel_new"><span>Cancel</span></button></span>
+                            </div>
+                        </div>
+                        <table id="Notes">
+                            <thead>
+                            <tr class="faux-thead">
+                                <td>Changes</td>
+                                <td>Date</td>
+                                <td>User</td>
+                                <td class="details" style="width:500px;">Details</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr class="xoHistoryNote default" id="ext-gen107">
+                                <td class="changes">Approved&nbsp;</td>
+                                <td class="date">7 Aug 2018 8:02 p.m.&nbsp;</td>
+                                <td class="user">gold craige&nbsp;</td>
+                                <td>Payment made to Heritage Trust on 1 August 2018 for 132.00. This bill has been fully
+                                    paid
+                                </td>
+                            </tr>
+                            <tr class="xoHistoryNote default" id="ext-gen108">
+                                <td class="changes">Created&nbsp;</td>
+                                <td class="date">7 Aug 2018 8:02 p.m.&nbsp;</td>
+                                <td class="user">gold craige&nbsp;</td>
+                                <td> Planned to pay on 1 Aug 2018.</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <script>
+                            $('.Show').click(function () {
+                                $('#AddNote').show(500);
+                                $('.Show').hide(0);
+                                $('.Hide').show(0);
+                            });
+                            $('.Hide').click(function () {
+                                $('#AddNote').hide(500);
+                                $('.Show').show(0);
+                                $('.Hide').hide(0);
+                            });
+                            $('.list_search').click(function () {
+                                $('#AddNote').toggle('slow');
+                                $("#allnotes").focus();
+                            });
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</template>

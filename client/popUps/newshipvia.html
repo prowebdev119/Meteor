@@ -1,0 +1,28 @@
+<template name="newshipvia">
+
+    <div class="modal-dialog modal-sm modal-dialog-centered" role="document" style="max-width: 400px;">
+        <div class="modal-content">
+            <form id="newshipvia" name="newshipvia">
+                <div class="modal-header">
+                    <h4><div name="newShipViaMethodName" id="newShipViaMethodName">Add Ship Via</div></h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body" style="padding: 8px 24px;">
+                    <input type="hidden" id="edtShipViaID" name="edtShipViaID" class="form-control">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group flex-grow-1" style="margin: 8px 0px;">
+                                <label>Ship Via Method</label>
+                                <input type="text" id="edtShipVia" name="edtShipVia" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-success btnSaveShipVia" type="button"><i class="fa fa-save" style="margin-right: 5px;"></i>Save</button>
+                    <button class="btn btn-secondary" data-dismiss="modal" type="button"><i class="fa fa-remove" style="margin-right: 5px;"></i>Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</template>

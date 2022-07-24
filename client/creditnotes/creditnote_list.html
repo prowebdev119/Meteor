@@ -1,0 +1,122 @@
+<template name="creditnotelist">
+  <div class="active_page">
+  <div class="active_page_content">
+  <!--<p><a href="/solist">Sales</a> &nbsp;›&nbsp;</p><br>-->
+  <h1>Credit Notes</h1>
+  </div>
+</div>
+      <div class="tabs_line_break"></div>
+  <div id="wrapper_main">
+   <main id="page-content-wrapper_main" role="main">
+   <!-- <h4>Content Here!</h4> -->
+   <br><a href="#" class="new_create_btn">+ New Credit Note</a>
+   <div class = "tabinator">
+  <input type = "radio" id = "tab1" name = "tabs" checked>
+  <label for = "tab1">All</label>
+  <!--<input type = "radio" id = "tab2" name = "tabs">
+  <label for = "tab2">Draft (0)</label>
+  <input type = "radio" id = "tab3" name = "tabs">
+  <label for = "tab3">Sent (0)</label>
+  <input type = "radio" id = "tab4" name = "tabs">
+  <label for = "tab4">Declinded (0)</label>
+  <input type = "radio" id = "tab5" name = "tabs">
+  <label for = "tab5">Accepted (0)</label>
+  <input type = "radio" id = "tab6" name = "tabs">
+  <label for = "tab6">Invoiced (0)</label> -->
+
+<div id="search_box">
+<div class="search_box_inner">
+  <a href="#" class="list_search"><i class="fa fa-times" aria-hidden="true"></i></a>
+  <table>
+  	<tbody>
+  		<tr>
+  			<td>
+        <label>Search for</label>
+        <input type="text" id="mySearchInput" placeholder="Number, Reference, Supplier or Amount">
+        </td>
+  			<td>
+        <label>Within</label>
+        <select id="mySearchDropdown">
+          <option value=""></option>
+          <option value="Any Date">Any Date</option>
+          <option value="Date Created">Date Created</option>
+          <option value="Due Date">Due Date</option>
+        </select>
+        </td>
+  			<td>
+        <label>Start</label>
+        <input class="datepick" id="listdatepickerstart">
+        </td>
+  			<td><label>End</label>
+        <input class="datepick" id="listdatepickerend">
+        </td>
+  			<td><label></label><button id="search_list">Search</button></td>
+  			<td><label></label><a href="#" id="searchreset" class="list_reset">Reset</a></td>
+  			<td> </td>
+  			<td> </td>
+  		</tr>
+  	</tbody>
+  </table>
+</div>
+</div>
+
+
+<script>
+$('.Show').click(function() {
+    $('#search_box').show(500);
+    $('.Show').hide(0);
+    $('.Hide').show(0);
+});
+$('.Hide').click(function() {
+    $('#search_box').hide(500);
+    $('.Show').show(0);
+    $('.Hide').hide(0);
+});
+$('.list_search').click(function() {
+    $('#search_box').toggle('slow');
+});
+</script>
+
+  <div id = "content1">
+    <div class="list_search_container"><a href="#" class="list_search">Search</a>
+    </div>
+    <table id="creditnotelist" style="width: 100%" class="table table-hover table-bordered">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Number</th>
+                    <th>Ref</th>
+                    <th>Supplier</th>
+                    <th>Date</th>
+                    <th>Due Date</th>
+                    <th>Paid</th>
+                    <th>Due</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+        </table>
+  </div>
+<!--  <div id = "content2">
+    <p>Donec mattis laoreet suscipit. Donec blandit quam sed justo mattis, et hendrerit leo sodales. Donec elit leo, sollicitudin sed purus vitae, iaculis iaculis lacus. Proin quis leo a purus gravida ultricies. Nam molestie a nisi sed scelerisque. Proin in suscipit sem, in viverra libero. Proin quam diam, consequat vitae arcu eget, egestas ultrices eros. Donec sed fermentum lorem. Nam dolor sem, aliquam dapibus rutrum id, tempor ac leo. Vestibulum in neque id eros tristique lacinia. Duis a bibendum dolor, nec cursus eros. Morbi quis enim eu quam gravida lacinia. Etiam tincidunt venenatis felis quis pellentesque. Sed sagittis elit vitae arcu malesuada, quis dapibus libero porttitor.
+    </p>
+  </div>
+  <div id = "content3">
+    <p>Integer consequat iaculis porta. Integer semper maximus erat, vel posuere libero fermentum ut. Quisque convallis imperdiet diam, eget mollis risus semper non. Quisque dictum feugiat finibus. Nulla quis lectus augue. Fusce id nulla quis ipsum consequat consectetur in sed felis. Nullam eu urna sollicitudin, sodales risus sit amet, lacinia magna. Mauris placerat metus vitae urna efficitur rutrum. Mauris lobortis ut ex vitae condimentum. Integer venenatis urna ut lectus efficitur pretium. Donec ut ullamcorper urna, nec commodo est. Fusce in nibh sed lectus laoreet fermentum vestibulum a dolor. Donec pulvinar urna sed leo consequat, et vulputate nunc pellentesque. Maecenas ex nisl, pretium sed efficitur vitae, ultricies ut risus.
+    </p>
+  </div>
+  <div id = "content4">
+    <p>Duis tempor sapien ac enim laoreet, volutpat tincidunt mi cursus. Integer bibendum pharetra nisl, non mollis dui ullamcorper vel. Curabitur lacinia consectetur velit. In finibus metus velit, quis mollis libero feugiat non. Maecenas est nunc, dapibus non sem eu, ornare consectetur ipsum. Phasellus elit metus, iaculis vitae est et, pharetra ornare lacus. Cras id tristique lorem, posuere molestie leo. Maecenas varius nisi non maximus sollicitudin. Phasellus et tellus tincidunt, porta mauris ut, faucibus augue. Mauris vehicula erat sed magna iaculis, vel fringilla velit sagittis.
+    </p>
+  </div>
+  <div id = "content5">
+    <p>Duis tempor sapien ac enim laoreet, volutpat tincidunt mi cursus. Integer bibendum pharetra nisl, non mollis dui ullamcorper vel. Curabitur lacinia consectetur velit. In finibus metus velit, quis mollis libero feugiat non. Maecenas est nunc, dapibus non sem eu, ornare consectetur ipsum. Phasellus elit metus, iaculis vitae est et, pharetra ornare lacus. Cras id tristique lorem, posuere molestie leo. Maecenas varius nisi non maximus sollicitudin. Phasellus et tellus tincidunt, porta mauris ut, faucibus augue. Mauris vehicula erat sed magna iaculis, vel fringilla velit sagittis.
+    </p>
+  </div>
+  <div id = "content6">
+    <p>Duis tempor sapien ac enim laoreet, volutpat tincidunt mi cursus. Integer bibendum pharetra nisl, non mollis dui ullamcorper vel. Curabitur lacinia consectetur velit. In finibus metus velit, quis mollis libero feugiat non. Maecenas est nunc, dapibus non sem eu, ornare consectetur ipsum. Phasellus elit metus, iaculis vitae est et, pharetra ornare lacus. Cras id tristique lorem, posuere molestie leo. Maecenas varius nisi non maximus sollicitudin. Phasellus et tellus tincidunt, porta mauris ut, faucibus augue. Mauris vehicula erat sed magna iaculis, vel fringilla velit sagittis.
+    </p>
+  </div>-->
+</div>
+ </main>
+ </div>
+</template>

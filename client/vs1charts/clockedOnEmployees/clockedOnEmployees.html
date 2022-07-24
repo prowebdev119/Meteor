@@ -1,0 +1,48 @@
+<template name="clockedOnEmployees">
+    <div class="card shadow mb-4 portlet ui-widget ui-widget-content ui-helper-clearfix ui-corner-all ui-resizable">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h6 class="text-primary font-weight-bold m-0">Clocked On Employees</h6>
+
+            <div class="dropdown no-arrow">
+                <a class="on-editor-change-mode btn btn-link hideelement" role="presentation" href="">Hide</a>
+                <button class="btn btn-link btn-sm dropdown-toggle btnchartdropdown" data-toggle="dropdown"
+                    aria-expanded="false" type="button"><i class="fas fa-ellipsis-v text-gray-400"></i></button>
+                <div class="dropdown-menu shadow dropdown-menu-right animated--fade-in" role="menu">
+                    <a class="dropdown-item" role="presentation" href="#">&nbsp;Last Month</a>
+                    <a class="dropdown-item" role="presentation" href="#">&nbsp;Current Month</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" role="presentation" href="#">&nbsp;More Details</a>
+                    <div class="dropdown-divider"></div>
+                    <a id="editchartemkployeecompletedjobs" class="dropdown-item editchartsbtn pointer"
+                        role="presentation" data-toggle="modal" data-target="#editDashboardModal">Edit
+                        Chart</a>
+                    <a id="" class="dropdown-item pointer" role="presentation">Reset Chart</a>
+                    <!-- <a class="dropdown-item" role="presentation" href="#">&nbsp;Current Month</a> 
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" role="presentation" href="#">&nbsp;Something else here</a> -->
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+
+            <div class="row no-gutters align-items-center" style="margin-bottom: 20px;margin-top: 20px;">
+                {{#if clockedOnEmpData}}
+                    {{#each itemclockedemp in clockedOnEmpData}}
+                    <div class="col-6">
+                        <div
+                            class="text-dark d-xl-flex flex-column justify-content-xl-center font-weight-bold h5 mb-0 mr-3">
+                            <a href="#">
+                                <p style="text-overflow: ellipsis; overflow: hidden; width: 100%; white-space: nowrap;">
+                                    <img src="img/avatar.png" style="width: 45px;margin-right: 10px; margin-bottom: 10px; ">{{itemclockedemp.employeename}}
+                                </p>
+                            </a>
+                        </div>
+                    </div>
+                    {{/each}}
+                {{/if}}
+
+            </div>
+
+        </div>
+    </div>
+</template>

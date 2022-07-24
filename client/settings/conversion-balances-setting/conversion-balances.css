@@ -1,0 +1,465 @@
+.conversionBalancesSettings {
+    width: 100%;
+    float: left;
+}
+
+.conversionBalancesSettings .active_page_content h1 {
+    border: 0;
+    margin-bottom: 0;
+}
+
+.conversionBalancesSettings .AllPagePadding {
+    float: left;
+    width: 100%;
+    padding-top: 1.5em;
+}
+
+.conversionBalancesSettings .AllPagePadding .secondaryButtons {
+    float: left;
+    width: 100%;
+}
+
+.conversionBalancesSettings .AllPagePadding .secondaryButtons button.btn.btn-default {
+    font: bold 12px Helvetica, sans-serif;
+    color: #048abb;
+    background-color: #fafafa;
+    border-color: #ccc;
+    border-radius: 3px;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: rgba(255, 255, 255, 0.3) 0 0 0 1px inset;
+    box-sizing: border-box;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+    margin: 0px 0px 0px 7px;
+    padding: 6px 12px;
+    position: relative;
+    text-align: center;
+    -webkit-transition: opacity .2s ease-out;
+    transition: opacity .2s ease-out;
+    white-space: nowrap;
+    -moz-user-select: -moz-none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiP…dpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==);
+    background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #e6eaec));
+    background: -webkit-linear-gradient(#ffffff, #e6eaec);
+    background: -webkit-linear-gradient(#ffffff, #e6eaec);
+    background: linear-gradient(#ffffff, #e6eaec);margin-left: 0;
+}
+
+.conversionBalancesSettings .AllPagePadding .balancesTabs {
+    width: 100%;
+    float: left;
+    margin-top: 10px;
+}
+
+.conversionBalancesSettings .conversionBg {
+    float: left;
+    width: 100%;
+    background: #fff;
+}
+
+.conversionBalancesSettings .AllPagePadding .balancesTabs .HalfWidth {
+    background-color: #e8f1ff;
+    border: 1px solid #c1c1c1;
+    border-width: 1px 1px 0;
+    float: left;
+    padding: 10px 0;
+    width: 100%;
+    padding-bottom: 0;
+}
+
+.conversionBalancesSettings .AllPagePadding .balancesTabs ul.nav.nav-tabs {
+    margin-bottom: 23px;
+}
+
+.conversionBalancesSettings .AllPagePadding .balancesTabs ul.nav.nav-tabs a {
+    font-size: 11PX;
+    font-weight: 700;
+    color: #000;
+    padding: 4px 15px;
+}
+
+.conversionBalancesSettings .AllPagePadding .balancesTabs .paddingLeft {
+    padding-left: 0;
+}
+
+.conversionBalancesSettings .AllPagePadding .balancesTabs .accountBalancesGrid {
+    width: 95%;
+    float: none;
+    margin: auto;
+}
+
+.conversionBalancesSettings .AllPagePadding .balancesTabs .accountBalancesGrid ul.Title {
+    background: #d3e5fe;
+    float: left;
+    width: 100%;
+    border-bottom: 1px solid #b4b4b4;
+    font-weight: normal;
+    font-size: 11px;
+    padding: 0;
+    margin: 0;
+    padding: 3px;
+}
+
+.conversionBalancesSettings .AllPagePadding .balancesTabs .accountBalancesGrid ul.Title li {
+    float: left;
+    list-style: none;
+}
+
+.conversionBalancesSettings .AllPagePadding .balancesTabs .accountBalancesGrid ul.Title li:nth-child(1) {
+    width: 50%;
+}
+
+.conversionBalancesSettings .AllPagePadding .balancesTabs .accountBalancesGrid ul.Title li:nth-child(2) {
+    width: 20%;
+    text-align: right
+}
+
+.conversionBalancesSettings .AllPagePadding .balancesTabs .accountBalancesGrid ul.Title li:nth-child(3) {
+    width: 20%;
+    text-align: right
+}
+
+.conversionBalancesSettings .AllPagePadding .balancesTabs .accountBalancesGrid ul.Title li:nth-child(4) {
+    width: 10%;
+}
+
+.conversionBalancesSettings .AllPagePadding .balancesTabs .accountBalancesGrid ul.balancesData {
+    background: #fff;
+    float: left;
+    width: 100%;
+    border-bottom: 1px solid #b4b4b4;
+    font-weight: normal;
+    font-size: 11px;
+    padding: 0;
+    margin: 0;
+    display: flex;
+
+}
+
+.conversionBalancesSettings .AllPagePadding .balancesTabs .accountBalancesGrid ul.balancesData li {
+    float: left;
+    list-style: none;
+    border-right: solid 1px #ccc;
+    padding: 3px;
+}
+
+.conversionBalancesSettings .AllPagePadding .balancesTabs .accountBalancesGrid ul.balancesData li:nth-child(1) {
+    width: 55%;
+}
+
+.conversionBalancesSettings .AllPagePadding .balancesTabs .accountBalancesGrid ul.balancesData li:nth-child(2) {
+    width: 20%;
+}
+
+.conversionBalancesSettings .AllPagePadding .balancesTabs .accountBalancesGrid ul.balancesData li:nth-child(3) {
+    width: 20%;
+}
+
+.conversionBalancesSettings .AllPagePadding .balancesTabs .accountBalancesGrid ul.balancesData li:nth-child(4) {
+    width: 5%;
+    background: #d3e5fe;
+}
+
+
+.conversionBalancesSettings .AllPagePadding .balancesTabs .accountBalancesGrid ul.balancesData li:nth-child(4) i{
+    background: #a9adb2;
+    width: 15px;
+    height: 15px;
+    border-radius:2px;
+    margin: auto;
+    line-height: 15px;
+    color: #fff;
+    padding-top: 0;
+    font-weight: normal;
+    text-align: center;
+    cursor: pointer;
+}
+.conversionBalancesSettings .AllPagePadding .balancesTabs .accountBalancesGrid ul.balancesData li:nth-child(4) i:hover{
+    background: #D8000C;
+}
+.subdued {
+    float: left;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.conversionBalancesSettings .subdued button {
+    float: left;
+    font: bold 12px Helvetica, sans-serif;
+    color: #048abb;
+    background-color: #fafafa;
+    border-color: #ccc;
+    border-radius: 3px;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: rgba(255, 255, 255, 0.3) 0 0 0 1px inset;
+    box-sizing: border-box;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+    margin: 0px 0px 0px 7px;
+    padding: 6px 12px;
+    position: relative;
+    text-align: center;
+    -webkit-transition: opacity .2s ease-out;
+    transition: opacity .2s ease-out;
+    white-space: nowrap;
+    -moz-user-select: -moz-none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiP…dpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==);
+    background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #e6eaec));
+    background: -webkit-linear-gradient(#ffffff, #e6eaec);
+    background: -webkit-linear-gradient(#ffffff, #e6eaec);
+    background: linear-gradient(#ffffff, #e6eaec);
+
+}
+
+.conversionBalancesSettings .subdued a {
+    font-size: 11px;
+    float: left;
+    margin-left: 21px;
+}
+
+
+.conversionBalancesSettings table.conversion-total {
+    width: 100%;
+    margin-top: 10px;
+    float: left;
+}
+
+.conversionBalancesSettings table.conversion-total tr td {
+    border-top: 1px solid #999;
+    border-bottom: 3px double #999;
+    padding: 5px 0;
+    font-weight: 700;
+    font-size: 12px;
+}
+
+.conversionBalancesSettings table.conversion-total tr.no-border td {
+    border: none !important;
+    padding-top: 15px;
+}
+
+.conversionBalancesSettings table.conversion-total tr.border-top td {
+    border-bottom: 0;
+}
+
+.conversionBalancesSettings table.conversion-total tr.border-top td {
+    border-top: 1px solid #999;
+    border-bottom: none;
+    padding-top: 15px;
+    padding-bottom: 5px;
+}
+
+.conversionBalancesSettings table.conversion-total tr.border-top td input.checkbox {
+    float: left;
+    margin-right: 5px;
+    margin-top: 1px;
+}
+
+.conversionBalancesSettings .tips-header span {
+    color: #fa8100;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.conversionBalancesSettings .tips-header span i.fa.fa-question-circle{
+    font-size: 20px;
+}
+
+.conversionBalancesSettings .tips-header {
+    float: left;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.conversionBalancesSettings .tips-header a {
+    float: right;
+    color: #2baaed;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.conversionBalancesSettings .collapseDie {
+    width: 100%;
+    float: left;
+
+}
+
+.conversionBalancesSettings .panel-group {
+    margin-bottom: 0;
+}
+
+.conversionBalancesSettings .panel-default {
+    border: 1px solid #bfc8d1;
+    border-radius: 3px;
+    border-bottom: 0;
+}
+
+.conversionBalancesSettings .panel-default:last-child{
+    border-bottom: 1px solid #bfc8d1;
+}
+.conversionBalancesSettings .panel-default > .panel-heading {
+    background: transparent;
+}
+
+.conversionBalancesSettings .panel:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.conversionBalancesSettings h4.panel-title a {
+    font-size: 12px;
+    font-weight: normal;
+    width: 100%;
+    display: inline-block;
+}
+
+.conversionBalancesSettings h4.panel-title a:hover {
+    text-decoration: none;
+}
+
+.conversionBalancesSettings h4.panel-title i {
+    float: right;
+    font-size: 15px;
+}
+
+.conversionBalancesSettings .panel-collapse {
+    padding: 10px;
+    padding-top: 0;
+}
+
+.conversionBalancesSettings .panel-collapse:hover {
+    background: #fff;
+}
+.conversionBalancesSettings .panel-collapse p {
+    color: #7e90a2;
+    font-size: 12px;
+    margin: 0 0 1em;
+    line-height: 1.5;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+.conversionBalancesSettings .panel-collapse ul li {
+    color: #7e90a2;
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+.conversionBalancesSettings .halffooter {
+    background-color: #d7e7ff;
+    padding: 8px 0 10px;
+    float: left;
+    width: 100%;
+    text-align: right;
+    margin-top: 10px;
+    padding-right: 10px;
+}
+
+.conversionBalancesSettings .halffooter button:last-child {
+    color: #fff;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: initial;
+    width: 104px;
+}
+
+.conversionBalancesSettings .halffooter button.btn.btn-success{
+    line-height: initial;
+    width: 104px;
+}
+
+.conversionBalancesSettings a.accounts i.fa.fa-level-up {
+    transform: rotate(451deg);
+    background: #02739a;
+    margin-right: 3px;
+    width: 13px;
+    height: 13px;
+    color: #fff;
+}
+
+.conversionBalancesSettings .subdued {
+    float: left;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.conversionBalancesSettings .subdued a {
+    margin-top: 7px;
+    font: normal 11px Tahoma,sans-serif;
+    margin-left: 19px !important;
+}
+
+.conversionBalancesSettings .subdued a.accounts {
+    font: bold 12px Helvetica, sans-serif;
+    color: #048abb;
+    background-color: #fafafa;
+    border-color: #ccc;
+    border-radius: 3px;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: rgba(255, 255, 255, 0.3) 0 0 0 1px inset;
+    box-sizing: border-box;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 6px 12px;
+    position: relative;
+    text-align: center;
+    -webkit-transition: opacity .2s ease-out;
+    transition: opacity .2s ease-out;
+    white-space: nowrap;
+    -moz-user-select: -moz-none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiP…dpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==);
+    background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #e6eaec));
+    background: -webkit-linear-gradient(#ffffff, #e6eaec);
+    background: -webkit-linear-gradient(#ffffff, #e6eaec);
+    background: linear-gradient(#ffffff, #e6eaec);
+    margin-left: 0;
+    margin-top: 10px;
+    margin-left: 0 !important;
+}
+
+.conversionBalancesSettings a.accounts i.fa.fa-level-up {
+    transform: rotate(451deg);
+    background: #02739a;
+    margin-right: 3px;
+    width: 13px;
+    height: 13px;
+    color: #fff;
+}
+
+.conversionBalancesSettings .balancesDiv strong{
+    float: left;
+    color: #333;
+    font-weight:700;
+}
+
+.conversionBalancesSettings .balancesDivs td {
+    padding-top: 0 !important;
+}
+
+.conversionBalancesSettings small {
+    color: #666;
+    font-weight: 400;
+    font-size: 10px;
+}
+
+.conversionBalancesSettings table tbody tr td {
+    font-size: 12px;
+    color: #000;
+}
+
+.conversionBalancesSettings td#adjustments {
+    margin-top: 0;
+    float: left;
+}

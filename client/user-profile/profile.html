@@ -1,0 +1,228 @@
+<template name="userProfile">
+    <div class="userSettings">
+        <div class="active_page">
+            <div class="active_page_content">
+                <h1>Profile Settings</h1>
+            </div>
+        </div>
+        <!--
+        <div class="containerDefault">
+            <div id="wrapper_main">
+                <div class="barLayout">
+                    <div class="col-lg-12">
+                        <div class="col-lg-4">
+                            <img src="../img/profile-org-example.png">
+                        </div>
+                        <div class="col-md-8 barLayoutRow">
+                            <p>Join the VS1Cloud community and share your knowledge with others</p>
+                            <span>Turn on your public profile to become listed in our user directory and become part of our
+                                growing community where you can ask and give advice to like-minded VS1Cloud users. You can
+                                also
+                                help improve VS1Cloud by suggesting and voting on new features for VS1Cloud. <a
+                                        href="#" class="aboutprofiles">Find
+                                    out more about public profiles.</a></span>
+                            <div class="radioButton">
+                                <h5>Public profile</h5>
+                                <div class="radio">
+                                    <span><input type="radio" name="optradio">No</span>
+                                </div>
+                                <div class="radio">
+                                    <span><input type="radio" name="optradio">Off</span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        -->
+        <div id="wrapper_main" class="new-wrapper">
+            <div class="basicInformation">
+                <div class="heading">
+                    <b> Basic Information</b>
+                    <input style="display:none" type="text" id="userID" name="userID">
+                </div>
+                <div class="panelfield lastchild">
+                <div class="panelfield">
+                    <div class="col-lg-12 paddingMargin">
+                        <div class="col-md-2 paddingMargin">
+                            <label>Profile image</label>
+                        </div>
+                        <div class="col-md-8">
+                            <img class="imageUpload" id="uploadedImage" src="../img/avatar.png">
+                            <button type="button" class="btn-default" data-toggle="modal" id="upload" data-target="#myModal"> Upload Image</button>
+                            <div class="add-remove_logo">
+                                <button class="btn btn-default" id="changeLogo" data-toggle="modal" data-target="#myModal">Change Image</button>
+                                <button class="btn btn-default" id="removeLogo">Remove Image</button>
+                            </div>
+                        </div>
+                        <div class="col-md-2"></div>
+                    </div>
+                </div>
+                    <div class="panelfield">
+                        <div class="col-lg-12 paddingMargin">
+                            <div class="col-md-2 paddingMargin fieldOption">
+                                <label>Name</label>
+                            </div>
+                            <div class="col-md-8 userProfileEdit">
+                                <input type="text" class="form-control" id="first_name" name="first_name" placeholder="Markus">
+                                <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Jones">
+                            </div>
+                            <div class="col-md-2"></div>
+                        </div>
+                    </div>
+                    <div class="panelfield">
+                        <div class="col-lg-12 paddingMargin">
+                            <div class="col-md-2 paddingMargin">
+                                <label>Job Title</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" name="job_title" id="job_title" class="form-control">
+                            </div>
+                            <div class="col-md-2"></div>
+                        </div>
+                    </div>
+                    <div class="panelfield">
+                        <div class="col-lg-12 paddingMargin">
+                            <div class="col-md-2 paddingMargin">
+                                <label>Brief bio</label>
+                            </div>
+                            <div class="col-md-8 textareaEdit">
+                                <textarea class="form-control" rows="5" id="brief_note" name="brief_note"></textarea>
+                            </div>
+                            <div class="col-md-2 paddingMargin fontSize">200</div>
+
+                        </div>
+                    </div>
+                    <div class="panelfield">
+                        <div class="col-lg-12 paddingMargin">
+                            <div class="col-md-2 paddingMargin fieldOption">
+                                <label>Location</label>
+                            </div>
+                            <div class="col-md-8 rowInput">
+                              <!--<input type="text" id="user_location" name="user_location" class="form-control">-->
+
+                                <select class=" form-control" id="user_location" name="user_location">
+                                  <option value=""></option>
+                                  <!--
+                                    <option>Åland Islands</option>
+                                    <option>Albania</option>
+                                    <option>American Samoa</option>
+                                    <option>American Samoa</option>
+                                    <option>Angola</option>
+                                    <option>Anguilla</option>
+                                    <option>Antarctica</option>
+                                    <option>Antigua and Barbuda</option>
+                                    <option>South Africa</option>
+                                  -->
+
+                                </select>
+
+                            </div>
+                            <div class="col-md-2"></div>
+                        </div>
+                    </div>
+                    <div class="modal fade" id="myModal" role="dialog">
+                        <div class="modal-dialog">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">x</button>
+                                    <h4 class="modal-title">Upload logo</h4>
+
+                                </div>
+                                <div class="modal-body">
+                                    <p class="maximums">The maximum file size is 1MB. For best results, upload the largest logo you have, at
+                                        least 140 pixels on its shortest side.</p>
+                                    <form>
+                                        <div class="form-group relative-div">
+                                            <p><b>Choose a file to upload</b></p>
+                                            <label for="FileName" class="browseBtn">Browse</label>
+                                            <label for="exampleFormControlFile1" class="Choose_file">No file selected</label>
+                                            <input type="file" name="fileInput" id="fileInput" accept="image/*/" >
+                                        </div>
+                                        <div class="check">
+                                            <label class="checkbox_div"> <input class="form-check-input" type="checkbox" checked> Use on my invoices and other documents I send to clients</label>
+
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <div class="footer-button">
+                                        <button type="submit" class="btn btn-default" data-dismiss="modal" value="submit" id="uploadImg" disabled>Upload</button>
+                                        <button type="button" class="btn cancel_new" data-dismiss="modal"> Cancel</button>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="heading">
+                    <b> Contact Details</b>
+                    <div class="panelfield">
+                        <div class="col-lg-12 paddingMargin">
+                            <div class="col-md-2 paddingMargin">
+                                <label>Phone</label>
+                            </div>
+                            <div class="col-md-8">
+                              <!--
+                                <input type="text" class="form-control" placeholder="Country">
+                                <input type="text" class="form-control" placeholder="Area">
+                                -->
+                                <input type="text" class="form-control" name="phone" id="phone" placeholder="">
+
+                            </div>
+                            <div class="col-md-2 addPhoneNo paddingMargin">
+                                <a href="#" class="close"></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panelfield">
+                        <div class="col-lg-12 paddingMargin">
+                            <div class="col-md-2 paddingMargin">
+                                <label>Email</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" name="email" id="email" class="form-control">
+                            </div>
+                            <div class="col-md-2 addPhoneNo paddingMargin"> <a href="#" class="close"></a></div>
+                        </div>
+                    </div>
+                    <!--
+                    <div class="addContact">
+                        <div class="dropdown ">
+                            <a class="addContact" href="#" data-toggle="dropdown">Add contact field <span
+                                    class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Mobile</a></li>
+                                <li><a href="#">Fax</a></li>
+                                <li><a href="#">DDI</a></li>
+                                <li><a href="#">Skype</a></li>
+                                <li><a href="#">Linkedin</a></li>
+                                <li><a href="#">Twitter</a></li>
+                                <li><a href="#">Facebook</a></li>
+                                <li><a href="#">Google+</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    -->
+                </div>
+                <div class="heading footer">
+                    <button type="button" class="btn btn-success" id="update_profile" style="padding: 8px 12px;">Save</button>
+                    <button type="button" class="btn btn-default">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <style>
+
+    </style>
+    <script>
+      modalDraggable();
+   </script>
+</template>

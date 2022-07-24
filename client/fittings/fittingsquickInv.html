@@ -1,0 +1,149 @@
+<template name="fittingsquickInv">
+  <div class="active_page">
+  <div class="active_page_content">
+  <p><a href="/fittings">Fittings</a> &nbsp;›&nbsp;</p><br>
+  <h1>Fittings Production</h1>
+  <h4><span id="docscanbc" style=""></span></h4>
+  <input type="text" id="SalesId" name="SalesId" style="display: none;" readonly>
+  </div>
+</div>
+      <div class="tabs_line_break" style="padding-bottom: 45px;"></div>
+  <div id="wrapper_main">
+   <main id="page-content-wrapper_main" role="main">
+<audio id="xyz" src="/sounds/system-fault.mp3" preload="auto"></audio>
+   <br>
+   <div class="reports_container1" style="float: none; margin-top: -15px;">
+     <div class="search_box_inner" style="padding-bottom: 13px;">
+         <table class="invoice_list_search" style="width: 100%;">
+         <tbody>
+           <tr>
+             <td>
+ <h3 class="page_subheader" style="width: 100%; margin-bottom: 4px; margin-left: 4px;">Company:</h3>
+               <input type="text" style="width: 100%" id="salecustomer" name="salecustomer" placeholder="Company" readonly>
+             </td>
+           </tr>
+         </tbody>
+       </table>
+     </div>
+   </div>
+   <div id="search_box">
+   <div class="search_box_inner">
+     <a href="#" class="list_search"><i class="fa fa-times" aria-hidden="true"></i></a>
+     <table style="width: 42%">
+     	<tbody>
+     		<tr>
+     			<td>
+           <label>Search for</label>
+           <input type="text" id="mySearchInput" placeholder="Product, Description or Ordered">
+           </td>
+     			 <td><label></label><button id="search_list">Search</button></td>
+     			<td><label></label><a href="#" id="searchreset" class="list_reset">Reset</a></td>
+     			<td> </td>
+     			<td> </td>
+     		</tr>
+     	</tbody>
+     </table>
+   </div>
+   </div>
+
+<audio id="player"></audio>
+
+   <script>
+   $('.Show').click(function() {
+       $('#search_box').show(500);
+       $('.Show').hide(0);
+       $('.Hide').show(0);
+   });
+   $('.Hide').click(function() {
+       $('#search_box').hide(500);
+       $('.Show').show(0);
+       $('.Hide').hide(0);
+   });
+   $('.list_search').click(function() {
+       $('#search_box').toggle('slow');
+   });
+   </script>
+
+   <div id = "contentshipdock" >
+     <table id="shipscanlist" style="width: 100%;" class="table table-hover table-bordered dataTable no-footer">
+           <thead>
+               <tr>
+                   <th style="display:none "></th>
+                   <th>Product</th>
+                   <th>Description</th>
+                   <th>Quantity Built</th>
+                   <th>To Be Built</th>
+                   <th style="display:none">ID</th>
+                   <th style="display:none">PQA</th>
+                   <th style="display:none">UOMQtyShipped</th>
+                   <th style="display:none">UOMQtyBackOrder</th>
+                   <th style="display: none;">ProductID</th>
+                   <th></th>
+
+                   <!--<th>Comments</th>-->
+               </tr>
+           </thead>
+       </table>
+       <!--<div class="new_line_btn" style="margin-top: 1px;"><a href="#" id="new_create_btn" class="new_create_btn">+ Add a new line</a></div>-->
+      <hr style="margin-top: -10px; border: 0; background: #fff;">
+       <div id="serailscanlistdis" style="visibility: hidden;">
+         <div class="new_create_buttons_g2" style="width: 100%; background-color: #e8f1ff; border: 1px solid #b7bec5; border-radius: 3px; margin-bottom: 5px; padding-top: 12px; padding-right: 12px;" id="soBtns2">
+     <a href="" id="scanResult" name="scanResult"  class="scan_new"><i class="fa fa-camera" aria-hidden="true"></i> Scan</a>
+       <input type="text" name="allocBarcode" id="allocBarcode" placeholder="Enter the barcode" value="">
+           <a href="#" id="newsnbtn" class="save_new" style="margin: 0;">New Serial No</a>
+           <!--<a href="#" id="PQAScanResult" class="scan_new">+ Scan</a>-->
+           <a href="#" id="btnsaveallocline" class="save_new" style="margin: 0; display: none;">Save</a>
+           <a href="#" id="serialistclose" class="cancel_new" style="margin: 0;">Close</a>
+         </div>
+         <input type="text" id="prodID" name="prodID" style="display: none;" readonly>
+         <input type="text" id="orderQty" name="orderQty" style="display: none;" readonly>
+         <input type="text" id="deptID" name="deptID" style="display: none;" readonly>
+         <input type="text" id="pqaID" name="pqaID" style="display: none;" readonly>
+         <input type="text" id="salesLineRow" name="salesLineRow" style="display: none;" readonly>
+       <table id="serailscanlist" style="width: 100%;" class="table table-hover table-bordered dataTable no-footer">
+             <thead>
+                 <tr>
+                   <th style="width: 10px;">No.</th>
+                     <th>Batch</th>
+                     <th>Bin</th>
+                     <th>Serial No</th>
+                     <th style="width: 10px; color: rgba(0, 0, 0, 0);">P1</th>
+                     <!--<th>Comments</th>-->
+                 </tr>
+             </thead>
+         </table>
+       </div>
+
+       <div class="new_create_footer_container">
+         <div class="shippingdoc_footer2">
+         <h3>Shipping Address</h3>
+         <textarea name="shipaddress" id="shipaddress"></textarea>
+         </div>
+         <div class="shippingdoc_footer2">
+         <h3>Comments</h3>
+         <textarea name="shipcomments" id="shipcomments"></textarea>
+         </div>
+
+         <div class="shippingdoc_footer2">
+         <h3>Con. Note</h3>
+         <textarea name="shipconnote" id="shipconnote" style="height: 36px;"></textarea><br>
+         <h3>Ship Via</h3>
+         <select name="shipvia" id="shipvia">
+           <option value="">Please Select</option>
+         </select>
+         </div>
+      </div>
+
+         <div class="new_create_buttons">
+         <div class="new_create_buttons_g1">
+           <input id="save_fitting" type="submit" class="save_new" value="Save">
+         </div>
+         <div class="new_create_buttons_g2" id="soBtns2">
+           <a href="/fittings" id="shipdoccancel" class="cancel_new">Cancel</a>
+         </div>
+         </div>
+
+</div>
+ </main>
+ </div>
+</template>

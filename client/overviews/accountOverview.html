@@ -1,0 +1,746 @@
+<template name="accountsoverview">
+    <style>
+        .dimmedChart>div {
+            background-color: #dddfeb !important;
+        }
+
+        .hideelement {
+            display: none !important;
+        }
+
+        .showelement {
+            display: block;
+        }
+
+        .card.hovered {
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.50) !important;
+            cursor: move;
+            transition-duration: 300ms;
+
+        }
+    </style>
+    <div class="container-fluid">
+        <div class="fullScreenSpin" style="display:none;">
+            <div class="spinner"></div>
+        </div>
+
+
+
+        <!-- <style>
+            .dataTables_filter {
+                display: none;
+            }
+        </style> -->
+
+        <header class="p-0 d-flex align-items-center">
+            <h2 class="mr-1">Accounts Overview</h2>
+
+            <a class="m-1" role="button" data-toggle="modal" href="#helpViewModal" style="font-size: 20px;">Help <i
+                    class="fa fa-question-circle-o" style="font-size: 20px;"></i></a>
+            <!-- Start Help View Modal -->
+            <div class="modal fade" role="dialog" tabindex="-1" id="helpViewModal">
+                <div class="modal-dialog modal-sm" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header" style="padding-bottom: 8px;">
+                            <h4>Help</h4><button type="button" class="close" data-dismiss="modal"
+                                aria-label="Close"><span aria-hidden="true">×</span></button>
+                        </div>
+                        <div class="modal-body">
+                            <p class="text-center text-muted"><a role="button" data-toggle="modal" href="#helpModal"
+                                    class="btn btn-primary helpModal">View Help Video</a></p>
+                            <p class="text-center text-muted"><a href="https://vs1forum.com/viewtopic.php?f=6&t=30"
+                                    target="_blank" class="btn btn-primary">Download Help File</a></p>
+                            <p class="text-center text-muted"><button class="btn btn-primary" type="button">Employ
+                                    Advisor</button></p>
+                            <p class="text-center text-muted" style="margin: 0;">
+                                <a href="https://vs1forum.com/ucp.php?mode=register&cloudusername={{loggedCompany}}"
+                                    target="_blank" class="btn btn-primary">
+                                Go To Forum
+                                </a>
+                            </p>
+                        </div>
+                        <div class="modal-footer" style="padding: 6px;"><button class="btn btn-light"
+                                data-dismiss="modal" type="button">Close</button></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="buttons" style="margin-left: auto; display: flex; gap: 0.5rem; flex-direction: row;">
+                <button class="btn btn-primary btnBatchUpdate" id="btnBatchUpdate" type="button">
+                    <i class="fas fa-sync-alt" style="padding-right: 5px;"></i>Update Reporting Tables</button>
+            </div>
+        </header>
+
+        <div class="d-sm-flex justify-content-between align-items-center mb-4" style="padding: 0 1.5rem 0 1.5rem;">
+
+
+        </div>
+        <!-- All charts list -->
+        {{> allChartLists  tabGroupID="2" chartGroup="Accounts" }}
+
+        <!-- <div class="row">
+            <div class="col">
+                <a class="btn btnOpenSettings float-right" role="button" data-toggle="modal" href="#myModal2" style="margin-right: 32px;">
+                  <i class="icon ion-android-more-horizontal"></i>
+                </a>
+            </div>
+        </div> -->
+
+        <div class="row d-xl-flex flex-row justify-content-xl-center">
+            <div class="col-7 d-xl-flex flex-grow-1 align-items-xl-start">
+                <button class="btn btn-primary btnRefresh float-left" type="button" style="margin: 12px; margin-left:0px;"><i
+                        class="la la-lightbulb-o" style="padding-right: 5px;"></i>Refresh</button>
+                <div>
+                    <a class="btn btn-primary float-left btnAddNewAccounts" role="button" data-toggle="modal"
+                        href="#addNewAccount" style="margin: 12px;"><i class="fa fa-plus"
+                            style="margin-right: 8px;"></i>New Account</a>
+                    <div class="modal fade" role="dialog" tabindex="-1" id="addNewAccount">
+                        <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered"
+                            role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 style="">
+                                        <div id="add-account-title" name="add-account-title" style="float: left;">New
+                                            Account</div>
+
+                                        <a role="button" data-toggle="modal" href="#helpViewModalAdd"
+                                            style="float: right; font-size: 20px; margin-top: 4px; margin-left: 8px;">Help
+                                            <i class="fa fa-question-circle-o" style="font-size: 20px;"></i></a>
+
+
+
+                                    </h4><button type="button" class="close" data-dismiss="modal"
+                                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                                </div>
+                                <div class="modal-body" style="background-color: #ededed;">
+                                    <input type="hidden" class="form-control" id="edtAccountID" name="edtAccountID"
+                                        style="display:none;">
+                                    <div>
+                                        <div class="d-xl-flex align-items-xl-start">
+                                            <div class="flex-grow-1">
+                                                <div class="form-group" style="margin: 4px;"><label>Account Type</label>
+                                                    <select class="form-control pointer" id="sltAccountType"
+                                                        name="sltAccountType">
+                                                        {{#each item in accounttyperecords}}
+                                                        <option value="{{item.accounttypename}}">{{item.description}}
+                                                        </option>
+                                                        {{/each}}
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="flex-grow-1">
+                                                <div class="form-group" style="margin: 4px;"><label>Account Name</label>
+                                                    <input type="text" class="form-control" id="edtAccountName"
+                                                        name="edtAccountName">
+                                                </div>
+                                            </div>
+                                            <div class="flex-grow-1">
+                                                <div class="form-group" style="margin: 4px;"><label>Account No</label>
+                                                    <input type="text" class="form-control" id="edtAccountNo"
+                                                        name="edtAccountNo">
+                                                </div>
+                                            </div>
+                                            <div class="flex-grow-1">
+                                                <div class="form-group" style="margin: 4px;"><label>Tax Code</label>
+                                                    <select type="search" class="form-control" id="sltTaxCode"
+                                                        name="sltTaxCode"
+                                                        style="background-color:rgb(255, 255, 255); cursor: pointer;">
+                                                    </select>
+                                                    <!-- select class="form-control pointer" id="sltTaxCode" name="sltTaxCode">
+                                                        {{#each item in taxraterecords}}
+                                                        <option value="{{item.codename}}">{{item.codename}}</option>
+                                                        {{/each}}
+                                                    </select> -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <hr class="reporthr" style="width: 100%;margin: 4px;">
+                                        </div>
+                                        <div class="d-xl-flex align-items-xl-center">
+                                            <div class="flex-grow-1">
+                                                <div class="d-xl-flex align-items-xl-start"></div>
+                                                <div class="d-xl-flex align-items-xl-start">
+                                                    <div class="flex-grow-1">
+                                                        <div class="form-group d-xl-flex flex-column justify-content-xl-start"
+                                                            style="margin: 4px;"><label>Account Description</label>
+                                                            <textarea class="border rounded" rows="3"
+                                                                id="txaAccountDescription" name="txaAccountDescription"
+                                                                style="width: 100%; color: rgb(110, 112, 126);"></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <hr class="reporthr" style="width: 100%;margin: 4px;">
+                                        </div>
+                                        <!-- {{#if isBankAccount}} -->
+                                        <div class="d-xl-flex align-items-xl-center isBankAccount isNotBankAccount">
+                                            <div class="flex-grow-1">
+                                                <label><b>Bank Account Details</b></label>
+                                                <div class="d-xl-flex align-items-xl-start">
+                                                    <div class="flex-grow-1">
+                                                        <div class="form-group" style="margin: 4px;"><label>Bank
+                                                                Name</label>
+                                                            <input type="text" class="form-control" id="edtBankName"
+                                                                name="edtBankName">
+                                                        </div>
+                                                    </div>
+                                                    <div class="flex-grow-1">
+                                                        <div class="form-group" style="margin: 4px;"><label>Bank Account
+                                                                Name</label>
+                                                            <input type="text" class="form-control"
+                                                                id="edtBankAccountName" name="edtBankAccountName">
+                                                        </div>
+                                                    </div>
+
+
+
+                                                    <div class="flex-grow-0">
+                                                        <div class="form-group" style="margin: 4px; width: 150px;">
+                                                            <label>{{bsbRegionName}}</label>
+                                                            <input type="text" class="form-control" id="edtBSB"
+                                                                name="edtBSB">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="d-xl-flex align-items-xl-start">
+                                                    <div class="flex-grow-1">
+                                                        <div class="form-group" style="margin: 4px;"><label>Bank Account
+                                                                No</label>
+                                                            <input type="text" class="form-control"
+                                                                id="edtBankAccountNo" name="edtBankAccountNo">
+                                                        </div>
+                                                    </div>
+                                                    <div class="flex-grow-1">
+                                                        <div class="form-group" style="margin: 4px;"><label>Swift
+                                                                Code</label>
+                                                            <input type="text" class="form-control" id="swiftCode"
+                                                                name="swiftCode">
+                                                        </div>
+                                                    </div>
+                                                    <div class="flex-grow-0">
+                                                        <div class="form-group" style="margin: 4px; width: 150px;">
+                                                            <label>Routing Number</label>
+                                                            <input type="text" class="form-control" id="routingNo"
+                                                                name="routingNo">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--                                             <div class="d-xl-flex align-items-xl-center">
+                                            <div class="flex-grow-1">
+                                                <div class="d-xl-flex align-items-xl-start"></div>
+                                                <div class="d-xl-flex align-items-xl-start">
+                                                    <div class="flex-grow-1">
+                                                        <div class="form-group d-xl-flex flex-column justify-content-xl-start" style="margin: 4px;"><label>Comments</label>
+                                                            <textarea class="border rounded" rows="3" id="txaAccountComments" name="txaAccountComments" style="width: 100%; color: rgb(110, 112, 126);"></textarea></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> -->
+                                                <div class="d-xl-flex align-items-xl-center">
+                                                    <div class="flex-grow-1">
+                                                        <div class="custom-control custom-switch">
+                                                            <input type="checkbox"
+                                                                class="custom-control-input showOnTransactions"
+                                                                id="showOnTransactions" />
+                                                            <label class="custom-control-label"
+                                                                for="showOnTransactions">Show On Transactions</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="d-xl-flex align-items-xl-center isCreditAccount isNotCreditAccount">
+                                            <div class="flex-grow-1">
+                                                <label><b>Credit Card Details</b></label>
+                                                <div class="d-xl-flex align-items-xl-start">
+                                                    <div class="flex-grow-1">
+                                                        <div class="form-group" style="margin: 4px;"><label>Card
+                                                                Number</label>
+                                                            <input type="tel" inputmode="numeric"
+                                                                pattern="[0-9\s]{13,19}" class="form-control"
+                                                                id="edtCardNumber" name="edtCardNumber"
+                                                                autocomplete="cc-number" maxlength="19"
+                                                                placeholder="xxxx xxxx xxxx xxxx">
+                                                        </div>
+                                                    </div>
+                                                    <div class="flex-grow-0">
+                                                        <div class="form-group" style="margin: 4px;"><label>Expiry
+                                                                Date</label>
+                                                            <!-- <input type="text" class="form-control" id="edtExpiryDate" name="edtExpiryDate"></div> -->
+
+                                                            <div class="input-group date"
+                                                                style="width: 150px; cursor: pointer;">
+                                                                <input type="text" class="form-control"
+                                                                    id="edtExpiryDate" name="edtExpiryDate">
+                                                                <div class="input-group-addon">
+                                                                    <span class="glyphicon glyphicon-th"></span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="flex-grow-0">
+                                                        <div class="form-group" style="margin: 4px; width: 150px;">
+                                                            <label>CVC</label>
+                                                            <input type="tel" inputmode="numeric" class="form-control"
+                                                                id="edtCvc" name="edtCvc">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                        <!-- {{/if}} -->
+                                    </div>
+                                </div>
+                                <form></form>
+                                <div class="modal-footer" style="background-color: #ededed;">
+                                    <button class="btn btn-success btnSaveAccount" type="button" style="margin: 8px;"
+                                        id="btnSaveAccount" name="btnSaveAccount"><i class="fa fa-save"
+                                            style="margin-right: 5px;"></i>Save</button>
+                                    <button class="btn btn-danger btnDeleteAccount" type="button"
+                                        style="margin: 16px;"><i class="fa fa-trash"
+                                            style="padding-right: 8px;"></i>Delete</button>
+                                    <button class="btn btn-secondary" data-dismiss="modal" type="button"
+                                        style="margin: 8px;"><i class="fa fa-close"
+                                            style="margin-right: 5px;"></i>Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal fade" role="dialog" tabindex="-1" id="helpViewModalAdd">
+                        <div class="modal-dialog modal-sm" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header" style="padding-bottom: 8px;">
+                                    <h4>Help</h4><button type="button" class="close" data-dismiss="modal"
+                                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p class="text-center text-muted"><a role="button" data-toggle="modal"
+                                            href="#helpModalAdd" class="btn btn-primary helpModal">View Help Video</a>
+                                    </p>
+                                    <p class="text-center text-muted"><a
+                                            href="https://vs1forum.com/viewtopic.php?f=6&t=30" target="_blank"
+                                            class="btn btn-primary">Download Help File</a></p>
+                                    <p class="text-center text-muted"><button class="btn btn-primary"
+                                            type="button">Employ Advisor</button></p>
+                                    <p class="text-center text-muted" style="margin: 0;"><a
+                                            href="https://vs1forum.com/ucp.php?mode=register&cloudusername={{loggedCompany}}"
+                                            target="_blank" class="btn btn-primary">Go To Forum</a> </p>
+                                </div>
+                                <div class="modal-footer" style="padding: 6px;"><button class="btn btn-light"
+                                        data-dismiss="modal" type="button">Close</button></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-primary btnJournalEntries" id="btnJournalEntries" type="button" style="margin: 12px;"><i class="fa fa-book" style="padding-right: 5px;"></i>Journal Entries</button>
+            </div>
+            <div class="col-5 d-xl-flex justify-content-xl-end align-items-end">
+                <style>
+                    @media screen and (max-width: 420px) {
+                        .exportbtngroup {
+                            width: 100%;
+                        }
+                    }
+                </style>
+                <div class="btn-group float-right exportbtngroup" style="margin: 16px;">
+                    <button class="btn btn-primary exportbtnExcel" type="button"><i class="fas fa-file-export"
+                            style="margin-right: 5px;"></i>Export</button>
+                    <button class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"
+                        aria-expanded="false" type="button"></button>
+                    <div role="menu" class="dropdown-menu">
+                        <a role="presentation" class="dropdown-item exportbtnExcel" id="exportbtnExcel" href="#">Export
+                            Excel</a>
+                        <a role="presentation" class="dropdown-item exportbtn" id="exportbtn" href="#">Export CSV</a>
+
+                    </div>
+                </div>
+                <div>
+                    <button style="margin: 16px;" class="btn btn-primary float-right" role="button" data-toggle="modal"
+                        href="#importModal"><i class="fas fa-file-import"
+                            style="padding-right: 5px;"></i>Import</button>
+                    <div class="modal fade" role="dialog" tabindex="-1" id="importModal">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4>Import Items</h4><button type="button" class="close" data-dismiss="modal"
+                                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div
+                                        class="row no-gutters d-xl-flex flex-row justify-content-xl-start align-items-xl-start">
+                                        <p style="margin-bottom: 0;font-weight: bold;">1. Download the
+                                            &lt;&lt;form&gt;&gt; template</p>
+                                        <p style="margin-left: 16px;margin-bottom: 0;margin-top: 4px;">Start by
+                                            downloading our template file. This file has the correct column headings to
+                                            allow VS1 Cloud to import your form's details.</p>
+                                        <div class="col flex-grow-1">
+                                            <button class="btn btn-primary templateDownload" type="button"
+                                                style="margin: 16px;margin-bottom: 0;"><i class="fas fa-file-csv"
+                                                    style="margin-right: 5px;"></i>Download CSV Template</button>
+                                            <button class="btn btn-primary templateDownloadXLSX" type="button"
+                                                style="margin: 16px;margin-bottom: 0;"><i class="fas fa-file-csv"
+                                                    style="margin-right: 5px;"></i>Download Excel Template</button>
+                                        </div>
+                                        <div class="col d-xl-flex align-items-xl-center"
+                                            style="width: 50px;max-width: 50px;">
+                                            <a href="downloads/csvHelpFile.pdf" target="_blank" download><i
+                                                    class="fa fa-question-circle-o" data-toggle="tooltip"
+                                                    data-bs-tooltip=""
+                                                    title="Having issues? Navigate to your Region Settings in your Control Panel and check that you have a comma selected as your 'List Seperator' and a period as your 'Decimal Symbol'."
+                                                    style="margin: 16px;"></i></a>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div
+                                        class="row no-gutters d-xl-flex flex-column justify-content-xl-start align-items-xl-start">
+                                        <p style="margin-bottom: 0;font-weight: bold;">2. Copy your items into the
+                                            template</p>
+                                        <p style="margin-left: 16px;margin-bottom: 0;margin-top: 4px;">Using MS Excel,
+                                            or another spreadsheet editor, you can fill in the VS1 Cloud template file
+                                            with your desired details.</p>
+                                        <p style="margin-left: 16px;margin-bottom: 0;margin-top: 16px;">Important:
+                                            Avoid changing the column headings in the template file.</p>
+                                    </div>
+                                    <hr>
+                                    <div
+                                        class="row no-gutters d-xl-flex flex-column justify-content-xl-start align-items-xl-start">
+                                        <p style="margin-bottom: 0;font-weight: bold;">3. Import the updated template
+                                            file</p>
+                                        <p style="margin-left: 16px;margin-bottom: 0;margin-top: 4px;">Save your
+                                            updated template and you're ready to go.</p>
+
+                                        <div class="divTable" id="file-display">
+                                        </div>
+                                        <input type="file" id="attachment-upload" style="display:none"
+                                            accept=".csv,.txt,.xlsx">
+                                        <style>
+                                            #row1 {
+                                                display: flex;
+                                                flex-direction: row;
+                                                justify-content: space-around;
+                                            }
+
+                                            #column1 {
+                                                display: flex;
+                                            }
+
+
+                                            #column2 {
+                                                display: flex;
+                                                flex-direction: column;
+                                                margin: 16px;
+                                                padding: .375rem .75rem;
+                                            }
+                                        </style>
+                                        <div id="row1">
+                                            <div id="column1"></div><button
+                                                class="btn btn-primary btnUploadFile new_attachment_btn" type="button"
+                                                style="margin: 16px;"><i class="fa fa-cloud-upload"
+                                                    style="margin-right: 5px;"></i>Browse</button>
+                                            <div class="file-name" id="column2"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer"><button class="btn btn-primary btnImport" type="button"
+                                        disabled><i class="fas fa-file-import"
+                                            style="margin-right: 5px;"></i>Import</button>
+                                    <button class="btn btn-secondary" data-dismiss="modal" type="button"><i
+                                            class="fa fa-close" style="margin-right: 5px;"></i>Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-primary printConfirm float-right" type="button" style="margin: 16px;"><i
+                        class="fa fa-print" style="padding-right: 5px;"></i>Print</button>
+                <a class="btn btnOpenSettings float-right" role="button" data-toggle="modal" href="#myModal2"
+                    style="margin: 16px;">
+                    <i class="icon ion-android-more-horizontal"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="card-body p-0 rounded">
+            <!-- Start {{> optionNavSalesOverview}} -->
+            <div class="d-xl-flex justify-content-xl-end">
+                <div>
+                    <div class="modal fade" role="dialog" tabindex="-1" id="myModal2">
+                        <div class="modal-dialog modal-dialog-centered" role="document" style="float: right;">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4>Display Settings</h4><button type="button" class="close"
+                                        data-dismiss="modal" aria-label="Close"><span
+                                            aria-hidden="true">×</span></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div>
+                                        {{#if tableheaderrecords}}
+                                        <form class="d-xl-flex align-items-xl-center">
+                                            <div class="flex-grow-1">
+                                                <style>
+                                                    .groove {
+                                                        border-style: solid;
+                                                        border-width: 1px;
+                                                        width: 200px;
+                                                        padding: 2px;
+                                                        border-radius: .35rem;
+                                                    }
+
+                                                    .custom-control-label {
+                                                        position: absolute;
+                                                    }
+
+                                                    .rngRange {
+                                                        position: relative;
+                                                        display: flex;
+                                                        flex-direction: column;
+                                                        width: 100%;
+                                                        pointer-events: auto;
+                                                        background-color: rgb(255, 255, 255);
+                                                        background-clip: padding-box;
+                                                        border: 1px solid rgb(133, 135, 150);
+                                                        border-radius: .3rem;
+                                                        border-style: solid;
+                                                        border-width: 1px;
+                                                        padding: 2px;
+                                                        border-radius: .35rem;
+                                                        color: rgb(128, 128, 128);
+                                                        height: inherit !important;
+                                                    }
+
+                                                    @media only screen and (max-width: 480px) {
+                                                        .modal.show .modal-dialog {
+                                                            float: inherit !important;
+                                                            left: inherit !important;
+                                                            top: auto !important;
+
+                                                        }
+                                                    }
+                                                </style>
+                                                {{#each item in tableheaderrecords}}
+                                                {{#if equals item.sTitle "id"}}
+                                                {{else}}
+
+                                                <div id="{{item.sIndex}}" class="columnSettings">
+                                                    <div class="custom-control custom-switch"
+                                                        style="margin: 8px; float:left;">
+                                                        <input class="custom-control-input chkDatatable"
+                                                            type="checkbox" id="chkSalesNo-{{item.sIndex}}"
+                                                            name="chkSalesNo-{{item.sIndex}}"
+                                                            checked="{{#if item.sVisible}}checked{{else}}{{/if}}"
+                                                            value="{{item.sTitle}}">
+                                                        <label class="custom-control-label"
+                                                            for="chkSalesNo-{{item.sIndex}}"></label>
+                                                        <div contenteditable="true" class="groove divcolumn"
+                                                            type="text" value="{{item.sTitle}}"
+                                                            valueupdate="{{item.sClass}}">{{item.sTitle}}</div>
+                                                    </div>
+                                                    <div class="d-xl-flex align-items-xl-center divColWidth"
+                                                        style="margin: 8px;">
+                                                        <label class="text-nowrap"
+                                                            style="padding-left: 0;margin-top: 8px;">Width:
+                                                            <!--<span class="spWidth" value="{{item.sTitle}}">{{item.sWidth}}px</span>-->
+                                                        </label>
+                                                        <input class="custom-range rngRange" type="number"
+                                                            style="margin: 8px;" value="{{item.sWidth}}" min="0"
+                                                            max="1000">
+                                                        <!-- <div contenteditable="true" class="groove rngRange" type="text" value="{{item.sWidth}}" min="0" max="1000">{{item.sWidth}}px</div> -->
+                                                    </div>
+                                                </div>
+
+                                                {{#if equals item.sVisible true}}
+                                                <script>
+                                                    $("#" + {{ item.sIndex }}+".chkDatatable").attr("checked", "checked");
+                                                </script>
+                                                {{else}}
+                                                <script>
+                                                    $("#" + {{ item.sIndex }}+".chkDatatable").removeAttr("checked");
+                                                </script>
+                                                {{/if}}
+
+                                                {{/if}}
+                                                {{/each}}
+                                            </div>
+                                        </form>
+                                        {{/if}}
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-success saveTable" type="button"><i class="fa fa-save"
+                                            style="margin-right: 5px;"></i>Save</button>
+                                    <button class="btn btn-warning resetTable" data-dismiss="modal" type="reset"><i
+                                            class="fa fa-repeat" style="margin-right: 5px;"></i>Reset</button>
+                                    <button class="btn btn-secondary" data-dismiss="modal" type="button"><i
+                                            class="fa fa-remove" style="margin-right: 5px;"></i>Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End -->
+            <div class="table-responsive">
+                <style>
+                    th {
+                        background-color: #ededed;
+                    }
+
+                    .table-striped tbody tr:nth-of-type(odd) {
+                        background-color: white !important;
+                    }
+
+                    .table-striped tbody tr:nth-of-type(even) {
+                        background-color: #0000000d !important;
+                    }
+
+                    .JColResizer>tbody>tr>td,
+                    .JColResizer>tbody>tr>th {
+                        padding: .75rem !important;
+                    }
+
+                    .hiddenColumn {
+                        display: none;
+                    }
+
+                    .showColumn {
+                        display: table-cell;
+                        padding: .75rem;
+                        vertical-align: top;
+                    }
+
+                    input[type=number]::-webkit-inner-spin-button,
+                    input[type=number]::-webkit-outer-spin-button {
+                        opacity: 1;
+                    }
+
+                    .isNotBankAccount {
+                        display: none !important;
+                    }
+
+                    .isNotCreditAccount {
+                        display: none !important;
+                    }
+                </style>
+                <table id="tblAccountOverview" style="width:100%"
+                    class="dataTable table table-striped table-bordered tblAccountOverview">
+                    <thead>
+                        <tr class="dnd-moved">
+                            <th class="th colAccountId hiddenColumn" style=" ">Account ID</th>
+                            <th class="th colAccountName" style=" ">Account Name</th>
+                            <th class="th colDescription" style=" ">Description</th>
+                            <th class="th colAccountNo" style="width:90px;">Account No</th>
+                            <th class="th colType">Type</th>
+                            <th class="th colBalance" style="width:80px;">Balance</th>
+                            <th class="th colTaxCode" style="width:80px;">Tax Code</th>
+                            <th class="th colBankName hiddenColumn" style="width:120px;">Bank Name</th>
+                            <th class="th colBankAccountName" style="width:120px;">Bank Acc Name</th>
+                            <th class="th colBSB" style="width:60px;">{{bsbRegionName}}</th>
+                            <th class="th colBankAccountNo" style="width:120px;">Bank Acc No</th>
+                            <th class="th colCardNumber hiddenColumn" style="width:120px;">Card Number</th>
+                            <th class="th colExpiryDate hiddenColumn" style="width:60px;">Expiry Date</th>
+                            <th class="th colCVC hiddenColumn" style="width:60px;">CVC</th>
+                            <th class="th colExtra hiddenColumn">Swift Code</th>
+                            <th class="th colAPCANumber hiddenColumn">Routing Number</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#if datatablerecords}}
+                        {{#each item in datatablerecords}}
+                        <tr class="dnd-moved" id="{{item.id}}" style="cursor: pointer;">
+                            <td contenteditable="false" class="colAccountId hiddenColumn">{{item.id}}</td>
+                            <td contenteditable="false" class="colAccountName">{{item.accountname}}</td>
+                            <td contenteditable="false" class="colDescription">{{item.description}}</td>
+                            <td contenteditable="false" class="colAccountNo">{{item.accountnumber}}</td>
+                            <td contenteditable="false" class="colType" accounttype="{{item.accounttypeshort}}">
+                                {{item.accounttypename}}</td>
+                            <td contenteditable="false" class="colBalance" style="text-align: right!important;">
+                                {{item.balance}}</td>
+                            <td contenteditable="false" class="colTaxCode">{{item.taxcode}}</td>
+                            <td contenteditable="false" class="colBankName hiddenColumn">{{item.bankname}}</td>
+                            <td contenteditable="false" class="colBankAccountName">{{item.bankaccountname}}</td>
+                            <td contenteditable="false" class="colBSB">{{item.bsb}}</td>
+                            <td contenteditable="false" class="colBankAccountNo">{{item.bankaccountnumber}}</td>
+                            <td contenteditable="false" class="colCardNumber hiddenColumn">{{item.cardnumber}}</td>
+                            <td contenteditable="false" class="colExpiryDate hiddenColumn">{{item.expirydate}}</td>
+                            <td contenteditable="false" class="colCVC hiddenColumn">{{item.cvc}}</td>
+                            <td contenteditable="false" class="colExtra hiddenColumn">{{item.swiftcode}}</td>
+                            <td contenteditable="false" class="colAPCANumber hiddenColumn"
+                                checkheader="{{item.isheader}}">{{item.apcanumber}}</td>
+
+                        </tr>
+                        {{/each}}
+                        {{/if}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="modal fade" role="dialog" tabindex="-1" id="taxRateListModal">
+            {{> taxratelistpop}}
+        </div>
+
+        <div class="modal fade" role="dialog" tabindex="-1" id="newTaxRateModal">
+            {{> newtaxratepop}}
+        </div>
+        <!-- Start Help Video Modal -->
+        <div class="modal fade" role="dialog" tabindex="-1" id="helpModal">
+            <div class="modal-dialog" role="document" style="max-width: 670px!important;">
+                <div class="modal-content">
+                    <div class="modal-header">
+
+                        <h4 class="title-header">Accounts Overview</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">×</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- <iframe width="640" height="360" src="https://player.vimeo.com/video/99892791" frameborder="0" allowfullscreen=""></iframe> -->
+                        <!-- <iframe width="640" height="360" src="https://erphelpes.com/vs1videos/newaccount.mp4" frameborder="0" allowfullscreen=""></iframe> -->
+                        <video id="myVideo" width="640" height="360" controls="" name="media"
+                            style="border: solid 5px #999999f0; height: auto; outline: none;">
+                            <source src="https://erphelpes.com/vs1videos/accountsoverview.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- End Help Video Modal -->
+    </div>
+
+    <!-- Start Help Video Modal -->
+    <div class="modal fade" role="dialog" tabindex="-1" id="helpModalAdd">
+        <div class="modal-dialog" role="document" style="max-width: 670px!important;">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <h4 class="title-header">Accounts</h4>
+                    <button type="button" class="close closeAdd" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+                    <!-- <iframe width="640" height="360" src="https://player.vimeo.com/video/99892791" frameborder="0" allowfullscreen=""></iframe> -->
+                    <!-- <iframe width="640" height="360" src="https://erphelpes.com/vs1videos/newaccount.mp4" frameborder="0" allowfullscreen=""></iframe> -->
+                    <video id="myVideoAdd" width="640" height="360" controls="" name="media"
+                        style="border: solid 5px #999999f0; height: auto; outline: none;">
+                        <source src="https://erphelpes.com/vs1videos/newaccount.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- End Help Video Modal -->
+    <script>
+        modalDraggable();
+    </script>
+</template>

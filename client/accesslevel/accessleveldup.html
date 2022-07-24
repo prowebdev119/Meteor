@@ -1,0 +1,258 @@
+<template name="accessleveldup">
+    <!-- {{> accessleveldup}} -->
+
+    <div class="container-fluid employeeModules">
+
+        <header style="background-color: #ededed;padding: 16px;margin: -24px;">
+            <h1 style="margin: 16px;">Employee Modules
+
+                <a role="button" data-toggle="modal" href="#helpViewModal" style="font-size: 20px;">Help <i class="fa fa-question-circle-o" style="font-size: 20px;"></i></a>
+
+                <!-- Start Help View Modal -->
+                <div class="modal fade" role="dialog" tabindex="-1" id="helpViewModal">
+                    <div class="modal-dialog modal-sm" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header" style="padding-bottom: 8px;">
+                                <h4>Help</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                            </div>
+                            <div class="modal-body">
+                                <p class="text-center text-muted"><a role="button" data-toggle="modal" href="#helpModal" class="btn btn-primary helpModal">View Help Video</a></p>
+                                <p class="text-center text-muted"><a href="https://vs1forum.com/" target="_blank" class="btn btn-primary">Download Help File</a></p>
+                                <p class="text-center text-muted"><button class="btn btn-primary" type="button">Employ Advisor</button></p>
+                                <p class="text-center text-muted" style="margin: 0px;"><a href="https://vs1forum.com/ucp.php?mode=register&cloudusername={{loggedCompany}}" target="_blank" class="btn btn-primary">Go To Forum</a></p>
+                            </div>
+                            <div class="modal-footer" style="padding: 6px;"><button class="btn btn-light" data-dismiss="modal" type="button">Close</button></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Help View Modal -->
+            </h1>
+        </header>
+        <div class="fullScreenSpin" style="display:none;">
+            <div class="spinner"></div>
+        </div>
+
+        <div class="row d-xl-flex flex-row justify-content-xl-center" style="margin: -24px; margin-bottom: 24px !important; padding: 24px; background-color: #ededed;">
+
+            <div class="col d-xl-flex flex-grow-1 align-items-xl-start buttonsLeft" id="buttonsLeft" style="padding: 0px !important;">
+                <button class="btn btn-primary btnRefresh" type="button" style="margin: 8px;"><i class="icon ion-android-bulb" style="margin-right: 8px;"></i>Refresh</button>
+                <button class="btn btn-success btnAddVS1User" type="button" style="margin: 8px;"><i class="fa fa-plus" style="margin-right: 8px"></i>Add VS1 User</button>
+                <div class="form-group d-xl-flex flex-column justify-content-xl-start align-items-xl-start" style="margin: 8px;"><label>Employee</label>
+                    <select type="search" class="form-control" id="sltEmployeeName" name="sltEmployeeName" style="background-color:rgb(255, 255, 255); cursor: pointer;">
+                        <!-- <option value="All" selected="" class="selectAll">All</option>
+                        {{#each item in employeerecords}}
+
+                            <option value="{{item.employeename}}" mytag="{{item.empID}}">{{item.employeename}}</option>
+
+                        {{/each}} -->
+                    </select>
+                    <input type="hidden" style="width: 100%; display:none;" id="mytag" name="mytag" readonly>
+                </div>
+                <div class="form-group d-xl-flex flex-column justify-content-xl-start align-items-xl-start" style="margin: 8px;">
+                    <div class="custom-control custom-switch" style="cursor: pointer; white-space: nowrap; margin-bottom: 8px;">
+                        <input class="custom-control-input formCheckEnableAll" type="checkbox" value="Simple Start" id="formCheckEnableAll" style="cursor: pointer;">
+                        <label class="custom-control-label" for="formCheckEnableAll" style="cursor: pointer;">Enable All Modules</label>
+                    </div>
+                </div>
+            </div>
+            <div class="col d-xl-flex justify-content-xl-end align-items-xl-start" style="padding: 0px !important;">
+                <button class="btn btn-success btnGlobalSave float-right" type="button" style="margin: 8px;margin-left: 8px;"><i class="fa fa-save" style="margin-right: 8px;"></i>Save</button>
+                <button class="btn btn-secondary btnBack float-right" type="button" style="margin: 8px;"><i class="fa fa-close" style="margin-right: 8px;"></i>Cancel</button>
+            </div>
+
+        </div>
+        <div class="d-xl-flex flex-row align-items-xl-center" style="justify-content: center;">
+
+            <h4 class="text-primary m-0 font-weight-bold employeeNameHead">What <span style="color: #17a673;">All Employees</span> Can See</h4>
+
+        </div>
+        <div class="row d-xl-flex flex-row align-items-xl-start mb-3" style="width: 100%;">
+
+            <div class="col d-xl-flex flex-row flex-wrap justify-content-xl-center">
+                {{#if accessgrouprecord}}
+                    {{#each arrayify accessgrouprecord}}
+                        <div class="card shadow mb-3" style="margin: 16px;">
+                            <div class="card-header py-3">
+                                <!-- <p class="text-primary m-0 font-weight-bold">{{name}} Settings</p> -->
+
+                                <div class="custom-control custom-switch" style="cursor: pointer; margin-left: -32px;">
+                                    <label style="margin-right: 50px;" for="formCheck-{{name}}">{{name}} Settings</label>
+                                    <input class="custom-control-input chkGlobalSettings " type="checkbox" value="{{name}}" id="formCheck-{{name}}" name="formCheck-{{name}}" checked="" style="cursor: pointer;" readonly>
+                                    <label class="custom-control-label" for="formCheck-{{name}}" style="cursor: pointer; color: transparent;"></label>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <style>
+                                    .inactiveLicence .lblPricing {
+                                        display: none !important;
+                                    }
+
+                                    .hiddenRow{
+                                      display: none !important;
+                                    }
+                                </style>
+                                <div>
+                                    <div class="table-responsive">
+                                        <table class="table tblAccessLevel">
+                                            <thead>
+                                                <tr>
+                                                    <th style="min-width: 332px;">
+                                                        Settings Options
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {{#each itemrecord in value}}
+                                                    <!-- {{itemrecord.accessLevel}} -->
+                                                    <tr id="{{itemrecord.lineID}}" name="{{itemrecord.accessID}}" class="tbl_access {{itemrecord.formClassHidden}}">
+                                                        <td style="min-width: 332px;">
+                                                            <input type="hidden" name="{{itemrecord.lineID}}" id="{{itemrecord.lineID}}_accessDesc" value="{{itemrecord.description}}" style="display:none;">
+                                                            <div class="custom-control custom-switch" style="cursor: pointer;">
+                                                                <input
+                                                                    class="custom-control-input chkSettings chkSetting{{name}} {{#if equals itemrecord.description 'Inventory'}}chkInventory{{/if}} {{#if equals itemrecord.description 'Inventory Tracking'}}chkInventory{{/if}} {{#if equals itemrecord.description 'Qty Only on Purchase Order'}}chkOnlyQtyPO{{/if}} {{#if equals itemrecord.description 'Qty Only on Sales'}} chkOnlyQtySales{{/if}} {{#if equals itemrecord.description 'Launch Allocation'}} chkLaunchAllocation{{/if}} {{#if equals itemrecord.description 'Launch Appointment'}} chkLaunchAppointment{{/if}}"
+                                                                    type="checkbox" value="{{itemrecord.accessLevel}}" id="formCheck-{{itemrecord.lineID}}" name="{{itemrecord.lineID}}"
+                                                                    checked="{{#if equals itemrecord.formClass 'inactiveLicence'}}{{else}}{{#if equals itemrecord.accessLevel 1}}checked{{/if}}{{/if}}" style="cursor: pointer;" readonly>
+                                                                <label class="custom-control-label" for="formCheck-{{itemrecord.lineID}}" style="cursor: pointer;">{{itemrecord.description}}</label>
+                                                                <div class="lblPricing" style="float: right; color:#1cc88a; display:none;"><b>$15</b></div>
+                                                            </div>
+                                                        </td>
+                                                        <td style="display:none;">
+                                                            <input type="hidden" name="{{itemrecord.lineID}}" id="{{itemrecord.lineID}}_accessInit" value="{{itemrecord.accessLevel}}" style="display:none;">
+                                                        </td>
+                                                    </tr>
+                                                {{/each}}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <!-- <button class="btn btn-primary btnSaveAccess" id="btnSaveAccess_{{name}}" name="btnSaveAccess_{{itemrecord.name}}" type="button" style="margin: 8px;margin-left: 8px;"><i class="fa fa-save" style="margin-right: 8px;"></i>Save {{name}} Settings</button> -->
+                            </div>
+                        </div>
+
+                    {{/each}}
+                {{/if}}
+            </div>
+            <!-- END HERE -->
+        </div>
+        <!-- Upgrade POP ACCESS -->
+        <div class="modal fade" role="dialog" tabindex="-1" id="upgradeModal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content" style="border: #00a3d3;">
+                    <div class="modal-header" style="background-color:#00a3d3;">
+                        <!-- <div class="mr-3"> -->
+                        <!-- <div class="bg-success icon-circle"><i class="fas fa-donate text-white"></i></div> -->
+                        <!-- </div> -->
+                        <h4 class="title-header" style="color:white;">UNLOCK FEATURE</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row no-gutters d-xl-flex flex-row justify-content-xl-start align-items-xl-start">
+                            <p style="font-weight: bold;">Upgrade to the Essentials Pack</p>
+                            <p style="margin-bottom: 0px;margin-top: 4px;">Please upgrade to our Essentials plan to access this feature.</p>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-success btnImport" type="button"><i class="fa fa-save" style="margin-right: 5px;"></i>Upgrade</button>
+                        <button class="btn btn-secondary" data-dismiss="modal" type="button"><i class="fa fa-close" style="margin-right: 5px;"></i>Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Upgrade POP -->
+    </div>
+    <!-- Start Help Video Modal -->
+    <div class="modal fade" role="dialog" tabindex="-1" id="helpModal">
+        <div class="modal-dialog" role="document" style="max-width: 670px!important;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="title-header">Access Level Settings</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+
+                    <video id="myVideo" width="640" height="360" controls="" name="media" style="border: solid 5px #999999f0; height: auto; outline: none;">
+                        <source src="https://erphelpes.com/vs1videos/employeemodules.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- End Help Video Modal -->
+
+    <!-- Start Modal Product -->
+    <div class="modal fade" role="dialog" tabindex="-1" id="employeeListModal">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Employee List</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+                    {{> popemployeelist}}
+
+                </div>
+                <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Close</button>
+
+                    <!-- <button class="btn btn-primary btnProdSelect" type="button" style="background-color: #00A3D3; border-color: #00A3D3;">Select</button> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- End Modal Product -->
+
+    <!-- Upgrade POP Plus ACCESS -->
+    <div class="modal fade" role="dialog" tabindex="-1" id="upgradeModalPlus">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="border: #00a3d3;">
+                <div class="modal-header" style="background-color:#00a3d3;">
+
+                    <h4 class="title-header" style="color:white;">UNLOCK FEATURE</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row no-gutters d-xl-flex flex-row justify-content-xl-start align-items-xl-start">
+                        <p style="font-weight: bold;">Upgrade to the Plus Pack</p>
+                        <p style="margin-bottom: 0px;margin-top: 4px;">Please upgrade to our Plus plan to access this feature.</p>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-success btnImport" type="button"><i class="fa fa-save" style="margin-right: 5px;"></i>Upgrade</button>
+                    <button class="btn btn-secondary" data-dismiss="modal" type="button"><i class="fa fa-close" style="margin-right: 5px;"></i>Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Upgrade Plus POP -->
+
+    <div class="modal fade" role="dialog" tabindex="-1" id="employeeListPOPModal">
+      <div class="modal-dialog modal-xl modal-dialog-scrollable customerListModalInner" role="document" style="max-width: 90vw;">
+          <div class="modal-content customerListContent">
+              <div class="modal-header">
+                  <h4>Employee List</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+              </div>
+              <div class="modal-body mainCustomerModalBody appointmentCustomer" style="padding: 0px; overflow-x: hidden;">
+                  {{> employeelistpop}}
+              </div>
+              <div class="modal-footer">
+                <!-- <div class="custom-control custom-switch" style="cursor: pointer;">
+                  <input class="custom-control-input" type="checkbox" value="AllEmployee" id="formCheck-AllEmployee" name="AllEmployee" style="cursor: pointer;" readonly="">
+                  <label class="custom-control-label" for="formCheck-AllEmployee" style="cursor: pointer;">All Employees</label>
+                </div> -->
+                  <button class="btn btn-primary btnSelectAllEmployee" type="button" style="background-color: #00A3D3; border-color: #00A3D3;">Select All Employees</button>
+
+                <button class="btn btn-light" data-dismiss="modal" type="button">Close</button>
+              </div>
+          </div>
+      </div>
+    </div>
+
+    <div class="modal fade" role="dialog" tabindex="-1" id="addEmployeeModal">
+        {{> addemployeepop}}
+    </div>
+    <script>
+        modalDraggable();
+    </script>
+</template>

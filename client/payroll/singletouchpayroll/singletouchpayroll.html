@@ -1,0 +1,401 @@
+<template name="singletouchpayroll">
+    <div class="container-fluid" style="padding-left: 0px; padding-right: 0px; margin-top: -24px;">
+        <div class="fullScreenSpin" style="display:none;">
+            <div class="spinner"></div>
+        </div>
+        <header style="padding: 16px; background-color: #ededed;">
+            <h2 style="margin: 16px; margin-bottom: 0px;" class="timesheetHeader">Single Touch Payroll No 100
+                <!-- <a role="button" data-toggle="modal" href="#helpModal" class="helpModal"><label class="lblplay">PLAY</label><i class="far fa-play-circle"  style="font-size: 20px;"></i></a> -->
+                <a role="button" data-toggle="modal" href="#helpViewModal" style="font-size: 20px;">Help <i class="fa fa-question-circle-o" style="font-size: 20px;"></i></a>
+
+                <!-- Start Help View Modal -->
+                <div class="modal fade" role="dialog" tabindex="-1" id="helpViewModal">
+                    <div class="modal-dialog modal-sm" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header" style="padding-bottom: 8px;">
+                                <h4>Help</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                            </div>
+                            <div class="modal-body">
+                                <p class="text-center text-muted"><a role="button" data-toggle="modal" href="#helpModal" class="btn btn-primary helpModal">View Help Video</a></p>
+                                <p class="text-center text-muted"><a href="https://vs1forum.com/viewforum.php?f=6" target="_blank" class="btn btn-primary">Download Help File</a></p>
+                                <p class="text-center text-muted"><button class="btn btn-primary" type="button">Employ Advisor</button></p>
+                                <p class="text-center text-muted" style="margin: 0px;"><a href="https://vs1forum.com/ucp.php?mode=register&cloudusername={{loggedCompany}}" target="_blank" class="btn btn-primary">Go To Forum</a></p>
+                            </div>
+                            <div class="modal-footer" style="padding: 6px;"><button class="btn btn-light" data-dismiss="modal" type="button">Close</button></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Help View Modal -->
+
+            </h2>
+        </header>
+
+        <style>
+            @media screen and (max-width: 450px) {
+                .btnNav {
+                    width: 90% !important;
+                }
+
+                .btnOpenSettingsMobile {
+                    display: block !important;
+                }
+
+                .btnOpenSettings {
+                    display: none;
+                }
+            }
+        </style>
+
+        <div class="row" style="background-color: #ededed; padding-top: 0px; padding: 24px;">
+            <div class="col-6" style="display: inline-flex;">
+                <button class="btn btn-primary btnRefreshOne btnNav" type="button" style="margin: 16px; margin-top: 32px;"><i class="la la-lightbulb-o" style="padding-right: 5px;"></i>Refresh </button>
+                <div class="form-group" style="margin-bottom: 0px; width: 175px; float: left; margin-left: 16px;">
+                    <label for="createdBy">Created By</label>
+                    <input type="text" class="form-control" id="createdBy">
+                </div>
+            </div>
+            <div class="col-6">
+                <a class="btn btnOpenSettings float-right btnNav" style="margin: 16px; margin-top: 32px;" role="button" data-toggle="modal" href="#myModal2"><i class="icon ion-android-more-horizontal"></i></a>
+                <button class="btn btn-primary float-right printConfirm btnNav" type="button" style="margin: 16px; margin-top: 32px;"><i class="fa fa-print" style="padding-right: 5px;"></i>Print</button>
+                <button class="btn btn-primary float-right export exportbtn btnNav" type="button" style="margin: 16px; margin-top: 32px;" id="exportbtn" name="exportbtn"><i class="fas fa-file-export" style="padding-right: 5px;"></i>Export</button>
+                <a class="btn btnOpenSettings float-right btnOpenSettingsMobile" style="margin: 16px; margin-top: 32px; display: none;" role="button" data-toggle="modal" href="#myModal2"><i class="icon ion-android-more-horizontal"></i></a>
+            </div>
+        </div>
+
+        <div class="row d-xl-flex justify-content-xl-end" style="padding: 24px; padding-right: 32px; padding-bottom: 0px;">
+            <div>
+                <div class="modal fade" role="dialog" tabindex="-1" id="myModal2">
+                    <div class="modal-dialog modal-dialog-centered" role="document" style="float: right;">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4>Display Settings</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                            </div>
+                            <div class="modal-body">
+                                <div>
+                                    {{#if tableheaderrecords}}
+                                        <form class="d-xl-flex align-items-xl-center">
+                                            <div class="flex-grow-1">
+                                                <style>
+                                                    .groove {
+                                                        border-style: solid;
+                                                        border-width: 1px;
+                                                        width: 200px;
+                                                        padding: 2px;
+                                                        border-radius: .35rem;
+                                                    }
+
+                                                    .custom-control-label {
+                                                        position: absolute;
+                                                    }
+
+                                                    .rngRange {
+                                                        position: relative;
+                                                        display: flex;
+                                                        flex-direction: column;
+                                                        width: 100%;
+                                                        pointer-events: auto;
+                                                        background-color: rgb(255, 255, 255);
+                                                        background-clip: padding-box;
+                                                        border: 1px solid rgb(133, 135, 150);
+                                                        border-radius: .3rem;
+                                                        border-style: solid;
+                                                        border-width: 1px;
+                                                        padding: 2px;
+                                                        border-radius: .35rem;
+                                                        color: rgb(128, 128, 128);
+                                                        height: inherit !important;
+                                                    }
+
+                                                    @media only screen and (max-width: 480px) {
+                                                        .modal.show .modal-dialog {
+                                                            float: inherit !important;
+                                                            left: inherit !important;
+                                                            top: auto !important;
+
+                                                        }
+                                                    }
+                                                </style>
+                                                {{#each item in tableheaderrecords}}
+                                                    {{#if equals item.sTitle "Edit"}}
+                                                    {{else}}
+                                                        {{#if equals item.sTitle ""}}
+                                                        {{else}}
+                                                            {{#if equals item.sTitle "id"}}
+
+                                                            {{else}}
+                                                                {{#if equals item.sTitle "HiddenHours"}}
+
+                                                                {{else}}
+                                                                    <div id="{{item.sIndex}}" class="columnSettings">
+                                                                        <div class="custom-control custom-switch" style="margin: 8px; float:left;">
+                                                                            <input class="custom-control-input chkDatatable" type="checkbox" id="chkSalesNo-{{item.sIndex}}" name="chkSalesNo-{{item.sIndex}}"
+                                                                                checked="{{#if item.sVisible}}checked{{else}}{{/if}}" value="{{item.sTitle}}">
+                                                                            <label class="custom-control-label" for="chkSalesNo-{{item.sIndex}}"></label>
+                                                                            <div contenteditable="true" class="groove divcolumn" type="text" value="{{item.sTitle}}" valueupdate="{{item.sClass}}">{{item.sTitle}}</div>
+                                                                        </div>
+                                                                        <div class="d-xl-flex align-items-xl-center divColWidth" style="margin: 8px;">
+                                                                            <label class="text-nowrap" style="padding-left: 0px;margin-top: 8px;">Width:
+                                                                                <!--<span class="spWidth" value="{{item.sTitle}}">{{item.sWidth}}px</span>-->
+                                                                            </label>
+                                                                            <input class="custom-range rngRange" type="number" style="margin: 8px;" value="{{item.sWidth}}" min="0" max="1000">
+                                                                            <!-- <div contenteditable="true" class="groove rngRange" type="text" value="{{item.sWidth}}" min="0" max="1000">{{item.sWidth}}px</div> -->
+                                                                        </div>
+                                                                    </div>
+
+                                                                    {{#if equals item.sVisible true}}
+                                                                        <script>
+                                                                            $("#" + {{item.sIndex}} + ".chkDatatable").attr("checked", "checked");
+                                                                        </script>
+                                                                    {{else}}
+                                                                        <script>
+                                                                            $("#" + {{item.sIndex}} + ".chkDatatable").removeAttr("checked");
+                                                                        </script>
+                                                                    {{/if}}
+                                                                {{/if}}
+                                                            {{/if}}
+                                                        {{/if}}
+                                                    {{/if}}
+                                                {{/each}}
+                                            </div>
+                                        </form>
+                                    {{/if}}
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary saveTable" type="button"><i class="fa fa-save" style="margin-right: 5px;"></i>Save</button>
+                                <button class="btn btn-warning resetTable" data-dismiss="modal" type="reset"><i class="fa fa-repeat" style="margin-right: 5px;"></i>Reset</button>
+                                <button class="btn btn-secondary" data-dismiss="modal" type="button"><i class="fa fa-remove" style="margin-right: 5px;"></i>Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" style="margin: 16px; margin-bottom: 32px;">
+            <div class="col-12">
+                <div class="card shadow">
+                    <div class="card-body" style="padding: 0px;">
+                        <div class="row no-gutters">
+                            <div class="col-6 col-md-2" style="border-right: 1px solid #e3e6f0;padding: 16px;;">
+                                <h5 style="font-size: 16px; font-weight: 700;">Earnings</h5>
+                                <p style="font-size: 24px; margin-bottom: 0px;">2,000.00</p>
+                            </div>
+                            <div class="col-6 col-md-2" style="border-right: 1px solid #e3e6f0;padding: 16px;;">
+                                <h5 style="font-size: 16px; font-weight: 700;">PAYG</h5>
+                                <p style="font-size: 24px; margin-bottom: 0px;">940.00</p>
+                            </div>
+                            <div class="col-6 col-md-2" style="border-right: 1px solid #e3e6f0;padding: 16px;;">
+                                <h5 style="font-size: 16px; font-weight: 700;">Superannuation</h5>
+                                <p style="font-size: 24px; margin-bottom: 0px;">0.00</p>
+                            </div>
+                            <div class="col-6 col-md-2" style="border-right: 1px solid #e3e6f0;padding: 16px;;">
+                                <h5 style="font-size: 16px; font-weight: 700;">Net Pay</h5>
+                                <p style="font-size: 24px; margin-bottom: 0px;">1,060.00</p>
+                            </div>
+                            <div class="col-6 col-md-2" style="border-right: 1px solid #e3e6f0;padding: 16px;;">
+                                <h5 style="font-size: 16px; font-weight: 700;">Status</h5>
+                                <p style="font-size: 24px; margin-bottom: 0px;">Draft</p>
+                            </div>
+                            <div class="col-6 col-md-2" style="padding: 16px;">
+                                <h5 style="font-size: 16px; font-weight: 700;">Payment Date</h5>
+                                <p style="font-size: 24px; margin-bottom: 0px;">11 Jan 2022</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <h4 style="font-weight: 600; margin-left: 32px;"><span>3 Employees</span> Included</h4>
+            </div>
+            <div class="col-12">
+                <div class="card-body p-5 rounded" style="padding: 0rem 2rem !important;">
+                    <style>
+                        th {
+                            background-color: #ededed;
+                        }
+
+                        .table-striped tbody tr:nth-of-type(odd) {
+                            background-color: white !important;
+                        }
+
+                        .table-striped tbody tr:nth-of-type(even) {
+                            background-color: #0000000d !important;
+                        }
+
+                        .JColResizer>tbody>tr>td,
+                        .JColResizer>tbody>tr>th {
+                            padding: .75rem !important;
+                        }
+
+                        .hiddenColumn {
+                            display: none;
+                        }
+
+                        .showColumn {
+                            display: table-cell;
+                            padding: .75rem;
+                            vertical-align: top;
+                        }
+
+                        input[type=number]::-webkit-inner-spin-button,
+                        input[type=number]::-webkit-outer-spin-button {
+                            opacity: 1;
+                        }
+
+                        .highlightInput {
+                            border: 0px solid transparent !important;
+                            background-color: rgba(0, 0, 0, 0) !important;
+                            padding: 0px !important;
+                            width: 100% !important;
+                            text-align: right !important;
+                            color: #858796 !important;
+                        }
+
+                        .highlightInput::-webkit-outer-spin-button,
+                        .highlightInput::-webkit-inner-spin-button {
+                            -webkit-appearance: none !important;
+                            margin: 0 !important;
+                        }
+
+                        /* Firefox */
+                        .highlightInput[type=number] {
+                            -moz-appearance: textfield !important;
+                        }
+
+                        .dropdown-toggle:after {
+                            float: right;
+                            margin-top: 8px;
+                        }
+                    </style>
+                    <div class="table-responsive">
+                        <table id="tblSingleTouchPayroll" style="width:100%" class="dataTable table table-hover table-striped table-bordered tblSingleTouchPayroll">
+                            <thead>
+                                <tr class="dnd-moved">
+                                    <th class="th colPayRunDetailsFirstName" style="">First Name</th>
+                                    <th class="th colPayRunDetailsLastName" style="">Last Name</th>
+                                    <th class="th colPayRunDetailsEmployeeGroup" style="">Employee Group</th>
+                                    <th class="th colPayRunDetailsLastEdited" style="">Last Edited</th>
+                                    <th class="th colPayRunDetailsEarnings" style="">Earnings</th>
+                                    <th class="th colPayRunDetailsTax" style="">Tax</th>
+                                    <th class="th colPayRunDetailsSuper" style="">Super</th>
+                                    <th class="th colPayRunDetailsNetPay" style="">Net Pay</th>
+                                    <th class="th colPayRunDetailsDropdown" style="width: 3%;">Payslips</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="dnd-moved" id="" name="">
+                                    <td class="colPayRunDetailsFirstName" contenteditable="false">Simon</td>
+                                    <td class="colPayRunDetailsLastName" contenteditable="false">Clive</td>
+                                    <td class="colPayRunDetailsEmployeeGroup" contenteditable="false"></td>
+                                    <td class="colPayRunDetailsLastEdited" contenteditable="false"></td>
+                                    <td class="colPayRunDetailsEarnings" contenteditable="false" style="text-align: right;">$2,000.00</td>
+                                    <td class="colPayRunDetailsTax" contenteditable="false" style="text-align: right;">$940.00</td>
+                                    <td class="colPayRunDetailsSuper" contenteditable="false" style="text-align: right;">$0.00</td>
+                                    <td class="colPayRunDetailsNetPay" contenteditable="false" style="text-align: right;">$1,060.00</td>
+                                    <td class="colPayRunDetailsDropdown" contenteditable="false" style="width: 3%;">
+                                        <div class="custom-control custom-checkbox chkBox pointer" style="width:15px;margin-left: 22px;">
+                                            <input class="custom-control-input chkBox pointer" type="checkbox" id="formCheck-1" value="" checked>
+                                            <label class="custom-control-label chkBox pointer" for="formCheck-1"></label>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="dnd-moved" id="" name="">
+                                    <td class="colPayRunDetailsFirstName" contenteditable="false">Dene</td>
+                                    <td class="colPayRunDetailsLastName" contenteditable="false">Mills</td>
+                                    <td class="colPayRunDetailsEmployeeGroup" contenteditable="false"></td>
+                                    <td class="colPayRunDetailsLastEdited" contenteditable="false"></td>
+                                    <td class="colPayRunDetailsEarnings" contenteditable="false" style="text-align: right;">$2,000.00</td>
+                                    <td class="colPayRunDetailsTax" contenteditable="false" style="text-align: right;">$940.00</td>
+                                    <td class="colPayRunDetailsSuper" contenteditable="false" style="text-align: right;">$0.00</td>
+                                    <td class="colPayRunDetailsNetPay" contenteditable="false" style="text-align: right;">$1,060.00</td>
+                                    <td class="colPayRunDetailsDropdown" contenteditable="false" style="width: 3%;">
+                                        <div class="custom-control custom-checkbox chkBox pointer" style="width:15px;margin-left: 22px;">
+                                            <input class="custom-control-input chkBox pointer" type="checkbox" id="formCheck-2" value="" checked>
+                                            <label class="custom-control-label chkBox pointer" for="formCheck-2"></label>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="dnd-moved" id="" name="">
+                                    <td class="colPayRunDetailsFirstName" contenteditable="false">Josef</td>
+                                    <td class="colPayRunDetailsLastName" contenteditable="false">Steyn</td>
+                                    <td class="colPayRunDetailsEmployeeGroup" contenteditable="false"></td>
+                                    <td class="colPayRunDetailsLastEdited" contenteditable="false"></td>
+                                    <td class="colPayRunDetailsEarnings" contenteditable="false" style="text-align: right;">$2,000.00</td>
+                                    <td class="colPayRunDetailsTax" contenteditable="false" style="text-align: right;">$940.00</td>
+                                    <td class="colPayRunDetailsSuper" contenteditable="false" style="text-align: right;">$0.00</td>
+                                    <td class="colPayRunDetailsNetPay" contenteditable="false" style="text-align: right;">$1,060.00</td>
+                                    <td class="colPayRunDetailsDropdown" contenteditable="false" style="width: 3%;">
+                                        <div class="custom-control custom-checkbox chkBox pointer" style="width:15px;margin-left: 22px;">
+                                            <input class="custom-control-input chkBox pointer" type="checkbox" id="formCheck-3" value="" checked>
+                                            <label class="custom-control-label chkBox pointer" for="formCheck-3"></label>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <style>
+            @media screen and (max-width: 450px) {
+                .btnFooter {
+                    width: 90%;
+                }
+            }
+        </style>
+
+        <div class="row" style="margin: 0px 4px; display: ;">
+            <div class="col-12">
+                <button class="btn btn-secondary float-right btnFooter" id="btnClose" data-dismiss="modal" type="button" style="margin: 16px;"><i class="fa fa-close" style="margin-right: 5px;"></i>Close</button>
+                <button type="button" class="btn btn-success float-right btnFooter" style="margin: 16px;"><i class="fas fa-check" style="margin-right: 5px;"></i> File</button>
+                <div class="btn-group float-right btnFooter" style="margin: 16px;">
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-funnel-dollar" style="margin-right: 5px;"></i> Pay Run Options
+                    </button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">One Action</a>
+                        <a class="dropdown-item" href="#">Another Action</a>
+                    </div>
+                </div>
+                <div class="btn-group float-right btnFooter" style="margin: 16px;">
+                    <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-chart-area" style="margin-right: 5px;"></i> View Reports
+                    </button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">One Action</a>
+                        <a class="dropdown-item" href="#">Another Action</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Start Help Video Modal -->
+    <div class="modal fade" role="dialog" tabindex="-1" id="helpModal">
+        <div class="modal-dialog" role="document" style="max-width: 670px!important;">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <h4 class="title-header">Pay Run</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+                    <!-- <iframe width="640" height="360" src="https://player.vimeo.com/video/99892791" frameborder="0" allowfullscreen=""></iframe> -->
+                    <!-- <iframe width="640" height="360" src="https://erphelpes.com/vs1videos/invoicelist.mp4" frameborder="0" allowfullscreen=""></iframe> -->
+                    <video id="myVideo" width="640" height="360" controls="" name="media" style="border: solid 5px #999999f0; height: auto; outline: none;">
+                        <source src="https://erphelpes.com/vs1videos/comingsoon.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Help Video Modal -->
+    <script>
+        modalDraggable();
+    </script>
+</template>

@@ -1,0 +1,229 @@
+<template name="stsaddtransfercontent">
+    <div class="container-fluid">
+        <div class="fullScreenSpin" style="display:none;">
+            <div class="spinner"></div>
+        </div>
+        <div class="d-sm-flex justify-content-between align-items-center mb-4">
+            <h3 class="text-dark mb-0">Seed To Sale - Transfer&nbsp;</h3>
+        </div>
+        <div class="row d-xl-flex justify-content-center align-items-center justify-content-xl-start" style="max-width: 568px;margin: auto;padding: 20px;padding-top: 0px;">
+            <div class="col">
+                <div class="card" style="margin-bottom: 8px;">
+                    <div class="card-body">
+                        <h5 class="card-title">[ Facility Name ]</h5>
+                        <div class="row">
+                            <div class="col">
+                                <h6 class="text-muted mb-2" style="margin: 0px;">Facility No.</h6>
+                            </div>
+                            <div class="col">
+                                <p class="float-right" style="margin: 0px;">[ Facility No. ]</p>
+                            </div>
+                            <hr style="width: 100%;margin: 0px 12px;">
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <h6 class="text-muted mb-2" style="margin: 0px;">Transfer Type</h6>
+                            </div>
+                            <div class="col">
+                                <p class="float-right" style="margin: 0px;">[ Transfer Type ]</p>
+                            </div>
+                            <hr style="width: 100%;margin: 0px 12px;">
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <h6 class="text-muted mb-2" style="margin: 0px;">Departure</h6>
+                            </div>
+                            <div class="col">
+                                <p class="float-right" style="margin: 0px;">[ Departure Time and Date ]<br></p>
+                            </div>
+                            <hr style="width: 100%;margin: 0px 12px;">
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <h6 class="text-muted mb-2" style="margin: 0px;">Arrival</h6>
+                            </div>
+                            <div class="col">
+                                <p class="float-right" style="margin: 0px;">[ Arrival Time and Date ]</p>
+                            </div>
+                            <hr style="width: 100%;margin: 0px 12px;">
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <h6 class="text-muted mb-2" style="margin: 0px;">Total Weight</h6>
+                            </div>
+                            <div class="col">
+                                <p class="float-right" style="margin: 0px;">[&nbsp; Total Weight ]</p>
+                            </div>
+                            <hr style="width: 100%;margin: 0px 12px;">
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Transporters</h5>
+                        <div class="row">
+                            <div class="col">
+                                <h6 class="text-muted mb-2" style="margin: 0px;">[ Driver Name ]</h6>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <h6 class="text-muted mb-2" style="margin: 0px;">[ License No. ]</h6>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <h6 class="text-muted mb-2" style="margin: 0px;">[ Phone No. ]</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr style="width: 100%;margin: 0px;margin-top: 16px;">
+            </div>
+        </div>
+        <div class="row d-xl-flex justify-content-center align-items-center justify-content-xl-start" style="max-width: 568px;margin: auto;padding: 20px;padding-bottom: 0px;padding-left: 35px;padding-top: 0px;">
+            <h5 style="margin: 0px;">Packages</h5>
+        </div>
+        <div class="row d-xl-flex justify-content-center align-items-center justify-content-xl-center" style="max-width: 568px;margin: auto;padding: 20px;padding-top: 0px;"><div class="modal-body" style="padding-bottom: 0px;">
+            <div class="row no-gutters" style="box-shadow: 2px 2px 7px rgba(133,135,150,0.37);padding: 8px;margin-bottom: 16px; border-radius: 5px; background-color: #ffffff;">
+                <div class="col">
+                    <div class="row no-gutters">
+                        <p style="margin: 0px;font-weight: bold;padding-left: 8px;">[ Package Tag ]</p>
+                    </div>
+                    <div class="row no-gutters">
+                        <p style="margin: 0px;padding-left: 8px;">[ Weight ] of [ Strain ] - [ Item Type ]</p>
+                    </div>
+                </div>
+                <div class="col d-xl-flex flex-grow-0 align-items-xl-center" style="padding: 4px; padding-right:40px;">
+                    <button class="btn" type="button" style="color: red; font-size:20px;"><i class="fa fa-trash"></i></button>
+                </div>
+            </div>
+            <div class="row no-gutters" style="box-shadow: 2px 2px 7px rgba(133,135,150,0.37);padding: 8px;margin-bottom: 16px; border-radius: 5px; background-color: #ffffff;">
+                <div class="col">
+                    <div class="row no-gutters">
+                        <p style="margin: 0px;font-weight: bold;padding-left: 8px;">[ Package Tag ]</p>
+                    </div>
+                    <div class="row no-gutters">
+                        <p style="margin: 0px;padding-left: 8px;">[ Weight ] of [ Strain ] - [ Item Type ]</p>
+                    </div>
+                </div>
+                <div class="col d-xl-flex flex-grow-0 align-items-xl-center" style="padding: 4px; padding-right:40px;">
+                    <button class="btn" type="button" style="color: red; font-size:20px;"><i class="fa fa-trash"></i></button>
+                </div>
+            </div><div class="row no-gutters" style="box-shadow: 2px 2px 7px rgba(133,135,150,0.37);padding: 8px;margin-bottom: 16px; border-radius: 5px; background-color: #ffffff;">
+            <div class="col">
+                <div class="row no-gutters">
+                    <p style="margin: 0px;font-weight: bold;padding-left: 8px;">[ Package Tag ]</p>
+                </div>
+                <div class="row no-gutters">
+                    <p style="margin: 0px;padding-left: 8px;">[ Weight ] of [ Strain ] - [ Item Type ]</p>
+                </div>
+            </div>
+            <div class="col d-xl-flex flex-grow-0 align-items-xl-center" style="padding: 4px; padding-right:40px;">
+                <button class="btn" type="button" style="color: red; font-size:20px;"><i class="fa fa-trash"></i></button>
+            </div>
+            </div>
+            </div></div>
+        <div class="row no-gutters d-xl-flex justify-content-center align-items-center justify-content-xl-end" style="max-width: 530px;margin: auto;padding: 20px;padding-top: 0px;padding-bottom: 0px;"><a class="btn btn-success" role="button" style="border-radius: 30px;width: 50px;height: 50px;padding: 0px;font-size: 24px;box-shadow: 2px 2px 7px 3px rgba(159,159,159,0.4);" href="#scanNewPlant" data-toggle="modal"><i class="fa fa-plus" style="margin-top: 12px;"></i></a>
+            <div
+                 class="modal fade" role="dialog" tabindex="-1" id="scanNewPlant">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Add Package</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                        <div class="modal-body">
+                            <div class="row no-gutters">
+                                <div class="col">
+                                    <div class="form-group flex-grow-1" style="margin: 4px;"><label>Scan Package Tag<br></label>
+                                        <div class="input-group"><input class="form-control" type="text">
+                                            <div class="input-group-append"><a class="btn btn-primary border-success" role="button" style="background-color: #3dd79c;" href="#scan" data-toggle="modal">Scan</a></div>
+                                        </div>
+                                        <div class="modal fade" role="dialog" tabindex="-1" id="scan">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h4 class="modal-title">Scan</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                                                    <div class="modal-body"></div>
+                                                    <div class="modal-footer invisible"><button class="btn btn-light" type="button" data-dismiss="modal">Close</button><button class="btn btn-primary" type="button">Save</button></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card" style="margin: 4px;margin-bottom: 8px;">
+                                <div class="card-body" style="padding: 10px;">
+                                    <div class="row">
+                                        <div class="col">
+                                            <h6 class="text-muted mb-2" style="margin: 0px;">Item</h6>
+                                        </div>
+                                        <div class="col">
+                                            <p class="float-right" style="margin: 0px;">[ Item Name ]</p>
+                                        </div>
+                                        <hr style="width: 100%;margin: 0px 12px;">
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <h6 class="text-muted mb-2" style="margin: 0px;">Item Type</h6>
+                                        </div>
+                                        <div class="col">
+                                            <p class="float-right" style="margin: 0px;">[ Item Type ]</p>
+                                        </div>
+                                        <hr style="width: 100%;margin: 0px 12px;">
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <h6 class="text-muted mb-2" style="margin: 0px;">Weight</h6>
+                                        </div>
+                                        <div class="col">
+                                            <p class="float-right" style="margin: 0px;">[ Weight ]<br></p>
+                                        </div>
+                                        <hr style="width: 100%;margin: 0px 12px;">
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <h6 class="text-muted mb-2" style="margin: 0px;">Packaged Date</h6>
+                                        </div>
+                                        <div class="col">
+                                            <p class="float-right" style="margin: 0px;">[ Date ]</p>
+                                        </div>
+                                        <hr style="width: 100%;margin: 0px 12px;">
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <h6 class="text-muted mb-2" style="margin: 0px;">Total Weight</h6>
+                                        </div>
+                                        <div class="col">
+                                            <p class="float-right" style="margin: 0px;">[&nbsp; Total Weight ]</p>
+                                        </div>
+                                        <hr style="width: 100%;margin: 0px 12px;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer"><button class="btn btn-light" type="button" data-dismiss="modal">Close</button><button class="btn btn-success" type="button" data-dismiss="modal">Add Package</button><button class="btn btn-success" type="button">Add and Scan Another<i class="fa fa-rotate-left" style="margin-left: 5px;"></i></button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row d-xl-flex justify-content-center align-items-center justify-content-xl-start" style="max-width: 568px;margin: auto;padding: 20px;">
+            <div class="col d-xl-flex justify-content-xl-center">
+                <div class="d-xl-flex justify-content-xl-center"><a class="btn btn-success" role="button" data-toggle="modal" href="#myModal">Generate Manifest</a>
+                    <div class="modal fade" role="dialog" tabindex="-1" id="myModal">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4>Generate Manifest</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                                <div class="modal-body">
+                                    <p class="text-center text-muted">The Transfer Manifest will be sent via email to [ email address ].&nbsp;</p>
+                                    <p class="text-center text-muted" style="font-size: 12px;">If you did not receive the email, press "Re-Send" to try again</p>
+                                </div>
+                                <div class="modal-footer"><button class="btn btn-secondary" data-dismiss="modal" type="button">Re-Send</button><button class="btn btn-success" type="button">Done</button></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

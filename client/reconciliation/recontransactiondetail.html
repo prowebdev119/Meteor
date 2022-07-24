@@ -1,0 +1,336 @@
+<template name="recontransactiondetail">
+    <div class="container-fluid" style="padding-left: 0; padding-right: 0;">
+        <div class="fullScreenSpin" style="display:none;">
+            <div class="spinner"></div>
+        </div>
+        <!-- <style>
+            .dataTables_filter {
+                display: none;
+            }
+        </style> -->
+        <div style="margin-top: -24px;">
+            <header style="padding: 16px; background-color: #ededed;">
+                <h1 style="margin: 16px; margin-bottom: 0;">Transaction Detail
+
+                    <a role="button" data-toggle="modal" href="#helpViewModal"  style="font-size: 20px;">Help <i class="fa fa-question-circle-o" style="font-size: 20px;"></i></a>
+
+                    <!-- Start Help View Modal -->
+                    <div class="modal fade" role="dialog" tabindex="-1" id="helpViewModal">
+                        <div class="modal-dialog modal-sm" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header" style="padding-bottom: 8px;">
+                                    <h4>Help</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                                <div class="modal-body">
+                                    <p class="text-center text-muted"><a role="button" data-toggle="modal" href="#helpModal" class="btn btn-primary helpModal">View Help Video</a></p>
+                                    <p class="text-center text-muted"><a href="https://vs1forum.com/" target="_blank" class="btn btn-primary">Download Help File</a></p>
+                                    <p class="text-center text-muted"><button class="btn btn-primary" type="button">Employ Advisor</button></p>
+                                    <p class="text-center text-muted" style="margin: 0;">
+                                        <a href="https://vs1forum.com/ucp.php?mode=register&cloudusername={{loggedCompany}}" target="_blank" class="btn btn-primary">
+                                        Go To Forum
+                                        </a>
+                                    </p>
+                                </div>
+                                <div class="modal-footer" style="padding: 6px;"><button class="btn btn-light" data-dismiss="modal" type="button">Close</button></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Help View Modal -->
+                </h1>
+            </header>
+
+
+            <div class="card" style="margin-top: 20px; ">
+                <div class="card-header row d-xl-flex flex-row justify-content-xl-center" style="padding: 0 20px; background-color: #ededed;">
+
+                    <div class="col d-xl-flex float-left flex-grow-1 mb-4">
+                        <label style="margin-top: 30px; margin-right: 16px;">Received as</label>
+
+                        <select class="form-select search" style="margin-top: 20px;">
+                            <option value="directpayment">Direct Payment</option>
+                            <option value="prepayment">Prepayment</option>
+                            <option value="overpayment">Overpayment</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="card-body row d-xl-flex flex-row justify-content-xl-center" style="margin: 0 16px;">
+                    <div class="col d-xl-flex float-left flex-grow-1 mb-4">
+                        <div class="form-group">
+                            <label for="">From</label>
+                            <input type="text" class="form-control" id="FromWho" value="">
+                        </div>
+                        <div class="form-group" style="margin-left: 20px;">
+                            <label for="">Date</label>
+                            <div class="input-group date" style="width: 160px;">
+                                <input type="text" class="form-control" id="DateIn" >
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-th"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-left: 20px;">
+                            <label for="">Reference</label>
+                            <input type="text" class="form-control" id="reference" value="">
+                        </div>
+                    </div>
+
+                    <div class="col d-xl-flex justify-content-xl-end align-items-xl-start">
+                        <div class="form-group">
+                            <label for="">Total</label>
+                            <input type="text" class="form-control" id="TotalAmount" value="">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row no-gutters">
+                    <hr style="width: 100%; margin: 16px; margin-top: 0;" />
+                </div>
+
+                <div class="card-body row d-xl-flex flex-row justify-content-xl-center" style="margin: 0 16px;">
+                    <div class="col d-xl-flex float-left flex-grow-1 mb-4">
+                        <label for="" style="font-weight: 700;">AUD Australlian Dollar</label>
+                    </div>
+
+                    <div class="col d-xl-flex justify-content-xl-end align-items-xl-start">
+                        <label style="margin-top: 10px; margin-right: 16px;">Amounts are</label>
+
+                        <select class="form-select search" style="margin-top: 10px;">
+                            <option value="tax_exclusive">Tax Exclusive</option>
+                            <option value="tax_inclusive">Tax Inclusive</option>
+                            <option value="no_tax">No Tax</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="card-body p-3 rounded" style="margin: 0 16px;">
+                    <div class="table-responsive">
+                        <style>
+                            th {
+                                background-color: #ededed;
+                            }
+                            .table-striped tbody tr:nth-of-type(odd) {
+                                background-color: white !important;
+                            }
+
+                            .table-striped tbody tr:nth-of-type(even) {
+                                background-color: #0000000d !important;
+                            }
+
+                            .JColResizer > tbody > tr > td, .JColResizer > tbody > tr > th {
+                                padding: .75rem!important;
+                            }
+                            .hiddenColumn{
+                                display:none;
+                            }
+                            .showColumn {
+                                display:table-cell;
+                                padding:.75rem;
+                                vertical-align:top;
+                            }
+
+                            input[type=number]::-webkit-inner-spin-button,
+                            input[type=number]::-webkit-outer-spin-button {
+                                opacity: 1;
+                            }
+                            .highlightInput {
+                                border: 0 solid transparent !important;
+                                background-color: rgba(0, 0, 0, 0) !important;
+                                padding: 0 !important;
+                                width: 100% !important;
+                                text-align: right !important;
+                                color: #858796 !important;
+                            }
+
+                            .highlightInput::-webkit-outer-spin-button,
+                            .highlightInput::-webkit-inner-spin-button {
+                                -webkit-appearance: none !important;
+                                margin: 0 !important;
+                            }
+
+                            /* Firefox */
+                            .highlightInput[type=number] {
+                                -moz-appearance: textfield !important;
+                            }
+                        </style>
+                        <div class="row no-gutters d-xl-flex align-items-xl-end">
+                            <div class="col d-sm-flex justify-content-sm-start align-items-sm-center">
+
+                            </div>
+                            <div class="col float-right d-sm-flex d-xl-flex justify-content-sm-end align-items-sm-center justify-content-xl-end align-items-xl-end myvarFilterForm">
+
+                            </div>
+                        </div>
+                        <table id="tblrecontransactiondetail" style="width:100%" class="table table-striped table-bordered datatable tblrecontransactiondetail">
+                            <thead>
+                                <tr class="dnd-moved">
+                                    <th class="th colSortDate hiddenColumn">id</th>
+                                    <th class="th colItem" style="width:200px;">Item</th>
+                                    <th class="th colDescription" style="width:300px;">Description</th>
+                                    <th class="th colQty" style="width:75px;">Qty</th>
+                                    <th class="th colUnitPrice" style="width: 115px; text-align: left!important;">Unit Price</th>
+                                    <th class="th colUnitPrice" style="width: 115px; text-align: left!important;">Sub Total</th>
+<!--                                    <th class="th colUnitPrice colUnitPriceInc hiddenColumn" style="width: 115px; text-align: left!important;">Unit Price (Inc) <i class="fas fa-random fa-trans"></i></th>-->
+                                    <th class="th colAccount" style="width:150px;">Account</th>
+                                    <th data-toggle="tooltip" data-placement="top" title="Only the highest discount is applied" class="th colDiscount" style="width: 95px; text-align: left!important;">Disc %</th>
+                                    <th class="th colTaxRate " style="width: 95px; text-align: left!important;">Tax Code</th>
+                                    <th class="th colTaxAmount " style="width: 95px; text-align: left!important;">Tax Amount</th>
+                                    <th class="th colAmount" style="width: 140px; text-align: left!important;">Amount AUD</th>
+<!--                                    <th class="th colAmount colAmountInc hiddenColumn" style="width: 140px; text-align: left!important;">Amount AUD(Inc) <i class="fas fa-random fa-trans"></i></th>-->
+                                    <th class="th colStatus" style="width:70px;"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#if baselinedata}}
+                                {{#each item in baselinedata}}
+                                <tr class="dnd-moved" id="{{item.lineID}}" style="cursor: pointer;">
+                                    <td contenteditable="false" class="colProductName">
+                                        <input class="es-input highlightSelect lineProductName" type="search" value="{{item.product}}">
+                                    </td>
+                                    <td contenteditable="false" class="colDescription">
+                                        <input class="lineProductDesc colQty highlightInput" type="text" style="text-align: left !important;" value="{{item.description}}">
+                                    </td>
+                                    <td class="colQty">
+                                        <input class="lineQty colQty highlightInput" type="number" value="{{item.quantity}}">
+                                    </td>
+                                    <td class="colUnitPriceEx">
+                                        <input class="lineUnitPrice colUnitPrice highlightInput" type="text" value="{{item.unitPrice}}">
+                                    </td>
+<!--                                    <td class="colUnitPriceInc hiddenColumn">-->
+<!--                                        <input class="lineUnitPrice colUnitPrice highlightInput colUnitPriceIncChange" type="text" value="{{item.unitPriceInc}}">-->
+<!--                                    </td>-->
+                                    <td contenteditable="false" class="colUnitPriceEx lineSubTotal" style="text-align: right!important;cursor: pointer;">{{item.subtotal}}</td>
+                                    <td contenteditable="false" class="colAccount">
+                                        <input class="es-input highlightSelect lineAccountName" type="search" value="{{item.account}}">
+                                    </td>
+                                    <td contenteditable="false" class="lineDiscount colDiscount" style="text-align: right!important;">{{item.discountPercent}}</td>
+                                    <td contenteditable="false" class="colTaxRate" style="text-align: right!important;">
+                                        <input class="es-input highlightSelect lineTaxRate" type="search" value="{{item.taxrate}}">
+                                    </td>
+                                    <td contenteditable="false" class="lineTaxAmount colTaxAmount pointer" style="text-align: right!important;cursor: pointer;">{{item.taxAmount}}</td>
+                                    <td contenteditable="false" class="lineAmount colAmount" style="text-align: right!important;">{{item.totalAmount}}</td>
+<!--                                    <td contenteditable="false" class="lineAmount colAmountInc colAmount hiddenColumn" style="text-align: right!important;">{{item.totalAmountInc}}</td>-->
+                                    <td class="text-center">
+                                        <span class="table-remove btnRemove">
+                                            <button type="button" class="btn btn-danger btn-rounded btn-sm my-0 "><i class="fa fa-remove"></i></button>
+                                        </span>
+                                    </td>
+                                </tr>
+                                {{/each}}
+                                {{/if}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="row no-gutters">
+                    <div class="col-5 amountsCol" id="amountsCol">
+                        <button class="btn btn-primary" style="margin-left: 35px;" id="addLine" >Add a new line</button>
+                    </div>
+                    <div class="col-2 spacerCol" id="spacerCol">
+                        <hr class="spacerHR" style="display: none;">
+                        <hr class="spacerHR spacerHR2" style="display: none;">
+                    </div>
+                    <div class="col-5 finalFiguresCol" id="finalFiguresCol">
+                        <div class="row no-gutters" style="margin-bottom: 16px;">
+                            <div class="col-6">
+                                <p style="margin: 0; margin-left: 16px; font-size: 19px; font-weight: 700;">Subtoal</p>
+                            </div>
+                            <div class="col-6 d-xl-flex justify-content-xl-end">
+                                <p style="margin: 0; font-size: 19px; font-weight: 400; margin-right: 16px;"><span class="sub_total"></span></p>
+                            </div>
+                            <div class="col-12">
+                                <hr style="margin: 16px;" />
+                            </div>
+                            <div class="col-6">
+                                <p style="margin: 0; margin-left: 16px; font-size: 19px; font-weight: 400;">GST</p>
+                            </div>
+                            <div class="col-6 d-xl-flex justify-content-xl-end">
+                                <p style="margin: 0; font-size: 19px; font-weight: 400; margin-right: 16px;"><span class="tax_total"></span></p>
+                            </div>
+                            <div class="col-12">
+                                <hr style="margin: 16px;" />
+                            </div>
+                            <div class="col-6">
+                                <p style="margin: 0; margin-left: 16px; font-size: 19px; font-weight: 400;">Discount</p>
+                            </div>
+                            <div class="col-6 d-xl-flex justify-content-xl-end">
+                                <p style="margin: 0; font-size: 19px; font-weight: 400; margin-right: 16px;"><span class="discount_total"></span></p>
+                            </div>
+                            <div class="col-12">
+                                <hr style="margin: 16px;" />
+                            </div>
+                            <div class="col-6">
+                                <p style="margin: 0; margin-left: 16px; font-size: 19px; font-weight: 700;">TOTAL</p>
+                            </div>
+                            <div class="col-6 d-xl-flex justify-content-xl-end">
+                                <p style="margin: 0; font-size: 19px; font-weight: 700; margin-right: 16px;"><span class="grand_total"></span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row no-gutters">
+                    <div class="col d-xl-flex justify-content-xl-center align-items-xl-center" style="padding: 16px;">
+                        <button class="btn btn-primary" type="button" style="margin: 16px;" id="btnSave"><i class="fa fa-save" style="margin-right: 5px;"></i>Save Transaction</button>
+                        <button class="btn btn-secondary" type="button" style="margin: 16px;" id="btnCancel"><i class="fa fa-close" style="margin-right: 5px;"></i>Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" role="dialog" tabindex="-1" id="productListModal">
+        {{> productlistpop}}
+    </div>
+
+    <div class="modal fade" role="dialog" tabindex="-1" id="newProductModal">
+        {{> newproductpop}}
+    </div>
+
+    <div class="modal fade" role="dialog" tabindex="-1" id="taxRateListModal">
+        {{> taxratelistpop}}
+    </div>
+
+    <div class="modal fade" role="dialog" tabindex="-1" id="newTaxRateModal">
+        {{> newtaxratepop}}
+    </div>
+
+    <div class="modal fade customerListModal" role="dialog" tabindex="-1" id="customerListModal">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable customerListModalInner" role="document" style="max-width: 90vw;">
+            <div class="modal-content customerListContent">
+                <div class="modal-header">
+                    <h4>Customer List</h4><button type="button" class="close checkclose" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body mainCustomerModalBody" style="padding: 0px; overflow-x: hidden;">
+                    <input type="hidden" style="width: 100%; display:none;" id="customerSelectLineID" name="customerSelectLineID" readonly>
+                    {{> customerlistpop}}
+
+                </div>
+                <div class="modal-footer"><button class="btn btn-light checkclose" data-dismiss="modal" type="button">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Start Help Video Modal -->
+    <div class="modal fade" role="dialog" tabindex="-1" id="helpModal">
+        <div class="modal-dialog" role="document" style="max-width: 670px!important;">
+            <div class="modal-content" >
+                <div class="modal-header" >
+
+                    <h4 class="title-header" >Reconciliation</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+                    <!-- <iframe width="640" height="360" src="https://player.vimeo.com/video/99892791" frameborder="0" allowfullscreen=""></iframe> -->
+                    <!-- <iframe width="640" height="360" src="https://www.youtube.com/embed/BzxoYOp42fg" frameborder="0" allowfullscreen=""></iframe> -->
+                    <video id="myVideo" width="640" height="360" controls="" name="media" style="border: solid 5px #999999f0; height: auto; outline: none;">
+                        <source src="https://erphelpes.com/vs1videos/comingsoon.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- End Help Video Modal -->
+    <script>
+        modalDraggable();
+    </script>
+</template>

@@ -1,0 +1,126 @@
+<template name="shippinglist">
+    <div class="shippinglist invoicelist">
+        <div class="active_page">
+            <div class="active_page_content">
+                <p><a href="/shipping">Shipping</a> &nbsp;›&nbsp;</p><br>
+                <h1>Shipping</h1>
+            </div>
+        </div>
+
+        <div class="bridge-lower new-wrapper">
+          <div class="fullScreenSpin" style="display:none;"><div class="spinner"></div></div>
+
+        <div id="wrapper_main">
+          <!--
+            <div id="search_box">
+                <div class="search_box_inner">
+                    <a class="list_search"><i class="fa fa-times" aria-hidden="true"></i></a>
+                    <table class="invoice_list_search">
+                        <tbody>
+                        <tr>
+                            <td>
+                                <label>Search for</label>
+                                <input type="text" id="mySearchInput"
+                                       placeholder="">
+                            </td>
+                            <td>
+                                <label>Within</label>
+                                <div class="input-group dropdown-add-rec" >
+                                    <input type="text" id="mySearchDropdown" class="form-control select-tax-type-input">
+                                    <div class="input-group-addon" data-toggle="dropdown">
+                                        <img src="/img/dropdown_icon.png" id="region-dropdown-img" class="region-img">
+                                    </div>
+                                    <ul class="dropdown-menu" id="uItem" name="uItem">
+                                        <li class="select-tax-type">Any Date</li>
+                                        <li class="select-tax-type">Transaction Date</li>
+                                        <li class="select-tax-type">Due Date</li>
+                                    </ul>
+                                </div>
+                            </td>
+                            <td>
+                                <label>Start</label>
+                                <div class="search-date-pick">
+                                    <input class="datepick" id="listdatepickerstart">
+                                </div>
+
+                            </td>
+                            <td><label>End</label>
+                                <div class="search-date-pick">
+                                <input class="datepick" id="listdatepickerend">
+                                </div>
+                            </td>
+                            <td class="selectCheckBoxes">
+                                <input id="Unsent" type="checkbox" name="unsent" value="Unsent Only"> <label>Unsent
+                                Only</label><br>
+                                <input id="voidAndDelete" type="checkbox" name="deleted_voided" value="Include Deleted & Voided">
+                                <label>Include Deleted & Voided</label>
+                            </td>
+                        </tr>
+                        <tr class="Searchtr">
+
+                            <td colspan="5">
+                                <button class="searchOrReset" id="search_list">Search</button> <b> or </b> <a id="searchreset" class="list_reset searchOrReset"> Clear </a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+                -->
+        </div>
+
+        <div class=" container">
+        <div class="tab-content">
+            <div id="all-tabs" class="tab-pane fade in active">
+              {{> refreshbutton}}
+                <!-- <div class="list_search_container"><a class="list_search">Search</a>
+                </div> -->
+                <!-- <span class="itemButton">{{allCount}} items</span> -->
+                <!-- Take out class nowrap -->
+                <table id="shipping_list" style="width: 100%" class="dataTable table table-hover table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <!-- <th></th> -->
+                        <th>Invoice No</th>
+                        <th>Sale #</th>
+                        <th>Employee</th>
+                        <th>Department</th>
+                        <th>Print Name</th>
+                        <th>Date</th>
+                    </tr>
+                    </thead>
+                    <!-- <tbody>
+
+                      {{#each records}}
+                          <tr id="product-list-row-" class="">
+
+                              {{#each value in dataArr}}
+                                  <td><span class="table-cells">{{value}}</span></td>
+                              {{/each}}
+                          </tr>
+                      {{/each}}
+
+                    </tbody> -->
+                </table>
+            </div>
+        </div>
+            <script>
+                $('.Show').click(function () {
+                    $('#search_box').show(500);
+                    $('.Show').hide(0);
+                    $('.Hide').show(0);
+                });
+                $('.Hide').click(function () {
+                    $('#search_box').hide(500);
+                    $('.Show').show(0);
+                    $('.Hide').hide(0);
+                });
+                $('.list_search').click(function () {
+                    $('#search_box').toggle('slow');
+                });
+            </script>
+        </div>
+        </div>
+
+    </div>
+</template>

@@ -1,0 +1,44 @@
+<template name="deliveryscan">
+ <div id="wrapper_main">
+  <main id="page-content-wrapper_main" role="main">
+    <div class="bread_crumbs"><p>Shipping -> <a href="/deliveryscan">Scan</a></p></div>
+  <h1>Shipping Scan</h1>
+  <hr>
+  <!--<h4>Content Here!</h4>-->
+  <div class="form-group required">
+  <form action="" id="shipscan" method="POST">
+    <div class="shipping_holder">
+    <div class="col-sm-4">
+    <div class="shipbtn_con">
+    <a href="" class="ship_btns">Quick Scan</a>
+  </div>
+    </div>
+    <div class="col-sm-4">
+    <label>Order:</label>
+    <br><input type="text" id="SHOrder" name="SHOrder" class="form-control" placeholder="Order" readonly><br>
+    <label>Name:</label><br>
+    <input type="text" id="SHName" name="SHName" class="form-control" placeholder="Name" readonly><br>
+    </div>
+  </div>
+    <!-- submit -->
+    <div class="col-sm-12"><hr></div>
+    <table id="shipproductlist" class="table table-hover table-bordered">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+        </table>
+    <div class="col-sm-3">
+    <input type="submit" class="btn btn-primary btn-block" value="&#xf0c7; Save">
+    </div>
+  </form>
+  <div class="col-sm-3">
+  <button onclick="javascript:history.back()" class="btn btn-primary btn-block"><i class="fa fa-close"></i> Cancel</button>
+  </div>
+  <div class="col-sm-12"><hr><br></div>
+</div>
+</main>
+</div>
+</template>

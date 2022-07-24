@@ -1,0 +1,61 @@
+<template name="addnewtaxrate">
+  <div class="modal fade" id="myModal" role="dialog">
+      <div class="modal-dialog">
+
+          <!-- Modal content-->
+          <div class="modal-content">
+              <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">x</button>
+                  <h4 class="modal-title">Add New Tax Rate</h4>
+              </div>
+              <div class="modal-body">
+                  <label><b>Tax Rate Display Name</b></label>
+                  <p>The name as you would like it to appear in VS1Cloud (limited to 50 characters)</p>
+                  <input type="text" class="form-control" id="taxName" name="taxName">
+                  <label><b>Tax Type</b></label>
+                  <p>Choose how this tax rate will be reported in your Activity Statement</p>
+                  <div class="input-group dropdown-add-rec" id="tax-type">
+                      <input type="text"  name="myTaxDropdown" class="form-control select-tax-type-input">
+                      <div class="input-group-addon " data-toggle="dropdown">
+                          <img src="/img/dropdown_icon.png" id="region-dropdown-img" class="region-img" >
+                      </div>
+                      <ul class="dropdown-menu">
+                          <li class="taxRateValues">Sales</li>
+                          <li class="taxRateValues">Purchases</li>
+                          <li class="taxRateValues">Exempt Sales</li>
+                          <li class="taxRateValues">Exempt Purchases</li>
+                          <li class="taxRateValues">EC Sales Goods</li>
+                          <li class="taxRateValues">EC Sales Services</li>
+                          <li class="taxRateValues">EC Purchases</li>
+                          <li class="taxRateValues">EC Acquisitions</li>
+                          <li class="taxRateValues">Reverse Charges</li>
+                          <li class="taxRateValues">MOSS Sales</li>
+                      </ul>
+                  </div>
+                  <label><b>Tax Components</b></label>
+                  <div class="taxComponents" id="tax-component-0">
+                      <input type="text" id="taxDescription" name="taxDescription" placeholder="GST">
+
+                      <input type="text" placeholder="0" id="taxRate" name="taxRate" class="taxRate">
+                      <span>%</span>
+                      <span class="delete-component close-button" id="close-button-0">x</span>
+                  </div>
+                  <div class="taxRate">
+                      <a href="#" id="add-component"> <i class="fa fa-level-up"></i> Add a Component</a>
+                      <p>Total tax rate</p>
+                      <p id="taxtotalPerc" name="taxtotalPerc">0.00 %</p>
+                  </div>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-success" data-dismiss="modal" id="create-NewTaxCode" name="create-NewDepartment">Save</button>
+                  <button type="button" class="btn cancel_new" data-dismiss="modal">Cancel</button>
+
+              </div>
+          </div>
+
+      </div>
+  </div>
+  <script>
+    modalDraggable();
+ </script>
+</template>

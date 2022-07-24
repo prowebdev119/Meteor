@@ -1,0 +1,804 @@
+<template name="sidenav">
+<!--
+    <style>
+        .navbarscroll {
+            overflow-x: hidden !important;
+            height: 100vh !important;
+            overflow-y: scroll;
+            width: 7.5rem !important;
+        }
+        @media (min-height: 898px) {
+            .navbarscroll {
+                overflow-x: hidden !important;
+            }
+        }
+    </style>
+-->
+    <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0 navbarscroll" style="background-image: url(&quot;0&quot;);background-color: #00A3D3;" id="sidenavbar" name="sidenavbar">
+        <div class="container-fluid d-flex flex-column p-0"><a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0"  style="background-image: url(&quot;assets/img/vs1cloudbrand.png&quot;);background-size: contain;background-repeat: no-repeat;background-position: center;padding: 5px;padding-right: auto;width: 100px;"></a>
+            <hr class="sidebar-divider my-0">
+            <style>
+                a:hover {
+                    cursor:pointer!important;
+                }
+                {{#if isGreenTrack}}
+                ::-webkit-scrollbar-thumb {
+                    background: rgb(61 220 151) !important;
+                }
+
+                ::-webkit-scrollbar-track {
+                    background: rgb(61 220 151) !important;
+                }
+
+                #collapse-0:after, #collapse-0::after, #collapse-2:after, #collapse-2::after,
+                #collapse-3:after, #collapse-3::after,#collapse-4:after, #collapse-4::after,
+                #collapse-5:after, #collapse-5::after,#collapse-6:after, #collapse-6::after,
+                #collapse-7:after, #collapse-7::after,#collapse-7:after, #collapse-7::after,
+                #collapse-8:after, #collapse-8::after,#collapse-8:after, #collapse-8::after,
+                #collapse-9:after, #collapse-9::after,#collapse-10:after, #collapse-10::after,
+                #collapse-11:after, #collapse-11::after,#collapse-12:after, #collapse-12::after,
+                #collapse-app:after, #collapse-app::after{
+                    border-right: solid 10px #00A969!important;
+                }
+
+                .border-left-primary {
+                    border-left: .25rem solid #00A969 !important;
+                }
+                .text-primary{
+                    color:#00A969 !important;
+                }
+
+                a{
+                    color:#00A969;
+                }
+
+                a.focus, a:focus, a:hover {
+                    background-color: #00A969!important;
+                    border-color: #00A969!important;
+                }
+                .btn-primary {
+                    background-color: #00A969!important;
+                    border-color: #00A969!important;
+                }
+
+
+
+                .btn-primary.focus, .btn-primary:focus, .btn-primary:hover {
+                    background-color: #00A969!important;
+                    border-color: #00A969!important;
+                }
+                .custom-control input[type=checkbox]:checked + label:before {
+                    background-color: #00A969 !important;
+                    border-color: #00A969 !important;
+                }
+                .custom-control input[type=checkbox]:checked + label:before {
+                    background-color: #00A969 !important;
+                    border-color: #00A969 !important;
+                }
+                /*
+                */
+                {{else}}
+
+                {{/if}}
+
+            </style>
+
+            <style>
+                @media (min-width: 768px){
+                    .sidebar.toggled .nav-item .collapse {
+                        left: 6.8rem!important;
+                    }
+                }
+
+                #collapse-0:after, #collapse-0::after {
+                    position: fixed;
+                    top: 18px;
+                    left: -10px;
+                    content: '';
+                    width: 0;
+                    height: 0;
+                    border-right: solid 10px #00A3D3;
+                    border-bottom: solid 10px transparent;
+                    border-top: solid 10px transparent;
+                }
+                #collapse-app:after, #collapse-app::after {
+                    position: absolute;
+                    top: 18px;
+                    left: -10px;
+                    content: '';
+                    width: 0;
+                    height: 0;
+                    border-right: solid 10px #00A3D3;
+                    border-bottom: solid 10px transparent;
+                    border-top: solid 10px transparent;
+                }
+                #collapse-2:after, #collapse-2::after {
+                    position: absolute;
+                    top: 18px;
+                    left: -10px;
+                    content: '';
+                    width: 0;
+                    height: 0;
+                    border-right: solid 10px #00A3D3;
+                    border-bottom: solid 10px transparent;
+                    border-top: solid 10px transparent;
+                }
+                #collapse-3:after, #collapse-3::after {
+                    position: absolute;
+                    top: 18px;
+                    left: -10px;
+                    content: '';
+                    width: 0;
+                    height: 0;
+                    border-right: solid 10px #00A3D3;
+                    border-bottom: solid 10px transparent;
+                    border-top: solid 10px transparent;
+                }
+                #collapse-4:after, #collapse-4::after {
+                    position: absolute;
+                    top: 18px;
+                    left: -10px;
+                    content: '';
+                    width: 0;
+                    height: 0;
+                    border-right: solid 10px #00A3D3;
+                    border-bottom: solid 10px transparent;
+                    border-top: solid 10px transparent;
+                }
+                #collapse-5:after, #collapse-5::after {
+                    position: absolute;
+                    top: 18px;
+                    left: -10px;
+                    content: '';
+                    width: 0;
+                    height: 0;
+                    border-right: solid 10px #00A3D3;
+                    border-bottom: solid 10px transparent;
+                    border-top: solid 10px transparent;
+                }
+                #collapse-6:after, #collapse-6::after,
+                #collapse-7:after, #collapse-7::after,
+                #collapse-8:after, #collapse-8::after,
+                #collapse-9:after, #collapse-9::after,
+                #collapse-10:after, #collapse-10::after,
+                #collapse-11:after, #collapse-11::after,
+                #collapse-12:after, #collapse-12::after,
+                #collapse-13:after, #collapse-13::after,
+                #collapse-14:after, #collapse-14::after {
+                    position: absolute;
+                    top: 18px;
+                    left: -10px;
+                    content: '';
+                    width: 0;
+                    height: 0;
+                    border-right: solid 10px #00A3D3;
+                    border-bottom: solid 10px transparent;
+                    border-top: solid 10px transparent;
+                }
+
+                .sidebar #sidebarToggle:after {
+                    content: "\f104";
+                }
+                .page-item.active .page-link{
+                    background-color: #00A3D3;
+                    border-color: #00A3D3;
+                }
+            </style>
+
+            <style>
+                @media (min-width: 1920px){
+                    .collapseBottom9 {
+                        top: -82px !important;
+                    }
+                    #collapse-9::after {
+                        position: absolute;
+                        top: 100px;
+                        left: -10px;
+                        content: '';
+                        width: 0;
+                        height: 0;
+                        border-right: solid 10px #00A3D3;
+                        border-bottom: solid 10px transparent;
+                        border-top: solid 10px transparent;
+                    }
+
+                    .collapseBottom12 {
+                        top: -8px !important;
+                    }
+                }
+
+                @media (max-width: 1600px){
+                    .collapseBottom9 {
+                        position: fixed !important;
+                        bottom: 50px !important;
+                        height: max-content !important;
+                        top: 63% !important;
+                    }
+                    #collapse-9::after {
+                        position: absolute;
+                        top: 165px;
+                        left: -10px;
+                        content: '';
+                        width: 0;
+                        height: 0;
+                        border-right: solid 10px #00A3D3;
+                        border-bottom: solid 10px transparent;
+                        border-top: solid 10px transparent;
+                    }
+
+                    .collapseBottom11 {
+                        position: fixed !important;
+                        bottom: 50px !important;
+                        height: max-content !important;
+                        top: 70.5% !important;
+                    }
+                    #collapse-11::after {
+                        position: absolute;
+                        top: 40px;
+                        left: -10px;
+                        content: '';
+                        width: 0;
+                        height: 0;
+                        border-right: solid 10px #00A3D3;
+                        border-bottom: solid 10px transparent;
+                        border-top: solid 10px transparent;
+                    }
+
+                    .collapseBottom12 {
+                        position: fixed !important;
+                        bottom: 50px !important;
+                        height: max-content !important;
+                        top: 63% !important;
+                    }
+                    #collapse-12::after {
+                        position: absolute;
+                        top: 55px;
+                        left: -10px;
+                        content: '';
+                        width: 0;
+                        height: 0;
+                        border-right: solid 10px #00A3D3;
+                        border-bottom: solid 10px transparent;
+                        border-top: solid 10px transparent;
+                    }
+                }
+
+                @media (max-width: 1536px){
+                    .collapseBottom9 {
+                        position: fixed !important;
+                        bottom: 50px !important;
+                        height: max-content !important;
+                        top: 56% !important;
+                    }
+                    #collapse-9::after {
+                        position: absolute;
+                        top: 285px;
+                        left: -10px;
+                        content: '';
+                        width: 0;
+                        height: 0;
+                        border-right: solid 10px #00A3D3;
+                        border-bottom: solid 10px transparent;
+                        border-top: solid 10px transparent;
+                    }
+
+                    .collapseBottom11 {
+                        position: fixed !important;
+                        bottom: 50px !important;
+                        height: max-content !important;
+                        top: 65% !important;
+                    }
+                    #collapse-11::after {
+                        position: absolute;
+                        top: 190px;
+                        left: -10px;
+                        content: '';
+                        width: 0;
+                        height: 0;
+                        border-right: solid 10px #00A3D3;
+                        border-bottom: solid 10px transparent;
+                        border-top: solid 10px transparent;
+                    }
+
+                    .collapseBottom12 {
+                        position: fixed !important;
+                        bottom: 50px !important;
+                        height: max-content !important;
+                        top: 56% !important;
+                    }
+                    #collapse-12::after {
+                        position: absolute;
+                        top: 195px;
+                        left: -10px;
+                        content: '';
+                        width: 0;
+                        height: 0;
+                        border-right: solid 10px #00A3D3;
+                        border-bottom: solid 10px transparent;
+                        border-top: solid 10px transparent;
+                    }
+
+                    .collapseBottom7 {
+                        position: fixed !important;
+                        bottom: 50px !important;
+                        height: max-content !important;
+                        top: 60% !important;
+                    }
+                    #collapse-7::after {
+                        position: absolute;
+                        top: 65px;
+                        left: -10px;
+                        content: '';
+                        width: 0;
+                        height: 0;
+                        border-right: solid 10px #00A3D3;
+                        border-bottom: solid 10px transparent;
+                        border-top: solid 10px transparent;
+                    }
+                }
+
+                @media (max-width: 1366px){
+
+                    .collapseBottom11 {
+                        position: fixed !important;
+                        bottom: 50px !important;
+                        height: max-content !important;
+                        top: 65% !important;
+                    }
+                    #collapse-11::after {
+                        position: absolute;
+                        top: 170px;
+                        left: -10px;
+                        content: '';
+                        width: 0;
+                        height: 0;
+                        border-right: solid 10px #00A3D3;
+                        border-bottom: solid 10px transparent;
+                        border-top: solid 10px transparent;
+                    }
+
+                    .collapseBottom12 {
+                        position: fixed !important;
+                        bottom: 50px !important;
+                        height: max-content !important;
+                        top: 56% !important;
+                    }
+                    #collapse-12::after {
+                        position: absolute;
+                        top: 195px;
+                        left: -10px;
+                        content: '';
+                        width: 0;
+                        height: 0;
+                        border-right: solid 10px #00A3D3;
+                        border-bottom: solid 10px transparent;
+                        border-top: solid 10px transparent;
+                    }
+
+                    .collapseBottom7 {
+                        position: fixed !important;
+                        bottom: 50px !important;
+                        height: max-content !important;
+                        top: 60% !important;
+                    }
+                    #collapse-7::after {
+                        position: absolute;
+                        top: 45px;
+                        left: -10px;
+                        content: '';
+                        width: 0;
+                        height: 0;
+                        border-right: solid 10px #00A3D3;
+                        border-bottom: solid 10px transparent;
+                        border-top: solid 10px transparent;
+                    }
+                }
+
+            </style>
+
+            <!--<style>
+.dropdown {
+position: relative;
+display: inline-block;
+}
+
+.dropdown-content {
+display: none;
+position: absolute;
+background-color: #f1f1f1;
+min-width: 160px;
+box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+z-index: 1;
+}
+
+.dropdown-content a {
+color: black;
+padding: 12px 16px;
+text-decoration: none;
+display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {{{#if isGreenTrack}}background-color: #00A969;{{else}}background-color: #00a3d3;{{/if}} }
+</style>-->
+
+            <!--
+<style>
+.collapse {
+max-height: 200px !important;
+overflow-y: scroll !important;
+}
+</style>
+-->
+
+            <ul class="nav navbar-nav text-light" id="accordionSidebar-1">
+
+                <!-- Accounts -->
+                {{#if includeAccounts}}
+                <li class="nav-item hoverSideNavAccounts" role="presentation">
+                    <a class="nav-link sidenavaccounts" id="sidenavaccounts" name="sidenavaccounts" data-toggle="collapse" aria-expanded="false" aria-controls="collapse-0" href="#collapse-0" role="button"><i class="fa fa-users"></i><span>Accounts</span></a>
+                    <div class="collapse" id="collapse-0" style="{{#if isGreenTrack}}background-color: #00A969;{{else}}{{#if isGreenTrack}}background-color: #00A969;{{else}}background-color: #00a3d3;{{/if}} {{/if}} width: max-content; padding: 5px; border-radius: 5px;">
+                        <div style="margin: 10px 20px;"><a class="text-white sidenavaccounts"  style="font-size: 16px;"><i class="fa fa-users"></i><span> Accounts Overview</span></a></div>
+                        <div style="margin: 10px 20px;"><a class="text-white"  id="sidenavjournalentry" name="sidenavjournalentry" style="font-size: 16px;"><i class="fa fa-book"></i><span> Journal Entries</span></a></div>
+                        <div style="margin: 10px 20px;"><a class="text-white"  id="sidenavnewaccounts" name="sidenavnewaccounts" style="font-size: 16px;"><i class="fa fa-plus"></i><span> New Account</span></a></div>
+                        <div style="margin: 10px 20px;"><a class="text-white"  id="sidenavnewjournalentry" name="sidenavnewjournalentry" style="font-size: 16px;"><i class="fa fa-plus"></i><span> New Journal</span></a></div>
+                    </div>
+                </li>
+                {{/if}}
+
+                <!-- Appointments -->
+                {{#if isGreenTrack}}
+                {{else}}
+                {{#if includeAppointmentScheduling}}
+                <li class="nav-item hoverSideNavAppointment" role="presentation">
+                    <a class="nav-link sidenavappointment" id="sidenavappointment" name="sidenavappointment" data-toggle="collapse" aria-expanded="false" aria-controls="collapse-app" href="#collapse-app" role="button"><i class="fa fa-calendar"></i><span>Appointments</span></a>
+                    <div class="collapse" id="collapse-app" style="{{#if isGreenTrack}}background-color: #00A969;{{else}}{{#if isGreenTrack}}background-color: #00A969;{{else}}background-color: #00a3d3;{{/if}} {{/if}} width: max-content; padding: 5px; border-radius: 5px;">
+                        <div style="margin: 10px 20px;"><a class="text-white sidenavappointment"  style="font-size: 16px;"><i class="fa fa-calendar"></i><span> Appointments Overview</span></a></div>
+                        <div style="margin: 10px 20px;"><a class="text-white "  id="sidenavappointmentList" name="sidenavappointmentList" style="font-size: 16px;"><i class="fa fa-calendar"></i><span> Appointments List</span></a></div>
+                        <div style="margin: 10px 20px;"><a class="text-white "  id="sidenavappointmenttimeList" name="sidenavappointmenttimeList" style="font-size: 16px;"><i class="fa fa-calendar"></i><span> Appointments Time List</span></a></div>
+                        <div style="margin: 10px 20px;"><a class="text-white sidenavappointment"  id="sidenavnewappointment" name="sidenavnewappointment" style="font-size: 16px;"><i class="fa fa-plus"></i><span> New Appointment</span></a></div>
+                        <div style="margin: 10px 20px;"><a class="text-white "  id="sidenavallocation" name="sidenavallocation" style="font-size: 16px;"><i class="fa fa-tasks"></i><span> Allocation</span></a></div>
+                    </div>
+                </li>
+                {{/if}}
+                {{/if}}
+
+                <!-- Banking -->
+                {{#if includeBanking}}
+                <li class="nav-item hoverSideNavBanking" role="presentation">
+                    <a class="nav-link sidenavbanking" id="sidenavbanking" name="sidenavbanking" data-toggle="collapse" aria-expanded="false" aria-controls="collapse-4" href="#collapse-4" role="button"><i class="fa fa-bank"></i><span>Banking</span></a>
+                    <div class="collapse" id="collapse-4" style="{{#if isGreenTrack}}background-color: #00A969;{{else}}background-color: #00a3d3;{{/if}} width: max-content; padding: 5px; border-radius: 5px;">
+                        <div style="margin: 10px 20px;"><a class="text-white sidenavbanking"  style="font-size: 16px;"><i class="fa fa-bank"></i><span> Banking Overview</span></a></div>
+                        <div style="margin: 10px 20px;"><a class="text-white"  id="sidenavbankreconciliation" name="sidenavbankreconciliation" style="font-size: 16px;"><i class="fa fa-thumbs-up"></i><span> Bank Reconciliation</span></a></div>
+                        <div style="margin: 10px 20px;"><a class="text-white"  id="sidenavreconciliation" name="sidenavreconciliation" style="font-size: 16px;"><i class="fa fa-thumbs-up"></i><span> Bank Reconciliation List</span></a></div>
+                        <div style="margin: 10px 20px;"><a class="text-white"  id="sidenavcheque" name="sidenavcheque" style="font-size: 16px;"><i class="fas fa-money-check-alt"></i><span> {{formname}} List</span></a></div>
+
+                        <div style="margin: 10px 20px;"><a class="text-white"  id="sidenavnewcheque" name="sidenavnewcheque" style="font-size: 16px;"><i class="fa fa-plus"></i><span> New {{formname}}</span></a></div>
+
+                        <div style="margin: 10px 20px;"><a class="text-white"  id="sidenavdepositlist" name="sidenavdepositlist" style="font-size: 16px;"><i class="fas fa-list"></i><span> Deposited List</span></a></div>
+                        <div style="margin: 10px 20px;"><a class="text-white"  id="sidenavnewdeposit" name="sidenavnewdeposit" style="font-size: 16px;"><i class="fa fa-plus"></i><span> New Deposit</span></a></div>
+                        <!-- <div style="margin: 10px 20px;"><a class="text-white"  id="sidenavnewreconcile" name="sidenavnewreconcile" style="font-size: 16px;"><i class="fa fa-plus"></i><span> Reconcile</span></a></div> -->
+                    </div>
+                </li>
+                {{/if}}
+
+                <!-- Contacts -->
+                {{#if includeContacts}}
+                <li class="nav-item hoverSideNavContacts" role="presentation" id="" name="">
+                    <a class="nav-link sidenavcontacts" id="sidenavcontacts" name="sidenavcontacts" data-toggle="collapse" aria-expanded="false" aria-controls="collapse-3" href="#collapse-3" role="button"><i class="fa fa-phone"></i><span>Contacts</span></a>
+                    <div class="collapse" id="collapse-3" style="{{#if isGreenTrack}}background-color: #00A969;{{else}}background-color: #00a3d3;{{/if}} width: max-content; padding: 5px; border-radius: 5px;">
+                        <div style="margin: 10px 20px;"><a class="text-white sidenavcontacts"  style="font-size: 16px;"><i class="fa fa-phone"></i><span> Contact Overview</span></a></div>
+                        <div style="margin: 10px 20px;"><a class="text-white "  id="sidenavcustomers" name="sidenavcustomers" style="font-size: 16px;"><i class="fa fa-users"></i><span> Customers</span></a></div>
+                        <div style="margin: 10px 20px;"><a class="text-white "  id="sidenavemployees" name="sidenavemployees" style="font-size: 16px;"><i class="fa fa-user"></i><span> Employees</span></a></div>
+                        <div style="margin: 10px 20px;"><a class="text-white "  id="sidenavjobs" name="sidenavjobs" style="font-size: 16px;"><i class="fa fa-user"></i><span> Jobs</span></a></div>
+                        <div style="margin: 10px 20px;"><a class="text-white "  id="sidenavsuppliers" name="sidenavsuppliers" style="font-size: 16px;"><i class="fas fa-user-tie"></i><span> Suppliers</span></a></div>
+                        <div style="margin: 10px 20px;"><a class="text-white "  id="sidenavnewcustomers" name="sidenavnewcustomers" style="font-size: 16px;"><i class="fa fa-plus"></i><span> New Customer</span></a></div>
+                        <div style="margin: 10px 20px;"><a class="text-white "  id="sidenavnewemployees" name="sidenavnewemployees" style="font-size: 16px;"><i class="fa fa-plus"></i><span> New Employee</span></a></div>
+                        <div style="margin: 10px 20px;"><a class="text-white "  id="sidenavnewsuppliers" name="sidenavnewsuppliers" style="font-size: 16px;"><i class="fas fa-plus"></i><span> New Supplier</span></a></div>
+                    </div>
+                </li>
+                {{/if}}
+
+                <!-- Dashboard -->
+                {{#if includeDashboard}}
+                <li class="nav-item" role="presentation" id="sidenavdashbaord" name="sidenavdashbaord">
+                    <a class="nav-link active" ><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a>
+                </li>
+                {{/if}}
+
+                <!-- GT Employees -->
+                {{#if isGreenTrack}}
+                <li class="nav-item" role="presentation" id="sidenavemployeesGreenTrack" name="sidenavemployeesGreenTrack">
+                    <a class="nav-link"  ><i class="fa fa-user"></i><span> Employees</span></a>
+                </li>
+                {{/if}}
+
+                <!-- Inventory -->
+                {{#if includeInventory}}
+                <li class="nav-item hoverSidenavinventory" role="presentation">
+                    <a class="nav-link sidenavinventory" id="sidenavinventory" name="sidenavinventory" data-toggle="collapse" aria-expanded="false" aria-controls="collapse-5" href="#collapse-5" role="button"><i class="fas fa-box-open"></i><span>Inventory</span></a>
+                    <div class="collapse" id="collapse-5" style="{{#if isGreenTrack}}background-color: #00A969;{{else}}background-color: #00a3d3;{{/if}} width: max-content; padding: 5px; border-radius: 5px;">
+                        <div style="margin: 10px 20px;"><a class="text-white sidenavinventory"   style="font-size: 16px;"><i class="fas fa-box-open"></i><span> Inventory Overview</span></a></div>
+                        <div style="margin: 10px 20px;"><a class="text-white" id="sidenaveproductlist" name="sidenaveproductlist"   style="font-size: 16px;"><i class="fa fa-product-hunt"></i><span> Product List</span></a></div>
+                        <div style="margin: 10px 20px;"><a class="text-white"  id="sidenavstockadjust" name="sidenavstockadjust" style="font-size: 16px;"><i class="fas fa-wrench"></i><span> Stock Adjustment</span></a></div>
+                        <div style="margin: 10px 20px;"><a class="text-white sidenavnewinventory"  id="sidenavnewinventory" name="sidenavnewinventory" style="font-size: 16px;"><i class="fas fa-plus"></i><span> New Product</span></a></div>
+                        <div style="margin: 10px 20px;"><a class="text-white"  id="sidenavnewstockadjust" name="sidenavnewstockadjust" style="font-size: 16px;"><i class="fas fa-plus"></i><span> New Stock Adjustment</span></a></div>
+                    </div>
+                </li>
+                {{/if}}
+
+                <!-- Payments -->
+                {{#if includePayments}}
+                <li class="nav-item hoverSideNavPayments" role="presentation">
+                    <a class="nav-link sidenavpayments" id="sidenavpayments" name="sidenavpayments" data-toggle="collapse" aria-expanded="false" aria-controls="collapse-13" href="#collapse-13" role="button">
+                        <i class="fa fa-dollar"></i><span>Payments</span>
+                    </a>
+                    <div class="collapse" id="collapse-13" style="{{#if isGreenTrack}}background-color: #00A969;{{else}}background-color: #00a3d3;{{/if}} width: max-content; padding: 5px; border-radius: 5px;">
+                        <!-- <div style="margin: 10px 20px;"><a class="text-white sidenavpayments"  style="font-size: 16px;"><i class="fa fa-dollar"></i><span> Payments Overview</span></a></div> -->
+                        <div style="margin: 10px 20px;"><a class="text-white"  id="sidenavawaitingCP" name="sidenavawaitingCP" style="font-size: 16px;"><i class="fas fa-user-clock"></i><span> Awaiting Customer Payments</span></a></div>
+                        <div style="margin: 10px 20px;"><a class="text-white"  id="sidenavawaitingSPPO" name="sidenavawaitingSPPO" style="font-size: 16px;"><i class="far fa-clock"></i><span> Awaiting Supplier Payments</span></a></div>
+                        <!-- <div style="margin: 10px 20px;"><a class="text-white" href="/supplierawaitingbills" id="sidenavawaitingSPBill" name="sidenavawaitingSPBill" style="font-size: 16px;"><i class="fas fa-clock"></i><span> Awaiting Supplier Payments (Bill)</span></a></div> -->
+                        <div style="margin: 10px 20px;"><a class="text-white"  id="sidenavcustomerP" name="sidenavcustomerP" style="font-size: 16px;"><i class="fas fa-hand-holding-usd"></i><span> Customer Payments</span></a></div>
+                        <div style="margin: 10px 20px;"><a class="text-white"  id="sidenavsupplierP" name="sidenavsupplierP" style="font-size: 16px;"><i class="fas fa-comment-dollar"></i><span> Supplier Payments</span></a></div>
+
+                        <div style="margin: 10px 20px;"><a class="text-white"  id="sidenavnewcustomerP" name="sidenavnewcustomerP" style="font-size: 16px;"><i class="fas fa-plus"></i><span> New Customer Payment</span></a></div>
+                        <div style="margin: 10px 20px;"><a class="text-white"  id="sidenavnewsupplierP" name="sidenavnewsupplierP" style="font-size: 16px;"><i class="fas fa-plus"></i><span> New Supplier Payment</span></a></div>
+
+                        <div style="margin: 10px 20px;"><a class="text-white"  id="sidenavstatementlist2" name="sidenavstatementlist2" style="font-size: 16px;"><i class="fa fa-print"></i><span> Statements</span></a></div>
+                    </div>
+                </li>
+                {{/if}}
+
+                <!-- Payroll -->
+                {{#if includePayroll}}
+                <li class="nav-item hoverSideNavPayroll" role="presentation">
+                    <a class="nav-link sidenavpayroll" id="sidenavpayroll" name="sidenavpayroll" data-toggle="collapse" aria-expanded="false" aria-controls="collapse-10" href="#collapse-10" role="button">
+                        <i class="fa fa-dollar"></i><span>Payroll</span>
+                    </a>
+                    <div class="collapse" id="collapse-10" style="{{#if isGreenTrack}}background-color: #00A969;{{else}}background-color: #00a3d3;{{/if}} width: max-content; padding: 5px; border-radius: 5px;">
+                        {{#if includeTimesheetEntry}}
+                        <div style="margin: 10px 20px;"><a class="text-white"  id="sidenavtimesheet" name="sidenavtimesheet" style="font-size: 16px;"><i class="fa fa-dollar"></i><span> Timesheets</span></a></div>
+                        {{/if}}
+                        {{#if includeClockOnOff}}
+                       <div style="margin: 10px 20px;"><a class="text-white"  id="sidenavtimeclock" name="sidenavtimeclock" style="font-size: 16px;"><i class="fas fa-clock"></i><span> Time Clock</span></a></div>
+                       {{/if}}
+                    </div>
+                </li>
+                {{/if}}
+
+                <!-- Purchases -->
+                {{#if includePurchases}}
+                <li class="nav-item hoverSideNavPurchases" role="presentation">
+                    <a class="nav-link sidenavpurchases" id="sidenavpurchases" name="sidenavpayments" data-toggle="collapse" aria-expanded="false" aria-controls="collapse-7" href="#collapse-7" role="button">
+                        <i class="fa fa-arrow-circle-down"></i><span>Purchases</span>
+                    </a>
+                    <div class="collapse collapseBottom7" id="collapse-7" style="{{#if isGreenTrack}}background-color: #00A969;{{else}}background-color: #00a3d3;{{/if}} width: max-content; padding: 5px; border-radius: 5px;">
+                        <div style="margin: 10px 20px;"><a class="text-white sidenavpurchases"  style="font-size: 16px;"><i class="fas fa-search-dollar"></i><span> Purchases Overview</span></a></div>
+                        <div style="margin: 10px 20px;"><a class="text-white"  id="sidenavBill" name="sidenavBill" style="font-size: 16px;"><i class="fas fa-money-bill-alt"></i><span> Bill List</span></a></div>
+                        <div style="margin: 10px 20px;"><a class="text-white"  id="sidenavCredit" name="sidenavCredit" style="font-size: 16px;"><i class="far fa-credit-card"></i><span> Credit List</span></a></div>
+                        <div style="margin: 10px 20px;"><a class="text-white"  id="sidenavPurchaseOrder" name="sidenavPurchaseOrder" style="font-size: 16px;"><i class="fas fa-cash-register"></i><span> Purchase Order List</span></a></div>
+                        <div style="margin: 10px 20px;"><a class="text-white"  id="sidenavPurchaseOrderBO" name="sidenavPurchaseOrderBO" style="font-size: 16px;"><i class="fas fa-receipt"></i><span> Purchase Order List - BO</span></a></div>
+                        <div style="margin: 10px 20px;"><a class="text-white"  id="sidenavnewBill" name="sidenavnewBill" style="font-size: 16px;"><i class="fa fa-plus"></i><span>  New Bill</span></a></div>
+                        <div style="margin: 10px 20px;"><a class="text-white"  id="sidenavnewCredit" name="sidenavnewCredit" style="font-size: 16px;"><i class="fa fa-plus"></i><span> New Credit</span></a></div>
+                        <div style="margin: 10px 20px;"><a class="text-white"  id="sidenavnewPO" name="sidenavnewPO" style="font-size: 16px;"><i class="fa fa-plus"></i><span> New Purchase Order</span></a></div>
+                    </div>
+                </li>
+                {{/if}}
+
+                <!-- Reports -->
+                {{#if includeReports}}
+
+                {{#if isFavorite}}
+                <li class="nav-item hoverSideNavReports" role="presentation">
+                    <a class="nav-link sidenavreports" id="sidenavreports" name="sidenavreports" data-toggle="collapse" aria-expanded="false" aria-controls="collapse-8" href="#collapse-8" role="button">
+                        <i class="fa fa-area-chart"></i><span>Reports</span>
+                    </a>
+                    <div class="collapse" id="collapse-8" style="{{#if isGreenTrack}}background-color: #00A969;{{else}}background-color: #00a3d3;{{/if}} width: max-content; padding: 5px; border-radius: 5px;">
+                        <div style="margin: 10px 20px;"><a class="text-white sidenavreports"  style="font-size: 16px;"><i class="far fa-file-alt"></i><span> Reports Dashboard</span></a></div>
+                        {{#if is1099Transaction}}
+                        <div style="margin: 10px 20px;"><a class="text-white"  id="sidenav1099report" name="sidenav1099report" style="font-size: 16px;"><i class="fas fa-file-alt"></i><span> 1099 Contractor Report</span></a></div>
+                        {{/if}}
+                        {{#if isAgedPayables}}
+                        <div style="margin: 10px 20px;"><a class="text-white"  id="sidenavagedpayables" name="sidenavagedpayables" style="font-size: 16px;"><i class="fas fa-file-alt"></i><span> Aged Payables</span></a></div>
+                        {{/if}}
+                        {{#if isAgedPayablesSummary}}
+                        <div style="margin: 10px 20px;"><a class="text-white"  id="sidenavagedpayablessummary" name="sidenavagedpayablessummary" style="font-size: 16px;"><i class="fas fa-file-alt"></i><span> Aged Payables Summary</span></a></div>
+                        {{/if}}
+                        {{#if isAgedReceivables}}
+                        <div style="margin: 10px 20px;"><a class="text-white"  id="sidenavagedreceivables" name="sidenavagedreceivables" style="font-size: 16px;"><i class="fas fa-file-alt"></i><span> Aged Receivables</span></a></div>
+                        {{/if}}
+                        {{#if isAgedReceivablesSummary}}
+                        <div style="margin: 10px 20px;"><a class="text-white"  id="sidenavagedreceivablessummary" name="sidenavagedreceivablessummary" style="font-size: 16px;"><i class="fas fa-file-alt"></i><span> Aged Receivables Summary</span></a></div>
+                        {{/if}}
+                        {{#if isBalanceSheet}}
+                        <div style="margin: 10px 20px;"><a class="text-white"  id="sidenavbalancesheetreport" name="sidenavbalancesheetreport" style="font-size: 16px;"><i class="fas fa-file-alt"></i><span> Balance Sheet</span></a></div>
+                        {{/if}}
+                        {{#if isGeneralLedger}}
+                        <div style="margin: 10px 20px;"><a class="text-white"  id="sidenavgeneralledger" name="sidenavgeneralledger" style="font-size: 16px;"><i class="fas fa-file-alt"></i><span> General Ledger</span></a></div>
+                        {{/if}}
+                        {{#if isPrintStatement}}
+                        <div style="margin: 10px 20px;"><a class="text-white"  id="sidenavstatementlist" name="sidenavstatementlist" style="font-size: 16px;"><i class="fa fa-print"></i><span>Statements</span></a></div>
+                        {{/if}}
+                        {{#if isProfitLoss}}
+                        <div style="margin: 10px 20px;"><a class="text-white"  id="sidenavprofitlossreport" name="sidenavprofitlossreport" style="font-size: 16px;"><i class="fas fa-file-alt"></i><span> Profit and Loss</span></a></div>
+                        {{/if}}
+                        {{#if isPurchaseReport}}
+                        <div style="margin: 10px 20px;"><a class="text-white"  id="sidenavpurchasesreport" name="sidenavpurchasesreport" style="font-size: 16px;"><i class="fas fa-file-alt"></i><span> Purchase Report</span></a></div>
+                        {{/if}}
+                        {{#if isPurchaseSummaryReport}}
+                        <div style="margin: 10px 20px;"><a class="text-white"  id="sidenavpurchasesummaryreport" name="sidenavpurchasesummaryreport" style="font-size: 16px;"><i class="fas fa-file-alt"></i><span> Purchase Summary Report</span></a></div>
+                        {{/if}}
+                        {{#if isProductSalesReport}}
+                        <div style="margin: 10px 20px;"><a class="text-white"  id="sidenavproductsalesreport" name="sidenavproductsalesreport" style="font-size: 16px;"><i class="fas fa-file-alt"></i><span> Product Sales Report</span></a></div>
+                        {{/if}}
+                        {{#if isSalesReport}}
+                        <div style="margin: 10px 20px;"><a class="text-white"  id="sidenavsalesreport" name="sidenavsalesreport" style="font-size: 16px;"><i class="fas fa-file-alt"></i><span> Sales Report</span></a></div>
+                        {{/if}}
+                        {{#if isSalesSummaryReport}}
+                        <div style="margin: 10px 20px;"><a class="text-white"  id="sidenavsalessummaryreport" name="sidenavsalessummaryreport" style="font-size: 16px;"><i class="fas fa-file-alt"></i><span> Sales Summary Report</span></a></div>
+                        {{/if}}
+                        {{#if isTaxSummaryReport}}
+                        <div style="margin: 10px 20px;"><a class="text-white"  id="sidenavtaxsummaryreport" name="sidenavtaxsummaryreport" style="font-size: 16px;"><i class="fas fa-file-alt"></i><span> Tax Summary Report</span></a></div>
+                        {{/if}}
+                        {{#if isTrialBalance}}
+                        <div style="margin: 10px 20px;"><a class="text-white"  id="sidenavtrialbalance" name="sidenavtrialbalance" style="font-size: 16px;"><i class="fas fa-file-alt"></i><span> Trial Balance</span></a></div>
+                        {{/if}}
+
+                    </div>
+                </li>
+                {{else}}
+                <li class="nav-item" role="presentation" id="sidenavreports" name="sidenavreports">
+                    <a class="nav-link" ><i class="fa fa-area-chart"></i><span>Reports</span></a>
+                </li>
+                {{/if}}
+
+                {{/if}}
+
+                <!-- Sales -->
+                {{#if includeSales}}
+                <li class="nav-item hoverSideNavSales" role="presentation">
+                    <a class="nav-link sidenavsales" id="sidenavsales" name="sidenavsales" data-toggle="collapse" aria-expanded="false" aria-controls="collapse-12" href="#collapse-12" role="button">
+                        <i class="fa fa-credit-card"></i><span>Sales</span>
+                    </a>
+                    <div class="collapse collapseBottom12" id="collapse-12" style="{{#if isGreenTrack}}background-color: #00A969;{{else}}background-color: #00a3d3;{{/if}} width: max-content; padding: 5px; border-radius: 5px;">
+                        <div style="margin: 10px 20px;"><a class="text-white sidenavsales"  style="font-size: 16px;"><i class="fas fa-piggy-bank"></i><span> Sales Overview</span></a></div>
+                        <div style="margin: 10px 20px;"><a class="text-white"  id="sidenavInvoice" name="sidenavInvoice" style="font-size: 16px;"><i class="fas fa-file-invoice-dollar"></i><span> Invoice List</span></a></div>
+                        <div style="margin: 10px 20px;"><a class="text-white"  id="sidenavInvoiceBO" name="sidenavInvoiceBO" style="font-size: 16px;"><i class="fas fa-receipt"></i><span> Invoice List - BO</span></a></div>
+                        <div style="margin: 10px 20px;"><a class="text-white"  id="sidenavInvoiceEmail" name="sidenavInvoiceEmail" style="font-size: 16px;"><i class="fas fa-envelope"></i><span> Invoice Email</span></a></div>
+                        <div style="margin: 10px 20px;"><a class="text-white"  id="sidenavQuote" name="sidenavQuote" style="font-size: 16px;"><i class="fas fa-quote-right"></i><span> Quote List</span></a></div>
+                        <div style="margin: 10px 20px;"><a class="text-white"  id="sidenavSalesOrder" name="sidenavSalesOrder" style="font-size: 16px;"><i class="fas fa-list-ol"></i><span> Sales Order List</span></a></div>
+                        <div style="margin: 10px 20px;"><a class="text-white"  id="sidenavnewInvoice" name="sidenavnewInvoice" style="font-size: 16px;"><i class="fa fa-plus"></i><span>  New Invoice</span></a></div>
+                        <div style="margin: 10px 20px;"><a class="text-white"  id="sidenavnewQuote" name="sidenavnewQuote" style="font-size: 16px;"><i class="fa fa-plus"></i><span> New Quote</span></a></div>
+                        <div style="margin: 10px 20px;"><a class="text-white"  id="sidenavnewRefund" name="sidenavnewRefund" style="font-size: 16px;"><i class="fa fa-plus"></i><span> New Refund</span></a></div>
+                        <div style="margin: 10px 20px;"><a class="text-white"  id="sidenavnewSO" name="sidenavnewSO" style="font-size: 16px;"><i class="fa fa-plus"></i><span> New Sales Order</span></a></div>
+                    </div>
+                </li>
+                {{/if}}
+
+                <!-- Seed to Sale -->
+                {{#if includeSeedToSale}}
+                <li class="nav-item hoverSideNavSeedToSale" role="presentation">
+                    <a class="nav-link sidenavseedtosale" id="sidenavseedtosale" name="sidenavseedtosale" data-toggle="collapse" aria-expanded="false" aria-controls="collapse-11" href="#collapse-11" role="button">
+                        <i class="fas fa-cannabis"></i><span>Seed To Sale</span>
+                    </a>
+                    <div class="collapse collapseBottom11" id="collapse-11" style="{{#if isGreenTrack}}background-color: #00A969;{{else}}background-color: #00a3d3;{{/if}} width: max-content; padding: 5px; border-radius: 5px;">
+                        <div style="margin: 10px 20px;"><a class="text-white sidenavseedtosale" href="/stsdashboard" style="font-size: 16px;"><i class="fas fa-cannabis"></i><span> Seed To Sale</span></a></div>
+                        <div style="margin: 10px 20px;"><a class="text-white" href="/stsplants" id="sidenavPlants" name="sidenavPlants" style="font-size: 16px;"><i class="fas fa-seedling"></i><span> Plants</span></a></div>
+                        <div style="margin: 10px 20px;"><a class="text-white" href="/stsharvests" id="sidenavHarvest" name="sidenavHarvest" style="font-size: 16px;"><i class="fas fa-tractor"></i><span> Harvests</span></a></div>
+                        <div style="margin: 10px 20px;"><a class="text-white" href="/stspackages" id="sidenavPackages" name="sidenavPackages" style="font-size: 16px;"><i class="fas fa-box-open"></i><span> Packages</span></a></div>
+                        <div style="margin: 10px 20px;"><a class="text-white" href="/ststransfers" id="sidenavTransfers" name="sidenavTransfers" style="font-size: 16px;"><i class="fas fa-exchange-alt"></i><span> Transfers</span></a></div>
+                        <div style="margin: 10px 20px;"><a class="text-white" href="/stsoverviews" id="sidenavOverviews" name="sidenavOverviews" style="font-size: 16px;"><i class="fas fa-area-chart"></i><span> Overviews</span></a></div>
+                        <div style="margin: 10px 20px;"><a class="text-white" href="/stssettings" id="sidenavSettings" name="sidenavSettings" style="font-size: 16px;"><i class="fas fa-cog"></i><span> Settings</span></a></div>
+                    </div>
+                </li>
+                {{/if}}
+
+                <!-- <li class="nav-item hoverSideNavShipping" role="presentation">
+                    <a class="nav-link sidenavshipping" id="sidenavshipping" name="sidenavshipping" data-toggle="collapse" aria-expanded="false" aria-controls="collapse-14" href="#collapse-14" role="button">
+                        <i class="fas fa-shipping-fast"></i><span>Shipping</span>
+                    </a>
+                </li> -->
+
+                <!-- Settings -->
+                {{#if includeSettings}}
+
+                <li class="nav-item hoverSideNavSettings" role="presentation">
+                    <a class="nav-link sidenavsettings" id="sidenavsettings" name="sidenavsettings" data-toggle="collapse" aria-expanded="false" aria-controls="collapse-9" href="#collapse-9" role="button">
+                        <i class="fas fa-cog"></i><span>Settings</span>
+                    </a>
+                    {{#if isGreenTrack}}
+                    <div class="collapse collapseBottom9" id="collapse-9" style="{{#if isGreenTrack}}background-color: #00A969;{{else}}background-color: #00a3d3;{{/if}} width: max-content; padding: 5px; border-radius: 5px;">
+                        <div style="margin: 10px 20px;"><a class="text-white sidenavsettings"  style="font-size: 16px;"><i class="fas fa-cog"></i><span> Settings Dashboard</span></a></div>
+
+                        <div style="margin: 10px 20px;"><a class="text-white" href="/companyappsettings" id="sidenavcompanyappsettings" name="sidenavcompanyappsettings" style="font-size: 16px;"><i class="fas fa-cog"></i><span> VS1 Modules</span></a></div>
+                        <div style="margin: 10px 20px;"><a class="text-white" href="/accesslevel" id="sidenavaccesslevel" name="sidenavaccesslevel" style="font-size: 16px;"><i class="fas fa-cog"></i><span> Employee Modules</span></a></div>
+                        <div style="margin: 10px 20px;"><a class="text-white" href="/organisationsettings" id="sidenavorganisationsettings" name="sidenavorganisationsettings" style="font-size: 16px;"><i class="fas fa-cog"></i><span> Organization Settings</span></a></div>
+
+                    </div>
+                    {{else}}
+                    <div class="collapse collapseBottom9" id="collapse-9" style="{{#if isGreenTrack}}background-color: #00A969;{{else}}background-color: #00a3d3;{{/if}} width: max-content; padding: 5px; border-radius: 5px;">
+                        <div style="margin: 10px 20px;"><a class="text-white sidenavsettings"  style="font-size: 16px;"><i class="fas fa-cog"></i><span> Settings Dashboard</span></a></div>
+
+                        <div style="margin: 10px 20px;"><a class="text-white"  id="sidenavcompanyappsettings" name="sidenavcompanyappsettings" style="font-size: 16px;"><i class="fas fa-cog"></i><span> VS1 Modules</span></a></div>
+                        {{#if checkFXCurrency}}
+                        <div style="margin: 10px 20px;"><a class="text-white"  id="sidenavcurrenciesSettings" name="sidenavcurrenciesSettings" style="font-size: 16px;"><i class="fas fa-cog"></i><span> Currency Settings</span></a></div>
+                        {{/if}}
+                        <div style="margin: 10px 20px;"><a class="text-white"  id="sidenavdepartmentSettings" name="sidenavdepartmentSettings" style="font-size: 16px;"><i class="fas fa-cog"></i><span> Department Settings</span></a></div>
+                        <div style="margin: 10px 20px;"><a class="text-white"  id="sidenavaccesslevel" name="sidenavaccesslevel" style="font-size: 16px;"><i class="fas fa-cog"></i><span> Employee Modules</span></a></div>
+                        <div style="margin: 10px 20px;"><a class="text-white"  id="sidenavorganisationsettings" name="sidenavorganisationsettings" style="font-size: 16px;"><i class="fas fa-cog"></i><span> Organization Settings</span></a></div>
+                        <div style="margin: 10px 20px;"><a class="text-white"  id="sidenavpaymentmethodSettings" name="sidenavpaymentmethodSettings" style="font-size: 16px;"><i class="fas fa-cog"></i><span> Payment Settings</span></a></div>
+                        <div style="margin: 10px 20px;"><a class="text-white"  id="sidenavtaxratesettings" name="sidenavtaxratesettings" style="font-size: 16px;"><i class="fas fa-cog"></i><span> Tax Rate Settings</span></a></div>
+                        <div style="margin: 10px 20px;"><a class="text-white"  id="sidenavtermsettings" name="sidenavtermsettings" style="font-size: 16px;"><i class="fas fa-cog"></i><span> Terms Settings</span></a></div>
+                    </div>
+                    {{/if}}
+                </li>
+                {{/if}}
+
+                <!-- Log Out -->
+                <li class="nav-item" role="presentation" id="sidenavlogout" name="sidenavlogout"><a class="nav-link logOut"  onclick="logOutFunc()">
+                    <i class="fas fa-sign-out-alt"></i><span>Log Out</span></a>
+                </li>
+            </ul>
+            <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
+        </div>
+    </nav>
+
+    <script>
+        let sidePanelSettings = Session.get('sidePanelSettings');
+        if(sidePanelSettings){
+            $("html").toggleClass(sidePanelSettings);
+            if(sidePanelSettings === "openNav"){
+                $(".active_page_content").css("text-align","right");
+            }else{
+                $(".active_page_content").css("text-align","inherit");
+            }
+        }
+        $('.nav-toggle').click(function(e) {
+            e.preventDefault();
+            $("html").toggleClass("openNav");
+            $(".nav-toggle").toggleClass("active");
+            var sideBarPanel = $("html").attr("class");
+            Session.setPersistent('sidePanelSettings', sideBarPanel);
+            if(sideBarPanel === "openNav"){
+                $(".active_page_content").css("text-align","right");
+            }else{
+                $(".active_page_content").css("text-align","inherit");
+            }
+
+
+        });
+
+    </script>
+    {{#if isGreenTrack}}
+    <script>
+        function logOutFunc() {
+            window.open('/vs1greentracklogin','_self');
+            CloudUser.update({_id: Session.get('mycloudLogonID')},{ $set: {userMultiLogon: false}});
+        };
+    </script>
+    {{else}}
+    <script>
+        function logOutFunc() {
+            window.open('/','_self');
+            CloudUser.update({_id: Session.get('mycloudLogonID')},{ $set: {userMultiLogon: false}});
+        };
+    </script>
+    {{/if}}
+    <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-36251023-1']);
+        _gaq.push(['_setDomainName', 'jqueryscript.net']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+    </script>
+</template>

@@ -1,0 +1,116 @@
+<template name="stsmanicureplants">
+    <div class="container-fluid">
+        <div class="fullScreenSpin" style="display:none;">
+            <div class="spinner"></div>
+        </div>
+        <div class="d-sm-flex justify-content-between align-items-center mb-4">
+            <h3 class="text-dark mb-0">Seed To Sale - Manicure Plants</h3>
+        </div>
+        <div class="row d-xl-flex justify-content-center align-items-center justify-content-xl-start" style="max-width: 568px;margin: auto;padding: 20px;">
+            <div class="col">
+                <div class="form-group flex-grow-1" style="margin: 4px;"><label>Plant Tag (or last 4+ digits)</label>
+                    <div class="input-group"><input class="form-control" type="text">
+                        <div class="input-group-append"><a class="btn btn-primary border-success" role="button" style="background-color: #3dd79c;" href="#scan" data-toggle="modal">Scan</a></div>
+                    </div>
+                    <div class="modal fade" role="dialog" tabindex="-1" id="scan">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Scan</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                                <div class="modal-body"></div>
+                                <div class="modal-footer invisible"><button class="btn btn-light" type="button" data-dismiss="modal">Close</button><button class="btn btn-primary" type="button">Save</button></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr style="width: 100%;margin: 0px;margin-top: 16px;">
+            </div>
+        </div>
+        <div class="row d-xl-flex justify-content-center align-items-center justify-content-xl-start" style="max-width: 568px;margin: auto;padding: 20px;padding-top: 0px;padding-bottom: 0px;">
+            <div class="col">
+                <div class="form-group" style="margin: 4px;"><label>Scanned Tag</label><input class="form-control" type="text" readonly=""></div>
+            </div>
+        </div>
+        <div class="row d-xl-flex justify-content-center align-items-center justify-content-xl-start" style="max-width: 568px;margin: auto;padding: 20px;padding-top: 0px;padding-bottom: 0px;">
+            <div class="col">
+                <div class="form-group" style="margin: 4px;">
+                    <label>Date</label>
+                    <div class="input-group date" style="cursor: pointer;">
+                        <input type="text" class="form-control formClassDate" id="dtSODate" name="dtSODate" value="{{invoicerecord.saledate}}">
+                        <div class="input-group-addon" style="">
+                            <span class="glyphicon glyphicon-th" style="cursor: pointer;"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group flex-grow-1" style="margin: 8px;"><label>Department</label>
+                    <select class="form-control" name="sltDepartmentList" id="sltDepartmentList" style="background-color:rgb(255, 255, 255); cursor: pointer;">
+                        {{#each itemDept in listDept}}
+                        <option value="{{itemDept.deptname}}" mytag="{{itemDept.deptid}}">{{itemDept.deptname}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row d-xl-flex justify-content-center align-items-center justify-content-xl-start" style="max-width: 568px;margin: auto;padding: 20px;padding-top: 0px;">
+            <div class="col">
+                <div class="form-group" style="margin: 4px;"><label>Room</label><input type="text" class="form-control" readonly=""></div>
+            </div>
+            <div class="col"></div>
+            <hr style="width: 100%;margin: 16px;margin-bottom: 0px;">
+        </div>
+        <div class="row d-xl-flex justify-content-center align-items-center justify-content-xl-start" style="max-width: 568px;margin: auto;padding: 20px;padding-top: 0px;padding-bottom: 0px;">
+            <div class="col">
+                <div class="row no-gutters">
+                    <div class="col">
+                        <div class="form-group" style="margin: 4px;"><label>Previous Weight</label><input type="text" class="form-control" readonly=""></div>
+                    </div>
+                    <div class="col" style="max-width: 175px;">
+                        <div class="form-group" style="margin: 4px;"><label>Unit</label><select class="form-control" readonly=""><option value="0" selected="">Fluid Ounces</option><option value="1">Gallons</option><option value="2" selected="">Grams</option><option value="3">Kilograms</option><option value="4">Liters</option><option value="5">Milligrams</option><option value="6">Milliliters</option><option value="7">Ounces</option><option value="8">Pints</option><option value="9">Pounds</option><option value="10">Quarts</option></select></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row d-xl-flex justify-content-center align-items-center justify-content-xl-start" style="max-width: 568px;margin: auto;padding: 20px;padding-top: 0px;padding-bottom: 0px;">
+            <div class="col">
+                <div class="row no-gutters">
+                    <div class="col">
+                        <div class="form-group" style="margin: 4px;"><label>New Weight</label><input type="text" class="form-control"></div>
+                    </div>
+                    <div class="col" style="max-width: 175px;">
+                        <div class="form-group" style="margin: 4px;"><label>Unit</label><select class="form-control"><option value="0" selected="">Fluid Ounces</option><option value="1">Gallons</option><option value="2" selected="">Grams</option><option value="3">Kilograms</option><option value="4">Liters</option><option value="5">Milligrams</option><option value="6">Milliliters</option><option value="7">Ounces</option><option value="8">Pints</option><option value="9">Pounds</option><option value="10">Quarts</option></select></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row d-xl-flex justify-content-center align-items-center justify-content-xl-start" style="max-width: 568px;margin: auto;padding: 20px;padding-top: 0px;">
+            <div class="col">
+                <div class="row no-gutters">
+                    <div class="col">
+                        <div class="form-group" style="margin: 4px;"><label>Notes</label><textarea class="form-control"></textarea></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row d-xl-flex justify-content-center align-items-center justify-content-xl-start" style="max-width: 568px;margin: auto;padding: 20px;">
+            <div class="col">
+                <div class="d-xl-flex justify-content-xl-center"><a class="btn btn-success" role="button" data-toggle="modal" href="#myModal">Manicure Plants</a>
+                    <div class="modal fade" role="dialog" tabindex="-1" id="myModal">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4>Confirm Plant Waste Creation</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                                <div class="modal-body">
+                                    <p class="text-center text-muted">Submit Plant Waste Creation to GreenTrack?</p>
+                                    <p class="text-center text-muted" style="font-size: 12px;">This will mark the item as submitted and to be reviewed by OMMA.</p>
+                                </div>
+                                <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Cancel</button><button class="btn btn-success" type="button">Confirm</button></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,64 @@
+<template name="trueERPSettings">
+    <div class="trueERPSettings">
+        <div class="active_page">
+            <div class="active_page_content">
+                <p><a href="/settings">General Settings</a> &nbsp;›&nbsp;
+                </p><br>
+                <h1>VS1Cloud to VS1Cloud</h1>
+            </div>
+            <div class="gettingStarted">
+                <div id="wrapper_main">
+                    <div class="documentHeader">
+                        <div class="col-lg-12">
+                            <p>If your suppliers or customers use VS1Cloud, connect with them directly.</p>
+                            <p>You can then receive their invoices directly into your Sales and Purchases. Handy
+                                stuff!</p>
+                            <p>Connecting is simple, just <a href="# "  data-toggle="modal" data-target="#TrueeNetwork" target="_self">send a VS1Cloud Network
+                                invite</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="network">
+            <div id="wrapper_main">
+                <div class="secondaryButtons">
+                    <button data-toggle="modal" data-target="#TrueeNetwork" type="button" class="btn btn-default"> Send VS1Cloud
+                        Network Invite
+                    </button>
+                    <p>Your VS1Cloud Network key: <b>XIETHISBXWK0ZTGGJO2YBYBEA2ZGGW</b></p>
+                </div>
+
+            </div>
+        </div>
+        <div class="modal fade" id="TrueeNetwork" role="dialog" data-backdrop="static">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">x</button>
+                        <h4 class="modal-title">Send Key</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Email - separate multiple email address with a comma (,) or semicolon(;)</p>
+                        <input type="text" id="emailIds" required>
+                        <div class="form-group">
+                            <div class="message">
+                                <p>Message</p>
+                            </div>
+                            <textarea rows="4" cols="50" id="mailBody"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" id="sendEmailbtn" >Send</button>
+                        <button type="button" class="btn cancel_new" data-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script>
+      modalDraggable();
+   </script>
+</template>

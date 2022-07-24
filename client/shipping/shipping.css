@@ -1,0 +1,90 @@
+.shipping #submit-approval .modal-header .close,
+.shipping #print-button .modal-header .close,
+.shipping #print-fitting-button .modal-header .close {
+    margin-top: 0;
+    border-left: 1px solid rgb(221, 221, 221);
+    height: 46px;
+    width: 46px;
+    opacity: 1;
+    color: rgb(154, 154, 154);
+}
+
+.shipping #submit-approval .modal-footer .heading.footer button,
+.shipping #print-button .modal-footer .heading.footer button,
+.shipping #print-fitting-button .modal-footer .heading.footer button {
+    width: auto;
+    font: 700 12px Helvetica,sans-serif;
+    cursor: pointer;
+    text-shadow: none;
+    padding: 0 12px;
+    margin: 0;
+    line-height: 27px;
+    line-height: 40px;
+}
+
+ #submit-approval .modal-dialog,
+ #print-button .modal-dialog,
+ #print-fitting-button .modal-dialog,
+ #print-invoices .modal-dialog{
+  width: 28%!important;
+  margin: 30px auto;
+  margin-top: 115px!important;
+}
+
+@media (max-width: 700px){
+  #submit-approval .modal-dialog,
+  #print-button .modal-dialog,
+  #print-fitting-button .modal-dialog,
+  #print-invoices .modal-dialog{
+   width: 70%!important;
+ }
+}
+
+@media (min-width: 768px)){
+  #submit-approval .modal-dialog,
+  #print-button .modal-dialog,
+  #print-fitting-button .modal-dialog,
+  #print-invoices .modal-dialog{
+   width: 28%!important;
+ }
+}
+
+.shipping .modal-body input[type="radio"], input[type="checkbox"]{
+  margin: 18px 0 0!important;
+}
+.modal-body h3, .modal-body p, .modal-body label, .modal-body button {
+  font-size: 16px!important;
+}
+.shipping #submit-approval .modal-body,
+#submit-approval .modal-footer,
+.shipping #print-button .modal-body,
+.shipping #print-fitting-button .modal-body,
+#print-fitting-button .modal-footer,
+#print-button .modal-footer {
+    background: rgb(251, 251, 251);
+    height:inherit!important;
+}
+
+.shipping #print-button .modal-footer,
+.shipping #print-fitting-button .modal-footer {
+    border-top: none;
+    height: initial;
+    padding-top: 0;
+}
+
+.shipping #print-button .email-template {
+    float: left;
+    width: 100%;
+    margin-top: 12px;
+}
+
+.shipping #print-button .email-template .left-bar {
+    width: 20%;
+    float: left;
+}
+
+.shipping #print-button .email-template.checkboxdiv form label {
+    font-weight: normal;
+    width: 100%;
+    text-align: left;
+}

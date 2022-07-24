@@ -1,0 +1,395 @@
+.currenciesSettings {
+    width: 100%;
+    float: left;
+}
+
+.currenciesSettings .exchangeRate{
+    float: left;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+.currenciesSettings .active_page {
+    float: left;
+    width: 100%;
+}
+
+.currenciesSettings .gettingStarted {
+    width: 100%;
+    float: left;
+}
+
+.currenciesSettings .documentHeader {
+    padding: 20px 0 30px;
+    width: 100%;
+    float: left;
+}
+
+.currenciesSettings .documentHeader .close {
+    position: absolute;
+    top: -11px;
+    right: 3px;
+    color: #c4cbd1;
+    padding: 5px 22px 5px 0px;
+    background: transparent url(./img/close.png) no-repeat 100%;
+    font-size: 12px;
+    font-weight: 800;
+    opacity: 1;
+}
+
+.currenciesSettings .secondaryButtons {
+    float: left;
+    width: 100%;
+    margin-top: 25px;
+}
+
+.currenciesSettings .secondaryButtons button.btn.btn-default {
+    font: bold 12px Helvetica, sans-serif;
+    color: #048abb;
+    background-color: #fafafa;
+    border-color: #ccc;
+    border-radius: 3px;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: rgba(255, 255, 255, 0.3) 0 0 0 1px inset;
+    box-sizing: border-box;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+    margin: 0px 0px 0px 7px;
+    padding: 6px 12px;
+    position: relative;
+    text-align: center;
+    -webkit-transition: opacity .2s ease-out;
+    transition: opacity .2s ease-out;
+    white-space: nowrap;
+    -moz-user-select: -moz-none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiP…dpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==);
+    background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #e6eaec));
+    background: -webkit-linear-gradient(#ffffff, #e6eaec);
+    background: -webkit-linear-gradient(#ffffff, #e6eaec);
+    background: linear-gradient(#ffffff, #e6eaec);
+    margin-left: 0;
+}
+
+.currenciesSettings table.standard thead tr td {
+    background-color: #f2f6ff;
+    border-bottom: 1px solid #b7c0c7;
+    font-weight: 700;
+    color: #048fc2;
+}
+
+.currenciesSettings table.standard tr td {
+    padding: 5px;
+    float: none;
+    border-bottom: 1px solid #ddd;
+    vertical-align: middle;
+    font-size: 11px;
+    font-weight: 400;
+
+}
+
+.currenciesSettings table.standard tbody tr td {
+    white-space: normal;
+    overflow: hidden;
+    max-width: 200px;
+    cursor: pointer;
+}
+
+.currenciesSettings table.standard {
+    width: 100%;
+    margin-bottom: 20px;
+    float: left;
+    margin-top: 20px;
+}
+
+.currenciesSettings .exchangeRate span {
+    font-weight: bold;
+    font-size: 12px;
+    margin-right: 10px;
+}
+
+.currenciesSettings .modal-content .modal-title {
+    font-weight: 700;
+    font-size: 17px;
+    padding: 0px 15px;
+    color: #444;
+}
+
+
+.currenciesSettings form .form-group {
+    border-bottom: 1px solid #ddd;
+    float: left;
+    width: 100%;
+}
+
+.currenciesSettings .exchangeRates {
+    float: right;
+    width: 87%;
+}
+
+.currenciesSettings .exchangeRates input {
+    width: 30%;
+}
+
+.currenciesSettings .modal-body {
+    position: relative;
+    background: #fbfbfb;
+    font-size: 12px;
+    float: left;
+    width: 100%;
+}
+.currenciesSettings .tareDi {
+    float: left;
+    width: 100%;
+    background: #fff;
+    padding: 10px;
+    border-bottom: solid 1px #ccc;
+    margin-bottom: 6px;
+}
+
+
+.currenciesSettings #addNewAccount .modal-dialog{
+    width: 600px !important;
+}
+.currenciesSettings #addCurrency .modal-body p {
+    border: 0;
+}
+
+.currenciesSettings #addCurrency select{
+    width: 21%;
+    height: 24px;
+}
+
+.currenciesSettings #addCurrency .tareDiv{
+    float: left;
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+    margin-top: 10px;
+    background: #fff;
+}
+.currenciesSettings #addCurrency .exchangeRates {
+    float: left;
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+}
+
+.currenciesSettings #addCurrency .exchangeRates p {
+    float: left;
+    font-weight: bold;
+    padding-top: 6px;
+}
+
+.currenciesSettings #addCurrency .exchangeRates p.lastChild {
+    float: right;
+}
+
+.currenciesSettings #addCurrency .selectCurrency {
+    float: left;
+    width: 100%;
+}
+
+
+.currenciesSettings #setExchangeRate .modal-dialog{
+    width: 330px !important;
+}
+
+
+.documentHeader p {
+    margin-left: 205px;
+    margin-bottom: 0;
+    margin-top: 10px;
+    border-bottom: 1px solid #e2e2e2;
+    padding-bottom: 5px;
+    color: #333;
+    font-size: 18px;
+}
+.documentHeader p:last-child{
+    border-bottom: 0;
+}
+
+.documentHeader .close {
+    position: absolute;
+    top:-15px;
+    right: 3px;
+    color: #c4cbd1;
+    padding: 5px 22px 5px 0;
+    background: transparent url(/img/close.png) no-repeat 100%;
+    font-size: 11px;
+    font-weight: 700;
+    opacity: 1;
+}
+
+.documentHeader .video {
+    position: absolute;
+    top:0;
+    left: 0;
+    height: 120px;
+    width: 190px;
+    padding: 10px 0;
+}
+
+.video-tracking {
+    background: url(/img/Currencies.png) 50% no-repeat;
+}
+
+.documentHeader {
+    padding: 20px 0 30px;
+    width: 100%;
+    float: left;
+    margin-top: -26px;
+}
+
+.currenciesSettings .exchangeRate input {
+    height: 20px;
+    border: solid 1px #7eadd9;
+    border-right: 0;
+    width: 10%;
+    font-size: 11px;
+    padding-left: 2px;
+}
+.currenciesSettings .exchangeRate img {
+    height: 20px;
+    border: solid 1px #7eadd9;
+    border-left: 0;
+}
+
+.currenciesSettings .tareDiv {
+    float: left;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background: #fff;
+    border-top: 1px solid #ddd;
+    padding: 5px;
+}
+.currenciesSettings .tareDiv:last-child{
+    border-bottom: solid 1px #ddd;
+}
+
+.currenciesSettings .tareDiv .exchangeRates {
+    float: right;
+    margin-left: 10%;
+    width: 87%;
+    font-size: 11px;
+}
+.currenciesSettings #setExchangeRate .modal-footer button.btn {
+    background: linear-gradient(#bbbec2,#949a9e);
+    border-color: #949a9e;
+    color: #fff;
+    height: 33px
+}
+
+.currenciesSettings #setExchangeRate button.btn.btn-success{
+    line-height: 1.42857143 ;
+    border-color: #5cac00 ;
+    text-shadow: 0 1px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(#7bd000, #6bb101) ;
+}
+
+
+.currenciesSettings #setExchangeRate .modal-header .close {
+    margin-top: 0;
+    height: 46px;
+    width: 46px;
+    margin-left: 0;
+    border-left: 1px solid #ddd;
+    opacity: 1;
+    color: #ddd;
+}
+.currenciesSettings #setExchangeRate .modal-header{
+    padding: 0;
+}
+
+
+.currenciesSettings #setExchangeRate .modal-footer {
+    background: #fbfbfb;
+}
+#addCurrency .modal-footer button.gray {
+    background: linear-gradient(#bbbec2,#949a9e);
+    border-color: #949a9e;
+    color: #fff;
+    padding: 5px 12px;
+}
+
+.currenciesSettings #addCurrency .modal-footer button.btn.btn-success{
+    line-height: 1.42857143;
+}
+
+#addCurrency .modal-header{
+    padding: 0;
+}
+
+#addCurrency .modal-header .close {
+    margin-top: 0;
+    height: 46px;
+    width: 46px;
+    margin-left: 0;
+    border-left: 1px solid #ddd;
+    opacity: 1;
+}
+
+.currenciesSettings div#addCurrency .modal-dialog{
+    width: 500px;
+}
+
+.currenciesSettings #addCurrency  .currency-list-dropdown-list {
+    width: 88%;
+}
+
+.currenciesSettings #addCurrency  .dropdown-add-rec{
+    width: 100%;
+}
+
+input.currency-input{
+    width: 100%;
+    margin-bottom: 10px;
+    border: solid 1px #ddd;
+    padding: 2px;
+    height: 27px;
+}
+.currency-div {
+    width: 100%;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.currency-div label{
+    font-size: 11px;
+    font-weight: normal;
+    margin-bottom: 0;
+}
+.currency-div .code {
+    width: 22%;
+    float: left;
+    margin-right: 1%;
+}
+.currency-div .code input{
+    float: left;
+    width: 100%;
+    border: solid 1px #ddd;
+    padding: 2px;
+    height: 27px;
+}
+
+.currency-date {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.currency-date input {
+    height: 25px;
+    margin: 0 15px;
+    padding: 2px 0 2px 10px;
+    width: 80%;
+    font-size: 10px;
+}
+.currency-date span {
+    position: relative;
+    margin: 0 10px 0 0;
+    overflow: hidden;
+}

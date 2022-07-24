@@ -1,0 +1,115 @@
+<template name="connection">
+    <div id="wrapper_main">
+        <main id="page-content-wrapper_main" role="main">
+            <div class="bread_crumbs"><p><a href="/settings">Settings</a></p></div>
+            <h1>Settings</h1>
+            <hr>
+            <h4>Test TrueERP connection:</h4>
+            <div class="testsettings">
+                <form>
+                    <label>Server:</label><br><input type="text" name="Server" placeholder="Server IP"><br>
+                    <label>Database:</label><br><input type="text" name="Database" placeholder="ERP Database"><br>
+                    <label>Username:</label><br><input type="text" name="Username" placeholder="Username"><br>
+                    <label>Password:</label><br><input type="text" name="Password" placeholder="Password"><br>
+                    <label>Port:</label><br><input type="text" name="Port" placeholder="Port"><br><br>
+                    <button id="submitbutton" type="submit">Save server details</button>
+                </form>
+            </div>
+            <div class="testresult">
+                <strong>Connection test details:</strong><br><br>
+                <strong>ERP Server Address: </strong><br><input type="text" name="Server1"><br>
+                <strong>ERP Database: </strong><br><input type="text" name="Database1"><br>
+                <strong>ERP Username: </strong><br><input type="text" name="Username1"><br>
+                <strong>ERP Password:</strong><br><input type="text" name="Password1"><br>
+                <strong>Port:</strong><br><input type="text" name="Port1"><br>
+                <strong>Complete URL String:</strong><br><input type="text" name="ERPURL"><br><br>
+                <button onclick="loadData()" type="button">Run connection test</button>
+                <br><br>
+                <strong>Connection Test Result:</strong><br>
+                <p id="isokay"></p>
+                <br>
+                <div id="result"></div>
+                <br><br>
+
+                <strong>Formatted Data:</strong><br>
+                <u>Company Name:</u>
+                <p id="companyname"></p>
+                <u>Database Name:</u>
+                <p id="databasename"></p>
+                <u>Users:</u>
+                <p id="users"></p>
+                <u>Licence Expire Date:</u>
+                <p id="licenseexd"></p>
+                <u>Licence Start Date:</u>
+                <p id="licensestd"></p>
+                <u>License Status:</u>
+                <p id="licensestat"></p>
+                <u>Version:</u>
+                <p id="version"></p>
+                <br>
+
+                <script>
+                    var erpGet = erpDb();
+                    $('input[name="Server1"]').val(erpGet.ERPIPAddress);
+                    $('input[name="Database1"]').val(erpGet.ERPDatabase);
+                    $('input[name="Username1"]').val(erpGet.ERPUsername);
+                    $('input[name="Password1"]').val(erpGet.ERPPassword);
+                    $('input[name="Port1"]').val(erpGet.ERPPort);
+                    $('input[name="URL1"]').val(erpGet.ERPAPIServer);
+                    $('input[name="ERPURL"]').val(URLRequest + erpGet.ERPIPAddress + ':' + erpGet.ERPPort + '/' + erpGet.ERPApi + '/' + erpGet.ERPSystemObject);
+
+                    $(document).ready(function () {
+                        var oReq = new XMLHttpRequest();
+                        oReq.timeout = 30000;
+                        oReq.onreadystatechange = function () {
+                            if (oReq.readyState == 4 && oReq.status == 200) {
+                                AddUERP(oReq.responseText);
+                                document.getElementById("result").innerHTML = oReq.responseText;
+                            }
+                        }
+                        oReq.open("GET", URLRequest + erpGet.ERPIPAddress + ':' + erpGet.ERPPort + '/' + erpGet.ERPApi + '/' + erpGet.ERPSystemObject, true);
+                        oReq.setRequestHeader("database", erpGet.ERPDatabase);
+                        oReq.setRequestHeader("username", erpGet.ERPUsername);
+                        oReq.setRequestHeader("password", erpGet.ERPPassword);
+                        oReq.send();
+                    });
+                </script>
+
+                <!--- test connection button click -->
+                <script>
+                    function loadData() {
+                        var oReq = new XMLHttpRequest();
+                        oReq.onreadystatechange = function () {
+                            if (oReq.readyState == 4 && oReq.status == 200) {
+                                document.getElementById("result").innerHTML = oReq.responseText;
+                                document.getElementById("isokay").innerHTML = 'Connection is okay!';
+
+                                var data = JSON.parse(oReq.responseText)
+
+                                for (var event in data) {
+                                    var dataCopy = data[event];
+                                    document.getElementById("companyname").innerHTML = dataCopy.CompanyName;
+                                    document.getElementById("databasename").innerHTML = dataCopy.DatabaseName;
+                                    document.getElementById("users").innerHTML = dataCopy.LicenceConcurrentUsers;
+                                    document.getElementById("licenseexd").innerHTML = dataCopy.LicenceExpireDate;
+                                    document.getElementById("licensestd").innerHTML = dataCopy.LicenceStartDate;
+                                    document.getElementById("licensestat").innerHTML = dataCopy.LicenceStatus;
+                                    document.getElementById("version").innerHTML = dataCopy.Version;
+                                }
+                            }
+                        };
+                        oReq.open("GET", URLRequest + erpGet.ERPIPAddress + ':' + erpGet.ERPPort + '/' + erpGet.ERPApi + '/' + erpGet.ERPSystemObject, true);
+                        oReq.setRequestHeader("database", erpGet.ERPDatabase);
+                        oReq.setRequestHeader("username", erpGet.ERPUsername);
+                        oReq.setRequestHeader("password", erpGet.ERPPassword);
+                        oReq.send();
+                    }
+                    ;
+
+
+                </script>
+
+            </div>
+        </main>
+    </div>
+</template>

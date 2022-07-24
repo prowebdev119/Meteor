@@ -1,0 +1,41 @@
+<template name="monthlyearnings">
+    <style type="text/css">
+        .hideearningschat {
+            display: none;
+        }
+
+        .showearningschat {
+            display: block;
+        }
+     
+      
+    </style>
+    <div class="minHeight100" id="showearningchat">
+        <div class="card overflow-hidden shadow mb-4 portlet">
+            <div class="card-header monthlyearningsheader d-flex justify-content-between align-items-center">
+                <h6 class="text-primary font-weight-bold m-0">Monthly Earnings</h6>
+                <div class="dropdown no-arrow" style="display: inline-flex;">
+                    <a id="hideearnings" class="on-editor-change-mode hideelement monthlyearningsedit btn btn-link" role="presentation" href="" >Hide</a>
+                    <button class="btn btn-link btn-sm dropdown-toggle btnchartdropdown" id="" data-toggle="dropdown" aria-expanded="false" type="button"><i class="fas fa-ellipsis-v text-gray-400"></i></button>
+                    <div class="dropdown-menu shadow dropdown-menu-right animated--fade-in" role="menu">
+                        <!-- <p class="text-center dropdown-header">dropdown header:</p>
+                      <a class="dropdown-item" role="presentation" href="#">&nbsp;Action</a><a class="dropdown-item" role="presentation" href="#">&nbsp;Another action</a> -->
+                        <a id="earnings" class="dropdown-item" role="presentation" href="/agedreceivables">&nbsp;More Details</a>
+                        <div class="dropdown-divider"></div>
+                        <a id="editchartsmonthlyearnings" class="dropdown-item editchartsbtn pointer" role="presentation" data-toggle="modal" data-target="#editDashboardModal">&nbsp;Edit Chart</a>
+                        <a id="" class="dropdown-item pointer" role="presentation">&nbsp;Reset Chart</a>
+
+                    </div>
+              </div>
+          </div>
+          <div class=" card-body">
+                <div class="canvasParentDiv canvasHeight100">
+                    <canvas id="myMonthlyEarningChart" name="myMonthlyEarningChart"></canvas>
+                    <!-- <img id="monthlyearnings_url" /> -->
+
+                    <!-- <canvas data-bs-chart="{&quot;type&quot;:&quot;radar&quot;,&quot;data&quot;:{&quot;labels&quot;:[&quot;Jan&quot;,&quot;Feb&quot;,&quot;Mar&quot;,&quot;Apr&quot;,&quot;May&quot;,&quot;Jun&quot;,&quot;Jul&quot;,&quot;Aug&quot;],&quot;datasets&quot;:[{&quot;label&quot;:&quot;Earnings&quot;,&quot;fill&quot;:true,&quot;data&quot;:[&quot;7000&quot;,&quot;10000&quot;,&quot;17000&quot;,&quot;15000&quot;,&quot;10000&quot;,&quot;19000&quot;,&quot;15000&quot;,&quot;25000&quot;],&quot;backgroundColor&quot;:&quot;rgba(0,163,211,0.41)&quot;,&quot;borderColor&quot;:&quot;rgba(78,115,223,0)&quot;}]},&quot;options&quot;:{&quot;maintainAspectRatio&quot;:false,&quot;legend&quot;:{&quot;display&quot;:true,&quot;position&quot;:&quot;bottom&quot;},&quot;title&quot;:{},&quot;scales&quot;:{&quot;xAxes&quot;:[{&quot;gridLines&quot;:{&quot;color&quot;:&quot;rgb(234, 236, 244)&quot;,&quot;zeroLineColor&quot;:&quot;rgb(234, 236, 244)&quot;,&quot;drawBorder&quot;:false,&quot;drawTicks&quot;:false,&quot;borderDash&quot;:[&quot;2&quot;],&quot;zeroLineBorderDash&quot;:[&quot;2&quot;],&quot;drawOnChartArea&quot;:false},&quot;ticks&quot;:{&quot;fontColor&quot;:&quot;#858796&quot;,&quot;beginAtZero&quot;:false,&quot;padding&quot;:20}}],&quot;yAxes&quot;:[{&quot;gridLines&quot;:{&quot;color&quot;:&quot;rgb(234, 236, 244)&quot;,&quot;zeroLineColor&quot;:&quot;rgb(234, 236, 244)&quot;,&quot;drawBorder&quot;:false,&quot;drawTicks&quot;:false,&quot;borderDash&quot;:[&quot;2&quot;],&quot;zeroLineBorderDash&quot;:[&quot;2&quot;],&quot;drawOnChartArea&quot;:false},&quot;ticks&quot;:{&quot;fontColor&quot;:&quot;#858796&quot;,&quot;beginAtZero&quot;:false,&quot;padding&quot;:20}}]}}}"></canvas> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

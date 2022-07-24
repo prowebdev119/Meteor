@@ -1,0 +1,189 @@
+<template name="crm_top_cards">
+    <style>
+        .dimmedChart>div {
+            background-color: #dddfeb !important;
+        }
+
+        .card.hovered {
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.50) !important;
+            cursor: move;
+            transition-duration: 300ms;
+        }
+
+        .hideelement {
+            display: none !important;
+        }
+
+        .showelement {
+            display: block;
+        }
+
+        .customCardMainDiv {
+            position: relative;
+            padding-top: 15px !important;
+        }
+
+        .hideShowDiv {
+            display: inline-block;
+            width: 100%;
+            text-align: right;
+            padding: 0 8px;
+            margin: 0;
+            position: absolute;
+            top: 5px;
+            left: 0;
+        }
+
+        a.cardSettingBtn {
+            display: inline-flex;
+            width: 22px;
+            height: 22px;
+            justify-content: center;
+            align-items: center;
+            font-size: 10px;
+            border-radius: 4px;
+            /*background: #dddfeb;*/
+            color: #dddfeb;
+            text-decoration: none;
+            margin-left: 3px;
+        }
+
+        a.editCardBtn :hover {
+            background: #dddfeb;
+            color: #6e6e6e;
+            padding: 4px;
+            border-radius: 3px;
+        }
+
+        a.cardHideBtn,
+        a.cardShowBtn {
+            display: inline-flex;
+            width: 22px;
+            height: 22px;
+            font-size: 10px;
+            justify-content: center;
+            align-items: center;
+            /*background: #dddfeb;*/
+            border-radius: 4px;
+            margin-left: 2px;
+            text-decoration: none;
+            color: #dddfeb;
+        }
+
+        a.cardHideBtn:hover,
+        a.cardShowBtn:hover,
+        a.cardHideBtn.active,
+        a.cardShowBtn.active {
+            background: #00a3d3;
+            color: #fff;
+        }
+
+        a.cardHideBtn i,
+        a.cardShowBtn i {
+            pointer-events: none;
+        }
+
+        .dimmedChart a.cardHideBtn,
+        .dimmedChart a.cardShowBtn,
+        .dimmedChart a.cardSettingBtn {
+            background: #f1f1f1 !important;
+            color: #6e6e6e;
+        }
+
+        .dimmedChart a.editCardBtn :hover {
+            background: rgba(0, 0, 0, 0) !important;
+        }
+
+        .dimmedChart .cardSettingBtn {
+            background: #fff;
+        }
+    </style>
+    <div class="row connectedCardSortable" style="padding: 26px; padding-bottom: 0px;">
+        <!-- CARDS -->
+        <div class="col-md-6 col-xl-3 mb-4 openaccountreceivable card-visibility" position="0" card-active="true" card-key="all-crm-tasks" id={{itembank.name}}>
+            <div class="card shadow customCardMainDiv border-left-success py-2">
+                <div class="hideShowDiv">
+                    <a href="javascript:void(0);" class="cardShowBtn hideelement"><i class="far fa-eye"></i></a>
+                    <a href="javascript:void(0);" class="cardSettingBtn editCardBtn"><i class="fas fa-cog"></i></a>
+                </div>
+                <div class="card-body" style="cursor: pointer;">
+                    <div class="row align-items-center no-gutters">
+                        <div class="col mr-2">
+                            <div class="text-uppercase text-success font-weight-bold text-xs mb-1">
+                                <span style="font-size: 14px;">All Tasks</span>
+                            </div>
+                            <div class="text-dark font-weight-bold h5 mb-0 mr-3 ">
+                                <span class="crm_all_count" id="crm_all_count" name="" style="font-size: 28px;color: rgb(221,223,235)">0</span>
+                            </div>
+                            <!-- <div class="text-dark font-weight-bold h5 mb-0"><span style="font-size: 16px;color: rgb(221,223,235);">Bank Balance</span></div> -->
+                        </div>
+                        <div class="col-auto"><i class="fas fa-inbox fa-2x text-gray-300"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-xl-3 mb-4 openaccountreceivable card-visibility" position="1" card-active="true" card-key="today-crm-tasks" id={{itembank.name}}>
+            <div class="card shadow customCardMainDiv border-left-primary py-2">
+                <div class="hideShowDiv">
+                    <a href="javascript:void(0);" class="cardShowBtn hideelement"><i class="far fa-eye"></i></a>
+                    <a href="javascript:void(0);" class="cardSettingBtn editCardBtn"><i class="fas fa-cog"></i></a>
+                </div>
+                <div class="card-body" style="cursor: pointer;">
+                    <div class="row align-items-center no-gutters">
+                        <div class="col mr-2">
+                            <div class="text-uppercase text-primary font-weight-bold text-xs mb-1">
+                                <span style="font-size: 14px;">Today</span>
+                            </div>
+                            <div class="text-dark font-weight-bold h5 mb-0 mr-3 ">
+                                <span class="crm_today_count" id="crm_today_count" name="" style="font-size: 28px;color: rgb(221,223,235)">0</span>
+                            </div>
+                            <!-- <div class="text-dark font-weight-bold h5 mb-0"><span style="font-size: 16px;color: rgb(221,223,235);">Bank Balance</span></div> -->
+                        </div>
+                        <div class="col-auto"><i class="fas fa-calendar-day fa-2x text-gray-300"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-xl-3 mb-4 openaccountreceivable card-visibility" position="2" card-active="true" card-key="upcoming-crm-tasks" id={{itembank.name}}>
+            <div class="card shadow customCardMainDiv border-left-danger py-2">
+                <div class="hideShowDiv">
+                    <a href="javascript:void(0);" class="cardShowBtn hideelement"><i class="far fa-eye"></i></a>
+                    <a href="javascript:void(0);" class="cardSettingBtn editCardBtn"><i class="fas fa-cog"></i></a>
+                </div>
+                <div class="card-body" style="cursor: pointer;">
+                    <div class="row align-items-center no-gutters">
+                        <div class="col mr-2">
+                            <div class="text-uppercase text-danger font-weight-bold text-xs mb-1"><span style="font-size: 14px;">Upcoming</span></div>
+                            <div class="text-dark font-weight-bold h5 mb-0 mr-3 ">
+                                <span class="crm_upcoming_count" id="crm_upcoming_count" name="" style="font-size: 28px;color: rgb(221,223,235)">0</span>
+                            </div>
+                            <!-- <div class="text-dark font-weight-bold h5 mb-0"><span style="font-size: 16px;color: rgb(221,223,235);">Bank Balance</span></div> -->
+                        </div>
+                        <div class="col-auto"><i class="fas fa-calendar-alt fa-2x text-gray-300"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-xl-3 mb-4 openaccountreceivable card-visibility" position="3" card-active="true" card-key="crm-projects" id={{itembank.name}}>
+            <div class="card shadow customCardMainDiv border-left-warning py-2">
+                <div class="hideShowDiv">
+                    <a href="javascript:void(0);" class="cardShowBtn hideelement"><i class="far fa-eye"></i></a>
+                    <a href="javascript:void(0);" class="cardSettingBtn editCardBtn"><i class="fas fa-cog"></i></a>
+                </div>
+                <div class="card-body" style="cursor: pointer;">
+                    <div class="row align-items-center no-gutters">
+                        <div class="col mr-2">
+                            <div class="text-uppercase text-warning font-weight-bold text-xs mb-1"><span style="font-size: 14px;">Projects</span></div>
+                            <div class="text-dark font-weight-bold h5 mb-0 mr-3 ">
+                                <span class="crm_project_count" id="crm_project_count" name="" style="font-size: 28px;color: rgb(221,223,235)">0</span>
+                            </div>
+                            <!-- <div class="text-dark font-weight-bold h5 mb-0"><span style="font-size: 16px;color: rgb(221,223,235);">Bank Balance</span></div> -->
+                        </div>
+                        <div class="col-auto"><i class="fas fa-project-diagram fa-2x text-gray-300"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</template>

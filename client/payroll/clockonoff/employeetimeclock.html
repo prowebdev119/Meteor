@@ -1,0 +1,279 @@
+<template name="employeetimeclock">
+           <div class="modal fade" role="dialog" tabindex="-1" id="settingsModal">
+            <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 style="margin-bottom: 0px;">Clock On/Off</h4>
+                        <a role="button" data-toggle="modal" href="#helpViewModal2" style="font-size: 20px; margin-left: 6px;">Help <i class="fa fa-question-circle-o" style="font-size: 20px;"></i></a>
+
+                        <!-- Start Help View Modal -->
+                        <div class="modal fade" role="dialog" tabindex="-1" id="helpViewModal2">
+                            <div class="modal-dialog modal-sm" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header" style="padding-bottom: 8px;">
+                                        <h4>Help</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p class="text-center text-muted"><a role="button" data-toggle="modal" href="#helpModal2" class="btn btn-primary helpModal">View Help Video</a></p>
+                                        <p class="text-center text-muted"><a href="https://vs1forum.com/viewtopic.php?f=6&t=16&p=20#p20" target="_blank" class="btn btn-primary">Download Help File</a></p>
+                                        <p class="text-center text-muted"><button class="btn btn-primary" type="button">Employ Advisor</button></p>
+                                        <p class="text-center text-muted" style="margin: 0px;"><a href="https://vs1forum.com/ucp.php?mode=register&cloudusername={{loggedCompany}}" target="_blank" class="btn btn-primary">Go To Forum</a></p>
+                                    </div>
+                                    <div class="modal-footer" style="padding: 6px;"><button class="btn btn-light" data-dismiss="modal" type="button">Close</button></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Help View Modal -->
+
+                        <!-- End Help Video Modal -->
+                        <!-- Start Help Video Modal -->
+                        <div class="modal fade" role="dialog" tabindex="-1" id="helpModal2">
+                            <div class="modal-dialog" role="document" style="max-width: 670px!important;">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+
+                                        <h4 class="title-header">Employee</h4>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <!-- <iframe width="640" height="360" src="https://player.vimeo.com/video/99892791" frameborder="0" allowfullscreen=""></iframe> -->
+                                        <!-- <iframe width="640" height="360" src="https://erphelpes.com/vs1videos/employeeslist.mp4" frameborder="0" allowfullscreen=""></iframe> -->
+                                        <video id="myVideo" width="640" height="360" controls="" name="media" style="border: solid 5px #999999f0; height: auto; outline: none;">
+                                            <source src="https://erphelpes.com/vs1videos/clockonoff.mp4" type="video/mp4">
+                                        </video>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Help Video Modal -->
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <style>
+                            @media screen and (max-width: 450px) {
+                                .btnLogMobile {
+                                    display: block !important;
+                                }
+
+                                .btnLogDesktop {
+                                    display: none;
+                                }
+                            }
+
+                            @media screen and (max-width: 1024px) {
+                                .btnClockOn {
+                                    font-size: 14px;
+                                }
+
+                                .btnOnHold {
+                                    font-size: 14px;
+                                }
+
+                                .btnClockOff {
+                                    font-size: 14px;
+                                }
+
+                                .btnTimesheetList {
+                                    font-size: 14px;
+                                    padding: 6px;
+                                }
+                            }
+                        </style>
+
+                        <div class="row">
+                            <div class="col-12 col-lg-4 col-xl-5">
+                                <div class="form-group" style="margin: 8px 0px;"><label>Employee Name</label><input id="employee_name" name="employee_name" type="text" required class="form-control employee_name" readonly></div>
+                            </div>
+                            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="form-group" style="margin: 8px 0px;">
+                                            <label>Job Name</label>
+                                            <select class="form-control sltJobOne" id="sltJobOne" name="sltJobOne">
+                                                {{#if jobsrecords}}
+                                                    <option value=""></option>
+                                                    {{#each itemjob in jobsrecords}}
+                                                        <option value="{{itemjob.jobname}}">{{itemjob.jobname}}</option>
+                                                    {{/each}}
+                                                {{/if}}
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group flex-grow-1" style="margin: 8px 0px;">
+                                            <label>Product /
+                                                Service</label>
+                                            <select id="product-listone" name="product-listone" class="form-control product-listone">
+                                                <option value=""></option>
+                                                {{#if productsdatatablerecords}}
+                                                    {{#each item in productsdatatablerecords}}
+                                                        <option value="{{item.productname}}">{{item.productname}}</option>
+                                                    {{/each}}
+                                                {{/if}}
+                                            </select>
+                                            <input id="updateID" name="updateID" type="hidden">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-4 col-lg-2">
+                                <div class="form-group" style="margin: 8px 0px;">
+                                    <label>Date</label>
+                                    <div class="input-group date" style="cursor: pointer;">
+                                        <input type="text" class="form-control formClassDate statementDate" id="dtSODate" name="dtSODate" value="{{invoicerecord.saledate}}">
+                                        <div class="input-group-addon" style="">
+                                            <span class="glyphicon glyphicon-th" style="cursor: pointer;"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                         <style>
+                        .mt-32 {
+                            margin-top: -32px !important;
+                        }
+                    </style>
+                        <div class="row">
+                            <div class="col-12 col-lg-4 col-xl-5">
+                                <div class="form-group" style="margin: 8px 0px;">
+                                    <label>Notes</label>
+                                    <textarea class="border rounded form-control" rows="3" id="txtNotesOne" name="txtNotesOne" style="width: 100%; border: 1px solid #d1d3e2 !important;"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6 col-xl-5">
+                                <div class="row">
+                                    <div class="col-6 col-md-4 col-lg-4">
+                                        <div class="form-group flex-grow-1" style="margin: 8px 0px;">
+                                            <label>Start Time</label><input class="form-control" id="startTime" required name="startTime" type="time">
+                                        </div>
+                                        <button class="btn btn-success btnClockOn" type="submit" style="width: 100%;" id="btnClockOn" name="btnClockOn"><i class="far fa-clock" style="margin-right: 5px;"></i>Clock On</button>
+                                    </div>
+                                    <div class="col-6 col-md-4 col-lg-4">
+                                        <div class="form-group flex-grow-1" style="margin: 8px 0px;"><label>End Time</label><input required class="form-control" id="endTime" name="endTime" type="time"></div>
+                                        <span class="btn btn-warning paused" style="margin: 8px 0px; width: 100%; margin-top: -72px; background-color: rgba(246, 194, 62, 0.4); cursor: default;">Paused</span>
+                                        <button class="btn btn-warning btnHoldOne" type="button" style="width: 100%;" id="btnHoldOne"><span class="isPaused" style="width: 100%;">On Hold</span></button>
+
+
+                                    </div>
+                                    <div class="col-6 col-md-4 col-lg-4">
+                                        {{#if equals edithours true}}
+                                            <div class="form-group flex-grow-1" style="margin: 8px 0px;">
+                                                <label>Hours</label><input type="text" id="txtBookedHoursSpent" name="txtBookedHoursSpent" required class="form-control">
+                                            </div>
+                                        {{else}}
+                                            <div class="form-group flex-grow-1" style="margin: 8px 0px;">
+                                                <label>Hours</label><input type="text" id="txtBookedHoursSpent" name="txtBookedHoursSpent" required class="form-control" readonly>
+                                            </div>
+                                        {{/if}}
+                                        <button class="btn btn-danger btnClockOff" type="submit" style="width: 100%;" id="btnClockOff" name="btnClockOff"><i class="fas fa-clock" style="margin-right: 5px;"></i>Clock Off</button>
+                                    </div>
+                                    <div class="col-6 btnLogMobile" style="display: none;">
+                                        <button class="btn btn-success btnTimesheetListOne" type="button" style="margin-top: 85px; width: 45px;" id="btnTimesheetListOne"><i class="far fa-clock"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-2 btnLogDesktop">
+                                <button class="btn btn-success btnTimesheetListOne" type="button" style="margin: 39px 0px; width: 45px;" id="btnTimesheetListOne"><i class="far fa-clock"></i></button>
+                            </div>
+                        </div>
+
+                        <!-- <div class="row d-xl-flex flex-column justify-content-xl-center" style="margin: 12px;">
+                        <div class="col" style="padding: 0px;">
+                            <div class="row" style="padding: 0px 8px;">
+
+                                <div class="col-3 colEmpName" id="colEmpName">
+                                    <div class="form-group flex-grow-1" style="margin: 8px 0px;"><label>Employee Name</label><input id="employee_name" name="employee_name" type="text" required class="form-control employee_name" readonly></div>
+                                </div>
+                                <div class="col-3 colJobName" id="colJobName">
+                                    <div class="form-group flex-grow-1" style="margin: 8px 0px;">
+                                        <label>Job Name</label>
+                                        <select class="form-control sltJob" id="sltJob" name="sltJob">
+                                            {{#if jobsrecords}}
+                                                <option value=""></option>
+                                                {{#each itemjob in jobsrecords}}
+                                                    <option value="{{itemjob.jobname}}">{{itemjob.jobname}}</option>
+                                                {{/each}}
+                                            {{/if}}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-3 colRate" id="colRate">
+                                    <div class="form-group flex-grow-1" style="margin: 8px 0px;"><label>Rate</label><input id="hourly_rate" name="hourly_rate" type="text" class="form-control hourly_rate" required>
+                                        <input id="updateID" name="updateID" type="hidden">
+                                    </div>
+                                </div>
+                                <div class="col-3 colStartDate" id="colStartDate">
+                                    <div class="form-group" style="margin: 8px 0px;">
+                                        <label>Date</label>
+                                        <div class="input-group date" style="cursor: pointer;">
+                                            <input type="text" class="form-control formClassDate statementDate" id="dtSODate" name="dtSODate" value="{{invoicerecord.saledate}}">
+                                            <div class="input-group-addon" style="">
+                                                <span class="glyphicon glyphicon-th" style="cursor: pointer;"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row" style="padding: 0px 8px;">
+                                <div class="col-12" id="colBookedTimeParent">
+                                    <div class="row">
+                                        <div class="col-3 colNotesParent" id="colNotesParent">
+                                            <div class="form-group flex-grow-1" style="margin: 8px 0px;">
+                                                <label>Notes</label>
+                                                <textarea class="border rounded form-control" rows="2" id="txtNotes" name="txtNotes" style="width: 100%; border: 1px solid #d1d3e2 !important;"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-2 colBookedStartTime" id="colBookedStartTime">
+                                            <div class="form-group flex-grow-1" style="margin: 8px 0px;">
+                                                <label>Start Time</label><input class="form-control" id="startTime" required name="startTime" type="time">
+                                            </div>
+                                            <button class="btn btn-success btnClockOn" type="submit" style="width: 100%;" id="btnClockOn" name="btnClockOn"><i class="far fa-clock" style="margin-right: 5px;"></i>Clock On</button>
+                                        </div>
+                                        <div class="col-2 colBookedEndTime" id="colBookedEndTime">
+                                            <div class="form-group flex-grow-1" style="margin: 8px 0px;"><label>End Time</label><input required class="form-control" id="endTime" name="endTime" type="time"></div>
+                                            <button class="btn btn-warning" type="button" style="width: 100%;" id="btnHold">On Hold</button>
+                                        </div>
+                                        <div class="col-2 colBookedHours" id="colBookedHours" style="padding-right: .3rem;">
+                                            {{#if equals edithours true}}
+                                                <div class="form-group flex-grow-1" style="margin: 8px 0px;">
+                                                    <label>Hours</label><input type="text" id="txtBookedHoursSpent" name="txtBookedHoursSpent" required class="form-control">
+                                                </div>
+                                            {{else}}
+                                                <div class="form-group flex-grow-1" style="margin: 8px 0px;">
+                                                    <label>Hours</label><input type="text" id="txtBookedHoursSpent" name="txtBookedHoursSpent" required class="form-control" readonly>
+                                                </div>
+                                            {{/if}}
+                                            <button class="btn btn-danger btnClockOff" type="submit" style="width: 100%;" id="btnClockOff" name="btnClockOff"><i class="fas fa-clock" style="margin-right: 5px;"></i>Clock Off</button>
+                                        </div>
+                                        <div class="col-1 colAppointmentList" id="colAppointmentList" style="padding-right: .3rem;">
+                                            <label></label>
+                                            <button class="btn btn-success btnTimesheetList" type="button" style="margin: 15px 0px; width: 48px;" id="btnTimesheetList"><i class="far fa-clock"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" style="padding: 0px 8px;">
+                                <div class="col-12 colNotesParent" id="colNotesParent">
+                                    <div class="form-group flex-grow-1" style="margin: 8px 0px;">
+                                        <label>Notes</label>
+                                        <textarea class="border rounded form-control" rows="2" id="txtNotes" name="txtNotes" style="width: 100%; border: 1px solid #d1d3e2 !important;"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-success btnSaveTimeSheetOne" type="submit" style="margin: 8px;" id="btnSaveTimeSheetOne" name="btnSaveTimeSheetOne"><i class="fa fa-save" style="margin-right: 5px;"></i>Save</button>
+                        <button class="btn btn-danger btnDeleteTimeSheet" type="button" style="margin: 16px; width: 95px;"><i class="fa fa-trash" style="padding-right: 8px;"></i>Delete</button>
+                        <button class="btn btn-secondary" id="btnDeleteAppointment" name="btnDeleteAppointment" data-dismiss="modal" type="button" style="margin: 8px;"><i class="fa fa-close" style="margin-right: 5px;"></i>Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <script>
+        modalDraggable();
+    </script>
+</template>

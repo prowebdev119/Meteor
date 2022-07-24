@@ -1,0 +1,109 @@
+<template name="stscreatepackagesfromharvest">
+    <div class="container-fluid">
+        <div class="fullScreenSpin" style="display:none;">
+            <div class="spinner"></div>
+        </div>
+        <div class="d-sm-flex justify-content-between align-items-center mb-4">
+            <h3 class="text-dark mb-0">Seed To Sale - Create Multiple Harvests</h3>
+        </div>
+        <div class="row d-xl-flex justify-content-center align-items-center justify-content-xl-start" style="max-width: 568px;margin: auto;padding: 20px;">
+            <div class="col">
+                <div class="form-group" style="margin: 4px;"><label>Harvest Name</label><input type="text" class="form-control"></div>
+            </div>
+        </div>
+        <div class="row d-xl-flex justify-content-center align-items-center justify-content-xl-start" style="max-width: 568px;margin: auto;padding: 20px;padding-top: 0px;">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">[ Harvest Name ] Details</h5>
+                        <div class="row">
+                            <div class="col">
+                                <h6 class="text-muted mb-2" style="margin: 0px;">Weight</h6>
+                            </div>
+                            <div class="col">
+                                <p class="float-right" style="margin: 0px;">[ Harvest Weight ]</p>
+                            </div>
+                            <hr style="width: 100%;margin: 0px 12px;">
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <h6 class="text-muted mb-2" style="margin: 0px;">Room</h6>
+                            </div>
+                            <div class="col">
+                                <p class="float-right" style="margin: 0px;">[ Room Name ]</p>
+                            </div>
+                            <hr style="width: 100%;margin: 0px 12px;">
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <h6 class="text-muted mb-2" style="margin: 0px;">Harvest Date</h6>
+                            </div>
+                            <div class="col">
+                                <p class="float-right" style="margin: 0px;">yyyy/mm/dd</p>
+                            </div>
+                            <hr style="width: 100%;margin: 0px 12px;">
+                        </div>
+                    </div>
+                </div>
+                <hr style="width: 100%;margin: 0px;margin-top: 16px;">
+            </div>
+        </div>
+        <div class="row d-xl-flex justify-content-center align-items-center justify-content-xl-start" style="max-width: 568px;margin: auto;padding: 20px;padding-top: 0px;">
+            <div class="col">
+                <div class="form-group flex-grow-1" style="margin: 4px;"><label>Starting Package Tag (Optional)</label>
+                    <div class="input-group"><input class="form-control" type="text">
+                        <div class="input-group-append"><a class="btn btn-primary border-success" role="button" style="background-color: #3dd79c;" href="#scan" data-toggle="modal">Scan</a></div>
+                    </div>
+                    <div class="modal fade" role="dialog" tabindex="-1" id="scan">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Scan</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                                <div class="modal-body"></div>
+                                <div class="modal-footer invisible"><button class="btn btn-light" type="button" data-dismiss="modal">Close</button><button class="btn btn-primary" type="button">Save</button></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr style="width: 100%;margin: 0px;margin-top: 16px;">
+            </div>
+        </div>
+        <div class="row d-xl-flex justify-content-center align-items-center justify-content-xl-start" style="max-width: 568px;margin: auto;padding: 20px;padding-top: 0px;padding-bottom: 0px;">
+            <div class="col">
+                <div class="form-group" style="margin: 4px;"><label>Number of Packages (Optional)</label><input type="text" class="form-control"></div>
+            </div>
+            <div class="col">
+                <div class="form-group" style="margin: 4px;"><label>Item Type (Optional)</label><input type="text" class="form-control"></div>
+            </div>
+        </div>
+        <div class="row d-xl-flex justify-content-center align-items-center justify-content-xl-start" style="max-width: 568px;margin: auto;padding: 20px;padding-top: 0px;padding-bottom: 0px;">
+            <div class="col">
+                <div class="row no-gutters">
+                    <div class="col">
+                        <div class="form-group" style="margin: 4px;"><label>Package Weight (Optional)</label><input type="text" class="form-control"></div>
+                    </div>
+                    <div class="col" style="max-width: 175px;">
+                        <div class="form-group" style="margin: 4px;"><label>Unit</label><select class="form-control"><option value="0" selected="">Fluid Ounces</option><option value="1">Gallons</option><option value="2" selected="">Grams</option><option value="3">Kilograms</option><option value="4">Liters</option><option value="5">Milligrams</option><option value="6">Milliliters</option><option value="7">Ounces</option><option value="8">Pints</option><option value="9">Pounds</option><option value="10">Quarts</option></select></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row d-xl-flex justify-content-center align-items-center justify-content-xl-start" style="max-width: 568px;margin: auto;padding: 20px;padding-top: 0px;">
+            <div class="col">
+                <div class="form-group" style="margin: 4px;">
+                    <label>Packaged Date</label>
+                    <div class="input-group date" style="cursor: pointer;">
+                        <input type="text" class="form-control formClassDate" id="dtSODate" name="dtSODate" value="{{invoicerecord.saledate}}">
+                        <div class="input-group-addon" style="">
+                            <span class="glyphicon glyphicon-th" style="cursor: pointer;"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col"></div>
+        </div>
+        <div class="row d-xl-flex justify-content-center align-items-center justify-content-xl-start" style="max-width: 568px;margin: auto;padding: 20px;">
+            <div class="col d-xl-flex justify-content-xl-center"><a class="btn btn-success" role="button" href="SeedtoSale-12.html">Confirm Packages</a></div>
+        </div>
+    </div>
+</template>

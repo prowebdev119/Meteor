@@ -1,0 +1,38 @@
+<template name="quotedsalesorderinvoicedamounts">
+    <style type="text/css">
+        .hideelement {
+            display: none !important;
+        }
+
+        .showelement {
+            display: block;
+        }
+    </style>
+    <div class="minHeight100" id="quotedsalesorderinvoicedamounts">
+        <!-- Quoted Amounts / Invoiced Amounts -->
+        <div class="card overflow-hidden shadow mb-4 portlet ui-widget ui-widget-content ui-helper-clearfix ui-corner-all ui-resizable">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h6 class="text-primary font-weight-bold m-0">Sales Overview</h6>
+                <div class="dropdown no-arrow">
+                    <a id="hidesales1" class="on-editor-change-mode btn btn-link hideelement" role="presentation" href="">Hide</a>
+
+                    <button class="btn btn-link btn-sm dropdown-toggle btnchartdropdown" data-toggle="dropdown" aria-expanded="false" type="button"><i class="fas fa-ellipsis-v text-gray-400"></i></button>
+                    <div class="dropdown-menu shadow dropdown-menu-right animated--fade-in" role="menu">
+
+                        <a id="sales" class="dropdown-item" role="presentation" href="/salesreport">More Details</a>
+                        <div class="dropdown-divider"></div>
+                        <a id="editchartsquotedslaesorderinvoicedamounts" class="dropdown-item editchartsbtn pointer" role="presentation" data-toggle="modal" data-target="#editDashboardModal">&nbsp;Edit Chart</a>
+                        <a id="" class="dropdown-item pointer resetchartsbtn" role="presentation">&nbsp;Reset Chart</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="canvasParentDiv canvasHeight100">
+                    <canvas id="quotedsoinvoicedamounts" name="quotedsoinvoicedamounts"></canvas>
+
+                    <!-- <canvas data-bs-chart="{&quot;type&quot;:&quot;line&quot;,&quot;data&quot;:{&quot;labels&quot;:[&quot;Jan&quot;,&quot;Feb&quot;,&quot;Mar&quot;,&quot;Apr&quot;,&quot;May&quot;,&quot;Jun&quot;,&quot;Jul&quot;,&quot;Aug&quot;],&quot;datasets&quot;:[{&quot;label&quot;:&quot;Quoted Amounts&quot;,&quot;fill&quot;:true,&quot;data&quot;:[&quot;0&quot;,&quot;10000&quot;,&quot;5000&quot;,&quot;15000&quot;,&quot;10000&quot;,&quot;20000&quot;,&quot;15000&quot;,&quot;25000&quot;],&quot;backgroundColor&quot;:&quot;rgba(78, 115, 223, 0.05)&quot;,&quot;borderColor&quot;:&quot;rgba(78, 115, 223, 1)&quot;},{&quot;label&quot;:&quot;Invoiced Amounts&quot;,&quot;fill&quot;:true,&quot;data&quot;:[&quot;5000&quot;,&quot;1200&quot;,&quot;14000&quot;,&quot;21000&quot;,&quot;13000&quot;,&quot;2000&quot;,&quot;1400&quot;,&quot;15000&quot;],&quot;borderColor&quot;:&quot;rgb(255,0,0)&quot;}]},&quot;options&quot;:{&quot;maintainAspectRatio&quot;:false,&quot;legend&quot;:{&quot;display&quot;:false},&quot;title&quot;:{},&quot;scales&quot;:{&quot;xAxes&quot;:[{&quot;gridLines&quot;:{&quot;color&quot;:&quot;rgb(234, 236, 244)&quot;,&quot;zeroLineColor&quot;:&quot;rgb(234, 236, 244)&quot;,&quot;drawBorder&quot;:false,&quot;drawTicks&quot;:false,&quot;borderDash&quot;:[&quot;2&quot;],&quot;zeroLineBorderDash&quot;:[&quot;2&quot;],&quot;drawOnChartArea&quot;:false},&quot;ticks&quot;:{&quot;fontColor&quot;:&quot;#858796&quot;,&quot;padding&quot;:20}}],&quot;yAxes&quot;:[{&quot;gridLines&quot;:{&quot;color&quot;:&quot;rgb(234, 236, 244)&quot;,&quot;zeroLineColor&quot;:&quot;rgb(234, 236, 244)&quot;,&quot;drawBorder&quot;:false,&quot;drawTicks&quot;:false,&quot;borderDash&quot;:[&quot;2&quot;],&quot;zeroLineBorderDash&quot;:[&quot;2&quot;]},&quot;ticks&quot;:{&quot;fontColor&quot;:&quot;#858796&quot;,&quot;padding&quot;:20}}]}}}"></canvas> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

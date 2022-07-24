@@ -1,0 +1,97 @@
+<template name="stsactivitylog">
+    <div class="container-fluid">
+        <div class="fullScreenSpin" style="display:none;">
+            <div class="spinner"></div>
+        </div>
+        <div class="d-sm-flex justify-content-between align-items-center mb-4">
+            <h3 class="text-dark mb-0">Seed to Sale - Activity Log</h3>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="card shadow mb-4">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h6 class="text-primary font-weight-bold m-0">Activity Log</h6>
+                        <div class="dropdown no-arrow"><button class="btn btn-link btn-sm dropdown-toggle invisible" data-toggle="dropdown" aria-expanded="false" type="button"><i class="fas fa-ellipsis-v text-gray-400"></i></button>
+                            <div class="dropdown-menu shadow dropdown-menu-right animated--fade-in"
+                                 role="menu">
+                                <p class="text-center dropdown-header">dropdown header:</p><a class="dropdown-item" role="presentation" href="#">&nbsp;Action</a><a class="dropdown-item" role="presentation" href="#">&nbsp;Another action</a>
+                                <div class="dropdown-divider"></div><a class="dropdown-item" role="presentation" href="#">&nbsp;Something else here</a></div>
+                        </div>
+                    </div>
+                    <div class="card-body" style="padding: 0px;"><div class="card-body p-3 rounded">
+                        <div class="table-responsive">
+                            <style>
+                                th {
+                                    background-color: #ededed;
+                                }
+                                .table-striped tbody tr:nth-of-type(odd) {
+                                    background-color: white !important;
+                                }
+
+                                .table-striped tbody tr:nth-of-type(even) {
+                                    background-color: #0000000d !important;
+                                }
+
+                                .JColResizer > tbody > tr > td, .JColResizer > tbody > tr > th {
+                                    padding: .75rem!important;
+                                }
+                                .hiddenColumn{
+                                    display:none;
+                                }
+                                .showColumn {
+                                    display:table-cell;
+                                    padding:.75rem;
+                                    vertical-align:top;
+                                }
+                                input[type=number]::-webkit-inner-spin-button,
+                                input[type=number]::-webkit-outer-spin-button {
+                                    opacity: 1;
+                                }
+                            </style>
+                            <table id="tblHarvests" style="width:100%;" class="table table-striped table-bordered tblHarvests">
+                                <thead>
+                                    <tr class="dnd-moved">
+                                        <th colspan="3">Seed to Sale Tag</th>
+                                        <th colspan="3">Action</th>
+                                        <th colspan="3">New Phase</th>
+                                        <th style="width: 50px;"></th>
+                                    </tr>
+                                    <tr class="dnd-moved">
+                                        <th>Name</th>
+                                        <th>Used On</th>
+                                        <th>Completed</th>
+
+                                        <th>Name</th>
+                                        <th>Date</th>
+                                        <th>Description</th>
+
+                                        <th>Name</th>
+                                        <th>Tag</th>
+                                        <th>Created On</th>
+                                        <th style="width: 50px;"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="dnd-moved">
+                                        <td></td>
+                                        <td></td>
+                                        <td><div class="custom-control custom-checkbox"><input type="checkbox" class="custom-control-input" id="formCheck-1" /><label class="custom-control-label" for="formCheck-1"></label></div></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><span class="table-remove"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0"><i class="fa fa-remove"></i></button></span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        </div>
+                        <div class="row no-gutters d-xl-flex justify-content-xl-center align-items-xl-center" style="margin: 16px;margin-top: 0px;"><button class="btn btn-primary" type="button">Download PDF&nbsp;<i class="fas fa-file-pdf" style="margin-left: 5px;"></i></button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

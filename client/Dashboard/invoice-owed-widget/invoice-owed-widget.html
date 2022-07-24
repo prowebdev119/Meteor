@@ -1,0 +1,37 @@
+<template name="invoiceOwedWidget">
+    <div class="invoiceOwedWidget">
+    <div class="dash2" style="position: relative;">
+        <div class="loader" style="display: flex; align-items: center" id="invoiceOwedWidget"><i class="fa fa-spinner fa-spin" style="font-size:24px"></i></div>
+        <div class="invoiceOwedHeader">
+            <a href="/allsales"><h3>Invoices owed to you</h3></a>
+        </div>
+            <hr>
+        <div class="dashInvtotals">
+            <a href="/newinvoice" class="dash_links">New sales invoice</a>
+            <table class="dash_invtotals_table">
+                <tbody>
+                <tr>
+                    <td><span class="sumDraft"><a href="/invoicelist/Draft"
+                                                       id="sumDraft">{{sumDraft}}  Draft invoices</a></span></td>
+                    <td><span class="totDraft"><a href="/invoicelist/Draft"
+                                                       id="totDraft">{{totDraft}}</a></span></td>
+                </tr>
+                <tr>
+                    <td><span class="sumAwtPayment"><a href="/invoicelist/AwaitingPayment"
+                                                       id="sumAwtPayment">{{sumAwtPayment}}  Awaiting payment</a></span></td>
+                    <td><span class="totAwtPayment"><a href="/invoicelist/AwaitingPayment"
+                                                       id="totAwtPayment">{{totAwtPayment}}</a></span></td>
+                </tr>
+                <tr>
+                    <td><span class="sumOverdue"><a href="/invoicelist/Overdue" class="dash_overdue"
+                                                    id="sumOverdue">{{sumOverdue}} Overdue</a></span></td>
+                    <td><span class="totOverdue"><a href="/invoicelist/Overdue" class="dash_overdue"
+                                                    id="totOverdue">{{totOverdue}}</a></span></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="invoice"></div>
+    </div>
+    </div>
+</template>

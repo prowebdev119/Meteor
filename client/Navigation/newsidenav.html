@@ -1,0 +1,1396 @@
+<template name="newsidenav">
+    <nav id="sidebar">
+
+        <style>
+            #sidebar a,
+            #sidebar a:hover,
+            #sidebar a:focus {
+                color: inherit;
+                text-decoration: none;
+                transition: all 0.3s;
+            }
+
+            .navbar {
+                padding: 15px 10px;
+                background: #fff;
+                border: none;
+                border-radius: 0;
+                margin-bottom: 40px;
+                box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+            }
+
+            .navbar-btn {
+                box-shadow: none;
+                outline: none !important;
+                border: none;
+            }
+
+            .line {
+                width: 100%;
+                height: 1px;
+                border-bottom: 1px dashed #ddd;
+                margin: 40px 0;
+            }
+
+            .wrapper {
+                display: flex;
+                width: 100%;
+                align-items: stretch;
+                overflow-x: hidden;
+            }
+
+            #sidebar {
+                min-width: 6vw;
+                max-width: 6vw;
+                background: #00a3d3;
+                color: rgba(255, 255, 255, 1);
+                transition: all 0.3s;
+                overflow-y: overlay;
+                overflow-x: hidden;
+                height: 100vh;
+                position: sticky;
+                top: 0;
+                left: 0;
+                z-index: 10;
+            }
+
+            #sidebar.active {
+                margin-left: -200px;
+                color: #fff;
+            }
+
+            #sidebar .sidebar-header {
+                padding: 12px 10px;
+                background: #00a3d3;
+                height: 7vh;
+            }
+
+            #sidebar ul p {
+                color: #fff;
+                padding: 10px;
+            }
+
+            #sidebar ul li a {
+                padding: 10px;
+                padding-top: 16px;
+                font-size: .65rem;
+                display: block;
+                cursor: pointer;
+            }
+
+            #sidebar ul li a:hover {
+                color: #00C2EF;
+                background: #fff;
+            }
+
+            #sidebar ul li.active>a,
+            a[aria-expanded="true"] {
+                color: #fff;
+                background: #858796;
+            }
+
+            #sidebar ul li.active>a:hover,
+            a[aria-expanded="true"] {
+                color: #fff;
+                /* background: #00C2EF; */
+            }
+
+            a[data-toggle="collapse"] {
+                position: relative;
+            }
+
+            .liHeader::after {
+                display: none;
+            }
+
+
+            ul ul a {
+                font-size: .75rem !important;
+                padding-left: 10px !important;
+                background: #858796;
+            }
+
+            .vs1brand {
+                width: 100%;
+            }
+
+            .faHeader {
+                font-size: 15px;
+                margin: 0 auto;
+            }
+
+            .liHeader {
+                display: grid !important;
+                justify-content: center !important;
+            }
+
+            .opacityNotActive {
+                /* color: rgba(255, 255, 255, 0.45); */
+            }
+
+            .collapse.show {
+                color: #fff;
+            }
+
+            .collapse.show label{
+                color: #858796;
+            }
+
+            @media screen and (max-width: 1600px) {
+                #sidebar {
+                    min-width: 8vw;
+                }
+            }
+
+            @media screen and (max-width: 1366px) {
+                #sidebar {
+                    min-width: 9vw;
+                }
+            }
+
+            @media screen and (max-width: 1200px) {
+                #sidebar {
+                    min-width: 11vw;
+                }
+            }
+
+            @media screen and (max-width: 992px) {
+                #sidebar {
+                    min-width: 15vw;
+                }
+                #sidebar .sidebar-header {
+                    height: 65px;
+                }
+            }
+
+            @media screen and (max-width: 768px) {
+                #sidebar {
+                    min-width: 16vw;
+                }
+                #sidebar .sidebar-header {
+                    height: 65px;
+                }
+            }
+
+            @media screen and (max-width: 576px) {
+                #sidebar {
+                    min-width: 28vw;
+                }
+                #colContent {
+                    width: 102vw !important;
+                }
+            }
+
+
+            @media screen and (max-width: 400px) {
+                #sidebar {
+                    min-width: 32vw;
+                }
+            }
+        </style>
+
+        <div class="sidebar-header">
+            <img class="vs1brand" src="assets/img/vs1cloudbrand.png" />
+        </div>
+
+        <ul class="list-unstyled components">
+            {{#if includeAccounts}}
+                <li class="accountsLi" id="sidenavaccounts">
+                    <a href="#accountsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle liHeader accountsLiHeader"><i class="fa fa-users faHeader"></i> Accounts</a>
+                    <ul class="collapse list-unstyled" id="accountsSubmenu">
+                        <!-- <li>
+                            <a class="sidenavaccounts">
+                                <div class="row">
+                                    <div class="col">
+                                        <i class="fas fa-users"></i> Accounts
+                                    </div>
+                                    <div class="col">
+                                        <i class="fas fa-users" style="visibility: hidden;"></i> Overview
+                                    </div>
+                                </div>
+                            </a>
+                        </li> -->
+                        <li>
+                            <a id="sidenavjournalentry" name="sidenavjournalentry"><i class="fas fa-book"></i> Journal Entries</a>
+                        </li>
+                        <li>
+                            <a id="sidenavnewaccounts" name="sidenavnewaccounts"><i class="fas fa-plus"></i> New Account</a>
+                        </li>
+                        <li>
+                            <a id="sidenavnewjournalentry" name="sidenavnewjournalentry">
+                                <div class="row">
+                                    <div class="col">
+                                        <i class="fas fa-plus"></i> New
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <i class="fas fa-plus" style="visibility: hidden;"></i> Journal Entry
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            {{/if}}
+
+            {{#if isGreenTrack}}
+            {{else}}
+                {{#if includeAppointmentScheduling}}
+                    <li class="appointmentsLi" id="sidenavappointment">
+                        <a href="#appointmentsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle liHeader appointmentsLiHeader"><i class="fa fa-calendar faHeader"></i> Appointments</a>
+                        <ul class="collapse list-unstyled" id="appointmentsSubmenu">
+                            <!-- <li>
+                                <a class="sidenavappointment">
+                                    <div class="row">
+                                        <div class="col">
+                                            <i class="far fa-calendar-alt"></i> Appointment
+                                        </div>
+                                        <div class="col">
+                                            <i class="far fa-calendar-alt" style="visibility: hidden;"></i> Overview
+                                        </div>
+                                    </div>
+                                </a>
+                            </li> -->
+                            <li>
+                                <a id="sidenavappointmentList" name="sidenavappointmentList">
+                                    <div class="row">
+                                        <div class="col">
+                                            <i class="far fa-calendar-alt"></i> Appointment
+                                        </div>
+                                        <div class="col">
+                                            <i class="far fa-calendar-alt" style="visibility: hidden;"></i> List
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a id="sidenavappointmenttimeList" name="sidenavappointmenttimeList">
+                                    <div class="row">
+                                        <div class="col">
+                                            <i class="far fa-calendar-alt"></i> Appointment
+                                        </div>
+                                        <div class="col">
+                                            <i class="far fa-calendar-alt" style="visibility: hidden;"></i> Time List
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a id="sidenavnewappointment" name="sidenavnewappointment">
+                                    <div class="row">
+                                        <div class="col">
+                                            <i class="fas fa-plus"></i> New
+                                        </div>
+                                        <div class="col">
+                                            <i class="fas fa-plus" style="visibility: hidden;"></i> Appointment
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a id="sidenavallocation" name="sidenavallocation"><i class="far fa-list-alt"></i> Allocation</a>
+                            </li>
+                        </ul>
+                    </li>
+                {{/if}}
+            {{/if}}
+
+            {{#if includeBanking}}
+                <li class="bankingLi" id="sidenavbanking">
+                    <a href="#bankingSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle liHeader bankingLiHeader"><i class="fa fa-bank faHeader"></i> Banking</a>
+                    <ul class="collapse list-unstyled" id="bankingSubmenu">
+                        <!-- <li>
+                            <a class="sidenavbanking">
+                                <div class="row">
+                                    <div class="col">
+                                        <i class="fas fa-university"></i> Banking
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <i class="fas fa-university" style="visibility: hidden;"></i> Overview
+                                    </div>
+                                </div>
+                            </a>
+                        </li> -->
+                        <li>
+                            <a id="sidenavbankreconciliation" name="sidenavbankreconciliation">
+                                <div class="row">
+                                    <div class="col">
+                                        <i class="fas fa-thumbs-up"></i> Bank
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <i class="fas fa-thumbs-up" style="visibility: hidden;"></i> Reconciliation
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a id="sidenavreconciliation" name="sidenavreconciliation">
+                                <div class="row">
+                                    <div class="col">
+                                        <i class="fas fa-list-ul"></i> Reconciliation
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <i class="fas fa-list-ul" style="visibility: hidden;"></i> List
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a id="sidenavcheque" name="sidenavcheque"><i class="fas fa-list-ul"></i> Cheque List</a>
+                        </li>
+                        <li>
+                            <a id="sidenavdepositlist" name="sidenavdepositlist"><i class="fas fa-list-ul"></i> Deposited List</a>
+                        </li>
+                        <li>
+                            <a id="sidenavnewcheque" name="sidenavnewcheque"><i class="fas fa-plus"></i> New Cheque</a>
+                        </li>
+                        <li>
+                            <a id="sidenavnewdeposit" name="sidenavnewdeposit"><i class="fas fa-plus"></i> New Deposit</a>
+                        </li>
+                    </ul>
+                </li>
+            {{/if}}
+
+            {{#if includeContacts}}
+                <li class="contactsLi" id="sidenavcontacts">
+                    <a href="#contactsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle liHeader contactsLiHeader"><i class="fa fa-phone faHeader"></i> Contacts</a>
+                    <ul class="collapse list-unstyled" id="contactsSubmenu">
+                        <!-- <li>
+                            <a class="sidenavcontacts">
+                                <div class="row">
+                                    <div class="col">
+                                        <i class="fas fa-users"></i> Contacts
+                                    </div>
+                                    <div class="col">
+                                        <i class="fas fa-users" style="visibility: hidden;"></i> Overview
+                                    </div>
+                                </div>
+                            </a>
+                        </li> -->
+                        <li>
+                            <a id="sidenavcustomers" name="sidenavcustomers"><i class="fas fa-user-friends"></i> Customers</a>
+                        </li>
+                        <li>
+                            <a id="sidenavemployees" name="sidenavemployees"><i class="fas fa-user-tie"></i> Employees</a>
+                        </li>
+                        <li>
+                            <a id="sidenavjobs" name="sidenavjobs"><i class="fas fa-briefcase"></i> Jobs</a>
+                        </li>
+                        <li>
+                            <a id="sidenavsuppliers" name="sidenavsuppliers"><i class="fas fa-user"></i> Suppliers</a>
+                        </li>
+                        <li>
+                            <a id="sidenavnewcustomers" name="sidenavnewcustomers">
+                                <div class="row">
+                                    <div class="col">
+                                        <i class="fas fa-user-plus"></i> New
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <i class="fas fa-user-plus" style="visibility: hidden;"></i> Customer
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a id="sidenavnewemployees" name="sidenavnewemployees">
+                                <div class="row">
+                                    <div class="col">
+                                        <i class="fas fa-user-plus"></i> New
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <i class="fas fa-user-plus" style="visibility: hidden;"></i> Employee
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a id="sidenavnewsuppliers" name="sidenavnewsuppliers">
+                                <div class="row">
+                                    <div class="col">
+                                        <i class="fas fa-user-plus"></i> New
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <i class="fas fa-user-plus" style="visibility: hidden;"></i> Supplier
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            {{/if}}
+
+            <li class="crmLi" id="sidenavcrm">
+                <a href="#crmSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle liHeader crmLiHeader"><i class="fas fa-tasks faHeader"></i> CRM</a>
+                <ul class="collapse list-unstyled" id="crmSubmenu">
+                    <li>
+                        <a id="sidenavleads" name="sidenavleads"><i class="fas fa-user-friends"></i> Leads</a>
+                    </li>
+                    <li>
+                        <a id="sidenavtasks" name="sidenavtasks"><i class="fas fa-user-tie"></i> Tasks</a>
+                    </li>
+                </ul>
+            </li>
+
+            {{#if includeDashboard}}
+                <li class="dashboardLi" id="sidenavdashbaord">
+                    <a class="liHeader sidenavdashbaord"><i class="fas fa-tachometer-alt faHeader"></i> Dashboard</a>
+                </li>
+            {{/if}}
+
+            {{#if isGreenTrack}}
+                <li class="gsemployeesLi" id="sidenavemployeesGreenTrack">
+                    <a class="liHeader sidenavemployeesGreenTrack"><i class="fa fa-user faHeader"></i><span> Employees</span></a>
+                </li>
+            {{/if}}
+
+            {{#if includeInventory}}
+                <li class="inventoryLi" id="sidenavinventory">
+                    <a href="#inventorySubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle liHeader inventoryLiHeader"><i class="fas fa-box-open faHeader"></i> Inventory</a>
+                    <ul class="collapse list-unstyled" id="inventorySubmenu">
+                        <!-- <li>
+                            <a class="sidenavinventory">
+                                <div class="row">
+                                    <div class="col">
+                                        <i class="fas fa-boxes"></i> Inventory
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <i class="fas fa-boxes" style="visibility: hidden;"></i> Overview
+                                    </div>
+                                </div>
+                            </a>
+                        </li> -->
+                        <li>
+                            <a id="sidenaveproductlist" name="sidenaveproductlist"><i class="fa fa-product-hunt"></i> Product List</a>
+                        </li>
+                        {{#if includeStockAdjustment}}
+                        <li>
+                            <a id="sidenavstockadjust" name="sidenavstockadjust">
+                                <div class="row">
+                                    <div class="col">
+                                        <i class="fas fa-wrench"></i> Stock
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <i class="fas fa-wrench" style="visibility: hidden;"></i> Adjustments
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        {{/if}}
+                        {{#if includeStockTransfer}}
+                        <li>
+                            <a id="sidenavstocktransfer" name="sidenavstocktransfer">
+                                <div class="row">
+                                    <div class="col">
+                                        <i class="fa fa-tasks"></i> Stock
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <i class="fa fa-tasks" style="visibility: hidden;"></i> Transfers
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        {{/if}}
+                        <li>
+                            <a id="sidenavnewinventory" name="sidenavnewinventory"><i class="fas fa-plus"></i> New Product</a>
+                        </li>
+                        {{#if includeStockAdjustment}}
+                        <li>
+                            <a id="sidenavnewstockadjust" name="sidenavnewstockadjust">
+                                <div class="row">
+                                    <div class="col">
+                                        <i class="fas fa-plus"></i> New Stock
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <i class="fas fa-plus" style="visibility: hidden;"></i> Adjustment
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        {{/if}}
+                        {{#if includeStockTransfer}}
+                        <li>
+                            <a id="sidenavnewstocktransfer" name="sidenavnewstocktransfer">
+                                <div class="row">
+                                    <div class="col">
+                                        <i class="fas fa-plus"></i> New Stock
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <i class="fas fa-plus" style="visibility: hidden;"></i> Transfer
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        {{/if}}
+                    </ul>
+                </li>
+            {{/if}}
+
+            {{#if includePayments}}
+                <li class="paymentsLi" id="sidenavpayments">
+                    <a href="#paymentsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle liHeader paymentsLiHeader"><i class="fa fa-dollar faHeader"></i> Payments</a>
+                    <ul class="collapse list-unstyled" id="paymentsSubmenu">
+                        <!-- <li>
+                            <a class="sidenavpayments">
+                                <div class="row">
+                                    <div class="col">
+                                        <i class="fas fa-dollar-sign"></i> Payments
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <i class="fas fa-dollar-sign" style="visibility: hidden;"></i> Overview
+                                    </div>
+                                </div>
+                            </a>
+                        </li> -->
+                        <li>
+                            <a id="sidenavawaitingCP" name="sidenavawaitingCP">
+                                <div class="row">
+                                    <div class="col">
+                                        <i class="fas fa-user-clock"></i> Awaiting
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <i class="fas fa-user-clock" style="visibility: hidden;"></i> Customer
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <i class="fas fa-user-clock" style="visibility: hidden;"></i> Payments
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a id="sidenavawaitingSPPO" name="sidenavawaitingSPPO">
+                                <div class="row">
+                                    <div class="col">
+                                        <i class="far fa-clock"></i> Awaiting
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <i class="far fa-clock" style="visibility: hidden;"></i> Supplier
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <i class="far fa-clock" style="visibility: hidden;"></i> Payments
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a id="sidenavcustomerP" name="sidenavcustomerP">
+                                <div class="row">
+                                    <div class="col">
+                                        <i class="fas fa-hand-holding-usd"></i> Customer
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <i class="fas fa-hand-holding-usd" style="visibility: hidden;"></i> Payments
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a id="sidenavsupplierP" name="sidenavsupplierP">
+                                <div class="row">
+                                    <div class="col">
+                                        <i class="fas fa-comment-dollar"></i> Supplier
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <i class="fas fa-comment-dollar" style="visibility: hidden;"></i> Payments
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a id="sidenavnewcustomerP" name="sidenavnewcustomerP">
+                                <div class="row">
+                                    <div class="col">
+                                        <i class="fas fa-plus"></i> New Customer
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <i class="fas fa-plus" style="visibility: hidden;"></i> Payment
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a id="sidenavnewsupplierP" name="sidenavnewsupplierP">
+                                <div class="row">
+                                    <div class="col">
+                                        <i class="fas fa-plus"></i> New Supplier
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <i class="fas fa-plus" style="visibility: hidden;"></i> Payment
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a id="sidenavstatementlist2" name="sidenavstatementlist2"><i class="fa fa-print"></i> Statements</a>
+                        </li>
+                    </ul>
+                </li>
+            {{/if}}
+
+            {{#if includePayroll}}
+                <li class="payrollLi" id="sidenavpayroll">
+                    <a href="#payrollSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle liHeader payrollLiHeader"><i class="fas fa-hand-holding-usd faHeader"></i> Payroll</a>
+                    <ul class="collapse list-unstyled" id="payrollSubmenu">
+                        <!-- <li>
+                            <a class="sidenavpayroll">
+                                <div class="row">
+                                    <div class="col">
+                                        <i class="fas fa-money-check-alt"></i> Payroll
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <i class="fas fa-money-check-alt" style="visibility: hidden;"></i> Overview
+                                    </div>
+                                </div>
+                            </a>
+                        </li> -->
+
+                        {{#if includeClockOnOff}}
+                            <li>
+                                <a id="sidenavtimeclock" name="sidenavtimeclock"><i class="fas fa-hourglass-half"></i> Clock On/Off</a>
+                            </li>
+                        {{/if}}
+                        <li>
+                            <a id="sidenavPayEmployees" name="sidenavPayEmployees">
+                                <div class="row">
+                                    <div class="col">
+                                        <i class="fas fa-hand-holding-usd"></i> Pay
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <i class="fas fa-hand-holding-usd" style="visibility: hidden;"></i> Employees
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        {{#if includeTimesheetEntry}}
+                            {{#if equals showTimesheet true}}
+                            <li>
+                                <a id="sidenavtimesheet" name="sidenavtimesheet"><i class="fas fa-user-clock"></i> Timesheets</a>
+                            </li>
+                            {{/if}}
+                        {{/if}}
+                    </ul>
+                </li>
+            {{/if}}
+
+            {{#if includePayrollClockOnOffOnly}}
+              <li class="payrollLi" id="sidenavtimeclock" name="sidenavtimeclock">
+                  <a class="liHeader payrollLiHeader" ><i class="fas fa-hourglass-half faHeader"></i> Clock On/Off</a>
+              </li>
+            {{/if}}
+
+            {{#if includeExpenseClaims}}
+                <li class="receiptLi" id="sidenavreceipt">
+                    <a class="liHeader receiptLiHeader"><i class="fas fa-receipt faHeader"></i> Receipt Claims</a>
+                </li>
+            {{/if}}
+
+            {{#if includePurchases}}
+                <li class="purchasesLi" id="sidenavpurchases">
+                    <a href="#purchasesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle liHeader purchasesLiHeader"><i class="fa fa-arrow-circle-down faHeader"></i> Purchases</a>
+                    <ul class="collapse list-unstyled" id="purchasesSubmenu">
+                        <!-- <li>
+                            <a class="sidenavpurchases">
+                                <div class="row">
+                                    <div class="col">
+                                        <i class="fas fa-search-dollar"></i> Purchase
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <i class="fas fa-search-dollar" style="visibility: hidden;"></i> Overview
+                                    </div>
+                                </div>
+                            </a>
+                        </li> -->
+                        <li>
+                            <a id="sidenavBill" name="sidenavBill"><i class="fas fa-money-bill-alt"></i> Bill List</a>
+                        </li>
+                        <li>
+                            <a id="sidenavCredit" name="sidenavCredit"><i class="far fa-credit-card"></i> Credit List</a>
+                        </li>
+                        <li>
+                            <a id="sidenavPurchaseOrder" name="sidenavPurchaseOrder">
+                                <div class="row">
+                                    <div class="col">
+                                        <i class="fas fa-cash-register"></i> Purchase
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <i class="fas fa-cash-register" style="visibility: hidden;"></i> Order List
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a id="sidenavPurchaseOrderBO" name="sidenavPurchaseOrderBO">
+                                <div class="row">
+                                    <div class="col">
+                                        <i class="fas fa-receipt"></i> Purchase
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <i class="fas fa-receipt" style="visibility: hidden;"></i> Order List
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <i class="fas fa-receipt" style="visibility: hidden;"></i> Back Order
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a id="sidenavnewBill" name="sidenavnewBill"><i class="fas fa-plus"></i> New Bill</a>
+                        </li>
+                        <li>
+                            <a id="sidenavnewCredit" name="sidenavnewCredit"><i class="fas fa-plus"></i> New Credit</a>
+                        </li>
+                        <li>
+                            <a id="sidenavnewPO" name="sidenavnewPO">
+                                <div class="row">
+                                    <div class="col">
+                                        <i class="fas fa-plus"></i> New Purchase
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <i class="fas fa-plus" style="visibility: hidden;"></i> Order
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            {{/if}}
+
+            {{#if includeReports}}
+                {{#if isFavorite}}
+                    <li class="reportsLi" id="sidenavreports">
+                        <a href="#reportsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle liHeader reportsLiHeader"><i class="fa fa-area-chart faHeader"></i> Reports</a>
+                        <ul class="collapse list-unstyled" id="reportsSubmenu">
+                            <!-- <li>
+                                <a class="sidenavreports">
+                                    <div class="row">
+                                        <div class="col">
+                                            <i class="fas fa-chart-bar"></i> Reports
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <i class="fas fa-chart-bar" style="visibility: hidden;"></i> Dashboard
+                                        </div>
+                                    </div>
+                                </a>
+                            </li> -->
+                            {{#if is1099Transaction}}
+                                <li>
+                                    <a id="sidenav1099report" name="sidenav1099report">
+                                        <div class="row">
+                                            <div class="col">
+                                                <i class="fas fa-chart-bar"></i> 1099
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <i class="fas fa-chart-bar" style="visibility: hidden;"></i> Contractor
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <i class="fas fa-chart-bar" style="visibility: hidden;"></i> Report
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            {{/if}}
+
+                            {{#if isAgedPayables}}
+                                <li>
+                                    <a id="sidenavagedpayables" name="sidenavagedpayables">
+                                        <div class="row">
+                                            <div class="col">
+                                                <i class="fas fa-chart-bar"></i> Aged
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <i class="fas fa-chart-bar" style="visibility: hidden;"></i> Payables
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            {{/if}}
+
+                            {{#if isAgedPayablesSummary}}
+                                <li>
+                                    <a id="sidenavagedpayablessummary" name="sidenavagedpayablessummary">
+                                        <div class="row">
+                                            <div class="col">
+                                                <i class="fas fa-chart-bar"></i> Aged
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <i class="fas fa-chart-bar" style="visibility: hidden;"></i> Payables
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <i class="fas fa-chart-bar" style="visibility: hidden;"></i> Summary
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            {{/if}}
+
+                            {{#if isAgedReceivables}}
+                                <li>
+                                    <a id="sidenavagedreceivables" name="sidenavagedreceivables">
+                                        <div class="row">
+                                            <div class="col">
+                                                <i class="fas fa-chart-bar"></i> Aged
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <i class="fas fa-chart-bar" style="visibility: hidden;"></i> Receivables
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            {{/if}}
+
+                            {{#if isAgedReceivablesSummary}}
+                                <li>
+                                    <a id="sidenavagedreceivablessummary" name="sidenavagedreceivablessummary">
+                                        <div class="row">
+                                            <div class="col">
+                                                <i class="fas fa-chart-bar"></i> Aged
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <i class="fas fa-chart-bar" style="visibility: hidden;"></i> Receivables
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <i class="fas fa-chart-bar" style="visibility: hidden;"></i> Summary
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            {{/if}}
+
+                            {{#if isBalanceSheet}}
+                                <li>
+                                    <a id="sidenavbalancesheetreport" name="sidenavbalancesheetreport"><i class="fas fa-chart-bar"></i> Balance Sheet</a>
+                                </li>
+                            {{/if}}
+
+                            {{#if isGeneralLedger}}
+                                <li>
+                                    <a id="sidenavgeneralledger" name="sidenavgeneralledger">
+                                        <div class="row">
+                                            <div class="col">
+                                                <i class="fas fa-chart-bar"></i> General
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <i class="fas fa-chart-bar" style="visibility: hidden;"></i> Ledger
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            {{/if}}
+
+                            {{#if isPrintStatement}}
+                                <li>
+                                    <a id="sidenavstatementlist" name="sidenavstatementlist">
+                                        <div class="row">
+                                            <div class="col">
+                                                <i class="fas fa-chart-bar"></i> Print
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <i class="fas fa-chart-bar" style="visibility: hidden;"></i> Statement
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            {{/if}}
+
+                            {{#if isProfitLoss}}
+                                <li>
+                                    <a id="sidenavprofitlossreport" name="sidenavprofitlossreport">
+                                        <div class="row">
+                                            <div class="col">
+                                                <i class="fas fa-chart-bar"></i> Profit and
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <i class="fas fa-chart-bar" style="visibility: hidden;"></i> Loss
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            {{/if}}
+
+                            {{#if isPurchaseReport}}
+                                <li>
+                                    <a id="sidenavpurchasesreport" name="sidenavpurchasesreport">
+                                        <div class="row">
+                                            <div class="col">
+                                                <i class="fas fa-chart-bar"></i> Purchase
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <i class="fas fa-chart-bar" style="visibility: hidden;"></i> Report
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            {{/if}}
+
+                            {{#if isPurchaseSummaryReport}}
+                                <li>
+                                    <a id="sidenavpurchasesummaryreport" name="sidenavpurchasesummaryreport">
+                                        <div class="row">
+                                            <div class="col">
+                                                <i class="fas fa-chart-bar"></i> Purchase
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <i class="fas fa-chart-bar" style="visibility: hidden;"></i> Summary
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <i class="fas fa-chart-bar" style="visibility: hidden;"></i> Report
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            {{/if}}
+
+                            {{#if isProductSalesReport}}
+                                <li>
+                                    <a id="sidenavproductsalesreport" name="sidenavproductsalesreport">
+                                        <div class="row">
+                                            <div class="col">
+                                                <i class="fas fa-chart-bar"></i> Product
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <i class="fas fa-chart-bar" style="visibility: hidden;"></i> Sales
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <i class="fas fa-chart-bar" style="visibility: hidden;"></i> Report
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            {{/if}}
+
+                            {{#if isSalesReport}}
+                                <li>
+                                    <a id="sidenavsalesreport" name="sidenavsalesreport"><i class="fas fa-chart-bar"></i> Sales Report</a>
+                                </li>
+                            {{/if}}
+
+                            {{#if isSalesSummaryReport}}
+                                <li>
+                                    <a id="sidenavsalessummaryreport" name="sidenavsalessummaryreport">
+                                        <div class="row">
+                                            <div class="col">
+                                                <i class="fas fa-chart-bar"></i> Sales
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <i class="fas fa-chart-bar" style="visibility: hidden;"></i> Summary
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <i class="fas fa-chart-bar" style="visibility: hidden;"></i> Report
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            {{/if}}
+
+                            {{#if isTaxSummaryReport}}
+                                <li>
+                                    <a id="sidenavtaxsummaryreport" name="sidenavtaxsummaryreport">
+                                        <div class="row">
+                                            <div class="col">
+                                                <i class="fas fa-chart-bar"></i> Tax
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <i class="fas fa-chart-bar" style="visibility: hidden;"></i> Summary
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <i class="fas fa-chart-bar" style="visibility: hidden;"></i> Report
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            {{/if}}
+
+                            {{#if isTrialBalance}}
+                                <li>
+                                    <a id="sidenavtrialbalance" name="sidenavtrialbalance"><i class="fas fa-chart-bar"></i> Trial Balance</a>
+                                </li>
+                            {{/if}}
+                        </ul>
+                    </li>
+                {{else}}
+                    <li class="reportsLi2" id="sidenavreports">
+                        <a class="sidenavreports liHeader"><i class="fa fa-area-chart faHeader reportsLi2Header"></i> Reports</a>
+                    </li>
+                {{/if}}
+            {{/if}}
+
+            {{#if includeSales}}
+                <li class="salesLi" id="sidenavsales">
+                    <a href="#salesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle liHeader salesLiHeader"><i class="fa fa-credit-card faHeader"></i> Sales</a>
+                    <ul class="collapse list-unstyled" id="salesSubmenu">
+                        <!-- <li>
+                            <a class="sidenavsales">
+                                <div class="row">
+                                    <div class="col">
+                                        <i class="fas fa-piggy-bank"></i> Sales
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <i class="fas fa-piggy-bank" style="visibility: hidden;"></i> Overview
+                                    </div>
+                                </div>
+                            </a>
+                        </li> -->
+                        <li>
+                            <a id="sidenavInvoice" name="sidenavInvoice"><i class="fas fa-list-ul"></i> Invoice List</a>
+                        </li>
+                        <li>
+                            <a id="sidenavInvoiceBO" name="sidenavInvoiceBO">
+                                <div class="row">
+                                    <div class="col">
+                                        <i class="fas fa-receipt"></i> Invoice List
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <i class="fas fa-receipt" style="visibility: hidden;"></i> Back Order
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a id="sidenavInvoiceEmail" name="sidenavInvoiceEmail"><i class="fas fa-envelope"></i> Email Invoices</a>
+                        </li>
+                        <li>
+                            <a id="sidenavQuote" name="sidenavQuote"><i class="fas fa-quote-right"></i> Quote List</a>
+                        </li>
+                         <li>
+                            <a id="sidenavRefund" name="sidenavRefund"><i class="fas fa-list-ul"></i> Refund List</a>
+                        </li>
+                        <li>
+                            <a id="sidenavSalesOrder" name="sidenavSalesOrder">
+                                <div class="row">
+                                    <div class="col">
+                                        <i class="fas fa-list-ol"></i> Sales Order
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <i class="fas fa-list-ol" style="visibility: hidden;"></i> List
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a id="sidenavnewInvoice" name="sidenavnewInvoice"><i class="fas fa-plus"></i> New Invoice</a>
+                        </li>
+                        <li>
+                            <a id="sidenavnewQuote" name="sidenavnewQuote"><i class="fas fa-plus"></i> New Quote</a>
+                        </li>
+                        <li>
+                            <a id="sidenavnewRefund" name="sidenavnewRefund"><i class="fas fa-plus"></i> New Refund</a>
+                        </li>
+                        <li>
+                            <a id="sidenavnewSO" name="sidenavnewSO">
+                                <div class="row">
+                                    <div class="col">
+                                        <i class="fas fa-plus"></i> New Sales
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <i class="fas fa-plus" style="visibility: hidden;"></i> Order
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            {{/if}}
+
+            {{#if includeSeedToSale}}
+                <li class="seedtosaleLi" id="sidenavseedtosale">
+                    <a href="#seedToSaleSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle liHeader seedtosaleLiHeader"><i class="fas fa-cannabis faHeader"></i> Seed to Sale</a>
+                    <ul class="collapse list-unstyled" id="seedToSaleSubmenu">
+                        <!-- <li>
+                            <a href="/stsdashboard" class="sidenavseedtosale"><i class="fas fa-cannabis"></i> Seed to Sale</a>
+                        </li> -->
+                        <li>
+                            <a href="/stsplants" id="sidenavPlants" name="sidenavPlants"><i class="fas fa-tractor"></i> Plants</a>
+                        </li>
+                        <li>
+                            <a href="/stsharvests" id="sidenavHarvest" name="sidenavHarvest"><i class="fas fa-tractor"></i> Harvest</a>
+                        </li>
+                        <li>
+                            <a href="/stspackages" id="sidenavPackages" name="sidenavPackages"><i class="fas fa-box-open"></i> Packages</a>
+                        </li>
+                        <li>
+                            <a href="/ststransfers" id="sidenavTransfers" name="sidenavTransfers"><i class="fas fa-exchange-alt"></i> Transfers</a>
+                        </li>
+                        <li>
+                            <a href="/stsoverviews" id="sidenavOverviews" name="sidenavOverviews"><i class="fas fa-chart-area"></i> Overviews</a>
+                        </li>
+                        <li>
+                            <a href="/stssettings" id="sidenavSettings" name="sidenavSettings"><i class="fas fa-cog"></i> Settings</a>
+                        </li>
+                    </ul>
+                </li>
+            {{/if}}
+
+            {{#if includeSettings}}
+                <li class="settingsLi" id="sidenavsettings">
+                    <a href="#settingsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle liHeader settingsLiHeader"><i class="fas fa-cog faHeader"></i> Settings</a>
+                    <ul class="collapse list-unstyled" id="settingsSubmenu">
+                        <!-- <li>
+                            <a class="sidenavsettings">
+                                <div class="row">
+                                    <div class="col">
+                                        <i class="fas fa-cog"></i> Settings
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <i class="fas fa-cog" style="visibility: hidden;"></i> Dashboard
+                                    </div>
+                                </div>
+                            </a>
+                        </li> -->
+                        {{#if isGreenTrack}}
+                            <li>
+                                <a id="sidenavcompanyappsettings" name="sidenavcompanyappsettings"><i class="fas fa-cog"></i> VS1 Modules</a>
+                            </li>
+                            <li>
+                                <a id="sidenavaccesslevel" name="sidenavaccesslevel">
+                                    <div class="row">
+                                        <div class="col">
+                                            <i class="fas fa-cog"></i> Employee
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <i class="fas fa-cog" style="visibility: hidden;"></i> Settings
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a id="sidenavorganisationsettings" name="sidenavorganisationsettings">
+                                    <div class="row">
+                                        <div class="col">
+                                            <i class="fas fa-cog"></i> Organization
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <i class="fas fa-cog" style="visibility: hidden;"></i> Settings
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                        {{else}}
+                            <li>
+                                <a id="sidenavcompanyappsettings" name="sidenavcompanyappsettings"><i class="fas fa-cog"></i> VS1 Modules</a>
+                            </li>
+                            {{#if checkFXCurrency}}
+                                <li>
+                                    <a id="sidenavcurrenciesSettings" name="sidenavcurrenciesSettings">
+                                        <div class="row">
+                                            <div class="col">
+                                                <i class="fas fa-cog"></i> Currency
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <i class="fas fa-cog" style="visibility: hidden;"></i> Settings
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            {{/if}}
+                            <li>
+                                <a id="sidenavdepartmentSettings" name="sidenavdepartmentSettings">
+                                    <div class="row">
+                                        <div class="col">
+                                            <i class="fas fa-cog"></i> Department
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <i class="fas fa-cog" style="visibility: hidden;"></i> Settings
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a id="sidenavaccesslevel" name="sidenavaccesslevel">
+                                    <div class="row">
+                                        <div class="col">
+                                            <i class="fas fa-cog"></i> Employee
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <i class="fas fa-cog" style="visibility: hidden;"></i> Settings
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a id="sidenavorganisationsettings" name="sidenavorganisationsettings">
+                                    <div class="row">
+                                        <div class="col">
+                                            <i class="fas fa-cog"></i> Organization
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <i class="fas fa-cog" style="visibility: hidden;"></i> Settings
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a id="sidenavpaymentmethodSettings" name="sidenavpaymentmethodSettings">
+                                    <div class="row">
+                                        <div class="col">
+                                            <i class="fas fa-cog"></i> Payment
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <i class="fas fa-cog" style="visibility: hidden;"></i> Settings
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a id="sidenavtaxratesettings" name="sidenavtaxratesettings">
+                                    <div class="row">
+                                        <div class="col">
+                                            <i class="fas fa-cog"></i> Tax Rate
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <i class="fas fa-cog" style="visibility: hidden;"></i> Settings
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a id="sidenavtermsettings" name="sidenavtermsettings">
+                                    <div class="row">
+                                        <div class="col">
+                                            <i class="fas fa-cog"></i> Terms
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <i class="fas fa-cog" style="visibility: hidden;"></i> Settings
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                        {{/if}}
+                    </ul>
+                </li>
+            {{/if}}
+
+            {{#if includeShipping}}
+            <li class="shippingLi2" id="sidenavshipping">
+                <a class="sidenavshipping liHeader"><i class="fas fa-shipping-fast faHeader shippingLi2Header"></i> Shipping</a>
+            </li>
+            {{/if}}
+            <li class="logoutLi">
+                <a class="nav-link logOut liHeader" onclick="logOutFunc()"><i class="fas fa-sign-out-alt faHeader"></i><span> Log Out</span></a>
+            </li>
+        </ul>
+    </nav>
+</template>

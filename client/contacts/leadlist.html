@@ -1,0 +1,358 @@
+<template name="leadlist">
+    <div class="container-fluid" style="padding-left: 0px; padding-right: 0px;">
+        <div class="fullScreenSpin" style="display:none;">
+            <div class="spinner"></div>
+        </div>
+        <!-- <style>
+            .dataTables_filter {
+                display: none;
+            }
+        </style> -->
+        <div style="margin-top: -24px;">
+            <header style="padding: 16px; padding-bottom: 0px; background-color: #ededed;">
+                <h1 style="margin: 16px; margin-bottom: 0px;">Leads
+                    <!-- <a role="button" data-toggle="modal" href="#helpModal" class="helpModal"><label class="lblplay">PLAY</label><i class="far fa-play-circle"  style="font-size: 20px;"></i></a> -->
+                    <a role="button" data-toggle="modal" href="#helpViewModal"  style="font-size: 20px;">Help <i class="fa fa-question-circle-o" style="font-size: 20px;"></i></a>
+
+                    <!-- Start Help View Modal -->
+                    <div class="modal fade" role="dialog" tabindex="-1" id="helpViewModal">
+                        <div class="modal-dialog modal-sm" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header" style="padding-bottom: 8px;">
+                                    <h4>Help</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                                <div class="modal-body">
+                                    <p class="text-center text-muted"><a role="button" data-toggle="modal" href="#helpModal" class="btn btn-primary helpModal">View Help Video</a></p>
+                                    <p class="text-center text-muted"><a href="https://vs1forum.com/viewtopic.php?f=6&t=16&p=20#p20" target="_blank" class="btn btn-primary">Download Help File</a></p>
+                                    <p class="text-center text-muted"><button class="btn btn-primary" type="button">Employ Advisor</button></p>
+                                    <p class="text-center text-muted" style="margin: 0px;"><a href="https://vs1forum.com/ucp.php?mode=register&cloudusername={{loggedCompany}}" target="_blank" class="btn btn-primary">Go To Forum</a></p>
+                                </div>
+                                <div class="modal-footer" style="padding: 6px;"><button class="btn btn-light" data-dismiss="modal" type="button">Close</button></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Help View Modal -->
+
+                    <style>
+                        @media screen and (max-width: 376px) {
+                            .btnOpenSettings {
+                                margin-right: 0px;
+                            }
+                        }
+                    </style>
+
+                </h1>
+
+                <div class="modal fade" role="dialog" tabindex="-1" id="myModal2">
+                    <div class="modal-dialog modal-dialog-centered" role="document" style="float: right;">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4>Display Settings</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                            <div class="modal-body">
+                                <div>
+                                    {{#if tableheaderrecords}}
+                                    <form class="d-xl-flex align-items-xl-center">
+                                        <div class="flex-grow-1">
+                                            <style>
+                                                .groove {
+                                                    border-style: solid;
+                                                    border-width: 1px;
+                                                    width: 200px;
+                                                    padding: 2px;
+                                                    border-radius: .35rem;
+                                                }
+                                                .custom-control-label{
+                                                    position: absolute;
+                                                }
+                                                .rngRange {
+                                                    position: relative;
+                                                    display: flex;
+                                                    flex-direction: column;
+                                                    width: 100%;
+                                                    pointer-events: auto;
+                                                    background-color: rgb(255, 255, 255);
+                                                    background-clip: padding-box;
+                                                    border: 1px solid rgb(133, 135, 150);
+                                                    border-radius: .3rem;
+                                                    border-style: solid;
+                                                    border-width: 1px;
+                                                    padding: 2px;
+                                                    border-radius: .35rem;
+                                                    color: rgb(128, 128, 128);
+                                                    height:inherit!important;
+                                                }
+                                                @media only screen and (max-width: 480px) {
+                                                    .modal.show .modal-dialog{
+                                                        float: inherit!important;
+                                                        left: inherit!important;
+                                                        top: auto!important;
+
+                                                    }
+                                                }
+                                            </style>
+                                            {{#each item in tableheaderrecords}}
+                                            {{#if equals item.sTitle "id"}}
+                                            {{else}}
+
+                                            <div id="{{item.sIndex}}" class="columnSettings">
+                                                <div class="custom-control custom-switch" style="margin: 8px; float:left;">
+                                                    <input class="custom-control-input chkDatatable" type="checkbox" id="chkSalesNo-{{item.sIndex}}" name="chkSalesNo-{{item.sIndex}}" checked="{{#if item.sVisible}}checked{{else}}{{/if}}" value="{{item.sTitle}}">
+                                                    <label class="custom-control-label" for="chkSalesNo-{{item.sIndex}}"></label>
+                                                    <div contenteditable="true" class="groove divcolumn" type="text" value="{{item.sTitle}}" valueupdate="{{item.sClass}}">{{item.sTitle}}</div>
+                                                </div>
+                                                <div class="d-xl-flex align-items-xl-center divColWidth" style="margin: 8px;">
+                                                    <label class="text-nowrap" style="padding-left: 0px;margin-top: 8px;">Width: <!--<span class="spWidth" value="{{item.sTitle}}">{{item.sWidth}}px</span>--></label>
+                                                    <input class="custom-range rngRange" type="number" style="margin: 8px;" value="{{item.sWidth}}" min="0" max="1000">
+                                                    <!-- <input class="custom-range rngRange" type="range" style="margin: 8px;" value="{{item.sWidth}}" min="0" max="1000"> -->
+                                                </div>
+                                            </div>
+
+                                            {{#if equals item.sVisible true}}
+                                            <script>
+                                                $("#"+ {{item.sIndex}} +".chkDatatable").attr("checked","checked");
+                                            </script>
+                                            {{else}}
+                                            <script>
+                                                $("#"+ {{item.sIndex}} +".chkDatatable").removeAttr("checked");
+                                            </script>
+                                            {{/if}}
+
+                                            {{/if}}
+                                            {{/each}}
+                                        </div>
+                                    </form>
+                                    {{/if}}
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary saveTable" type="button"><i class="fa fa-save" style="margin-right: 5px;"></i>Save</button>
+                                <button class="btn btn-warning resetTable" data-dismiss="modal" type="reset"><i class="fa fa-repeat" style="margin-right: 5px;"></i>Reset</button>
+                                <button class="btn btn-secondary" data-dismiss="modal" type="button"><i class="fa fa-remove" style="margin-right: 5px;"></i>Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="row d-xl-flex flex-row justify-content-xl-center" style="padding: 0px 20px 20px 20px; background-color: #ededed;">
+
+                <div class="col float-left flex-grow-1">
+                    <!-- <button class="btn btn-primary btnRefresh" type="button" style="margin: 16px;"><i class="la la-lightbulb-o" style="padding-right: 5px;"></i>Refresh</button>
+                    <button id="btnNewEmployee" name="btnNewEmployee" class="btn btn-primary" type="button" style="margin: 16px;"><i class="icon ion-plus" style="padding-right: 5px;"></i>New Employee</button>
+                    <button class="btn btn-success btnAddVS1User" type="button" style="margin: 16px;"><i class="fa fa-plus" style="padding-right: 5px"></i>Add VS1 User</button> -->
+                </div>
+
+                <div class="col d-xl-flex justify-content-xl-end align-items-xl-start">
+                    <!-- <div class="btn-group" style="margin: 16px;">
+                        <button class="btn btn-primary exportbtnExcel" type="button"><i class="fas fa-file-export" style="margin-right: 5px;"></i>Export</button>
+                        <button class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-expanded="false" type="button"></button>
+                        <div role="menu" class="dropdown-menu">
+                            <a role="presentation" class="dropdown-item exportbtnExcel" id="exportbtnExcel" href="#">Export Excel</a>
+                            <a role="presentation" class="dropdown-item exportbtn" id="exportbtn" href="#">Export CSV</a>
+                        </div>
+                    </div> -->
+                    <!-- <button class="btn btn-primary export" type="button" style="margin: 16px;" id="exportbtn" name="exportbtn"><i class="fas fa-file-export" style="padding-right: 5px;"></i>Export</button> -->
+                    <div>
+                        <!-- <button style="margin: 16px;" class="btn btn-primary" role="button" data-toggle="modal" href="#importModal"><i class="fas fa-file-import" style="padding-right: 5px;"></i>Import</button> -->
+                        <!-- <div class="modal fade" role="dialog" tabindex="-1" id="importModal">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4>Import Items</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                                    <div class="modal-body">
+                                        <div class="row no-gutters d-xl-flex flex-row justify-content-xl-start align-items-xl-start">
+                                            <p style="margin-bottom: 0px;font-weight: bold;">1. Download the &lt;&lt;form&gt;&gt; template</p>
+                                            <p style="margin-left: 16px;margin-bottom: 0px;margin-top: 4px;">Start by downloading our template file. This file has the correct column headings to allow VS1 Cloud to import your form's details.</p>
+                                            <div class="col flex-grow-1">
+                                                <button class="btn btn-primary templateDownload" type="button" style="margin: 16px;margin-bottom: 0px;"><i class="fas fa-file-csv" style="margin-right: 5px;"></i>Download CSV Template</button>
+                                                <button class="btn btn-primary templateDownloadXLSX" type="button" style="margin: 16px;margin-bottom: 0px;"><i class="fas fa-file-csv" style="margin-right: 5px;"></i>Download Excel Template</button>
+                                            </div>
+                                            <div class="col d-xl-flex align-items-xl-center" style="width: 50px;max-width: 50px;">
+                                                <a href="#" download><i class="fa fa-question-circle-o" data-toggle="tooltip" data-bs-tooltip="" title="Having issues? Navigate to your Region Settings in your Control Panel and check that you have a comma selected as your 'List Seperator' and a period as your 'Decimal Symbol'." style="margin: 16px;"></i></a>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row no-gutters d-xl-flex flex-column justify-content-xl-start align-items-xl-start">
+                                            <p style="margin-bottom: 0px;font-weight: bold;">2. Copy your items into the template</p>
+                                            <p style="margin-left: 16px;margin-bottom: 0px;margin-top: 4px;">Using MS Excel, or another spreadsheet editor, you can fill in the VS1 Cloud template with your desired details.</p>
+                                            <p style="margin-left: 16px;margin-bottom: 0px;margin-top: 16px;">Important: Avoid changing the column headings in the template file.</p>
+                                        </div>
+                                        <hr>
+                                        <div class="row no-gutters d-xl-flex flex-column justify-content-xl-start align-items-xl-start">
+                                            <p style="margin-bottom: 0px;font-weight: bold;">3. Import the updated template file</p>
+                                            <p style="margin-left: 16px;margin-bottom: 0px;margin-top: 4px;">Save your updated template and you're ready to go.</p>
+
+                                            <div class="divTable" id="file-display">
+                                            </div>
+                                            <input type="file" id="attachment-upload" style="display:none" accept=".csv,.txt,.xlsx">
+                                            <style>
+                                                #row1{
+                                                    display:flex;
+                                                    flex-direction:row;
+                                                    justify-content: space-around;
+                                                }
+
+                                                #column1{
+                                                    display:flex;
+                                                }
+
+
+                                                #column2{
+                                                    display:flex;
+                                                    flex-direction:column;
+                                                    margin: 16px;
+                                                    padding: .375rem .75rem;
+                                                }
+                                            </style>
+                                            <div id="row1">
+                                                <div id="column1"></div><button class="btn btn-primary btnUploadFile new_attachment_btn" type="button" style="margin: 16px;" ><i class="fa fa-cloud-upload" style="margin-right: 5px;"></i>Browse</button>
+                                                <div class="file-name" id="column2"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer"><button class="btn btn-primary btnImport" type="button" disabled><i class="fas fa-file-import" style="margin-right: 5px;" ></i>Import</button>
+                                        <button class="btn btn-secondary" data-dismiss="modal" type="button"><i class="fa fa-close" style="margin-right: 5px;"></i>Close</button></div>
+                                </div>
+                            </div>
+                        </div> -->
+                    </div>
+
+                    <!-- <button class="btn btn-primary float-right" type="button" style="margin: 16px;" id="" name=""><i class="fas fa-file-import" style="padding-right: 5px;"></i>Import</button> -->
+                    <!-- <button class="btn btn-primary printConfirm" type="button" style="margin: 16px;"><i class="fa fa-print" style="padding-right: 5px;"></i>Print</button>
+                    <a class="btn btnOpenSettings float-right" role="button" data-toggle="modal" href="#myModal2" style="margin: 16px;"><i class="icon ion-android-more-horizontal"></i></a> -->
+                </div>
+
+            </div>
+
+
+            <div>
+                <div class="card-body p-3 rounded" style="margin: 0px 16px;">
+
+                    <!-- Start {{> optionNavSalesOverview}} -->
+
+                    <!-- End -->
+
+                    <div class="table-responsive">
+                        <style>
+                            th {
+                                background-color: #ededed;
+                            }
+                            .table-striped tbody tr:nth-of-type(odd) {
+                                background-color: white !important;
+                            }
+
+                            .table-striped tbody tr:nth-of-type(even) {
+                                background-color: #0000000d !important;
+                            }
+
+                            .JColResizer > tbody > tr > td, .JColResizer > tbody > tr > th {
+                                padding: .75rem!important;
+                            }
+                            .hiddenColumn{
+                                display:none;
+                            }
+                            .showColumn {
+                                display:table-cell;
+                                padding:.75rem;
+                                vertical-align:top;
+                            }
+
+                            input[type=number]::-webkit-inner-spin-button,
+                            input[type=number]::-webkit-outer-spin-button {
+                                opacity: 1;
+                            }
+                        </style>
+
+                        <table id="tblleadlist" style="width:100%" class="dataTable table table-hover table-striped table-bordered tblleadlist">
+                          
+                            <thead>
+                                <tr class="dnd-moved">
+                                    <th class="th colLeadId hiddenColumn" style="width:3%;">Lead #</th>
+                                    <th class="th colleadName" style="width:150px;">Employee Name</th>
+                                    <th class="th colFirstName" style="width:85px;">First Name</th>
+                                    <th class="th colLastName" style="width:85px;">Last Name</th>
+                                    <th class="th colPhone" style="width:95px;">Phone</th>
+                                    <th class="th colMobile" style="width:95px;">Mobile</th>
+                                    <th class="th colEmail" style="width:100px;">Email</th>
+                                    <th class="th colDepartment" style="width:100px;">Department</th>
+                                    <th class="th colCountry hiddenColumn">Country</th>
+                                    <th class="th colCustFld1 hiddenColumn">Custom Field 1</th>
+                                    <th class="th colCustFld2 hiddenColumn">Custom Field 2</th>
+                                    <th class="th colAddress">Address</th>
+                                    <th class="th colSuburb">Suburb</th>
+                                    <th class="th colCity">City</th>
+                                    <!-- <th class="th colDeletelead" style="width: 3% !important;"></th> -->
+                      
+                                </tr>
+                            </thead>
+                    
+                            <tbody>
+                                <tr class="dnd-moved" id="{{item.id}}" style="cursor: pointer;">
+                                    <td contenteditable="false" class="colLeadId hiddenColumn" ></td>
+                                    <td contenteditable="false" class="colleadName"></td>
+                                    <td contenteditable="false"  class="colFirstName"></td>
+                                    <td contenteditable="false"  class="colLastName"></td>
+                                    <td contenteditable="false"  class="colPhone"></td>
+                                    <td contenteditable="false" class="colMobile"></td>
+                                    <td contenteditable="false"  class="colEmail"></td>
+                                    <td contenteditable="false"  class="colDepartment"></td>
+                                    <td contenteditable="false"  class="colCountry hiddenColumn"></td>
+                                    <td contenteditable="false" class="colCustFld1 hiddenColumn"></td>
+                                    <td contenteditable="false"  class="colCustFld2 hiddenColumn"></td>
+                                    <td contenteditable="false"  class="colAddress"></td>
+                                    <td contenteditable="false"  class="colSuburb"></td>
+                                    <td contenteditable="false"  class="colCity"></td>
+                                    <!-- <td contenteditable="false" style="width: 3% !important;" class="colDeletelead"><span class="table-remove"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0"><i class="fa fa-remove"></i></button></span></td> -->
+                                </tr>
+                            </tbody>
+
+                        </table>
+                      
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Start Help Video Modal -->
+    <div class="modal fade" role="dialog" tabindex="-1" id="helpModal">
+        <div class="modal-dialog" role="document" style="max-width: 670px!important;">
+            <div class="modal-content" >
+                <div class="modal-header" >
+
+                    <h4 class="title-header" >Lead</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+                    <!-- <iframe width="640" height="360" src="https://player.vimeo.com/video/99892791" frameborder="0" allowfullscreen=""></iframe> -->
+                    <!-- <iframe width="640" height="360" src="https://erphelpes.com/vs1videos/employeeslist.mp4" frameborder="0" allowfullscreen=""></iframe> -->
+                    <video id="myVideo" width="640" height="360" controls="" name="media" style="border: solid 5px #999999f0; height: auto; outline: none;">
+                        <source src="https://erphelpes.com/vs1videos/employees.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- End Help Video Modal -->
+
+    <!-- Start Modal Product -->
+    <div class="modal fade" role="dialog" tabindex="-1" id="employeeListModal">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Leadlist List</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+                    <!-- {{> refreshbutton}} -->
+                    {{> popemployeelist}}
+                </div>
+                <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Close</button>
+                    <button class="btn btn-primary btnProdSelect" type="button" style="background-color: #00A3D3; border-color: #00A3D3;">Select</button></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- End Modal Product -->
+    <script>
+        modalDraggable();
+    </script>
+</template>

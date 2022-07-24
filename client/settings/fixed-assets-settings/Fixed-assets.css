@@ -1,0 +1,648 @@
+.fixedAssetsSettings {
+    width: 100%;
+    float: left;
+}
+
+.FixedButton {
+    width: 100%;
+    float: left;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.FixedButton button {
+    float: left;
+    font: bold 12px Helvetica, sans-serif;
+    color: #048abb;
+    background-color: #fafafa;
+    border-color: #ccc;
+    border-radius: 3px;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: rgba(255, 255, 255, 0.3) 0 0 0 1px inset;
+    box-sizing: border-box;
+    cursor: pointer;
+    padding: 6px 6px;
+    position: relative;
+    text-align: center;
+    -webkit-transition: opacity .2s ease-out;
+    transition: opacity .2s ease-out;
+    white-space: nowrap;
+    -moz-user-select: -moz-none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiP…dpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==);
+    background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #e6eaec));
+    background: -webkit-linear-gradient(#ffffff, #e6eaec);
+    background: -webkit-linear-gradient(#ffffff, #e6eaec);
+    background: linear-gradient(#ffffff, #e6eaec);
+    margin-right: 3px;
+}
+
+.fixedAssetsSettings .paddingLeft {
+    padding: 0;
+}
+
+.fixedAssetsSettings .close {
+    position: absolute;
+    top: 0;
+    right: 3px;
+    color: #bbb;
+    padding: 5px 22px 5px 0;
+    background: transparent url(img/close.png) no-repeat 100%;
+    font-size: 12px;
+    font-weight: 800;
+    opacity: 1;
+}
+
+.fixedAssetsSettings .fa-pagehelp-line:first-child {
+    border-top: 0;
+    font-weight: bold;
+}
+
+.fixedAssetsSettings .fa-pagehelp-line {
+    color: #343434;
+    font-size: 16.9px;
+    line-height: 1.8em;
+    border-top: 1px solid #E2E2E2;
+    position: relative;
+    left: -40px;
+}
+
+.fixedAssetsSettings .fa-pagehelp-line a.close {
+    font-weight: bold;
+    color: #bbb;
+    text-decoration: none;
+}
+
+.fixedAssetsSettings .fa-pagehelp-line a {
+    font-weight: bold;
+    color: #048abb;
+    text-decoration: none;
+}
+
+.fixedAssetsSettings.payItemsSettings .payrollSettings .tabFull {
+    background: #f4f4f4;
+
+}
+
+.fixedAssetsSettings.payItemsSettings .active_page {
+    border-bottom: 0;
+}
+
+.fixedAssetsSettings.payItemsSettings .panelHeading {
+    background: #fbfbfb;
+    border-bottom: 1px solid #eee;
+}
+
+.fixedAssetsSettings.payItemsSettings .panelHeading span.itemButton {
+    float: right;
+    color: #999;
+    font-size: 11px;
+}
+
+.fixedAssetsSettings ul.titleHeader {
+    padding: 0;
+    margin: 0;
+    float: left;
+    width: 100%;
+    background-color: #fdfefe;
+    background: linear-gradient(#fff, #f6f7f8);
+    border-bottom: 1px solid #eee;
+}
+
+.fixedAssetsSettings ul.titleHeader li {
+    float: left;
+    list-style: none;
+    width: 25%;
+    font-size: 12px;
+    color: #1890C0;
+    font-weight: bold;
+    font-size: 12px;
+    padding: 9px 10px;
+    border-right: 1px solid #e9edf2;
+}
+
+.fixedAssetsSettings ul.titleHeader li:last-child {
+    border: 0;
+}
+
+.fixedAssetsSettings .panel-body {
+    padding: 0;
+}
+
+.fixedAssetsSettings ul.headetTitle {
+    padding: 0;
+    margin: 0;
+    float: left;
+    width: 100%;
+    background-color: #fff;
+    border-bottom: 1px solid #eee;
+
+}
+
+.fixedAssetsSettings ul.headetTitle:hover {
+    background-color: #e6f5fa;
+}
+
+.fixedAssetsSettings ul.headetTitle li {
+    float: left;
+    list-style: none;
+    width: 25%;
+    font-size: 12px;
+    color: #000;
+    font-weight: normal;
+    font-size: 12px;
+    padding: 9px 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+}
+
+.fixedAssetsSettings ul.headetTitle li a {
+    color: #1890C0;
+}
+
+.fixedAssetsSettings.payItemsSettings .payrollSettings {
+    background: #fbfbfb;
+}
+
+.fixedAssetsSettings .accountsOverview {
+    margin-bottom: 15px;
+    color: #333;
+    font-size: 13px;
+}
+
+.pageContainer {
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    float: left;
+    width: 100%;
+    padding-bottom: 0;
+    margin-bottom: 30px;
+    padding-top: 20px;
+}
+
+.fixedAssetsSettings .autocontainer {
+    float: left;
+    width: 96%;
+    margin-bottom: 5px;
+    border-bottom: 1px solid #E7E7E7;
+    margin-top: 5px;
+    margin-left: 2%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.fixedAssetsSettings .autocontainer.last-child {
+    border-bottom: 0;
+}
+
+.fixedAssetsSettings .autocontainer span {
+    line-height: 17px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #222;
+}
+
+.fixedAssetsSettings .autocontainer select.form-control {
+    padding: 5px 6px 4px 6px;
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+.fixedAssetsSettings .settingsTaxDescription {
+    text-align: center;
+    padding: 0px 225px;
+    padding-bottom: 20px;
+    width: 100%;
+    float: left;
+}
+
+.fixedAssetsSettings .settingsTaxDescription p {
+    font-size: 18px;
+    font-weight: bold;
+    line-height: normal;
+}
+
+.fixedAssetsSettings .settingsTaxDescription span {
+    color: black;
+    font-size: 13px;
+    font-weight: normal;
+    font-family: helvetica, arial, verdana, sans-serif;
+}
+
+.fixedAssetsSettings .settingsTaxForm {
+    padding: 20px;
+    max-width: 450px;
+    text-align: center;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    margin: 15px auto;
+    min-height: 140px;
+}
+
+.fixedAssetsSettings .co-btn-submit {
+    border-color: #5cac00;
+    background: linear-gradient(#7bd000, #6bb101);
+    color: #fff;
+    margin: 15px auto;
+    text-shadow: 0 1px rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+    border-width: 1px;
+    border-style: solid;
+    padding: 6px 12px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.fixedAssetsSettings .divSettings {
+    width: 100%;
+    float: left;
+    text-align: center;
+}
+
+.fixedAssetsSettings .divSettings .settingsTaxForm p {
+    color: black;
+    font-size: 13px;
+    font-weight: normal;
+    font-family: helvetica, arial, verdana, sans-serif;
+}
+
+.fixedAssetsSettings .divSettings .settingsTaxForm span {
+    font-weight: bold;
+    color: black;
+    font-size: 13px;
+    float: left;
+    width: 100%;
+}
+
+.fixedAssetsSettings .settingsTaxForm.text-left {
+    text-align: left;
+}
+
+.fixedAssetsSettings .settingsTaxForm.text-left p {
+    font-weight: bold
+}
+
+.fixedAssetsSettings .settingsTaxForm.text-left p i {
+    color: #ccc;
+    font-size: 16px;
+}
+
+.fixedAssetsSettings .settingsTaxForm.text-left span {
+    font-weight: normal;
+}
+
+.fixedAssetsSettings .settingsTaxForm.text-left a {
+    color: #1890C0;
+}
+
+.fixedAssetsSettings .modal-content {
+    width: 500px;
+    background-color: #FAFAFA;
+}
+
+.fixedAssetsSettings .pageContainer .payFooter {
+    border-top: 1px solid #ddd !important;
+    background: linear-gradient(#fff, #fafbfb);
+    padding: 10px 15px;
+    float: left;
+    text-align: right;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.changeStartDate h4.modal-title {
+    font-size: 18px;
+    color: #333;
+    font-weight: bold;
+}
+
+.changeStartDate h3 {
+    font-size: 16px;
+    color: #333;
+    font-weight: bold;
+}
+
+.changeStartDate .modal-body ul li {
+    font-size: 13px;
+    padding-bottom: 10px;
+}
+
+.changeStartDate .modal-body {
+    font-size: 13px;
+    border-bottom: 1px solid #ccc;
+}
+
+.fixedAssetsSettings {
+    float: left;
+    width: 100%;
+}
+
+.fixedAssetsSettings .tabinator {
+    margin-left: 7px;
+}
+
+.fixedAssetsSettings .tabs_line_break {
+    background-color: #f4f4f4;
+    border-bottom: 1px solid #DADDDF;
+
+}
+
+.fixedAssetsSettings .active_page {
+    border-bottom: 0;
+}
+
+.fixedAssetsSettings .helpvideos p:last-child {
+    border: 0;
+}
+
+.fixedAssetsSettings .tabinator label {
+    padding: 12px 36px;
+    border-color: #e0d8d8 #e0d8d8 #ece7e7 #ece7e7;
+    margin-left: -7px;
+}
+
+.fixedAssetsSettings .tabs_line_break {
+    padding: 42.8px;
+}
+
+.fixedAssetsSettings .tabinator input:checked + label {
+    border-color: #e0d8d8 #e0d8d8 #ece7e7 #ece7e7;
+    border-bottom-color: transparent;
+}
+
+.fixedAssetsSettings #close_helpbutton {
+    margin-bottom: -42px;
+    margin-top: -3px;
+}
+
+.fixedAssetsSettings table tbody tr td {
+    margin-bottom: 9px;
+    border-bottom: 1px solid #eee;
+}
+
+.fixedAssetsSettings .helpvideos p {
+    width: 729px;
+    margin-left: 20px;
+}
+
+.fixedAssetsSettings #assetTypes{
+    float: left;
+    width: 100%;
+    margin-bottom: 20px;
+    border: 0;
+}
+
+.fixedAssetsSettings .co-grid {
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    float: left;
+    width: 100%;
+}
+
+.fixedAssetsSettings .co-grid .docked-top {
+    border-bottom: 1px solid #eee;
+    padding: 6px 8px;
+    float: left;
+    width: 100%;
+    background-color: #fbfbfb;
+    margin-bottom:0px;
+    height: 41px;
+}
+
+.fixedAssetsSettings tr.titleHeader {
+    padding: 0;
+    margin: 0;
+    background-color: #fdfefe;
+    background: linear-gradient(#fff, #f6f7f8);
+    border-bottom: 1px solid #eee;
+    align-items: center;
+}
+
+.fixedAssetsSettings tr.titleHeader th {
+    list-style: none;
+    color: #1890C0;
+    font-weight: bold;
+    font-size: 12px;
+    padding: 9px 10px !important;
+    border-right: 1px solid #e9edf2;
+    padding-right: 0 !important;
+    min-width: 100px;
+}
+
+.fixedAssetsSettings tr.headetTitle {
+    padding: 0;
+    margin: 0;
+    background-color: #fff;
+}
+
+.fixedAssetsSettings tr.headetTitle td {
+    list-style: none;
+    font-size: 12px;
+    color: #000;
+    font-weight: normal;
+    padding: 9px 10px !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+    padding-right: 0 !important;
+    min-width: 100px;
+}
+
+#fixedAssets_wrapper {
+    position: relative;
+}
+
+.fixedAssetsSettings tr.headetTitle:hover {
+    background-color: #e6f5fa;
+}
+
+.fixedAssetsSettings .rightDiv {
+    width: auto;
+    float: right;
+}
+
+.fixedAssetsSettings .rightDiv span.itemButton {
+    float: left;
+    color: #999;
+    font: normal 13px/16px helvetica, arial, verdana, sans-serif;
+    padding-top: 5px
+}
+
+.fixedAssetsSettings .rightDiv input.form-control {
+    height: 27px;
+    padding: 5px 6px 4px 6px;
+    background-color: #fff;
+    color: gray;
+    border: 0;
+    width: 91%;
+    font: normal 13px/19px helvetica, arial, verdana, sans-serif;
+    float: left;
+    border-radius: initial;
+    box-shadow: inherit;
+}
+
+.fixedAssetsSettings .rightDiv input[type="text"]:focus {
+    box-shadow: inherit;
+    border-color: inherit !important;
+}
+
+.fixedAssetsSettings .input-group {
+    position: relative;
+    display: table;
+    border-collapse: separate;
+    float: right;
+    width: 86%;
+    background-color: #fff;
+    border: solid 1px #CACACA;
+}
+
+.fixedAssetsSettings .input-group span {
+    float: left;
+    position: absolute;
+    right: 7px;
+    top: 5px;
+    z-index: 9;
+    font-size: 12px;
+    color: #ccc;
+    font-weight: bold;
+}
+
+.fixedAssetsSettings table.dataTable thead .sorting:after {
+    display: none !important;
+}
+
+.fixedAssetsSettings table.dataTable thead .sorting_asc:after {
+    display: none;
+}
+
+.fixedAssetsSettings .taxRatesPage div#fixedAssets_wrapper .dataTables_filter {
+    display: block !important;
+    width: 100%;
+    float: left;
+    position: absolute;
+    top: -40px;
+    right: -12px;
+}
+
+.fixedAssetsSettings div.dataTables_wrapper div.dataTables_filter label {
+    width: 35%;
+    padding: 0;
+    margin: 0;
+    background: #fff;
+    border: solid 1px #ccc;
+    margin-right: 17px;
+    height: 30px;
+    margin-top: 5px;
+}
+
+.fixedAssetsSettings div.dataTables_wrapper div.dataTables_filter label a#searchBtn {
+    float: right;
+    padding: 3px 12px;
+}
+
+.fixedAssetsSettings div.dataTables_wrapper div.dataTables_filter input {
+    display: inline-block;
+    width: 90% !important;
+    margin-top: 0;
+    border: 0;
+    text-shadow: inherit;
+    border-radius: initial;
+    background: transparent;
+    box-shadow: inherit;
+    left: 0;
+    padding-left: 0;
+    margin-left: 8px;
+}
+
+.fixedAssetsSettings #assetTypes.dataTable, .fixedAssetsSettings #poolsTable.dataTable {
+    margin-top: 0 !important;
+   /* min-width: 100%;*/
+    width: 100%;
+ }
+
+
+.fixedAssetsSettings table.dataTable thead .sorting_asc {
+    color: #1890C0 !important;
+}
+
+.fixedAssetsSettings .change-color {
+    color: #1890C0 !important;
+}
+
+.fixedAssetsSettings .change-color:hover {
+    text-decoration: underline;
+    text-decoration-color: #1890C0;
+}
+
+.fixedAssetsSettings .sortIcon {
+    float: left;
+    margin-right: 5px;
+
+}
+
+.fixedAssetsSettings table.dataTable thead .sorting:after, table.dataTable thead .sorting_asc:after, table.dataTable thead .sorting_desc:after, table.dataTable thead .sorting_asc_disabled:after, table.dataTable thead .sorting_desc_disabled:after {
+    position: initial !important;
+    bottom: 8px;
+    right: 8px;
+    display: block;
+    font-family: 'Glyphicons Halflings';
+    opacity: 0.5;
+    margin-top: 3px;
+}
+
+.fixedAssetsSettings .active_page_content .FixedButton .btn.btn-white{
+    padding: 6px 6px;
+}
+
+.fixedAssetsSettings .row#help_open{
+    margin-right: -55px !important;
+}
+
+.ui-autocomplete-category {
+    font-weight: bold;
+    padding: .2em .4em;
+    margin: .8em 0 .2em;
+    line-height: 1.5;
+}
+.pageContainer .autocontainer input {
+    width: 92%;
+    height: 21px;
+    font-size: 11px;
+    border: 0;
+    border-radius:inherit;
+}
+
+.fixedAssetsSettings + div + ul.ui-widget-content.ui-autocomplete,
+.fixedAssetsSettings + div + ul + div + ul.ui-widget-content.ui-autocomplete,
+.fixedAssetsSettings + div + ul + div + ul + div +.ui-widget-content.ui-autocomplete{
+    width: 269px !important;
+}
+
+.fixedAssetsSettings .payrollSettings .tab-content{
+    margin-bottom: 30px;
+}
+.fixedAssetsSettings .autocontainer .col-md-3 {
+    padding-left: 0;
+}
+.payItemsSettings .loader
+{
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    z-index: 9999;
+    opacity: 1;
+    left: 0;
+    top: 25%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+.payItemsSettings .loader i {
+    font-size:40px;
+}

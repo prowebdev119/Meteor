@@ -1,0 +1,49 @@
+.department_form .bubbleToolbar button {
+    color: #c00 !important;
+}
+
+.department_form .modal-body {
+    background-color: #fbfbfb;
+    font-size: 12px;
+}
+.department_form .modal-body input {
+    width: 150px;
+    height: 24px;
+    padding-left: 2px;
+    padding-right: 2px;
+    margin-bottom: 5px;
+    box-sizing: border-box;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    border-style: solid;
+    border-color: rgb(181, 184, 187) rgb(226, 228, 231) rgb(232, 234, 236) rgb(189, 191, 195);
+    border-radius: 0px;
+
+}
+.department_form .modal-body select.form-control{
+    width: 150px;
+    height: 25px;
+    padding-left: 2px;
+    padding-right: 2px;
+    margin-bottom: 5px;
+    font-size: 11px;
+}
+
+.department_form button.btn {
+    line-height: initial;
+}
+
+.department_form table.standard tr td a {
+    font-weight: normal;
+    color: #048fc2;
+    font-size: 11px;
+}
+
+.department_form .current-tax-row.selected {
+    background-color: #e1ffc2;
+}
+
+
+.department_form table.standard thead tr td.selected {
+    background-color: #d9ebf9;
+}

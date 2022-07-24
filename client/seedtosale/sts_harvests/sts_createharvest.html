@@ -1,0 +1,374 @@
+<template name="stscreateharvests">
+    <div class="container-fluid">
+        <div class="fullScreenSpin" style="display:none;">
+            <div class="spinner"></div>
+        </div>
+        <header style="margin:16px -24px; padding: 16px; background-color: #ededed;margin-top: -24px;padding-bottom: 0px;">
+            <h1 style="margin: 16px;margin-bottom: 0px;">Seed to Sale - New Harvest
+                <a role="button" data-toggle="modal" href="#helpViewModal"  style="font-size: 20px;">Help <i class="fa fa-question-circle-o" style="font-size: 20px;"></i></a>
+                <!-- Start Help View Modal -->
+                <div class="modal fade" role="dialog" tabindex="-1" id="helpViewModal">
+                    <div class="modal-dialog modal-sm" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header" style="padding-bottom: 8px;">
+                                <h4>Help</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                            <div class="modal-body">
+                                <p class="text-center text-muted"><a role="button" data-toggle="modal" href="#helpModal" class="btn btn-primary helpModal">View Help Video</a></p>
+                                <p class="text-center text-muted"><a href="https://vs1forum.com/viewforum.php?f=6" target="_blank" class="btn btn-primary">Download Help File</a></p>
+                                <p class="text-center text-muted"><button class="btn btn-primary" type="button">Employ Advisor</button></p>
+                                <p class="text-center text-muted" style="margin: 0px;"><a href="https://vs1forum.com/ucp.php?mode=register&cloudusername={{loggedCompany}}" target="_blank" class="btn btn-primary">Go To Forum</a></p>
+                            </div>
+                            <div class="modal-footer" style="padding: 6px;"><button class="btn btn-light" data-dismiss="modal" type="button">Close</button></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Help View Modal -->
+                <a class="btn" role="button" data-toggle="modal" href="#myModal4" style="float: right;"><i class="icon ion-android-more-horizontal"></i></a>
+            </h1>
+        </header>
+        <div style="background-color: #ededed; margin: -24px; padding: 16px; padding-bottom: 0px;">
+            <div class="d-xl-flex align-items-xl-start">
+                <div class="d-xl-flex flex-row align-items-xl-start">
+                    <div style="margin: 16px;width: 350px;" class="formgoup">
+                        <div class="form-group">
+                            <label>Harvest Name</label>
+                            <input class="form-control" type="text" id="" name="">
+                        </div>
+                    </div>
+                    <div style="margin: 16px;width: 350px;" class="formgoup">
+                        <div class="form-group">
+                            <label>Room</label>
+                            <select class="form-control" name="sltDefaultRoom" id="sltDefaultRoom" style="background-color:rgb(255, 255, 255); cursor: pointer;">
+                                {{#each itemBin in listBins}}
+                                <option value="{{itemBin.roomname}}" mytagroom="{{itemBin.roomid}}">{{itemBin.roomname}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+                    </div>
+                    <div style="margin: 16px;width: 350px;" class="formgoup">
+                        <div class="form-group">
+                            <label>Harvest Date</label>
+                            <div class="input-group date" style="cursor: pointer;">
+                                <input type="text" class="form-control formClassDate" id="dtSODate" name="dtSODate" value="{{invoicerecord.saledate}}">
+                                <div class="input-group-addon" style="">
+                                    <span class="glyphicon glyphicon-th" style="cursor: pointer;"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="background-color: #ededed; margin: -24px; margin-bottom: 0px; padding: 16px;">
+            <div class="d-xl-flex align-items-xl-start">
+                <div class="d-xl-flex flex-row align-items-xl-start">
+                    <div style="margin: 16px;width: 350px;" class="formgoup">
+                        <div class="form-group">
+                            <label>Scan Plant Tag</label>
+                            <div class="input-group"><input class="form-control" type="text">
+                                <div class="input-group-append"><button class="btn btn-primary border-success" type="button" style="background-color: #3dd79c;">Scan</button></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="margin: 16px;width: 350px;" class="formgoup">
+                        <div class="form-group">
+                            <label>Plant Weight</label>
+                            <input type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div style="margin: 16px;width: 350px;" class="formgoup">
+                        <div class="form-group">
+                            <label>Unit</label>
+                            <select class="form-control"><option value="0" selected="">Fluid Ounces</option><option value="1">Gallons</option><option value="2" selected="">Grams</option><option value="3">Kilograms</option><option value="4">Liters</option><option value="5">Milligrams</option><option value="6">Milliliters</option><option value="7">Ounces</option><option value="8">Pints</option><option value="9">Pounds</option><option value="10">Quarts</option></select>
+                        </div>
+                    </div>
+                    <div style="margin: 16px;width: 350px;" class="formgoup">
+                        <button class="btn btn-success" type="button" style="margin-top: 32px;"><i class="fa fa-plus" style="margin-right: 5px;"></i>Add Plant</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="table-responsive" style="padding-top: 16px;">
+            <style>
+                th {
+                    background-color: #ededed;
+                }
+
+
+                .table-striped tbody tr:nth-of-type(odd) {
+                    background-color: white !important;
+                }
+
+                .table-striped tbody tr:nth-of-type(even) {
+                    background-color: rgba(0, 163, 211, 0.07) !important;
+                }
+
+                #productListModal .dataTables_scrollHeadInner,
+                #productListModal .dataTables_scrollHeadInner .table {
+                    width: 100% !important;
+                }
+
+                #taxRateListModal .dataTables_scrollHeadInner,
+                #taxRateListModal .dataTables_scrollHeadInner .table {
+                    width: 100% !important;
+                }
+
+                @media only screen and (max-width: 480px) {
+                    #ponumber, #edtRef, .form-group, .input-group, .formgoup {
+                        max-width: 100%!important;
+                        width:100%!important;
+                    }
+                    .formgoup{
+                        margin:0px!important;
+                    }
+                    .flex-row {
+                        margin:16px!important;
+                    }
+                }
+
+                .resizer {
+                    position: absolute;
+                    top: 0;
+                    right: -8px;
+                    bottom: 0;
+                    left: auto;
+                    width: 16px;
+                    cursor: col-resize;
+                }
+
+                .box{
+                    /* display: none; */
+                }
+                .outerBox{
+                    display: none;
+                }
+                .hiddenColumn{
+                    display:none;
+                }
+                .showColumn {
+                    display:table-cell;
+                    padding:.75rem;
+                    vertical-align:top;
+                }
+
+            </style>
+
+            <div class="modal fade" role="dialog" tabindex="-1" id="deleteLineModal">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <input type="hidden" style="width: 100%; display:none;" id="selectDeleteLineID" name="selectDeleteLineID"  readonly>
+                        <div class="modal-header">
+                            <h4>Delete</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Please select "Delete Line" to remove row or "Delete Invoice" to delete the entire invoice</p>
+                            <button class="btn btn-danger float-left btnDeleteLine" type="button">
+                                <i class="fa fa-close" style="margin-right: 5px;"></i>Delete Line
+                            </button>
+                            <button class="btn btn-danger float-right btnDeleteInvoice" type="button">
+                                <i class="fa fa-close" style="margin-right: 5px;"></i>Delete Invoice
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <table id="tblInvoiceLine" style="width:100%" class="table table-striped table-bordered tblInvoiceLine">
+                <thead>
+                    <tr class="dnd-moved">
+                        <th class="th colProductName" style="width: 300px;">Plant Tag</th>
+                        <th class="th colProductName" style="width: 300px;">Plant Weight</th>
+                        <th class="th colProductName" style="width: 300px;">Weight Unit</th>
+                        <th class="th" style="width: 25px;"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="dnd-moved" id={{item.lineID}}>
+                        <td contenteditable="true" class=""></td>
+                        <td contenteditable="true" class=""></td>
+                        <td contenteditable="true" class=""></td>
+                        <td><span class="table-remove btnRemove"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0 "><i class="fa fa-remove"></i></button></span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="d-xl-flex justify-content-xl-center">
+            <button class="btn btn-primary btnSave" type="button" style="margin: 16px;margin-top: 0px;width: 115px;"><i class="fa fa-save" style="padding-right: 8px;"></i>Save</button>
+            <button class="btn btn-primary printConfirm" type="button" style="margin: 16px;margin-top: 0px;width: 115px;"><i class="fa fa-print" style="padding-right: 8px;"></i>Print</button>
+            <button class="btn btn-secondary btnBack" type="button" style="margin: 16px;margin-top: 0px;width: 115px;"><i class="fa fa-remove" style="padding-right: 8px;"></i>Cancel</button>
+        </div>
+
+        <!--
+<div class="d-sm-flex justify-content-between align-items-center mb-4">
+<h3 class="text-dark mb-0">Seed To Sale - New Harvest</h3>
+</div>
+<div class="row d-xl-flex justify-content-center align-items-center justify-content-xl-start" style="max-width: 568px;margin: auto;padding: 20px;padding-bottom: 0px;">
+<div class="col">
+<div class="form-group" style="margin: 4px;"><label>Harvest Name</label><input type="text" class="form-control"></div>
+</div>
+</div>
+<div class="row d-xl-flex justify-content-center align-items-center justify-content-xl-start" style="max-width: 568px;margin: auto;padding: 20px;padding-top: 0px;">
+<div class="col">
+<div class="form-group" style="margin: 4px;"><label>Room</label><select class="form-control"><optgroup label="This is a group"><option value="12" selected="">This is item 1</option><option value="13">This is item 2</option><option value="14">This is item 3</option></optgroup></select></div>
+</div>
+<div class="col">
+<div class="form-group" style="margin: 4px;"><label>Harvest Date</label><input class="form-control" type="date" readonly=""></div>
+</div>
+</div>
+<div class="row d-xl-flex justify-content-center align-items-center justify-content-xl-start" style="max-width: 568px;margin: auto;padding: 20px;">
+<div class="col d-xl-flex justify-content-xl-center"><button class="btn btn-success" id="addHarvest" type="button" onclick="addHarvest()">Add Harvest Contents<br /></button></div>
+</div>
+<div class="row d-xl-flex justify-content-center align-items-center justify-content-xl-start" style="padding: 0px;height: 0px;max-height: 0px;margin: 0px;"><div>
+<style>
+#harvestDIV {
+display: none;
+}
+</style>
+<script>
+function addHarvest() {
+var x = document.getElementById("harvestDIV");
+var y = document.getElementById("addHarvest");
+
+if (x.style.display === "block") {
+x.style.display = "none";
+} else {
+x.style.display = "block";
+y.style.display = "none";
+}
+}
+</script>
+</div></div>
+<div id="harvestDIV">
+<div class="row d-xl-flex justify-content-center align-items-center justify-content-xl-start" style="max-width: 568px;margin: auto;padding: 0px 20px ;">
+<div class="col">
+<div class="card">
+<div class="card-body">
+<h5 class="card-title">[ Harvest Name ]</h5>
+<div class="row">
+<div class="col" style="max-width: 200px;">
+<h6 class="text-muted mb-2" style="margin: 0px;">Harvest Date</h6>
+</div>
+<div class="col">
+<p class="float-right" style="margin: 0px;">yyyy/mm/dd</p>
+</div>
+</div>
+<div class="row">
+<div class="col" style="max-width: 200px;">
+<h6 class="text-muted mb-2" style="margin: 0px;">Room</h6>
+</div>
+<div class="col">
+<p class="float-right" style="margin: 0px;">[ Room Name ]</p>
+</div>
+</div>
+<div class="row">
+<div class="col" style="max-width: 200px;">
+<h6 class="text-muted mb-2" style="margin: 0px;">Weight</h6>
+</div>
+<div class="col">
+<p class="float-right" style="margin: 0px;">[ No. ] grams from [ No. ] Plants</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row d-xl-flex justify-content-center align-items-center justify-content-xl-start" style="max-width: 568px;margin: auto;padding: 20px;padding-bottom: 0px;padding-left: 35px;">
+<h5 style="margin: 0px;">Plants</h5>
+</div>
+<div class="row d-xl-flex justify-content-center align-items-center justify-content-xl-center" style="max-width: 568px;margin: auto;padding: 20px;padding-top: 0px;"><div class="modal-body" style="padding-bottom: 0px;">
+<div class="row no-gutters" style="box-shadow: 2px 2px 7px rgba(133,135,150,0.37);padding: 8px;margin-bottom: 16px; border-radius: 5px; background-color: #ffffff;">
+<div class="col">
+<div class="row no-gutters">
+<p style="margin: 0px;font-weight: bold;padding-left: 8px;">[ Plant Tag ]</p>
+</div>
+<div class="row no-gutters">
+<p style="margin: 0px;padding-left: 8px;">[ Weight ] of [ Strain ]</p>
+</div>
+</div>
+<div class="col d-xl-flex flex-grow-0 align-items-xl-center" style="padding: 4px; padding-right:40px;">
+<button class="btn" type="button" style="color: red; font-size:20px;"><i class="fa fa-trash"></i></button>
+</div>
+</div>
+<div class="row no-gutters" style="box-shadow: 2px 2px 7px rgba(133,135,150,0.37);padding: 8px;margin-bottom: 16px; border-radius: 5px; background-color: #ffffff;">
+<div class="col">
+<div class="row no-gutters">
+<p style="margin: 0px;font-weight: bold;padding-left: 8px;">[ Plant Tag ]</p>
+</div>
+<div class="row no-gutters">
+<p style="margin: 0px;padding-left: 8px;">[ Weight ] of [ Strain ]</p>
+</div>
+</div>
+<div class="col d-xl-flex flex-grow-0 align-items-xl-center" style="padding: 4px; padding-right:40px;">
+<button class="btn" type="button" style="color: red; font-size:20px;"><i class="fa fa-trash"></i></button>
+</div>
+</div>
+<div class="row no-gutters" style="box-shadow: 2px 2px 7px rgba(133,135,150,0.37);padding: 8px;margin-bottom: 16px; border-radius: 5px; background-color: #ffffff;">
+<div class="col">
+<div class="row no-gutters">
+<p style="margin: 0px;font-weight: bold;padding-left: 8px;">[ Plant Tag ]</p>
+</div>
+<div class="row no-gutters">
+<p style="margin: 0px;padding-left: 8px;">[ Weight ] of [ Strain ]</p>
+</div>
+</div>
+<div class="col d-xl-flex flex-grow-0 align-items-xl-center" style="padding: 4px; padding-right:40px;">
+<button class="btn" type="button" style="color: red; font-size:20px;"><i class="fa fa-trash"></i></button>
+</div>
+</div>
+</div></div>
+<div class="row no-gutters d-xl-flex justify-content-center align-items-center justify-content-xl-end" style="max-width: 530px;margin: auto;padding: 20px;padding-top: 0px;"><a class="btn btn-success" role="button" style="border-radius: 30px;width: 50px;height: 50px;padding: 0px;font-size: 24px;box-shadow: 2px 2px 7px 3px rgba(159,159,159,0.4);" href="#scanNewPlant" data-toggle="modal"><i class="fa fa-plus" style="margin-top: 12px;"></i></a>
+<div
+class="modal fade" role="dialog" tabindex="-1" id="scanNewPlant">
+<div class="modal-dialog modal-dialog-centered" role="document">
+<div class="modal-content">
+<div class="modal-header">
+<h4 class="modal-title">Add New Plant</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+<div class="modal-body">
+<div class="row no-gutters">
+<div class="col">
+<div class="form-group flex-grow-1" style="margin: 4px;"><label>Scan Plant Tag</label>
+<div class="input-group"><input class="form-control" type="text">
+<div class="input-group-append"><button class="btn btn-primary border-success" type="button" style="background-color: #3dd79c;">Scan</button></div>
+</div>
+</div>
+</div>
+</div>
+<div class="row no-gutters">
+<div class="col">
+<div class="form-group" style="margin: 4px;"><label>Plant Weight</label><input type="text" class="form-control"></div>
+</div>
+<div class="col">
+<div class="form-group" style="margin: 4px;"><label>Unit</label><select class="form-control"><option value="0" selected="">Fluid Ounces</option><option value="1">Gallons</option><option value="2" selected="">Grams</option><option value="3">Kilograms</option><option value="4">Liters</option><option value="5">Milligrams</option><option value="6">Milliliters</option><option value="7">Ounces</option><option value="8">Pints</option><option value="9">Pounds</option><option value="10">Quarts</option></select></div>
+</div>
+</div>
+</div>
+<div class="modal-footer"><button class="btn btn-light" type="button" data-dismiss="modal">Close</button><button class="btn btn-success" type="button">Add Plant and Scan Another<i class="fa fa-rotate-left" style="margin-left: 5px;"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+<div class="row no-gutters d-xl-flex justify-content-center align-items-center justify-content-xl-center" style="max-width: 530px;margin: auto;padding: 20px;padding-top: 0px;">
+<div class="d-xl-flex justify-content-xl-center"><a class="btn btn-success" role="button" data-toggle="modal" href="#myModal">Submit Harvest to GreenTrack</a>
+<div class="modal fade" role="dialog" tabindex="-1" id="myModal">
+<div class="modal-dialog modal-dialog-centered" role="document">
+<div class="modal-content">
+<div class="modal-header">
+<h4>Confirm Harvest</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+<div class="modal-body">
+<p class="text-center text-muted">Submit [ Harvest Name ] to GreenTrack?</p>
+<p class="text-center text-muted" style="font-size: 12px;">This will mark the item as submitted and to be reviewed by OMMA.</p>
+</div>
+<div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Cancel</button><button class="btn btn-success" type="button">Confirm</button></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+-->
+
+    </div>
+</template>

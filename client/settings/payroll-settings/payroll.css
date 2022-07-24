@@ -1,0 +1,387 @@
+.payrollSettings {
+    width: 100%;
+    float: left;
+}
+
+.payrollSettings .active_page_content h1 {
+    border-bottom: 0;
+    margin-bottom: 0;
+}
+
+.payrollSettingsDiv {
+    width: 100%;
+    float: left;
+    background: #fff;
+    padding: 20px 0 30px;
+}
+
+.paymentServicesViewport {
+    width: 100%;
+    float: left;
+    background: #fafbfb;
+}
+
+.payrollSettings .paymentServicesViewport .payment-services-viewport {
+    border: 1px solid #d7d7d7;
+    border-top: 1px solid #ebebeb;
+    box-shadow: 0 1px 3px hsla(0, 0%, 87%, .5);
+    border-radius: 5px;
+    padding: 15px 20px 0;
+    float: left;
+    width: 100%;
+    padding-top: 20px;
+    margin-top: 20px;
+}
+
+.payrollSettings .paymentServicesViewport .payment-services-viewport:last-child {
+    margin-bottom: 25px;
+}
+
+.payrollSettings .paymentServicesViewport .payment-services-viewport h2 {
+    border-bottom: 1px solid #e8e8e8;
+    padding-bottom: 14px;
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 15px;
+    margin-top: 0;
+    font-weight: bold;
+}
+.payrollSettings .paymentServicesViewport .payment-services-viewport h3{
+    font-size: 16px;
+    font-weight: 700;
+    color: #666;
+    border-bottom: 1px solid #e8e8e8;
+    padding-bottom: 8px;
+    margin-bottom: 0;
+    margin-top: 0;
+}
+.payrollSettings .paymentGateways {
+    width: 100%;
+    float: left;
+    border: 1px solid #ddd;
+    min-height: 70px;
+    border-radius: 3px;
+    opacity: 1;
+}
+
+.payrollSettings .paymentGateways ul.titleHeader {
+    padding: 0;
+    margin: 0;
+    float: left;
+    width: 100%;
+    background-color: #fdfefe;
+    background: linear-gradient(#fff, #f6f7f8);
+    border-bottom: 1px solid #eee;
+}
+
+.payrollSettings .paymentGateways ul.titleHeader li {
+    float: left;
+    list-style: none;
+    width: 25%;
+    color: #666;
+    font-weight: bold;
+    font-size: 12px;
+    padding: 9px 10px;
+    border-right: 1px solid #e9edf2;
+}
+
+.payrollSettings .paymentGateways ul.titleHeader li:last-child {
+    border: 0;
+}
+
+.payrollSettings .paymentGateways ul.headetTitle {
+    padding: 0;
+    margin: 0;
+    float: left;
+    width: 100%;
+    background-color: #fff;
+    border-bottom: 1px solid #eee;
+
+}
+
+.payrollSettings .paymentGateways ul.headetTitle:hover {
+    background-color: #e6f5fa;
+}
+
+.payrollSettings .paymentGatewaysul.headetTitle li {
+    float: left;
+    list-style: none;
+    width: 25%;
+    color: #000;
+    font-weight: normal;
+    font-size: 12px;
+    padding: 9px 10px;
+    cursor: pointer;
+}
+
+.payrollSettings .paymentGateways ul.headetTitle li a {
+    color: #1890C0;
+}
+
+.payrollSettings .paymentGateways ul.headetTitle li img {
+    width:auto;
+    height: 24px;
+    background-repeat: no-repeat;
+    background-position: 3px 0;
+}
+
+.payrollSettings ul.headetTitle li.lastchild {
+    overflow: visible;
+    width: 10%;
+    float: right;
+}
+
+.payrollSettings .paymentGateways li.lastchild .dropdown-menu > li > a {
+    color: #000;
+    border-bottom: 1px solid #ccc;
+    border-top: 0;
+}
+
+.payrollSettings .paymentGateways li.lastchild .dropdown-menu > li > a {
+    color: #000;
+    border-bottom: 1px solid #ccc;
+    border-top: 0;
+}
+
+.payrollSettings .paymentGateways li.lastchild .dropdown-menu {
+    background-color: #fff;
+}
+
+.payrollSettings .paymentGateways li.lastchild .dropdown button {
+    background: transparent;
+    border: 0;
+    padding: 0;
+    color: #048abb;
+    font-weight: bold;
+}
+
+.payrollSettings .paymentGateways li.lastchild .dropdown-menu li {
+    float: left;
+    width: 100%;
+}
+
+.payrollSettings .PaymentButton {
+    float: left;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.payrollSettings .PaymentButton button {
+    font: bold 12px Helvetica, sans-serif;
+    color: #048abb;
+    background-color: #fafafa;
+    border-color: #ccc;
+    border-radius: 3px;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: rgba(255, 255, 255, 0.3) 0 0 0 1px inset;
+    box-sizing: border-box;
+    cursor: pointer;
+    padding: 6px 12px;
+    position: relative;
+    text-align: center;
+    -webkit-transition: opacity .2s ease-out;
+    transition: opacity .2s ease-out;
+    white-space: nowrap;
+    -moz-user-select: -moz-none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiP…dpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==);
+    background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #e6eaec));
+    background: -webkit-linear-gradient(#ffffff, #e6eaec);
+    background: -webkit-linear-gradient(#ffffff, #e6eaec);
+    background: linear-gradient(#ffffff, #e6eaec);
+}
+
+.payrollSettings .PaymentButton button:last-child {
+    float: right;
+    margin-right: 10px;
+}
+
+.payrollSettings .PaymentButton button:first-child {
+    float: left;
+}
+
+.payrollSettings .modal-content {
+    width: 420px;
+    font-size: 12px;
+}
+
+.payrollSettings .modal-body {
+    background-color: #FBFBFB;
+}
+
+.PaymentButton .dropdown-menu {
+    box-shadow: inherit;
+}
+
+.PaymentButton .dropdown-menu > li > a {
+    padding: 13px 30px 12px 10px;
+    border-bottom: 1px solid #e9edf2;
+    white-space: nowrap;
+    color: #048abb;
+    font-size: 12px;
+    background: #fff;
+    border-top: 1px solid #e9edf2;
+}
+
+.PaymentButton .dropdown-menu > li > a:hover {
+    background-image: inherit !important;
+    color: #048abb !important;
+    background-color: #e6f5fa;
+}
+
+.payrollSettings #ApplyService .modal-content {
+    width: auto;
+}
+.payrollSettings #ApplyService .modal-body{
+    float: left;
+}
+.payrollSettings #ApplyService .modal-header, .payrollSettings #ApplyService .modal-footer {
+    background: #fff;
+
+}
+
+.payrollSettings #ApplyService .gateway-instructions {
+    padding-left: 5px;
+    padding-right: 5px;
+    font-size: 12px;
+    line-height: 17px;
+    padding-bottom: 15px;
+}
+
+.payrollSettings #ApplyService h4.modal-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+
+}
+
+.payrollSettings #ApplyService .applyServiceDiv {
+    width: 100%;
+    float: left;
+    border: 1px solid #ddd;
+    min-height: 70px;
+    border-radius: 3px;
+}
+
+.payrollSettings #ApplyService .applyServiceDiv ul {
+    float: left;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    border-bottom: 1px solid #eee;
+}
+
+.payrollSettings #ApplyService .applyServiceDiv ul li {
+    float: left;
+    list-style: none;
+    font-weight: bold;
+    font-size: 12px;
+    padding: 9px 10px;
+    border-right: 1px solid #e9edf2;
+    width: 33.33%;
+}
+
+.payrollSettings #ApplyService .applyServiceDiv  ul.applyTitle{
+    float: left;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    border-bottom: 1px solid #eee;
+    background: #fff;
+}
+
+.payrollSettings #ApplyService .applyServiceDiv  ul.applyTitle li {
+    float: left;
+    list-style: none;
+    font-weight: bold;
+    font-size: 12px;
+    padding: 9px 10px;
+    border-right: 1px solid #e9edf2;
+    width: 33.33%;
+}
+
+.payrollSettings #ApplyService button.close {
+    background-image: inherit;
+    position: relative;
+    font-size: 21px;
+    right: 0;
+    padding: 0;
+    font-weight: bold;
+}
+
+
+.payrollSettings ul.headetTitle li {
+    float: left;
+    list-style: none;
+    width: 25%;
+    font-size: 12px;
+    color: #000;
+    font-weight: normal;
+    font-size: 12px;
+    padding: 9px 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+}
+
+.payrollSettings .fa-pagehelp-line:first-child {
+    border-top: 0;
+    font-weight: bold;
+}
+
+.payrollSettings .fa-pagehelp-line:first-child {
+    border-top: 0;
+    font-weight: bold;
+}
+
+.payrollSettings .fa-pagehelp-line {
+    color: #343434;
+    font-size: 16.9px;
+    line-height: 1.8em;
+    border-top: 1px solid #E2E2E2;
+}
+
+.payrollSettings .close {
+    position: absolute;
+    top: -23px;
+    right: 3px;
+    color: #bbb;
+    padding: 5px 22px 5px 0;
+    background: transparent url(img/close.png) no-repeat 100%;
+    font-size: 12px;
+    font-weight: 800;
+    opacity: 1;
+}
+
+.payrollSettings .col-md-3.paddingLeft.width-19 {
+    width: 20%;
+}
+
+.payrollSettings .PaymentDiv{
+    position: relative;
+}
+.payrollSettings .PaymentDiv .video {
+    background: #f2f2f2 url(img/Payment-Services.jpg) no-repeat 50%;
+    height: 135px;
+    width: 190px;
+    padding: 10px 0;
+    position: absolute;
+    top: -1px;
+    left: 0;
+}
+.payrollSettings .PaymentDiv p{
+    margin-left: 210px;
+    margin-bottom: 0;
+    margin-top: 15px;
+    border-bottom: 1px solid #e2e2e2;
+    color: #333;
+    font-size: 18px;
+}
+.payrollSettings .PaymentDiv p:last-child{
+     border-bottom: 0;
+}

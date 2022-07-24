@@ -1,0 +1,41 @@
+<template name="taxratelistpop">
+  <div class="modal-dialog modal-xl modal-dialog-scrollable" role="document" style="max-width: 90vw;">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h4>Tax Code List</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+          </div>
+          <div class="modal-body">
+              <input type="hidden" style="width: 100%; display:none;" id="selectLineID" name="selectLineID"  readonly>
+              <div class="card-body p-1 rounded">
+                  <div class="table-responsive">
+                      <style>
+                          .thID {
+                              width: 5% !important;
+                          }
+                          .thName {
+                              width: 10% !important;
+                          }
+                          .thRate {
+                              width: 8% !important;
+                          }
+                      </style>
+                      <table id="tblTaxRate" style="width:100%" class="table table-striped table-bordered tblInventory">
+                          <thead>
+                              <tr class="dnd-moved">
+                                  <th class="thID">ID</th>
+                                  <th class="thName" style="text-align: left!important;">Name</th>
+                                  <th>Description</th>
+                                  <th class="thRate" style="text-align: left!important;">Rate</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+          </div>
+          <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Close</button></div>
+      </div>
+  </div>
+</template>

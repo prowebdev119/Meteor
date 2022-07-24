@@ -1,0 +1,146 @@
+<template name="generalsettings">
+    <div class="generalsettings">
+        <div class="active_page">
+            <div class="active_page_content">
+                <h1>General Settings</h1>
+            </div>
+        </div>
+    <div id="wrapper_main">
+        <main id="page-content-wrapper_main" role="main">
+            <div class="dashboard_container" id="generalsettings_dashcontainers">
+                <div class="dashboard_col1">
+                    <div class="dash1"><h3>Organisation</h3>
+                        <hr>
+                        <table class="gs_tables">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <i class="fa fa-star-o fas fa-star" aria-hidden="true"></i>
+                                    </td>
+                                    <td>
+                                        <h4><a href="/settings/accesslevel">Access Settings</a></h4>
+                                        <p>Manage and edit your user access level.</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <i class="fa fa-star-o fas fa-star" aria-hidden="true"></i>
+                                    </td>
+                                    <td>
+                                        <h4><a href="/settings/organisation">Organisation Settings</a></h4>
+                                        <p>Edit your organisation details.</p>
+                                    </td>
+                                </tr>
+                                <!-- <tr>
+                                    <td><i class="fa fa-star-o fas fa-star" aria-hidden="true"></i></td>
+                                    <td><h4><a href="/settings/financial">Financial Settings</a></h4>
+                                        <p>Edit your financial settings such as tax period and lock dates.</p></td>
+                                </tr> -->
+                                <!-- <tr>
+                                    <td><i class="fa fa-star-o fas fa-star" aria-hidden="true"></i></td>
+                                    <td><h4><a href="/settings/conversionBalances">Conversion Balances</a></h4>
+                                        <p>Update account balances from previous accounting systems.</p></td>
+                                </tr> -->
+                                <!-- <tr>
+                                    <td><i class="fa fa-star-o fas fa-star" aria-hidden="true"></i></td>
+                                    <td><h4><a href="/settings/users">Users</a></h4>
+                                        <p>Manage who has access to your organisation.</p></td>
+                                </tr> -->
+                                <tr>
+                                    <td>
+                                        <i class="fa fa-star-o fas fa-star" aria-hidden="true"></i>
+                                    </td>
+                                    <td>
+                                        <h4><a href="/settings/taxRates">Tax Rates</a></h4>
+                                        <p>Add, edit and delete the tax rates you want to use.</p>
+                                    </td>
+                                </tr>
+                                <!-- <tr>
+                                <td><i class="fa fa-star-o fas fa-star" aria-hidden="true"></i></td>
+                                <td><h4><a href="/settings/customContactLinks">Custom Contact Links</a></h4>
+                                    <p>Create custom links for your VS1Cloud contacts and other systems.</p></td>
+                            </tr> -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- <div class="dash2"><h3>Connect</h3>
+                        <hr>
+                        <table class="gs_tables">
+                            <tbody>
+                            <tr>
+                                <td><i class="fa fa-star-o fas fa-star" aria-hidden="true"></i></td>
+                                <td><h4><a href="/settings/trueERP-to-trueERP">VS1Cloud to VS1Cloud</a></h4>
+                                    <p>Send and receive sales invoices and bills from other VS1Cloud users.</p></td>
+                            </tr>
+                            <tr>
+                                <td><i class="fa fa-star-o fas fa-star" aria-hidden="true"></i></td>
+                                <td><h4><a href="/settings/connectedApps">Connected Apps</a></h4>
+                                    <p>Connect VS1Cloud to a range of other tools for your business.</p></td>
+                            </tr>
+                            <tr>
+                                <td><i class="fa fa-star-o fas fa-star" aria-hidden="true"></i></td>
+                                <td><h4><a href="/settings/payroll">Payment Services</a></h4>
+                                    <p>Accept online payments to get paid faster.</p></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div> -->
+                </div>
+
+                <div class="dashboard_col2">
+                    <div class="dash1"><h3>Reports</h3>
+                        <hr>
+                        <table class="gs_tables">
+                            <tbody>
+                            <tr>
+                                <td><i class="fa fa-star-o fas fa-star" aria-hidden="true"></i></td>
+                                <td><h4><a href="/settings/accounts/all-accounts">Chart of Accounts</a></h4>
+                                    <p>Add, edit, archive, delete, import or export your accounts.</p></td>
+                            </tr>
+                            <!-- <tr>
+                                <td><i class="fa fa-star-o fas fa-star" aria-hidden="true"></i></td>
+                                <td><h4><a href="/settings/tracking">Tracking</a></h4>
+                                    <p>Manage tracking items for more powerful reporting.</p></td>
+                            </tr> -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="dash2"><h3>Features</h3>
+                        <hr>
+                        <table class="gs_tables">
+                            <tbody>
+                            <!-- <tr>
+                                <td><i class="fa fa-star-o fas fa-star" aria-hidden="true"></i></td>
+                                <td><h4><a href="/settings/invoice">Invoice Settings</a></h4>
+                                    <p>Create branding themes for documents, add payment services and auto reminders for
+                                        invoices.</p></td>
+                            </tr> -->
+                            <tr>
+                                <td><i class="fa fa-star-o fas fa-star" aria-hidden="true"></i></td>
+                                <td><h4><a href="/settings/currencies">Currencies</a></h4>
+                                    <p>Add foreign currencies that your organisation uses.</p></td>
+                            </tr>
+                            <tr style="display: none">
+                                <td><i class="fa fa-star-o fas fa-star" aria-hidden="true"></i></td>
+                                <td><h4><a href="/settings/payItems">Payroll Settings</a></h4>
+                                    <p>Manage the pay items used for pay runs.</p></td>
+                            </tr>
+                            <tr>
+                                <td><i class="fa fa-star-o fas fa-star" aria-hidden="true"></i></td>
+                                <td><h4><a href="/settings/fixedAssets/asset-type">Fixed Assets</a></h4>
+                                    <p>Manage asset types and account defaults.</p></td>
+                            </tr>
+                            <!-- <tr>
+                                <td><i class="fa fa-star-o fas fa-star" aria-hidden="true"></i></td>
+                                <td><h4><a href="/settings/email">Email Settings</a></h4>
+                                    <p>Set a reply-to email address and email template content.</p></td>
+                            </tr> -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    </div>
+</template>

@@ -1,0 +1,175 @@
+<template name="employeelistpop">
+    <div class="container-fluid" style="padding-left: 0px; padding-right: 0px;">
+        <div class="card-body rounded" style="margin: 0px;">
+
+            <!-- Start {{> optionNavSalesOverview}} -->
+            <div class="row">
+                <div class="col flex-grow-1" style="align-content: flex-start;">
+                    <style>
+                        .refreshpagelist {
+                            margin: 0px !important;
+                        }
+                        .btnRefreshGlobal {
+                            padding: 0px !important;
+                        }
+                    </style>
+                    <!-- {{> refreshbutton}} -->
+                </div>
+            </div>
+            <div class="d-xl-flex justify-content-xl-end">
+                <div class="modal fade" role="dialog" tabindex="-1" id="myModal2">
+                    <div class="modal-dialog modal-dialog-centered" role="document" style="float: right;">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4>Display Settings</h4><button type="button" class="close btnCloseEmployeePOPList" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                            <div class="modal-body employeeListModal">
+                                <div>
+                                    {{#if tableheaderrecords}}
+                                    <form class="d-xl-flex align-items-xl-center">
+                                        <div class="flex-grow-1">
+                                            <style>
+                                                .groove {
+                                                    border-style: solid;
+                                                    border-width: 1px;
+                                                    width: 200px;
+                                                    padding: 2px;
+                                                    border-radius: .35rem;
+                                                }
+                                                .custom-control-label{
+                                                    position: absolute;
+                                                }
+                                                .rngRange {
+                                                    position: relative;
+                                                    display: flex;
+                                                    flex-direction: column;
+                                                    width: 100%;
+                                                    pointer-events: auto;
+                                                    background-color: rgb(255, 255, 255);
+                                                    background-clip: padding-box;
+                                                    border: 1px solid rgb(133, 135, 150);
+                                                    border-radius: .3rem;
+                                                    border-style: solid;
+                                                    border-width: 1px;
+                                                    padding: 2px;
+                                                    border-radius: .35rem;
+                                                    color: rgb(128, 128, 128);
+                                                    height:inherit!important;
+                                                }
+                                                @media only screen and (max-width: 480px) {
+                                                    .modal.show .modal-dialog{
+                                                        float: inherit!important;
+                                                        left: inherit!important;
+                                                        top: auto!important;
+
+                                                    }
+                                                }
+                                            </style>
+                                            {{#each item in tableheaderrecords}}
+                                            {{#if equals item.sTitle "id"}}
+                                            {{else}}
+
+                                            <div id="{{item.sIndex}}" class="columnSettings">
+                                                <div class="custom-control custom-switch" style="margin: 8px; float:left;">
+                                                    <input class="custom-control-input chkDatatable" type="checkbox" id="chkSalesNo-{{item.sIndex}}" name="chkSalesNo-{{item.sIndex}}" checked="{{#if item.sVisible}}checked{{else}}{{/if}}" value="{{item.sTitle}}">
+                                                    <label class="custom-control-label" for="chkSalesNo-{{item.sIndex}}"></label>
+                                                    <div contenteditable="true" class="groove divcolumn" type="text" value="{{item.sTitle}}" valueupdate="{{item.sClass}}">{{item.sTitle}}</div>
+                                                </div>
+                                                <div class="d-xl-flex align-items-xl-center divColWidth" style="margin: 8px;">
+                                                    <label class="text-nowrap" style="padding-left: 0px;margin-top: 8px;">Width: <!--<span class="spWidth" value="{{item.sTitle}}">{{item.sWidth}}px</span>--></label>
+                                                    <input class="custom-range rngRange" type="number" style="margin: 8px;" value="{{item.sWidth}}" min="0" max="1000">
+                                                    <!-- <input class="custom-range rngRange" type="range" style="margin: 8px;" value="{{item.sWidth}}" min="0" max="1000"> -->
+                                                </div>
+                                            </div>
+
+                                            {{#if equals item.sVisible true}}
+                                            <script>
+                                                $("#"+ {{item.sIndex}} +".chkDatatable").attr("checked","checked");
+                                            </script>
+                                            {{else}}
+                                            <script>
+                                                $("#"+ {{item.sIndex}} +".chkDatatable").removeAttr("checked");
+                                            </script>
+                                            {{/if}}
+
+                                            {{/if}}
+                                            {{/each}}
+                                        </div>
+                                    </form>
+                                    {{/if}}
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-secondary btnCloseEmployeePOPList" data-dismiss="modal" type="button"><i class="fa fa-remove" style="margin-right: 5px;"></i>Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End -->
+
+            <div class="table-responsive">
+                <style>
+                    th {
+                        background-color: #ededed;
+                    }
+                    .table-striped tbody tr:nth-of-type(odd) {
+                        background-color: white !important;
+                    }
+
+                    .table-striped tbody tr:nth-of-type(even) {
+                        background-color: #0000000d !important;
+                    }
+
+                    .JColResizer > tbody > tr > td, .JColResizer > tbody > tr > th {
+                        padding: .75rem!important;
+                    }
+                    .hiddenColumn{
+                        display:none;
+                    }
+                    .showColumn {
+                        display:table-cell;
+                        padding:.75rem;
+                        vertical-align:top;
+                    }
+
+                    input[type=number]::-webkit-inner-spin-button,
+                    input[type=number]::-webkit-outer-spin-button {
+                        opacity: 1;
+                    }
+
+                    .colNotes {
+                        width: 200px !important;
+                    }
+                </style>
+                <table id="tblEmployeelist" name="tblEmployeelist" style="width:100%" class="dataTable table table-hover table-striped table-bordered tblEmployeelist">
+                    <thead>
+                        <tr class="dnd-moved">
+                          <th class="th colEmployeeName" style="width:150px;">Employee Name</th>
+                          <th class="th colFirstName" style="width:85px;">First Name</th>
+                          <th class="th colLastName" style="width:85px;">Last Name</th>
+                          <th class="th colPhone" style="width:95px;">Phone</th>
+                          <th class="th colMobile" style="width:95px;">Mobile</th>
+                          <th class="th colEmail" style="width:100px;">Email</th>
+                          <th class="th colDepartment" style="width:100px;">Department</th>
+                          <!-- <th class="th colAddress hiddenColumn">Address</th> -->
+                          <th class="th colCountry">Country</th>
+                          <th class="th colState hiddenColumn">State</th>
+                          <th class="th colCity hiddenColumn">Streed2</th>
+                          <th class="th colStreetAddress hiddenColumn">Street</th>
+                          <th class="th colZipCode hiddenColumn">PostCode</th>
+                          <th class="th colID hiddenColumn">Custom Field 2</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- End Help Video Modal -->
+    <script>
+        modalDraggable();
+    </script>
+</template>

@@ -1,0 +1,1096 @@
+<template name="supplierpaymentcard">
+    <div class="container-fluid" style="padding-right: 0px;padding-left: 0px;">
+        <div class="fullScreenSpin" style="display:none;">
+            <div class="spinner"></div>
+        </div>
+        {{#if record}}
+            <form>
+                <header style="padding: 16px;background-color: #ededed;margin-top: -24px;padding-bottom: 0px;">
+                    <h2 style="margin: 16px;margin-bottom: 0px;">
+                        Supplier Payment {{record.lid}}
+
+                        <a role="button" data-toggle="modal" href="#helpViewModal" style="font-size: 20px;">Help <i class="fa fa-question-circle-o" style="font-size: 20px;"></i></a>
+                        <!-- Start Help View Modal -->
+                        <div class="modal fade" role="dialog" tabindex="-1" id="helpViewModal">
+                            <div class="modal-dialog modal-sm" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header" style="padding-bottom: 8px;">
+                                        <h4>Help</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p class="text-center text-muted"><a role="button" data-toggle="modal" href="#helpModal" class="btn btn-primary helpModal">View Help Video</a></p>
+                                        <p class="text-center text-muted"><a href="https://vs1forum.com/" target="_blank" class="btn btn-primary">Download Help File</a></p>
+                                        <p class="text-center text-muted"><button class="btn btn-primary" type="button">Employ Advisor</button></p>
+                                        <p class="text-center text-muted" style="margin: 0px;"><a href="https://vs1forum.com/ucp.php?mode=register&cloudusername={{loggedCompany}}" target="_blank" class="btn btn-primary">Go To Forum</a></p>
+                                    </div>
+                                    <div class="modal-footer" style="padding: 6px;"><button class="btn btn-light" data-dismiss="modal" type="button">Close</button></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Help View Modal -->
+                    </h2>
+                    <div class="printID" id="{{record.lid}}" style="display: none;">{{record.lid}}</div>
+                </header>
+
+                <div class="row" style="background-color: #ededed; padding: 16px 32px;">
+                    <div class="col-12 col-lg-6">
+                        <div class="row">
+                            <div class="col-12 col-lg-6">
+                                <div class="form-group"><label>Supplier</label>
+                                    <select type="search" class="form-control" id="edtSupplierName" name="edtSupplierName" style="cursor: pointer;">
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <div class="form-group"><label>Supplier Email</label>
+                                    <input class="form-control form-control" type="text" id="edtSupplierEmail" name="edtSupplierEmail" customerid=" ">
+                                </div>
+                                <div class="custom-control custom-control-inline custom-switch d-xl-flex align-items-xl-center" style="margin: 0px 16px;padding: -2px;padding-left: 24px;width: 100%;">
+                                    <div class="form-group" style="margin-right: 35px; Width:50%;">
+                                        <input class="custom-control-input chkEmailCopy" type="checkbox" id="formCheck-one" style="font-size: 22px;"><label class="custom-control-label" for="formCheck-1" style="color: rgb(73,80,87);">Email
+                                            Supplier</label>
+                                    </div>
+                                    <textarea class="form-control" rows="5" id="txabillingAddress" name="txabillingAddress" autocomplete="off" style="display:none!important;"></textarea>
+                                    <div class="form-group" style="margin-left: 35px; Width:50%;">
+                                        <input class="custom-control-input chkEmailRep" type="checkbox" id="formCheck-two" style="font-size: 22px;"><label class="custom-control-label" for="formCheck-2" style="color: rgb(73,80,87);">Email User</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="background-color: #ededed; padding: 16px 32px;">
+                    <div class="col-12 col-lg-6">
+                        <div class="row">
+                            <div class="col-12 col-lg-4">
+                                <div class="form-group"><label>Payment Amount</label>
+                                    <input class="form-control form-control" type="text" value="{{record.paymentAmount}}" id="edtPaymentAmount" name='edtPaymentAmount' readonly>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-4">
+                                <div class="form-group"><label>Bank Account</label>
+                                    <select type="search" class="form-control" id="edtSelectBankAccountName" name="edtSelectBankAccountName" style="background-color:rgb(255, 255, 255); cursor: pointer;">
+                                    </select>
+
+                                    <!-- <select class="form-control" id="edtBankAccountName" name="edtBankAccountName" style="cursor: pointer;">
+                                        {{#each item in accountnamerecords}}
+                                            {{#if equals item.accountname record.bankAccount }}
+                                                <option value="{{item.accountname}}" selected="">{{item.accountname}}</option>
+                                            {{else}}
+                                                <option value="{{item.accountname}}">{{item.accountname}}</option>
+                                            {{/if}}
+                                        {{/each}}
+                                    </select> -->
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-4">
+                                <div class="form-group"><label>Reference No.</label>
+                                    <input class="form-control form-control" type="text" value="{{record.reference}}" id="edtReference" name="edtReference">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-lg-4">
+                                <div class="form-group"><label>Payment Date</label>
+                                    <div class="input-group date">
+                                        <input type="text" class="form-control" value="{{record.paymentDate}}" id="dtPaymentDate" name="dtPaymentDate" style="cursor: pointer;">
+                                        <div class="input-group-addon">
+                                            <span class="glyphicon glyphicon-th" style="cursor: pointer;"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-4">
+                                <div class="form-group"><label>Payment Method</label>
+                                    <select type="search" class="form-control" id="sltPaymentMethod" name="sltPaymentMethod" style="background-color:rgb(255, 255, 255); cursor: pointer;">
+                                    </select>
+                                    <!-- <select class="form-control" style="cursor: pointer;" id="sltPaymentMethod" name="sltPaymentMethod">
+                                        {{#each item in paymentmethodrecords}}
+                                            {{#if equals item.paymentmethod record.checkpayment }}
+                                                <option value="{{item.paymentmethod}}" selected="">{{item.paymentmethod}}</option>
+                                            {{else}}
+                                                <option value="{{item.paymentmethod}}">{{item.paymentmethod}}</option>
+                                            {{/if}}
+                                        {{/each}}
+                                    </select> -->
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-4">
+                                <div class="form-group"><label>Department</label>
+                                    <select type="search" class="form-control" id="sltDepartment" name="sltDepartment" style="background-color:rgb(255, 255, 255); cursor: pointer;">
+                                    </select>
+                                    <!-- <select class="form-control" style="cursor: pointer;" id="sltDepartment" name="sltDepartment">
+                                        {{#each item in deptrecords}}
+                                            {{#if equals item.department record.department }}
+                                                <option value="{{record.department}}" selected="">{{record.department}}</option>
+                                            {{else}}
+                                                <option value="{{item.department}}">{{item.department}}</option>
+                                            {{/if}}
+                                        {{/each}}
+                                    </select> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-2">
+                        <div class="form-group"><label style="color: #858796;">Comments</label><textarea class="form-control" rows="4" id="txaNotes" name="txaNotes" style="height: 125px;">{{record.notes}}</textarea></div>
+                    </div>
+                </div>
+                <!-- <div class="row" style="background-color: #ededed; padding: 0px 32px;">
+                    <div class="col-12 col-lg-6">
+                        <a class="btn btn-link" data-toggle="collapse" aria-expanded="false" aria-controls="collapse-notes" href="#collapse-notes" role="button">+ Comments</a>
+                        <div class="collapse" id="collapse-notes" style="margin-top: 16px;">
+                            <div class="form-group"><label style="color: #858796;">Comments</label><textarea class="form-control" rows="3" id="txaNotes" name="txaNotes" >{{record.notes}}</textarea></div>
+                        </div>
+                    </div>
+                </div> -->
+                <div>
+                    <div class="card-body rounded" style="padding-bottom: 0px !important;padding-top: 0px !important;">
+                        <div class="d-xl-flex justify-content-xl-end">
+                            <div><a class="btn" role="button" data-toggle="modal" href="#myModal2"><i class="icon ion-android-more-horizontal"></i></a>
+                                <div class="modal fade" role="dialog" tabindex="-1" id="myModal2">
+                                    <div class="modal-dialog modal-dialog-centered" role="document" style="float: right;">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4>Display Settings</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div>
+                                                    <form class="d-xl-flex align-items-xl-center">
+                                                        <div class="flex-grow-1">
+                                                            <style>
+                                                                .groove {
+                                                                    border-style: solid;
+                                                                    border-width: 1px;
+                                                                    width: 200px;
+                                                                    padding: 2px;
+                                                                    border-radius: .35rem;
+                                                                }
+
+                                                                .custom-control-label {
+                                                                    position: absolute;
+                                                                }
+
+                                                                .file-name span {
+                                                                    width: 100%;
+                                                                    float: left;
+                                                                }
+
+                                                                #file-display .fileIocns i.fa.fa-file {
+                                                                    color: rgb(252, 181, 38);
+                                                                    font-size: 24px;
+                                                                }
+
+                                                                #file-display {
+                                                                    padding: 0;
+                                                                    margin: 0;
+                                                                }
+
+                                                                .uploaded-element {
+                                                                    display: inherit;
+                                                                }
+
+                                                                .uploaded-element {
+                                                                    /* padding-top: 7px;
+                                                                padding-bottom: 5px;
+                                                                border: 1px solid rgb(237, 237, 237); */
+                                                                    border: 1px solid rgb(237, 237, 237);
+                                                                    border-top: none;
+                                                                    /* padding-left: 13px;
+                                                                padding-right: 13px; */
+                                                                    float: left;
+                                                                    width: 100%;
+                                                                    display: flex;
+                                                                    align-items: center;
+                                                                    padding: 1rem;
+                                                                }
+
+                                                                #file-display .fileIocns {
+                                                                    background-image: url(img/file_icons-samall.png);
+                                                                    background-repeat: no-repeat;
+                                                                    background-position: 0 -105px;
+                                                                }
+
+                                                                #file-display .fileIocns {
+                                                                    float: left;
+                                                                    margin-right: 10px;
+                                                                }
+
+                                                                .file-name {
+                                                                    float: left;
+                                                                    width: 87%;
+                                                                }
+
+                                                                .uploaded-element-header {
+                                                                    border: 1px solid rgb(237, 237, 237);
+                                                                    border-top: none;
+                                                                    float: left;
+                                                                    width: 100%;
+                                                                    display: flex;
+                                                                    align-items: center;
+                                                                    padding: 10px;
+                                                                    background: #e3e6f0;
+                                                                }
+
+                                                                .uploaded-header {
+                                                                    width: 100%;
+                                                                    text-align: center;
+                                                                }
+
+                                                                .uploaded-element .confirm-action a.confirm-delete-attachment {
+                                                                    padding: 6px 13px 5px;
+                                                                    background-color: rgb(216, 68, 68) !important;
+                                                                    border-color: rgb(197, 112, 119) rgb(169, 29, 29) rgb(169, 29, 29) rgb(197, 112, 119);
+                                                                    color: rgb(255, 255, 255) !important;
+                                                                    text-shadow: 1px 1px 1px rgba(30, 30, 30, 0.15);
+                                                                    line-height: initial;
+                                                                    font-size: 12px;
+                                                                    float: left;
+                                                                }
+
+                                                                button.save-to-library {
+                                                                    padding: 6px 13px 5px;
+                                                                    border-radius: 4px;
+                                                                    background: linear-gradient(rgb(255, 255, 255), rgb(230, 234, 236));
+                                                                    border: 1px solid rgb(230, 230, 230);
+                                                                    border-color: rgb(230, 230, 230) rgb(179, 179, 179) rgb(179, 179, 179) rgb(230, 230, 230) !important;
+                                                                    color: rgb(204, 0, 0) !important;
+                                                                    font-weight: bold;
+                                                                    margin-left: 10px !important;
+                                                                    font-size: 12px;
+                                                                }
+
+                                                                .uploaded-element {
+                                                                    display: inherit;
+                                                                }
+
+                                                                /* HERE */
+                                                                #files_view .modal-title {
+                                                                    white-space: nowrap;
+                                                                    overflow: hidden;
+                                                                    text-overflow: ellipsis;
+                                                                    width: 70%;
+                                                                }
+
+                                                                #files_view .modal-title {
+                                                                    color: #333;
+                                                                    font-size: 18px;
+                                                                    font-weight: 700;
+                                                                    text-rendering: optimizelegibility;
+                                                                    padding: 9px 0;
+                                                                    padding-left: 15px;
+                                                                    padding-top: 11px;
+                                                                }
+
+                                                                #files_view .modal-dialog {
+                                                                    width: 750px;
+                                                                    margin: 30px auto;
+                                                                }
+
+                                                                #files_view .modal-header .close {
+                                                                    margin-top: 0;
+                                                                    width: 46px;
+                                                                    height: 46px;
+                                                                    padding: 6px 0 0;
+                                                                    border-left: 1px solid #ddd;
+                                                                    opacity: 1;
+                                                                    margin: 0;
+                                                                }
+
+                                                                #files_view .modal-header {
+                                                                    padding: 0;
+                                                                    display: block;
+                                                                }
+
+                                                                #files_view .modal-body {
+                                                                    background-color: rgb(250, 251, 251);
+                                                                }
+
+                                                                #files_view .image-previewer img {
+                                                                    border: 3px solid #fff;
+                                                                    box-shadow: 2px 2px 8px rgba(0, 0, 0, .2);
+                                                                    width: 100%;
+                                                                }
+
+                                                                .download_button {
+                                                                    width: 100%;
+                                                                    text-align: center;
+                                                                    margin-top: 20px;
+                                                                }
+                                                            </style>
+                                                            <div class="columnSettings">
+                                                                <div class="custom-control custom-switch" style="margin: 8px; float:left;">
+                                                                    <input class="custom-control-input chkcolTransDate" type="checkbox" id="formCheck-01" checked="">
+                                                                    <label class="custom-control-label" for="formCheck-01"></label>
+                                                                    <div contenteditable="true" class="groove divcolumn" type="text"
+                                                                        value="{{#if salesCloudGridPreferenceRec}}{{salesCloudGridPreferenceRec.customFields.[0].label}}{{else}}Trans Date{{/if}}" valueupdate="th.colTransDate">
+                                                                        {{#if salesCloudGridPreferenceRec}}{{salesCloudGridPreferenceRec.customFields.[0].label}}{{else}}Trans Date{{/if}}
+                                                                    </div>
+                                                                </div>
+                                                                <div class="d-xl-flex align-items-xl-center divColWidth" style="margin: 8px;">
+                                                                    <label class="text-nowrap" style="padding-left: 0px;margin-top: 8px;">Width: <span class="spWidthTransDate"
+                                                                            value="">{{#if salesCloudGridPreferenceRec}}{{salesCloudGridPreferenceRec.customFields.[0].width}}%{{/if}}</span></label>
+                                                                    <input class="custom-range rngRangeTransDate" type="range" style="margin: 8px;"
+                                                                        value="{{#if salesCloudGridPreferenceRec}}{{salesCloudGridPreferenceRec.customFields.[0].width}}{{else}}0{{/if}}" min="0" max="100">
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="columnSettings">
+                                                                <div class="custom-control custom-switch" style="margin: 8px; float:left;">
+                                                                    <input class="custom-control-input chkcolType" type="checkbox" id="formCheck-02" checked="">
+                                                                    <label class="custom-control-label" for="formCheck-02"></label>
+                                                                    <div contenteditable="true" class="groove divcolumn" type="text" value="{{#if salesCloudGridPreferenceRec}}{{salesCloudGridPreferenceRec.customFields.[1].label}}{{else}}Type{{/if}}"
+                                                                        valueupdate="th.colType">{{#if salesCloudGridPreferenceRec}}{{salesCloudGridPreferenceRec.customFields.[1].label}}{{else}}Type{{/if}}</div>
+                                                                </div>
+                                                                <div class="d-xl-flex align-items-xl-center divColWidth" style="margin: 8px;">
+                                                                    <label class="text-nowrap" style="padding-left: 0px;margin-top: 8px;">Width: <span class="spWidthType"
+                                                                            value="">{{#if salesCloudGridPreferenceRec}}{{salesCloudGridPreferenceRec.customFields.[1].width}}%{{/if}}</span></label>
+                                                                    <input class="custom-range rngRangeType" type="range" style="margin: 8px;"
+                                                                        value="{{#if salesCloudGridPreferenceRec}}{{salesCloudGridPreferenceRec.customFields.[1].width}}{{else}}0{{/if}}" min="0" max="100">
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="columnSettings">
+                                                                <div class="custom-control custom-switch" style="margin: 8px; float:left;">
+                                                                    <input class="custom-control-input chkcolTransNo" type="checkbox" id="formCheck-03" checked="">
+                                                                    <label class="custom-control-label" for="formCheck-03"></label>
+                                                                    <div contenteditable="true" class="groove divcolumn" type="text"
+                                                                        value="{{#if salesCloudGridPreferenceRec}}{{salesCloudGridPreferenceRec.customFields.[2].label}}{{else}}Trans No.{{/if}}" valueupdate="th.colTransNo">
+                                                                        {{#if salesCloudGridPreferenceRec}}{{salesCloudGridPreferenceRec.customFields.[2].label}}{{else}}Trans No.{{/if}}
+                                                                    </div>
+                                                                </div>
+                                                                <div class="d-xl-flex align-items-xl-center divColWidth" style="margin: 8px;">
+                                                                    <label class="text-nowrap" style="padding-left: 0px;margin-top: 8px;">Width: <span class="spWidthTransNo"
+                                                                            value="">{{#if salesCloudGridPreferenceRec}}{{salesCloudGridPreferenceRec.customFields.[2].width}}%{{/if}}</span></label>
+                                                                    <input class="custom-range rngRangeTransNo" type="range" style="margin: 8px;"
+                                                                        value="{{#if salesCloudGridPreferenceRec}}{{salesCloudGridPreferenceRec.customFields.[2].width}}{{else}}0{{/if}}" min="0" max="100">
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="columnSettings">
+                                                                <div class="custom-control custom-switch" style="margin: 8px; float:left;">
+                                                                    <input class="custom-control-input chklineOrginalamount" type="checkbox" id="formCheck-04" checked="">
+                                                                    <label class="custom-control-label" for="formCheck-04"></label>
+                                                                    <div contenteditable="true" class="groove divcolumn" type="text"
+                                                                        value="{{#if salesCloudGridPreferenceRec}}{{salesCloudGridPreferenceRec.customFields.[3].label}}{{else}}Unit Price{{/if}}" valueupdate="th.lineOrginalamount">
+                                                                        {{#if salesCloudGridPreferenceRec}}{{salesCloudGridPreferenceRec.customFields.[3].label}}{{else}}Original Amount{{/if}}
+                                                                    </div>
+                                                                </div>
+                                                                <div class="d-xl-flex align-items-xl-center divColWidth" style="margin: 8px;">
+                                                                    <label class="text-nowrap" style="padding-left: 0px;margin-top: 8px;">Width: <span class="spWidthlineOrginalamount"
+                                                                            value="">{{#if salesCloudGridPreferenceRec}}{{salesCloudGridPreferenceRec.customFields.[3].width}}%{{/if}}</span></label>
+                                                                    <input class="custom-range rngRangelineOrginalamount" type="range" style="margin: 8px;"
+                                                                        value="{{#if salesCloudGridPreferenceRec}}{{salesCloudGridPreferenceRec.customFields.[3].width}}{{else}}0{{/if}}" min="0" max="100">
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="columnSettings">
+                                                                <div class="custom-control custom-switch" style="margin: 8px; float:left;">
+                                                                    <input class="custom-control-input chklineAmountdue" type="checkbox" id="formCheck-07" checked="">
+                                                                    <label class="custom-control-label" for="formCheck-07"></label>
+                                                                    <div contenteditable="true" class="groove divcolumn" type="text"
+                                                                        value="{{#if salesCloudGridPreferenceRec}}{{salesCloudGridPreferenceRec.customFields.[4].label}}{{else}}Amount Due{{/if}}" valueupdate="th.colAmountdue">
+                                                                        {{#if salesCloudGridPreferenceRec}}{{salesCloudGridPreferenceRec.customFields.[4].label}}{{else}}Amount Due{{/if}}
+                                                                    </div>
+                                                                </div>
+                                                                <div class="d-xl-flex align-items-xl-center divColWidth" style="margin: 8px;">
+                                                                    <label class="text-nowrap" style="padding-left: 0px;margin-top: 8px;">Width: <span class="spWidthAmountdue"
+                                                                            value="">{{#if salesCloudGridPreferenceRec}}{{salesCloudGridPreferenceRec.customFields.[4].width}}%{{/if}}</span></label>
+                                                                    <input class="custom-range rngRangeAmountdue" type="range" style="margin: 8px;"
+                                                                        value="{{#if salesCloudGridPreferenceRec}}{{salesCloudGridPreferenceRec.customFields.[4].width}}{{else}}0{{/if}}" min="0" max="100">
+                                                                </div>
+                                                            </div>
+
+
+                                                            <div class="columnSettings">
+                                                                <div class="custom-control custom-switch" style="margin: 8px; float:left;">
+                                                                    <input class="custom-control-input chklinePaymentamount" type="checkbox" id="formCheck-08" checked="">
+                                                                    <label class="custom-control-label" for="formCheck-08"></label>
+                                                                    <div contenteditable="true" class="groove divcolumn" type="text"
+                                                                        value="{{#if salesCloudGridPreferenceRec}}{{salesCloudGridPreferenceRec.customFields.[5].label}}{{else}}Payment Amount{{/if}}" valueupdate="th.linePaymentamount">
+                                                                        {{#if salesCloudGridPreferenceRec}}{{salesCloudGridPreferenceRec.customFields.[5].label}}{{else}}Payment Amount{{/if}}
+                                                                    </div>
+                                                                </div>
+                                                                <div class="d-xl-flex align-items-xl-center divColWidth" style="margin: 8px;">
+                                                                    <label class="text-nowrap" style="padding-left: 0px;margin-top: 8px;">Width: <span class="spWidthPaymentAmount"
+                                                                            value="">{{#if salesCloudGridPreferenceRec}}{{salesCloudGridPreferenceRec.customFields.[5].width}}%{{/if}}</span></label>
+                                                                    <input class="custom-range rngRangePaymentAmount" type="range" style="margin: 8px;"
+                                                                        value="{{#if salesCloudGridPreferenceRec}}{{salesCloudGridPreferenceRec.customFields.[5].width}}{{else}}0{{/if}}" min="0" max="100">
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="columnSettings">
+                                                                <div class="custom-control custom-switch" style="margin: 8px; float:left;">
+                                                                    <input class="custom-control-input chklineOutstandingAmount" type="checkbox" id="formCheck-09" checked="">
+                                                                    <label class="custom-control-label" for="formCheck-09"></label>
+                                                                    <div contenteditable="true" class="groove divcolumn" type="text"
+                                                                        value="{{#if salesCloudGridPreferenceRec}}{{salesCloudGridPreferenceRec.customFields.[6].label}}{{else}}Outstanding Amount{{/if}}" valueupdate="th.lineOutstandingAmount">
+                                                                        {{#if salesCloudGridPreferenceRec}}{{salesCloudGridPreferenceRec.customFields.[6].label}}{{else}}Ouststanding Amount{{/if}}
+                                                                    </div>
+                                                                </div>
+                                                                <div class="d-xl-flex align-items-xl-center divColWidth" style="margin: 8px;">
+                                                                    <label class="text-nowrap" style="padding-left: 0px;margin-top: 8px;">Width: <span class="spWidthOutstandingAmount"
+                                                                            value="">{{#if salesCloudGridPreferenceRec}}{{salesCloudGridPreferenceRec.customFields.[6].width}}%{{/if}}</span></label>
+                                                                    <input class="custom-range rngRangeOutstandingAmount" type="range" style="margin: 8px;"
+                                                                        value="{{#if salesCloudGridPreferenceRec}}{{salesCloudGridPreferenceRec.customFields.[6].width}}{{else}}0{{/if}}" min="0" max="100">
+                                                                </div>
+                                                            </div>
+
+
+                                                            <div class="columnSettings">
+                                                                <div class="custom-control custom-switch" style="margin: 8px; float:left;">
+                                                                    <input class="custom-control-input chkcolComments" type="checkbox" id="formCheck-10" checked="">
+                                                                    <label class="custom-control-label" for="formCheck-10"></label>
+                                                                    <div contenteditable="true" class="groove divcolumn" type="text"
+                                                                        value="{{#if salesCloudGridPreferenceRec}}{{salesCloudGridPreferenceRec.customFields.[7].label}}{{else}}Comments{{/if}}" valueupdate="th.colComments">
+                                                                        {{#if salesCloudGridPreferenceRec}}{{salesCloudGridPreferenceRec.customFields.[7].label}}{{else}}Comments{{/if}}
+                                                                    </div>
+                                                                </div>
+                                                                <div class="d-xl-flex align-items-xl-center divColWidth" style="margin: 8px;">
+                                                                    <label class="text-nowrap" style="padding-left: 0px;margin-top: 8px;">Width: <span class="spWidthComments"
+                                                                            value="">{{#if salesCloudGridPreferenceRec}}{{salesCloudGridPreferenceRec.customFields.[7].width}}%{{/if}}</span></label>
+                                                                    <input class="custom-range rngRangeComments" type="range" style="margin: 8px;"
+                                                                        value="{{#if salesCloudGridPreferenceRec}}{{salesCloudGridPreferenceRec.customFields.[7].width}}{{else}}0{{/if}}" min="0" max="100">
+                                                                </div>
+                                                            </div>
+
+
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button class="btn btn-success btnSaveGridSettings" type="button"><i class="fa fa-save" style="margin-right: 5px;"></i>Save</button>
+                                                <button class="btn btn-warning btnResetGridSettings" data-dismiss="modal" type="reset"><i class="fa fa-repeat" style="margin-right: 5px;"></i>Reset</button>
+                                                <button class="btn btn-secondary" data-dismiss="modal" type="button"><i class="fa fa-remove" style="margin-right: 5px;"></i>Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="modal fade supplierPaymentListModal" role="dialog" tabindex="-1" id="supplierPaymentListModal">
+                            <div class="modal-dialog modal-xl modal-dialog-scrollable customerListModalInner" role="document" style="max-width: 90vw;">
+                                <div class="modal-content customerListContent">
+                                    <div class="modal-header">
+                                        <h4>Awaiting Supplier Payments</h4><button type="button" class="close checkclose" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                    </div>
+                                    <div class="modal-body mainCustomerModalBody" style="padding: 0px; overflow-x: hidden;">
+                                        <input type="hidden" style="width: 100%; display:none;" id="customerSelectLineID" name="customerSelectLineID" readonly>
+                                        <div class="container-fluid" style="padding-left: 0px; padding-right: 0px;">
+                                            <div class="card-body rounded" style="margin: 0px;">
+
+                                                <!-- Start {{> optionNavSalesOverview}} -->
+                                                <div class="row">
+                                                    <div class="col flex-grow-1" style="align-content: flex-start;">
+                                                        <style>
+                                                            .refreshpagelist {
+                                                                margin: 0px !important;
+                                                            }
+
+                                                            .btnRefreshGlobal {
+                                                                padding: 0px !important;
+                                                            }
+                                                        </style>
+                                                        <!-- {{> refreshbutton}} -->
+                                                    </div>
+                                                </div>
+
+                                                <!-- End -->
+
+                                                <div class="table-responsive">
+                                                    <style>
+                                                        th {
+                                                            background-color: #ededed;
+                                                        }
+
+                                                        .table-striped tbody tr:nth-of-type(odd) {
+                                                            background-color: white !important;
+                                                        }
+
+                                                        .table-striped tbody tr:nth-of-type(even) {
+                                                            /* background-color: #0000000d !important; */
+                                                        }
+
+                                                        .JColResizer>tbody>tr>td,
+                                                        .JColResizer>tbody>tr>th {
+                                                            padding: .75rem !important;
+                                                        }
+
+                                                        .hiddenColumn {
+                                                            display: none;
+                                                        }
+
+                                                        .showColumn {
+                                                            display: table-cell;
+                                                            padding: .75rem;
+                                                            vertical-align: top;
+                                                        }
+
+                                                        input[type=number]::-webkit-inner-spin-button,
+                                                        input[type=number]::-webkit-outer-spin-button {
+                                                            opacity: 1;
+                                                        }
+
+
+                                                        .colChkBox {
+                                                            width: 2% !important;
+                                                        }
+
+                                                        .colPaymentDate {
+                                                            width: 80px !important;
+                                                        }
+
+                                                        .colReceiptNo {
+                                                            width: 85px !important;
+                                                        }
+                                                        .colPONumber {
+                                                            width: 80px !important;
+                                                        }
+
+                                                        .colPaymentAmount {
+                                                            width: 80px !important;
+                                                        }
+
+                                                        .colBalance, .colApplied {
+                                                            width: 80px !important;
+                                                        }
+
+                                                        .colSupplierName {
+                                                            width: 200px !important;
+                                                        }
+                                                        .colTypePayment {
+                                                            width: 80px !important;
+                                                        }
+                                                    </style>
+                                                    <table id="tblSupplierAwaitingCard" name="tblSupplierAwaitingCard" style="width:100%" class="dataTable table table-hover table-striped table-bordered tblSupplierAwaitingCard">
+                                                        <thead style="width:100%">
+                                                            <tr class="dnd-moved">
+                                                                <th class="th chkBox colChkBox" style="width: 2% !important;">
+                                                                    <div class="custom-control custom-checkbox chkBox"><input class="custom-control-input chkBoxAll" type="checkbox" id="formCheck-All"><label
+                                                                            class="custom-control-label chkBoxAll" for="formCheck-All"></label></div>
+                                                                </th>
+                                                                <th class="th colSortDate hiddenColumn">id</th>
+                                                                <th class="th colPaymentDate" style="width:50px;">Date</th>
+                                                                <th class="th colReceiptNo" style="width:85px;">Ref No.</th>
+                                                                <th class="th colPONumber" style="width:80px;">Order No.</th>
+                                                                <th class="th colPaymentAmount" style="width:80px;">Payment</th>
+                                                                <th class="th colApplied" style="width:80px;">Original </th>
+                                                                <th class="th colBalance" style="width:80px;">Outstanding</th>
+                                                                <th class="th colSupplierName" style="width:200px;">Supplier Name</th>
+                                                                <!-- <th class="th colPONumber" style="width:80px;">Bank Account</th> -->
+                                                                <!-- <th class="th colDepartment" style="width:80px;">Department</th> -->
+                                                                <th class="th colTypePayment">Type</th>
+                                                                <!-- <th class="th colPaymentMethod hiddenColumn">Custom Field 2</th> -->
+                                                                <th class="th colNotes">Comments</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <!-- {{#if datatablerecords}}
+                                                                {{#each item in datatablerecords}}
+                                                                    <tr class="dnd-moved" id="{{item.id}}" style="cursor: pointer;">
+                                                                        <td contenteditable="false" class="chkBox">
+                                                                          <div class="custom-control custom-checkbox chkBox pointer"><input class="custom-control-input chkBox chkPaymentCard pointer" type="checkbox"
+                                                                                    id="formCheck-{{item.id}}" value="{{item.outsandingamount}}"><label class="custom-control-label chkBox pointer" for="formCheck-{{item.id}}"></label></div>
+                                                                        </td>
+                                                                        <td contenteditable="false" class="colSortDate hiddenColumn">{{item.sortdate}}</td>
+                                                                        <td contenteditable="false" class="colPaymentDate">{{item.paymentdate}}</td>
+                                                                        <td contenteditable="false" class="colReceiptNo">{{item.refno}}</td>
+                                                                        <td contenteditable="false" class="colPONumber">{{item.ponumber}}</td>
+                                                                        <td contenteditable="false" class="colPaymentAmount" style="text-align: right!important;">{{item.applied}}</td>
+                                                                        <td contenteditable="false" class="colApplied" style="text-align: right!important;">{{item.originalamount}}</td>
+                                                                        <td contenteditable="false" class="colBalance" style="text-align: right!important;">{{item.outsandingamount}}</td>
+                                                                        <td contenteditable="false" class="colSupplierName" id="colSupplierName{{item.id}}">{{item.customername}}</td>
+                                                                        <td contenteditable="false" class="colTypePayment hiddenColumn" id="coltype{{item.id}}">{{item.type}}</td>
+                                                                        <td contenteditable="false" class="colNotes">{{item.notes}}</td>
+                                                                    </tr>
+                                                                {{/each}}
+                                                            {{/if}} -->
+
+                                                        </tbody>
+                                                    </table>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn btn-primary btnSelectSuppliers" id="btnSelectSuppliers" type="button">Select</button>
+                                        <button class="btn btn-light checkclose" data-dismiss="modal" type="button">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END -->
+                        <div class="table-responsive" style="padding: .375rem .75rem;">
+                            <style>
+                                th {
+                                    background-color: #ededed;
+                                }
+
+
+                                .table-striped tbody tr:nth-of-type(odd) {
+                                    background-color: white !important;
+                                }
+
+                                .table-striped tbody tr:nth-of-type(even) {
+                                    /* background-color: rgba(0, 163, 211, 0.07) !important; */
+                                }
+
+                                #productListModal .dataTables_scrollHeadInner,
+                                #productListModal .dataTables_scrollHeadInner .table {
+                                    width: 100% !important;
+                                }
+
+
+                                #supplierPaymentListModal .dataTables_scrollHeadInner,
+                                #supplierPaymentListModal .dataTables_scrollHeadInner .table {
+                                    width: 100% !important;
+                                }
+
+                                #taxRateListModal .dataTables_scrollHeadInner,
+                                #taxRateListModal .dataTables_scrollHeadInner .table {
+                                    width: 100% !important;
+                                }
+
+                                @media only screen and (max-width: 480px) {
+
+                                    #ponumber,
+                                    #edtRef,
+                                    .form-group,
+                                    .input-group,
+                                    .formgoup {
+                                        max-width: 100% !important;
+                                        width: 100% !important;
+                                    }
+
+                                    .formgoup {
+                                        margin: 0px !important;
+                                    }
+
+                                    .flex-row {
+                                        margin: 16px !important;
+                                    }
+                                }
+
+                                .resizer {
+                                    position: absolute;
+                                    top: 0;
+                                    right: -8px;
+                                    bottom: 0;
+                                    left: auto;
+                                    width: 16px;
+                                    cursor: col-resize;
+                                }
+
+                                .box {
+                                    /* display: none; */
+                                }
+
+                                .outerBox {
+                                    display: none;
+                                }
+
+                                .hiddenColumn {
+                                    display: none;
+                                }
+
+                                .showColumn {
+                                    display: table-cell;
+                                    padding: .75rem;
+                                    vertical-align: top;
+                                }
+                            </style>
+
+                            <div class="modal fade" role="dialog" tabindex="-1" id="deleteLineModal">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <input type="hidden" style="width: 100%; display:none;" id="selectDeleteLineID" name="selectDeleteLineID" readonly>
+                                        <div class="modal-header">
+                                            <h4>Delete</h4>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">×</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Please select "Delete Line" to remove row or "Delete Payment" to delete the entire payment</p>
+                                            <button class="btn btn-danger float-left btnDeleteLine" type="button">
+                                                <i class="fa fa-close" style="margin-right: 5px;"></i>Delete Line
+                                            </button>
+                                            <button class="btn btn-danger float-right btnDeletePayment" type="button">
+                                                <i class="fa fa-close" style="margin-right: 5px;"></i>Delete Payment
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <style>
+                                .highlightInput {
+                                    border: 0px solid transparent !important;
+                                    background-color: rgba(0, 0, 0, 0) !important;
+                                    padding: 0px !important;
+                                    width: 100% !important;
+                                    text-align: right !important;
+                                    color: #858796 !important;
+                                }
+
+                                .highlightInput::-webkit-outer-spin-button,
+                                .highlightInput::-webkit-inner-spin-button {
+                                    -webkit-appearance: none !important;
+                                    margin: 0 !important;
+                                }
+
+                                /* Firefox */
+                                .highlightInput[type=number] {
+                                    -moz-appearance: textfield !important;
+                                }
+                            </style>
+
+                            <table id="tblSupplierPaymentcard" style="width:100%" class="table table-striped table-bordered tblSupplierPaymentcard">
+                                <thead>
+                                    <tr class="dnd-moved">
+                                        <th class="th colTransDate" style="width: 120px;">Date</th>
+                                        <th class="th colType" style="width: 130px;">Type</th>
+                                        <th class="th colTransNo" style="width: 100px;">Trans No.</th>
+                                        <th class="th lineOrginalamount" style="width: 80px; text-align: left!important;">Original</th>
+                                        <th class="th lineAmountdue" style="width: 80px; text-align: left!important;">Due</th>
+                                        <th class="th linePaymentamount pointer" style="width: 120px; text-align: left!important;">Payment <i class="fa fa-pencil-square-o"></i></th>
+                                        <th class="th lineOutstandingAmount" style="width: 80px; text-align: left!important;">Outstanding</th>
+                                        <th class="th colComments">Comments on Transaction form</th>
+                                        <th class="th" style="width: 25px;"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- {{currentTransDate}} -->
+                                    <!-- <tr class="dnd-moved tr">
+<td contenteditable="true" class="">2020-02-23</td>
+<td contenteditable="true" class="">P012345</td>
+<td contenteditable="true" class="" style="text-align: right!important;">$ 10,000.34</td>
+<td contenteditable="true" class="" style="text-align: right!important;">$ 12,000.34</td>
+<td contenteditable="true" class="" style="text-align: right!important;">$ 12,000.34</td>
+<td contenteditable="true" class="" style="text-align: right!important;">$ 0.00</td>
+<td><span class="table-remove btnRemove"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0"><i class="fa fa-remove"></i></button></span></td>
+</tr> -->
+                                    {{#each item in record.LineItems}}
+                                        <tr class="dnd-moved" id="{{item.poid}}" name="{{item.poid}}">
+                                            <td contenteditable="false" class="colTransDate">{{item.invoicedate}}</td>
+                                            <td contenteditable="false" class="colType" style="color:#00a3d3; cursor: pointer; white-space: nowrap;">{{item.transtype}}</td>
+                                            <td contenteditable="false" class="colTransNo" style="color:#00a3d3">{{item.poid}}</td>
+                                            <td contenteditable="false" class="lineOrginalamount" style="text-align: right!important;">{{item.orginalamount}}</td>
+                                            <td contenteditable="false" class="lineAmountdue" style="text-align: right!important;">{{item.amountdue}}</td>
+                                            <!--                                    <td contenteditable="true" class="linePaymentamount" style="text-align: right!important;">{{item.paymentamount}}</td>-->
+                                            <td><input class="linePaymentamount highlightInput" type="text" value="{{item.paymentamount}}"></td>
+                                            <td contenteditable="false" class="lineOutstandingAmount" style="text-align: right!important;">{{item.ouststandingamount}}</td>
+                                            <td contenteditable="true" class="colComments">{{item.comments}}</td>
+                                            <td><span class="table-remove btnRemove"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0"><i class="fa fa-remove"></i></button></span></td>
+                                        </tr>
+                                    {{/each}}
+                                </tbody>
+                            </table>
+                            <div class="d-xl-flex justify-content-xl-center">
+                                <div align="left" style="width:100%;">
+                                    <button class="btn btn-primary" type="button" id="addRow" style="margin: 16px;">+ Add New Entry</button>
+                                    <input type="hidden" id="rowID" name="rowID">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row justify-content-end" style="padding: 16px 32px;">
+                    <div class="col-12 col-lg-2">
+                        <hr style="border-top: 3px solid #696969;" />
+                        <div class="row">
+                            <div class="col">
+                                <p class="lead" style="color: #696969; font-weight: 700; margin: 0px;">Applied</p>
+                            </div>
+                            <div class="col">
+                                <p class="lead appliedAmount float-right" style="color: #696969; font-weight: 700; padding-left: 20px; margin: 0px;">{{record.applied}}</p>
+                            </div>
+                        </div>
+                        <hr style="border-top: 3px solid #696969;" />
+                    </div>
+                </div>
+
+                <div class="row justify-content-center">
+                    <button class="btn btn-success btnSave" type="button" style="margin: 16px;width: 95px;"><i class="fa fa-save" style="padding-right: 8px;"></i>Save</button>
+                    <button class="btn btn-primary printConfirm" type="button" style="margin: 16px; width: 95px;"><i class="fa fa-print" style="padding-right: 8px;"></i>Print</button>
+                    <button class="btn btn-danger btnConfirmPayment" type="button" style="margin: 16px; width: 95px;"><i class="fa fa-trash" style="padding-right: 8px;"></i>Delete</button>
+                    <button class="btn btn-secondary btnBack" type="button" style="margin: 16px;width: 100px;"><i class="fa fa-remove" style="padding-right: 8px;"></i>Cancel</button>
+                </div>
+            </form>
+            <!-- Start PDF -->
+            <!-- A4 -->
+            <div style="width: 210mm; background-color: #ffffff; padding: 8px; height: 297mm; font-size: 13.33px; display: none; color: #000000; overflow-x: visible;" id="html-2-pdfwrapper" name="html-2-pdfwrapper">
+                <div style="display: flex; height: fit-content; min-height: 30mm;">
+                    <div style="margin: 0px; padding: 16px; width: 120mm; max-width: 120mm;">
+                        <div style="display: flex;">
+                            <div style="max-width: 60mm; max-height: 30mm;">
+                                <img src="assets/img/VS1.png" class="uploadedImage" style="max-width: 200px; max-height: 30mm; margin-bottom: 8px;">
+                            </div>
+                            <div style="width: 70mm;">
+                                <div style="padding-left: 16px;font-weight: bold;">
+                                    <a href="{{organizationurl}}">{{organizationurl}}</a>
+                                    <p style="margin-bottom: 0px; color: rgb(0 0 0);">{{organizationname}}</p>
+                                    <p style="margin-bottom: 0px; color: rgb(0 0 0);">{{companyaddress1}}</p>
+                                    <p style="margin-bottom: 0px; color: rgb(0 0 0);">{{companyaddress2}}</p>
+                                    <p style="margin-bottom: 0px; color: rgb(0 0 0);">{{city}}</p>
+                                    <p style="margin-bottom: 0px; color: rgb(0 0 0);">{{state}} {{poBox}} </p>
+                                    <p style="margin-bottom: 0px; color: rgb(0 0 0);">ABN: {{companyabn}}</p>
+                                    <p style="margin-bottom: 0px; color: rgb(0 0 0);">Phone: {{companyphone}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="font-size: 14px;">
+                            <p style="margin-bottom: 0px; color: rgb(0 0 0);font-weight: bold;">Supplier</p>
+                            <p style="margin-bottom: 0px; color: rgb(0 0 0);" class="pdfCustomerName"></p>
+                            <div style="min-height:50px; width: 50%; margin-bottom: 0px; color: rgb(0 0 0);" class="pdfCustomerAddress"></div>
+                        </div>
+                    </div>
+                    <div style="margin: 0px; padding: 16px; border: none !important; width: 80mm; max-width: 80mm;">
+                        <h4 style="font-weight: bold; font-size: 26.667px; color: rgb(0 0 0);">Supplier Payment</h4>
+                        <div style="display: flex; width: 100%;">
+                            <div style="width: 50%; padding-right: 16px;font-weight: bold;">
+                                <label style="margin-bottom: 4px; color: rgb(0 0 0); width: 100%;">Date:</label>
+                                <label class="pdfPONumber" style="margin-bottom: 4px; color: rgb(0 0 0);">Ref No:</label>
+                            </div>
+                            <div style="width: 50%; padding-left: 16px;">
+                                <p style="margin-bottom: 4px; color: rgb(0 0 0);">{{currentDate}}</p>
+                                <p style="margin-bottom: 0px; color: rgb(0 0 0); white-space: nowrap;">{{record.reference}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div style="height: 195mm;">
+                    <div style="margin: 8px; border: none !important; background-color: rgba(0,0,0,0);">
+                        <table class="credit_print" style="width: 200mm; max-width: 200mm; margin: auto;">
+                            <thead style="color: rgb(251,251,251);">
+                                <tr style="border-bottom: 1px solid rgba(0, 0, 0, 1);">
+                                    <th style="background-color: white; color: rgb(0 0 0);">Date</th>
+                                    <th style="background-color: white; color: rgb(0 0 0);">Type</th>
+                                    <th style="background-color: white; color: rgb(0 0 0);">No.</th>
+                                    <th style="background-color: white; color: rgb(0 0 0); text-align: right;">Amount</th>
+                                    <th style="background-color: white; color: rgb(0 0 0); text-align: right;">Due</th>
+                                    <th style="background-color: white; color: rgb(0 0 0); text-align: right;">Paid</th>
+                                    <th style="background-color: white; color: rgb(0 0 0); text-align: right;">Outstanding</th>
+                                </tr>
+                            </thead>
+                            <tbody style="color: rgb(0 0 0);">
+                                {{#each item in record.LineItems}}
+                                    <tr>
+                                        <td class="text-nowrap">{{item.invoicedate}}</td>
+                                        <td class="text-nowrap" style="color:#00a3d3">{{item.transtype}}</td>
+                                        <td class="text-nowrap">{{item.transid}}</td>
+                                        <td class="text-nowrap text-right">{{item.orginalamount}}</td>
+                                        <td class="text-nowrap text-right">{{item.amountdue}}</td>
+                                        <td class="text-nowrap text-right">{{item.paymentamount}}</td>
+                                        <td class="text-nowrap text-right">{{item.ouststandingamount}}</td>
+                                    </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <hr>
+                <div style="width: 100%; height: 30px;">
+                    <div style="margin-right: 16px; border: none !important; float: right;">
+                        <div style="width: 100%; display: flex;">
+                            <div style="padding-right: 16px; width: 50%;">
+                                <p style="font-weight: 800; margin-bottom: 8px; color: rgb(0 0 0);">Applied</p>
+                            </div>
+                            <div style="padding-left: 16px; width: 50%;">
+                                <p id="grandTotalPrint" style="text-align: right; margin-bottom: 8px; font-weight: 800;">{{record.applied}}<br></p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div style="width: 100%;">
+                    <span style="font-size: 10px;margin-right: 8px; float: right;">Page 1 of 1</span>
+                </div>
+            </div>
+
+
+
+            <!-- Letter -->
+            <div style="width: 216mm;background-color: #ffffff;padding: 8px;height: 279mm; font-size: 13.33px; display:none; color: #000000;" id="html-2-pdfwrapperLetter" name="html-2-pdfwrapperLetter">
+                <div class="d-xl-flex align-items-xl-start" style="height: 100%;">
+                    <div class="d-flex d-xl-flex flex-column flex-nowrap align-items-xl-center" style="min-height: 100%;height: 100%;max-height: 100%;">
+                        <div class="d-lg-flex d-xl-flex flex-row align-items-lg-start align-items-xl-start">
+                            <div class="card d-xl-flex flex-grow-1 specialcard" style="margin: 0px; border: none !important; width: 140mm; max-width: 140mm; background-color: rgba(0,0,0,0);">
+                                <div class="card-body">
+                                    <div class="d-lg-flex justify-content-lg-start" style="margin-bottom: 16px;">
+                                        <div class="d-lg-flex flex-column justify-content-lg-start"><img src="assets/img/VS1.png" class="uploadedImage" style="width: 200px;margin-bottom: 8px;"><a href="#">www.vs1cloud.com</a></div>
+                                        <div class="d-lg-flex d-xl-flex justify-content-lg-center align-items-xl-start card-text">
+                                            <div style="padding-left: 16px;font-weight: bold;">
+                                                <p style="margin-bottom: 0px; color: rgb(0 0 0);">{{organizationname}}</p>
+                                                <p style="margin-bottom: 0px; color: rgb(0 0 0);">{{companyaddress1}}</p>
+                                                <p style="margin-bottom: 0px; color: rgb(0 0 0);">{{companyaddress2}}</p>
+                                                <p style="margin-bottom: 0px; color: rgb(0 0 0);">{{city}}</p>
+                                                <p style="margin-bottom: 0px; color: rgb(0 0 0);">{{state}} {{poBox}} </p>
+                                                <p style="margin-bottom: 0px; color: rgb(0 0 0);">ABN: {{companyabn}}</p>
+                                                <p style="margin-bottom: 0px; color: rgb(0 0 0);">Phone: {{companyphone}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="font-size: 14px;">
+                                        <h5 style="margin-bottom: 0px;font-weight: bold; color: rgb(0 0 0);">Supplier Name</h5>
+                                        <p style="margin-bottom: 0px; display:none;" class="pdfCustomerName4">Big Burtha</p>
+                                        <div style="min-height:50px; width:30%; margin-bottom: 0px; color: rgb(0 0 0);" class="pdfCustomerAddress"></div>
+                                        <!-- <p style="margin-bottom: 0px;">Caulifield South Vic 9820</p>
+<p style="margin-bottom: 0px;">Australia</p> -->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card flex-grow-1 specialcard" style="margin: 0px; border: none !important;width: 65mm; max-width: 65mm; background-color: rgba(0,0,0,0);">
+                                <div class="card-body">
+                                    <h4 class="card-title" style="font-weight: bold; color: rgb(0 0 0);">Supplier Payment</h4>
+                                    <div class="d-lg-flex d-xl-flex align-items-xl-start card-text">
+                                        <div class="d-lg-flex d-xl-flex flex-column align-items-lg-start align-items-xl-start" style="padding-right: 16px;font-weight: bold;"><label class="text-nowrap" style="color: rgb(0 0 0);">Date:</label><label
+                                                class="text-nowrap" style="color: rgb(0 0 0);">Ref No:</label></div>
+                                        <div style="padding-left: 16px;">
+                                            <p style="margin-bottom: 8px; color: rgb(0 0 0);">{{currentDate}}</p>
+                                            <p style="margin-bottom: 8px; color: rgb(0 0 0);">{{record.reference}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex-grow-1" style="width: 100%;">
+                            <div class="card flex-grow-1 specialcard" style="margin: 2px;  border: none !important;  background-color: rgba(0,0,0,0);">
+                                <div class="card-body" style="padding: 4px;">
+                                    <div class="table-responsive">
+                                        <table class="table table-sm" style="width: 200mm; max-width: 200mm;">
+                                            <thead class="text-secondary" style="color: rgb(251,251,251);">
+                                                <tr>
+                                                    <th style="background-color: white; color: rgb(0 0 0);">Trans Date</th>
+                                                    <th style="background-color: white; color: rgb(0 0 0);">Type</th>
+                                                    <th style="background-color: white; color: rgb(0 0 0);">Trans No.</th>
+                                                    <th style="background-color: white; color: rgb(0 0 0);">Original Amount</th>
+                                                    <th style="background-color: white; color: rgb(0 0 0);">Amount Due</th>
+                                                    <th style="background-color: white; color: rgb(0 0 0);">Payment Amount</th>
+                                                    <th style="background-color: white; color: rgb(0 0 0);">Outstanding Amount</th>
+                                                    <th style="background-color: white; color: rgb(0 0 0);">Comments</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody style="color: rgb(0 0 0);">
+                                                {{#each item in record.LineItems}}
+                                                    <tr>
+                                                        <td class="text-nowrap">{{item.invoicedate}}</td>
+                                                        <td class="text-nowrap" style="color:#00a3d3">{{item.transtype}}</td>
+                                                        <td class="text-nowrap">{{item.transid}}</td>
+                                                        <td class="text-nowrap text-right">{{item.orginalamount}}</td>
+                                                        <td class="text-nowrap text-right">{{item.amountdue}}</td>
+                                                        <td class="text-nowrap text-right">{{item.paymentamount}}</td>
+                                                        <td class="text-nowrap text-right">{{item.ouststandingamount}}</td>
+                                                        <td class="text-nowrap">{{item.comments}}</td>
+                                                    </tr>
+                                                {{/each}}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex-grow-0" style="width: 190mm;">
+                            <hr style="margin-top: 0px;margin-right: 8px;margin-left: 8px;margin-bottom: 0px;">
+                            <div class="d-lg-flex d-xl-flex flex-grow-1 align-items-lg-start align-items-xl-start" style="width: 100%;">
+                                <div class="card flex-grow-1 specialcard" style="margin: 8px; border: none !important;min-width: 90mm;max-width: 90mm;width: 90mm; background-color: rgba(0,0,0,0);">
+                                    <div class="card-body" style=""></div>
+                                </div>
+                                <div class="card flex-grow-1 specialcard" style="margin: 8px; border: none !important;min-width: 110mm;max-width: 110mm;width: 110mm; background-color: rgba(0,0,0,0);">
+                                    <div class="card-body float-right">
+                                        <div class="d-lg-flex d-xl-flex align-items-lg-start align-items-xl-start card-text">
+                                            <div class="d-xl-flex flex-column flex-grow-1 align-items-xl-start" style="padding-right: 16px;"><label class="text-nowrap" style="font-weight: 800; color: rgb(0 0 0);">Applied:</label></div>
+                                            <div class="flex-grow-1" style="padding-left: 16px;">
+                                                <p class="text-right flex-grow-1" style="margin-bottom: 8px;font-weight: 800; color: rgb(0 0 0);">{{record.applied}}<br></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><span class="d-lg-flex d-xl-flex justify-content-lg-end justify-content-xl-end" style="font-size: 10px;margin-right: 8px;">Page 1 of 1</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END PDF -->
+        {{/if}}
+    </div>
+    <!-- Start Help Video Modal -->
+    <div class="modal fade" role="dialog" tabindex="-1" id="helpModal">
+        <div class="modal-dialog" role="document" style="max-width: 670px!important;">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <h4 class="title-header">Supplier Payment</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+                    <!-- <iframe width="640" height="360" src="https://player.vimeo.com/video/99892791" frameborder="0" allowfullscreen=""></iframe> -->
+                    <!-- <iframe width="640" height="360" src="https://www.youtube.com/embed/BzxoYOp42fg" frameborder="0" allowfullscreen=""></iframe> -->
+                    <video id="myVideo" width="640" height="360" controls="" name="media" style="border: solid 5px #999999f0; height: auto; outline: none;">
+                        <source src="https://erphelpes.com/vs1videos/comingsoon.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ModalSupplier -->
+    <div class="modal fade supplierListModal" role="dialog" tabindex="-1" id="supplierListModal">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable supplierListModalInner" role="document" style="max-width: 90vw;">
+            <div class="modal-content supplierListContent">
+                <div class="modal-header">
+                    <h4>Supplier List</h4><button type="button" class="close checkclose" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body mainSupplierModalBody" style="padding: 0px; overflow-x: hidden;">
+                    <input type="hidden" style="width: 100%; display:none;" id="supplierSelectLineID" name="supplierSelectLineID" readonly>
+                    {{> supplierlistpop}}
+
+                </div>
+                <div class="modal-footer"><button class="btn btn-light checkclose" data-dismiss="modal" type="button">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- End Modal Supplier -->
+
+    <div class="modal fade" role="dialog" tabindex="-1" id="accountListModal">
+        {{> accountlistpop}}
+    </div>
+
+    <div class="modal fade" role="dialog" tabindex="-1" id="addAccountModal">
+        {{> addaccountpop}}
+    </div>
+
+    <div class="modal fade" role="dialog" tabindex="-1" id="addSupplierModal">
+        {{> addsupplierpop}}
+    </div>
+
+    <div class="modal fade" role="dialog" tabindex="-1" id="departmentModal">
+        {{> departmentpop}}
+    </div>
+
+    <div class="modal fade" role="dialog" tabindex="-1" id="newDepartmentModal">
+        {{> newdepartmentpop}}
+    </div>
+
+    <div class="modal fade" role="dialog" tabindex="-1" id="paymentMethodModal">
+        {{> paymentmethodpop}}
+    </div>
+
+    <div class="modal fade" role="dialog" tabindex="-1" id="newPaymentMethodModal">
+        {{> newpaymentmethodpop}}
+    </div>
+    <!-- End Help Video Modal -->
+    <script>
+        modalDraggable();
+    </script>
+</template>

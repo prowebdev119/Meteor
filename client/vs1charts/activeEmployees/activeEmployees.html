@@ -1,0 +1,65 @@
+<template name="activeEmployees">
+
+    <div class="card shadow mb-4 portlet ui-widget ui-widget-content ui-helper-clearfix ui-corner-all ui-resizable">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h6 class="text-primary font-weight-bold m-0">Active Employees</h6>
+            <div class="dropdown no-arrow">
+                <a class="on-editor-change-mode btn btn-link hideelement" role="presentation" href="">Hide</a>
+                <button class="btn btn-link btn-sm dropdown-toggle btnchartdropdown" data-toggle="dropdown"
+                    aria-expanded="false" type="button">
+                    <i class="fas fa-ellipsis-v text-gray-400"></i>
+                </button>
+
+                <div class="dropdown-menu shadow dropdown-menu-right animated--fade-in" role="menu">
+                    <a class="dropdown-item" role="presentation" href="#">Last Month</a>
+                    <a class="dropdown-item" role="presentation" href="#">Current Month</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" role="presentation" href="#">More Details</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item editchartsbtn pointer" role="presentation" data-toggle="modal"
+                        data-target="#editDashboardModal">Edit
+                        Chart</a>
+                    <a class="dropdown-item pointer" role="presentation">Reset Chart</a>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <!--{{#if topTenData}}
+                {{#each itemData in topTenData}}
+                <div class="row no-gutters align-items-center" style="margin-bottom: 20px;margin-top: 20px;">
+                <div class="col-auto">
+                <div class="text-dark d-xl-flex flex-column justify-content-xl-center font-weight-bold h5 mb-0 mr-3">
+                <span style=" "><img src="assets/img/avatars/avatar4.jpeg" style="width: 45px;margin-right: 10px;">{{itemData.name}}</span>
+                </div>
+                </div>
+                <div class="col">
+                <div class="progress" style="height: 30px;margin-left: 5px;">
+                <div class="progress-bar bg-warning" aria-valuenow="{{itemData.totalbalance}}" aria-valuemin="0" aria-valuemax="100" style="width: {{itemData.totalbalance}}%;">{{Currency}}{{itemData.totalbalance}}</div>
+                </div>
+                </div>
+                </div>
+                {{/each}}
+            {{/if}}-->
+            <div class="row no-gutters align-items-center" style="margin-bottom: 20px;margin-top: 20px;">
+                {{#if loggeduserdata}}
+                {{#each itemloggeduser in loggeduserdata}}
+                <div class="col-6">
+                    <div
+                        class="text-dark d-xl-flex flex-column justify-content-xl-center font-weight-bold h5 mb-0 mr-3">
+                        <a href="/employeescard?id={{itemloggeduser.id}}">
+                            <p style="text-overflow: ellipsis; overflow: hidden; width: 100%; white-space: nowrap;">
+                                <img src="{{ itemloggeduser.avatar }}"
+                                    style="width: 45px;margin-right: 10px; margin-bottom: 10px; ">{{itemloggeduser.employeeName}}
+                            </p>
+                        </a>
+                    </div>
+                </div>
+                {{/each}}
+                {{/if}}
+
+            </div>
+
+        </div>
+    </div>
+
+</template>

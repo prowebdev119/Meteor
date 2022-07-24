@@ -1,0 +1,203 @@
+<template name="register">
+<div class="d-flex flex-column" id="content-wrapper">
+<div id="content">
+<div style="margin-top: -24px;">
+<header style="padding: 16px;background-color: #ededed;">
+<h1 style="margin: 16px;">Setup Connection</h1>
+</header>
+<div class="fullScreenSpin" style="display:none;"><div class="spinner"></div></div>
+<style>
+@media only screen and (max-width: 480px) {
+
+.table,
+.table>tbody,
+.table>tbody>tr,
+.table>tbody>tr>td {
+display: block;
+width: 100%
+}
+}
+
+#result {color: #333333; padding: 5px; background-color: #ffffff; }
+#isokay {color: green; padding: 5px;}
+ #isnotokay {color: red; padding: 5px;}
+ #isokay {
+  /* color: green;  */
+  color : rgb(0,0,0);
+  font-weight: bold;
+  background: rgba(0, 128, 0, 0.71);
+  padding: 5px;
+}
+#isokay p {
+  background: rgba(0, 128, 0, 0.71);
+}
+#isnotokay {color: red; font-weight: bold;}
+#isnotokayres {
+  color : rgb(0,0,0);
+  font-weight: bold;
+  background: red;
+  padding: 5px;
+}
+</style>
+<form class="addRegisterForm" id="addRegisterForm">
+<div style="margin-bottom: 32px;">
+<header>
+<h4 style="margin: 4px;">Setup VS1 Cloud Server Connection</h4>
+</header>
+</div>
+<div class="table-responsive">
+
+<table class="table tblConnectionSetUp" style="">
+<tbody>
+  <tr>
+    <td style="padding: 3px;">
+      <div class="flex-grow-1">
+        <div class="form-group" style="margin: 4px;"><label>Description</label>
+          <input class="form-control form-control" type="text" name="Description" placeholder="General Description" required></div>
+      </div>
+    </td>
+    <td style="padding: 3px;">
+      <div class="form-group" style="margin: 4px;"><label>Server</label>
+        <input class="form-control form-control" type="text" name="Server" placeholder="Server IP" required></div>
+    </td>
+    <td style="padding: 3px;">
+      <div class="flex-grow-1">
+        <div class="form-group" style="margin: 4px;"><label>Database</label>
+          <input class="form-control form-control" type="text" name="Database" placeholder="ERP Database" required></div>
+      </div>
+    </td>
+    <td style="padding: 3px;">
+      <div class="flex-grow-1">
+        <div class="form-group" style="margin: 4px;"><label>Username</label>
+          <input class="form-control form-control" type="text" name="Username" placeholder="Username" required></div>
+      </div>
+    </td>
+    <td style="padding: 3px;">
+      <div class="flex-grow-1">
+        <div class="form-group" style="margin: 4px;"><label>ERP Password</label>
+          <input class="form-control form-control" type="text" name="Password" placeholder="Password" required></div>
+      </div>
+    </td>
+    <td style="padding: 3px;">
+      <div class="flex-grow-1">
+        <div class="form-group" style="margin: 4px;"><label>Email</label>
+          <input class="form-control form-control" type="text" name="Useremail" placeholder="Email" required></div>
+      </div>
+    </td>
+    <td style="padding: 3px;">
+      <div class="flex-grow-1">
+        <div class="form-group" style="margin: 4px;"><label>VS1 Password</label>
+          <input class="form-control form-control CloudPassword" type="text" name="CloudPassword" placeholder="Cloud Password" required></div>
+      </div>
+    </td>
+    <td style="padding: 3px;">
+      <div class="flex-grow-1" style="max-width: 75px;">
+        <div class="form-group" style="margin: 4px;"><label>Port</label>
+          <input class="form-control form-control" type="text" name="Port" placeholder="Port" required></div>
+      </div>
+    </td>
+    <td>
+      <div class="flex-grow-1">
+        <button class="btn btn-primary reg_btn2" id="submitbutton" type="submit" style="margin: 4px;">Save Details</button></div>
+    </td>
+  </tr>
+</tbody>
+</table>
+</div>
+</form>
+<form class="updateRegisterForm" id="updateRegisterForm">
+<div>
+<header>
+<h4 style="margin: 4px;">VS1 Cloud Connection Details</h4>
+</header>
+</div>
+<div class="table-responsive">
+<table class="table" id="availConnections" name="availConnections">
+<thead>
+  <tr></tr>
+</thead>
+<tbody>
+  {{#each regAdd}}
+    <tr>
+      <td style="padding: 3px;">
+        <div class="flex-grow-1">
+          <div class="form-group" style="margin: 4px;"><label>Description</label>
+            <input class="form-control form-control" type="text" name="Description1_{{_id}}" id="Description1" value="{{description}}"></div>
+        </div>
+      </td>
+      <td style="padding: 3px;">
+        <input type="text" style="display: none;" name="ID1_{{_id}}" id="ID1" value="{{_id}}">
+        <div class="form-group" style="margin: 4px;"><label>Server</label>
+          <input class="form-control form-control" type="text" name="Server1_{{_id}}" id="Server1" value="{{server}}"></div>
+      </td>
+      <td style="padding: 3px;">
+        <div class="flex-grow-1">
+          <div class="form-group" style="margin: 4px;"><label>Database</label>
+            <input class="form-control form-control" type="text" name="Database1_{{_id}}" id="Database1" value="{{database}}"></div>
+        </div>
+      </td>
+      <td style="padding: 3px;">
+        <div class="flex-grow-1">
+          <div class="form-group" style="margin: 4px;"><label>Username</label>
+            <input class="form-control form-control" type="text" name="Username1_{{_id}}" id="Username1" value="{{username}}"></div>
+        </div>
+      </td>
+      <td style="padding: 3px;">
+        <div class="flex-grow-1">
+          <div class="form-group" style="margin: 4px;"><label>ERP Password</label>
+            <input class="form-control form-control" type="text" name="Password1_{{_id}}" id="Password1" value="{{password}}"></div>
+        </div>
+      </td>
+      <td style="padding: 3px;">
+        <div class="flex-grow-1">
+          <div class="form-group" style="margin: 4px;"><label>Email</label>
+            <input class="form-control form-control" type="text" name="Useremail1_{{_id}}" id="Useremail1" value="{{useremail}}" readonly></div>
+        </div>
+      </td>
+      <td style="padding: 3px;">
+        <div class="flex-grow-1">
+          <div class="form-group" style="margin: 4px;"><label>VS1 Password</label>
+            <input class="form-control form-control" type="text" name="CloudPassword1_{{_id}}" id="CloudPassword1" placeholder="**********"></div>
+        </div>
+      </td>
+      <td style="padding: 3px;">
+        <div class="flex-grow-1" style="max-width: 75px;">
+          <div class="form-group" style="margin: 4px;"><label>Port</label>
+            <input class="form-control form-control" type="text" name="Port1_{{_id}}" id="Port1" value="{{port}}"></div>
+        </div>
+      </td>
+      <td style="padding: 3px;">
+        <label style="visibility:hidden;">VS1 Buttons</label>
+        <div class="d-xl-flex align-items-xl-center" style="">
+          <button class="btn btn-primary reg_btn2 btn_test" type="button" style="margin: 4px;" id="test_{{database}}">Test</button>
+          <button class="btn btn-primary reg_btn2 btn_update" type="button" style="margin: 4px;" id="update_{{database}}">Update</button>
+          <button class="btn btn-danger reg_btn2 btn_delete" type="button" style="margin: 4px;" id="delete_{{_id}}"><i class="fa fa-remove"></i></button>
+        </div>
+
+      </td>
+    </tr>
+  {{/each}}
+</tbody>
+</table>
+</div>
+</form>
+<hr>
+    <!-- <h3>Connection Test Results</h3> -->
+    <header>
+    <h4 style="margin: 4px;">Connection Test Results</h4>
+    </header>
+    <p id="isokay" style="font-size: 15px; display:none;"></p>
+    <p id="isnotokayres" style="font-size: 15px; display:none;"></p>
+    <div id="result" style="font-size: 12px;"></div>
+    <hr>
+    <!-- <a href="/" class="reg_btn"></a> -->
+    <a class="btn btn-primary" role="button" style="color: rgb(255,255,255);min-width: 117.016px; background-color: #00A3D3; border-color: #00A3D3;" href="/" ><i class="fas fa-sign-in-alt"></i> Login Here</a>
+</div>
+</div>
+<footer class="bg-white sticky-footer">
+<div class="container my-auto">
+<div class="text-center my-auto copyright"><span>Copyright © VS1 Cloud 2020</span></div>
+</div>
+</footer>
+</div>
+</template>

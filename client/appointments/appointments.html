@@ -1,0 +1,3880 @@
+<template name="appointments">
+    <div class="fullScreenSpin" style="display:none;">
+        <div class="spinner"></div>
+    </div>
+
+    <div class="d-sm-flex justify-content-between align-items-center mb-4 headerDiv" style="margin-left: 24px;">
+        <h3 class="text-dark mb-0 appointmentHeader" style="width: 100%; margin-right: 1em;">
+            Appointment Overview
+
+            <a role="button" data-toggle="modal" href="#helpViewModal" class=""><label class="lblplay">Help</label><i class="fa fa-question-circle-o" style="font-size: 20px;"></i></a>
+
+            <a style="margin-right: 8px;" class="btn float-right btnoptionsmodal" role="button" href="#settingsModal"><i class="icon ion-android-more-horizontal"></i></a>
+        </h3>
+
+        <div class="modal fade" role="dialog" tabindex="-1" id="helpViewModal">
+            <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                    <div class="modal-header" style="padding-bottom: 8px;">
+                        <h4>Help</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <p class="text-center text-muted"><a role="button" data-toggle="modal" href="#helpModal" class="btn btn-primary helpModal">View Help Video</a></p>
+                        <p class="text-center text-muted"><a href="https://vs1forum.com/viewtopic.php?f=6&t=56" target="_blank" class="btn btn-primary">Download Help File</a></p>
+                        <p class="text-center text-muted"><button class="btn btn-primary" type="button">Employ Advisor</button></p>
+                        <p class="text-center text-muted" style="margin: 0px;"><a href="https://vs1forum.com/ucp.php?mode=register&cloudusername={{loggedCompany}}" target="_blank" class="btn btn-primary">Go To Forum</a></p>
+                    </div>
+                    <div class="modal-footer" style="padding: 6px;"><button class="btn btn-light" data-dismiss="modal" type="button">Close</button></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" role="dialog" tabindex="-1" id="helpModal">
+            <div class="modal-dialog" role="document" style="max-width: 670px!important;">
+                <div class="modal-content">
+                    <div class="modal-header">
+
+                        <h4 class="title-header">Appointment List</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <video id="myVideo" width="640" height="360" controls="" name="media" style="border: solid 5px #999999f0; height: auto; outline: none;">
+                            <source src="https://erphelpes.com/vs1videos/appointmentoverview.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        @media screen and (max-width: 450px) {
+            .navbar {
+                display: none;
+            }
+
+            .colCalendar {
+                padding: 0px !important;
+            }
+
+            .fc-view-harness.fc-view-harness-active {
+                max-height: 100vh !important;
+                height: 100vh !important;
+            }
+
+            .appointmentHeader {
+                display: none;
+            }
+
+            .colEmployeeList {
+                display: none;
+            }
+
+            .fc-toolbar-chunk:nth-child(1) {
+                display: none;
+            }
+
+            .fc-toolbar-chunk:nth-child(2) {
+                margin: 0 auto;
+                margin-top: 8px !important;
+            }
+
+            .fc-toolbar-chunk:nth-child(3) {
+                display: none;
+            }
+        }
+
+        @media (max-height: 450px) and (max-width: 950px) {
+            .topbar {
+                display: none;
+            }
+
+            .appointmentHeader {
+                display: none;
+            }
+
+            .fc-toolbar-title {
+                margin-top: 8px !important;
+            }
+
+            .colEmployeeList {
+                display: none;
+            }
+
+            .colCalendar {
+                padding: 0px !important;
+            }
+
+            .fc-header-toolbar.fc-toolbar.fc-toolbar-ltr {
+                padding-top: 0px;
+            }
+
+            #allocationModal {
+                padding-left: 0px !important;
+                z-index: 1049;
+            }
+
+            .fc-view-harness.fc-view-harness-active {
+                max-height: 600px !important;
+                height: 600px !important;
+            }
+
+            .fc-toolbar-chunk:nth-child(1) {
+                display: none;
+            }
+
+            .fc-toolbar-chunk:nth-child(3) {
+                display: none;
+            }
+
+            .fc-toolbar-chunk {
+                width: 100% !important;
+            }
+
+            .headerDiv {
+                margin-bottom: 0px !important;
+            }
+
+            .allocationOuterModal {
+                margin-bottom: 0px;
+                margin-top: 0px;
+                max-height: 100vh;
+                height: 100vh;
+            }
+
+            .allocationFooter {
+                display: none;
+            }
+
+            .allocationHeaderParent {
+                padding: 0.75rem !important;
+            }
+
+            .customerListModalInner {
+                margin: 0px !important;
+                max-width: 100vw !important;
+            }
+
+            .customerListContent {
+                max-height: 100vh !important;
+                height: 100vh !important;
+            }
+
+            .colCompany {
+                width: 400px !important;
+            }
+
+            .modalCreateOuter {
+                margin: 0px !important;
+                max-width: 100vw !important;
+            }
+
+            .modalCreateAppointments {
+                width: 100vw !important;
+            }
+
+            .cardBodyInner {
+                padding: 3px !important;
+            }
+
+            .cardBodyInner {
+                font-size: 11px !important;
+            }
+        }
+
+        .modal {
+            overflow-y: auto;
+        }
+
+        .fc-event-main {
+            z-index: 0 !important;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: clip;
+            max-height: 97px;
+        }
+
+        .fc .fc-timegrid-body {
+            z-index: 0 !important;
+        }
+
+        @media (max-width: 750px) {
+            .modal-dialog {
+                max-width: 100% !important;
+                min-height: 100% !important;
+                margin-top: 0px !important;
+            }
+        }
+
+        .allocationInnerModal {
+            width: 95vw;
+            height: 95vh;
+        }
+
+        .allocationHeaderDate {
+            background-color: rgba(0, 0, 0, 0) !important;
+            padding: 0px !important;
+            border-radius: 0px !important;
+            border: 0px solid #e3e6f0 !important;
+            background-clip: border-box !important;
+            box-shadow: 0 0 0 0 rgb(0 0 0 / 0%) !important;
+            font-size: 1.3rem !important;
+            margin-top: 8px !important;
+        }
+
+        .btnPrev {
+            margin-right: 12px;
+        }
+
+        .btnNext {
+            margin-left: 12px;
+        }
+    </style>
+
+    <div class="allocationModal modal fade" role="dialog" tabindex="-1" id="allocationModal">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable allocationOuterModal" role="document">
+            <div class="modal-content allocationInnerModal" id="allocationInnerModal">
+                <div class="modal-header allocationHeaderParent">
+                    <h4 style="margin: 0px;" class="allocationHeader">Allocation</h4>
+                    <div class="alloDate" style="margin: auto; width: 230px; display: -webkit-inline-box;">
+                        <button type="button" role="button" class="btn prev btnPrev btn-primary" id="prev"><i class="fa fa-arrow-left" aria-hidden="true"></i></button>
+                        <div class="fc-toolbar-chunk allocationHeaderDate">
+                            <h2 class="fc-toolbar-title" style="font-size: 1.3rem;">Mar 8 – 12, 2021</h2>
+                        </div>
+                        <button type="button" role="button" class="btn next btnNext btn-primary" id="next"><i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+                    </div>
+                    <button type="button" class="close allocationCloser" data-dismiss="modal" aria-label="Close" style="margin-left: 0px;"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body" style="padding: 0px;">
+                    <style>
+                        .currentDay {
+                            background-color: rgba(255, 220, 40, 0.15);
+                        }
+
+                        .fullWeek {
+                            width: 11.8vw !important;
+                            min-width: 11.8vw !important;
+                            max-width: 11.8vw !important;
+                        }
+
+                        .employeeName {
+                            width: 11.8vw !important;
+                            min-width: 11.8vw !important;
+                            max-width: 11.8vw !important;
+                        }
+
+                        .cardFullWeek {
+                            width: 11vw !important;
+                            min-width: 11vw !important;
+                            max-width: 11vw !important;
+                        }
+
+                        .cardHiddenSundayOrSaturday {
+                            width: 13.5vw !important;
+                            min-width: 13.5vw !important;
+                            max-width: 13.5vw !important;
+                        }
+
+                        .cardHiddenWeekend {
+                            width: 15vw !important;
+                            min-width: 15vw !important;
+                            max-width: 15vw !important;
+                        }
+
+                        .job-date {
+                            margin-bottom: 0px;
+                        }
+
+                        .hidesunday {
+                            display: none !important;
+                        }
+
+                        .hidesaturday {
+                            display: none !important;
+                        }
+
+                        @media screen and (max-width: 420px) {
+                            .colEmployeeList {
+                                display: none;
+                            }
+
+                            .fc-header-toolbar {
+                                display: none !important;
+                            }
+
+                            .allocationHeaderParent {
+                                display: none;
+                            }
+
+                            .fullWeek {
+                                width: 150px !important;
+                                min-width: 150px !important;
+                                max-width: 150px !important;
+                            }
+
+                            .cardFullWeek {
+                                width: 135px !important;
+                                min-width: 135px !important;
+                                max-width: 135px !important;
+                            }
+
+                            .cardHiddenSundayOrSaturday {
+                                width: 135px !important;
+                                min-width: 135px !important;
+                                max-width: 135px !important;
+                            }
+
+                            .cardHiddenWeekend {
+                                width: 135px !important;
+                                min-width: 135px !important;
+                                max-width: 135px !important;
+                            }
+
+                            .employeeName {
+                                width: 150px !important;
+                            }
+
+                            .tdEmployeeName {
+                                width: 150px !important;
+                                min-width: 150px !important;
+                                max-width: 150px !important;
+                                white-space: nowrap !important;
+                                overflow: hidden !important;
+                                text-overflow: ellipsis !important;
+                            }
+                        }
+
+                        @media screen and (max-width: 1024px) {
+                            .tdEmployeeName {
+                                width: 9.5vw;
+                                min-width: 9.5vw;
+                                max-width: 9.5vw;
+                                white-space: nowrap !important;
+                                overflow: hidden !important;
+                                text-overflow: ellipsis !important;
+                            }
+
+                            .employeeName {
+                                width: 9.5vw !important;
+                                min-width: 9.5vw !important;
+                                max-width: 9.5vw !important;
+                                white-space: nowrap !important;
+                                overflow: hidden !important;
+                                text-overflow: ellipsis !important;
+                            }
+
+                            .cardHiddenWeekend {
+                                width: 12vw;
+                                min-width: 12vw;
+                                max-width: 12vw;
+                            }
+
+                            .allocationInnerModal {
+                                width: 100vw;
+                                height: 100vh;
+                            }
+
+                        }
+                    </style>
+                    <div class="row no-gutters">
+                        <div id="here_table" style="width:100%"></div>
+                    </div>
+                </div>
+                <div class="modal-footer allocationFooter"><button class="btn btn-light" data-dismiss="modal" type="button">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" role="dialog" tabindex="-1" id="settingsModal">
+        <div class="modal-dialog modal-sm modal-dialog-centered" role="document" style="max-width: 400px;">
+            <div class="modal-content">
+                <form id="appointmentOptions" name="appointmentOptions">
+                    <div class="modal-header">
+                        <h4>Appointment Settings</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    </div>
+                    <div class="modal-body" style="padding: 24px;">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="custom-control custom-switch"><input type="checkbox" class="custom-control-input" id="showSaturday" /><label class="custom-control-label" for="showSaturday">Show Saturday</label></div>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 1em;">
+                            <div class="col-12">
+                                <div class="custom-control custom-switch"><input type="checkbox" class="custom-control-input" id="showSunday" /><label class="custom-control-label" for="showSunday">Show Sunday</label></div>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 1em;">
+                            <div class="col-12">
+                                <div class="form-group flex-grow-1" style="margin: 8px 0px 0px 0px;">
+                                    <label style="margin-bottom: 0px;">Show Hours</label>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group flex-grow-1" style="margin: 8px 0px;">
+                                    <label>From</label>
+                                    <input type="time" id="hoursFrom" class="form-control" value="08:00">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group flex-grow-1" style="margin: 8px 0px;">
+                                    <label>To</label>
+                                    <input type="time" id="hoursTo" class="form-control" value="17:00">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group flex-grow-1" style="margin: 8px 0px;">
+                                    <label>Default Booking Time</label>
+                                    <select id="defaultTime" class="form-control">
+                                        <option>1 Hour</option>
+                                        <option>2 Hours</option>
+                                        <option>3 Hours</option>
+                                        <option>4 Hours</option>
+                                        <option>5 Hours</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group flex-grow-1" style="margin: 8px 0px;">
+                                    <label>Show Time In</label>
+                                    <select id="showTimeIn" class="form-control">
+                                        <option value="">Don't Round</option>
+                                        <option value="">30 Minutes</option>
+                                        <option value="" selected>1 Hour</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group flex-grow-1" style="margin: 8px 0px;">
+                                    <label>Minimum Charge Time</label>
+                                    <select id="chargeTime" class="form-control">
+                                        <option selected>1 Hour</option>
+                                        <option>2 Hours</option>
+                                        <option>3 Hours</option>
+                                        <option>4 Hours</option>
+                                        <option>5 Hours</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 colProductService" id="colProductService">
+                                <div class="form-group flex-grow-1" style="margin: 8px 0px;"><label>Default Product /
+                                        Service</label>
+                                    <select id="productlist" name="productlist" class="form-control">
+                                        {{#if datatablerecords}}
+                                            {{#each item in datatablerecords}}
+                                                <option value="{{item.id}}">{{item.productname}}</option>
+                                            {{/each}}
+                                        {{/if}}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-success btnSaveSettings" type="submit"><i class="fa fa-save" style="margin-right: 5px;"></i>Save</button>
+                        <button class="btn btn-warning btnResetSettings" data-dismiss="modal" type="reset"><i class="fa fa-repeat" style="margin-right: 5px;"></i>Reset</button>
+                        <button class="btn btn-secondary" data-dismiss="modal" type="button"><i class="fa fa-remove" style="margin-right: 5px;"></i>Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" role="dialog" id="event-modal">
+        <form id="frmAppointment">
+            <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable modalCreateOuter" role="document">
+                <div class="modal-content modalCreateAppointments" id="modalCreateAppointments">
+                    <div class="modal-header">
+                        <h4 style="margin-bottom: 0px;">Create Appointments</h4><button type="button" class="close checkclose" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    </div>
+                    <div class="modal-body" style="padding: 0px;">
+
+                        <div class="row d-xl-flex flex-column justify-content-xl-center" style="margin: 12px;">
+                            <div class="col" style="padding: 0px;">
+                                <div class="row" style="padding: 0px 8px;">
+                                    <div class="col-6 colCustJobName" id="colCustJobName">
+                                        <div class="form-group flex-grow-1" style="margin: 8px 0px;"><label>Customer / Job</label>
+                                            <select type="search" class="form-control" id="customer" name="customer" style="background-color:rgb(255, 255, 255); cursor: pointer;"></select>
+                                        </div>
+                                    </div>
+                                    <div class="col-2 colMobno" id="colMobno">
+                                        <div class="form-group flex-grow-1" style="margin: 8px 0px;"><label>Mobile
+                                                No.</label><input type="text" id="mobile" name="mobile" class="form-control"></div>
+                                    </div>
+                                    <div class="col-2 colPhoneno" id="colPhoneno">
+                                        <div class="form-group flex-grow-1" style="margin: 8px 0px;"><label>Phone
+                                                No.</label><input type="text" id="phone" name="phone" class="form-control"></div>
+                                    </div>
+                                    <div class="col-2 colAppID" id="colAppID">
+                                        <div class="form-group flex-grow-1" style="margin: 8px 0px;"><label>App
+                                                ID</label><input type="text" id="appID" name="appID" class="form-control" readonly>
+                                            <input type="hidden" id="updateID" name="updateID" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row" style="padding: 0px 8px;">
+                                    <div class="col-4 colStreetAddress" id="colStreetAddress">
+                                        <div class="form-group flex-grow-1" style="margin: 8px 0px;"><label>Street
+                                                Address</label><input type="text" id="address" name="address" class="form-control"></div>
+                                    </div>
+                                    <div class="col-2 colCityTown" id="colCityTown">
+                                        <div class="form-group flex-grow-1" style="margin: 8px 0px;">
+                                            <label>Suburb</label><input type="text" id="suburb" name="suburb" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-2 colState" id="colState">
+                                        <div class="form-group flex-grow-1" style="margin: 8px 0px;">
+                                            <label>State</label><input type="text" id="state" name="state" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-2 colCountry" id="colCountry">
+                                        <div class="form-group flex-grow-1" style="margin: 8px 0px;">
+                                            <label>Country</label><input type="text" id="country" name="country" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-2 colZip" id="colZip">
+                                        <div class="form-group flex-grow-1" style="margin: 8px 0px;"><label>Zip
+                                                Code</label><input type="text" id="zip" name="zip" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr style="margin: 8px">
+                                <div class="row" style="padding: 0px 8px;">
+                                    <div class="col-md-3">
+                                        <a href="#" style="margin: 8px 0px;" id="googleLink" class="googleLink">Google Maps Link</a>
+                                    </div>
+                                    <div class="col-md-2 custom-control custom-control-inline custom-switch d-xl-flex align-items-xl-center" style="margin: 0;padding: -2px;padding-left: 24px;">
+                                        <div class="form-group d-xl-flex justify-content-xl-start align-items-xl-center" style="margin: 0; Width:50%;">
+                                            <input class="custom-control-input chkSMSCustomer" type="checkbox" id="chkSMSCustomer" style="font-size: 22px;" checked><label class="custom-control-label" for="chkSMSCustomer">SMS Customer</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 custom-control custom-control-inline custom-switch d-xl-flex align-items-xl-center" style="margin: 0;padding: -2px;padding-left: 24px;">
+                                        <div class="form-group d-xl-flex justify-content-xl-start align-items-xl-center" style="margin: 0; Width:50%;">
+                                            <input class="custom-control-input chkSMSUser" type="checkbox" id="chkSMSUser" style="font-size: 22px;" checked><label class="custom-control-label" for="chkSMSUser">SMS User</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr style="margin: 8px">
+                                <div class="row" style="padding: 0px 8px;">
+                                    <div class="col-6 colEmpName" id="colEmpName">
+                                        <div class="form-group flex-grow-1" style="margin: 8px 0px;"><label>Employee
+                                                Name</label><input id="employee_name" name="employee_name" type="text" class="form-control employee_name" readonly>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-3 colStartDate" id="colStartDate">
+                                        <div class="form-group" style="margin: 8px 0px;">
+                                            <label>Start Date</label>
+                                            <div class="input-group date" style="cursor: pointer;">
+                                                <input type="text" class="form-control formClassDate statementDate" id="dtSODate" name="dtSODate" value="{{invoicerecord.saledate}}">
+                                                <div class="input-group-addon" style="">
+                                                    <span class="glyphicon glyphicon-th" style="cursor: pointer;"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-3 colEndDate" id="colEndDate">
+                                        <div class="form-group" style="margin: 8px 0px;">
+                                            <label>End Date</label>
+                                            <div class="input-group date" style="cursor: pointer;">
+                                                <input type="text" class="form-control formClassDate statementDate" id="dtSODate2" name="dtSODate2" value="{{invoicerecord.saledate}}">
+                                                <div class="input-group-addon" style="">
+                                                    <span class="glyphicon glyphicon-th" style="cursor: pointer;"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row" style="padding: 0px 8px;">
+                                    <div class="col-4 colNotesParent" id="colNotesParent">
+                                        <div class="row" style="padding: 0px 8px;">
+                                            {{#if equals addNotes true}}
+                                                <div class="col-12 colNotes" id="colNotes" style="padding-left: 2px; padding-right: 0px;">
+                                                    <div class="form-group flex-grow-1" style="margin: 8px 0px;">
+                                                        <label>Notes</label>
+                                                        <textarea class="border rounded form-control" rows="5" id="txtNotes" name="txtNotes" style="width: 100%; border: 1px solid #d1d3e2 !important;"></textarea>
+                                                    </div>
+                                                </div>
+                                            {{/if}}
+                                        </div>
+                                    </div>
+                                    <div class="col-8" id="colBookedTimeParent">
+                                        <div class="row" style="padding: 0px 8px;">
+                                            <div class="col-3 colBookedTime" id="colBookedTime">
+                                                <h5 class="float-right bookedTimeHeader" id="bookedTimeHeader" style="margin: 8px 0px; margin-top: 2.5em;">
+                                                    Booked Time</h5>
+                                            </div>
+                                            <div class="col-3 colBookedStartTime" id="colBookedStartTime" style="padding-left: .5rem;">
+                                                <div class="form-group flex-grow-1" style="margin: 8px 0px;">
+                                                    <label>Start
+                                                        Time</label><input class="form-control" id="startTime" name="startTime" type="time">
+                                                </div>
+                                            </div>
+                                            <div class="col-3 colBookedEndTime" id="colBookedEndTime">
+                                                <div class="form-group flex-grow-1" style="margin: 8px 0px;"><label>End
+                                                        Time</label><input class="form-control" id="endTime" name="endTime" type="time"></div>
+                                            </div>
+                                            <div class="col-2 colBookedHours" id="colBookedHours" style="padding-right: .3rem;">
+                                                <div class="form-group flex-grow-1" style="margin: 8px 0px;">
+                                                    <label>Hours</label><input type="text" id="txtBookedHoursSpent" name="txtBookedHoursSpent" class="form-control" readonly>
+                                                </div>
+                                            </div>
+                                            <div class="col-1 flex justify-content-center align-items-center d-none" id="smsConfirmedFlag" style="padding-right: .3rem; padding-top: 40px;">
+                                                <i class="fa fa-check-circle text-success" style="font-size: 35px;" data-toggle="tooltip" data-placement="top" title="SMS Message confirmed"></i>
+                                            </div>
+                                        </div>
+                                        <div class="row" style="padding: 0px 8px;">
+                                            <div class="col-3 colActualTime" id="colActualTime">
+                                                <h5 class="float-right timeHeader" id="timeHeader" style="margin: 8px 0px; margin-top: 2.5em;">
+                                                    Actual Time</h5>
+                                            </div>
+                                            <div class="col-3 colActualStartTime" id="colActualStartTime" style="padding-left: .5rem;">
+                                                <div class="form-group flex-grow-1" style="margin: 8px 0px;">
+                                                    <label>Start
+                                                        Time</label><input class="form-control" type="time" id="tActualStartTime" name="tActualStartTime">
+                                                </div>
+                                            </div>
+                                            <div class="col-3 colActualEndTime" id="colActualEndTime">
+                                                <div class="form-group flex-grow-1" style="margin: 8px 0px;"><label>End
+                                                        Time</label><input class="form-control" type="time" id="tActualEndTime" name="tActualEndTime">
+
+                                                    <span class="btn btn-warning paused" style="margin: 8px 0px; width: 100%; margin-top: -56px; background-color: rgba(246, 194, 62, 0.4); cursor: default;">Paused</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-2 colActualHours" id="colActualHours" style="padding-right: .3rem;">
+                                                <div class="form-group flex-grow-1" style="margin: 8px 0px;">
+                                                    <label>Hours</label><input type="text" id="txtActualHoursSpent" name="txtActualHoursSpent" class="form-control">
+                                                    <input id="aStartDate" name="aStartDate" type="hidden" class="form-control employee_name">
+
+                                                </div>
+                                            </div>
+                                            <div class="col-1 colAppointmentList" id="colAppointmentList" style="padding-right: .3rem;">
+                                                <label></label>
+                                                <button class="btn btn-success btnAppointmentList" type="button" style="margin: 15px 0px; width: 48px;" id="btnAppointmentList"><i class="far fa-clock"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="row" style="padding: 0px 8px;">
+<div class="col-12">
+<a href="#" style="margin: 8px 0px; text-align:right;">View Time List</a>
+</div>
+</div> -->
+                                </div>
+                                <hr style="margin: 8px">
+                                <div class="row" style="padding: 0px 8px;">
+                                    <div class="col-xl-4 col-12 colProductService2" id="colProductService2">
+                                        <div class="form-group flex-grow-1" style="margin: 8px 0px;"><label>Product /
+                                                Service</label>
+
+                                                <select type="search" id="product-list" name="product-list" class="form-control" style="background-color:rgb(255, 255, 255); cursor: pointer;">
+                                                <!-- {{#if datatablerecords}}
+                                                    {{#each item in datatablerecords}}
+                                                        <option value="{{item.id}}">{{item.productname}}</option>
+                                                    {{/each}}
+                                                {{/if}} -->
+                                            </select></div>
+                                    </div>
+                                    {{#if equals addAttachment true}}
+                                        <div class="col-xl-2 col-12 colProductService1" id="colProductService1" style="padding-top: 2em;">
+                                            <button class="btn btn-primary btn_Attachment float-left" type="button" style="margin: 8px 0px;" data-toggle="modal" href="#myModalAttachment" id="btn_Attachment" autocomplete="off"> {{attachmentCount}} <i
+                                                    class="fa fa-paperclip"></i></button>
+
+                                                    <button class="btn btn-primary float-left" type="button" style="margin: 8px; margin-left: 16px;" data-toggle="modal" href="#myModalAttachment" id="triggerCamera" autocomplete="off"><i class="fa fa-camera" aria-hidden="true"></i></button>
+                                        </div>
+                                    {{/if}}
+                                    <div class="col-xl-2 col-4 colStart" id="colStart" style="padding-top: 2em;">
+                                        <button class="btn btn-success" type="button" style="margin: 8px 0px; width: 100%;" id="btnStartAppointment">Start</button>
+                                    </div>
+                                    {{#if equals accessOnHold false}}
+                                        <div class="col-xl-2 col-4 colOnHold" id="colOnHold" style="padding-top: 2em;">
+                                            <button class="btn btn-warning" type="button" style="margin: 8px 0px; width: 100%;" id="btnHold">On Hold </button>
+                                        </div>
+                                    {{else}}
+                                     <div class="col-xl-2 col-4 colOnHold" id="colOnHold" style="padding-top: 2em;">
+                                            <button class="btn btn-warning" type="button" style="margin: 8px 0px; width: 100%;" id="btnHold"><span>On Hold</span></button>
+                                        </div>
+                                    {{/if}}
+                                    <div class="col-xl-2 col-4 colStop" id="colStop" style="padding-top: 2em;">
+                                        <button class="btn btn-danger" type="button" style="margin: 8px 0px; width: 100%;" id="btnStopAppointment">Stop</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-success btnSaveAppointment" type="button" style="margin: 8px;" id="btnSaveAppointment" name="btnSaveAppointment"><i class="fa fa-save" style="margin-right: 5px;"></i>Save</button>
+                        <button class="btn btn-danger btnDelete" type="button" style="margin: 8px;" id="btnDelete" name="btnDelete"><i class="fas fa-trash-alt" style="margin-right: 5px;"></i>Delete</button>
+                        <button class="btn btn-warning btnOptions" type="button" style="margin: 8px;" id="btnOptions" name="btnOptions"><i class="fas fa-cogs" style="margin-right: 5px;"></i>Options</button>
+
+
+
+                        <!-- Start Appointment Modal to choose Start Appointment SMS Message -->
+                        <div class="modal fade" role="dialog" id="startAppointmentModal">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="mb-0">Start Appointment SMS Message</h4><button type="button" class="close" id="btnCloseStartAppointmentModal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                    </div>
+                                    <div class="modal-body" style="padding: 0px; overflow-x: hidden;">
+                                        <div class="row m-0">
+                                            <div class="col p-3">
+                                                <label>You are able to edit Start Appointment SMS message here</label>
+                                                <textarea class="border rounded form-control" rows="5" id="startAppointmentSMSMessage" name="startAppointmentSMSMessage"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn btn-primary btnStartAppointmentConfirm" id="btnStartAppointmentConfirm" type="button"><i class="fa fa-check" style="margin-right: 5px;"></i>Confirm</button>
+                                            <button class="btn btn-secondary" id="btnCloseStartAppointmentModal" type="button"><i class="fa fa-remove" style="margin-right: 5px;"></i>Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Stop Appointment Modal to choose Stop Appointment SMS Message -->
+                        <div class="modal fade" role="dialog" id="stopAppointmentModal">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="mb-0">Stop Appointment SMS Message</h4><button type="button" class="close" id="btnCloseStopAppointmentModal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                    </div>
+                                    <div class="modal-body" style="padding: 0px; overflow-x: hidden;">
+                                        <div class="row m-0">
+                                            <div class="col p-3">
+                                                <label>You are able to edit Stop Appointment SMS message here</label>
+                                                <textarea class="border rounded form-control" rows="5" id="stopAppointmentSMSMessage" name="stopAppointmentSMSMessage"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn btn-primary btnEndActualTime" id="btnEndActualTime" type="button"><i class="fa fa-check" style="margin-right: 5px;"></i>Confirm</button>
+                                            <button class="btn btn-secondary" id="btnCloseStopAppointmentModal" type="button"><i class="fa fa-remove" style="margin-right: 5px;"></i>Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Save Appointment Modal to choose Save Appointment SMS Message -->
+                        <div class="modal fade" role="dialog" id="saveAppointmentModal">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="mb-0">Save Appointment SMS Message</h4><button type="button" class="close" id="btnCloseSaveAppointmentModal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                    </div>
+                                    <div class="modal-body" style="padding: 0px; overflow-x: hidden;">
+                                        <div class="row m-0">
+                                            <div class="col p-3">
+                                                <label>You are able to edit Save Appointment SMS message here</label>
+                                                <textarea class="border rounded form-control" rows="5" id="saveAppointmentSMSMessage" name="saveAppointmentSMSMessage"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn btn-primary btnSaveAppointmentSubmit" id="btnSaveAppointmentSubmit" type="submit"><i class="fa fa-check" style="margin-right: 5px;"></i>Confirm</button>
+                                            <button class="btn btn-secondary" id="btnCloseSaveAppointmentModal" type="button"><i class="fa fa-remove" style="margin-right: 5px;"></i>Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Start Attachemt -->
+                        <div class="modal fade" role="dialog" tabindex="-1" id="myModalAttachment">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4>Upload Attachments</h4><button type="button" class="close closeModal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                    </div>
+                                    <div class="modal-body" style="padding: 0px;">
+                                        <div class="divTable" id="file-display">
+                                            <!-- <div class="uploaded-element-header">
+<span class="uploaded-on uploaded-header">Upload a file</span>
+</div> -->
+                                            <div class="col inboxcol1">
+                                                <img src="/icons/nofiles_icon.jpg" class="" style="width:100%;">
+                                            </div>
+                                            <div class="col inboxcol2" style="text-align: center;">
+                                                <div>Upload files or add files from the file library.</div>
+
+                                                    <div>Capture copies of receipt's or take photo's of completed jobs.</div>
+
+                                                <p style="color: #ababab;">Only users with access to your company can view these files</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+
+
+                                            <input type="file" id="img-attachment-upload" style="display:none" accept="image/*" capture="camera">
+                                            <button class="btn btn-primary btnUploadFile img_new_attachment_btn" type="button"><i class="fas fa-camera" style="margin-right: 5px;"></i>Capture</button>
+
+                                            <input type="file" id="attachment-upload" style="display:none" multiple accept=".jpg,.gif,.png">
+
+                                            <input type="file" id="attachment-upload" style="display:none" multiple accept=".jpg,.gif,.png,.bmp,.tiff,.pdf,.doc,.docx,.xls,.xlsx,.ppt,
+                                           .pptx,.odf,.csv,.txt,.rtf,.eml,.msg,.ods,.odt,.keynote,.key,.pages-tef,
+                                           .pages,.numbers-tef,.numbers,.zip,.rar,.zipx,.xzip,.7z,image/jpeg,
+                                           image/gif,image/png,image/bmp,image/tiff,application/pdf,
+                                           application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,
+                                           application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,
+                                           application/vnd.ms-powerpoint,application/vnd.openxmlformats-officedocument.presentationml.presentation,
+                                           application/vnd.oasis.opendocument.formula,text/csv,text/plain,text/rtf,message/rfc822,
+                                           application/vnd.ms-outlook,application/vnd.oasis.opendocument.spreadsheet,
+                                           application/vnd.oasis.opendocument.text,application/x-iwork-keynote-sffkey,
+                                           application/vnd.apple.keynote,application/x-iwork-pages-sffpages,
+                                           application/vnd.apple.pages,application/x-iwork-numbers-sffnumbers,
+                                           application/vnd.apple.numbers,application/zip,application/rar,
+                                           application/x-zip-compressed,application/x-zip,application/x-7z-compressed">
+
+                                        <button class="btn btn-primary btnUploadFile new_attachment_btn" type="button"><i class="fa fa-cloud-upload" style="margin-right: 5px;"></i>Upload</button>
+                                        <button class="btn btn-success closeModal" data-dismiss="modal" type="button" style="margin-right: 5px;" autocomplete="off">
+                        <i class="fa fa-save" style="padding-right: 8px;"></i>Save
+                    </button>
+                                        <!-- <button class="btn btn-warning btnResetSettings" data-dismiss="modal" type="reset"><i class="fa fa-repeat" style="margin-right: 5px;"></i>Reset</button> -->
+                                        <button class="btn btn-secondary closeModal" type="button"><i class="fa fa-remove" style="margin-right: 5px;"></i>Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END Attachments -->
+                        <!-- View File Attachemt -->
+                        <div id="files_view" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close closeView">x</button>
+                                        <h4 class="modal-title">{{uploadedFile.name}}</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        {{#if uploadedFile.image}}
+                                            <div class="image-previewer">
+                                                <img src="{{uploadedFile.link}}">
+                                            </div>
+                                        {{else}}
+                                            <div class=" default-file {{uploadedFile.class}}">
+
+                                            </div>
+                                        {{/if}}
+                                        <div class="download_button">
+                                            <a class="new_create_btn btn btn-primary" id="downloadButton" download="{{uploadedFile.name}}" href="{{uploadedFile.link}}">Download</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End View File attachment -->
+
+                        <button class="btn btn-secondary checkclose" data-dismiss="modal" type="button" style="margin: 8px;"><i class="fa fa-close" style="margin-right: 5px;"></i>Close</button>
+                    </div>
+
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="modal fade" role="dialog" id="frmOptions">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Appointment Options</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body" style="padding: 0px; overflow-x: hidden;">
+                    <div class="row">
+                        <div class="col-12">
+                            <a role="presentation" class="dropdown-item pointer" id="deleteAll"><i class="far fa-trash-alt text-danger" style="width: 16px;"></i> Delete this Appointment and following Appointments</a>
+                        </div>
+                        <div class="col-12">
+                            <a role="presentation" class="dropdown-item pointer" id="copyappointment"><i class="far fa-copy text-warning" style="width: 16px;"></i> Copy this Appointment to Another Day</a>
+                        </div>
+                        <div class="col-12">
+                            <a role="presentation" class="dropdown-item pointer btnRepeatApp" id="btnRepeatApp"><i class="fas fa-redo-alt text-info" style="width: 16px;"></i> Repeat This Appointment</a>
+                        </div>
+                        <div class="col-12">
+                            <a role="presentation" class="dropdown-item pointer" id="createInvoice" data-toggle="modal"><i class="fas fa-file-invoice-dollar text-success" style="width: 16px;"></i> Create Invoice</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary btnAppOptionsModal" id="btnAppOptionsModal" type="button" data-dismiss="modal"><i class="fa fa-remove" style="margin-right: 5px;"></i>Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" role="dialog" id="frmNewDate">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Select New Date</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body" style="padding: 10px; overflow-x: hidden;">
+                    <div class="row">
+                        <div class="col-8 colStartDate" id="colStartDate">
+                            <div class="form-group" style="margin: 8px 0px;">
+                                <label>Start Date</label>
+                                <div class="input-group date" style="cursor: pointer;">
+                                    <input type="text" class="form-control formClassDate statementDate" id="startDate" name="startDate" value="{{invoicerecord.saledate}}">
+                                    <div class="input-group-addon" style="">
+                                        <span class="glyphicon glyphicon-th" style="cursor: pointer;"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-success btnSaveAppointment" style="margin: 8px;" id="btnCopyAppointment" name="btnCopyAppointment"><i class="fa fa-save" style="margin-right: 5px;"></i>Save</button>
+                        <button class="btn btn-secondary btnAppOptionsModal" id="btnAppOptionsModal" type="button" data-dismiss="modal"><i class="fa fa-remove" style="margin-right: 5px;"></i>Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div role="dialog" tabindex="-1" class="modal fade repeatAppointments" id="myModal2">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 style="margin: 0px;">Repeat Appointments</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col"><label class="col-form-label" style="width: 100%;">Repeat Appointment Every</label></div>
+                        </div>
+                        <div class="row no-gutters">
+                            <div class="col" style="margin-right: 4px;">
+                                <select id="frequency" class="float-right form-control">
+                                    <option value=""></option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                </select>
+                            </div>
+                            <div class="col" style="margin-left: 4px;">
+                                <select id="period" class="float-right form-control">
+                                    <option value="days">Days</option>
+                                    <option value="weeks">Weeks</option>
+                                    <option value="months">Months</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <!--  <div class="form-group">
+<div class="row no-gutters">
+<div class="col" style="margin-right: 4px;">
+<select id="offset" class="float-right form-control">
+<option value="Begin of Month Plus">Begin of Month Plus</option>
+<option value="End of Month Minus">End of Month Minus</option>
+</select>
+</div>
+<div class="col" style="margin-left: 4px;">
+<input type="number" min="0" step="1" oninput="validity.valid||(value='');" class="float-left form-control" style="margin-right: 4px;" placeholder="days" autocomplete="off">
+</div>
+</div>
+</div> -->
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col repeatOn"><label class="col-form-label" style="width: 100%;">Repeat On</label></div>
+                        </div>
+                        <style>
+                            .select-size input {
+                                display: none;
+                            }
+
+                            .day-active {
+                                background: #00a3d3 !important;
+                                color: #fff !important;
+                            }
+
+                            .normal-day {
+                                background: #fff;
+                                color: #858796;
+                            }
+
+                            .radioLabel {
+                                display: inline-block;
+                                width: 50px;
+                                height: 50px;
+                                text-align: center;
+                                border: 1px solid #ddd;
+                                line-height: 50px;
+                                cursor: pointer;
+                                border-radius: 25px;
+                            }
+
+                            .file-name span {
+                                width: 100%;
+                                float: left;
+                            }
+
+                            #file-display .fileIocns i.fa.fa-file {
+                                color: rgb(252, 181, 38);
+                                font-size: 24px;
+                            }
+
+                            #file-display {
+                                padding: 0;
+                                margin: 0;
+                            }
+
+                            .uploaded-element {
+                                display: inherit;
+                            }
+
+                            .uploaded-element {
+
+                                border: 1px solid rgb(237, 237, 237);
+                                border-top: none;
+
+                                float: left;
+                                width: 100%;
+                                display: flex;
+                                align-items: center;
+                                padding: 1rem;
+                            }
+
+                            #file-display .fileIocns {
+                                background-image: url(img/file_icons-samall.png);
+                                background-repeat: no-repeat;
+                                background-position: 0 -105px;
+                            }
+
+                            #file-display .fileIocns {
+                                float: left;
+                                margin-right: 10px;
+                            }
+
+                            .file-name {
+                                float: left;
+                                width: 87%;
+                            }
+
+                            .uploaded-element-header {
+                                border: 1px solid rgb(237, 237, 237);
+                                border-top: none;
+                                float: left;
+                                width: 100%;
+                                display: flex;
+                                align-items: center;
+                                padding: 10px;
+                                background: #e3e6f0;
+                            }
+
+                            .uploaded-header {
+                                width: 100%;
+                                text-align: center;
+                            }
+
+                            .uploaded-element .confirm-action a.confirm-delete-attachment {
+                                padding: 6px 13px 5px;
+                                background-color: rgb(216, 68, 68) !important;
+                                border-color: rgb(197, 112, 119) rgb(169, 29, 29) rgb(169, 29, 29) rgb(197, 112, 119);
+                                color: rgb(255, 255, 255) !important;
+                                text-shadow: 1px 1px 1px rgba(30, 30, 30, 0.15);
+                                line-height: initial;
+                                font-size: 12px;
+                                float: left;
+                            }
+
+                            button.save-to-library {
+                                padding: 6px 13px 5px;
+                                border-radius: 4px;
+                                background: linear-gradient(rgb(255, 255, 255), rgb(230, 234, 236));
+                                border: 1px solid rgb(230, 230, 230);
+                                border-color: rgb(230, 230, 230) rgb(179, 179, 179) rgb(179, 179, 179) rgb(230, 230, 230) !important;
+                                color: rgb(204, 0, 0) !important;
+                                font-weight: bold;
+                                margin-left: 10px !important;
+                                font-size: 12px;
+                            }
+
+                            .uploaded-element {
+                                display: inherit;
+                            }
+
+                            /* HERE */
+                            #files_view .modal-title {
+                                white-space: nowrap;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                                width: 70%;
+                            }
+
+                            #files_view .modal-title {
+                                color: #333;
+                                font-size: 18px;
+                                font-weight: 700;
+                                text-rendering: optimizelegibility;
+                                padding: 9px 0;
+                                padding-left: 15px;
+                                padding-top: 11px;
+                            }
+
+                            #files_view .modal-dialog {
+                                /* width: 750px; */
+                                margin: 30px auto;
+                            }
+
+                            #files_view .modal-header .close {
+                                margin-top: 0;
+                                width: 46px;
+                                height: 46px;
+                                padding: 6px 0 0;
+                                border-left: 1px solid #ddd;
+                                opacity: 1;
+                                margin: 0;
+                            }
+
+                            #files_view .modal-header {
+                                padding: 0;
+                                display: block;
+                            }
+
+                            #files_view .modal-body {
+                                background-color: rgb(250, 251, 251);
+                            }
+
+                            #files_view .image-previewer img {
+                                border: 3px solid #fff;
+                                box-shadow: 2px 2px 8px rgba(0, 0, 0, .2);
+                                width: 100%;
+                            }
+
+                            .download_button {
+                                width: 100%;
+                                text-align: center;
+                                margin-top: 20px;
+                            }
+                        </style>
+                        <div class="row">
+                            <div class="col">
+                                <div class="select-size">
+                                    <input class="radioInput" type="radio" name="monday" id="monday" />
+                                    <input class="radioInput" type="radio" name="tuesday" id="tuesday" />
+                                    <input class="radioInput" type="radio" name="wednesday" id="wednesday" />
+                                    <input class="radioInput" type="radio" name="thursday" id="thursday" />
+                                    <input class="radioInput" type="radio" name="friday" id="friday" />
+                                    <input class="radioInput" type="radio" name="saturday" id="saturday" />
+                                    <input class="radioInput" type="radio" name="sunday" id="sunday" />
+
+                                    <label class="radioLabel normal-day" for="monday">M</label>
+                                    <label class="radioLabel normal-day" for="tuesday">T</label>
+                                    <label class="radioLabel normal-day" for="wednesday">W</label>
+                                    <label class="radioLabel normal-day" for="thursday">T</label>
+                                    <label class="radioLabel normal-day" for="friday">F</label>
+                                    <label class="radioLabel normal-day" for="saturday">S</label>
+                                    <label class="radioLabel normal-day" for="sunday">S</label>
+                                </div>
+                            </div>
+                        </div>
+                        <!--
+<script>
+$( document ).ready(function() {
+$("body").on("click", "label", function(e) {
+var getValue = $(this).attr("for");
+var goToParent = $(this).parents(".select-size");
+var getInputRadio = goToParent.find("input[id = " + getValue + "]");
+});
+})
+</script>
+-->
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col"><label class="col-form-label" style="width: 100%;">Ends</label></div>
+                        </div>
+                        <div class="row no-gutters" style="margin-bottom: 4px;">
+                            <div class="col d-xl-flex align-items-xl-center">
+                                On
+                            </div>
+                            <div class="col">
+                                <div class="form-group" style="margin: 8px 0px;">
+                                    <div class="input-group date" style="cursor: pointer;">
+                                        <input type="text" class="form-control formClassDate" id="finalDate" name="finalDate" value="{{invoicerecord.saledate}}">
+                                        <div class="input-group-addon" style="">
+                                            <span class="glyphicon glyphicon-th" style="cursor: pointer;"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-success" id="btnSaveRepeat" type="button"><i class="fa fa-save" style="margin-right: 5px;"></i>Save</button>
+                    <button class="btn btn-secondary" data-dismiss="modal" type="button"><i class="fa fa-close" style="margin-right: 5px;"></i>Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal fade" role="dialog" id="frmOnHoldModal">
+        <div class="modal-dialog modal-sm modal-dialog-centered" role="document" style="max-width: 400px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Reason For Pausing Job</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body" style="padding: 24px;">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="custom-control custom-switch"><input type="checkbox" class="custom-control-input" id="break" value="Break" /><label class="custom-control-label" for="break">Break</label></div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 1em;">
+                        <div class="col-12">
+                            <div class="custom-control custom-switch"><input type="checkbox" class="custom-control-input" id="lunch" value="Lunch" /><label class="custom-control-label" for="lunch">Lunch</label></div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 1em;">
+                        <div class="col-12">
+                            <div class="custom-control custom-switch"><input type="checkbox" class="custom-control-input" id="purchase" value="Purchase" /><label class="custom-control-label" for="purchase">Purchase</label></div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 1em;">
+                        <div class="col-12">
+                            <div class="form-group flex-grow-1" style="margin: 8px 0px 0px 0px;">
+                                <label>Notes</label><textarea class="form-control" id="txtpause-notes">
+                                </textarea>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-success btnPauseJob"><i class="fa fa-save" style="margin-right: 5px;"></i>Save</button>
+                    <button class="btn btn-secondary" data-dismiss="modal" type="button"><i class="fa fa-remove" style="margin-right: 5px;"></i>Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal print-button -modal -->
+    <div class="modal fade" role="dialog" tabindex="-1" id="productListModal">
+        {{> payrollproductlistpop}}
+    </div>
+
+    <div class="modal fade" role="dialog" tabindex="-1" id="newProductModal">
+        {{> newproductpop}}
+    </div>
+
+    <div class="modal fade" role="dialog" tabindex="-1" id="addCustomerModal">
+        {{> addcustomerpop}}
+    </div>
+
+    <div class="modal fade customerListModal" role="dialog" tabindex="-1" id="customerListModal">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable customerListModalInner" role="document" style="max-width: 90vw;">
+            <div class="modal-content customerListContent">
+                <div class="modal-header">
+                    <h4>Customer List</h4><button type="button" class="close checkclose" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body mainCustomerModalBody appointmentCustomer" style="padding: 0px; overflow-x: hidden;">
+                    <input type="hidden" style="width: 100%; display:none;" id="customerSelectLineID" name="customerSelectLineID" readonly>
+                    {{> customerlistpop}}
+
+                </div>
+                <div class="modal-footer"><button class="btn btn-light checkclose" data-dismiss="modal" type="button">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .results tr[visible='false'],
+        .no-result {
+            display: none;
+        }
+
+        .results tr[visible='true'] {
+            display: table-row;
+        }
+
+        .counter {
+            padding: 8px;
+            color: #ccc;
+        }
+
+        .sideSearch {
+            width: 100% !important;
+            overflow-x: hidden;
+            overflow-y: hidden;
+        }
+
+        .cardB {
+            max-height: 75vh;
+            overflow-y: auto;
+        }
+
+        .rowB {
+            overflow-x: auto;
+            margin-left: 0px;
+            margin-right: 24px;
+        }
+
+        .nav-tabs .nav-link.active {
+            color: rgb(0, 163, 211) !important;
+            background-color: #EDEDED !important;
+            border-color: #00a3d3 #00a3d3 #ededed #00a3d3 !important;
+        }
+
+        .nav-tabs .nav-link {
+            background-color: #fff !important;
+            border-color: #00a3d3 !important;
+        }
+
+        @media only screen and (max-width: 600px) {
+            .sideSearch {
+                width: auto;
+            }
+        }
+
+        #cloudEmpEmailAddress:focus {
+            border-color: #00a3d3;
+        }
+
+        .clearfix::after,
+        .calendar ol::after {
+            content: ".";
+            display: block;
+            height: 0;
+            clear: both;
+            visibility: hidden;
+        }
+
+        .calendar {
+            border-radius: 10px;
+        }
+
+        .month {
+            font-size: 2rem;
+        }
+
+        @media (min-width: 992px) {
+            .month {
+                font-size: 3.5rem;
+            }
+        }
+
+        .calendar ol li {
+            float: left;
+            width: 14.28571%;
+        }
+
+        .calendar .day-names {
+            border-bottom: 1px solid #eee;
+        }
+
+        .calendar .day-names li {
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .calendar .days li {
+            border-bottom: 1px solid #eee;
+            min-height: 8rem;
+        }
+
+        .calendar .days li .date {
+            margin: 0.5rem 0;
+        }
+
+        .calendar .days li .event {
+            font-size: 0.75rem;
+            padding: 0.4rem;
+            color: white;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            border-radius: 4rem;
+            margin-bottom: 1px;
+        }
+
+        .calendar .days li .event.span-2 {
+            width: 200%;
+        }
+
+        .calendar .days li .event.begin {
+            border-radius: 1rem 0 0 1rem;
+        }
+
+        .calendar .days li .event.end {
+            border-radius: 0 1rem 1rem 0;
+        }
+
+        .calendar .days li:nth-child(n + 29) {
+            border-bottom: none;
+        }
+
+        .calendar .days li.outside .date {
+            color: #ddd;
+        }
+
+        .fc-event.fc-daygrid-event.fc-daygrid-block-event {
+            cursor: pointer !important;
+        }
+
+        .alignColCenter {
+            top: 20%;
+            left: 20%;
+        }
+
+        /*Calendar Styling Classes*/
+        .calendarWidth100 {
+            width: 100%;
+        }
+
+        @media screen and (max-width: 768px) {
+            .newcardb {
+                margin: 0 auto !important;
+                margin-bottom: 16px !important;
+            }
+        }
+
+        @media screen and (max-width: 1024px) {
+            .allocationHeaderDate {
+                width: 300px !important;
+            }
+
+            .modalCreateAppointments {
+                width: 95vw;
+            }
+
+            .rowB {
+                margin-left: 0px;
+                margin-right: 0px;
+            }
+
+            .alloDate {
+                width: 400px !important;
+                margin-right: 25%;
+            }
+
+            .fc-toolbar-chunk {
+                background-color: rgba(0, 0, 0, 0) !important;
+                padding: 0px !important;
+                border-radius: 0px !important;
+                border: 0px solid #e3e6f0 !important;
+                background-clip: border-box !important;
+                box-shadow: 0 0 0 0 rgb(0 0 0 / 0%) !important;
+            }
+
+            .newcardb {
+                /* max-height: 300px !important; */
+                /* margin-left: 28px !important; */
+            }
+
+            .colEmployeeList {
+                /* margin: auto !important; */
+            }
+
+            .fc-col-header {
+                width: 100% !important;
+            }
+
+            .fc-scrollgrid-sync-table {
+                width: 100% !important;
+            }
+
+            .fc-daygrid-body {
+                width: 100% !important;
+            }
+
+            .fc-daygrid-body-unbalanced {
+                width: 100% !important;
+            }
+
+            .fc-daygrid-body-natural {
+                width: 100% !important;
+            }
+
+            .fc-timegrid-body {
+                width: 100% !important;
+            }
+
+            .table-bordered {
+                width: 100% !important;
+            }
+
+            .fc-timegrid-cols>table {
+                width: 100% !important;
+            }
+
+            .colCalendar {
+                padding: 0em 1.5em;
+                padding-left: 8px;
+            }
+
+            .newcardb {
+                width: 100% !important;
+            }
+
+            .sideSearch {
+                width: 100% !important;
+            }
+
+            .inputSearch {
+                width: 98% !important;
+            }
+
+            .fc .fc-toolbar-title {
+                font-size: 1.4em !important;
+            }
+
+            .btn-group {
+                margin-left: 12px;
+                margin-bottom: 8px;
+            }
+
+            .fc-today-button {
+                margin-bottom: 8px;
+            }
+
+            .fc-appointments-button {
+                margin-bottom: 8px;
+            }
+
+            .fc-allocation-button:before {
+                content: "\A";
+            }
+
+            .fc-allocation-button {
+                margin-bottom: 8px;
+            }
+
+            .fc-toolbar-chunk {
+                width: 33%;
+                text-align: center;
+            }
+
+            .mainCustomerModalBody {
+                overflow-x: hidden !important;
+                overflow-x: hidden;
+            }
+
+            .refreshpagelist {
+                margin-bottom: 0px !important;
+            }
+        }
+
+        @media screen and (max-width: 850px) {
+            .allocationInnerModal {
+                width: 100vw;
+            }
+        }
+
+        @media screen and (max-width: 450px) {
+            .cardBodyInner {
+                padding: 4px !important;
+            }
+
+            .allocationCloser {
+                display: none;
+            }
+
+            #allocationModal {
+                overflow-y: hidden;
+                padding-left: 0px !important
+            }
+
+            .allocationInnerModal {
+                width: 100vw;
+                max-height: 100vh;
+                height: 100vh;
+            }
+
+            .alloDate {
+                margin-left: 17px !important;
+                margin-right: 0px !important;
+            }
+
+            .allocationHeader {
+                display: none;
+            }
+
+            .allocationHeaderDate {
+                width: 218px !important;
+            }
+
+            .rowB {
+                width: 100%;
+            }
+
+            .newcardb {
+                margin: 0px !important;
+                margin-top: 1em !important;
+                width: 100% !important;
+                max-height: 300px !important;
+            }
+
+            .counter.pull-right {
+                padding-right: 0px !important;
+            }
+
+            .colCalendar {
+                margin-right: 0px !important;
+                padding: 0px !important;
+                min-width: 1000px !important;
+                overflow-x: auto;
+            }
+
+            .colEmployeeList {
+                left: 0px !important;
+                position: -webkit-sticky !important;
+                position: -moz-sticky !important;
+                position: -ms-sticky !important;
+                position: -o-sticky !important;
+                position: sticky !important;
+                top: 0 !important;
+            }
+
+            .newcardb {
+                left: 0px !important;
+                position: -webkit-sticky !important;
+                position: -moz-sticky !important;
+                position: -ms-sticky !important;
+                position: -o-sticky !important;
+                position: sticky !important;
+                top: 0 !important;
+            }
+
+            .tblEmployeeSideList {
+                margin: 0px 8px !important;
+                width: 96% !important;
+            }
+
+            .btnoptionsmodal {
+                margin-right: 1.3em;
+            }
+
+            .fc .fc-toolbar-title {
+                font-size: 1.3em !important;
+            }
+
+            .btn-group {
+                margin-left: 12px;
+                margin-bottom: 8px;
+            }
+
+            .fc-today-button {
+                margin-bottom: 8px;
+            }
+
+            .fc-appointments-button {
+                margin-bottom: 8px;
+            }
+
+            .fc-allocation-button {
+                margin-bottom: 8px;
+            }
+
+            .fc-toolbar-chunk {
+                width: 260px;
+            }
+
+            .dataTables_length {
+                float: left !important;
+            }
+
+            #tblCustomerlist_filter {
+                margin-left: 0.75rem !important;
+            }
+
+            .refreshpagelist {
+                margin-bottom: 0px !important;
+            }
+
+            .mainCustomerModalBody {
+                overflow-x: hidden !important;
+                overflow-x: hidden;
+            }
+
+            .btnRefreshGlobal {
+                padding: 0px !important;
+                padding-left: 4px !important;
+            }
+
+            .btnOpenSettings {
+                margin-bottom: 4px !important;
+            }
+
+            .bookedTimeHeader {
+                margin-top: 8px !important;
+                padding-left: 0px !important;
+            }
+
+            .actualTimeHeader {
+                margin-top: 8px !important;
+                padding-left: 0px !important;
+            }
+
+            .colBookedTime {
+                padding-left: 0px !important;
+            }
+
+            .colActualTime {
+                padding-left: 0px !important;
+            }
+        }
+
+        @media screen and (max-width: 1366px) {
+            .fc-toolbar-chunk > * {
+                margin: 8px;
+            }
+        }
+    </style>
+
+    <script>
+        // setTimeout(function() {
+        //
+        //     var x = window.matchMedia("(max-width: 1024px)");
+        //
+        //     function mediaQuery(x) {
+        //         if (x.matches) {
+        //
+        //             $("#newcardb").addClass("alignColCenter");
+        //         }
+        //     }
+        //     mediaQuery(x);
+        //     x.addListener(mediaQuery);
+        // }, 10);
+        // setTimeout(function() {
+        //
+        //     var x = window.matchMedia("(max-width: 812px)");
+        //
+        //     function mediaQuery(x) {
+        //         if (x.matches) {
+        //
+        //             $("#newcardb").addClass("alignColCenter");
+        //
+        //             $("#colCustJobName").removeClass("col-6");
+        //             $("#colCustJobName").addClass("col-12");
+        //             $("#colMobno").removeClass("col-2");
+        //             $("#colMobno").addClass("col-4");
+        //             $("#colPhoneno").removeClass("col-2");
+        //             $("#colPhoneno").addClass("col-4");
+        //             $("#colAppID").removeClass("col-2");
+        //             $("#colAppID").addClass("col-4");
+        //
+        //             $("#colStreetAddress").removeClass("col-4");
+        //             $("#colStreetAddress").addClass("col-12");
+        //             $("#colCityTown").removeClass("col-2");
+        //             $("#colCityTown").addClass("col-4");
+        //             $("#colState").removeClass("col-2");
+        //             $("#colState").addClass("col-4");
+        //             $("#colCountry").removeClass("col-2");
+        //             $("#colCountry").addClass("col-4");
+        //             $("#colZip").removeClass("col-2");
+        //             $("#colZip").addClass("col-4");
+        //
+        //             $("#colEmpName").removeClass("col-6");
+        //             $("#colEmpName").addClass("col-12");
+        //             $("#colStartDate").removeClass("col-3");
+        //             $("#colStartDate").addClass("col-6");
+        //             $("#colEndDate").removeClass("col-3");
+        //             $("#colEndDate").addClass("col-6");
+        //
+        //             $("#colBookedTime").removeClass("col-6");
+        //             $("#colBookedTime").addClass("col-12");
+        //             $("#colBookedStartTime").removeClass("col-2");
+        //             $("#colBookedStartTime").addClass("col-4");
+        //             $("#colBookedEndTime").removeClass("col-2");
+        //             $("#colBookedEndTime").addClass("col-4");
+        //             $("#colBookedHours").removeClass("col-2");
+        //             $("#colBookedHours").addClass("col-4");
+        //
+        //             $("#colActualTime").removeClass("col-3");
+        //             $("#colActualTime").addClass("col-12");
+        //             $("#timeHeader").removeClass("float-right");
+        //             $("#timeHeader").addClass("float-left");
+        //             $("#colActualStartTime").removeClass("col-2");
+        //             $("#colActualStartTime").addClass("col-4");
+        //             $("#colActualEndTime").removeClass("col-2");
+        //             $("#colActualEndTime").addClass("col-4");
+        //             $("#colAppointmentList").removeClass("col-1");
+        //             $("#colAppointmentList").addClass("col-2");
+        //         }
+        //     }
+        //     mediaQuery(x);
+        //     x.addListener(mediaQuery);
+        // }, 10);
+        // setTimeout(function() {
+        //
+        //     var x = window.matchMedia("(max-width: 1024px)");
+        //
+        //     function mediaQuery(x) {
+        //         if (x.matches) {
+        //
+        //             $("#colEmployeeList").removeClass("col-auto");
+        //             $("#colEmployeeList").addClass("col-12");
+        //
+        //             $("#colCalendar").removeClass("col");
+        //             $("#colCalendar").addClass("col-12");
+        //
+        //         }
+        //     }
+        //     mediaQuery(x);
+        //     x.addListener(mediaQuery);
+        // }, 10);
+        // setTimeout(function() {
+        //
+        //     var x = window.matchMedia("(max-width: 420px)");
+        //
+        //     function mediaQuery(x) {
+        //         if (x.matches) {
+        //
+        //             $("#colEmployeeList").removeClass("col-auto");
+        //             $("#colEmployeeList").addClass("col-12");
+        //
+        //             $("#colCalendar").removeClass("col");
+        //             $("#colCalendar").addClass("col-12");
+        //
+        //             $("#colCustJobName").removeClass("col-6");
+        //             $("#colCustJobName").addClass("col-12");
+        //             $("#colMobno").removeClass("col-2");
+        //             $("#colMobno").addClass("col-4");
+        //             $("#colPhoneno").removeClass("col-2");
+        //             $("#colPhoneno").addClass("col-4");
+        //             $("#colAppID").removeClass("col-2");
+        //             $("#colAppID").addClass("col-4");
+        //
+        //             $("#colStreetAddress").removeClass("col-4");
+        //             $("#colStreetAddress").addClass("col-12");
+        //             $("#colCityTown").removeClass("col-2");
+        //             $("#colCityTown").addClass("col-6");
+        //             $("#colState").removeClass("col-2");
+        //             $("#colState").addClass("col-6");
+        //             $("#colCountry").removeClass("col-2");
+        //             $("#colCountry").addClass("col-6");
+        //             $("#colZip").removeClass("col-2");
+        //             $("#colZip").addClass("col-6");
+        //
+        //             $("#colNotesParent").removeClass("col-4");
+        //             $("#colNotesParent").addClass("col-12");
+        //
+        //             $("#colBookedTimeParent").removeClass("col-8");
+        //             $("#colBookedTimeParent").addClass("col-12");
+        //             $("#colBookedTime").removeClass("col-3");
+        //             $("#colBookedTime").addClass("col-12");
+        //             $("#bookedTimeHeader").removeClass("float-right");
+        //             $("#bookedTimeHeader").addClass("float-left");
+        //             $("#colBookedStartTime").removeClass("col-3");
+        //             $("#colBookedStartTime").addClass("col-4");
+        //             $("#colActualEndTime").removeClass("col-3");
+        //             $("#colActualEndTime").addClass("col-4");
+        //             $("#colBookedHours").removeClass("col-3");
+        //             $("#colBookedHours").addClass("col-4");
+        //             $("#actualTimeHeader").removeClass("float-right");
+        //             $("#actualTimeHeader").addClass("float-left");
+        //
+        //             // $("#colProductService2").removeClass("col-6");
+        //             // $("#colProductService2").addClass("col-12");
+        //             // $("#colStart").removeClass("col-2");
+        //             // $("#colStart").addClass("col-4");
+        //             // $("#colOnHold").removeClass("col-2");
+        //             // $("#colOnHold").addClass("col-4");
+        //             // $("#colStop").removeClass("col-2");
+        //             // $("#colStop").addClass("col-4");
+        //
+        //         }
+        //     }
+        //     mediaQuery(x);
+        //     x.addListener(mediaQuery);
+        // }, 10);
+    </script>
+
+    <div class="row rowB" id="rowB">
+        <div class="col-12 col-lg-2 colEmployeeList" id="colEmployeeList">
+            <style>
+                /* .newcardb {
+                    width: 150px;
+                } */
+
+                .cardB {
+                    padding: 0px;
+                    /*                    overflow-x: hidden;*/
+                }
+
+                .counter.pull-right {
+                    /* padding-right: 70px !important; */
+                }
+
+                #tblEmployeeSideList {
+                    -webkit-touch-callout: none;
+                    -webkit-user-select: none;
+                    -khtml-user-select: none;
+                    -moz-user-select: none;
+                    -ms-user-select: none;
+                    user-select: none;
+                }
+            </style>
+            <div class="card shadow mb-4 newcardb" id="newcardb" style="margin: 8px;">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h6 class="text-primary font-weight-bold m-0">Employees</h6>
+                </div>
+                <div class="card-body text-nowrap cardB">
+                    <div class="sideSearch">
+                        <div class="form-group pull-right" style="width: 95%; margin-bottom: 0; margin-right: 8px;">
+                            <input style="margin: 4px;" type="text" class="inputSearch search form-control" placeholder="Search...">
+                        </div>
+                        <span class="counter pull-right"></span>
+                        <style>
+                            .empColor {
+                                height: 18px;
+                                width: 18px;
+                                border-radius: 50%;
+                                display: inline-block;
+                                margin-right: 4px;
+                                text-align: center;
+                                font-size: 12px;
+                            }
+
+                            .empPriority {
+                                color: #ffffff;
+                            }
+                        </style>
+                        <table id="tblEmployeeSideList" name="tblEmployeeSideList" class="table table-hover table-bordered results tblEmployeeSideList">
+                            <thead>
+                                <tr>
+                                    <th>Employee</th>
+                                </tr>
+                                <tr class="warning no-result">
+                                    <td colspan="4"><i class="fa fa-warning"></i> No result</td>
+                                </tr>
+                            </thead>
+                            <tbody id='external-events-list'>
+                                <!-- <div id='external-events'>
+<div > -->
+                                {{#if employeerecords}}
+                                    {{#each item in employeerecords}}
+                                        <tr id="{{item.id}}">
+                                            <td>
+                                                <div class='fc-event fc-daygrid-event fc-daygrid-block-event'>
+                                                    {{#if item.color}}
+                                                        <div class='fc-event-main'>
+                                                            <span class="empColor" style="background: {{item.color}};">
+                                                                <span class="empPriority">{{item.priority}}</span>
+                                                            </span>
+                                                            {{item.employeeName}}
+                                                            <span id="employeeID" class="employeeID" style="display: none;">{{item.id}}</span>
+                                                            <span id="employeeName" class="employeeName" style="display: none;">{{item.employeeName}}</span>
+                                                        </div>
+                                                    {{else}}
+                                                        <div class='fc-event-main'>
+                                                            {{item.employeeName}} <span id="employeeID" style="display: none;">{{item.id}}</span>
+                                                        </div>
+                                                    {{/if}}
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    {{/each}}
+                                {{/if}}
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-10 colCalendar" id="colCalendar">
+            <style>
+                @media screen and (max-width: 2000px) {
+                    .fc-view-harness.fc-view-harness-active {
+                        max-height: 70vh;
+                    }
+                }
+
+                @media screen and (max-width: 812px) {
+                    /*iPhoneX*/
+                    /*
+                    @media (orientation: portrait) {
+                    .rowB {
+                    display: none;
+                }
+                }
+                    */
+
+                    .fc-toolbar-chunk {
+                        background-color: rgba(0, 0, 0, 0) !important;
+                        padding: 0px !important;
+                        border-radius: 0px !important;
+                        border: 0px solid #e3e6f0 !important;
+                        background-clip: border-box !important;
+                        box-shadow: 0 0 0 0 rgb(0 0 0 / 0%) !important;
+                    }
+
+                    /*
+                    .newcardb {
+                    display: none !important;
+                }
+                    */
+                }
+
+                .fc-view-harness.fc-view-harness-active {
+                    /*                    height: 100vh !important;*/
+                    background-color: #ffffff !important;
+                    box-shadow: 0 .15rem 1.75rem 0 rgba(58, 59, 69, .15) !important;
+                    background-clip: border-box;
+                    border: 1px solid #e3e6f0;
+                    border-radius: .35rem;
+                }
+
+                .fc-header-toolbar.fc-toolbar.fc-toolbar-ltr {
+                    padding-top: 8px;
+                }
+
+                .fc-toolbar-chunk {
+                    background-color: #fff;
+                    padding: 16px 32px;
+                    border-radius: .35rem;
+                    border: 1px solid #e3e6f0;
+                    background-clip: border-box;
+                    box-shadow: 0 0.15rem 1.75rem 0 rgb(58 59 69 / 15%);
+                }
+
+                .fc-toolbar-title::before {
+                    font-family: "Font Awesome 5 Free";
+                    content: "\f073";
+                    margin-right: 16px;
+                }
+
+                /*
+                .fc-toolbar-title {
+                background-color: #fff;
+                padding: 16px 32px;
+                border-radius: .35rem;
+                border: 1px solid #e3e6f0;
+                background-clip: border-box;
+                box-shadow: 0 0.15rem 1.75rem 0 rgb(58 59 69 / 15%);
+                }
+                */
+
+                #calendar {
+                    /*max-width: 900px;*/
+                    margin: 0 auto;
+                }
+
+
+                /* classes attached to <body> */
+
+                .fc-not-allowed,
+                .fc-not-allowed .fc-event {
+                    /* override events' custom cursors */
+                    cursor: not-allowed;
+                }
+
+                .fc-unselectable {
+                    -webkit-user-select: none;
+                    -moz-user-select: none;
+                    -ms-user-select: none;
+                    user-select: none;
+                    -webkit-touch-callout: none;
+                    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+                }
+
+                .fc {
+                    /* layout of immediate children */
+                    display: flex;
+                    flex-direction: column;
+
+                    font-size: 1em
+                }
+
+                .fc,
+                .fc *,
+                .fc *:before,
+                .fc *:after {
+                    box-sizing: border-box;
+                }
+
+                .fc table {
+                    border-collapse: collapse;
+                    border-spacing: 0;
+                    font-size: 1em;
+                    /* normalize cross-browser */
+                }
+
+                .fc th {
+                    text-align: center;
+                }
+
+                .fc th,
+                .fc td {
+                    vertical-align: top;
+                    padding: 0;
+                }
+
+                .fc a[data-navlink] {
+                    cursor: pointer;
+                }
+
+                .fc a[data-navlink]:hover {
+                    text-decoration: underline;
+                }
+
+                .fc-direction-ltr {
+                    direction: ltr;
+                    text-align: left;
+                }
+
+                .fc-direction-rtl {
+                    direction: rtl;
+                    text-align: right;
+                }
+
+                .fc-theme-standard td,
+                .fc-theme-standard th {
+                    border: 1px solid #ddd;
+                    border: 1px solid var(--fc-border-color, #ddd);
+                }
+
+                /* for FF, which doesn't expand a 100% div within a table cell. use absolute positioning */
+                /* inner-wrappers are responsible for being absolute */
+                /* TODO: best place for this? */
+                .fc-liquid-hack td,
+                .fc-liquid-hack th {
+                    position: relative;
+                }
+
+                @font-face {
+                    font-family: 'fcicons';
+                    src: url("data:application/x-font-ttf;charset=utf-8;base64,AAEAAAALAIAAAwAwT1MvMg8SBfAAAAC8AAAAYGNtYXAXVtKNAAABHAAAAFRnYXNwAAAAEAAAAXAAAAAIZ2x5ZgYydxIAAAF4AAAFNGhlYWQUJ7cIAAAGrAAAADZoaGVhB20DzAAABuQAAAAkaG10eCIABhQAAAcIAAAALGxvY2ED4AU6AAAHNAAAABhtYXhwAA8AjAAAB0wAAAAgbmFtZXsr690AAAdsAAABhnBvc3QAAwAAAAAI9AAAACAAAwPAAZAABQAAApkCzAAAAI8CmQLMAAAB6wAzAQkAAAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAAAAAAAABAAADpBgPA/8AAQAPAAEAAAAABAAAAAAAAAAAAAAAgAAAAAAADAAAAAwAAABwAAQADAAAAHAADAAEAAAAcAAQAOAAAAAoACAACAAIAAQAg6Qb//f//AAAAAAAg6QD//f//AAH/4xcEAAMAAQAAAAAAAAAAAAAAAQAB//8ADwABAAAAAAAAAAAAAgAANzkBAAAAAAEAAAAAAAAAAAACAAA3OQEAAAAAAQAAAAAAAAAAAAIAADc5AQAAAAABAWIAjQKeAskAEwAAJSc3NjQnJiIHAQYUFwEWMjc2NCcCnuLiDQ0MJAz/AA0NAQAMJAwNDcni4gwjDQwM/wANIwz/AA0NDCMNAAAAAQFiAI0CngLJABMAACUBNjQnASYiBwYUHwEHBhQXFjI3AZ4BAA0N/wAMJAwNDeLiDQ0MJAyNAQAMIw0BAAwMDSMM4uINIwwNDQAAAAIA4gC3Ax4CngATACcAACUnNzY0JyYiDwEGFB8BFjI3NjQnISc3NjQnJiIPAQYUHwEWMjc2NCcB87e3DQ0MIw3VDQ3VDSMMDQ0BK7e3DQ0MJAzVDQ3VDCQMDQ3zuLcMJAwNDdUNIwzWDAwNIwy4twwkDA0N1Q0jDNYMDA0jDAAAAgDiALcDHgKeABMAJwAAJTc2NC8BJiIHBhQfAQcGFBcWMjchNzY0LwEmIgcGFB8BBwYUFxYyNwJJ1Q0N1Q0jDA0Nt7cNDQwjDf7V1Q0N1QwkDA0Nt7cNDQwkDLfWDCMN1Q0NDCQMt7gMIw0MDNYMIw3VDQ0MJAy3uAwjDQwMAAADAFUAAAOrA1UAMwBoAHcAABMiBgcOAQcOAQcOARURFBYXHgEXHgEXHgEzITI2Nz4BNz4BNz4BNRE0JicuAScuAScuASMFITIWFx4BFx4BFx4BFREUBgcOAQcOAQcOASMhIiYnLgEnLgEnLgE1ETQ2Nz4BNz4BNz4BMxMhMjY1NCYjISIGFRQWM9UNGAwLFQkJDgUFBQUFBQ4JCRULDBgNAlYNGAwLFQkJDgUFBQUFBQ4JCRULDBgN/aoCVgQIBAQHAwMFAQIBAQIBBQMDBwQECAT9qgQIBAQHAwMFAQIBAQIBBQMDBwQECASAAVYRGRkR/qoRGRkRA1UFBAUOCQkVDAsZDf2rDRkLDBUJCA4FBQUFBQUOCQgVDAsZDQJVDRkLDBUJCQ4FBAVVAgECBQMCBwQECAX9qwQJAwQHAwMFAQICAgIBBQMDBwQDCQQCVQUIBAQHAgMFAgEC/oAZEhEZGRESGQAAAAADAFUAAAOrA1UAMwBoAIkAABMiBgcOAQcOAQcOARURFBYXHgEXHgEXHgEzITI2Nz4BNz4BNz4BNRE0JicuAScuAScuASMFITIWFx4BFx4BFx4BFREUBgcOAQcOAQcOASMhIiYnLgEnLgEnLgE1ETQ2Nz4BNz4BNz4BMxMzFRQWMzI2PQEzMjY1NCYrATU0JiMiBh0BIyIGFRQWM9UNGAwLFQkJDgUFBQUFBQ4JCRULDBgNAlYNGAwLFQkJDgUFBQUFBQ4JCRULDBgN/aoCVgQIBAQHAwMFAQIBAQIBBQMDBwQECAT9qgQIBAQHAwMFAQIBAQIBBQMDBwQECASAgBkSEhmAERkZEYAZEhIZgBEZGREDVQUEBQ4JCRUMCxkN/asNGQsMFQkIDgUFBQUFBQ4JCBUMCxkNAlUNGQsMFQkJDgUEBVUCAQIFAwIHBAQIBf2rBAkDBAcDAwUBAgICAgEFAwMHBAMJBAJVBQgEBAcCAwUCAQL+gIASGRkSgBkSERmAEhkZEoAZERIZAAABAOIAjQMeAskAIAAAExcHBhQXFjI/ARcWMjc2NC8BNzY0JyYiDwEnJiIHBhQX4uLiDQ0MJAzi4gwkDA0N4uINDQwkDOLiDCQMDQ0CjeLiDSMMDQ3h4Q0NDCMN4uIMIw0MDOLiDAwNIwwAAAABAAAAAQAAa5n0y18PPPUACwQAAAAAANivOVsAAAAA2K85WwAAAAADqwNVAAAACAACAAAAAAAAAAEAAAPA/8AAAAQAAAAAAAOrAAEAAAAAAAAAAAAAAAAAAAALBAAAAAAAAAAAAAAAAgAAAAQAAWIEAAFiBAAA4gQAAOIEAABVBAAAVQQAAOIAAAAAAAoAFAAeAEQAagCqAOoBngJkApoAAQAAAAsAigADAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAA4ArgABAAAAAAABAAcAAAABAAAAAAACAAcAYAABAAAAAAADAAcANgABAAAAAAAEAAcAdQABAAAAAAAFAAsAFQABAAAAAAAGAAcASwABAAAAAAAKABoAigADAAEECQABAA4ABwADAAEECQACAA4AZwADAAEECQADAA4APQADAAEECQAEAA4AfAADAAEECQAFABYAIAADAAEECQAGAA4AUgADAAEECQAKADQApGZjaWNvbnMAZgBjAGkAYwBvAG4Ac1ZlcnNpb24gMS4wAFYAZQByAHMAaQBvAG4AIAAxAC4AMGZjaWNvbnMAZgBjAGkAYwBvAG4Ac2ZjaWNvbnMAZgBjAGkAYwBvAG4Ac1JlZ3VsYXIAUgBlAGcAdQBsAGEAcmZjaWNvbnMAZgBjAGkAYwBvAG4Ac0ZvbnQgZ2VuZXJhdGVkIGJ5IEljb01vb24uAEYAbwBuAHQAIABnAGUAbgBlAHIAYQB0AGUAZAAgAGIAeQAgAEkAYwBvAE0AbwBvAG4ALgAAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=") format('truetype');
+                    font-weight: normal;
+                    font-style: normal;
+                }
+
+                .fc-icon {
+                    /* added for fc */
+                    display: inline-block;
+                    width: 1em;
+                    height: 1em;
+                    text-align: center;
+                    -webkit-user-select: none;
+                    -moz-user-select: none;
+                    -ms-user-select: none;
+                    user-select: none;
+
+                    /* use !important to prevent issues with browser extensions that change fonts */
+                    font-family: 'fcicons' !important;
+                    speak: none;
+                    font-style: normal;
+                    font-weight: normal;
+                    font-variant: normal;
+                    text-transform: none;
+                    line-height: 1;
+
+                    /* Better Font Rendering =========== */
+                    -webkit-font-smoothing: antialiased;
+                    -moz-osx-font-smoothing: grayscale;
+                }
+
+                .fc-icon-chevron-left:before {
+                    content: "\e900";
+                }
+
+                .fc-icon-chevron-right:before {
+                    content: "\e901";
+                }
+
+                .fc-icon-chevrons-left:before {
+                    content: "\e902";
+                }
+
+                .fc-icon-chevrons-right:before {
+                    content: "\e903";
+                }
+
+                .fc-icon-minus-square:before {
+                    content: "\e904";
+                }
+
+                .fc-icon-plus-square:before {
+                    content: "\e905";
+                }
+
+                .fc-icon-x:before {
+                    content: "\e906";
+                }
+
+                /*
+                Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
+
+                These styles only apply when the standard-theme is activated.
+                When it's NOT activated, the fc-button classes won't even be in the DOM.
+                */
+                .fc {
+
+                    /* reset */
+
+                }
+
+                .fc .fc-button {
+                    border-radius: 0;
+                    overflow: visible;
+                    text-transform: none;
+                    margin: 0;
+                    font-family: inherit;
+                    font-size: inherit;
+                    line-height: inherit;
+                }
+
+                .fc .fc-button:focus {
+                    outline: 1px dotted;
+                    outline: 5px auto -webkit-focus-ring-color;
+                }
+
+                .fc .fc-button {
+                    -webkit-appearance: button;
+                }
+
+                .fc .fc-button:not(:disabled) {
+                    cursor: pointer;
+                }
+
+                .fc .fc-button::-moz-focus-inner {
+                    padding: 0;
+                    border-style: none;
+                }
+
+                .fc {
+
+                    /* theme */
+
+                }
+
+                .fc .fc-button {
+                    display: inline-block;
+                    font-weight: 400;
+                    text-align: center;
+                    vertical-align: middle;
+                    -webkit-user-select: none;
+                    -moz-user-select: none;
+                    -ms-user-select: none;
+                    user-select: none;
+                    background-color: transparent;
+                    border: 1px solid transparent;
+                    padding: 0.4em 0.65em;
+                    font-size: 1em;
+                    line-height: 1.5;
+                    border-radius: 0.25em;
+                }
+
+                .fc .fc-button:hover {
+                    text-decoration: none;
+                }
+
+                .fc .fc-button:focus {
+                    outline: 0;
+                    box-shadow: 0 0 0 0.2rem rgba(44, 62, 80, 0.25);
+                }
+
+                .fc .fc-button:disabled {
+                    opacity: 0.65;
+                }
+
+                .fc {
+
+                    /* "primary" coloring */
+
+                }
+
+                .fc .fc-button-primary {
+                    color: #fff;
+                    color: var(--fc-button-text-color, #fff);
+                    background-color: #2C3E50;
+                    background-color: var(--fc-button-bg-color, #2C3E50);
+                    border-color: #2C3E50;
+                    border-color: var(--fc-button-border-color, #2C3E50);
+                }
+
+                .fc .fc-button-primary:hover {
+                    color: #fff;
+                    color: var(--fc-button-text-color, #fff);
+                    background-color: #1e2b37;
+                    background-color: var(--fc-button-hover-bg-color, #1e2b37);
+                    border-color: #1a252f;
+                    border-color: var(--fc-button-hover-border-color, #1a252f);
+                }
+
+                .fc .fc-button-primary:disabled {
+                    /* not DRY */
+                    color: #fff;
+                    color: var(--fc-button-text-color, #fff);
+                    background-color: #2C3E50;
+                    background-color: var(--fc-button-bg-color, #2C3E50);
+                    border-color: #2C3E50;
+                    border-color: var(--fc-button-border-color, #2C3E50);
+                    /* overrides :hover */
+                }
+
+                .fc .fc-button-primary:focus {
+                    box-shadow: 0 0 0 0.2rem rgba(76, 91, 106, 0.5);
+                }
+
+                .fc .fc-button-primary:not(:disabled):active,
+                .fc .fc-button-primary:not(:disabled).fc-button-active {
+                    color: #fff;
+                    color: var(--fc-button-text-color, #fff);
+                    background-color: #1a252f;
+                    background-color: var(--fc-button-active-bg-color, #1a252f);
+                    border-color: #151e27;
+                    border-color: var(--fc-button-active-border-color, #151e27);
+                }
+
+                .fc .fc-button-primary:not(:disabled):active:focus,
+                .fc .fc-button-primary:not(:disabled).fc-button-active:focus {
+                    box-shadow: 0 0 0 0.2rem rgba(76, 91, 106, 0.5);
+                }
+
+                .fc {
+
+                    /* icons within buttons */
+
+                }
+
+                .fc .fc-button .fc-icon {
+                    vertical-align: middle;
+                    font-size: 1.5em;
+                    /* bump up the size (but don't make it bigger than line-height of button, which is 1.5em also) */
+                }
+
+                .fc .fc-button-group {
+                    position: relative;
+                    display: inline-flex;
+                    vertical-align: middle;
+                }
+
+                .fc .fc-button-group>.fc-button {
+                    position: relative;
+                    flex: 1 1 auto;
+                }
+
+                .fc .fc-button-group>.fc-button:hover {
+                    z-index: 1;
+                }
+
+                .fc .fc-button-group>.fc-button:focus,
+                .fc .fc-button-group>.fc-button:active,
+                .fc .fc-button-group>.fc-button.fc-button-active {
+                    z-index: 1;
+                }
+
+                .fc-direction-ltr .fc-button-group>.fc-button:not(:first-child) {
+                    margin-left: -1px;
+                    border-top-left-radius: 0;
+                    border-bottom-left-radius: 0;
+                }
+
+                .fc-direction-ltr .fc-button-group>.fc-button:not(:last-child) {
+                    border-top-right-radius: 0;
+                    border-bottom-right-radius: 0;
+                }
+
+                .fc-direction-rtl .fc-button-group>.fc-button:not(:first-child) {
+                    margin-right: -1px;
+                    border-top-right-radius: 0;
+                    border-bottom-right-radius: 0;
+                }
+
+                .fc-direction-rtl .fc-button-group>.fc-button:not(:last-child) {
+                    border-top-left-radius: 0;
+                    border-bottom-left-radius: 0;
+                }
+
+                .fc .fc-toolbar {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                }
+
+                .fc .fc-toolbar.fc-header-toolbar {
+                    margin-bottom: 1.5em;
+                }
+
+                .fc .fc-toolbar.fc-footer-toolbar {
+                    margin-top: 1.5em;
+                }
+
+                .fc .fc-toolbar-title {
+                    font-size: 1.75em;
+                    margin: 0;
+                }
+
+                .fc-direction-ltr .fc-toolbar>*> :not(:first-child) {
+                    margin-left: .75em;
+                    /* space between */
+                }
+
+                .fc-direction-rtl .fc-toolbar>*> :not(:first-child) {
+                    margin-right: .75em;
+                    /* space between */
+                }
+
+                .fc-direction-rtl .fc-toolbar-ltr {
+                    /* when the toolbar-chunk positioning system is explicitly left-to-right */
+                    flex-direction: row-reverse;
+                }
+
+                .fc .fc-scroller {
+                    -webkit-overflow-scrolling: touch;
+                    position: relative;
+                    /* for abs-positioned elements within */
+                }
+
+                .fc .fc-scroller-liquid {
+                    height: 100%;
+                }
+
+                .fc .fc-scroller-liquid-absolute {
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    left: 0;
+                    bottom: 0;
+                }
+
+                .fc .fc-scroller-harness {
+                    position: relative;
+                    overflow: hidden;
+                    direction: ltr;
+                    /* hack for chrome computing the scroller's right/left wrong for rtl. undone below... */
+                    /* TODO: demonstrate in codepen */
+                }
+
+                .fc .fc-scroller-harness-liquid {
+                    height: 100%;
+                }
+
+                .fc-direction-rtl .fc-scroller-harness>.fc-scroller {
+                    /* undo above hack */
+                    direction: rtl;
+                }
+
+                .fc-theme-standard .fc-scrollgrid {
+                    border: 1px solid #ddd;
+                    border: 1px solid var(--fc-border-color, #ddd);
+                    /* bootstrap does this. match */
+                }
+
+                .fc .fc-scrollgrid,
+                .fc .fc-scrollgrid table {
+                    /* all tables (self included) */
+                    width: 100%;
+                    /* because tables don't normally do this */
+                    table-layout: fixed;
+                }
+
+                .fc .fc-scrollgrid table {
+                    /* inner tables */
+                    border-top-style: hidden;
+                    border-left-style: hidden;
+                    border-right-style: hidden;
+                }
+
+                .fc .fc-scrollgrid {
+
+                    border-collapse: separate;
+                    border-right-width: 0;
+                    border-bottom-width: 0;
+
+                }
+
+                .fc .fc-scrollgrid-liquid {
+                    height: 100%;
+                }
+
+                .fc .fc-scrollgrid-section {
+                    /* a <tr> */
+                    height: 1px
+                        /* better than 0, for firefox */
+
+                }
+
+                .fc .fc-scrollgrid-section>td {
+                    height: 1px;
+                    /* needs a height so inner div within grow. better than 0, for firefox */
+                }
+
+                .fc .fc-scrollgrid-section table {
+                    height: 1px;
+                    /* for most browsers, if a height isn't set on the table, can't do liquid-height within cells */
+                    /* serves as a min-height. harmless */
+                }
+
+                .fc .fc-scrollgrid-section-liquid {
+                    height: auto
+                }
+
+                .fc .fc-scrollgrid-section-liquid>td {
+                    height: 100%;
+                    /* better than `auto`, for firefox */
+                }
+
+                .fc .fc-scrollgrid-section>* {
+                    border-top-width: 0;
+                    border-left-width: 0;
+                }
+
+                .fc .fc-scrollgrid-section-header>*,
+                .fc .fc-scrollgrid-section-footer>* {
+                    border-bottom-width: 0;
+                }
+
+                .fc .fc-scrollgrid-section-body table,
+                .fc .fc-scrollgrid-section-footer table {
+                    border-bottom-style: hidden;
+                    /* head keeps its bottom border tho */
+                }
+
+                .fc {
+
+                    /* stickiness */
+
+                }
+
+                .fc .fc-scrollgrid-section-sticky>* {
+                    background: #fff;
+                    background: var(--fc-page-bg-color, #fff);
+                    position: -webkit-sticky;
+                    position: sticky;
+                    z-index: 2;
+                    /* TODO: var */
+                    /* TODO: box-shadow when sticking */
+                }
+
+                .fc .fc-scrollgrid-section-header.fc-scrollgrid-section-sticky>* {
+                    top: 0;
+                    /* because border-sharing causes a gap at the top */
+                    /* TODO: give safari -1. has bug */
+                }
+
+                .fc .fc-scrollgrid-section-footer.fc-scrollgrid-section-sticky>* {
+                    bottom: 0;
+                    /* known bug: bottom-stickiness doesn't work in safari */
+                }
+
+                .fc .fc-scrollgrid-sticky-shim {
+                    /* for horizontal scrollbar */
+                    height: 1px;
+                    /* needs height to create scrollbars */
+                    margin-bottom: -1px;
+                }
+
+                .fc-sticky {
+                    /* no .fc wrap because used as child of body */
+                    position: -webkit-sticky;
+                    position: sticky;
+                }
+
+                .fc .fc-view-harness {
+                    flex-grow: 1;
+                    /* because this harness is WITHIN the .fc's flexbox */
+                    position: relative;
+                }
+
+                .fc {
+
+                    /* when the harness controls the height, make the view liquid */
+
+                }
+
+                .fc .fc-view-harness-active>.fc-view {
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    bottom: 0;
+                    left: 0;
+                }
+
+                .fc .fc-col-header-cell-cushion {
+                    display: inline-block;
+                    /* x-browser for when sticky (when multi-tier header) */
+                    padding: 2px 4px;
+                }
+
+                .fc .fc-bg-event,
+                .fc .fc-non-business,
+                .fc .fc-highlight {
+                    /* will always have a harness with position:relative/absolute, so absolutely expand */
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                }
+
+                .fc .fc-non-business {
+                    background: rgba(215, 215, 215, 0.3);
+                    background: var(--fc-non-business-color, rgba(215, 215, 215, 0.3));
+                }
+
+                .fc .fc-bg-event {
+                    background: rgb(143, 223, 130);
+                    background: var(--fc-bg-event-color, rgb(143, 223, 130));
+                    opacity: 0.3;
+                    opacity: var(--fc-bg-event-opacity, 0.3)
+                }
+
+                .fc .fc-bg-event .fc-event-title {
+                    margin: .5em;
+                    font-size: .85em;
+                    font-size: var(--fc-small-font-size, .85em);
+                    font-style: italic;
+                }
+
+                .fc .fc-highlight {
+                    background: rgba(188, 232, 241, 0.3);
+                    background: var(--fc-highlight-color, rgba(188, 232, 241, 0.3));
+                }
+
+                .fc .fc-cell-shaded,
+                .fc .fc-day-disabled {
+                    background: rgba(208, 208, 208, 0.3);
+                    background: var(--fc-neutral-bg-color, rgba(208, 208, 208, 0.3));
+                }
+
+                /* link resets */
+                /* ---------------------------------------------------------------------------------------------------- */
+                a.fc-event,
+                a.fc-event:hover {
+                    text-decoration: none;
+                }
+
+                /* cursor */
+                .fc-event[href],
+                .fc-event.fc-event-draggable {
+                    cursor: pointer;
+                }
+
+                /* event text content */
+                /* ---------------------------------------------------------------------------------------------------- */
+                .fc-event .fc-event-main {
+                    position: relative;
+                    z-index: 2;
+                }
+
+                /* dragging */
+                /* ---------------------------------------------------------------------------------------------------- */
+                .fc-event-dragging:not(.fc-event-selected) {
+                    /* MOUSE */
+                    opacity: 0.75;
+                }
+
+                .fc-event-dragging.fc-event-selected {
+                    /* TOUCH */
+                    box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
+                }
+
+                /* resizing */
+                /* ---------------------------------------------------------------------------------------------------- */
+                /* (subclasses should hone positioning for touch and non-touch) */
+                .fc-event .fc-event-resizer {
+                    display: none;
+                    position: absolute;
+                    z-index: 4;
+                }
+
+                .fc-event:hover,
+                /* MOUSE */
+                .fc-event-selected {
+                    /* TOUCH */
+
+                }
+
+                .fc-event:hover .fc-event-resizer,
+                .fc-event-selected .fc-event-resizer {
+                    display: block;
+                }
+
+                .fc-event-selected .fc-event-resizer {
+                    border-radius: 4px;
+                    border-radius: calc(var(--fc-event-resizer-dot-total-width, 8px) / 2);
+                    border-width: 1px;
+                    border-width: var(--fc-event-resizer-dot-border-width, 1px);
+                    width: 8px;
+                    width: var(--fc-event-resizer-dot-total-width, 8px);
+                    height: 8px;
+                    height: var(--fc-event-resizer-dot-total-width, 8px);
+                    border-style: solid;
+                    border-color: inherit;
+                    background: #fff;
+                    background: var(--fc-page-bg-color, #fff)
+                        /* expand hit area */
+
+                }
+
+                .fc-event-selected .fc-event-resizer:before {
+                    content: '';
+                    position: absolute;
+                    top: -20px;
+                    left: -20px;
+                    right: -20px;
+                    bottom: -20px;
+                }
+
+                /* selecting (always TOUCH) */
+                /* ---------------------------------------------------------------------------------------------------- */
+                .fc-event-selected {
+                    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2)
+                        /* expand hit area (subclasses should expand) */
+
+                }
+
+                .fc-event-selected:before {
+                    content: "";
+                    position: absolute;
+                    z-index: 3;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                }
+
+                .fc-event-selected {
+
+                    /* dimmer effect */
+
+                }
+
+                .fc-event-selected:after {
+                    content: "";
+                    background: rgba(0, 0, 0, 0.25);
+                    background: var(--fc-event-selected-overlay-color, rgba(0, 0, 0, 0.25));
+                    position: absolute;
+                    z-index: 1;
+
+                    /* assume there's a border on all sides. overcome it. */
+                    /* sometimes there's NOT a border, in which case the dimmer will go over */
+                    /* an adjacent border, which looks fine. */
+                    top: -1px;
+                    left: -1px;
+                    right: -1px;
+                    bottom: -1px;
+                }
+
+                /*
+                A HORIZONTAL event
+                */
+                .fc-h-event {
+                    /* allowed to be top-level */
+                    display: block;
+                    border: 1px solid #3788d8;
+                    border: 1px solid var(--fc-event-border-color, #3788d8);
+                    background-color: #3788d8;
+                    background-color: var(--fc-event-bg-color, #3788d8)
+                }
+
+                .fc-h-event .fc-event-main {
+                    color: #fff;
+                    color: var(--fc-event-text-color, #fff);
+                }
+
+                .fc-h-event .fc-event-main-frame {
+                    display: flex;
+                    /* for make fc-event-title-container expand */
+                }
+
+                .fc-h-event .fc-event-time {
+                    max-width: 100%;
+                    /* clip overflow on this element */
+                    overflow: hidden;
+                }
+
+                .fc-h-event .fc-event-title-container {
+                    /* serves as a container for the sticky cushion */
+                    flex-grow: 1;
+                    flex-shrink: 1;
+                    min-width: 0;
+                    /* important for allowing to shrink all the way */
+                }
+
+                .fc-h-event .fc-event-title {
+                    display: inline-block;
+                    /* need this to be sticky cross-browser */
+                    vertical-align: top;
+                    /* for not messing up line-height */
+                    left: 0;
+                    /* for sticky */
+                    right: 0;
+                    /* for sticky */
+                    max-width: 100%;
+                    /* clip overflow on this element */
+                    overflow: hidden;
+                }
+
+                .fc-h-event.fc-event-selected:before {
+                    /* expand hit area */
+                    top: -10px;
+                    bottom: -10px;
+                }
+
+                /* adjust border and border-radius (if there is any) for non-start/end */
+                .fc-direction-ltr .fc-daygrid-block-event:not(.fc-event-start),
+                .fc-direction-rtl .fc-daygrid-block-event:not(.fc-event-end) {
+                    border-top-left-radius: 0;
+                    border-bottom-left-radius: 0;
+                    border-left-width: 0;
+                }
+
+                .fc-direction-ltr .fc-daygrid-block-event:not(.fc-event-end),
+                .fc-direction-rtl .fc-daygrid-block-event:not(.fc-event-start) {
+                    border-top-right-radius: 0;
+                    border-bottom-right-radius: 0;
+                    border-right-width: 0;
+                }
+
+                /* resizers */
+                .fc-h-event:not(.fc-event-selected) .fc-event-resizer {
+                    top: 0;
+                    bottom: 0;
+                    width: 8px;
+                    width: var(--fc-event-resizer-thickness, 8px);
+                }
+
+                .fc-direction-ltr .fc-h-event:not(.fc-event-selected) .fc-event-resizer-start,
+                .fc-direction-rtl .fc-h-event:not(.fc-event-selected) .fc-event-resizer-end {
+                    cursor: w-resize;
+                    left: -4px;
+                    left: calc(var(--fc-event-resizer-thickness, 8px) / -2);
+                }
+
+                .fc-direction-ltr .fc-h-event:not(.fc-event-selected) .fc-event-resizer-end,
+                .fc-direction-rtl .fc-h-event:not(.fc-event-selected) .fc-event-resizer-start {
+                    cursor: e-resize;
+                    right: -4px;
+                    right: calc(var(--fc-event-resizer-thickness, 8px) / -2);
+                }
+
+                /* resizers for TOUCH */
+                .fc-h-event.fc-event-selected .fc-event-resizer {
+                    top: 50%;
+                    margin-top: -4px;
+                    margin-top: calc(var(--fc-event-resizer-dot-total-width, 8px) / -2);
+                }
+
+                .fc-direction-ltr .fc-h-event.fc-event-selected .fc-event-resizer-start,
+                .fc-direction-rtl .fc-h-event.fc-event-selected .fc-event-resizer-end {
+                    left: -4px;
+                    left: calc(var(--fc-event-resizer-dot-total-width, 8px) / -2);
+                }
+
+                .fc-direction-ltr .fc-h-event.fc-event-selected .fc-event-resizer-end,
+                .fc-direction-rtl .fc-h-event.fc-event-selected .fc-event-resizer-start {
+                    right: -4px;
+                    right: calc(var(--fc-event-resizer-dot-total-width, 8px) / -2);
+                }
+
+
+                :root {
+                    --fc-daygrid-event-dot-width: 8px;
+                }
+
+                .fc .fc-popover {
+                    position: fixed;
+                    top: 0;
+                    /* for when not positioned yet */
+                    box-shadow: 0 2px 6px rgba(0, 0, 0, .15);
+                }
+
+                .fc .fc-popover-header {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding: 3px 4px;
+                }
+
+                .fc .fc-popover-title {
+                    margin: 0 2px;
+                }
+
+                .fc .fc-popover-close {
+                    cursor: pointer;
+                    opacity: 0.65;
+                    font-size: 1.1em;
+                }
+
+                .fc-theme-standard .fc-popover {
+                    border: 1px solid #ddd;
+                    border: 1px solid var(--fc-border-color, #ddd);
+                    background: #fff;
+                    background: var(--fc-page-bg-color, #fff);
+                }
+
+                .fc-theme-standard .fc-popover-header {
+                    background: rgba(208, 208, 208, 0.3);
+                    background: var(--fc-neutral-bg-color, rgba(208, 208, 208, 0.3));
+                }
+
+                /* help things clear margins of inner content */
+                .fc-daygrid-day-frame,
+                .fc-daygrid-day-events,
+                .fc-daygrid-event-harness {
+                    /* for event top/bottom margins */
+                }
+
+                .fc-daygrid-day-frame:before,
+                .fc-daygrid-day-events:before,
+                .fc-daygrid-event-harness:before {
+                    content: "";
+                    clear: both;
+                    display: table;
+                }
+
+                .fc-daygrid-day-frame:after,
+                .fc-daygrid-day-events:after,
+                .fc-daygrid-event-harness:after {
+                    content: "";
+                    clear: both;
+                    display: table;
+                }
+
+                .fc .fc-daygrid-body {
+                    /* a <div> that wraps the table */
+                    position: relative;
+                    z-index: 1;
+                    /* container inner z-index's because <tr>s can't do it */
+                }
+
+                .fc .fc-daygrid-day.fc-day-today {
+                    background-color: rgba(255, 220, 40, 0.15);
+                    background-color: var(--fc-today-bg-color, rgba(255, 220, 40, 0.15));
+                }
+
+                .fc .fc-daygrid-day-frame {
+                    position: relative;
+                    min-height: 100%;
+                    /* seems to work better than `height` because sets height after rows/cells naturally do it */
+                }
+
+                .fc {
+
+                    /* cell top */
+
+                }
+
+                .fc .fc-daygrid-day-top {
+                    display: flex;
+                    flex-direction: row-reverse;
+                }
+
+                .fc .fc-day-other .fc-daygrid-day-top {
+                    opacity: 0.3;
+                }
+
+                .fc {
+
+                    /* day number (within cell top) */
+
+                }
+
+                .fc .fc-daygrid-day-number {
+                    position: relative;
+                    z-index: 4;
+                    padding: 4px;
+                }
+
+                .fc {
+
+                    /* event container */
+
+                }
+
+                .fc .fc-daygrid-day-events {
+                    margin-top: 1px;
+                    /* needs to be margin, not padding, so that available cell height can be computed */
+                }
+
+                .fc {
+
+                    /* positioning for balanced vs natural */
+
+                }
+
+                .fc .fc-daygrid-body-balanced .fc-daygrid-day-events {
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                }
+
+                .fc .fc-daygrid-body-unbalanced .fc-daygrid-day-events {
+                    position: relative;
+                    /* for containing abs positioned event harnesses */
+                    min-height: 2em;
+                    /* in addition to being a min-height during natural height, equalizes the heights a little bit */
+                }
+
+                .fc .fc-daygrid-body-natural {
+                    /* can coexist with -unbalanced */
+                }
+
+                .fc .fc-daygrid-body-natural .fc-daygrid-day-events {
+                    margin-bottom: 1em;
+                }
+
+                .fc {
+
+                    /* event harness */
+
+                }
+
+                .fc .fc-daygrid-event-harness {
+                    position: relative;
+                }
+
+                .fc .fc-daygrid-event-harness-abs {
+                    position: absolute;
+                    top: 0;
+                    /* fallback coords for when cannot yet be computed */
+                    left: 0;
+                    /* */
+                    right: 0;
+                    /* */
+                }
+
+                .fc .fc-daygrid-bg-harness {
+                    position: absolute;
+                    top: 0;
+                    bottom: 0;
+                }
+
+                .fc {
+
+                    /* bg content */
+
+                }
+
+                .fc .fc-daygrid-day-bg .fc-non-business {
+                    z-index: 1
+                }
+
+                .fc .fc-daygrid-day-bg .fc-bg-event {
+                    z-index: 2
+                }
+
+                .fc .fc-daygrid-day-bg .fc-highlight {
+                    z-index: 3
+                }
+
+                .fc {
+
+                    /* events */
+
+                }
+
+                .fc .fc-daygrid-event {
+                    z-index: 6;
+                    margin-top: 1px;
+                }
+
+                .fc .fc-daygrid-event.fc-event-mirror {
+                    z-index: 7;
+                }
+
+                .fc {
+
+                    /* cell bottom (within day-events) */
+
+                }
+
+                .fc .fc-daygrid-day-bottom {
+                    font-size: .85em;
+                    margin: 2px 3px 0;
+                }
+
+                .fc .fc-daygrid-more-link {
+                    position: relative;
+                    z-index: 4;
+                    cursor: pointer;
+                }
+
+                .fc {
+
+                    /* week number (within frame) */
+
+                }
+
+                .fc .fc-daygrid-week-number {
+                    position: absolute;
+                    z-index: 5;
+                    top: 0;
+                    padding: 2px;
+                    min-width: 1.5em;
+                    text-align: center;
+                    background-color: rgba(208, 208, 208, 0.3);
+                    background-color: var(--fc-neutral-bg-color, rgba(208, 208, 208, 0.3));
+                    color: #808080;
+                    color: var(--fc-neutral-text-color, #808080);
+                }
+
+                .fc {
+
+                    /* popover */
+
+                }
+
+                .fc .fc-more-popover {
+                    z-index: 8;
+                }
+
+                .fc .fc-more-popover .fc-popover-body {
+                    min-width: 220px;
+                    padding: 10px;
+                }
+
+                .fc-direction-ltr .fc-daygrid-event.fc-event-start,
+                .fc-direction-rtl .fc-daygrid-event.fc-event-end {
+                    margin-left: 2px;
+                }
+
+                .fc-direction-ltr .fc-daygrid-event.fc-event-end,
+                .fc-direction-rtl .fc-daygrid-event.fc-event-start {
+                    margin-right: 2px;
+                }
+
+                .fc-direction-ltr .fc-daygrid-week-number {
+                    left: 0;
+                    border-radius: 0 0 3px 0;
+                }
+
+                .fc-direction-rtl .fc-daygrid-week-number {
+                    right: 0;
+                    border-radius: 0 0 0 3px;
+                }
+
+                .fc-liquid-hack .fc-daygrid-day-frame {
+                    position: static;
+                    /* will cause inner absolute stuff to expand to <td> */
+                }
+
+                .fc-daygrid-event {
+                    /* make root-level, because will be dragged-and-dropped outside of a component root */
+                    position: relative;
+                    /* for z-indexes assigned later */
+                    white-space: nowrap;
+                    border-radius: 3px;
+                    /* dot event needs this to when selected */
+                    font-size: .85em;
+                    font-size: var(--fc-small-font-size, .85em);
+                }
+
+                /* --- the rectangle ("block") style of event --- */
+                .fc-daygrid-block-event .fc-event-time {
+                    font-weight: bold;
+                }
+
+                .fc-daygrid-block-event .fc-event-time,
+                .fc-daygrid-block-event .fc-event-title {
+                    padding: 1px;
+                }
+
+                /* --- the dot style of event --- */
+                .fc-daygrid-dot-event {
+                    display: flex;
+                    align-items: center;
+                    padding: 2px 0
+                }
+
+                .fc-daygrid-dot-event .fc-event-title {
+                    flex-grow: 1;
+                    flex-shrink: 1;
+                    min-width: 0;
+                    /* important for allowing to shrink all the way */
+                    overflow: hidden;
+                    font-weight: bold;
+                }
+
+                .fc-daygrid-dot-event:hover,
+                .fc-daygrid-dot-event.fc-event-mirror {
+                    background: rgba(0, 0, 0, 0.1);
+                }
+
+                .fc-daygrid-dot-event.fc-event-selected:before {
+                    /* expand hit area */
+                    top: -10px;
+                    bottom: -10px;
+                }
+
+                .fc-daygrid-event-dot {
+                    /* the actual dot */
+                    margin: 0 4px;
+                    box-sizing: content-box;
+                    width: 0;
+                    height: 0;
+                    border: 4px solid #3788d8;
+                    border: calc(var(--fc-daygrid-event-dot-width, 8px) / 2) solid var(--fc-event-border-color, #3788d8);
+                    border-radius: 4px;
+                    border-radius: calc(var(--fc-daygrid-event-dot-width, 8px) / 2);
+                }
+
+                /* --- spacing between time and title --- */
+                .fc-direction-ltr .fc-daygrid-event .fc-event-time {
+                    margin-right: 3px;
+                }
+
+                .fc-direction-rtl .fc-daygrid-event .fc-event-time {
+                    margin-left: 3px;
+                }
+
+
+                /*
+                A VERTICAL event
+                */
+
+                .fc-v-event {
+                    /* allowed to be top-level */
+                    display: block;
+                    border: 1px solid #3788d8;
+                    border: 1px solid var(--fc-event-border-color, #3788d8);
+                    background-color: #3788d8;
+                    background-color: var(--fc-event-bg-color, #3788d8)
+                }
+
+                .fc-v-event .fc-event-main {
+                    color: #fff;
+                    color: var(--fc-event-text-color, #fff);
+                    height: 100%;
+                }
+
+                .fc-v-event .fc-event-main-frame {
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+                }
+
+                .fc-v-event .fc-event-time {
+                    flex-grow: 0;
+                    flex-shrink: 0;
+                    max-height: 100%;
+                    overflow: hidden;
+                }
+
+                .fc-v-event .fc-event-title-container {
+                    /* a container for the sticky cushion */
+                    flex-grow: 1;
+                    flex-shrink: 1;
+                    min-height: 0;
+                    /* important for allowing to shrink all the way */
+                }
+
+                .fc-v-event .fc-event-title {
+                    /* will have fc-sticky on it */
+                    top: 0;
+                    bottom: 0;
+                    max-height: 100%;
+                    /* clip overflow */
+                    overflow: hidden;
+                }
+
+                .fc-v-event:not(.fc-event-start) {
+                    border-top-width: 0;
+                    border-top-left-radius: 0;
+                    border-top-right-radius: 0;
+                }
+
+                .fc-v-event:not(.fc-event-end) {
+                    border-bottom-width: 0;
+                    border-bottom-left-radius: 0;
+                    border-bottom-right-radius: 0;
+                }
+
+                .fc-v-event.fc-event-selected:before {
+                    /* expand hit area */
+                    left: -10px;
+                    right: -10px;
+                }
+
+                .fc-v-event {
+
+                    /* resizer (mouse AND touch) */
+
+                }
+
+                .fc-v-event .fc-event-resizer-start {
+                    cursor: n-resize;
+                }
+
+                .fc-v-event .fc-event-resizer-end {
+                    cursor: s-resize;
+                }
+
+                .fc-v-event {
+
+                    /* resizer for MOUSE */
+
+                }
+
+                .fc-v-event:not(.fc-event-selected) .fc-event-resizer {
+                    height: 8px;
+                    height: var(--fc-event-resizer-thickness, 8px);
+                    left: 0;
+                    right: 0;
+                }
+
+                .fc-v-event:not(.fc-event-selected) .fc-event-resizer-start {
+                    top: -4px;
+                    top: calc(var(--fc-event-resizer-thickness, 8px) / -2);
+                }
+
+                .fc-v-event:not(.fc-event-selected) .fc-event-resizer-end {
+                    bottom: -4px;
+                    bottom: calc(var(--fc-event-resizer-thickness, 8px) / -2);
+                }
+
+                .fc-v-event {
+
+                    /* resizer for TOUCH (when event is "selected") */
+
+                }
+
+                .fc-v-event.fc-event-selected .fc-event-resizer {
+                    left: 50%;
+                    margin-left: -4px;
+                    margin-left: calc(var(--fc-event-resizer-dot-total-width, 8px) / -2);
+                }
+
+                .fc-v-event.fc-event-selected .fc-event-resizer-start {
+                    top: -4px;
+                    top: calc(var(--fc-event-resizer-dot-total-width, 8px) / -2);
+                }
+
+                .fc-v-event.fc-event-selected .fc-event-resizer-end {
+                    bottom: -4px;
+                    bottom: calc(var(--fc-event-resizer-dot-total-width, 8px) / -2);
+                }
+
+                .fc .fc-timegrid .fc-daygrid-body {
+                    /* the all-day daygrid within the timegrid view */
+                    z-index: 2;
+                    /* put above the timegrid-body so that more-popover is above everything. TODO: better solution */
+                }
+
+                .fc .fc-timegrid-divider {
+                    padding: 0 0 2px;
+                    /* browsers get confused when you set height. use padding instead */
+                }
+
+                .fc .fc-timegrid-body {
+                    position: relative;
+                    z-index: 1;
+                    /* scope the z-indexes of slots and cols */
+                    min-height: 100%;
+                    /* fill height always, even when slat table doesn't grow */
+                }
+
+                .fc .fc-timegrid-axis-chunk {
+                    /* for advanced ScrollGrid */
+                    position: relative
+                        /* offset parent for now-indicator-container */
+
+                }
+
+                .fc .fc-timegrid-axis-chunk>table {
+                    position: relative;
+                    z-index: 1;
+                    /* above the now-indicator-container */
+                }
+
+                .fc .fc-timegrid-slots {
+                    position: relative;
+                    z-index: 1;
+                }
+
+                .fc .fc-timegrid-slot {
+                    /* a <td> */
+                    height: 1.5em;
+                    border-bottom: 0
+                        /* each cell owns its top border */
+                }
+
+                .fc .fc-timegrid-slot:empty:before {
+                    content: '\00a0';
+                    /* make sure there's at least an empty space to create height for height syncing */
+                }
+
+                .fc .fc-timegrid-slot-minor {
+                    border-top-style: dotted;
+                }
+
+                .fc .fc-timegrid-slot-label-cushion {
+                    display: inline-block;
+                    white-space: nowrap;
+                }
+
+                .fc .fc-timegrid-slot-label {
+                    vertical-align: middle;
+                    /* vertical align the slots */
+                }
+
+                .fc {
+
+
+                    /* slots AND axis cells (top-left corner of view including the "all-day" text) */
+
+                }
+
+                .fc .fc-timegrid-axis-cushion,
+                .fc .fc-timegrid-slot-label-cushion {
+                    padding: 0 4px;
+                }
+
+                .fc {
+
+
+                    /* axis cells (top-left corner of view including the "all-day" text) */
+                    /* vertical align is more complicated, uses flexbox */
+
+                }
+
+                .fc .fc-timegrid-axis-frame-liquid {
+                    height: 100%;
+                    /* will need liquid-hack in FF */
+                }
+
+                .fc .fc-timegrid-axis-frame {
+                    overflow: hidden;
+                    display: flex;
+                    align-items: center;
+                    /* vertical align */
+                    justify-content: flex-end;
+                    /* horizontal align. matches text-align below */
+                }
+
+                .fc .fc-timegrid-axis-cushion {
+                    max-width: 60px;
+                    /* limits the width of the "all-day" text */
+                    flex-shrink: 0;
+                    /* allows text to expand how it normally would, regardless of constrained width */
+                }
+
+                .fc-direction-ltr .fc-timegrid-slot-label-frame {
+                    text-align: right;
+                }
+
+                .fc-direction-rtl .fc-timegrid-slot-label-frame {
+                    text-align: left;
+                }
+
+                .fc-liquid-hack .fc-timegrid-axis-frame-liquid {
+                    height: auto;
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    bottom: 0;
+                    left: 0;
+                }
+
+                .fc .fc-timegrid-col.fc-day-today {
+                    background-color: rgba(255, 220, 40, 0.15);
+                    background-color: var(--fc-today-bg-color, rgba(255, 220, 40, 0.15));
+                }
+
+                .fc .fc-timegrid-col-frame {
+                    min-height: 100%;
+                    /* liquid-hack is below */
+                    position: relative;
+                }
+
+                .fc-liquid-hack .fc-timegrid-col-frame {
+                    height: auto;
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    bottom: 0;
+                    left: 0;
+                }
+
+                .fc-media-screen .fc-timegrid-cols {
+                    position: absolute;
+                    /* no z-index. children will decide and go above slots */
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0
+                }
+
+                .fc-media-screen .fc-timegrid-cols>table {
+                    height: 100%;
+                }
+
+                .fc-media-screen .fc-timegrid-col-bg,
+                .fc-media-screen .fc-timegrid-col-events,
+                .fc-media-screen .fc-timegrid-now-indicator-container {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                }
+
+                .fc-media-screen .fc-timegrid-event-harness {
+                    position: absolute;
+                    /* top/left/right/bottom will all be set by JS */
+                }
+
+                .fc {
+
+                    /* bg */
+
+                }
+
+                .fc .fc-timegrid-col-bg {
+                    z-index: 2;
+                    /* TODO: kill */
+                }
+
+                .fc .fc-timegrid-col-bg .fc-non-business {
+                    z-index: 1
+                }
+
+                .fc .fc-timegrid-col-bg .fc-bg-event {
+                    z-index: 2
+                }
+
+                .fc .fc-timegrid-col-bg .fc-highlight {
+                    z-index: 3
+                }
+
+                .fc .fc-timegrid-bg-harness {
+                    position: absolute;
+                    /* top/bottom will be set by JS */
+                    left: 0;
+                    right: 0;
+                }
+
+                .fc {
+
+                    /* fg events */
+                    /* (the mirror segs are put into a separate container with same classname, */
+                    /* and they must be after the normal seg container to appear at a higher z-index) */
+
+                }
+
+                .fc .fc-timegrid-col-events {
+                    z-index: 3;
+                    /* child event segs have z-indexes that are scoped within this div */
+                }
+
+                .fc {
+
+                    /* now indicator */
+
+                }
+
+                .fc .fc-timegrid-now-indicator-container {
+                    bottom: 0;
+                    overflow: hidden;
+                    /* don't let overflow of lines/arrows cause unnecessary scrolling */
+                    /* z-index is set on the individual elements */
+                }
+
+                .fc-direction-ltr .fc-timegrid-col-events {
+                    margin: 0 2.5% 0 2px;
+                }
+
+                .fc-direction-rtl .fc-timegrid-col-events {
+                    margin: 0 2px 0 2.5%;
+                }
+
+                .fc-timegrid-event-harness-inset .fc-timegrid-event,
+                .fc-timegrid-event.fc-event-mirror {
+                    box-shadow: 0px 0px 0px 1px #fff;
+                    box-shadow: 0px 0px 0px 1px var(--fc-page-bg-color, #fff);
+                }
+
+                .fc-timegrid-event {
+                    /* events need to be root */
+
+                    font-size: .85em;
+
+                    font-size: var(--fc-small-font-size, .85em);
+                    border-radius: 3px
+                }
+
+                .fc-timegrid-event .fc-event-main {
+                    padding: 1px 1px 0;
+                }
+
+                .fc-timegrid-event .fc-event-time {
+                    white-space: nowrap;
+                    font-size: .85em;
+                    font-size: var(--fc-small-font-size, .85em);
+                    margin-bottom: 1px;
+                }
+
+                .fc-timegrid-event-condensed .fc-event-main-frame {
+                    flex-direction: row;
+                    overflow: hidden;
+                }
+
+                .fc-timegrid-event-condensed .fc-event-time:after {
+                    content: '\00a0-\00a0';
+                    /* dash surrounded by non-breaking spaces */
+                }
+
+                .fc-timegrid-event-condensed .fc-event-title {
+                    font-size: .85em;
+                    font-size: var(--fc-small-font-size, .85em)
+                }
+
+                .fc-media-screen .fc-timegrid-event {
+                    position: absolute;
+                    /* absolute WITHIN the harness */
+                    top: 0;
+                    bottom: 1px;
+                    /* stay away from bottom slot line */
+                    left: 0;
+                    right: 0;
+                }
+
+                .fc {
+
+                    /* line */
+
+                }
+
+                .fc .fc-timegrid-now-indicator-line {
+                    position: absolute;
+                    z-index: 4;
+                    left: 0;
+                    right: 0;
+                    border-style: solid;
+                    border-color: red;
+                    border-color: var(--fc-now-indicator-color, red);
+                    border-width: 1px 0 0;
+                }
+
+                .fc {
+
+                    /* arrow */
+
+                }
+
+                .fc .fc-timegrid-now-indicator-arrow {
+                    position: absolute;
+                    z-index: 4;
+                    margin-top: -5px;
+                    /* vertically center on top coordinate */
+                    border-style: solid;
+                    border-color: red;
+                    border-color: var(--fc-now-indicator-color, red);
+                }
+
+                .fc-direction-ltr .fc-timegrid-now-indicator-arrow {
+                    left: 0;
+
+                    /* triangle pointing right. TODO: mixin */
+                    border-width: 5px 0 5px 6px;
+                    border-top-color: transparent;
+                    border-bottom-color: transparent;
+                }
+
+                .fc-direction-rtl .fc-timegrid-now-indicator-arrow {
+                    right: 0;
+
+                    /* triangle pointing left. TODO: mixin */
+                    border-width: 5px 6px 5px 0;
+                    border-top-color: transparent;
+                    border-bottom-color: transparent;
+                }
+
+
+                :root {
+                    --fc-list-event-dot-width: 10px;
+                    --fc-list-event-hover-bg-color: #f5f5f5;
+                }
+
+                .fc-theme-standard .fc-list {
+                    border: 1px solid #ddd;
+                    border: 1px solid var(--fc-border-color, #ddd);
+                }
+
+                .fc {
+
+                    /* message when no events */
+
+                }
+
+                .fc .fc-list-empty {
+                    background-color: rgba(208, 208, 208, 0.3);
+                    background-color: var(--fc-neutral-bg-color, rgba(208, 208, 208, 0.3));
+                    height: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    /* vertically aligns fc-list-empty-inner */
+                }
+
+                .fc .fc-list-empty-cushion {
+                    margin: 5em 0;
+                }
+
+                .fc {
+
+                    /* table within the scroller */
+                    /* ---------------------------------------------------------------------------------------------------- */
+
+                }
+
+                .fc .fc-list-table {
+                    width: 100%;
+                    border-style: hidden;
+                    /* kill outer border on theme */
+                }
+
+                .fc .fc-list-table tr>* {
+                    border-left: 0;
+                    border-right: 0;
+                }
+
+                .fc .fc-list-sticky .fc-list-day>* {
+                    /* the cells */
+                    position: -webkit-sticky;
+                    position: sticky;
+                    top: 0;
+                    background: #fff;
+                    background: var(--fc-page-bg-color, #fff);
+                    /* for when headers are styled to be transparent and sticky */
+                }
+
+                .fc .fc-list-table th {
+                    padding: 0;
+                    /* uses an inner-wrapper instead... */
+                }
+
+                .fc .fc-list-table td,
+                .fc .fc-list-day-cushion {
+                    padding: 8px 14px;
+                }
+
+                .fc {
+
+
+                    /* date heading rows */
+                    /* ---------------------------------------------------------------------------------------------------- */
+
+                }
+
+                .fc .fc-list-day-cushion:after {
+                    content: "";
+                    clear: both;
+                    display: table;
+                    /* clear floating */
+                }
+
+                .fc-theme-standard .fc-list-day-cushion {
+                    background-color: rgba(208, 208, 208, 0.3);
+                    background-color: var(--fc-neutral-bg-color, rgba(208, 208, 208, 0.3));
+                }
+
+                .fc-direction-ltr .fc-list-day-text,
+                .fc-direction-rtl .fc-list-day-side-text {
+                    float: left;
+                }
+
+                .fc-direction-ltr .fc-list-day-side-text,
+                .fc-direction-rtl .fc-list-day-text {
+                    float: right;
+                }
+
+                /* make the dot closer to the event title */
+                .fc-direction-ltr .fc-list-table .fc-list-event-graphic {
+                    padding-right: 0
+                }
+
+                .fc-direction-rtl .fc-list-table .fc-list-event-graphic {
+                    padding-left: 0
+                }
+
+                .fc .fc-list-event.fc-event-forced-url {
+                    cursor: pointer;
+                    /* whole row will seem clickable */
+                }
+
+                .fc .fc-list-event:hover td {
+                    background-color: #f5f5f5;
+                    background-color: var(--fc-list-event-hover-bg-color, #f5f5f5);
+                }
+
+                .fc {
+
+                    /* shrink certain cols */
+
+                }
+
+                .fc .fc-list-event-graphic,
+                .fc .fc-list-event-time {
+                    white-space: nowrap;
+                    width: 1px;
+                }
+
+                .fc .fc-list-event-dot {
+                    display: inline-block;
+                    box-sizing: content-box;
+                    width: 0;
+                    height: 0;
+                    border: 5px solid #3788d8;
+                    border: calc(var(--fc-list-event-dot-width, 10px) / 2) solid var(--fc-event-border-color, #3788d8);
+                    border-radius: 5px;
+                    border-radius: calc(var(--fc-list-event-dot-width, 10px) / 2);
+                }
+
+                .fc {
+
+                    /* reset <a> styling */
+
+                }
+
+                .fc .fc-list-event-title a {
+                    color: inherit;
+                    text-decoration: none;
+                }
+
+                .fc {
+
+                    /* underline link when hovering over any part of row */
+
+                }
+
+                .fc .fc-list-event.fc-event-forced-url:hover a {
+                    text-decoration: underline;
+                }
+
+
+
+                .fc-theme-bootstrap a:not([href]) {
+                    color: inherit;
+                    /* natural color for navlinks */
+
+                }
+            </style>
+
+            <div id='calendar'></div>
+
+        </div>
+    </div>
+
+    <div class="modal fade" role="dialog" tabindex="-1" id="resource-view">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Resource Allocations</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="currentDate" name="currentDate">
+                    <div id='resourceview'></div>
+
+                </div>
+                <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Close</button>
+                    <button class="btn btn-primary" type="button" style="background-color: #00A3D3; border-color: #00A3D3;">Select</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

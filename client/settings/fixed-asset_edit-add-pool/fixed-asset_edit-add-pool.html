@@ -1,0 +1,39 @@
+<template name="fixedAssetEditAddPool">
+    <div class=" organisationSettings addNewAsset ">
+        <div class="active_page">
+            <div class="active_page_content">
+                <p><a href="/settings">General Settings</a> &nbsp;›&nbsp;
+                    <a href="/settings/fixedAssets/asset-type">Fixed Asset Settings</a> &nbsp;›&nbsp;
+                    <a href="/settings/fixedAssets/pools">Pools</a> &nbsp;›&nbsp;
+                </p>
+                <br>
+                <h1>Add Pool</h1>
+            </div>
+        </div>
+        <div id="wrapper_main">
+            <div class="addNewAssetDiv">
+                <div class="basicInformation">
+                    <div class="heading">
+                        <b>Pool Details</b>
+                    </div>
+                    <div class="panelfield">
+                        <div class="row">
+                            <div class="col-lg-12 paddingMargin">
+                                <div class="col-md-4">
+                                    <label>Type</label>
+                                    <input type="text" class="form-control" id="usr" value="{{record.AssetName}}">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="heading footer">
+                <button type="button" class="btn btn-success">Save</button>
+                <button type="button" class="btn btn-default co-btn-cancel">Cancel</button>
+            </div>
+        </div>
+    </div>
+</template>
+

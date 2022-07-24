@@ -1,0 +1,871 @@
+.purchases {
+    float: left;
+    width: 100%;
+}
+
+.purchases .active_page_content h1 {
+    margin-bottom: 0;
+}
+
+.importBills .active_page_content h1 {
+    margin-bottom: 0;
+    border-bottom: 0;
+}
+
+.purchases .helpvideos p:last-child {
+    border: 0;
+}
+
+.purchases .second_content_links_container {
+    border-top: 0;
+}
+
+.purchases .upcomingBills {
+    float: left;
+    width: 100%;
+    background: #fff;
+    padding: 8px;
+}
+
+.purchases .upcomingBills h3.small.grayblue.x-chart-heading {
+    color: #828c96;
+    font-size: 12px;
+    padding: 0;
+    margin: 0;
+    float: left;
+}
+
+.purchases .upcomingBills ul.x-chart-legend {
+    padding: 0;
+    margin: 0;
+    text-align: right;
+    float: right;
+}
+
+.purchases .upcomingBills ul.x-chart-legend li {
+    float: left;
+    list-style: none;
+    display: inline;
+    padding-left: 14px;
+    margin-left: 2px;
+    color: #888;
+    font-size: 12px;
+}
+
+.purchases .upcomingBills li.due {
+    position: relative;
+    margin-right: 8px
+}
+
+.purchases .upcomingBills li.due:after {
+    content: "";
+    background: #048abb;
+    border-radius: 50%;
+    position: absolute;
+    width: 9px;
+    height: 9px;
+    left: 0;
+    top: 3px;
+}
+
+.purchases .upcomingBills li.paid {
+    position: relative
+}
+
+.purchases .upcomingBills li.paid:after {
+    content: "";
+    background: #7bd000;
+    border-radius: 50%;
+    position: absolute;
+    width: 9px;
+    height: 9px;
+    left: 0;
+    top: 3px;
+}
+
+.importBills div#MYOBImportHelp ul li {
+    font-size: 11px;
+    list-style-type: disc;
+}
+
+.importBills div#MYOBImportHelp ul {
+    padding: 0;
+    margin: 0;
+    padding-left: 20px;
+}
+
+.importBills .bg-red {
+    border-color: #e70101;
+    background-color: #fff;
+}
+
+.importBills #ajaxMessageHolder i {
+    float: left;
+    position: relative;
+    top: 10px;
+    left: 10px;
+    color: #e70101;
+    font-size: 32px;
+}
+
+.importBills div#ajaxMessageHolder .message p {
+    color: #333;
+}
+
+.stocklist table.table-bordered tr td.thin label{
+    background: transparent;
+    border: 0 !important;
+    height: initial;
+    width: initial;
+    padding: 0;
+    margin: 0;
+}
+
+.stocklist #wrapper_main .dataTables_length {
+    position: absolute;
+    z-index: 999;
+}
+.stocklist #wrapper_main .dataTables_paginate{
+    position: relative;
+    z-index: 99;
+}
+
+.stocklist .searchDiv {
+    float: left;
+    width: 100%;
+    margin-bottom: 8px;
+}
+.stocklist .searchDiv .items-div{
+    float: right;
+    font-size: 12px;
+    color: #999;
+    padding-top: 11px;
+    margin-right: 11px;
+}
+
+.stocklist .table-button span{
+    font-size: 12px;
+    color: #999;
+}
+
+.purchases .search_box_inner table {
+    width: 96%;
+}
+
+.purchases .search_box_inner table tr td select, .purchases .search_box_inner table tr td input {
+    width: 100%
+}
+
+.purchases .search_box_inner table tr td:nth-child(2) {
+    width: 236px;
+}
+
+.purchases .search_box_inner table tr button#search_list {
+    width: 85px;
+    margin-top: 5px;
+    margin-left: 9px;
+}
+
+.purchases .search_box_inner table tr a#searchreset {
+    margin-top: 5px;
+    display: inline-block;
+    margin-left: 5px;
+}
+
+.dropdown-add-rec2 {
+    background: #fff;
+    height: 27px;
+    position: relative;
+    float: left;
+    width: 100%;
+}
+
+.dropdown-add-rec2 img {
+    width: 19px;
+    height: 27px;
+    margin-top: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+    z-index: 2;
+    border: solid 1px #ccc;
+}
+
+
+element.style {
+}
+.dropdown-add-rec2 ul.dropdown-menu li {
+    cursor: pointer;
+    font-size: 12px;
+    margin: 0;
+    float: left;
+    width: 190px;
+    background-color: #fff;
+    text-align: left;
+    padding: 10px 10px 10px!important;
+    position: relative;
+    text-overflow: ellipsis;
+    border-bottom: 1px solid #e9edf2;
+    font-weight: normal;
+}
+
+.dropdown-add-rec2 ul.dropdown-menu li:hover {
+    background-color: #e6f5fa;
+}
+
+.stocklist .search_box_inner table.invoice_list_search tr td label{
+    font-weight: bold;
+}
+/*
+.pocard .new_create_form_page #wrapper_main {
+    max-width: 940px !important;
+}
+
+.pocard .new_create_options .bill_options tr td:nth-child(4){
+    width: 100px;
+}
+.pocard .new_create_options .bill_options tr td:nth-child(5){
+    width: 100px;
+}
+.pocard .totals_container1 .new_create_totals span{
+    width: auto;
+}
+.pocard .new_create_body_terms_col3{
+    width: 57%;
+    float: right;
+}
+
+.pocard .new_create_totals span{
+    width: auto;
+}
+
+.pocard .new_create_body_terms textarea{
+    resize: none;
+}
+
+.pocard #deleteModal .modal-dialog , .poview #deleteModal .modal-dialog{
+    width: 400px;
+    margin: 30px auto;
+}
+*/
+.poview #deleteModal .modal-footer{
+    border-top:0;
+}
+/*
+.pocard #deleteModal .modal-header {
+    background-color: #FBFBFB;
+    border: 0;
+    padding: 15px;
+}
+*/
+/*
+.pocard #deleteModal .modal-header .modal-title {
+    margin: 0;
+    line-height: 1.42857143;
+    font-size: 18px;
+    color: #333;
+    font-weight: bold;
+}
+*/
+.poview .new_create_form_page #wrapper_main {
+    /* max-width: 940px !important; */
+}
+
+.poview table#viewPOClientdets tr td:last-child{
+    padding-left: 0;
+}
+
+.poview #billViewContainer .new_create_body_terms{
+    padding: 10px;
+}
+.poview #billViewContainer .new_create_body_terms textarea{
+    resize: inherit;
+}
+
+.poview #billViewContainer .currency_option2 {
+    width: auto;
+}
+
+.poview .previous-note {
+    width: 100%;
+    float: left;
+    margin-top: 14px;
+    word-wrap: break-word;
+    border-top: 1px solid #e3e3e3;
+    padding-top: 8px;
+    line-height: 1.6;
+    font-size: 12px;
+    color: #333;
+}
+
+.poview  .new_create_footer h3 {
+    font: 700 14px Arial,sans-serif;
+    color: #858585;
+    margin-bottom: 9px;
+    margin-top: 20px;
+    padding-bottom: 9px;
+}
+table.dataTable tr th.select-checkbox.selected::after {
+    content: "✔";
+    margin-top: -11px;
+    margin-left: -4px;
+    text-align: center;
+    text-shadow: rgb(176, 190, 217) 1px 1px, rgb(176, 190, 217) -1px -1px, rgb(176, 190, 217) 1px -1px, rgb(176, 190, 217) -1px 1px;
+}
+
+.stocklist button.new_create_btn,
+.stocklist button.btn.btn-success,
+.stocklist button.btn.btn-delete {
+    font: bold 12px Helvetica, sans-serif;
+    color: #999;
+    border-radius: 3px;
+    border: solid 1px #ccc;
+    box-shadow: rgba(255,255,255,0.3) 0 0 0 1px inset;
+    box-sizing: border-box;
+    cursor: pointer;
+    margin: 0;
+    padding: 6px 12px;
+    position: relative;
+    text-align: center;
+    -webkit-transition: opacity .2s ease-out;
+    transition: opacity .2s ease-out;
+    white-space: nowrap;
+    -moz-user-select: -moz-none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiP…dpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==);
+    background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff),color-stop(100%, #e6eaec));
+    background: -webkit-linear-gradient(#ffffff, #e6eaec);
+    background: linear-gradient(#ffffff,#e6eaec);
+    text-shadow: inherit;
+}
+.stocklist button.new_create_btn:hover {
+    color: #048abb;
+    text-decoration: none;
+    border-color: #048abb;
+    border-radius: 3px;
+    border-style: solid;
+    border-width: 1px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+.stocklist button.new_create_btn.btn-selected{
+    color: #048abb;
+}
+.stocklist button.btn.btn-success{
+    color: #339a29;
+    width: auto;
+}
+.stocklist button.new_create_btn.btn-delete {
+    color: #c00;
+}
+
+.stocklist #search_box {
+    margin-bottom: 20px;
+    background: #fbfbfb;
+    border: 1px solid #e5e5e5;
+    border-radius: 0px;
+    box-shadow: 0 0 0 #aaa;
+}
+
+.stocklist #content1, .stocklist #content2, .stocklist #content3, .stocklist #content4, .stocklist #content5, .stocklist #content6{
+    clear: both;
+}
+
+.stocklist .tabs_line_break{
+    border-bottom: 1px solid #dadddf;
+}
+.stocklist .stocklistBg{
+    background: linear-gradient(#ffffff,#fafbfb);
+    background-size: 100% 200px;
+    background-color: #fafbfb;
+    background-repeat: no-repeat;
+    width: 100%;
+    float: left;
+}
+
+.stocklist .tabinator label{
+    border-bottom: 0;
+}
+
+.stocklist .tabinator input:checked + label{
+    border-bottom: 1px solid #fff !important;
+}
+
+.stocklist .table-bordered thead tr th{
+    padding: 7px;
+}
+.stocklist .table-bordered thead tr th input{
+    margin: 0;
+}
+
+.stocklist .table-bordered thead tr th:after {
+    float: right;
+    margin-right: 5px;
+}
+.stocklist table.table-bordered{
+    width: 100% !important;
+}
+
+#send-purchase-order .modal-dialog {
+    width: 680px;
+    margin: 30px auto;
+}
+#send-purchase-order .modal-body {
+    position: relative;
+    padding: 15px;
+    background-color: #FBFBFB;
+}
+#send-purchase-order .modal-header{
+    padding: 0;
+}
+#send-purchase-order .modal-header .close {
+    margin-top: 0;
+    border-left: 1px solid #e5e5e5;
+    width: 46px;
+    height: 46px;
+    opacity: 1;
+    color: #9b9b9b;
+}
+#send-purchase-order .modal-header .modal-title {
+    margin: 0;
+    line-height: initial;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    padding-top: 15px;
+    padding-bottom: 11px;
+    padding-left: 15px;
+}
+#send-purchase-order table{
+    width: 100%;
+    margin-bottom: 13px;
+}
+
+#send-purchase-order table tbody tr td {
+    font-size: 12px;
+    color: #666;
+}
+#send-purchase-order table tbody tr td:first-child{
+    width:90px;
+}
+#send-purchase-order table.lastTable{
+    border-bottom: 1px solid #e5e5e5;
+    margin-bottom: 1em;
+    padding-bottom: 1em;
+    display: inline-block;
+}
+
+#send-purchase-order table#multiple-mail-recipient-data {
+    width: 100%;
+    border-collapse: separate;
+    border: none;
+}
+
+#send-purchase-order table#multiple-mail-recipient-data td:first-of-type {
+    border-left: 1px solid #ddd;
+}
+
+#send-purchase-order table#multiple-mail-recipient-data td:first-of-type {
+    border-left: 1px solid #ddd;
+}
+
+#send-purchase-order table#multiple-mail-recipient-data tr td {
+    color: #444;
+    font-size: 12px;
+    border-bottom: 1px solid #ddd;
+    background: #fff;
+    padding: 0;
+    min-height: 30px;
+}
+#send-purchase-order table#multiple-mail-recipient-data tr td textarea {
+    height: 30px;
+    border-style: solid;
+    border-color: #b5b8bb #e2e4e7 #e8eaec #bdbfc3;
+    resize: initial;
+    width: 100%;
+}
+#send-purchase-order table#multiple-mail-recipient-data td:last-of-type input {
+    margin-left: 8px;
+    display: inline-block;
+}
+#send-purchase-order table#multiple-mail-recipient-data td:last-of-type {
+    border-right: 1px solid #ddd;
+}
+
+#send-purchase-order table#multiple-mail-recipient-data tr td:nth-child(2){
+    border-left: solid 1px #ddd;
+}
+
+#send-purchase-order table#multiple-mail-recipient-data thead tr td {
+    background: linear-gradient(#fff, #f6f7f8);
+    border-bottom: 1px solid #e8e8e8;
+    border-right: 1px solid #e8e8e8;
+    font-weight: 700;
+    border-top: 1px solid #ddd;
+    color: #048abb;
+    font-size: 12px;
+    padding:6px;
+}
+#send-purchase-order table#multiple-mail-recipient-data tbody tr:hover {
+    background-color: #e6f5fa;
+}
+
+.stocklist .modal {
+    position: absolute;
+    bottom: initial;
+}
+
+#send-purchase-order .inputDiv {
+    width: 100%;
+    margin-bottom: 10px;
+}
+#send-purchase-order .inputDiv input{
+    width: 100%;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #b5b8bb #e2e4e7 #e8eaec #bdbfc3;
+    padding: 5px;
+    font-size: 12px;
+}
+#send-purchase-order .inputDiv textarea{
+    min-height: 250px;
+    width: 100%;
+    overflow-y: auto;
+    font-size: 12px !important;
+    background: #fff !important;
+    padding: 5px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #b5b8bb #e2e4e7 #e8eaec #bdbfc3;
+}
+
+#send-purchase-order .inputDiv label{
+    font-weight: 400;
+    font-size: 12px;
+    color: #333;
+}
+#send-purchase-order .inputDiv label span{
+    color: #666;
+}
+#send-purchase-order .inputDiv label input {
+    float: left;
+    width: auto;
+    margin: 1px;
+    margin-right: 10px;
+}
+
+#send-purchase-order div#dropdown-Button{
+    font-size: 13px;
+    margin-bottom: 2px;
+    display: inline-block;
+    width: 100%;
+}
+#send-purchase-order div#dropdown-Button p{
+    float: left;
+    color: #333;
+    font-weight: 700;
+}
+
+#send-purchase-order #dropdown-Button .dropdown {
+    float: left;
+    margin-left: 8px;
+}
+
+#send-purchase-order #dropdown-Button .dropdown a {
+    font-size: 11px;
+    cursor: pointer;
+}
+
+#send-purchase-order #dropdown-Button .dropdown ul.dropdown-menu li {
+    cursor: pointer;
+    border: 0;
+    border-bottom: 1px solid #e9edf2;
+    font-size: 12px;
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    float: left;
+    width: 100%;
+}
+
+#send-purchase-order #dropdown-Button .dropdown ul.dropdown-menu li a {
+    background-color: transparent;
+    border: 0;
+    color: #000;
+}
+
+#send-purchase-order #dropdown-Button .dropdown ul.dropdown-menu li:hover {
+    background-color: #e6f5fa;
+}
+
+#send-purchase-order #dropdown-Button .dropdown-menu {
+    background-color: #fff;
+    width: 67px !important;
+    min-width: initial;
+}
+#send-purchase-order #dropdown-Button .dropdown.pull-right .dropdown-menu {
+    background-color: #fff;
+    width: auto !important;
+    min-width: initial;
+    max-height: 200px;
+    overflow-y: auto;
+}
+#send-purchase-order tr.send-table-td-color td:first-child{
+    color: #333;
+}
+
+#send-purchase-order #dropdown-Button .dropdown-menu > li > a:hover {
+    background-image: initial !important;
+    color: #000 !important;
+}
+#send-purchase-order .modal-footer div#quoteBtns2{
+    padding-bottom: 0;
+}
+
+#send-purchase-order .modal-footer div#quoteBtns2 input {
+    font-size: 12px;
+}
+
+#send-purchase-order .inputDiv p {
+    font-size: 12px;
+    font-weight: 700;
+}
+.poview button.disableBtn, .poBillView button.disableBtn {
+    background: linear-gradient(#ffffff 0%,#efefef 98%,#ffffff 99%);
+    color: #bbb;
+    text-shadow: 0 1px 1px #fff;
+    border-color: #d7dadd #d7d9dd #d6d9dd #d7dade;
+    margin-left: 0;
+    font-size: 12px;
+    cursor: pointer;
+    width: 100px;
+}
+.poview .search_box_inner button.disableBtn:hover, .poBillView .search_box_inner button.disableBtn:hover {
+    background: linear-gradient(#ffffff 0%,#efefef 98%,#ffffff 99%);
+    border-color: #d7dadd #d7d9dd #d6d9dd #d7dade;
+}
+.poview .search_box_inner button.disableBtn:focus, .poBillView .search_box_inner button.disableBtn:focus{
+    outline: inherit;
+}
+
+#purcahse-order-modal .modal-dialog, #delete-purchase-order-modal .modal-dialog {
+    width: 400px;
+    margin: 30px auto;
+}
+#purcahse-order-modal .modal-footer button.btn.btn-success, #delete-purchase-order-modal .modal-footer button.btn.btn-success {
+    border-color: #5cac00;
+    text-shadow: 0 1px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(#7bd000, #6bb101);
+    width: 100px;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: initial;
+    color: #fff;
+}
+#purcahse-order-modal .modal-footer button.btn, #delete-purchase-order-modal .modal-footer button.btn{
+    color: #fff;
+}
+
+.stocklist .notify{
+    z-index: 99;
+}
+#printOrder .modal-dialog{
+    width: 400px;
+    margin: 250px auto;
+}
+
+#printOrder .modal-dialog  .gray {
+    border: 1px solid #949a9e!important;
+    background: linear-gradient(#bbbec2,#949a9e);
+    text-shadow: none;
+    color: #fff!important;
+    width: 115px;
+    line-height: initial;
+}
+#printOrder .modal-dialog .silver {
+    border: 1px solid #048abb!important;
+    background: linear-gradient(#048abb,#048abb);
+    text-shadow: none;
+    color: #ffffff !important;
+    width: 115px;
+    line-height: initial;
+}
+#printOrder .modal-header{
+    background-color: #fbfbfb;
+    border-top: 0;
+    height: 58px;
+}
+#printOrder .modal-footer{
+    height: 43px;
+    padding-top: 6px;
+}
+
+.stocklist .disable-display-amount{
+    display: none;
+}
+
+
+#copy_functionality .modal-dialog{
+    width: 440px;
+}
+#copy_functionality .modal-header{
+    padding: 0;
+}
+
+#copy_functionality .modal-header .modal-title {
+    margin: 0;
+    line-height: initial;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    padding-top: 15px;
+    padding-bottom: 9px;
+    padding-left: 15px;
+}
+
+#copy_functionality .modal-header .close {
+    margin-top: 0;
+    border-left: 1px solid #e5e5e5;
+    width: 46px ;
+    height: 46px;
+    opacity: 1;
+    color: #a1a1a1;
+}
+#copy_functionality .modal-body {
+    position: relative;
+    padding: 15px;
+    background-color: #FBFBFB;
+}
+#copy_functionality .modal-body .radio-button {
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    padding: 7px 10px 8px;
+    margin-bottom: 10px;
+    display: inline-block;
+    width: 100%;
+}
+#copy_functionality .modal-body .radio-button label {
+    font-weight: normal;
+    font-size: 12px!important;
+    margin-bottom: 0;
+}
+#copy_functionality .modal-body .radio-button label input {
+    margin-top: 3px;
+    float: left;
+    margin-right: 7px;
+}
+
+#copy_functionality .modal-body .radio-button label .sq-type-description {
+    color: #999;
+    margin-left: 20px;
+}
+
+.stocklist .notify-div{
+    padding-bottom: 0 !important;
+}
+.stocklist .notify-div .notify span.check-icon .fa{
+    color: #fff;
+}
+.stocklist .notify-div .notify .message a{
+    font-size: 12px;
+}
+
+.poview .notify-fullsize {
+    border-bottom: 1px solid #dfe1e2;
+    padding: 20px 20px 0;
+    float: left;
+    width: 100%;
+    padding-bottom: 17px;
+}
+/* .new_create_form_page{
+    float: left;
+    width: 100%;
+} */
+
+#close-mail-sent-notification {
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    right: 3px;
+    top: 3px;
+    background: #47b101;
+    text-align: center;
+    line-height: 15px;
+    color: #fff;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 0;
+    border-radius: 3px;
+    padding-left: 1px;
+    margin-top: 0;
+    float: right;
+    cursor: pointer;
+}
+.purchase .notify{
+    height: 75px;
+    margin-bottom: 20px;
+}
+.purchase .notify .message{
+    font-size: 10px;
+    line-height:32px;
+}
+.purchases .notify-div-bg {
+    float: left;
+    width: 100%;
+    background: #fafbfb;
+    border-bottom: 1px solid #dfe1e2;
+    padding: 20px 20px 0;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+}
+
+#copy_functionality button.disableBtn{
+    background: linear-gradient(#ffffff 0%,#efefef 98%,#ffffff 99%);
+    color: #bbb;
+    text-shadow: 0 1px 1px #fff;
+    border-color: #d7dadd #d7d9dd #d6d9dd #d7dade;
+    margin-left: 0;
+    font-size: 12px;
+    cursor: pointer;
+    width: 100px;
+}
+
+#copy_functionality button.disableBtn:hover {
+    background: linear-gradient(#ffffff 0%,#efefef 98%,#ffffff 99%);
+    border-color: #d7dadd #d7d9dd #d6d9dd #d7dade;
+}
+#copy_functionality button.disableBtn:focus{
+    outline: inherit;
+}
+
+
+.stocklist .content2 .select-active-stock.selected {
+    background-color: #e1ffc2;
+}
+
+#close-mail-sent-notification, #close-pending-stock-notification {
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    right: 3px;
+    top: 3px;
+    background: #47b101;
+    text-align: center;
+    line-height: 15px;
+    color: #fff;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 0;
+    border-radius: 3px;
+    padding-left: 1px;
+    margin-top: 0;
+    float: right;
+    cursor: pointer;
+}
+
+.stocklist .select-active-purchase.selected{
+    background-color: #ecf8ff;
+}

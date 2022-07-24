@@ -1,0 +1,567 @@
+<template name="companyappsettingsdup">
+    <div class="container-fluid vs1Modules">
+        <header style="background-color: #ededed;padding: 16px;margin: -24px;">
+            <h1 style="margin: 16px;">VS1 Modules
+
+                <a role="button" data-toggle="modal" href="#helpViewModal" style="font-size: 20px;">Help <i class="fa fa-question-circle-o" style="font-size: 20px;"></i></a>
+
+                <!-- Start Help View Modal -->
+                <div class="modal fade" role="dialog" tabindex="-1" id="helpViewModal">
+                    <div class="modal-dialog modal-sm" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header" style="padding-bottom: 8px;">
+                                <h4>Help</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                            </div>
+                            <div class="modal-body">
+                                <p class="text-center text-muted"><a role="button" data-toggle="modal" href="#helpModal" class="btn btn-primary helpModal">View Help Video</a></p>
+                                <p class="text-center text-muted"><a href="https://vs1forum.com/" target="_blank" class="btn btn-primary">Download Help File</a></p>
+                                <p class="text-center text-muted"><button class="btn btn-primary" type="button">Employ Advisor</button></p>
+                                <p class="text-center text-muted" style="margin: 0px;"><a href="https://vs1forum.com/ucp.php?mode=register&cloudusername={{loggedCompany}}" target="_blank" class="btn btn-primary">Go To Forum</a></p>
+                            </div>
+                            <div class="modal-footer" style="padding: 6px;"><button class="btn btn-light" data-dismiss="modal" type="button">Close</button></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Help View Modal -->
+            </h1>
+        </header>
+        <div class="fullScreenSpin" style="display:none;">
+            <div class="spinner"></div>
+        </div>
+
+        <div class="row d-xl-flex flex-row justify-content-xl-center" style="margin: -24px; margin-bottom: 24px !important; padding: 24px; background-color: #ededed;">
+
+            <div class="col d-xl-flex flex-grow-1 align-items-xl-start" style="padding: 0px !important;">
+                <button class="btn btn-primary btnRefresh" type="button" style="margin: 8px;"><i class="icon ion-android-bulb" style="margin-right: 8px;"></i>Refresh</button>
+                <button class="btn btn-success btnAddVS1User" type="button" style="margin: 8px;"><i class="fa fa-plus" style="margin-right: 8px"></i>Add VS1 User</button>
+
+                <div style="color:#17a673; margin: 8px; font-size: 14px; display: none;">
+                    <span>Available Users: </span><span id="availUsers">##</span>
+                    <br />
+                    <span>Active Users: </span><span id="activeUsers">##</span>
+                </div>
+
+                {{#if isGreenTrack}}
+                    <button class="btn btn-success btnLink" type="button" style="margin: 8px;"><i class="fas fa-link" style="margin-right: 8px"></i>Connect To An Accounting Package</button>
+                    <style>
+                        .btnLink {
+                            background-color: #EDEDED !important;
+                            border-color: #1CC88A !important;
+                            border-width: 3px !important;
+                            color: #1CC88A !important;
+                            font-weight: 500 !important;
+                        }
+                    </style>
+                {{/if}}
+            </div>
+            <div class="col d-xl-flex justify-content-xl-end align-items-xl-start" style="padding: 0px !important;">
+                <button class="btn btn-success btnTopGlobalSave float-right" type="button" style="margin: 8px;margin-left: 8px;"><i class="fa fa-save" style="margin-right: 8px;"></i>Save</button>
+                <button class="btn btn-secondary btnBack float-right" type="button" style="margin: 8px;"><i class="fa fa-close" style="margin-right: 8px;"></i>Cancel</button>
+            </div>
+
+        </div>
+
+        <!--
+<div class="d-xl-flex flex-row align-items-xl-end" style="margin: -24px;padding: 32px;background-color: #ededed;margin-bottom: 20px;margin-top: 0px;">
+<div class="d-xl-flex flex-grow-0 align-items-xl-end">
+<button class="btn btn-primary btnRefresh" type="button" style="margin: 8px;"><i class="icon ion-android-bulb" style="margin-right: 8px;"></i>Refresh</button>
+<button class="btn btn-success btnAddVS1User" type="button" style="margin: 8px;"><i class="fa fa-plus" style="margin-right: 8px"></i>Add VS1 User</button>
+{{#if isGreenTrack}}
+<button class="btn btn-success btnLink" type="button" style="margin: 8px;"><i class="fas fa-link" style="margin-right: 8px"></i>Connect To An Accounting Package</button>
+<style>
+.btnLink {
+background-color: #EDEDED !important;
+border-color: #1CC88A !important;
+border-width: 3px !important;
+color: #1CC88A !important;
+font-weight: 500 !important;
+}
+</style>
+{{/if}}
+</div>
+<div class="float-right d-xl-flex flex-row flex-grow-1 justify-content-xl-end">
+<button class="btn btn-primary btnTopGlobalSave" type="button" style="margin: 8px;margin-left: 8px;"><i class="fa fa-save" style="margin-right: 8px;"></i>Save</button>
+<button class="btn btn-secondary btnBack" type="button" style="margin: 8px;"><i class="fa fa-close" style="margin-right: 8px;"></i>Cancel</button>
+</div>
+</div>
+-->
+
+        <!--        <div class="row d-xl-flex flex-row align-items-xl-start mb-3" style="width: 100%; margin-bottom: 2em;">-->
+        <div class="row d-xl-flex justify-content-center justify-content-xl-center mb-3">
+
+            <!--            <div class="col d-xl-flex flex-row flex-wrap justify-content-xl-center">-->
+            <!-- 1 -->
+            <div class="col-3 settingsCard1" id="settingsCard1">
+                <div class="card shadow mb-3 SimpleStart">
+                    <div class="card-header py-3">
+                        <p class="text-primary m-0 font-weight-bold simpleStartText">Simple Start</p>
+                    </div>
+                    <div class="card-body">
+                        <div>
+                            <div class="table-responsive">
+                                <style>
+                                    .accordion2 {
+                                        background-color: rgba(255, 255, 255, 0);
+                                        color: #1D2726 !important;
+                                        cursor: pointer;
+                                        padding: 0px 18px;
+                                        float: right;
+                                        /* width: 100%; */
+                                        border: none;
+                                        text-align: left;
+                                        outline: none;
+                                        font-size: 15.5px;
+                                        font-weight: 500;
+                                        transition: 0.4s;
+                                        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+                                        letter-spacing: 0em !important;
+                                    }
+
+                                    .active2,
+                                    .accordion2:hover {
+                                        color: #00a3d3 !important;
+                                        background-color: #ffffff !important;
+                                    }
+
+                                    .accordion2:after {
+                                        content: '\002B';
+                                        color: #777;
+                                        font-weight: bold;
+                                        float: right;
+                                        margin-left: 5px;
+                                    }
+
+                                    .active2:after {
+                                        content: "\2212";
+                                        color: #00a3d3 !important;
+                                    }
+
+                                    .panel2 {
+                                        padding: 0;
+                                        background-color: white;
+                                        max-height: 0;
+                                        overflow: hidden;
+                                        transition: max-height 0.2s ease-out;
+                                    }
+
+                                    .function {
+                                        background-color: rgba(255, 255, 255, 0);
+                                        color: #1D2726 !important;
+                                        width: 100%;
+                                        margin: 0 !important;
+                                        text-align: left !important;
+                                        outline: none !important;
+                                        font-size: 15px;
+                                        transition: 0.4s;
+                                    }
+
+                                    .function:hover {
+                                        color: #fff !important;
+                                    }
+
+                                    .detailp {
+                                        margin: 32px 16px 16px 16px;
+                                        margin-left: 0px;
+                                    }
+                                </style>
+                                <table class="table simplediv">
+                                    <thead>
+                                        <tr>
+                                            <th style="min-width: 332px;">
+                                                <div class="custom-control custom-switch" style="cursor: pointer;">
+                                                    <input class="custom-control-input " type="checkbox" value="Simple Start" id="formCheck-SimpleStart" name="SimpleStart" checked="checked" style="cursor: pointer;" readonly>
+                                                    <label class="custom-control-label" for="formCheck-SimpleStart" style="cursor: pointer;">Simple Start</label>
+                                                </div>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {{#each item in simplestartArr}}
+                                            <tr id="{{item.moduleId}}" name="{{item.moduleId}}" class="{{item.moduleId}}">
+                                                <td style="min-width: 332px;">
+                                                    <div class="custom-control custom-switch" style="cursor: pointer;">
+                                                        <input class="custom-control-input " type="checkbox" value="{{item.moduleId}}" id="formCheck-{{item.moduleId}}" name="{{item.moduleId}}" checked="checked" style="cursor: pointer;" readonly>
+                                                        <label class="custom-control-label" for="formCheck-{{item.moduleId}}" style="cursor: pointer;">{{item.moduleName}}</label>
+                                                        <!-- <i class="fas fa-plus iconblue" style="float:right;"></i> -->
+                                                        <button class="accordion2"></button>
+                                                        <!-- <button type="button" class="btn btn-light float-right" style="padding: 0px;" data-toggle="modal" href="#{{item.moduleId}}Modal">
+                                                            <i class="fas fa-question-circle"></i>
+                                                        </button> -->
+                                                        <!-- <a role="button" data-toggle="modal" href="#Modal-{{item.moduleId}}" class="float-right"><i class="fas fa-question-circle"></i></a>
+                                                        <div class="modal fade" role="dialog" tabindex="-1" id="Modal-{{item.moduleId}}">
+                                                            <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 670px!important;">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header" style="padding-bottom: 8px;">
+                                                                        <h4>{{item.moduleName}}</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <video id="myVideo" width="640" height="360" controls="" name="media" style="border: solid 5px #999999f0; height: auto; outline: none;">
+                                                                            <source src="https://erphelpes.com/vs1videos/vs1modules-{{item.moduleId}}.mp4" type="video/mp4">
+                                                                        </video>
+                                                                        <br />
+                                                                        <p class="detailp">{{item.moduledescription}}</p>
+                                                                    </div>
+                                                                    <div class="modal-footer" style="padding: 6px;"><button class="btn btn-light" data-dismiss="modal" type="button">Close</button></div>
+                                                                </div>
+                                                            </div>
+                                                        </div> -->
+
+                                                        <div class="panel2 panelfeatured" id="panel2-{{item.moduleId}}" style="display:none; max-height:100%;">
+                                                            <p class="detailp">{{item.moduledescription}}</p>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        {{/each}}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- 2 -->
+            <div class="col-3 settingsCard2" id="settingsCard2">
+                <div class="card shadow mb-3 ">
+                    <div class="card-header py-3">
+                        <p class="text-primary m-0 font-weight-bold essentialsText">Essentials <b class="essentailAmt">0.00</b> /MO.</p>
+                        <input class="form-control form-control essentialsTextVal" type="hidden" value="0.00">
+                    </div>
+                    <div class="card-body">
+                        <div>
+                            <div class="table-responsive">
+                                <table class="table essentialsdiv">
+                                    <thead>
+                                        <tr>
+                                            <th style="min-width: 332px;">
+                                                <div class="custom-control custom-switch" style="cursor: pointer;">
+                                                    <input class="custom-control-input " type="checkbox" value="Essentials" id="formCheck-Essentials" name="Essentials" style="cursor: pointer;" readonly>
+                                                    <label class="custom-control-label" for="formCheck-Essentials" style="cursor: pointer;">Essentials</label>
+                                                </div>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {{#each itemEss in essentailsArr}}
+                                            <tr id="{{itemEss.moduleId}}Essentials" name="{{itemEss.moduleId}}Essentials" class="Essentials">
+                                                <td style="min-width: 332px;">
+                                                    <div class="custom-control custom-switch" style="cursor: pointer;">
+                                                        <input class="custom-control-input addEssentialModule" type="checkbox" value="{{itemEss.moduleId}}Essentials" id="formCheck-{{itemEss.moduleId}}Essentials" name="{{itemEss.moduleId}}Essentials"
+                                                            style="cursor: pointer;" readonly>
+                                                        <label class="custom-control-label" for="formCheck-{{itemEss.moduleId}}Essentials" style="cursor: pointer;">{{itemEss.moduleName}}</label>
+                                                        <a role="button" data-toggle="modal" href="#Modal-{{itemEss.moduleId}}" class="float-right"><i class="fas fa-question-circle"></i></a>
+                                                        <div class="modal fade" role="dialog" tabindex="-1" id="Modal-{{itemEss.moduleId}}">
+                                                            <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 670px!important;">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header" style="padding-bottom: 8px;">
+                                                                        <h4>{{itemEss.moduleName}}</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <video id="myVideo" width="640" height="360" controls="" name="media" style="border: solid 5px #999999f0; height: auto; outline: none;">
+                                                                            <source src="https://erphelpes.com/vs1videos/vs1modules/vs1modules-{{itemEss.moduleId}}.mp4" type="video/mp4">
+                                                                            <!-- <source src="https://erphelpes.com/vs1videos/comingsoon.mp4" type="video/mp4"> -->
+                                                                        </video>
+                                                                        <br />
+                                                                        <p class="detailp">{{itemEss.moduledescription}}</p>
+                                                                    </div>
+                                                                    <div class="modal-footer" style="padding: 6px;"><button class="btn btn-light" data-dismiss="modal" type="button">Close</button></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- <button class="accordion2"></button>
+                                                        <div class="panel2 panelfeatured" id="panel2-{{itemEss.moduleId}}Essentials" style="display:none; max-height:100%;">
+                                                            <p class="detailp">{{itemEss.moduledescription}}</p>
+                                                        </div> -->
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        {{/each}}
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- 3 -->
+            <div class="col-3 settingsCard3" id="settingsCard3">
+                <div class="card shadow mb-3">
+                    <div class="card-header py-3">
+                        <p class="text-primary m-0 font-weight-bold plusText">Plus <b class="plusAmt">0.00</b> /MO.</p>
+                        <input class="form-control form-control plusTextVal" type="hidden" value="0.00">
+                    </div>
+                    <div class="card-body">
+                        <div>
+                            <div class="table-responsive">
+                                <table class="table  plusdiv">
+                                    <thead>
+                                        <tr>
+                                            <th style="min-width: 332px;">
+                                                <div class="custom-control custom-switch" style="cursor: pointer;">
+                                                    <input class="custom-control-input " type="checkbox" value="Plus" id="formCheck-Plus" name="Plus" style="cursor: pointer;" readonly>
+                                                    <label class="custom-control-label" for="formCheck-Plus" style="cursor: pointer;">Plus</label>
+                                                </div>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {{#each itemPlus in plusArr}}
+                                            <tr id="Plus{{itemPlus.moduleId}}" name="Plus{{itemPlus.moduleId}}" class="Plus">
+                                                <td style="min-width: 332px;">
+                                                    <div class="custom-control custom-switch" style="cursor: pointer;">
+                                                        <input class="custom-control-input addPlusModule" type="checkbox" value="Plus{{itemPlus.moduleId}}" id="formCheck-Plus{{itemPlus.moduleId}}" name="Plus{{itemPlus.moduleId}}"
+                                                            style="cursor: pointer;" readonly>
+                                                        <label class="custom-control-label" for="formCheck-Plus{{itemPlus.moduleId}}" style="cursor: pointer;">{{itemPlus.moduleName}}</label>
+                                                        <a role="button" data-toggle="modal" href="#Modal-{{itemPlus.moduleId}}" class="float-right"><i class="fas fa-question-circle"></i></a>
+                                                        <div class="modal fade" role="dialog" tabindex="-1" id="Modal-{{itemPlus.moduleId}}">
+                                                            <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 670px!important;">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header" style="padding-bottom: 8px;">
+                                                                        <h4>{{itemPlus.moduleName}}</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <video id="myVideo" width="640" height="360" controls="" name="media" style="border: solid 5px #999999f0; height: auto; outline: none;">
+                                                                            <!-- <source src="https://erphelpes.com/vs1videos/vs1modules-{{itemPlus.moduleId}}.mp4" type="video/mp4"> -->
+                                                                            <source src="https://erphelpes.com/vs1videos/comingsoon.mp4" type="video/mp4">
+                                                                        </video>
+                                                                        <br />
+                                                                        <p class="detailp">{{itemPlus.moduledescription}}</p>
+                                                                    </div>
+                                                                    <div class="modal-footer" style="padding: 6px;"><button class="btn btn-light" data-dismiss="modal" type="button">Close</button></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- <button class="accordion2"></button>
+                                                        <div class="panel2 panelfeatured" id="panel2-Plus{{itemPlus.moduleId}}" style="display:none; max-height:100%;">
+                                                            <p class="detailp">{{itemPlus.moduledescription}}</p>
+                                                        </div> -->
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        {{/each}}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- 4 -->
+            <div class="col-3 settingsCard4" id="settingsCard4">
+                <div class="card shadow mb-3 additionalNotGreenTrack">
+                    <div class="card-header py-3">
+                        <p class="text-primary m-0 font-weight-bold">Additional Features</p>
+                        <input type="hidden" id="sumAdditionalAmount" name="sumAdditionalAmount" style="display: none;" readonly>
+                    </div>
+                    <div class="card-body">
+                        <div>
+                            <div class="table-responsive">
+                                <table class="table tblAdditionalModule">
+                                    <thead>
+                                        <tr>
+                                            <th style="min-width: 332px;">
+                                                <!-- Setting Options - Price Per User per Month -->
+                                                Ex Tax Price per User per Month
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {{#each itemExtra in extraArr}}
+                                            <tr id="Additional{{itemExtra.moduleId}}" name="Additional{{itemExtra.moduleId}}" class="Additional{{itemExtra.moduleId}}">
+                                                <td style="min-width: 332px;">
+
+                                                    <div class="custom-control custom-switch" style="cursor: pointer;">
+                                                        <input class="custom-control-input additionalModule" type="checkbox" value="{{itemExtra.pricenocurrency}}" id="formCheck-Additional{{itemExtra.moduleId}}" name="Additional"
+                                                            style="cursor: pointer;" additionalqty="1" readonly>
+                                                        <label class="custom-control-label" for="formCheck-Additional{{itemExtra.moduleId}}" style="cursor: pointer; max-width: 200px;">{{itemExtra.moduleName}}</label>
+                                                        <div class="lblPricing" style="float: right; color:#1cc88a;">
+                                                            <b>+ {{itemExtra.price}}</b>
+                                                            <a role="button" data-toggle="modal" href="#Modal-{{itemExtra.moduleId}}" class="float-right" style="margin-left: 6px;"><i class="fas fa-question-circle" style=" color:#1cc88a;"></i></a>
+                                                            <div class="modal fade" role="dialog" tabindex="-1" id="Modal-{{itemExtra.moduleId}}">
+                                                                <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 670px!important;">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header" style="padding-bottom: 8px;">
+                                                                            <h4 style="color: #858796;">{{itemExtra.moduleName}}</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            <video id="myVideo" width="640" height="360" controls="" name="media" style="border: solid 5px #999999f0; height: auto; outline: none;">
+                                                                                <!-- <source src="https://erphelpes.com/vs1videos/vs1modules-{{itemExtra.moduleId}}.mp4" type="video/mp4"> -->
+                                                                                <source src="https://erphelpes.com/vs1videos/comingsoon.mp4" type="video/mp4">
+                                                                            </video>
+                                                                            <br />
+                                                                            <p class="detailp">{{itemExtra.moduledescription}}</p>
+                                                                        </div>
+                                                                        <div class="modal-footer" style="padding: 6px;"><button class="btn btn-light" data-dismiss="modal" type="button">Close</button></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        {{/each}}
+
+
+                                    </tbody>
+                                </table>
+                                <table class="table tblAdditionalModule">
+                                    <thead>
+                                        <tr>
+                                            <th style="min-width: 332px;">
+                                                <!-- Setting Options - Price Per User per Month -->
+                                                Ex Tax Price per Connection per Month
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {{#each itemMonth in monthArr}}
+                                            <tr id="Additional{{itemMonth.moduleId}}" name="Additional{{itemMonth.moduleId}}" class="Additional{{itemMonth.moduleId}}">
+                                                <td style="min-width: 332px;">
+
+                                                    <div class="custom-control custom-switch" style="cursor: pointer;">
+                                                        <input class="custom-control-input additionalModule" type="checkbox" value="{{itemMonth.pricenocurrency}}" id="formCheck-Additional{{itemMonth.moduleId}}" name="Additional"
+                                                            style="cursor: pointer;" additionalqty="1" readonly>
+                                                        <label class="custom-control-label" for="formCheck-Additional{{itemMonth.moduleId}}" style="cursor: pointer; max-width: 200px;">{{itemMonth.moduleName}}</label>
+                                                        <div class="lblPricing" style="float: right; color:#1cc88a;">
+                                                            <b>+ {{itemMonth.price}}</b>
+                                                            <a role="button" data-toggle="modal" href="#Modal-{{itemMonth.moduleId}}" class="float-right" style="margin-left: 6px;"><i class="fas fa-question-circle" style=" color:#1cc88a;"></i></a>
+                                                            <div class="modal fade" role="dialog" tabindex="-1" id="Modal-{{itemMonth.moduleId}}">
+                                                                <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 670px!important;">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header" style="padding-bottom: 8px;">
+                                                                            <h4 style="color: #858796;">{{itemMonth.moduleName}}</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            <video id="myVideo" width="640" height="360" controls="" name="media" style="border: solid 5px #999999f0; height: auto; outline: none;">
+                                                                                <!-- <source src="https://erphelpes.com/vs1videos/vs1modules-{{itemMonth.moduleId}}.mp4" type="video/mp4"> -->
+                                                                                <source src="https://erphelpes.com/vs1videos/comingsoon.mp4" type="video/mp4">
+                                                                            </video>
+                                                                            <br />
+                                                                            <p class="detailp">{{itemMonth.moduledescription}}</p>
+                                                                        </div>
+                                                                        <div class="modal-footer" style="padding: 6px;"><button class="btn btn-light" data-dismiss="modal" type="button">Close</button></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        {{/each}}
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <!-- Upgrade POP ACCESS -->
+        <div class="modal fade" role="dialog" tabindex="-1" id="upgradeModal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content" style="border: #00a3d3;">
+                    <div class="modal-header" style="background-color:#00a3d3;">
+                        <!-- <div class="mr-3"> -->
+                        <!-- <div class="bg-success icon-circle"><i class="fas fa-donate text-white"></i></div> -->
+                        <!-- </div> -->
+                        <h4 class="title-header" style="color:white;">UNLOCK FEATURE</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row no-gutters d-xl-flex flex-row justify-content-xl-start align-items-xl-start">
+                            <p style="font-weight: bold;">Upgrade to the Essentials Pack</p>
+                            <p style="margin-bottom: 0px;margin-top: 4px;">Please upgrade to our Essentials plan to access this feature.</p>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-success btnImport" type="button"><i class="fa fa-save" style="margin-right: 5px;"></i>Upgrade</button>
+                        <button class="btn btn-secondary" data-dismiss="modal" type="button"><i class="fa fa-close" style="margin-right: 5px;"></i>Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Upgrade POP -->
+
+        <!-- Upgrade POP Plus ACCESS -->
+        <div class="modal fade" role="dialog" tabindex="-1" id="upgradeModalPlus">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content" style="border: #00a3d3;">
+                    <div class="modal-header" style="background-color:#00a3d3;">
+
+                        <h4 class="title-header" style="color:white;">UNLOCK FEATURE</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row no-gutters d-xl-flex flex-row justify-content-xl-start align-items-xl-start">
+                            <p style="font-weight: bold;">Upgrade to the Plus Pack</p>
+                            <p style="margin-bottom: 0px;margin-top: 4px;">Please upgrade to our Plus plan to access this feature.</p>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-success btnImport" type="button"><i class="fa fa-save" style="margin-right: 5px;"></i>Upgrade</button>
+                        <button class="btn btn-secondary" data-dismiss="modal" type="button"><i class="fa fa-close" style="margin-right: 5px;"></i>Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Upgrade Plus POP -->
+    </div>
+    <!-- Start Help Video Modal -->
+    <div class="modal fade" role="dialog" tabindex="-1" id="helpModal">
+        <div class="modal-dialog" role="document" style="max-width: 670px!important;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="title-header">VS1 Modules</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+                    <!-- <iframe width="640" height="360" src="https://player.vimeo.com/video/99892791" frameborder="0" allowfullscreen=""></iframe> -->
+                    <!-- <iframe width="640" height="360" src="https://www.youtube.com/embed/BzxoYOp42fg" frameborder="0" allowfullscreen=""></iframe> -->
+                    <video id="myVideo" width="640" height="360" controls="" name="media" style="border: solid 5px #999999f0; height: auto; outline: none;">
+                        <source src="https://erphelpes.com/vs1videos/vs1modules.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- End Help Video Modal -->
+
+    <!-- Start Modal Product -->
+    <div class="modal fade" role="dialog" tabindex="-1" id="employeeListModal">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Employee List</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+                    <!-- {{> refreshbutton}} -->
+                    {{> popemployeelist}}
+
+                </div>
+                <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Close</button>
+                    <button class="btn btn-primary btnProdSelect" type="button" style="background-color: #00A3D3; border-color: #00A3D3;">Select</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- End Modal Product -->
+    <script>
+        modalDraggable();
+    </script>
+
+</template>

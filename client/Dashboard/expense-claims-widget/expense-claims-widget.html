@@ -1,0 +1,28 @@
+<template name="expenseClaimsWidget">
+    <div class="dash4 fit-content"><a href="/expenseclaims/current-claims"><h3>Expense claims</h3></a>
+        <hr>
+        <a href="/expenses/receipts/new" class="dash_links">New receipt</a>
+        <div class="dash_invtotals">
+            <table class="dash_account_watchlist">
+                <tbody>
+                <tr>
+                    <td><span><a id="dash_Sales"> Your draft claim</a></span></td>
+                    <td><span><a> {{yourDraft}}</a></span></td>
+                </tr>
+               <tr>
+                    <td><span><a id="dash_Sales">  All draft & submitted</a></span></td>
+                    <td><span><a>{{all}}</a></span></td>
+                </tr>
+               <tr>
+                    <td><span><a id="dash_Sales">  {{toReviewC}} To review </a></span></td>
+                    <td><span><a >{{toReview}}</a></span></td>
+                </tr>
+                <tr>
+                    <td><span><a id="dash_Sales">{{toRepayC}} To repay </a></span></td>
+                    <td><span><a >{{toRepay}}</a></span></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</template>

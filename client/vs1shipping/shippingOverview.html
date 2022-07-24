@@ -1,0 +1,478 @@
+<template name="vs1shipping">
+    <div style="margin-top: -24px;">
+        <div class="fullScreenSpin" style="display:none;">
+            <div class="spinner"></div>
+        </div>
+
+        <header style="padding: 16px;" class="salesOverviewMobile">
+            <h2 style="margin: 14px;margin-bottom: 0px;" class="pageHeader">Shipping Overview
+                <a role="button" data-toggle="modal" href="#helpViewModal" style="font-size: 20px;">Help <i class="fa fa-question-circle-o" style="font-size: 20px;"></i></a>
+                <div class="modal fade" role="dialog" tabindex="-1" id="helpViewModal">
+                    <div class="modal-dialog modal-sm" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header" style="padding-bottom: 8px;">
+                                <h4>Help</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                            </div>
+                            <div class="modal-body">
+                                <p class="text-center text-muted"><a role="button" data-toggle="modal" href="#helpModal" class="btn btn-primary helpModal">View Help Video</a></p>
+                                <p class="text-center text-muted"><a href="https://vs1forum.com/" target="_blank" class="btn btn-primary">Download Help File</a></p>
+                                <p class="text-center text-muted"><button class="btn btn-primary" type="button">Employ Advisor</button></p>
+                                <p class="text-center text-muted" style="margin: 0px;"><a href="https://vs1forum.com/ucp.php?mode=register&cloudusername={{loggedCompany}}" target="_blank" class="btn btn-primary">Go To Forum</a></p>
+                            </div>
+                            <div class="modal-footer" style="padding: 6px;"><button class="btn btn-light" data-dismiss="modal" type="button">Close</button></div>
+                        </div>
+                    </div>
+                </div>
+            </h2>
+        </header>
+        <style>
+            .dimmedChart>div {
+                background-color: #dddfeb !important;
+            }
+    
+            .card.hovered {
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.50) !important;
+                cursor: move;
+                transition-duration: 300ms;
+            }
+    
+            .hideelement {
+                display: none !important;
+            }
+    
+            .showelement {
+                display: block;
+            }
+    
+            .customCardMainDiv {
+                position: relative;
+                padding-top: 15px !important;
+            }
+    
+            .hideShowDiv {
+                display: inline-block;
+                width: 100%;
+                text-align: right;
+                padding: 0 8px;
+                margin: 0;
+                position: absolute;
+                top: 5px;
+                left: 0;
+            }
+    
+            a.cardSettingBtn {
+                display: inline-flex;
+                width: 22px;
+                height: 22px;
+                justify-content: center;
+                align-items: center;
+                font-size: 10px;
+                border-radius: 4px;
+                /*background: #dddfeb;*/
+                color: #dddfeb;
+                text-decoration: none;
+                margin-left: 3px;
+            }
+    
+            a.editCardBtn :hover{
+                background: #dddfeb;
+                color: #6e6e6e;
+                padding: 4px;
+                border-radius: 3px;
+            }
+    
+            a.cardHideBtn,
+            a.cardShowBtn {
+                display: inline-flex;
+                width: 22px;
+                height: 22px;
+                font-size: 10px;
+                justify-content: center;
+                align-items: center;
+                /*background: #dddfeb;*/
+                border-radius: 4px;
+                margin-left: 2px;
+                text-decoration: none;
+                color: #dddfeb;
+            }
+    
+            a.cardHideBtn:hover,
+            a.cardShowBtn:hover,
+            a.cardHideBtn.active,
+            a.cardShowBtn.active {
+                background: #00a3d3;
+                color: #fff;
+            }
+    
+            a.cardHideBtn i,
+            a.cardShowBtn i {
+                pointer-events: none;
+            }
+    
+            .dimmedChart a.cardHideBtn,
+            .dimmedChart a.cardShowBtn,
+            .dimmedChart a.cardSettingBtn  {
+                background: #f1f1f1 !important;
+                color: #6e6e6e;
+            }
+    
+            .dimmedChart a.editCardBtn :hover {
+                background: rgba(0,0,0,0) !important;
+            }
+    
+            .dimmedChart .cardSettingBtn {
+                background: #fff;
+            }
+        </style>
+        <div class="row connectedCardSortable" style="padding: 0px 30px;">
+            <div class="col-lg-6 col-xl-4 card-visibility" position="0" card-active="true" card-key="shipping-barcode">
+                <div class="card shadow customCardMainDiv border-left-primary py-2 mb-4" style="height: 102px;">
+                    <div class="hideShowDiv">
+                        <a href="javascript:void(0);" class="cardShowBtn hideelement"><i class="far fa-eye"></i></a>
+                        <a href="javascript:void(0);" class="cardSettingBtn editCardBtn"><i class="fas fa-cog"></i></a>
+                    </div>
+                    <div class="card-body">
+                        <div class="row align-items-center no-gutters" style="margin-top:4px;">
+                            <div class="input-group">
+                                <input class="form-control" id="barcodeScanInput" name="barcodeScanInput" type="text" placeholder="Enter the barcode">
+                                <style>
+                                    .btnDesktopSearch {
+                                        color: #fff;
+                                    }
+                                </style>
+                                <div class="input-group-append">
+                                    <a class="btn btn-success btnDesktopSearch" href="" id="btnDesktopSearch" role="button" style="border-top-right-radius: 0.35rem; border-bottom-right-radius: 0.35rem;"><i class="fas fa-search"></i></a>
+                                </div>
+                                <a class="btn btn-success scanBarcode" href="" id="scanBarcode" role="button" style="margin-left: 8px;"><i class="fas fa-camera"></i></a>
+                                <button type="button" class="btn btn-success" id="btnMobileBarcodeScan" data-toggle="modal" data-target="#scanBarcodeModalShippingOverview" style="margin-left: 8px; display: none;"><i class="fas fa-camera"></i></button>
+                                <!-- IDEA: Scan will open the scanning modal UNLESS you type in a valid barcode, then it will open the corresponding Shipping Docket -->
+                            </div>
+                            <!-- <style>
+                                @media screen and (max-width: 450px) {
+                                    #mobileBarcodeScan {
+                                        display: block !important;
+                                    }
+                                    #scanBarcode {
+                                        display: none;
+                                    }
+                                }
+                            </style> -->
+
+                            <div class="modal fade" role="dialog" tabindex="-1" id="scanBarcodeModalShippingOverview">
+                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Barcode Scanner</h4>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <style>
+                                                #qr-readershippingoverview>div:first-of-type {
+                                                    display: none !important;
+                                                }
+
+                                                #qr-readershippingoverview__dashboard_section_swaplink {
+                                                    display: none !important;
+                                                }
+
+                                                #qr-readershippingoverview__dashboard_section_csr>div>button:first-of-type {
+                                                    color: #fff !important;
+                                                    background-color: #00a3d3 !important;
+                                                    border-color: #00a3d3 !important;
+                                                    border: 1px solid transparent;
+                                                    display: inline-block !important;
+                                                    font-weight: 400 !important;
+                                                    text-align: center !important;
+                                                    vertical-align: middle !important;
+                                                    padding: .375rem .75rem !important;
+                                                    font-size: 1rem !important;
+                                                    line-height: 1.5 !important;
+                                                    border-radius: .35rem !important;
+                                                    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+                                                }
+                                            </style>
+                                            <!-- <div id="reader" style="width: 100%"></div> -->
+                                            <div id="qr-readershippingoverview" style="width:100%"></div>
+                                        </div>
+                                        <div class="modal-footer"><button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-xl-4 card-visibility" position="0" card-active="true" card-key="shipping-active-inventory">
+                <div class="card shadow customCardMainDiv border-left-primary py-2 mb-4">
+                    <div class="hideShowDiv">
+                        <a href="javascript:void(0);" class="cardShowBtn hideelement"><i class="far fa-eye"></i></a>
+                        <a href="javascript:void(0);" class="cardSettingBtn editCardBtn"><i class="fas fa-cog"></i></a>
+                    </div>
+                    <div class="card-body">
+                        <div class="row align-items-center no-gutters">
+                            <div class="col mr-2">
+                                <div class="text-uppercase text-primary font-weight-bold text-xs mb-1"><span>Active Inventory</span></div>
+                                <div class="text-dark font-weight-bold h5 mb-0"><span>70</span></div>
+                            </div>
+                            <div class="col-auto"><i class="fas fa-box-open fa-2x text-gray-300"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-xl-4 card-visibility" position="0" card-active="true" card-key="shipping-outgoing-packages">
+                <div class="card shadow customCardMainDiv border-left-success py-2 mb-4">
+                    <div class="hideShowDiv">
+                        <a href="javascript:void(0);" class="cardShowBtn hideelement"><i class="far fa-eye"></i></a>
+                        <a href="javascript:void(0);" class="cardSettingBtn editCardBtn"><i class="fas fa-cog"></i></a>
+                    </div>
+                    <div class="card-body">
+                        <div class="row align-items-center no-gutters">
+                            <div class="col mr-2">
+                                <div class="text-uppercase text-success font-weight-bold text-xs mb-1"><span>Outgoing Packages</span></div>
+                                <div class="text-dark font-weight-bold h5 mb-0"><span>467</span></div>
+                            </div>
+                            <div class="col-auto"><i class="fas fa-parachute-box fa-2x text-gray-300"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <style>
+            @media screen and (max-width: 450px) {
+                .btnOpenSettings {
+                    display: none;
+                }
+
+                .btnOpenSettingsMobile {
+                    display: block !important;
+                }
+
+                .btnNav {
+                    width: 90%;
+                }
+
+                #tblShipping_filter {
+                    width: 70%;
+                }
+
+                .form-control-sm {
+                    width: 70% !important;
+                }
+                .btnRefreshShipping {
+                    float: right !important;
+                }
+            }
+        </style>
+
+        <div class="row d-xl-flex flex-row justify-content-xl-center" style="padding: 0px 16px; padding-bottom: 18px;">
+            <div class="col-6 align-items-start">
+                <button id="btnRefresh" class="btn btn-primary btnRefresh btnNav" type="button" style="margin: 16px;"><i class="la la-lightbulb-o" style="margin-right: 5px;"></i>Refresh</button>
+            </div>
+            <div class="col-6 align-items-end">
+                <a class="btn btnOpenSettings float-right" role="button" data-toggle="modal" href="#myModal2" style="margin: 16px;"><i class="icon ion-android-more-horizontal"></i></a>
+                <button class="btn btn-primary printConfirm float-right btnNav" type="button" style="margin: 16px;"><i class="fa fa-print" style="padding-right: 5px;"></i>Print</button>
+                <button class="btn btn-primary export float-right btnNav" type="button" style="margin: 16px;" id="exportbtn" name="exportbtn"><i class="fas fa-file-export" style="padding-right: 5px;"></i>Export</button>
+                <a class="btn btnOpenSettings btnOpenSettingsMobile float-right" role="button" data-toggle="modal" href="#myModal2" style="margin: 16px; display: none;"><i class="icon ion-android-more-horizontal"></i></a>
+            </div>
+        </div>
+
+        <div style="padding: 0px 12px;">
+            <div class="card-body p-3 rounded" style="padding-top: 0px !important;">
+                <!-- Start {{> optionNavSalesOverview}} -->
+                <div class="d-xl-flex justify-content-xl-end">
+                    <div>
+                        <div class="modal fade" role="dialog" tabindex="-1" id="myModal2">
+                            <div class="modal-dialog modal-dialog-centered" role="document" style="float: right;">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4>Display Settings</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div>
+                                            {{#if tableheaderrecords}}
+                                                <form class="d-xl-flex align-items-xl-center">
+                                                    <div class="flex-grow-1">
+                                                        <style>
+                                                            .groove {
+                                                                border-style: solid;
+                                                                border-width: 1px;
+                                                                width: 200px;
+                                                                padding: 2px;
+                                                                border-radius: .35rem;
+                                                            }
+
+                                                            .custom-control-label {
+                                                                position: absolute;
+                                                            }
+
+                                                            .rngRange {
+                                                                position: relative;
+                                                                display: flex;
+                                                                flex-direction: column;
+                                                                width: 100%;
+                                                                pointer-events: auto;
+                                                                background-color: rgb(255, 255, 255);
+                                                                background-clip: padding-box;
+                                                                border: 1px solid rgb(133, 135, 150);
+                                                                border-radius: .3rem;
+                                                                border-style: solid;
+                                                                border-width: 1px;
+                                                                padding: 2px;
+                                                                border-radius: .35rem;
+                                                                color: rgb(128, 128, 128);
+                                                                height: inherit !important;
+                                                            }
+
+                                                            @media only screen and (max-width: 480px) {
+                                                                .modal.show .modal-dialog {
+                                                                    float: inherit !important;
+                                                                    left: inherit !important;
+                                                                    top: auto !important;
+
+                                                                }
+                                                            }
+
+                                                            #page-top.active {
+                                                                padding-right: 0px !important;
+                                                            }
+                                                        </style>
+                                                        {{#each item in tableheaderrecords}}
+                                                            {{#if equals item.sTitle "id"}}
+                                                            {{else}}
+
+                                                                <div id="{{item.sIndex}}" class="columnSettings">
+                                                                    <div class="custom-control custom-switch" style="margin: 8px; float:left;">
+                                                                        <input class="custom-control-input chkDatatable" type="checkbox" id="chkSalesNo-{{item.sIndex}}" name="chkSalesNo-{{item.sIndex}}"
+                                                                            checked="{{#if item.sVisible}}checked{{else}}{{/if}}" value="{{item.sTitle}}">
+                                                                        <label class="custom-control-label" for="chkSalesNo-{{item.sIndex}}"></label>
+                                                                        <div contenteditable="true" class="groove divcolumn" type="text" value="{{item.sTitle}}" valueupdate="{{item.sClass}}">{{item.sTitle}}</div>
+                                                                    </div>
+                                                                    <div class="d-xl-flex align-items-xl-center divColWidth" style="margin: 8px;">
+                                                                        <label class="text-nowrap" style="padding-left: 0px;margin-top: 8px;">Width:
+                                                                            <!--<span class="spWidth" value="{{item.sTitle}}">{{item.sWidth}}px</span>-->
+                                                                        </label>
+                                                                        <input class="custom-range rngRange" type="number" style="margin: 8px;" value="{{item.sWidth}}" min="0" max="1000">
+                                                                        <!-- <div contenteditable="true" class="groove rngRange" type="text" value="{{item.sWidth}}" min="0" max="1000">{{item.sWidth}}px</div> -->
+                                                                    </div>
+                                                                </div>
+
+                                                                {{#if equals item.sVisible true}}
+                                                                    <script>
+                                                                        $("#" + {{item.sIndex}} + ".chkDatatable").attr("checked", "checked");
+                                                                    </script>
+                                                                {{else}}
+                                                                    <script>
+                                                                        $("#" + {{item.sIndex}} + ".chkDatatable").removeAttr("checked");
+                                                                    </script>
+                                                                {{/if}}
+
+                                                            {{/if}}
+                                                        {{/each}}
+                                                    </div>
+                                                </form>
+                                            {{/if}}
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn btn-primary saveTable" type="button"><i class="fa fa-save" style="margin-right: 5px;"></i>Save</button>
+                                        <button class="btn btn-warning resetTable" data-dismiss="modal" type="reset"><i class="fa fa-repeat" style="margin-right: 5px;"></i>Reset</button>
+                                        <button class="btn btn-secondary" data-dismiss="modal" type="button"><i class="fa fa-remove" style="margin-right: 5px;"></i>Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End -->
+                <div class="table-responsive">
+                    <style>
+                        th {
+                            background-color: #ededed;
+                        }
+
+                        .table-striped tbody tr:nth-of-type(odd) {
+                            background-color: white !important;
+                        }
+
+                        .table-striped tbody tr:nth-of-type(even) {
+                            background-color: #0000000d !important;
+                        }
+
+                        .JColResizer>tbody>tr>td,
+                        .JColResizer>tbody>tr>th {
+                            padding: .75rem !important;
+                        }
+
+                        .hiddenColumn {
+                            display: none;
+                        }
+
+                        .showColumn {
+                            display: table-cell;
+                            padding: .75rem;
+                            vertical-align: top;
+                        }
+
+                        input[type=number]::-webkit-inner-spin-button,
+                        input[type=number]::-webkit-outer-spin-button {
+                            opacity: 1;
+                        }
+                    </style>
+                    <style>
+                        .colInvoiceNo {
+                            width: 8% !important;
+                        }
+
+                        .colSaleNo {
+                            width: 8% !important;
+                        }
+
+                        .colEmployee {
+                            width: 15% !important;
+                        }
+
+                        .colDept {
+                            width: 15% !important;
+                        }
+
+                        .colDate {
+                            width: 8% !important;
+                        }
+                    </style>
+                    <table id="tblShipping" name="tblShipping" style="width:100%" class="dataTable table table-hover table-striped table-bordered tblShipping">
+                        <thead>
+                            <tr class="dnd-moved">
+                                <th class="th colInvoiceNo">Invoice No.</th>
+                                <!-- <th class="th colSaleNo">Sale No.</th> -->
+                                <th class="th colEmployee">Employee</th>
+                                <th class="th colDept">Department</th>
+                                <th class="th colPrintName">Print Name</th>
+                                <th class="th colDate">Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#if datatablerecords}}
+                                {{#each item in datatablerecords}}
+                                    <tr class="dnd-moved" id="{{item.id}}" style="cursor: pointer;">
+                                        <td contenteditable="false" class="colInvoiceNo">{{item.id}}</td>
+                                        <!-- <td contenteditable="false" class="colSaleNo">{{item.id}}</td> -->
+                                        <td contenteditable="false" class="colEmployee">{{item.employee}}</td>
+                                        <td contenteditable="false" class="colDept">{{item.department}}</td>
+                                        <td contenteditable="false" class="colPrintName">{{item.customername}}</td>
+                                        <td contenteditable="false" class="colDate">{{item.sortdate}}</td>
+                                    </tr>
+                                {{/each}}
+                            {{/if}}
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <div id="reader" style="width: 100%"></div> -->
+    <script>
+        modalDraggable();
+    </script>
+</template>

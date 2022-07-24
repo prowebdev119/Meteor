@@ -1,0 +1,864 @@
+<template name="payslip">
+    <div class="container-fluid" style="padding-left: 0px; padding-right: 0px; margin-top: -24px;">
+        <div class="fullScreenSpin" style="display:none;">
+            <div class="spinner"></div>
+        </div>
+        <header style="padding: 16px; background-color: #ededed;">
+            <h2 style="margin: 16px; margin-bottom: 0px;" class="timesheetHeader">Pay Slip - Week Ending 09 Jan 2022
+                <!-- <a role="button" data-toggle="modal" href="#helpModal" class="helpModal"><label class="lblplay">PLAY</label><i class="far fa-play-circle"  style="font-size: 20px;"></i></a> -->
+                <a role="button" data-toggle="modal" href="#helpViewModal" style="font-size: 20px;">Help <i class="fa fa-question-circle-o" style="font-size: 20px;"></i></a>
+
+                <!-- Start Help View Modal -->
+                <div class="modal fade" role="dialog" tabindex="-1" id="helpViewModal">
+                    <div class="modal-dialog modal-sm" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header" style="padding-bottom: 8px;">
+                                <h4>Help</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                            </div>
+                            <div class="modal-body">
+                                <p class="text-center text-muted"><a role="button" data-toggle="modal" href="#helpModal" class="btn btn-primary helpModal">View Help Video</a></p>
+                                <p class="text-center text-muted"><a href="https://vs1forum.com/viewforum.php?f=6" target="_blank" class="btn btn-primary">Download Help File</a></p>
+                                <p class="text-center text-muted"><button class="btn btn-primary" type="button">Employ Advisor</button></p>
+                                <p class="text-center text-muted" style="margin: 0px;"><a href="https://vs1forum.com/ucp.php?mode=register&cloudusername={{loggedCompany}}" target="_blank" class="btn btn-primary">Go To Forum</a></p>
+                            </div>
+                            <div class="modal-footer" style="padding: 6px;"><button class="btn btn-light" data-dismiss="modal" type="button">Close</button></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Help View Modal -->
+
+            </h2>
+        </header>
+
+        <div class="row" style="background-color: #ededed; padding-top: 0px; padding: 24px;">
+            <div class="col-12">
+                <div class="card shadow">
+                    <div class="card-body" style="padding: 0px;">
+                        <div class="row no-gutters">
+                            <div class="col-6 col-md-2" style="border-right: 1px solid #e3e6f0;padding: 16px;;">
+                                <h5 style="font-size: 16px; font-weight: 700;">Earnings</h5>
+                                <p style="font-size: 24px; margin-bottom: 0px;">2,000.00</p>
+                            </div>
+                            <div class="col-6 col-md-2" style="border-right: 1px solid #e3e6f0;padding: 16px;;">
+                                <h5 style="font-size: 16px; font-weight: 700;">Taxes</h5>
+                                <p style="font-size: 24px; margin-bottom: 0px;">940.00</p>
+                            </div>
+                            <div class="col-6 col-md-2" style="border-right: 1px solid #e3e6f0;padding: 16px;;">
+                                <h5 style="font-size: 16px; font-weight: 700;">Superannuation</h5>
+                                <p style="font-size: 24px; margin-bottom: 0px;">0.00</p>
+                            </div>
+                            <div class="col-6 col-md-2" style="border-right: 1px solid #e3e6f0;padding: 16px;;">
+                                <h5 style="font-size: 16px; font-weight: 700;">Reimbursements</h5>
+                                <p style="font-size: 24px; margin-bottom: 0px;">0.00</p>
+                            </div>
+                            <div class="col-6 col-md-2" style="border-right: 1px solid #e3e6f0;padding: 16px;;">
+                                <h5 style="font-size: 16px; font-weight: 700;">Net Pay</h5>
+                                <p style="font-size: 24px; margin-bottom: 0px;">1,060.00</p>
+                            </div>
+                            <div class="col-6 col-md-2" style="padding: 16px;">
+                                <h5 style="font-size: 16px; font-weight: 700;">Total Payment</h5>
+                                <p style="font-size: 24px; margin-bottom: 0px;">1,060.00</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="col-6">
+                <button class="btn btn-primary btnRefreshOne btnNav" type="button" style="margin: 16px;"><i class="la la-lightbulb-o" style="padding-right: 5px;"></i>Refresh </button>
+            </div>
+            <div class="col-6">
+                <a class="btn btnOpenSettings float-right btnNav" style="margin: 16px;" role="button" data-toggle="modal" href="#myModal2"><i class="icon ion-android-more-horizontal"></i></a>
+                <button class="btn btn-primary float-right printConfirm btnNav" type="button" style="margin: 16px;"><i class="fa fa-print" style="padding-right: 5px;"></i>Print</button>
+                <button class="btn btn-primary float-right export exportbtn btnNav" type="button" style="margin: 16px;" id="exportbtn" name="exportbtn"><i class="fas fa-file-export" style="padding-right: 5px;"></i>Export</button>
+                <a class="btn btnOpenSettings float-right btnOpenSettingsMobile" style="margin: 16px 8px; display: none;" role="button" data-toggle="modal" href="#myModal2"><i class="icon ion-android-more-horizontal"></i></a>
+            </div> -->
+        </div>
+
+        <div class="row d-xl-flex justify-content-xl-end" style="padding: 24px; padding-right: 32px; padding-bottom: 0px;">
+            <div>
+                <div class="modal fade" role="dialog" tabindex="-1" id="myModal2">
+                    <div class="modal-dialog modal-dialog-centered" role="document" style="float: right;">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4>Display Settings</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                            </div>
+                            <div class="modal-body">
+                                <div>
+                                    {{#if tableheaderrecords}}
+                                        <form class="d-xl-flex align-items-xl-center">
+                                            <div class="flex-grow-1">
+                                                <style>
+                                                    .groove {
+                                                        border-style: solid;
+                                                        border-width: 1px;
+                                                        width: 200px;
+                                                        padding: 2px;
+                                                        border-radius: .35rem;
+                                                    }
+
+                                                    .custom-control-label {
+                                                        position: absolute;
+                                                    }
+
+                                                    .rngRange {
+                                                        position: relative;
+                                                        display: flex;
+                                                        flex-direction: column;
+                                                        width: 100%;
+                                                        pointer-events: auto;
+                                                        background-color: rgb(255, 255, 255);
+                                                        background-clip: padding-box;
+                                                        border: 1px solid rgb(133, 135, 150);
+                                                        border-radius: .3rem;
+                                                        border-style: solid;
+                                                        border-width: 1px;
+                                                        padding: 2px;
+                                                        border-radius: .35rem;
+                                                        color: rgb(128, 128, 128);
+                                                        height: inherit !important;
+                                                    }
+
+                                                    @media only screen and (max-width: 480px) {
+                                                        .modal.show .modal-dialog {
+                                                            float: inherit !important;
+                                                            left: inherit !important;
+                                                            top: auto !important;
+
+                                                        }
+                                                    }
+                                                </style>
+                                                {{#each item in tableheaderrecords}}
+                                                    {{#if equals item.sTitle "Edit"}}
+                                                    {{else}}
+                                                        {{#if equals item.sTitle ""}}
+                                                        {{else}}
+                                                            {{#if equals item.sTitle "id"}}
+
+                                                            {{else}}
+                                                                {{#if equals item.sTitle "HiddenHours"}}
+
+                                                                {{else}}
+                                                                    <div id="{{item.sIndex}}" class="columnSettings">
+                                                                        <div class="custom-control custom-switch" style="margin: 8px; float:left;">
+                                                                            <input class="custom-control-input chkDatatable" type="checkbox" id="chkSalesNo-{{item.sIndex}}" name="chkSalesNo-{{item.sIndex}}"
+                                                                                checked="{{#if item.sVisible}}checked{{else}}{{/if}}" value="{{item.sTitle}}">
+                                                                            <label class="custom-control-label" for="chkSalesNo-{{item.sIndex}}"></label>
+                                                                            <div contenteditable="true" class="groove divcolumn" type="text" value="{{item.sTitle}}" valueupdate="{{item.sClass}}">{{item.sTitle}}</div>
+                                                                        </div>
+                                                                        <div class="d-xl-flex align-items-xl-center divColWidth" style="margin: 8px;">
+                                                                            <label class="text-nowrap" style="padding-left: 0px;margin-top: 8px;">Width:
+                                                                                <!--<span class="spWidth" value="{{item.sTitle}}">{{item.sWidth}}px</span>-->
+                                                                            </label>
+                                                                            <input class="custom-range rngRange" type="number" style="margin: 8px;" value="{{item.sWidth}}" min="0" max="1000">
+                                                                            <!-- <div contenteditable="true" class="groove rngRange" type="text" value="{{item.sWidth}}" min="0" max="1000">{{item.sWidth}}px</div> -->
+                                                                        </div>
+                                                                    </div>
+
+                                                                    {{#if equals item.sVisible true}}
+                                                                        <script>
+                                                                            $("#" + {{item.sIndex}} + ".chkDatatable").attr("checked", "checked");
+                                                                        </script>
+                                                                    {{else}}
+                                                                        <script>
+                                                                            $("#" + {{item.sIndex}} + ".chkDatatable").removeAttr("checked");
+                                                                        </script>
+                                                                    {{/if}}
+                                                                {{/if}}
+                                                            {{/if}}
+                                                        {{/if}}
+                                                    {{/if}}
+                                                {{/each}}
+                                            </div>
+                                        </form>
+                                    {{/if}}
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary saveTable" type="button"><i class="fa fa-save" style="margin-right: 5px;"></i>Save</button>
+                                <button class="btn btn-warning resetTable" data-dismiss="modal" type="reset"><i class="fa fa-repeat" style="margin-right: 5px;"></i>Reset</button>
+                                <button class="btn btn-secondary" data-dismiss="modal" type="button"><i class="fa fa-remove" style="margin-right: 5px;"></i>Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row no-gutters">
+            <div class="col-12">
+                <div class="card shadow" style="margin: 12px 24px;">
+                    <div class="card-body" style="padding: 0px;">
+                        <div class="row no-gutters">
+                            <div class="col-6 col-md-9" style="border-right: 1px solid #e3e6f0;padding: 16px;;">
+                                <h5 style="font-size: 16px; font-weight: 700;">Employee</h5>
+                                <p style="font-size: 24px; margin-bottom: 0px;">Simon Clive</p>
+                            </div>
+                            <div class="col-6 col-md-3" style="padding: 16px;">
+                                <h5 style="font-size: 16px; font-weight: 700;">Employee's Net Pay</h5>
+                                <p style="font-size: 24px; margin-bottom: 0px;">1,060.00</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <style>
+            @media screen and (max-width: 450px) {
+                .earningsRateLine {
+                    padding-bottom: 0px !important;
+                }
+                .earningsRateLineDelete {
+                    padding-top: 0px !important;
+                }
+                .earningsRateLineDeleteBtn {
+                    margin-top: 0px !important;
+                    float: right;
+                }
+                .earningsFormGroup {
+                    margin-bottom: 0px !important;
+                }
+                .earningsRateLineRow {
+                    border-bottom: 1px solid #e3e6f0;
+                    margin-bottom: 16px;
+                }
+            }
+        </style>
+
+        <div class="row no-gutters">
+            <div class="col-12">
+                <div class="card shadow" style="margin: 12px 24px;">
+                    <div class="card-body" style="padding: 0px;">
+                        <div class="row no-gutters earningsRateLineRow">
+                            <div class="col-6 col-md-3 earningsRateLine" style="padding: 16px;">
+                                <div class="form-group earningsFormGroup">
+                                    <label for="">Earnings Rate</label>
+                                    <input type="text" class="form-control" id="">
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-2 earningsRateLine" style="padding: 16px;">
+                                <div class="form-group earningsFormGroup">
+                                    <label for="">Hours</label>
+                                    <input type="text" class="form-control" id="">
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-2 earningsRateLine" style="padding: 16px;">
+                                <div class="form-group">
+                                    <label for="">Rate</label>
+                                    <input type="text" class="form-control" id="">
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-2 earningsRateLine" style="padding: 16px;">
+                                <div class="form-group">
+                                    <label for="">Total</label>
+                                    <input type="text" class="form-control" id="">
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-1 earningsRateLineDelete" style="padding: 16px;">
+                                <button type="button" class="btn btn-danger earningsRateLineDeleteBtn" style="margin-top: 30px;"><i class="fas fa-trash-alt"></i></button>
+                            </div>
+                        </div>
+                        <div class="row no-gutters">
+                            <div class="col-6 col-md-7" style="padding: 16px; padding-top: 0px;">
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addEarningsLineModal2"><i class="fas fa-plus" style="margin-right: 5px;"></i> Add
+                                    Earnings Line</button>
+                                <div class="modal fade" id="addEarningsLineModal2" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="newPayCalendarLabel">Add an Earnings Line</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <label>Earnings Rate</label>
+                                                            <input type="text" class="form-control" id="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-success"><i class="fa fa-save" style="margin-right: 5px;"></i>Save</button>
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-close" style="margin-right: 5px;"></i>Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-2" style="padding: 16px; padding-top: 0px;">
+                                <p style="margin-bottom: 0px; margin-top: 4px; font-size: 20px; font-weight: 700; border-top: 1px solid; border-bottom: 1px solid;">
+                                    2,000.00
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row no-gutters">
+            <div class="col-12">
+                <div class="card shadow" style="margin: 12px 24px;">
+                    <div class="card-body" style="padding: 0px;">
+                        <div class="row no-gutters">
+                            <div class="col-6 col-md-7" style="padding: 16px;">
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addDeductionLineModal"><i class="fas fa-plus" style="margin-right: 5px;"></i> Add
+                                    Deduction Line</button>
+                                <div class="modal fade" id="addDeductionLineModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="newPayCalendarLabel">Add a Deduction Line</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <label>Deduction Type</label>
+                                                            <input type="text" class="form-control" id="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <label>Calculation Type</label><br />
+                                                            <div class="form-check form-check-inline">
+                                                                <input class="form-check-input" type="radio" name="calculationTypeDeduction" id="calculationTypeDeduction1" value="fixedamount">
+                                                                <label class="form-check-label" for="calculationTypeDeduction1">Fixed Amount</label>
+                                                            </div>
+                                                            <div class="form-check form-check-inline">
+                                                                <input class="form-check-input" type="radio" name="calculationTypeDeduction" id="calculationTypeDeduction2" value="pretax">
+                                                                <label class="form-check-label" for="calculationTypeDeduction2">Pre-Tax %</label>
+                                                            </div>
+                                                            <div class="form-check form-check-inline">
+                                                                <input class="form-check-input" type="radio" name="calculationTypeDeduction" id="calculationTypeDeduction3" value="posttax">
+                                                                <label class="form-check-label" for="calculationTypeDeduction3">Post-Tax %</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <label>Control Account</label>
+                                                            <input type="text" class="form-control" id="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-success"><i class="fa fa-save" style="margin-right: 5px;"></i>Save</button>
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-close" style="margin-right: 5px;"></i>Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-2" style="padding: 16px;">
+                                <p style="margin-bottom: 0px; margin-top: 4px; font-size: 20px; font-weight: 700; border-top: 1px solid; border-bottom: 1px solid;">
+                                    0.00
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row no-gutters">
+            <div class="col-12">
+                <div class="card shadow" style="margin: 12px 24px;">
+                    <div class="card-body" style="padding: 0px;">
+                        <div class="row no-gutters">
+                            <div class="col-6 col-md-7" style="padding: 16px;">
+                                <div class="form-group">
+                                    <label for="">Tax Type</label>
+                                    <input type="text" class="form-control" id="">
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-2" style="padding: 16px;">
+                                <div class="form-group">
+                                    <label for="">Total</label>
+                                    <input type="text" class="form-control" id="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row no-gutters">
+                            <div class="col-6 col-md-7" style="padding: 16px; padding-top: 0px;">
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addTaxLineModal"><i class="fas fa-plus" style="margin-right: 5px;"></i> Add
+                                    Tax Line</button>
+                                <div class="modal fade" id="addTaxLineModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="newPayCalendarLabel">Add a Tax Line</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <label>Tax Type</label>
+                                                            <input type="text" class="form-control" id="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <label>Description</label>
+                                                            <input type="text" class="form-control" id="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <label>Liability Account</label>
+                                                            <input type="text" class="form-control" id="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-success"><i class="fa fa-save" style="margin-right: 5px;"></i>Save</button>
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-close" style="margin-right: 5px;"></i>Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-2" style="padding: 16px; padding-top: 0px;">
+                                <p style="margin-bottom: 0px; margin-top: 4px; font-size: 20px; font-weight: 700; border-top: 1px solid; border-bottom: 1px solid;">
+                                    940.00
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row no-gutters">
+            <div class="col-12">
+                <div class="card shadow" style="margin: 12px 24px;">
+                    <div class="card-body" style="padding: 0px;">
+                        <div class="row no-gutters">
+                            <div class="col-6 col-md-7" style="padding: 16px;">
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addSuperannuationLineModal"><i class="fas fa-plus" style="margin-right: 5px;"></i> Add
+                                    Superannuation Line</button>
+                                <div class="modal fade" id="addSuperannuationLineModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="newPayCalendarLabel">Add a Superannuation Line</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <label>Superannuation Fund</label>
+                                                            <input type="text" class="form-control" id="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <label>Contribution Type</label>
+                                                            <input type="text" class="form-control" id="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <label>Calculation Type</label><br />
+                                                            <div class="form-check form-check-inline">
+                                                                <input class="form-check-input" type="radio" name="calculationTypeSuperannuation" id="calculationTypeSuperannuation1" value="fixedamount">
+                                                                <label class="form-check-label" for="calculationTypeSuperannuation1">Fixed Amount</label>
+                                                            </div>
+                                                            <div class="form-check form-check-inline">
+                                                                <input class="form-check-input" type="radio" name="calculationTypeSuperannuation" id="calculationTypeSuperannuation2" value="pretax">
+                                                                <label class="form-check-label" for="calculationTypeDeduction2">Percentage of Earnings</label>
+                                                            </div>
+                                                            <div class="form-check form-check-inline">
+                                                                <input class="form-check-input" type="radio" name="calculationTypeSuperannuation" id="calculationTypeSuperannuation3" value="posttax">
+                                                                <label class="form-check-label" for="calculationTypeSuperannuation3">Statutory Rate</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <label>Minimum Monthly Earnings</label>
+                                                            <input type="text" class="form-control" id="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <label>Expense Account</label>
+                                                            <input type="text" class="form-control" id="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <label>Liability Account</label>
+                                                            <input type="text" class="form-control" id="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Payment Frequency</label>
+                                                            <input type="text" class="form-control" id="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Period Payment Date</label>
+                                                            <div class="input-group date" style="cursor: pointer;">
+                                                                <input type="text" class="form-control formClassDate edtPeriodPaymentDate" id="edtPeriodPaymentDate" name="edtPeriodPaymentDate" value="">
+                                                                <div class="input-group-addon" style="">
+                                                                    <span class="glyphicon glyphicon-th" style="cursor: pointer;"></span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-success"><i class="fa fa-save" style="margin-right: 5px;"></i>Save</button>
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-close" style="margin-right: 5px;"></i>Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-2" style="padding: 16px;">
+                                <p style="margin-bottom: 0px; margin-top: 4px; font-size: 20px; font-weight: 700; border-top: 1px solid; border-bottom: 1px solid;">
+                                    0.00
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row no-gutters">
+            <div class="col-12">
+                <div class="card shadow" style="margin: 12px 24px;">
+                    <div class="card-body" style="padding: 0px;">
+                        <div class="row no-gutters">
+                            <div class="col-6 col-md-7" style="padding: 16px;">
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addReimbursementLineModal"><i class="fas fa-plus" style="margin-right: 5px;"></i> Add
+                                    Reimbursement Line</button>
+                                <div class="modal fade" id="addReimbursementLineModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="newPayCalendarLabel">Add a Reimbursement Line</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <label>Reimbursement Type</label>
+                                                            <input type="text" class="form-control" id="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <label>Description</label>
+                                                            <input type="text" class="form-control" id="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <label>Control of Expense Account</label>
+                                                            <input type="text" class="form-control" id="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-success"><i class="fa fa-save" style="margin-right: 5px;"></i>Save</button>
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-close" style="margin-right: 5px;"></i>Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-2" style="padding: 16px;">
+                                <p style="margin-bottom: 0px; margin-top: 4px; font-size: 20px; font-weight: 700; border-top: 1px solid; border-bottom: 1px solid;">
+                                    0.00
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row no-gutters">
+            <div class="col-12">
+                <div class="card shadow" style="margin: 12px 24px;">
+                    <div class="card-body" style="padding: 0px;">
+                        <div class="row no-gutters">
+                            <div class="col-6 col-md-8" style="padding: 16px;">
+                                <div class="form-group">
+                                    <label for="">Total Payment for Employee</label>
+                                    <input type="text" class="form-control" id="">
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-1" style="padding: 16px;">
+                                <div class="form-group">
+                                    <label for="">Total</label>
+                                    <p style="margin-bottom: 0px; margin-top: 4px; font-size: 20px; font-weight: 700; border-top: 1px solid; border-bottom: 1px solid;">
+                                        1,060.00
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row no-gutters">
+                            <div class="col-12 col-md-7" style="padding: 16px; padding-top: 0px;">
+                            </div>
+                            <div class="col-12 col-md-2" style="padding: 16px; padding-top: 0px;">
+                                <p style="margin-bottom: 0px; margin-top: 4px; font-size: 20px; font-weight: 700; border-top: 1px solid; border-bottom: 1px solid;">
+                                    1,060.00
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <style>
+            @media screen and (max-width: 450px) {
+                .leaveTypeRow {
+                    padding-bottom: 0px;
+                }
+            }
+        </style>
+
+        <div class="row no-gutters">
+            <div class="col-12">
+                <div class="card shadow" style="margin: 12px 24px;">
+                    <div class="card-body" style="padding: 0px;">
+                        <div class="row no-gutters leaveTypeRow">
+                            <div class="col-6 col-md-8" style="padding: 16px;">
+                                <div class="form-group">
+                                    <label for="">Leave Type</label>
+                                    <input type="text" class="form-control" id="">
+                                </div>
+                            </div>
+                            <div class="col-4 col-md-1" style="padding: 16px;">
+                                <div class="form-group">
+                                    <label for="">Hours</label>
+                                    <input type="text" class="form-control" id="">
+                                </div>
+                            </div>
+                            <div class="col-2 col-md-1" style="padding: 16px;">
+                                <button type="button" class="btn btn-danger" style="margin-top: 30px;"><i class="fas fa-trash-alt"></i></button>
+                            </div>
+                        </div>
+                        <div class="row no-gutters leaveTypeRow">
+                            <div class="col-6 col-md-8" style="padding: 16px;">
+                                <div class="form-group">
+                                    <label for="">Leave Type</label>
+                                    <input type="text" class="form-control" id="">
+                                </div>
+                            </div>
+                            <div class="col-4 col-md-1" style="padding: 16px;">
+                                <div class="form-group">
+                                    <label for="">Hours</label>
+                                    <input type="text" class="form-control" id="">
+                                </div>
+                            </div>
+                            <div class="col-2 col-md-1" style="padding: 16px;">
+                                <button type="button" class="btn btn-danger" style="margin-top: 30px;"><i class="fas fa-trash-alt"></i></button>
+                            </div>
+                        </div>
+                        <div class="row no-gutters">
+                            <div class="col-12" style="padding: 16px; padding-top: 0px;">
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addLeaveLineModal"><i class="fas fa-plus" style="margin-right: 5px;"></i> Add
+                                    Leave Line</button>
+                                <div class="modal fade" id="addLeaveLineModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="newPayCalendarLabel">Add a Leave Line</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <label>Leave Type</label>
+                                                            <input type="text" class="form-control" id="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <label>Calculate Leave Accrual</label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="calculateRadio" id="calculateyes" value="yes">
+                                                            <label class="form-check-label" for="calculateyes">Yes</label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="calculateRadio" id="calculateno" value="no">
+                                                            <label class="form-check-label" for="calculateno">No</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-success"><i class="fa fa-save" style="margin-right: 5px;"></i>Save</button>
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-close" style="margin-right: 5px;"></i>Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" style="margin: 16px;">
+            <div class="col-12 col-md-4">
+                <button type="button" class="btn btn-link" data-toggle="collapse" href="#payslipMessageCollapse" aria-expanded="false" aria-controls="payslipMessageCollapse">
+                    Add an Individual Message for <span>Simon</span>
+                </button>
+                <div class="collapse" id="payslipMessageCollapse">
+                    <div class="form-group mt-2">
+                        <label for="exampleFormControlTextarea1" style="color:#858796;">Payslip Message</label>
+                        <textarea class="form-control" id="" rows="3"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <style>
+            @media screen and (max-width: 450px) {
+                .btnFooter {
+                    width: 90%;
+                }
+            }
+        </style>
+
+        <div class="row mb-4" style="margin: 0px 4px;">
+            <div class="col-6">
+                <button type="button" class="btn btn-warning btnFooter" style="margin: 16px;"><i class="fas fa-undo" style="margin-right: 5px;"></i> Reset Payslip</button>
+                <button type="button" class="btn btn-danger btnFooter" style="margin: 16px;" data-toggle="modal" data-target="#finalPayModal"><i class="fas fa-user-times" style="margin-right: 5px;"></i> Set as Final Pay</button>
+
+                <div class="modal fade" id="finalPayModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="">Set as Final Pay</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <p style="font-weight: 600;">The following will happen when your final pay is set:</p>
+                                        <ul>
+                                            <li>Reset and recalculate the payslip</li>
+                                            <li>Allow for Employee Termination Payments (ETP) to be added</li>
+                                            <li>Include leave balances that are set up to be paid out</li>
+                                            <li>Remove the employee from future pay runs after the termination date</li>
+                                            <li>Remove the employee's access 14 days after termination date (Employee records will remain available to you)</li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="form-group">
+                                            <label>Termination Date</label>
+                                            <div class="input-group date" style="cursor: pointer;">
+                                                <input type="text" class="form-control formClassDate edtTerminationDate" id="edtTerminationDate" name="edtTerminationDate" value="">
+                                                <div class="input-group-addon" style="">
+                                                    <span class="glyphicon glyphicon-th" style="cursor: pointer;"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="form-group">
+                                            <label>Reason for Termination</label>
+                                            <input type="text" class="form-control" id="">
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label>Full Pay Period Earnings</label><br />
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="fullPayPeriodEarningsRadio" id="selectLastFullPayPeriod" value="selectLastFullPayPeriod" checked>
+                                                <label class="form-check-label" for="selectLastFullPayPeriod">Select Last Full Pay Period</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="fullPayPeriodEarningsRadio" id="enterAverageEarnings" value="enterAverageEarnings">
+                                                <label class="form-check-label" for="enterAverageEarnings">Enter Average Earnings</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12" id="selectLastFullPayPeriodCol" style="display:;">
+                                        <div class="form-group">
+                                            <label>Select An Example of a Normal Full Pay Period</label>
+                                            <input type="text" class="form-control" id="">
+                                        </div>
+                                    </div>
+                                    <div class="col-12" id="enterAverageEarningsCol" style="display: none;">
+                                        <div class="form-group">
+                                            <label>Enter Average Earnings</label>
+                                            <input type="text" class="form-control" id="">
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <p style="font-size: 14px;">Schedule 7 tax table is used to calculate the tax on unused leave. <a href="">For more information, check the ATO website</a>.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <button class="btn btn-secondary float-right btnFooter" data-dismiss="modal" type="button" style="margin: 16px;"><i class="fa fa-close" style="margin-right: 5px;"></i>Close</button>
+                <button type="button" class="btn btn-secondary float-right btnFooter" style="margin: 16px;" disabled><i class="far fa-save" style="margin-right: 5px;"></i> Save & Next</button>
+                <button type="button" class="btn btn-success float-right btnFooter" style="margin: 16px;"><i class="fas fa-save" style="margin-right: 5px;"></i> Save</button>
+            </div>
+        </div>
+    </div>
+    <!-- Start Help Video Modal -->
+    <div class="modal fade" role="dialog" tabindex="-1" id="helpModal">
+        <div class="modal-dialog" role="document" style="max-width: 670px!important;">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <h4 class="title-header">Pay Run</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+                    <!-- <iframe width="640" height="360" src="https://player.vimeo.com/video/99892791" frameborder="0" allowfullscreen=""></iframe> -->
+                    <!-- <iframe width="640" height="360" src="https://erphelpes.com/vs1videos/invoicelist.mp4" frameborder="0" allowfullscreen=""></iframe> -->
+                    <video id="myVideo" width="640" height="360" controls="" name="media" style="border: solid 5px #999999f0; height: auto; outline: none;">
+                        <source src="https://erphelpes.com/vs1videos/comingsoon.mp4" type="video/mp4" style="width: 100%;">
+                    </video>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Help Video Modal -->
+    <script>
+        modalDraggable();
+    </script>
+</template>

@@ -1,0 +1,819 @@
+<template name="stocktransfercard">
+    <div id="form" style="margin-top: -24px;">
+        <div class="fullScreenSpin" style="display:none;">
+            <div class="spinner"></div>
+        </div>
+        <style>
+            @media screen and (max-width: 375px) {
+                .shippingHeader {
+                    margin: 0px !important;
+                }
+            }
+        </style>
+        <header style="padding: 16px; padding-right: 0px;background-color: #ededed;margin-top: -24px;padding-bottom: 0px;">
+            <h2 class="shippingHeader" style="margin: 16px;margin-bottom: 0px;">Stock Transfer
+                <a role="button" data-toggle="modal" href="#helpViewModal" style="font-size: 20px; margin-left: 16px;">Help <i class="fa fa-question-circle-o" style="font-size: 20px;"></i></a>
+                <!-- <a class="btn" role="button" data-toggle="modal" href="#myModal4" style="float: right;"><i class="icon ion-android-more-horizontal"></i></a> -->
+            </h2>
+            <input type="text" id="SalesId" name="SalesId" style="display: none;" readonly>
+        </header>
+
+        <div class="modal fade" role="dialog" tabindex="-1" id="helpViewModal">
+            <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                    <div class="modal-header" style="padding-bottom: 8px;">
+                        <h4>Help</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <p class="text-center text-muted"><a role="button" data-toggle="modal" href="#helpModal" class="btn btn-primary helpModal">View Help Video</a></p>
+                        <p class="text-center text-muted"><a href="https://vs1forum.com/" target="_blank" class="btn btn-primary">Download Help File</a></p>
+                        <p class="text-center text-muted"><button class="btn btn-primary" type="button">Employ Advisor</button></p>
+                        <p class="text-center text-muted" style="margin: 0px;"><a href="https://vs1forum.com/ucp.php?mode=register&cloudusername={{loggedCompany}}" target="_blank" class="btn btn-primary">Go To Forum</a></p>
+                    </div>
+                    <div class="modal-footer" style="padding: 6px;"><button class="btn btn-light" data-dismiss="modal" type="button">Close</button></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" role="dialog" tabindex="-1" id="myModal4">
+            <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4>Field Settings</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <div>
+                            <form class="d-xl-flex align-items-xl-center">
+                                <div class="flex-grow-1">
+                                    <div class="custom-control custom-switch" style="margin: 8px;">
+                                        <input class="custom-control-input" type="checkbox" id="formCheck-one" value="one">
+                                        <label class="custom-control-label" style="position: absolute;" for="formCheck-one"></label>
+                                        <div contenteditable="true" class="groove customField1Text">Custom Field 1</div>
+                                    </div>
+
+                                    <div class="custom-control custom-switch" style="margin: 8px;">
+                                        <input class="custom-control-input" type="checkbox" id="formCheck-two" value="two">
+                                        <label class="custom-control-label" style="position: absolute;" for="formCheck-two"></label>
+                                        <div contenteditable="true" class="groove customField2Text">Custome Field 2</div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="btn btn-success btnSaveSettings" type="button"><i class="fa fa-save" style="margin-right: 5px;"></i>Save</button>
+                        <button class="btn btn-warning btnResetSettings" data-dismiss="modal" type="reset"><i class="fa fa-repeat" style="margin-right: 5px;"></i>Reset</button>
+                        <button class="btn btn-secondary" data-dismiss="modal" type="button"><i class="fa fa-remove" style="margin-right: 5px;"></i>Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{#if stocktransferrecord}}
+
+            <style>
+                #transferreason {
+                    padding: 2px !important;
+                }
+            </style>
+
+            <!-- <div class="row" style="background-color: #ededed; padding: 32px;">
+                <div class="col-12 col-lg-6">
+                    <div class="row">
+                        <div class="col-12 col-lg-4">
+                            <div class="form-group"><label>Employee Email</label>
+                                <input class="form-control" type="text" id="edtCustomerEmail" name="edtCustomerEmail" customerid=" " customerfirstname=" " customerlastname=" " style="background-color:rgb(255, 255, 255); cursor: pointer;">
+                            </div>
+                            <div class="custom-control custom-control-inline custom-switch d-xl-flex align-items-xl-center" style="margin: 0px 16px; margin-bottom: 24px; padding:-2px; padding-left: 24px; width: 100%;">
+                                <div class="form-group" style="margin-right: 35px; Width:50%;">
+                                    <input class="custom-control-input chkEmailCopy" type="checkbox" id="formCheck-1" style="font-size: 22px;"><label class="custom-control-label" for="formCheck-1">Email Employee</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-8">
+                            <div class="form-group">
+                                <label>Description</label>
+                                <textarea class="form-control" rows="3" id="shipcomments" name="shipcomments">{{stocktransferrecord.notes}}</textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 col-lg-4">
+                            <div class="form-group" data-toggle="tooltip" data-placement="bottom" title="Date format: DD/MM/YYYY">
+                                <label>Transfer Date</label>
+                                <div class="input-group date" style="cursor: pointer;">
+                                    <input type="text" class="form-control" id="dtShipDate" name="dtShipDate" value="{{stocktransferrecord.transdate}}">
+                                    <div class="input-group-addon" style="">
+                                        <span class="glyphicon glyphicon-th" style="cursor: pointer;"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Ship Via</label>
+                                <select type="search" class="form-control" id="shipvia" name="shipvia" style="background-color:rgb(255, 255, 255); cursor: pointer;">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-6 col-lg-4">
+                            <div class="form-group" data-toggle="tooltip" data-placement="bottom" title="Date format: DD/MM/YYYY">
+                                <label>Transfer From</label>
+                                <select type="search" class="form-control" id="sltDepartment" name="sltDepartment" style="background-color:rgb(255, 255, 255); cursor: pointer;">
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>To Account</label>
+                                <select type="search" class="form-control" id="sltBankAccountName" name="sltBankAccountName" style="background-color:rgb(255, 255, 255); cursor: pointer;">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-6 col-lg-4">
+                            <div class="form-group">
+                                <label>Transfer No</label>
+                                <input class="form-control" type="text" id="txtTransfer" name="txtTransfer" value="{{stocktransferrecord.id}}">
+                            </div>
+                            <div class="form-group">
+                                <label>Reason</label>
+                                <input class="form-control" type="text" id="txtNotes" name="txtNotes" value="{{stocktransferrecord.descriptions}}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-2 colProcessed" id="colProcessed" style="display: none;">
+                    <h3 style="margin-left: 0px; margin-top: 35px; color: #e02d1b; font-weight: 600;">Processed</h3>
+                </div>
+            </div> -->
+
+            <!-- <div class="row" style="background-color: #ededed; padding: 32px; padding-bottom: 0px;">
+                <div class="col-12 col-lg-2">
+                    <div class="form-group"><label>Employee Email</label>
+                        <input class="form-control" type="text" id="edtCustomerEmail" name="edtCustomerEmail" customerid=" " customerfirstname=" " customerlastname=" ">
+                    </div>
+                    <div class="custom-control custom-control-inline custom-switch d-xl-flex align-items-xl-center" style="margin: 0px 16px;padding: -2px;padding-left: 24px;width: 100%;">
+                        <div class="form-group" style="margin-right: 35px; Width:50%;">
+                            <input class="custom-control-input chkEmailCopy" type="checkbox" id="formCheck-1" style="font-size: 22px;"><label class="custom-control-label" for="formCheck-1">Email Employee</label>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+
+            <div class="row" style="background-color: #ededed; padding: 32px; padding-bottom: 0px;">
+
+                <div class="col-12 col-md-6 col-lg-2 colProcessed" id="colProcessed" style="display: none;">
+                    <h3 style="margin-left: 0px; margin-top: 35px; color: #e02d1b; font-weight: 600;">Processed</h3>
+                </div>
+            </div>
+            <div class="row" style="background-color: #ededed; padding: 8px 32px 0px 32px;">
+                <div class="col-12 col-lg-3">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group" style="margin-bottom: 0px !important;">
+                                <label>Employee Email</label>
+                                <input class="form-control" type="text" id="edtCustomerEmail" name="edtCustomerEmail" customerid=" " customerfirstname=" " customerlastname=" " style="background-color:rgb(255, 255, 255); cursor: pointer;">
+                            </div>
+                            <div class="custom-control custom-control-inline custom-switch d-xl-flex align-items-xl-center" style="margin: 8px 16px;padding-left: 24px;width: 100%;">
+                                <div class="form-group" style="margin-right: 35px; Width:50%;">
+                                    <input class="custom-control-input chkEmailCopy" type="checkbox" id="formCheck-1" style="font-size: 22px;"><label class="custom-control-label" for="formCheck-1">Email Employee</label>
+                                </div>
+                            </div>
+                            <div class="form-group" style="max-width: 25%;">
+                                <label>Transfer No</label>
+                                <input class="form-control" type="text" id="txtTransfer" name="txtTransfer" value="{{stocktransferrecord.id}}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-3">
+                    <div class="row">
+                        <div class="col-6 col-lg-6">
+                            <div class="form-group" data-toggle="tooltip" data-placement="bottom" title="Date format: DD/MM/YYYY" style="margin-bottom: 2.5rem;">
+                                <label>Transfer Date</label>
+                                <div class="input-group date" style="cursor: pointer;">
+                                    <input type="text" class="form-control" id="dtShipDate" name="dtShipDate" value="{{stocktransferrecord.transdate}}">
+                                    <div class="input-group-addon" style="">
+                                        <span class="glyphicon glyphicon-th" style="cursor: pointer;"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Ship Via</label>
+                                <select type="search" class="form-control" id="shipvia" name="shipvia" style="background-color:rgb(255, 255, 255); cursor: pointer;">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-6 col-lg-6">
+                            <div class="form-group" style="margin-bottom: 2.5rem;">
+                                <label>Transfer From</label>
+                                <select type="search" class="form-control" id="sltDepartment" name="sltDepartment" style="background-color:rgb(255, 255, 255); cursor: pointer;">
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>To Account</label>
+                                <select type="search" class="form-control" id="sltBankAccountName" name="sltBankAccountName" style="background-color:rgb(255, 255, 255); cursor: pointer;">
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-3">
+                    <div class="form-group">
+                        <label>Reason</label>
+                        <textarea class="form-control" rows="4" id="txtNotes" name="txtNotes" style="height: 150px;">{{stocktransferrecord.descriptions}}</textarea>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-3">
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea class="form-control" rows="4" id="shipcomments" name="shipcomments" style="height: 150px;">{{stocktransferrecord.notes}}</textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="margin: 0px 32px; margin-top: 16px;">
+                <div class="table-responsive">
+                    <style>
+                        th {
+                            background-color: #ededed;
+                        }
+
+                        #productListModal .dataTables_scrollHeadInner,
+                        #productListModal .dataTables_scrollHeadInner .table {
+                            width: 100% !important;
+                        }
+
+                        #taxRateListModal .dataTables_scrollHeadInner,
+                        #taxRateListModal .dataTables_scrollHeadInner .table {
+                            width: 100% !important;
+                        }
+
+                        @media only screen and (max-width: 480px) {
+
+                            #ponumber,
+                            #edtRef,
+                            .form-group,
+                            .input-group,
+                            .formgoup {
+                                max-width: 100% !important;
+                                width: 100% !important;
+                            }
+
+                            .formgoup {
+                                margin: 0px !important;
+                            }
+
+                            .flex-row {
+                                margin: 16px !important;
+                            }
+                        }
+
+                        .resizer {
+                            position: absolute;
+                            top: 0;
+                            right: -8px;
+                            bottom: 0;
+                            left: auto;
+                            width: 16px;
+                            cursor: col-resize;
+                        }
+
+                        .box {
+                            /* display: none; */
+                        }
+
+                        .outerBox {
+                            display: none;
+                        }
+
+                        .hiddenColumn {
+                            display: none;
+                        }
+
+                        .showColumn {
+                            display: table-cell;
+                            padding: .75rem;
+                            vertical-align: top;
+                        }
+                    </style>
+
+                    <div class="modal fade" role="dialog" tabindex="-1" id="deleteLineModal">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <input type="hidden" style="width: 100%; display:none;" id="selectDeleteLineID" name="selectDeleteLineID" readonly>
+                                <div class="modal-header">
+                                    <h4>Delete</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">×</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Please select "Delete Line" to remove row or "Delete Transfer" to delete the entire stock transfer</p>
+                                    <button class="btn btn-danger float-left btnDeleteLine" type="button">
+                                        <i class="fa fa-close" style="margin-right: 5px;"></i>Delete Line
+                                    </button>
+                                    <button class="btn btn-danger float-right btnDeleteStock" type="button">
+                                        <i class="fa fa-close" style="margin-right: 5px;"></i>Delete Transfer
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <table id="tblStocktransfer" style="width:100%" class="table table-bordered tblStocktransfer">
+                        <thead>
+                            <tr class="dnd-moved">
+                                <th style="display:none "></th>
+                                <th class="th colProduct" style="width: 25%; border-right: 0px;">Product</th>
+                                <th class="th colBarcodeScanner" style="width: 3%; border-left: 0px;"></th>
+                                <th class="th colProductBarCode" style="width: 200px;">Product Barcode</th>
+                                <th class="th colDescription">Description</th>
+                                <th class="th colDepartment" style="width: 200px;">Transfer To</th>
+                                <th class="th linedeptid hiddenColumn">DepartmentD</th>
+                                <th class="th colOrdered" style="width: 1%;">Available</th>
+                                <th class="th colUOMQtyShipped" style="width: 1%;">Transfer</th>
+                                <th class="th colID hiddenColumn" style="display:none">ID</th>
+                                <th class="th colPQA hiddenColumn" style="display:none">PQA</th>
+                                <th class="th colUOMQtyBackOrder hiddenColumn" style="display:none">UOMQtyBackOrder</th>
+                                <th class="th colInitTransfer hiddenColumn" style="display:none">InitTransfer</th>
+                                <th class="th colProductID hiddenColumn">ProductID</th>
+                                <th class="th" style="width: 1%;"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each item in stocktransferrecord.LineItems}}
+                                <tr class="dnd-moved selectable" id="{{item.lineID}}">
+                                    <td class="hiddenColumn lineID" id="lineID">{{item.pqa}}</td>
+                                    <!-- <td contenteditable="true" class="colProduct ProdName" id="ProdName">{{item.item}}</td> -->
+                                    <td contenteditable="false" class="colProductName" style="border-right: 0px;"><input class="es-input highlightSelect lineProductName" type="search" value="{{item.item}}"></td>
+                                    <td contenteditable="false" class="colBarcodeScanner" style="border-left: 0px;">
+                                        <button type="button" class="btn btn-sm btn-success" id="tdBarcodeScannerMobile" data-toggle="modal" data-target="#scanBarcodeModal"><i class="fas fa-camera"></i></button>
+                                    </td>
+                                    <td contenteditable="true" class="lineProductBarCode colProductBarCode">{{item.productbarcode}}</td>
+                                    <td contenteditable="true" class="colDescription lineDescription">{{item.description}}</td>
+                                    <!-- <td contenteditable="true" class="colDepartment">{{item.department}}</td> -->
+                                    <td contenteditable="false" class="colDepartment"><input class="es-input highlightSelect lineDepartment" type="search" value="{{item.department}}"></td>
+                                    <td contenteditable="true" class="hiddenColumn linedeptid"></td>
+                                    <td><input class="lineOrdered colOrdered highlightInput" id="Ordered" type="number" value="{{item.qtyordered}}" readonly></td>
+                                    <!-- <td class="UOMQtyShipped" id="UOMQtyShipped">{{item.qtyshipped}}</td> -->
+                                    <td><input class="lineUOMQtyShipped UOMQtyShipped highlightInput" id="UOMQtyShipped" type="number" value="{{item.qtyshipped}}"></td>
+                                    <td class="hiddenColumn ID" id="ID">{{item.id}}</td>
+                                    <td class="hiddenColumn pqa" id="pqa">{{item.pqa}}</td>
+
+                                    <td class="hiddenColumn UOMQtyBackOrder" id="UOMQtyBackOrder">{{item.qtybo}}</td>
+                                    <td class="hiddenColumn InitTransfer" id="InitTransfer">{{item.initaltransfer}}</td>
+                                    <td class="hiddenColumn ProductID" id="ProductID">{{item.productid}}</td>
+                                    <td style="width: 1%;"><span class="removebutton"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0 "><i class="fa fa-remove"></i></button></span></td>
+                                </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+
+                    <style>
+                        .highlight {
+                            background: yellow;
+                        }
+
+                        .highlightInput {
+                            border: 0px solid transparent !important;
+                            background-color: rgba(0, 0, 0, 0) !important;
+                            padding: 0px !important;
+                            width: 100% !important;
+                            text-align: right !important;
+                            color: #858796 !important;
+                        }
+
+                        .highlightInput::-webkit-outer-spin-button,
+                        .highlightInput::-webkit-inner-spin-button {
+                            -webkit-appearance: none !important;
+                            margin: 0 !important;
+                        }
+
+
+                        .highlightSerial {
+                            border: 0px solid transparent !important;
+                            background-color: rgba(0, 0, 0, 0) !important;
+                            padding: 0px !important;
+                            width: 100% !important;
+                            color: #858796 !important;
+                        }
+
+                        .highlightSerial::-webkit-outer-spin-button,
+                        .highlightSerial::-webkit-inner-spin-button {
+                            -webkit-appearance: none !important;
+                            margin: 0 !important;
+                        }
+
+                        /* Firefox */
+                        .highlightInput[type=number] {
+                            -moz-appearance: textfield !important;
+                        }
+                    </style>
+                </div>
+                <div class="row mb-2">
+                    <div class="col" style="padding: 0px;">
+                        <button class="btn btn-primary" type="button" id="addRow" style="margin: 16px;">+ Add New Entry</button>
+                        <button class="btn btn-success scanNewRowMobile" type="button" id="scanNewRowMobile" data-toggle="modal" data-target="#scanBarcodeModal" style="margin: 16px;">+ Scan New Entry</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row" id="serailscanlistdis" style="margin: 0px 32px 16px 32px;">
+                <div class="card" style="width: 100%;">
+                    <div class="card-header">
+                        <div class="row justify-content-start">
+                            <div class="col-12 col-lg-4">
+                                <div class="input-group">
+                                    <input class="form-control" id="allocBarcode" name="allocBarcode" type="text" placeholder="Enter the barcode">
+                                    <style>
+                                        .btnWhite {
+                                            color: #fff !importnat;
+                                        }
+                                    </style>
+                                    <div class="input-group-append">
+                                        <a class="btn btn-success btnWhite save_new" id="newsnbtn" role="button" style="border-top-right-radius: 0.35rem; border-bottom-right-radius: 0.35rem;"><i class="fas fa-search"
+                                                style="color: #fff !important;"></i></a>
+                                    </div>
+                                    <a class="btn btn-success btnWhite scan_new" id="scanResult" name="scanResult" role="button" style="margin-left: 8px;"><i class="fas fa-camera" style="color: #fff !important;"></i></a>
+
+                                    <button type="button" class="btn btn-success" id="mobileScanResult" data-toggle="modal" data-target="#scanBarcodeModalStockTransfer" style="margin-left: 8px; display: none;height:34px;"><i class="fas fa-camera"></i></button>
+                                    <a href="#" id="btnsaveallocline" class="save_new" style="display: none;">Save</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <input type="text" id="prodID" name="prodID" style="display: none;" readonly>
+                        <input type="text" id="orderQty" name="orderQty" style="display: none;" readonly>
+                        <input type="text" id="deptID" name="deptID" style="display: none;" readonly>
+                        <input type="text" id="pqaID" name="pqaID" style="display: none;" readonly>
+                        <input type="text" id="salesLineRow" name="salesLineRow" style="display: none;" readonly>
+
+                        {{#if showSerial 'true'}}
+                            <div class="row">
+                                <div class="col-12 col-lg-6">
+                                    <table id="serailscanlist" style="width:100%" class="table table-bordered serailscanlist">
+                                        <thead>
+                                            <tr class="dnd-moved">
+                                                <th class="th colSltNo" style="width: 1%;">No.</th>
+                                                <th class="th colSltBAtch">Batch</th>
+                                                <th class="th colSltBin">Bin</th>
+                                                <th class="th colSltSerialNoBOM">Serial No.</th>
+                                                <th class="th colSltSerialNo hiddenColumn">Serial No.</th>
+                                                <th class="th" style="width: 1%;"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="dnd-moved" id="">
+                                                <td contenteditable="true" class=""></td>
+                                                <td contenteditable="true" class=""></td>
+                                                <td contenteditable="true" class=""></td>
+                                                <td contenteditable="true" class=""></td>
+                                                <td contenteditable="true" class="hiddenColumn"></td>
+                                                <td style="width: 1%;"><span class="btnRemove"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0 "><i class="fa fa-remove"></i></button></span></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="col-12 col-lg-6" style="max-height: 500px; overflow: auto;">
+                                    <table id="tblAvailableSerialNo" style="width:100%" class="table table-bordered tblAvailableSerialNo">
+                                        <thead>
+                                            <tr class="dnd-moved">
+                                                <th class="th" style="width: 1%;"></th>
+                                                <th class="th colSltNo" style="width: 1%;">No.</th>
+                                                <th class="th colSltSerialNo">Available Serial No.</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {{#each itemavail in availableserialnumberlist}}
+                                                <tr class="dnd-moved {{itemavail.checkclass}} {{itemavail.domserialnumberFormat}}" id="{{itemavail.rowid}}">
+                                                    <td style="width: 1%;"><span class="btnMove"><button type="button" class="btn btn-success btn-rounded btn-sm my-0 "><i class="fas fa-caret-left mx-1"></i></button></span></td>
+                                                    <td contenteditable="true" class="availrow_id">{{itemavail.rowid}}</td>
+                                                    <td contenteditable="true" class=""><input class="lineSerialNumber highlightSerial" id="lineSerialNumber" type="text" value="{{itemavail.domserialnumber}}"></td>
+                                                </tr>
+                                            {{/each}}
+                                        </tbody>
+                                        {{#if availableserialnumberqty 'true'}}
+                                            <tfoot>
+                                                <tr>
+                                                    <td colspan="3">
+                                                        <a class="btn btn-link float-left viewMoreSerialNo" type="button" id="viewMoreSerialNo" style="color: #00a3d3;">View More</a>
+                                                        <a class="btn btn-link float-left viewLessSerialNo" type="button" id="viewLessSerialNo" style="color: #00a3d3; display:none;">View Less</a>
+                                                    </td>
+                                                </tr>
+                                            </tfoot>
+                                        {{/if}}
+                                    </table>
+                                </div>
+                            </div>
+                        {{else}}
+                            <div class="row">
+                                <div class="col-12">
+                                    <table id="serailscanlist" style="width:100%" class="table table-bordered serailscanlist">
+                                        <thead>
+                                            <tr class="dnd-moved">
+                                                <th class="th colSltNo" style="width: 1%;">No.</th>
+                                                <th class="th colSltBAtch">Batch</th>
+                                                <th class="th colSltBin">Bin</th>
+                                                <th class="th colSltSerialNoBOM">Serial No.</th>
+                                                <th class="th colSltSerialNo hiddenColumn">Serial No.</th>
+                                                <th class="th" style="width: 1%;"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="dnd-moved" id="">
+                                                <td contenteditable="true" class=""></td>
+                                                <td contenteditable="true" class=""></td>
+                                                <td contenteditable="true" class=""></td>
+                                                <td contenteditable="true" class=""></td>
+                                                <td contenteditable="true" class="hiddenColumn"></td>
+                                                <td style="width: 1%;"><span class="btnRemove"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0 "><i class="fa fa-remove"></i></button></span></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        {{/if}}
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <button class="btn btn-success btnSave" type="button" style="margin: 16px;"><i class="fa fa-save" style="margin-right: 5px;"></i>Save</button>
+                <button class="btn btn-success btnProcess" type="button" style="margin: 16px;"><i class="fa fa-check" style="margin-right: 5px;"></i>Process</button>
+                <button class="btn btn-primary btnHold" type="button" style="margin: 16px;"><i class="fa fa-clock" style="margin-right: 5px;"></i>Hold</button>
+                <button class="btn btn-danger btnDeleteStockTransfer" type="button" style="margin: 16px;" autocomplete="off"><i class="fa fa-trash" style="padding-right: 8px;"></i>Delete</button>
+
+                <button class="btn btn-primary printConfirm" type="button" style="margin: 16px;"><i class="fa fa-print" style="margin-right: 5px;"></i>Print</button>
+                <button class="btn btn-secondary btnBack" type="button" style="margin: 16px;">
+                    <i class="fa fa-remove" style="padding-right: 8px;"></i>Cancel
+                </button>
+            </div>
+            <div class="printID" id="{{stocktransferrecord.id}}" style="display: none;">{{stocktransferrecord.id}}</div>
+            <!-- Start PDF -->
+            <div style="width: 210mm; background-color: #ffffff; padding: 8px; height: 297mm; font-size: 13.33px; color: #000000; display: none; overflow-x: visible;" id="html-2-pdfwrapper" name="html-2-pdfwrapper">
+                <div style="display: flex; height: 50mm;">
+                    <div style="margin: 0px; padding: 16px; width: 110mm; max-width: 110mm;">
+                        <div style="display: flex;">
+                            <div style="max-width: 60mm; max-height: 30mm;">
+                                <img src="assets/img/VS1.png" class="uploadedImage" style="max-height: 30mm; max-width: 200px;margin-bottom: 8px;">
+
+                            </div>
+                            <div style="width: 70mm;">
+                                <div style="padding-left: 16px;font-weight: bold;">
+                                    <a href="{{organizationurl}}">{{organizationurl}}</a>
+                                    <p style="margin-bottom: 0px; color: rgb(0 0 0);">{{organizationname}}</p>
+                                    <p style="margin-bottom: 0px; color: rgb(0 0 0);">{{companyaddress1}}</p>
+                                    <p style="margin-bottom: 0px; color: rgb(0 0 0);">{{companyaddress2}}</p>
+                                    <p style="margin-bottom: 0px; color: rgb(0 0 0);">{{city}}</p>
+                                    <p style="margin-bottom: 0px; color: rgb(0 0 0);">{{state}} {{poBox}} </p>
+                                    <p style="margin-bottom: 0px; color: rgb(0 0 0);">ABN: {{companyabn}}</p>
+                                    <p style="margin-bottom: 0px; color: rgb(0 0 0);">Phone: {{companyphone}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="margin: 0px; padding: 16px; border: none !important; width: 90mm; max-width: 90mm;">
+                        <h4 style="font-weight: bold; font-size: 26.667px; color: rgb(0 0 0);">Stock Transfer {{stocktransferrecord.id}}</h4>
+                        <div style="display: flex; width: 100%;">
+                            <div style="width: 50%; padding-right: 16px;font-weight: bold;">
+                                <label style="margin-bottom: 0px; color: rgb(0 0 0); width: 100%;">Date:</label>
+                                <label class="pdfPONumber" style="margin-bottom: 0px; color: rgb(0 0 0); width: 100%;">Entry No:</label>
+                                <label class="pdfTerms" style="margin-bottom: 0px; color: rgb(0 0 0); white-space: nowrap;">To Account</label>
+                                <label class="" style="margin-bottom: 0px; color: rgb(0 0 0); white-space: nowrap;">Transfer From</label>
+                            </div>
+                            <div style="width: 50%; padding-left: 16px;">
+                                <p style="margin-bottom: 0px; color: rgb(0 0 0);">{{stocktransferrecord.transdate}}.</p>
+                                <p style="margin-bottom: 0px; color: rgb(0 0 0);">{{stocktransferrecord.id}}.</p>
+                                <p class="accountname" style="margin-bottom: 0px; color: rgb(0 0 0); white-space: nowrap;">{{stocktransferrecord.accountname}}.</p>
+                                <p class="pdfCustomerName" style="margin-bottom: 0px; color: rgb(0 0 0); white-space: nowrap;">{{stocktransferrecord.department}}.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div style="height: 180mm;">
+                    <div style="margin: 8px; border: none !important; background-color: rgba(0,0,0,0);">
+                        <table id="tblStockTransferLinePrint" class="stock_print" style="width: 200mm; max-width: 200mm; margin: auto;">
+                            <thead style="color: rgb(251,251,251);">
+                                <tr style="border-bottom: 1px solid rgba(0, 0, 0, 1);">
+                                    <th class="th colProductNamePrint" style="width: 200px; background-color: white; color: rgb(0 0 0);">Product Name</th>
+                                    <th class="th colProdctBarCodePrint" style="width: 250px; background-color: white; color: rgb(0 0 0);">Product Barcode</th>
+                                    <th class="th colDescriptionPrint" style="width: 250px; background-color: white; color: rgb(0 0 0);">Description</th>
+                                    <th class="th colInStockQtyPrint" style="width: 250px; background-color: white; color: rgb(0 0 0);">Transer To</th>
+                                    <th class="th th colFinalQtyPrint" style="width: 250px; background-color: white; color: rgb(0 0 0);">Available</th>
+                                    <th class="th colAdjustQtyPrint" style="width: 250px; background-color: white; color: rgb(0 0 0);">Transfer</th>
+
+                                </tr>
+                            </thead>
+                            <tbody style="color: rgb(0 0 0);">
+                                {{#each item in stocktransferrecord.LineItems}}
+                                    <tr style="border-bottom: 1px solid rgba(0, 0, 0, .1);" id={{item.lineID}}>
+                                        <td class="lineProductNamePrint colProductNamePrint">{{item.item}}</td>
+                                        <td class="lineProductBarCodePrint colProductBarCodePrint">{{item.productbarcode}}</td>
+                                        <td class="lineDescriptionPrint colDescriptionPrint">{{item.description}}</td>
+                                        <td class="lineTransferPrint colTransferPrint">{{item.department}}</td>
+                                        <td class="lineAvailablePrint colAvailablePrint">{{item.qtyordered}}</td>
+                                        <td class="lineAdjustQtyPrint colAdjustQtyPrint">{{item.qtyshipped}}</td>
+                                    </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <hr>
+                <div style="display: flex;">
+                    <div style="margin: 8px;">
+                        <p style="font-weight: 600; color: rgb(0 0 0);">Reason</p>
+                        <div id="printcomment" style="color: rgb(0 0 0);">{{stocktransferrecord.descriptions}}</div>
+                    </div>
+                </div>
+            </div>
+            <!-- END PDF -->
+
+        {{/if}}
+
+    </div>
+     <div class="modal fade" role="dialog" tabindex="-1" id="addAccountModal">
+        {{> addaccountpop}}
+    </div>
+
+     <div class="modal fade" role="dialog" tabindex="-1" id="newTaxRateModal" style="">
+         {{> newtaxratepop}}
+    </div>
+
+     <div class="modal fade" role="dialog" tabindex="-1" id="taxRateListModal">
+        {{> taxratelistpop}}
+    </div>
+
+    <div class="modal fade" role="dialog" tabindex="-1" id="departmentModal">
+        {{> departmentpop}}
+    </div>
+
+    <div class="modal fade" role="dialog" tabindex="-1" id="newDepartmentModal">
+        {{> newdepartmentpop}}
+    </div>
+
+    <div class="modal fade customerListModal" role="dialog" tabindex="-1" id="customerListModal">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable customerListModalInner" role="document" style="max-width: 90vw;">
+            <div class="modal-content customerListContent">
+                <div class="modal-header">
+                    <h4>Customer List</h4><button type="button" class="close checkclose" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body mainCustomerModalBody" style="padding: 0px; overflow-x: hidden;">
+                    <input type="hidden" style="width: 100%; display:none;" id="customerSelectLineID" name="customerSelectLineID" readonly>
+                    <!-- {{> customerlistpop}} -->
+
+                </div>
+                <div class="modal-footer"><button class="btn btn-light checkclose" data-dismiss="modal" type="button">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="modal fade" role="dialog" tabindex="-1" id="addCustomerModal">
+        {{> addcustomerpop}}
+    </div> -->
+
+    <div class="modal fade" role="dialog" tabindex="-1" id="productListModal">
+        {{> productlistpop}}
+    </div>
+
+    <div class="modal fade" role="dialog" tabindex="-1" id="newProductModal">
+        {{> newproductpop}}
+    </div>
+
+    <div class="modal fade" role="dialog" tabindex="-1" id="accountListModal">
+        {{> accountlistpop}}
+    </div>
+
+    <div class="modal fade" role="dialog" tabindex="-1" id="addAccountModal">
+        {{> addaccountpop}}
+    </div>
+
+    <div class="modal fade" role="dialog" tabindex="-1" id="shipViaModal">
+        {{> shipviapop}}
+    </div>
+
+    <div class="modal fade" role="dialog" tabindex="-1" id="newShipViaModal">
+        {{> newshipvia}}
+    </div>
+
+    <div class="modal fade" role="dialog" tabindex="-1" id="employeeList">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable customerListModalInner" role="document" style="max-width: 90vw;">
+            <div class="modal-content customerListContent">
+                <div class="modal-header">
+                    <h4>Employee List</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body mainCustomerModalBody appointmentCustomer" style="padding: 0px; overflow-x: hidden;">
+                    {{> employeelistpop}}
+                </div>
+                <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" role="dialog" tabindex="-1" id="scanBarcodeModal">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Barcode Scanner</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row mb-2">
+                        <div class="col-12">
+                            <div class="input-group">
+                                <input class="form-control" id="scanBarcodeModalInput" name="scanBarcodeModalInput" type="text" placeholder="Enter the barcode">
+                                <style>
+                                    .btnWhite {
+                                        color: #fff !importnat;
+                                    }
+                                </style>
+                                <div class="input-group-append">
+                                    <a class="btn btn-success btnWhite save_new" id="newsnbtn" role="button" style="border-top-right-radius: 0.35rem; border-bottom-right-radius: 0.35rem;"><i class="fas fa-search"
+                                            style="color: #fff !important;"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <style>
+                        #qr-reader>div:first-of-type {
+                            display: none !important;
+                        }
+
+                        #qr-reader__dashboard_section_swaplink {
+                            display: none !important;
+                        }
+
+                        #qr-reader__dashboard_section_csr>div>button:first-of-type {
+                            color: #fff !important;
+                            background-color: #00a3d3 !important;
+                            border-color: #00a3d3 !important;
+                            border: 1px solid transparent;
+                            display: inline-block !important;
+                            font-weight: 400 !important;
+                            text-align: center !important;
+                            vertical-align: middle !important;
+                            padding: .375rem .75rem !important;
+                            font-size: 1rem !important;
+                            line-height: 1.5 !important;
+                            border-radius: .35rem !important;
+                            transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+                        }
+                    </style>
+                    <!-- <div id="reader" style="width: 100%"></div> -->
+                    <div class="scanBarcodeModalHidden" id="scanBarcodeModalHidden">
+                        <div id="qr-reader" style="width:100%"></div>
+                    </div>
+                </div>
+                <div class="modal-footer"><button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" role="dialog" tabindex="-1" id="scanBarcodeModalStockTransfer">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Barcode Scanner</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+                    <style>
+                        #qr-reader-stocktransfer>div:first-of-type {
+                            display: none !important;
+                        }
+
+                        #qr-reader-stocktransfer__dashboard_section_swaplink {
+                            display: none !important;
+                        }
+
+                        #qr-reader-stocktransfer__dashboard_section_csr>div>button:first-of-type {
+                            color: #fff !important;
+                            background-color: #00a3d3 !important;
+                            border-color: #00a3d3 !important;
+                            border: 1px solid transparent;
+                            display: inline-block !important;
+                            font-weight: 400 !important;
+                            text-align: center !important;
+                            vertical-align: middle !important;
+                            padding: .375rem .75rem !important;
+                            font-size: 1rem !important;
+                            line-height: 1.5 !important;
+                            border-radius: .35rem !important;
+                            transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+                        }
+                    </style>
+                    <!-- <div id="reader" style="width: 100%"></div> -->
+                    <div id="qr-reader-stocktransfer" style="width:100%"></div>
+                </div>
+                <div class="modal-footer"><button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        modalDraggable();
+    </script>
+</template>

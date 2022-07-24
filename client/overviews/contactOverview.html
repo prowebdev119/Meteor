@@ -1,0 +1,417 @@
+<template name="contactoverview">
+    <style>
+        .dimmedChart>div {
+            background-color: #dddfeb !important;
+        }
+
+        .hideelement {
+            display: none !important;
+        }
+
+        .showelement {
+            display: block;
+        }
+
+        .card.hovered {
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.50) !important;
+            cursor: move;
+            transition-duration: 300ms;
+
+        }
+    </style>
+    <div class="container-fluid">
+
+        <div class="fullScreenSpin" style="display:none;">
+            <div class="spinner"></div>
+        </div>
+
+        <!-- <style>
+            .dataTables_filter {
+                display: none;
+            }
+        </style> -->
+        <header class="py-2 d-flex align-items-center">
+            <h2 class="mr-1">Contact Overview</h2>
+
+            <a class="m-1" role="button" data-toggle="modal" href="#helpViewModal" style="font-size: 20px;">Help
+                <i class="fa fa-question-circle-o" style="font-size: 20px;"></i>
+            </a>
+            <!-- Start Help View Modal -->
+            <div class="modal fade" role="dialog" tabindex="-1" id="helpViewModal">
+                <div class="modal-dialog modal-sm" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header" style="padding-bottom: 8px;">
+                            <h4>Help</h4><button type="button" class="close" data-dismiss="modal"
+                                aria-label="Close"><span aria-hidden="true">×</span></button>
+                        </div>
+                        <div class="modal-body">
+                            <p class="text-center text-muted"><a role="button" data-toggle="modal" href="#helpModal"
+                                    class="btn btn-primary helpModal">View Help Video</a></p>
+                            <p class="text-center text-muted"><a href="https://vs1forum.com/viewtopic.php?f=6&t=35"
+                                    target="_blank" class="btn btn-primary">Download Help File</a></p>
+                            <p class="text-center text-muted"><button class="btn btn-primary" type="button">Employ
+                                    Advisor</button></p>
+                            <p class="text-center text-muted" style="margin: 0px;"><a
+                                    href="https://vs1forum.com/ucp.php?mode=register&cloudusername={{loggedCompany}}"
+                                    target="_blank" class="btn btn-primary">Go To Forum</a></p>
+                        </div>
+                        <div class="modal-footer" style="padding: 6px;"><button class="btn btn-light"
+                                data-dismiss="modal" type="button">Close</button></div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Help View Modal -->
+
+
+        </header>
+
+
+        <!-- All charts list -->
+        {{> allChartLists  tabGroupID="3" chartGroup="Contacts" }}
+
+        <div class="row d-xl-flex flex-row justify-content-xl-center" style="padding:0  16px 0 0;">
+
+            <div class="col-9 d-xl-flex flex-grow-1 align-items-xl-start">
+
+                <button id="btnRefresh" class="btn btn-primary btnRefresh" type="button"
+                    style="min-width: 117.016px;margin: 12px; margin-left: 0"><i class="la la-lightbulb-o"
+                        style="margin-right: 5px;"></i>Refresh</button>
+
+                <div class="btn-group" style="margin: 12px;">
+                    <a class="btn btn-primary allList" role="button" href="#"
+                        style="min-width: 117.016px; background-color: #00A3D3; border-color: #00A3D3;">All</a>
+                    <button class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"
+                        aria-expanded="false" type="button"
+                        style="background-color: #00A3D3; border-color: #00A3D3;"></button>
+                    <div class="dropdown-menu" role="menu">
+                        <a class="dropdown-item newCustomer" role="presentation" href="/customerscard">+ New
+                            Customer</a>
+                        <a class="dropdown-item newEmployee" role="presentation" href="/employeescard">+ New
+                            Employee</a>
+                        <a class="dropdown-item newSupplier" role="presentation" href="/supplierscard">+ New
+                            Supplier</a>
+                    </div>
+                </div>
+
+                <div class="btn-group" style="margin: 12px;">
+                    <a class="btn btn-primary" role="button" href="/customerlist"
+                        style="min-width: 117.016px; background-color: #00A3D3; border-color: #00A3D3;">Customers</a>
+                    <button class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"
+                        aria-expanded="false" type="button"
+                        style="background-color: #00A3D3; border-color: #00A3D3;"></button>
+                    <div class="dropdown-menu" role="menu">
+                        <a class="dropdown-item" role="presentation" href="/customerlist" style=" ">Customers</a>
+                        <a class="dropdown-item" role="presentation" href="/customerscard" style=" ">+ New Customer</a>
+                    </div>
+                </div>
+
+                <div class="btn-group" style="margin: 12px;">
+                    <a class="btn btn-primary" role="button"
+                        style="color: rgb(255,255,255);min-width: 117.016px; background-color: #00A3D3; border-color: #00A3D3;"
+                        href="/employeelist">Employees</a><button
+                        class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"
+                        aria-expanded="false" type="button"
+                        style="background-color: #00A3D3; border-color: #00A3D3;"></button>
+                    <div class="dropdown-menu" role="menu">
+                        <a class="dropdown-item" role="presentation" href="/employeelist" style=" ">Employees</a>
+                        <a class="dropdown-item" role="presentation" href="/employeescard" style=" ">+ New Employee</a>
+                    </div>
+                </div>
+                <div class="btn-group" style="margin: 12px;">
+                    <a class="btn btn-primary" role="button" style="color: rgb(255,255,255);min-width: 117.016px; background-color: #00A3D3; border-color: #00A3D3;" href="/leadlist">Leads</a><button class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-expanded="false" type="button" style="background-color: #00A3D3; border-color: #00A3D3;"></button>
+                </div>
+                <div class="btn-group" style="margin: 12px;">
+                    <a class="btn btn-primary" role="button" href="/supplierlist"
+                        style="min-width: 117.016px; background-color: #00A3D3; border-color: #00A3D3;">Suppliers</a>
+                    <button class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"
+                        aria-expanded="false" type="button"
+                        style="background-color: #00A3D3; border-color: #00A3D3;"></button>
+                    <div class="dropdown-menu" role="menu">
+                        <a class="dropdown-item" role="presentation" href="/supplierlist" style=" ">Suppliers</a>
+                        <a class="dropdown-item" role="presentation" href="/supplierscard" style=" ">+ New Supplier</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-3 d-xl-flex justify-content-xl-end align-items-xl-start">
+                <button class="btn btn-primary export float-right" type="button" style="margin: 12px;" id="exportbtn"
+                    name="exportbtn"><i class="fas fa-file-export" style="padding-right: 5px;"></i>Export</button>
+                <button class="btn btn-primary printConfirm float-right" type="button" style="margin: 12px;"><i
+                        class="fa fa-print" style="padding-right: 5px;"></i>Print</button>
+                <a class="btn btnOpenSettings float-right" role="button" data-toggle="modal" href="#myModal2"
+                    style="margin: 12px;"><i class="icon ion-android-more-horizontal"></i></a>
+            </div>
+
+        </div>
+
+        <div class="card-body px-0 py-2 rounded">
+            <!-- Start {{> optionNavSalesOverview}} -->
+            <div class="d-xl-flex justify-content-xl-end">
+                <div>
+                    <div class="modal fade" role="dialog" tabindex="-1" id="myModal2">
+                        <div class="modal-dialog modal-dialog-centered" role="document" style="float: right;">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4>Display Settings</h4><button type="button" class="close"
+                                        data-dismiss="modal" aria-label="Close"><span
+                                            aria-hidden="true">×</span></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div>
+                                        {{#if tableheaderrecords}}
+                                        <form class="d-xl-flex align-items-xl-center">
+                                            <div class="flex-grow-1">
+                                                <style>
+                                                    .groove {
+                                                        border-style: solid;
+                                                        border-width: 1px;
+                                                        width: 200px;
+                                                        padding: 2px;
+                                                        border-radius: .35rem;
+                                                    }
+
+                                                    .custom-control-label {
+                                                        position: absolute;
+                                                    }
+
+                                                    .rngRange {
+                                                        position: relative;
+                                                        display: flex;
+                                                        flex-direction: column;
+                                                        width: 100%;
+                                                        pointer-events: auto;
+                                                        background-color: rgb(255, 255, 255);
+                                                        background-clip: padding-box;
+                                                        border: 1px solid rgb(133, 135, 150);
+                                                        border-radius: .3rem;
+                                                        border-style: solid;
+                                                        border-width: 1px;
+                                                        padding: 2px;
+                                                        border-radius: .35rem;
+                                                        color: rgb(128, 128, 128);
+                                                        height: inherit !important;
+                                                    }
+
+                                                    @media only screen and (max-width: 480px) {
+                                                        .modal.show .modal-dialog {
+                                                            float: inherit !important;
+                                                            left: inherit !important;
+                                                            top: auto !important;
+
+                                                        }
+                                                    }
+                                                </style>
+                                                {{#each item in tableheaderrecords}}
+                                                {{#if equals item.sTitle "id"}}
+                                                {{else}}
+
+                                                <div id="{{item.sIndex}}" class="columnSettings">
+                                                    <div class="custom-control custom-switch"
+                                                        style="margin: 8px; float:left;">
+                                                        <input class="custom-control-input chkDatatable"
+                                                            type="checkbox" id="chkSalesNo-{{item.sIndex}}"
+                                                            name="chkSalesNo-{{item.sIndex}}"
+                                                            checked="{{#if item.sVisible}}checked{{else}}{{/if}}"
+                                                            value="{{item.sTitle}}">
+                                                        <label class="custom-control-label"
+                                                            for="chkSalesNo-{{item.sIndex}}"></label>
+                                                        <div contenteditable="true" class="groove divcolumn"
+                                                            type="text" value="{{item.sTitle}}"
+                                                            valueupdate="{{item.sClass}}">{{item.sTitle}}</div>
+                                                    </div>
+                                                    <div class="d-xl-flex align-items-xl-center divColWidth"
+                                                        style="margin: 8px;">
+                                                        <label class="text-nowrap"
+                                                            style="padding-left: 0px;margin-top: 8px;">Width:
+                                                            <!--<span class="spWidth" value="{{item.sTitle}}">{{item.sWidth}}px</span>-->
+                                                        </label>
+                                                        <input class="custom-range rngRange" type="number"
+                                                            style="margin: 8px; width: 75px;"
+                                                            value="{{item.sWidth}}" min="0" max="1000">
+                                                        <!-- <div contenteditable="true" class="groove rngRange" type="text" value="{{item.sWidth}}" min="0" max="1000">{{item.sWidth}}px</div> -->
+                                                    </div>
+                                                </div>
+
+                                                {{#if equals item.sVisible true}}
+                                                <script>
+                                                    $("#" + {{ item.sIndex }} + ".chkDatatable").attr("checked", "checked");
+                                                </script>
+                                                {{else}}
+                                                <script>
+                                                    $("#" + {{ item.sIndex }} + ".chkDatatable").removeAttr("checked");
+                                                </script>
+                                                {{/if}}
+
+                                                {{/if}}
+                                                {{/each}}
+                                            </div>
+                                        </form>
+                                        {{/if}}
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-primary saveTable" type="button"><i class="fa fa-save"
+                                            style="margin-right: 5px;"></i>Save</button>
+                                    <button class="btn btn-warning resetTable" data-dismiss="modal" type="reset"><i
+                                            class="fa fa-repeat" style="margin-right: 5px;"></i>Reset</button>
+                                    <button class="btn btn-secondary" data-dismiss="modal" type="button"><i
+                                            class="fa fa-remove" style="margin-right: 5px;"></i>Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End -->
+            <div class="table-responsive">
+                <style>
+                    th {
+                        background-color: #ededed;
+                    }
+
+                    .table-striped tbody tr:nth-of-type(odd) {
+                        background-color: white !important;
+                    }
+
+                    .table-striped tbody tr:nth-of-type(even) {
+                        background-color: #0000000d !important;
+                    }
+
+                    .JColResizer>tbody>tr>td,
+                    .JColResizer>tbody>tr>th {
+                        padding: .75rem !important;
+                    }
+
+                    .hiddenColumn {
+                        display: none;
+                    }
+
+                    .showColumn {
+                        display: table-cell;
+                        padding: .75rem;
+                        vertical-align: top;
+                    }
+
+                    input[type=number]::-webkit-inner-spin-button,
+                    input[type=number]::-webkit-outer-spin-button {
+                        opacity: 1;
+                    }
+                </style>
+                <!-- <div class="row no-gutters d-xl-flex align-items-xl-end">
+                    <div class="col d-sm-flex justify-content-sm-start align-items-sm-center">
+
+                    </div>
+                    <div class="col float-right d-sm-flex d-xl-flex justify-content-sm-end align-items-sm-center justify-content-xl-end align-items-xl-end">
+                        <div class="dropdown" style="margin: 8px; margin-top: 0px;">
+                            <style>
+                                .btn-daterange::after {
+                                    display: none;
+                                }
+                            </style>
+                            <button class="btn dropdown-toggle btn-daterange" data-toggle="dropdown" aria-expanded="true" type="button"><i class="fas fa-ellipsis-v"></i></button>
+                            <div class="dropdown-menu" role="menu">
+                                <h6 class="dropdown-header" role="presentation">Date ranges</h6>
+                                <a class="dropdown-item lastMonth"  id="lastMonth" role="presentation" href="#">Last Month</a>
+                                <a class="dropdown-item lastQuarter"  id="lastQuarter" role="presentation" href="#">Last Quarter</a>
+                                <a class="dropdown-item last12Months"  id="last12Months" role="presentation" href="#">Last 12 Months</a>
+                                <a class="dropdown-item ignoreDate"  id="ignoreDate" role="presentation" href="#">Ignore Date</a>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin: 8px; margin-top: 0px; display: inline-flex;">
+                            <label style="margin-top: 8px; margin-right: 16px;">From</label>
+                            <div class="input-group date" style="width: 160px;">
+                                <input type="text" class="form-control" id="dateFrom" name="dateFrom" >
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-th"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin: 8px; margin-right: 0px; margin-top: 0px; display: inline-flex;">
+                            <label style="margin-top: 8px; margin-right: 16px;">To</label>
+                            <div class="input-group date" style="width: 160px;">
+                                <input type="text" class="form-control" id="dateTo" name="dateTo" >
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-th"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+                <table id="tblcontactoverview" style="width:100%"
+                    class="dataTable table table-striped table-bordered tblcontactoverview">
+                    <thead>
+                        <tr class="dnd-moved">
+                            <th class="th colClientName" style="width:200px;">Contact Name</th>
+                            <th class="th colType" style="width:130px;">Type</th>
+                            <th class="th colPhone" style="width:95px;">Phone</th>
+                            <th class="th colMobile hiddenColumn">Mobile</th>
+                            <th class="th colARBalance" style="width:80px;">AR Balance</th>
+                            <th class="th colCreditBalance" style="width:80px;">Credit Balance</th>
+                            <th class="th colBalance" style="width:80px;">Balance</th>
+                            <th class="th colCreditLimit" style="width:80px;">Credit Limit</th>
+                            <th class="th colSalesOrderBalance" style="width:80px;">Order Balance</th>
+                            <th class="th colEmail hiddenColumn">Email</th>
+                            <!-- <th class="th colCountry hiddenColumn">Country</th> -->
+                            <th class="th colCustFld1 hiddenColumn">Custom Field 1</th>
+                            <th class="th colCustFld2 hiddenColumn">Custom Field 2</th>
+                            <th class="th colAddress">Address</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#if datatablerecords}}
+                        {{#each item in datatablerecords}}
+                        <tr class="dnd-moved" id="{{item.id}}" style="cursor: pointer;">
+                            <td contenteditable="false" class="colClientName">{{item.clientname}}</td>
+                            <td contenteditable="false" class="colType">{{item.type}}</td>
+                            <td contenteditable="false" class="colPhone">{{item.phone}}</td>
+                            <td contenteditable="false" class="colMobile hiddenColumn">{{item.mobile}}</td>
+                            <td contenteditable="false" class="colARBalance" style="text-align: right!important;">
+                                {{item.arbalance}}</td>
+                            <td contenteditable="false" class="colCreditBalance"
+                                style="text-align: right!important;">{{item.creditbalance}}</td>
+                            <td contenteditable="false" class="colBalance" style="text-align: right!important;">
+                                {{item.balance}}</td>
+                            <td contenteditable="false" class="colCreditLimit" style="text-align: right!important;">
+                                {{item.creditlimit}}</td>
+                            <td contenteditable="false" class="colSalesOrderBalance"
+                                style="text-align: right!important;">{{item.salesorderbalance}}</td>
+                            <td contenteditable="false" class="colEmail hiddenColumn">{{item.email}}</td>
+                            <td contenteditable="false" class="colCustFld1 hiddenColumn">{{item.custFld1}}</td>
+                            <td contenteditable="false" class="colCustFld2 hiddenColumn">{{item.custFld2}}</td>
+                            <td contenteditable="false" class="colAddress">{{item.address}}</td>
+                        </tr>
+                        {{/each}}
+                        {{/if}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Start Help Video Modal -->
+        <div class="modal fade" role="dialog" tabindex="-1" id="helpModal">
+            <div class="modal-dialog" role="document" style="max-width: 670px!important;">
+                <div class="modal-content">
+                    <div class="modal-header">
+
+                        <h4 class="title-header">Contact Overview</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">×</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- <iframe width="640" height="360" src="https://player.vimeo.com/video/99892791" frameborder="0" allowfullscreen=""></iframe> -->
+                        <!-- <iframe width="640" height="360" src="https://erphelpes.com/vs1videos/contactsoverview.mp4" frameborder="0" allowfullscreen=""></iframe> -->
+                        <video id="myVideo" width="640" height="360" controls="" name="media"
+                            style="border: solid 5px #999999f0; height: auto; outline: none;">
+                            <source src="https://erphelpes.com/vs1videos/contactoverview.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- End Help Video Modal -->
+    </div>
+    <script>
+        modalDraggable();
+    </script>
+</template>
