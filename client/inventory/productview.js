@@ -3565,7 +3565,6 @@ Template.productview.events({
                             templateObject.isTrackChecked.set(false);
                         }
                     });
-                    // swal('PLEASE NOTE', 'If Inventory Tracking is turned on, it cannot be turned off for this product in the future.', 'info');
                 }
             }
 
