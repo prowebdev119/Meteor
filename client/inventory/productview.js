@@ -3646,8 +3646,11 @@ Template.productview.events({
     },
     'keydown #edtbuyqty1cost, keydown #edtsellqty1price, keydown #edttotalqtyinstock, keydown #edtsellqty1priceInc, keydown #edtbuyqty1costInc, keydown .edtPriceEx, keydown .edtDiscount, keydown .edtDiscountModal': function (event) {
         if ($.inArray(event.keyCode, [46, 8, 9, 27, 13, 110]) !== -1 ||
+            // Allow: Ctrl+A, Command+A
             (event.keyCode === 65 && (event.ctrlKey === true || event.metaKey === true)) ||
+            // Allow: home, end, left, right, down, up
             (event.keyCode >= 35 && event.keyCode <= 40)) {
+            // let it happen, don't do anything
             return;
         }
 
