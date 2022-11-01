@@ -144,6 +144,7 @@ Template.productview.onRendered(function () {
                     }
 
                 }
+                //localStorage.setItem('VS1PurchaseAccountList', JSON.stringify(splashArrayAccountList));
                 if (splashArrayAccountList) {
                     var datatable = $('#tblAccount').DataTable();
                     datatable.clear();
