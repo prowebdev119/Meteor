@@ -1,8 +1,6 @@
 import {ProductService} from "../product/product-service";
 import { ReactiveVar } from 'meteor/reactive-var';
 import { TaxRateService } from "../settings/settings-service";
-import { CoreService } from '../js/core-service';
-import {AccountService} from "../accounts/account-service";
 import {PurchaseBoardService} from '../js/purchase-service';
 import {UtilityService} from "../utility-service";
 import 'jquery-editable-select';
