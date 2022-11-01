@@ -104,7 +104,6 @@ Template.productview.onRendered(function () {
                             splashArrayAccountList.push(dataList);
                         }
                     }
-                    //localStorage.setItem('VS1PurchaseAccountList', JSON.stringify(splashArrayAccountList));
 
                     if (splashArrayAccountList) {
 
