@@ -3570,19 +3570,7 @@ Template.productview.events({
             }
 
         }
-        //
-
-        // if($(event.target).is(':checked')){
-        //   templateObject.isTrackChecked.set(true);
-        //   $('.trackItem').css('display','block');
-        //   $('.trackItemvisible').css('visibility','visible');
-        //
-        //   // swal('PLEASE NOTE', 'If Inventory Tracking is turned on it cannot be turned off for this product in the future.', 'info');
-        // }else{
-        //   templateObject.isTrackChecked.set(false);
-        //   $('.trackItem').css('display','none');
-        //   $('.trackItemvisible').css('visibility','hidden');
-        // }
+        
     },
     'click #chkSellPrice': function (event) {
         if ($(event.target).is(':checked')) {
