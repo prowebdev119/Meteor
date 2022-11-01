@@ -4020,7 +4020,6 @@ Template.productview.events({
     'blur .edtDiscountModal': function (event) {
         let utilityService = new UtilityService();
         let templateObject = Template.instance();
-        //var targetID = $(event.target).closest('.itemExtraSellRow').attr('id');
         let itemSellPrice = parseFloat($('#edtsellqty1price').val().replace(/[^0-9.-]+/g, "")) || 0;
         let discountPrice = parseFloat($(event.target).val()) || 0;
         $(event.target).val(discountPrice);
