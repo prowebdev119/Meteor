@@ -191,7 +191,7 @@ Template.productview.onRendered(function () {
             });
         });
     };
-    // tempObj.getAllAccountss();
+    tempObj.getAllAccountss();
 
     $(document).ready(function () {
         setTimeout(function () {
